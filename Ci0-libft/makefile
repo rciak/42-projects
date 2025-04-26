@@ -6,7 +6,7 @@
 #    By: Rene Ciak <rciakAT42Vienna@web.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/04/26 13:19:32 by Rene Ciak        ###   ########.fr        #
+#    Updated: 2025/04/26 13:59:26 by Rene Ciak        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ include Makefile
 
 .PHONY: update_SRC
 update_SRC:
-	@echo 'SRC = \'
+	@echo 'SRC := \'
 	@find -name "*.c" \
 	  | while read found_files; do echo "$$found_files \\"; done \
 	  | sed '$$ s#\\##'
