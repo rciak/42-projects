@@ -6,24 +6,32 @@
 #    By: Rene Ciak <rciakAT42Vienna@web.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/04/26 15:15:15 by Rene Ciak        ###   ########.fr        #
+#    Updated: 2025/04/26 17:18:29 by Rene Ciak        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include Makefile
 
-.PHONY: update_SRCS
+.PHONY: tests
+tests:
+	@echo "Not implemented yet beyond this dummy version..."
+
+.PHONY: doc
+doc:
+	@echo "Not implemented yet beyond this dummy version..."
+
+.PHONY: update_SRCS_SRCS_BONUS
 update_SRCS:
 	@echo 'SRCS := \'
-	@find -name "*.c" | \
+	@find $(SRC_DIR) -name "*.c" | grep --color=none -v "ft_lst" | \
+	  while read found_files; do echo "$$found_files \\"; done | sed '$$ s#\\##'
+	@echo
+	@echo 'SRCS_BONUS := \'
+	@find $(SRC_DIR) -name "*.c" | grep --color=none "ft_lst" | \
 	  while read found_files; do echo "$$found_files \\"; done | sed '$$ s#\\##'
 
 .PHONY: ready_to_submit
 ready_to_submit:
-	@echo "Not implemented yet beyond this dummy version..."
-
-.PHONY: tests
-tests:
 	@echo "Not implemented yet beyond this dummy version..."
 
 .PHONY: show_vars
