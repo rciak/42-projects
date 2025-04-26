@@ -26,3 +26,10 @@ ready_to_submit:
 .PHONY: tests
 tests:
 	@echo "Not implemented yet beyond this dummy version..."
+
+.PHONY: show_vars
+show_vars:
+	@echo "SRC_DIR: |$(SRC_DIR)|"
+	@echo "OBJ_DIR: |$(OBJ_DIR)|"
+	@echo "SRCS: |$(SRCS)|"
+	@echo "OBJS: |$(OBJS)|"
