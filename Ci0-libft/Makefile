@@ -6,37 +6,49 @@
 #    By: Rene Ciak <rciakAT42Vienna@web.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:15 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/04/26 17:46:59 by Rene Ciak        ###   ########.fr        #
+#    Updated: 2025/04/26 20:05:43 by Rene Ciak        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
 INC_DIR := .
 OBJ_DIR := ./obj
+OBJ_DIR_BONUS := ./obj_bonus
 
 CC := cc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 RM := rm -f
 RMDIR := rmdir
 
-OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
+# Dependencies can be handled better using DEP=.. stuff, cf.
+# https://stackoverflow.com/questions/2394609/makefile-header-dependencies
+# but that is currently beyond my understanding and for not too big problems
+# it should be ok if everything is recompiled when the header changes.
+INCS := ./libft.h
+
+OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 SRCS := \
-./ft_isalnum.c \
+./ft_isalnum.c
+
+OBJS_BONUS = $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(SRCS_BONUS))
+SRCS_BONUS := \
+./ft_lstnew.c
 
 .PHONY: all
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+	ar -rcs $@ $^
 
-$(OBJ_DIR)/%.o:%.c
-	mkdir -p $(@D)
+$(OBJ_DIR)/%.o:%.c $(INCS)
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	$(RM) $(OBJS)
-	-$(RM) $(OBJ_DIR)
+	$(RM) $(OBJS) $(OBJS_BONUS)
+	-$(RMDIR) $(OBJ_DIR)
+	-$(RMDIR) $(OBJ_DIR_BONUS)
 
 .PHONY: fclean
 fclean: clean
@@ -46,7 +58,12 @@ fclean: clean
 re: fclean all
 
 .PHONY: bonus
-bonus:
+bonus: $(OBJS) $(OBJS_BONUS)
+	ar -crs	$(NAME) $(OBJS) $(OBJS_BONUS)
 
-.PHONY: bonus
-bonus_re: fclean bonus
+$(OBJ_DIR_BONUS)/%.o:%.c $(INCS)
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: rebonus
+rebonus: fclean bonus
