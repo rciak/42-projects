@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Rene Ciak <rciakAT42Vienna@web.de>         +#+  +:+       +#+         #
+#    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/26 11:30:15 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/04/26 22:46:26 by Rene Ciak        ###   ########.fr        #
+#    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
+#    Updated: 2025/04/29 16:37:52 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
