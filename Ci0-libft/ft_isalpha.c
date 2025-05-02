@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:42:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/02 22:09:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/02 22:46:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@
  *          * 1 if c represents a letter,
  *          * 0 otherwise.
  */
-
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	return (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'));
 }
