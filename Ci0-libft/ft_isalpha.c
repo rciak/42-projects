@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:42:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/02 21:48:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/02 22:09:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@
  *       e.g. ft_isalpha(255) will still return 0 (false), 
  *       even though 255 represents the letter ÿ in the ISO/IEC 8859-1 encoding,
  *       so that the original function isalpha(255) 
- *       probably will return 1 (true) !!!
+ *       probably will return something != 0 (true) !!!
  *       But non the less one can reason that the subject is still fullfilled:
  *       According to the man page 
  *       `c` is expected to be either in the range 0...127 or equal to EOF
  *       (a negative integer - in most implementations choosen as -1).
- *       As long as ft_isalpha(c) == isalpha(c) for these values of `c` hence
+ *       As long as ft_isalpha(c) and isalpha(c) both return 0 resp. nonzero 
+ *       for these values of `c` alike
  *       everything is ok. 
  *       (Differences in other cases can be viewed as caused 
  *       by **undefined behaviour**.)
@@ -62,9 +63,25 @@ int ft_isalpha(int c)
 }
 /*
 #include <stdio.h>  // EOF
+#include <ctype.h>  // isalpha
 #include <locale.h>
-int main(void)
+int main(int argc, char **argv)
 {
+	int c;
+
+	if (argc != 1 && argc != 1 + 1)
+		return (-1);
+
+	if (argc == 1 + 1)
+	{
+		c = (int) argv[1][0];
+		printf("c: %d\n", c);
+		printf("(char)c: %c\n", (char)c);
+		printf("ft_isalpha(%d): %d\n", c, ft_isalpha(c));
+		printf("isalpha(%d): %d\n", c, isalpha(c));
+		return (0);
+	}
+	
 	//Not installed anymore in times of UTF-8
     //if (setlocale(LC_ALL, "en_US.ISO-8859-1") == NULL) {
     //    printf("Locale not available!\n");
