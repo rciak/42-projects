@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/05/02 20:06:47 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/04 21:05:39 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SED_OPTIMIZE_OUTPUT_FOR_C=OPTIMIZE_OUTPUT_FOR_C  = YES
 tests:
 	@echo "Not implemented yet beyond this dummy version..."
 
-doc:
+doc: $(SRCS) $(SRCS_BONUS) $(INCS)
 	@mkdir -p $(DOC)
 	doxygen -g $(DOXYFILE)
 	sed -i 's#PROJECT_NAME           =.*#$(SED_PROJECT_NAME)#'     $(DOXYFILE)
