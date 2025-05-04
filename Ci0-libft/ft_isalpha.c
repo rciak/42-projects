@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:42:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/02 22:46:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/04 15:19:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 #include "libft.h"
 
 /**
- * @brief Checks if a character is a letter
- * @note We assume that the **C locale**
-  is used,
+ * @brief Checks if a character is a letter, cf.
+ *        [isalpha](https://man7.org/linux/man-pages/man3/isalpha.3.html).
+ * @note We assume that the **C locale** is used,
  *       when calling ft_isalpha() i.e.
  *       that only the letters `a-z` and `A-Z` in the ASCII table 
  *       (range 0...127) shall cause return 1 (true), while all other 
@@ -50,10 +50,12 @@
  *       ASCII-characters (range 0...127) that can
  *       to be represeneted as 1 byte long Unicode characters but no other
  *       characters (all other characters take 2, 3 or 4 bytes in UTF-8).
-
- * @param[in] c The character to be checked
+ * @note Even on the 42-Campus Computers isalpha seems to returns 0 (false) or 
+ *       1024 (true), whereas ft_isalpha returns in the latter case 1 
+ *       which represents also "true".
+ * @param[in] c The character to be checked (value 0-127) or EOF
  * @return 
- *          * 1 if c represents a letter,
+ *          * 1 (or some other nonzero value) if \p c  represents a letter,
  *          * 0 otherwise.
  */
 int	ft_isalpha(int c)

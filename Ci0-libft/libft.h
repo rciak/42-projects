@@ -6,9 +6,15 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/02 22:45:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/04 13:45:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file libft.h
+ * @brief The header file for reciak's libft library project of the Common Core
+ */
+
 
 #ifndef LIBFT_H
 # define LIBFT_H
