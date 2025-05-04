@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:42:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/04 15:19:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/04 18:40:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
  *       which represents also "true".
  * @param[in] c The character to be checked (value 0-127) or EOF
  * @return 
- *          * 1 (or some other nonzero value) if \p c  represents a letter,
+ *          * 1 if \p c does represents an (ASCII) letter,
  *          * 0 otherwise.
  */
 int	ft_isalpha(int c)

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 13:28:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/04 15:12:31 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/04 18:40:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
  * @note Cf. also ft_isalpha()
  * @param[in] c The character to be checked (value 0-127) or EOF
  * @return 
- *          * 0 if \p c does not represents an (ASCII) letter,
- *          * 1 otherwise.
+ *          * 1 if \p c does represents a digit character,
+ *          * 0 otherwise.
  */
 int	ft_isdigit(int c)
 {
