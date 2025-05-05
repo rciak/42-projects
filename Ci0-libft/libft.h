@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/04 13:45:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 12:11:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ typedef struct s_list
 }					t_list;
 typedef t_list		t_lnd;
 
+int	ft_isalpha(int c);
+int	ft_isdigit(int c);
 int	ft_isalnum(int c);
+int	ft_isascii(int c);
+int	ft_isprint(int c);
 
 #endif
