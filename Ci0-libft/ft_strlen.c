@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:24:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 12:44:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:59:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @note If \p s is `NULL` then `ft_strlen` will segfault - this is intended.
  * @return The length of the string.
  */
-size_t strlen(const char *s)
+size_t ft_strlen(const char *s)
 {
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 15:57:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:59:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
-size_t	strlen(const char *s);
-void	*memset(void *s, int c, size_t n);
+size_t	ft_strlen(const char *s);
+void	*ft_memset(void *s, int c, size_t n);
 
 #endif
