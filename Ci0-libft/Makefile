@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/05 12:08:23 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/05 18:46:45 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,17 @@ SRCS := \
 ./ft_isalpha.c \
 ./ft_isascii.c \
 ./ft_isdigit.c \
-./ft_isprint.c
+./ft_isprint.c \
+./ft_strlen.c \
+./ft_memset.c \
+./ft_bzero.c \
+./ft_memcpy.c \
+./ft_memmove.c
 
 SRCS_BONUS := \
 ./ft_lstnew.c
+
+
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 SRCS := \
