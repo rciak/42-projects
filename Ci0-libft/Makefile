@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/04/29 16:37:52 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/05 12:08:23 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,18 @@ RMDIR := rmdir
 # https://stackoverflow.com/questions/2394609/makefile-header-dependencies
 # but that is currently beyond my understanding and for not too big problems
 # it should be ok if everything is recompiled when the header changes.
-INCS := ./libft.h
+INCS := \
+./libft.h
+
+SRCS := \
+./ft_isalnum.c \
+./ft_isalpha.c \
+./ft_isascii.c \
+./ft_isdigit.c \
+./ft_isprint.c
+
+SRCS_BONUS := \
+./ft_lstnew.c
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 SRCS := \
@@ -32,8 +43,6 @@ SRCS := \
 
 TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
 OBJS_BONUS = $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(SRCS_BONUS))
-SRCS_BONUS := \
-./ft_lstnew.c
 
 .PHONY: all
 all: $(NAME)
