@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/05 12:24:05 by reciak            #+#    #+#             */
+/*   Updated: 2025/05/05 12:44:30 by reciak           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/**
+ * @file ft_strlen.c
+ * @brief Stores the definition of 
+ */
+
+#include "libft.h"
+
+/**
+ * @brief Counts the length of given string, cf.
+ * [strlen](https://man7.org/linux/man-pages/man3/strlen.html)
+ * @param[in] s pointer to a nullterminated string whose length shall be found.
+ * @note If \p s is `NULL` then `ft_strlen` will segfault - this is intended.
+ * @return The length of the string.
+ */
+size_t strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+/*
+#include <stdio.h>
+int main(void)
+{
+	printf("abc:%zu",strlen("abc"));
+	printf(":%zu",strlen(""));
+	printf("Newline should trigger writting. Please comment this line out.\n");
+	printf("NULL:%zu",strlen(NULL));
+}
+*/
