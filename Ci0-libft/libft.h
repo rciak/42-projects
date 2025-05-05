@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 12:27:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 15:57:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <stdbool.h>  // true, false
 # include <stdlib.h>   // malloc, free   (also NULL definition aside stddef.h)
 
+typedef unsigned char uchar;
+
 typedef struct s_list
 {
 	void			*content;
@@ -35,5 +37,6 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 size_t	strlen(const char *s);
+void	*memset(void *s, int c, size_t n);
 
 #endif
