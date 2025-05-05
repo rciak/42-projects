@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:43:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/04 21:09:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 11:21:24 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
  *       value assumptions if being ASCII range 0...127 and `EOF`.
  *       Though in accordance to the man page this feels weird, given the
  *       function's name `ft_isascii`.
- * @param[in] c The character to be checked; value 0-127 or `EOF` is assumed.
+ * @param[in] c The character to be checked; value 0...127 or `EOF` is assumed.
  * @return 
  *          * 1 if \p c is an ASCII character,
  *          * 0 otherwise.

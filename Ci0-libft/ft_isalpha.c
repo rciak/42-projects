@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:42:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/04 18:40:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 11:22:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
  * @note Even on the 42-Campus Computers isalpha seems to returns 0 (false) or 
  *       1024 (true), whereas ft_isalpha returns in the latter case 1 
  *       which represents also "true".
- * @param[in] c The character to be checked (value 0-127) or EOF
+ * @param[in] c The character to be checked; value 0...127 or `EOF` is assumed.
  * @return 
  *          * 1 if \p c does represents an (ASCII) letter,
  *          * 0 otherwise.
