@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:51:52 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 17:39:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:42:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @brief Fills the first n bytes of the memory area pointed to by s 
  *        with the constant byte c, cf.
  *        [memset](https://man7.org/linux/man-pages/man3/memset.html)
- * @param[in, out] s pointer to the memory area to be filled.
+ * @param[in] s pointer to the memory area to be filled.
  * @param[in] c the byte that shall be copied over the memory area.
  * @param[in] n the number of bytes to be filled.
  * @return s
