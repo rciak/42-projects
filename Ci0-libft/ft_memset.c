@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:51:52 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 17:42:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 18:07:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_memset.c
- * @brief Stores the definition of 
+ * @brief Stores the definition of ft_memset
  */
 
 #include "libft.h"
