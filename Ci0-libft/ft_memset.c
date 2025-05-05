@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:51:52 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 16:27:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/05 17:39:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@
  * @param[in] n the number of bytes to be filled.
  * @return s
  */
-void	*memset(void *s, int c, size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
 	uchar	least_significant_byte;
 	uchar	*uc_s;
 
-	least_significant_byte = (uchar) c;
+	uc_s = (uchar *);
+	least_significant_byte_of_c = (uchar) c;
 	while(n > 0)
 	{
-		
+		uc_s[n] = least_significant_byte_of_c;
 		n--;
 	}
 	return (s);
