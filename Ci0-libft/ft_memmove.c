@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:51:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/06 10:19:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/06 10:44:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 #include "libft.h"
 
 /**
- * @brief Copies n bytesmemmove, cf.
+ * @brief Copies n bytes from src to dest, cf.
  *        [memmove](https://man7.org/linux/man-pages/man3/memmove.html)
  * @note In contrast to memcpy() the copying over still work when the
  *       memory areas do overlap but it is slower than ft_memmove,
  *       since it needs if statements.
  * @warning Still both memory areas should have a length of at least n bytes.
- * @param[in] dest pointer to the start of the memory area to be written to
+ * @param[in, out] dest pointer to the start of the memory area to be written to
  * @param[in] src pointer to the start of the memory area to be read from
  * @return dest
  */
