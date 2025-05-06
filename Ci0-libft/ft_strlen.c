@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:24:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 17:59:31 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/06 11:54:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_strlen.c
- * @brief Stores the definition of 
+ * @brief Stores the definition of ft_strlen
  */
 
 #include "libft.h"
