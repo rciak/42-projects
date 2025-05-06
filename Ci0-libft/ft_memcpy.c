@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:50:31 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 18:50:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/06 09:53:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 #include "libft.h"
 
 /**
- * @brief Copies n bytes, cf.
+ * @brief Copies n bytes assuming that the memory areas do not overlap, cf.
  *        [memcpy](https://man7.org/linux/man-pages/man3/memcpy.html)
- * @warning The memory areas may not overlap! Further both memory areas
- *          should have a length of at least n bytes.
+ * @warning If the ammsumption of memory areas do overlap is violated the 
+ *          copying process is can totally go wrong. Consider using ft_memmove()
+ *          in this case.
+ * @warning Further both memory areas should have a length of at least n bytes.
  * @param[in] dest pointer to the start of the memory area to be written to
  * @param[in] src pointer to the start of the memory area to be read from
  * @return dest
