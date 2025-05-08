@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/08 15:40:31 by reciak            #+#    #+#             */
+/*   Updated: 2025/05/08 16:31:48 by reciak           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /**
  * @file ft_strlcpy.c
  * @brief Stores the definition of ft_strlcpy
@@ -58,19 +70,20 @@
  */
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	i;
+	size_t	src_len;
+	size_t	bytes_to_copy;
 
+	src_len = ft_strlen(src);
 	if (size == 0)
-		return (ft_strlen(src));
-	i = 0
-	while (i < size - 1)
+		return (src_len);
+	bytes_to_copy = si_min(src_len, size - 1);
+	while (bytes_to_copy > 0)
 	{
-
 		*dest = *src;
 		dest++;
 		src++;
-		i++;
+		bytes_to_copy--;
 	}
 	*dest = '\0';
-	return (ft_strlen(src));
+	return (src_len);
 }
