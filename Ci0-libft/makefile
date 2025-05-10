@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/05/04 21:05:39 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/10 23:54:48 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ DOXYFILE=$(DOC)/autogen_Doxyfile
 SED_PROJECT_NAME=         PROJECT_NAME           = Ci0-libft
 SED_OUTPUT_DIRECTORY=     OUTPUT_DIRECTORY       = $(DOC)
 SED_OPTIMIZE_OUTPUT_FOR_C=OPTIMIZE_OUTPUT_FOR_C  = YES
+SED_SOURCE_BROWSER=       SOURCE_BROWSER         = YES
 
 .PHONY: tests
 tests:
@@ -30,17 +31,19 @@ doc: $(SRCS) $(SRCS_BONUS) $(INCS)
 	sed -i 's#PROJECT_NAME           =.*#$(SED_PROJECT_NAME)#'     $(DOXYFILE)
 	sed -i 's#OUTPUT_DIRECTORY       =.*#$(SED_OUTPUT_DIRECTORY)#' $(DOXYFILE)
 	sed -i 's#OPTIMIZE_OUTPUT_FOR_C  =.*#$(SED_OPTIMIZE_OUTPUT_FOR_C)#' $(DOXYFILE)
+	sed -i 's#SOURCE_BROWSER         =.*#$(SED_SOURCE_BROWSER)#'   $(DOXYFILE)
 	doxygen $(DOXYFILE)
 
 .PHONY: redoc
 redoc: fclean_doc doc
 
 clean_doc:
-	find $(DOC) -name '*$(notdir $(DOXYFILE))*' -type f -delete
+	@if [ -d $(DOC) ]; then \
+	  find $(DOC) -name '*$(notdir $(DOXYFILE))*' -type f -delete; \
+	fi
 
 .PHONY: fclean_doc
-fclean_doc:
-	find $(DOC) -name '*$(notdir $(DOXYFILE))*' -type f -delete
+fclean_doc: clean_doc
 	rm -fr $(DOC)/html
 	rm -fr $(DOC)/latex
 	-rmdir $(DOC)
