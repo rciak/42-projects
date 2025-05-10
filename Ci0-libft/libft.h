@@ -15,21 +15,21 @@
  * @brief The header file for reciak's libft library project of the Common Core
  */
 
-
 #ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdbool.h>  // true, false
 # include <stdlib.h>   // malloc, free   (also NULL definition aside stddef.h)
 
-typedef unsigned char uchar;
+typedef unsigned char	t_uchar;
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
-typedef t_list		t_lnd;
+}						t_list;
+
+typedef t_list			t_lnd;
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

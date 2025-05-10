@@ -38,7 +38,7 @@
  *          * 1 if \p c is an ASCII character,
  *          * 0 otherwise.
  */
-int ft_isascii(int c)
+int	ft_isascii(int c)
 {
 	return (0 <= c && c <= 127);
 }
