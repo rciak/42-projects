@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/08 16:25:39 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 19:22:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+size_t	strlcat(char *dst, const char *src, size_t size);
 
 //ft_x_math01.c
 size_t	si_min(size_t a, size_t b);
