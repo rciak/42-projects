@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 22:05:02 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/10 22:05:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:10:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
  *              value 0...127 or `EOF` is assumed.
  * @return
  *          * the corresponding uppercase letter,
- *            if it the input is a lowercase letter,
- *          * the unchanged input if it is not a lowercase letter.
+ *            if \p c is a lowercase letter,
+ *          * \p c if it is not a lowercase letter.
  */
 int	ft_toupper(int c)
 {
