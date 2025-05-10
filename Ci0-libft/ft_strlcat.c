@@ -71,7 +71,7 @@ static void	st_finish_counting_len(size_t *plen_src, char *src);
  *             dst[0], dst[1], ..., dst[size - 1] is a nullterminator.
  *          * `ft_strlen(src) + ft_strlen(dest)` else.
  */
-size_t	strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	ori_len_dst;
 	size_t	len_src;
