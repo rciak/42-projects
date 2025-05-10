@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:50:31 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/06 09:53:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:22:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Copies n bytes assuming that the memory areas do not overlap, cf.
- *        [memcpy](https://man7.org/linux/man-pages/man3/memcpy.html)
+ *        [memcpy](https://man7.org/linux/man-pages/man3/memcpy.3.html)
  * @warning If the ammsumption of memory areas do overlap is violated the 
  *          copying process is can totally go wrong. Consider using ft_memmove()
  *          in this case.

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:43:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 11:21:24 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:22:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 /**
  * @brief Checks if the given input is an ASCII character, cf.
- * [isascii](https://man7.org/linux/man-pages/man3/isascii.html).
+ * [isascii](https://man7.org/linux/man-pages/man3/isascii.3.html).
  * @note Since the input is (according to that man page) expected to be either
  *       in the (ASCII) range 0...123 or equal to `EOF`
  *       one has an alternative to the straightforward check

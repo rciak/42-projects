@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:24:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/06 11:54:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:23:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Counts the length of given string, cf.
- * [strlen](https://man7.org/linux/man-pages/man3/strlen.html)
+ * [strlen](https://man7.org/linux/man-pages/man3/strlen.3.html)
  * @param[in] s pointer to a nullterminated string whose length shall be found.
  * @note If \p s is `NULL` then `ft_strlen` will segfault - this is intended.
  * @return The length of the string.

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:51:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/06 10:44:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:22:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Copies n bytes from src to dest, cf.
- *        [memmove](https://man7.org/linux/man-pages/man3/memmove.html)
+ *        [memmove](https://man7.org/linux/man-pages/man3/memmove.3.html)
  * @note In contrast to memcpy() the copying over still work when the
  *       memory areas do overlap but it is slower than ft_memmove,
  *       since it needs if statements.

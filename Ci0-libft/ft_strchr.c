@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 18:05:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/10 22:21:48 by reciak           ###   ########.fr       */
+/*   Created: 2025/05/10 22:18:44 by reciak            #+#    #+#             */
+/*   Updated: 2025/05/10 22:19:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_bzero.c
- * @brief Stores the definition of ft_bezero
+ * @file ft_
+ * @brief Stores the definition of 
  */
 
 #include "libft.h"
 
 /**
- * @brief Fills the first n bytes of the memory area pointed to by s 
- *        with zeros, cf.
- *        [bzero](https://man7.org/linux/man-pages/man3/bzero.3.html)
+ * @brief , cf.
+ *        [strchr](https://man7.org/linux/man-pages/man3/strchr.3.html).
  * @note 
  * @param[in] 
  * @param[out]
@@ -29,7 +28,3 @@
  *          * 
  *          * 
  */
-void ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:42:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/05 11:50:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:22:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Checks if a character is a letter or a digit, cf.
- * [isalnum](https://man7.org/linux/man-pages/man3/isalnum.html)
+ * [isalnum](https://man7.org/linux/man-pages/man3/isalnum.3.html)
  * @note Cf. also ft_isalpha()
  * @param[in] c The character to be checked; value 0...127 or `EOF` is assumed.
  * @return 
