@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:40:31 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/08 16:31:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 18:38:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@
 /**
  * @brief String copying that respects the available space in the destination,
  *        cf.
- *        [strlcpy](https://man7.org/linux/man-pages/man3/strlcpy.html).
+ *        [string_copying]
+ *          (https://man7.org/linux/man-pages/man7/string_copying.7.html)
+ *        and
+ *        [strlcpy](https://man.netbsd.org/strlcpy.3).
  *
  * ft_strlcpy() copies a string from src to dest adding a nullterminator,
  * provided that the string plus the nullterminator fits in,
- * i.e. the string is of length <= `size-1`. If though its length is
- * >= `size` then 
- * copying will be done as far as possible, i.e.
- * only `size-1` bytes are copied; also a nullteminator
- * will be added provided that `size` > 0).
+ * i.e. the string is of length < `size`. If though its length is
+ * >= `size` then
+ * copying will be done as far as possible.
  *        
  * @note 
  *       1. In the boring case `size` == 0 nothing will be done at all;
@@ -37,7 +38,7 @@
  *          will be fully copied and a nullterminator 
  *          added provided that they fit in the destination, 
  *          i.e. the string to be copied is of
- *          length <= `size-1`. Otherwise, i.e. if 
+ *          length < `size`. Otherwise, i.e. if 
  *          length >= `size` > 0 then `size-1 >= 0` bytes will be copied
  *          and a nullterminator added.
  *
@@ -50,21 +51,23 @@
  *       * it returns not a pointer but a number that can be used to 
  *         detect if there was not enough space in dest for copying, e.g.
            @verbatim
-               
-           if (ft_strlcpy(dest, src, 10) > 10 + 1)
+           if (ft_strlcpy(dest, src, 10) >= 10)
              //react to that unexpected happening.
-               
            @endverbatim
-           @code
-               
-           if (ft_strlcpy(dest, src, 10) > 10 + 1)
-             //react to that unexpected happening.
-               
-           @endcode
- 
- *
+ * @remark According to the [string_copying]
+ *          (https://man7.org/linux/man-pages/man7/string_copying.7.html)
+ *         man page there are issues with strlcpy and strlcat
+ *         @verbatim
+             strlcpy(3) and strlcat(3) need to read the entire src string, even
+             if the destination buffer is small.  This makes them vulnerable to
+             Denial of Service (DoS) attacks if an attacker can control the
+             length of the src string.  And if not, they're still unnecessarily
+             slow.
+           @endverbatim
  * @param[in, out] dest pointer to the start of the memory area to be written to
  * @param[in] src pointer to the start of the memory area to be read from
+ * @param[in] size Number of bytes that the buffer, pointed to by dest,
+ *                 can store - including the terminating null byte!
  * @return The length of the original string pointed to by `src`, i.e. the 
  *         length of the string that was intended to be created.
  */
