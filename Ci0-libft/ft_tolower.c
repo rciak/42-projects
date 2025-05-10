@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 22:07:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/10 22:11:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/10 22:14:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
  *            if \p c is an uppercase letter,
  *          * \p c if it is not an uppercase letter.
  */
- int	ft_tolower(int c)
- {
-	 if ('A' <= c && c <= 'Z')
-		 return (c - 'A' + 'a');
-	 return (c);
- }
+int	ft_tolower(int c)
+{
+	if ('A' <= c && c <= 'Z')
+		return (c - 'A' + 'a');
+	return (c);
+}
