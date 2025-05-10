@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 13:28:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/04 18:40:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/11 00:18:11 by reciak        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  * @brief Stores the definition of ft_isdigit
  */
 
- #include "libft.h"
+#include "libft.h"
 
 /**
  * @brief Checks if a character is a digit, cf.

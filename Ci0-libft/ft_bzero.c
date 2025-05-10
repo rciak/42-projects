@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:05:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/10 22:21:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/11 00:16:22 by reciak        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  *          * 
  *          * 
  */
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
 }

@@ -77,7 +77,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	len_src;
 
 	ori_len_dst = 0;
-	while(*dst && ori_len_dst < size)
+	while (*dst && ori_len_dst < size)
 	{
 		dst++;
 		ori_len_dst++;
@@ -85,9 +85,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	if (*dst != '\0')
 		return (ft_strlen(src) + size);
 	len_src = 0;
-	while(size > ori_len_dst && *src)
+	while (size > ori_len_dst && *src)
 	{
-		dst* = src*;
+		*dst = *src;
 		dst++;
 		size--;
 		src++;
@@ -97,9 +97,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	st_finish_counting_len(&len_src, src)
 	return (len_src + ori_len_dst);
 }
+
 static void	st_finish_counting_len(size_t *plen_src, char *src)
 {
-	while (src*)
+	while (*src)
 	{
 		(*plen_src)++;
 		src++;

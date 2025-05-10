@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:31:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/10 22:22:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/11 00:18:31 by reciak        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  *          * 1 if \p c does represent a printable ASCII letter
  *          * 0 otherwise.
  */
-int ft_isprint(int c)
+int	ft_isprint(int c)
 {
-	return(' ' <= c && c <= '~');
+	return (' ' <= c && c <= '~');
 }

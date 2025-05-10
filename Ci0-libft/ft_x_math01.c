@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:07:02 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/08 16:24:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/11 00:23:29 by reciak        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ size_t	si_min(size_t a, size_t b)
  * @param[in] b The second value
  * @return `max(a,b)`
  */
- size_t	si_max(size_t a, size_t b)
- {
-	 if (a >= b)
-		 return (a);
-	 return (b);
- }
+size_t	si_max(size_t a, size_t b)
+{
+	if (a >= b)
+		return (a);
+	return (b);
+}

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:43:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/10 22:22:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/11 00:17:28 by reciak        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
  * @brief Stores the definition of isascii
  */
 
- #include "libft.h"
- #include <stdio.h>  // EOF
+#include "libft.h"
+#include <stdio.h>  // EOF
 
 /**
  * @brief Checks if the given input is an ASCII character, cf.
