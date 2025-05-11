@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:27:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 16:04:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/11 18:07:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@
  * ```math
  *    s1[i] == s2[i] for all i in 0, 1, ..., I - 1    (*)
  * ```
- *         then strncmp regards the s1 and s2 to be equal.
- *         If otherwise there is a smallest i0 in 0, 1, ..., I - 1 such that
+ *         then `strncmp` regards the strings pointed to by \p s1 and \p s2 
+ *         to be equal.
+ *         If otherwise there is a smallest k in 0, 1, ..., I - 1 such that
  * ```math
- *    s1[i0] != s2[i0] 
+ *    s1[k] != s2[k] 
  *      and                                           (**)
- *    s1[i] == s2[i] for all i in 0, 1, ..., i0 - 1 
+ *    s1[i] == s2[i] for all i in 0, 1, ..., k - 1 
  * ```
- *          then the sign of s1[i0] - s2[i0] determines whether
- *          strncmp regards s1 as smaller or bigger than s2.
+ *          then the sign of `s1[k] - s2[k]` determines whether
+ *          `strncmp` regards s1 as smaller or bigger than s2.
  * @remark When two **unsigned chars** a and b are substracted C 
  *         seems to do the following:
  *       * a and b are casted first into ints (provided that data type int
@@ -49,7 +50,8 @@
  * @return 
  *          * 0 if the strings are equal in their (at most) first n bytes,
  *            i.e. (\*) holds true.
- *          * s1[i0] - s2[i0] else, i.e. (\*\*) holds true
+ *          * s1[k] - s2[k] (interpreted as unsigned chars) else, 
+ *            i.e. (\*\*) holds true
  */
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
