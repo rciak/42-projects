@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/11 02:36:25 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/11 18:12:11 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,23 +28,26 @@ INCS := \
 ./libft.h
 
 SRCS := \
+./ft_isalpha.c \
+./ft_tolower.c \
 ./ft_bzero.c \
-./ft_isdigit.c \
 ./ft_isalnum.c \
 ./ft_isascii.c \
-./ft_tolower.c \
-./ft_isalpha.c \
-./ft_memmove.c \
-./ft_toupper.c \
-./ft_strlen.c \
-./ft_strlcpy.c \
-./ft_strrchr.c \
-./ft_x_math01.c \
-./ft_memcpy.c \
-./ft_memset.c \
-./ft_strlcat.c \
+./ft_isdigit.c \
 ./ft_isprint.c \
-./ft_strchr.c
+./ft_memcpy.c \
+./ft_memmove.c \
+./ft_memset.c \
+./ft_strchr.c \
+./ft_strlcat.c \
+./ft_strlcpy.c \
+./ft_strlen.c \
+./ft_strrchr.c \
+./ft_toupper.c \
+./ft_x_math01.c \
+./ft_strncmp.c \
+./ft_memchr.c \
+./ft_memcmp.c
 
 SRCS_BONUS := \
 ./ft_lstnew.c
