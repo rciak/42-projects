@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:22:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 19:55:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/11 22:17:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@ static bool	st_little_is_here_n_visible(const char b, const char l, size_t len);
  * @param[in] big The string to be scanned,
  * @param[in] little The string to be found,
  * @param[in] len At most this number of character is looked at.
- * @return 
+ * @return
  *          * big, if \p little is an empty string,
- *          * NULL, if \p big does not contain \p little in its first \n bytes,
+ *          * NULL, if \p big does not
+ *            contain \p little in its first \p n bytes,
  *          * a pointer to the first occurence of \p little in \p big else.
  * @remark For clarification an *example* is added that extends the sample code
  *         from the man page; After saving the code in a file
  *         `tryout.c` it can be compiled and be executed via  
-           `cc -lbsd -Werror -Wall -Wextra tryout.c -o test; ./test`  
-           (if the bsd library stuff is installed)
+ *         `cc -lbsd -Werror -Wall -Wextra tryout.c -o test; ./test`  
+ *         (if the bsd library stuff is installed)
    @code
 	#include <stdio.h>
 	#include <bsd/string.h>
