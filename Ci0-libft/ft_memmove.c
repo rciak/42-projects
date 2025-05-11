@@ -30,12 +30,11 @@
  */
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	const uchar	*uc_dest;
-	const uchar	*uc_src;
+	t_uchar	*uc_dest;
+	const t_uchar	*uc_src = (t_uchar *) src;
 	size_t		step;
 
-	uc_dest = (uchar *) dest;
-	uc_src = (uchar *) src;
+	uc_dest = (t_uchar *) dest;
 	if (dest < src)
 		step = +1;
 	else if (dest > src)

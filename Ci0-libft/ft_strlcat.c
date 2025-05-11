@@ -5,7 +5,7 @@
 
 #include "libft.h"
 
-static void	st_finish_counting_len(size_t *plen_src, char *src);
+static void	st_finish_counting_len(size_t *plen_src, const char *src);
 
 /**
  * @brief String catentation that respects the available space in the, cf.
@@ -94,11 +94,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		len_src++;
 	}
 	*dst = '\0';
-	st_finish_counting_len(&len_src, src)
+	st_finish_counting_len(&len_src, src);
 	return (len_src + ori_len_dst);
 }
 
-static void	st_finish_counting_len(size_t *plen_src, char *src)
+static void	st_finish_counting_len(size_t *plen_src, const char *src)
 {
 	while (*src)
 	{

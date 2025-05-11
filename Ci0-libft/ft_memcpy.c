@@ -30,11 +30,10 @@
  */
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	const uchar	*uc_dest;
-	const uchar	*uc_src;
+	t_uchar	*uc_dest;
+	const t_uchar	*uc_src = (t_uchar *) src;
 
-	uc_dest = (uchar *) dest;
-	uc_src = (uchar *) src;
+	uc_dest = (t_uchar *) dest;
 	while (n > 0)
 	{
 		*uc_dest = *uc_src;

@@ -82,11 +82,11 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	bytes_to_copy = si_min(src_len, size - 1);
 	while (bytes_to_copy > 0)
 	{
-		*dest = *src;
-		dest++;
+		*dst = *src;
+		dst++;
 		src++;
 		bytes_to_copy--;
 	}
-	*dest = '\0';
+	*dst = '\0';
 	return (src_len);
 }

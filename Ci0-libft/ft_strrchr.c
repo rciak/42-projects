@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 22:51:53 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/10 23:19:31 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/11 02:38:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
  */
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*candidate;
+	const char	*candidate;
 
 	candidate = NULL;
 	while (*s)
@@ -43,5 +43,5 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	if (*s == c)
 		candidate = s;
-	return (candidate);
+	return ((char *) candidate);
 }
