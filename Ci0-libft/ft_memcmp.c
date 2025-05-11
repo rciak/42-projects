@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:34:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 21:58:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/12 00:16:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		uc_s2++;
 		n--;
 	}
+	if (n == 0)
+		return (0);
 	return (*uc_s1 - *uc_s2);
 }
