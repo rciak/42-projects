@@ -34,13 +34,15 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	const t_uchar	*uc_src = (t_uchar *) src;
 	size_t		step;
 
+	if (n == 0)
+		return (dest);
 	uc_dest = (t_uchar *) dest;
 	if (dest < src)
 		step = +1;
 	else if (dest > src)
 	{
-		uc_dest += n;
-		uc_src += n;
+		uc_dest += (n - 1);
+		uc_src += (n - 1);
 		step = -1;
 	}
 	else
