@@ -45,9 +45,6 @@ SRCS_BONUS := \
 
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
-SRCS := \
-./ft_isalnum.c
-
 TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
 OBJS_BONUS = $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(SRCS_BONUS))
 
