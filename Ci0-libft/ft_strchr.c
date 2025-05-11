@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 22:18:44 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 00:20:14 by reciak        ###   ########.fr       */
+/*   Updated: 2025/05/11 00:20:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@
  */
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != c && *s)
+	const char c_c = (char) c;
+
+	while (*s != c_c && *s)
 		s++;
-	if (*s == c)
+	if (*s == c_c)
 		return ((char *) s);
 	return (NULL);
 }

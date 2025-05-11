@@ -33,15 +33,16 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	const char	*candidate;
+	const char	c_c = (char) c;
 
 	candidate = NULL;
 	while (*s)
 	{
-		if (*s == c)
+		if (*s == c_c)
 			candidate = s;
 		s++;
 	}
-	if (*s == c)
+	if (*s == c_c)
 		candidate = s;
 	return ((char *) candidate);
 }
