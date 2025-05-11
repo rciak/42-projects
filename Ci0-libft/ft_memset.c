@@ -35,7 +35,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	least_significant_byte_of_c = (t_uchar) c;
 	while (n > 0)
 	{
-		uc_s[n] = least_significant_byte_of_c;
+		uc_s[n - 1] = least_significant_byte_of_c;
 		n--;
 	}
 	return (s);
