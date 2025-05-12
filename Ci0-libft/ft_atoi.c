@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:48:49 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/12 16:13:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/12 21:18:24 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@
  *          * 0 on error
  *          * the converted number (potential 0 as well)
  */
-
 int	ft_atoi(const char *nptr)
 {
 	int			sign;
@@ -57,12 +56,12 @@ int	ft_atoi(const char *nptr)
 		sign = -1;
 	if (is_in(*nptr, "+-"))
 		nptr++;
-	if (!is_in(*nptr, "0123456789"))   // || *nprt == '\0'  needed?
+	if (!is_in(*nptr, "0123456789"))
 		return (0);
 	while (is_in(*nptr, "0123456789"))
 	{
 		nbr = 10 * nbr + (*nptr - '0');
 		nptr++;
 	}
-	return ((int) (sign * nbr));
+	return ((int)(sign * nbr));
 }
