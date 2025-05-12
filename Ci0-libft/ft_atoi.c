@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:48:49 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/12 16:10:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/12 16:13:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_atoi(const char *nptr)
 		sign = -1;
 	if (is_in(*nptr, "+-"))
 		nptr++;
-	if (!is_in(*nprt, "0123456789"))   // || *nprt == '\0'  needed?
+	if (!is_in(*nptr, "0123456789"))   // || *nprt == '\0'  needed?
 		return (0);
 	while (is_in(*nptr, "0123456789"))
 	{
