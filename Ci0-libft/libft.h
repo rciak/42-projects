@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/12 12:50:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/12 16:36:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,8 @@ int		ft_atoi(const char *nptr);
 //ft_x_math01.c
 size_t	si_min(size_t a, size_t b);
 size_t	si_max(size_t a, size_t b);
+
+//ft_x_strtools1.c
+bool	is_in(char c, const char *str);
 
 #endif

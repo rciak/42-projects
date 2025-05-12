@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/11 18:12:11 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/12 17:11:47 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,16 +25,20 @@ RMDIR := rmdir
 # but that is currently beyond my understanding and for not too big problems
 # it should be ok if everything is recompiled when the header changes.
 INCS := \
-./libft.h
+./libft.h \
+./test.h
 
 SRCS := \
 ./ft_isalpha.c \
 ./ft_tolower.c \
+./ft_strrchr.c \
+./ft_memchr.c \
 ./ft_bzero.c \
 ./ft_isalnum.c \
 ./ft_isascii.c \
 ./ft_isdigit.c \
 ./ft_isprint.c \
+./ft_memcmp.c \
 ./ft_memcpy.c \
 ./ft_memmove.c \
 ./ft_memset.c \
@@ -42,15 +46,17 @@ SRCS := \
 ./ft_strlcat.c \
 ./ft_strlcpy.c \
 ./ft_strlen.c \
-./ft_strrchr.c \
+./ft_strncmp.c \
+./ft_strnstr.c \
 ./ft_toupper.c \
 ./ft_x_math01.c \
-./ft_strncmp.c \
-./ft_memchr.c \
-./ft_memcmp.c
+./ft_atoi.c \
+./test_ft_atoi.c \
+./ft_x_strtools1.c
 
 SRCS_BONUS := \
 ./ft_lstnew.c
+
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
