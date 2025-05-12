@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:39:15 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 00:23:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 01:30:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	si_is_overflow(size_t a, char action, size_t b)
 {
 	if (action == '*')
 	{
-		if (a == 0 || b == 0 || a == 1 || b == 1 || (a * b)/ b == a)
+		if (a == 0 || b == 0 || a == 1 || b == 1 || (a * b) / b == a)
 			return (0);
 		else
 			return (1);
