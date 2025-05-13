@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:50:31 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 22:00:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 18:19:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
  * @warning Further both memory areas should have a length of at least n bytes.
  * @param[in] dest pointer to the start of the memory area to be written to
  * @param[in] src pointer to the start of the memory area to be read from
+ * @param[in] n number of bytes to be copied
  * @return dest
  */
 void	*ft_memcpy(void *dest, const void *src, size_t n)
