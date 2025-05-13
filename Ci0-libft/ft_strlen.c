@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:24:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 21:52:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 22:57:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
  * [strlen](https://man7.org/linux/man-pages/man3/strlen.3.html)
  * @param[in] s pointer to a nullterminated string whose length shall be found.
  * @note If \p s is `NULL` then `ft_strlen` will segfault - this is intended.
+ * @remark The number `ft_strlen(s)` can be viewed in different ways:
+ *         * As *length* of the string s,
+ *         * As *index of the Nullterminator* of s.
  * @return The length of the string.
  */
 size_t	ft_strlen(const char *s)
