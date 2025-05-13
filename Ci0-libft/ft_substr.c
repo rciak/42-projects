@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:51:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 17:55:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 22:20:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*walker;
 
 	si_start = (size_t) start;
-	if (is_overflow(len, '+', 1))
+	if (si_is_overflow(len, '+', 1))
 		return (NULL);
 	substr = malloc(len + 1);
 	if (substr == NULL)
