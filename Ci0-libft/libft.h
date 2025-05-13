@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 12:51:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 17:12:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 
 //Part 2: Some additional functions
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 //ft_x_math01.c
 size_t	si_min(size_t a, size_t b);
