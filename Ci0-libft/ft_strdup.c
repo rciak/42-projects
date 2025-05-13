@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 12:50:18 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 16:19:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 17:54:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,25 @@
  *          * `NULL` on error,
  *          * a pointer to the duplicated string else.
  */
-char *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
-	size_t len;
+	size_t	len;
 	char	*ptr;
+	char	*walker;
 
 	len = ft_strlen(s);
 	if (is_overflow(len, '+', 1))
 		return (NULL);
 	ptr = malloc (len + 1);
+	if (ptr == NULL)
+		return (NULL);
+	walker = ptr;
+	while (*s)
+	{
+		*walker = *s;
+		walker++;
+		s++;
+	}
+	*walker = '\0';
 	return (ptr);
 }
