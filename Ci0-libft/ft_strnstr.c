@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:22:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 22:17:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 11:42:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "libft.h"
 
-static bool	st_little_is_here_n_visible(const char b, const char l, size_t len);
+static bool	st_little_here_n_visible(const char *b, const char *l, size_t len);
 
 /**
  * @brief Locate the first occurence of a substring in a string, where not
@@ -67,7 +67,7 @@ char	*strnstr(const char *big, const char *little, size_t len)
 		return ((char *) big);
 	while (*big && len > 0)
 	{
-		if (st_little_is_here_n_visible(big, little, len))
+		if (st_little_here_n_visible(big, little, len))
 			return ((char *) big);
 		big++;
 		len--;
@@ -75,7 +75,7 @@ char	*strnstr(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 
-static bool	st_little_is_here_n_visible(const char b, const char l, size_t len)
+static bool	st_little_here_n_visible(const char *b, const char *l, size_t len)
 {
 	while (*l && len > 0)
 	{
