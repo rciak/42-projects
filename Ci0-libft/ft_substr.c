@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:51:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 22:20:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 23:24:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,31 @@
  * @param[in] len: The maximum length of the substring.
  * @return 
  *          * A pointer to the start of the substring.
- *          * `NULL`, if the allocation fails.
+ *          * `NULL`, if the allocation fails or startindex goes beyond
+ *            the nullterminator of \p s .
  */
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	si_start;
+	size_t	bytes_to_copy;
 	char	*substr;
 	char	*walker;
 
 	si_start = (size_t) start;
-	if (si_is_overflow(len, '+', 1))
+	bytes_to_copy = si_min(ft_strlen(s + si_start), len);
+	if (si_start > ft_strlen(s) || si_is_overflow(bytes_to_copy, '+', 1))
 		return (NULL);
-	substr = malloc(len + 1);
+	substr = malloc(bytes_to_copy + 1);
 	if (substr == NULL)
 		return (NULL);
 	walker = substr;
-	while (*s && len > 0)
+	s += start;
+	while (bytes_to_copy > 0)
 	{
 		*walker = *s;
 		walker++;
 		s++;
-		len--;
+		bytes_to_copy--;
 	}
 	*walker = '\0';
 	return (substr);
