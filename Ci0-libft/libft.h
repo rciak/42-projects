@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 00:24:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/13 11:32:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ enum e_libft_errors
 {
 	ERRUNEXPECTEDVAL = -1,
 	ERRNONE = 0
-}
+};
 
 typedef unsigned char	t_uchar;
 
