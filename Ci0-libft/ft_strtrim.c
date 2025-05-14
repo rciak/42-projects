@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 18:26:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 23:46:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/14 21:24:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@
  */
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	// size_t	i_start_midpart;
-	// size_t	len_trimed;
-	// char	*ptr;
+	size_t	start;
+	size_t	end;
 
-	// st_init(&i_start, &len_trimed, s1, set);
-	// if (si_is_overflow(len_trimed, '+', 1))
-	// 	return (NULL);
-	// ptr = malloc (len_trimed + 1);
-	// if (ptr == NULL)
-(void) s1; (void) set;
-		return (NULL);
-	
+	start = 0;
+	while (is_in(s1[start], set))
+		start++;
+	if (s1[start] == '\0')
+		return (ft_strdup(""));
+	end = ft_strlen(p) - 1;
+	while (is_in(s1[end], set))
+		end--;
+	return (si_substr(p, start, end + 1 - start));
 }
