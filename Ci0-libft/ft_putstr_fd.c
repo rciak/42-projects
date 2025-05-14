@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 21:55:30 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/14 22:09:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/14 22:13:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_putstr_fd.c
- * @brief Stores the definition of 
+ * @brief Stores the definition of ft_putstr_fd
  */
 
 #include "libft.h"

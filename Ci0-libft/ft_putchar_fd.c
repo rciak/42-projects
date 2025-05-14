@@ -6,12 +6,12 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 21:45:43 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/14 22:10:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/14 22:15:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file t_putchar_fd.c
+ * @file ft_putchar_fd.c
  * @brief Stores the definition of t_putchar_fd
  */
 
