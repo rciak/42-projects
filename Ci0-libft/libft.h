@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 18:27:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/14 11:55:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ bool	is_in(char c, const char *str);
 
 //ft_x_memtools1.c
 int		si_is_overflow(size_t a, char action, size_t b);
+
+//Little variants of ft_* functions that were additionally put in the same file
+char	*si_substr(char const *s, size_t start, size_t len);
 
 #endif
