@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:51:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/15 12:26:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/15 12:53:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
  *       was chosen in order to avoid an 
  *       unnecessary second call call to ft_strlen
  *       (without the need to rely on compiler optimization).
+ * @note One can argue if the two lines
+ *       @code
+ *       if (si_is_overflow(bytes_to_copy, '+', 1))
+ *		  return (NULL);
+ *       @endcode
+ *       should be in the implementation or not. In case of a 
+ *       reasonable C string \p s, i.e. nullterminated on the latest
+ *       at byte SIZE_MAX, the check can be omitted since 
+ *       then `bytes_to_copy <= orilen < SIZE_MAX`.
+ *       If though the Nullterminator is placed irregularly only 
+ *       one byte after the SIZE_MAX-th byte of the string then
+ *       ft_strlen() would theoretically return (SIZE_MAX), 
+ *       making the check meaningful.
  * @param[in] s: The original string from which to create the substring.
  * @param[in] start: The starting index of the substring within ’s’.
  * @param[in] len: The maximum length of the substring.
