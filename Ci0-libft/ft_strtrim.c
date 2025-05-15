@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 18:26:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/14 21:24:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/15 10:06:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 		start++;
 	if (s1[start] == '\0')
 		return (ft_strdup(""));
-	end = ft_strlen(p) - 1;
+	end = ft_strlen(s1) - 1;
 	while (is_in(s1[end], set))
 		end--;
-	return (si_substr(p, start, end + 1 - start));
+	return (si_substr(s1, start, end + 1 - start));
 }

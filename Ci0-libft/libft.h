@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/14 22:46:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/15 10:03:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <unistd.h>   // write
 # include <stdbool.h>  // true, false
 # include <stdlib.h>   // malloc, free   (also NULL definition aside stddef.h)
 
