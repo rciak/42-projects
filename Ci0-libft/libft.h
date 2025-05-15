@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/15 10:03:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/15 13:39:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 //ft_x_math01.c
 size_t	si_min(size_t a, size_t b);
