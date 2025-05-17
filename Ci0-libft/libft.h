@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/17 17:13:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/17 18:55:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ size_t	si_max(size_t a, size_t b);
 
 //ft_x_strtools1.c
 bool	is_in(char c, const char *str);
+size_t	strlen_deli(const char *s, const char *deli);
+size_t	count_words(const char *s, const char *deli);
 
 //ft_x_memtools1.c
 int		si_is_overflow(size_t a, char action, size_t b);
