@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:24:15 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/12 22:35:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/17 17:21:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,26 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	size_t	bytes;
 
-	if (si_is_overflow(nmemb, '*', size))
-		return (NULL);
-	bytes = nmemb * size;
-	ptr = malloc(bytes);
+	ptr = calloc_uninit(nmemb, size);
 	if (ptr == NULL)
 		return (NULL);
-	ft_bzero(ptr, bytes);
+	ft_bzero(ptr, nmemb * size);
 	return (ptr);
+}
+
+/**
+ * @brief Like ft_calloc() except that there is no initalizing with ft_bzero().
+ * @note For more *details* and *warnings* see the docu of ft_calloc().
+ * @param[in] nmemb the number of units (members)
+ * @param[in] size the number of bytes occupied by a single unit
+ * @return
+ *          * NULL in case of error (or if malloc(0) returns NULL),
+ *          * a pointer to the start of the allocated memory block.
+ */
+void	*calloc_uninit(size_t nmemb, size_t size)
+{
+	if (si_is_overflow(nmemb, '*', size))
+		return (NULL);
+	return (malloc(nmemb * size));
 }

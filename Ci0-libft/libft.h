@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/15 17:12:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/17 17:13:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 
+char	**ft_split(char const *s, char c);
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
@@ -86,7 +88,9 @@ bool	is_in(char c, const char *str);
 //ft_x_memtools1.c
 int		si_is_overflow(size_t a, char action, size_t b);
 
-//Little variants of ft_* functions that were additionally put in the same file
+// Variants of ft_* functions that are in the same file as their ft-relatives.
 char	*si_substr(char const *s, size_t start, size_t len);
+char	**split_deli(char const *s, const char *deli);
+void	*calloc_uninit(size_t nmemb, size_t size);
 
 #endif
