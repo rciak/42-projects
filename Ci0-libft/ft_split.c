@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/17 18:41:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/19 15:06:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**split_deli(char const *s, const char *deli)
 		strarr[j] = calloc_uninit(word_len + 1, sizeof(char));
 		if (strarr[j] == NULL)
 			return (st_free_allocs(strarr, j), NULL);
-		ft_memcpy(strarr[j], word_len);
+		ft_memcpy(strarr[j], s, word_len);
 		strarr[j][word_len] = '\0';
 		s += word_len;
 		j++;
