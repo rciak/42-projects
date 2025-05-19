@@ -6,13 +6,13 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/15 10:00:52 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/19 15:00:15 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
 INC_DIR := .
-OBJ_DIR := ./obj
+OBJ_DIR := .
 OBJ_DIR_BONUS := ./obj_bonus
 
 CC := cc
@@ -28,6 +28,7 @@ INCS := \
 ./libft.h
 
 SRCS := \
+./ft_striteri.c \
 ./ft_strrchr.c \
 ./ft_substr.c \
 ./ft_bzero.c \
@@ -43,9 +44,11 @@ SRCS := \
 ./ft_strlcat.c \
 ./ft_calloc.c \
 ./ft_isalnum.c \
+./ft_strmapi.c \
 ./ft_strchr.c \
 ./ft_isdigit.c \
 ./ft_memchr.c \
+./ft_putnbr_fd.c \
 ./ft_isascii.c \
 ./ft_strlen.c \
 ./ft_isalpha.c \
@@ -58,6 +61,7 @@ SRCS := \
 ./ft_isprint.c \
 ./ft_putchar_fd.c \
 ./ft_strnstr.c \
+./ft_split.c \
 ./ft_x_strtools1.c \
 ./ft_x_memtools1.c
 
