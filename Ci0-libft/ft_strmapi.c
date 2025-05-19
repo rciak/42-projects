@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:44:52 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/19 15:03:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/19 15:20:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		p[i] = f(i, s[i]);
 		i++;
 	}
+	p[len] = '\0';
 	return (p);
 }
