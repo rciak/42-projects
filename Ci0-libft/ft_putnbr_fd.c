@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 13:35:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/19 15:27:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/19 15:36:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	ft_putnbr_fd(int n, int fd)
 	char	digit;
 
 	if (n == -2147483648)
+	{
 		write (fd, "-2147483648", 11);
+		return ;
+	}
 	if (n < 0)
 	{
 		write (fd, "-", 1);
