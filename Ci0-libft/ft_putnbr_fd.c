@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 13:35:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/19 15:04:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/19 15:27:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	if (0 <= n && n <= 9)
 	{
-		digit = (char)(n + '9' - '0');
+		digit = (char)(n + '0');
 		write (fd, &digit, 1);
 	}
 	else
