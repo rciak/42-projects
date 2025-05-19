@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:15:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/17 18:56:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/19 19:15:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ size_t	count_words(const char *s, const char *deli)
 	num_words = 0;
 	while (*s)
 	{
-		while(is_in(*s, deli))
+		while (is_in(*s, deli))
 			s++;
 		if (*s == '\0')
 			return (num_words);

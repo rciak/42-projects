@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:48:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/15 17:22:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/19 19:12:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
   */
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (s[i] && i < UINT_MAX - 1)

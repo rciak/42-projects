@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/19 15:06:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/19 19:14:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ static void	st_free_allocs(char **strarr, size_t j_failed);
  */
 char	**ft_split(char const *s, char c)
 {
-	char separators[2];
+	char	separators[2];
 
 	separators[0] = c;
 	separators[1] = '\0';
-	return(split_deli(s, separators));
+	return (split_deli(s, separators));
 }
+
 /**
  * @brief An extension of ft_split():
  *        Allocates memory (using malloc(3)) and returns an
@@ -60,7 +61,7 @@ char	**split_deli(char const *s, const char *deli)
 	size_t	word_len;
 	char	**strarr;
 
-	num_words = count_words(s, deli);  //<-- ft_x_strtools1.c
+	num_words = count_words(s, deli);
 	strarr = calloc_uninit(num_words + 1, sizeof(char *));
 	if (strarr == NULL)
 		return (NULL);
@@ -84,7 +85,7 @@ char	**split_deli(char const *s, const char *deli)
 
 static void	st_free_allocs(char **strarr, size_t j_failed)
 {
-	size_t j;
+	size_t	j;
 
 	j = 0;
 	while (j < j_failed)
