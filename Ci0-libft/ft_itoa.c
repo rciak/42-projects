@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 07:37:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/20 18:45:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/20 18:55:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "libft.h"
 
 static size_t	st_num_digits(int n);
-static char		*st_to_string(int n, size_t num_digits, char *str);
+static void		st_number_to_string(int n, size_t num_digits, char *str);
 
 /**
  * @brief Allocates memory (using malloc(3)) and returns a string representing
@@ -32,15 +32,17 @@ static char		*st_to_string(int n, size_t num_digits, char *str);
 
 char	*ft_itoa(int n)
 {
+	size_t	num_digits;
 	size_t	num_bytes;
 	char	*str;
 
+	num_digits = st_num_digits(n);
 	num_bytes = 0;
 	if (n < 0)
 		num_bytes += 1;
-	num_bytes += st_num_digits(n) + 1;
-	str = calloc_unint(num_bytes, 1);
-	st_to_string(n, num_digits, str);
+	num_bytes += num_digits + 1;
+	str = calloc_uninit(num_bytes, 1);
+	st_number_to_string(n, num_digits, str);
 	return (str);
 }
 
@@ -77,7 +79,7 @@ static size_t	st_num_digits(int n)
 	return (num_digits);
 }
 
-static char	*st_to_string(int n, size_t num_digits, char *str)
+static void	st_number_to_string(int n, size_t num_digits, char *str)
 {
 	size_t	offset;
 	int		remainder;
