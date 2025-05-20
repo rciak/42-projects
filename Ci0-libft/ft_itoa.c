@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 07:37:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/20 19:31:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/20 19:47:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,18 @@ static size_t	st_num_digits(int n)
 
 static void	st_number_to_string(int n, size_t num_digits, char *str)
 {
-	size_t	offset;
 	int		remainder;
 
-	offset = 0;
 	if (n < 0)
 	{
-		offset = 1;
 		str[0] = '-';
 		str++;
 	}
+	str[num_digits] = '\0';
 	while (num_digits > 0)
 	{
 		remainder = n % 10;
-		str[num_digits + offset] = abs(remainder) + '0';
+		str[num_digits - 1] = abs(remainder) + '0';
 		n = (n - remainder) / 10;
 		num_digits--;
 	}
