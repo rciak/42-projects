@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 07:37:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/20 18:55:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/20 19:24:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static void	st_number_to_string(int n, size_t num_digits, char *str)
 	{
 		offset = 1;
 		str[0] = '-';
+		str++;
 	}
 	while (num_digits > 0)
 	{
