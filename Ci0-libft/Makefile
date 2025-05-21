@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/20 18:48:04 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/21 18:35:42 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,12 @@ SRCS := \
 ./ft_putchar_fd.c \
 ./ft_strlen.c \
 ./ft_x_strtools1.c \
+./ft_itoa.c \
 ./ft_tolower.c \
 ./ft_strdup.c \
 ./ft_putstr_fd.c \
 ./ft_split.c \
 ./ft_strtrim.c \
-./ft_itoa.c \
 ./ft_strrchr.c \
 ./ft_memchr.c \
 ./ft_bzero.c \
@@ -67,7 +67,15 @@ SRCS := \
 ./ft_calloc.c
 
 SRCS_BONUS := \
-./ft_lstnew.c
+./ft_lstadd_back.c \
+./ft_lstnew.c \
+./ft_lstdelone.c \
+./ft_lstiter.c \
+./ft_lstmap.c \
+./ft_lstadd_front.c \
+./ft_lstclear.c \
+./ft_lstsize.c \
+./ft_lstlast.c
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
