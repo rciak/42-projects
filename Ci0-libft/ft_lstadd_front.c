@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 08:54:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/21 09:40:26 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/21 14:56:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /**
  * @brief Adds the node \p new at the beginning of the list,
  *        cf. Libft Subject (Version 16.7).
- * @param[in] lst: The address of a pointer to the first node of a list.
+ * @param[in, out] lst: The address of a pointer to the first node of a list.
  * @param[in] new: The address of a pointer to the node to be added.
  * @note If one or two of the parameters are `NULL` a segfault
  *       shall be triggered as warning / to point out to that.
