@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/20 18:38:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/21 08:42:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }						t_list;
-
-typedef t_list			t_lnd;
 
 // Part 1: Some libc functions
 int		ft_isalpha(int c);
@@ -76,6 +74,9 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+// Part 3: Bonus
+t_list	*ft_lstnew(void *content);
 
 //ft_x_math01.c
 size_t	si_min(size_t a, size_t b);
