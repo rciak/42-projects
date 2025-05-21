@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 07:37:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/20 19:47:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/21 08:44:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	if (n < 0)
 		num_bytes += 1;
 	num_bytes += num_digits + 1;
-	str = calloc_uninit(num_bytes, 1);
+	str = calloc_uninit(1, num_bytes);
 	if (str == NULL)
 		return (NULL);
 	st_number_to_string(n, num_digits, str);
