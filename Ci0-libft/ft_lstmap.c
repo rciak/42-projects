@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:36:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/21 18:31:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/21 18:56:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,18 @@
  */
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
+	void	*transf_content;
 	t_list	*transf_lst;
 	t_list	*new;
 
 	transf_lst = NULL;
 	while (lst)
 	{
-		new = ft_lstnew((*f)(lst->content));
+		transf_content = (*f)(lst->content);
+		new = ft_lstnew(transf_content);
 		if (new == NULL)
 		{
+			free(transf_content);
 			ft_lstclear(&transf_lst, (*del));
 			return (NULL);
 		}
