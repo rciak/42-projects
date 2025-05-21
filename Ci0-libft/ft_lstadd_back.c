@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:52:12 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/21 15:13:58 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/21 18:44:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 		return ;
 	}
-	while (*lst && (*lst)->next)
-		*lst = (*lst)->next;
-	(*lst)->next = new;
+	ft_lstlast(*lst)->next = new;
 }
