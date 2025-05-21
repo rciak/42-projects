@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/21 08:42:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/21 08:57:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 // Part 3: Bonus
 t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 
 //ft_x_math01.c
 size_t	si_min(size_t a, size_t b);
