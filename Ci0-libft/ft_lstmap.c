@@ -49,11 +49,11 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		new = ft_lstnew(transf_content);
 		if (new == NULL)
 		{
-			free(transf_content);
+			(*del)(transf_content);
 			ft_lstclear(&transf_lst, (*del));
 			return (NULL);
 		}
-		ft_lstadd_front(&transf_lst, new);
+		ft_lstadd_back(&transf_lst, new);
 		lst = lst->next;
 	}
 	return (transf_lst);
