@@ -22,7 +22,7 @@ RMDIR := rmdir
 
 # Dependencies can be handled better using DEP=.. stuff, cf.
 # https://stackoverflow.com/questions/2394609/makefile-header-dependencies
-# but that is currently beyond my understanding and for not too big problems
+# but that is currently beyond my understanding and for not too big projects
 # it should be ok if everything is recompiled when the header changes.
 INCS := \
 ./libft.h
