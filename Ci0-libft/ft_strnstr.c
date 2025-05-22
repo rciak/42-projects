@@ -61,7 +61,7 @@ static bool	st_little_here_n_visible(const char *b, const char *l, size_t len);
 	}
    @endcode
  */
-char	*strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	if (*little == '\0')
 		return ((char *) big);
