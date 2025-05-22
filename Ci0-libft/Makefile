@@ -6,14 +6,14 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/21 18:35:42 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/22 08:06:50 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
 INC_DIR := .
 OBJ_DIR := .
-OBJ_DIR_BONUS := ./obj_bonus
+OBJ_DIR_BONUS := .
 
 CC := cc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
