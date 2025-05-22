@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:19:50 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/21 08:49:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/22 08:09:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ t_list	*ft_lstnew(void *content)
 	pnode->next = NULL;
 	return (pnode);
 }
-
