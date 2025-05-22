@@ -6,27 +6,60 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/05/10 23:54:48 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/22 22:18:57 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include Makefile
 
-DOC:=doc
-DOXYFILE=$(DOC)/autogen_Doxyfile
+TEST_ORIGIN=https://github.com/rciak/$(TEST_DIR).git
+TEST_DIR:=42-eva-lua
+TEST_SUBDIR:=Ci0-libft-crtests
 
-# For sed Substitions in the Doxyfile
+DOC_DIR:=doc
+DOXYFILE=$(DOC_DIR)/autogen_Doxyfile
+# For sed substitions in the Doxyfile
 SED_PROJECT_NAME=         PROJECT_NAME           = Ci0-libft
-SED_OUTPUT_DIRECTORY=     OUTPUT_DIRECTORY       = $(DOC)
+SED_OUTPUT_DIRECTORY=     OUTPUT_DIRECTORY       = $(DOC_DIR)
 SED_OPTIMIZE_OUTPUT_FOR_C=OPTIMIZE_OUTPUT_FOR_C  = YES
 SED_SOURCE_BROWSER=       SOURCE_BROWSER         = YES
 
-.PHONY: tests
-tests:
-	@echo "Not implemented yet beyond this dummy version..."
+################################################################################
+# TEST RULES                                                                   #
+################################################################################
+CLONE_IF_NOT_THERE=\
+	@if [ -d $(TEST_DIR) ]; then \
+	  echo "Directory $(TEST_DIR) already exists.\
+	        For cloning freshly delete it first with:";\
+	  echo "make testfclean"; \
+	else \
+	  git clone $(TEST_ORIGIN); \
+	fi
 
-doc: $(SRCS) $(SRCS_BONUS) $(INCS)
-	@mkdir -p $(DOC)
+.PHONY: install_test
+install_test:
+	$(CLONE_IF_NOT_THERE)
+
+$(TEST_DIR):
+	$(CLONE_IF_NOT_THERE)
+
+.PHONY: unitests
+unitests: $(TEST_DIR)
+	make -C $(TEST_DIR)/$(TEST_SUBDIR)
+
+.PHONY: testfclean
+testfclean:
+	rm -fr $(TEST_DIR)
+
+.PHONY: https_autentifcation_to_ssh_autentification
+https_autentifcation_to_ssh_autentification:
+	make -C $(TEST_DIR) $<
+
+################################################################################
+# DOCUMENTATION RULES                                                          #
+################################################################################
+$(DOC_DIR): $(SRCS) $(SRCS_BONUS) $(INCS)
+	@mkdir -p $(DOC_DIR)
 	doxygen -g $(DOXYFILE)
 	sed -i 's#PROJECT_NAME           =.*#$(SED_PROJECT_NAME)#'     $(DOXYFILE)
 	sed -i 's#OUTPUT_DIRECTORY       =.*#$(SED_OUTPUT_DIRECTORY)#' $(DOXYFILE)
@@ -34,19 +67,27 @@ doc: $(SRCS) $(SRCS_BONUS) $(INCS)
 	sed -i 's#SOURCE_BROWSER         =.*#$(SED_SOURCE_BROWSER)#'   $(DOXYFILE)
 	doxygen $(DOXYFILE)
 
-.PHONY: redoc
-redoc: fclean_doc doc
+.PHONY: docre
+docre: docfclean $(DOC_DIR)
 
-clean_doc:
-	@if [ -d $(DOC) ]; then \
-	  find $(DOC) -name '*$(notdir $(DOXYFILE))*' -type f -delete; \
-	fi
+.PHONY: docclean
+docclean:
+	rm -fr $(DOXYFILE)
 
-.PHONY: fclean_doc
-fclean_doc: clean_doc
-	rm -fr $(DOC)/html
-	rm -fr $(DOC)/latex
-	-rmdir $(DOC)
+.PHONY: docfclean
+docfclean: docclean
+	rm -fr $(DOC_DIR)
+
+################################################################################
+# TOOL RULES                                                                   #
+################################################################################
+
+# totalclean
+.PHONY: totalclean
+totalclean: fclean docfclean testfclean
+#shortcut for total clean
+.PHONY: tclean
+tclean: totalclean
 
 .PHONY: update_INCS__SRCS__SRCS_BONUS
 update_INCS__SRCS__SRCS_BONUS:
