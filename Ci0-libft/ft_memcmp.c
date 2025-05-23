@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:34:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/12 00:16:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/23 13:31:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	const t_uchar	*uc_s1 = (t_uchar *) s1;
 	const t_uchar	*uc_s2 = (t_uchar *) s2;
 
-	while (*uc_s1 == *uc_s2 && n > 0)
+	while (n > 0 && *uc_s1 == *uc_s2)
 	{
 		uc_s1++;
 		uc_s2++;
