@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/19 19:14:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/23 19:56:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**ft_split(char const *s, char c)
  *        the characters in \p deli as delimiters. The array
  *        ends with a `NULL` pointer.
  * @param[in] s: The string to be split.
- * @param[in] deli: Contains the delimiting / word speparatorting characters.
+ * @param[in] deli: Contains the delimiting / word speparating characters.
  * @return 
  *          * The array of new strings (terminated with a `NULL` pointer) 
  *            resulting from the split.
