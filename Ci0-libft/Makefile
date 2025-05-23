@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/22 08:06:50 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/23 11:07:40 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ $(OBJ_DIR)/%.o:%.c $(INCS)
 
 .PHONY: clean
 clean:
+	@echo 'CLEANING via rule  clean'
 	@echo '1. Removing object files, if any.'
 	@$(RM) $(OBJS) $(OBJS_BONUS)
 	@echo '2. Removing timestamp file (created for bonus part), if any.'
@@ -117,12 +118,14 @@ clean:
 	else \
 		-$(RMDIR) $(OBJ_DIR_BONUS); \
 	fi
-	@echo '--------------------------------------------------------------------'
+	@echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 
 .PHONY: fclean
 fclean: clean
+	@echo 'CLEANING additional via rule  fclean:'
 	@echo 'Removing $(NAME), if any.' 
 	@$(RM) $(NAME)
+	@echo '--------------------------------------------------------------------'
 
 .PHONY: re
 re: fclean all
