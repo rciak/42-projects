@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/23 20:16:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/23 22:20:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,3 +92,24 @@ static void	st_free_allocs(char **strarr, size_t j_failed)
 		free (strarr[i]);
 	free (strarr);
 }
+/*
+#include <stdio.h>
+int main (void)
+{
+	char	**arr;
+	size_t	i;
+
+	arr = ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^');
+	if (arr == NULL)
+		return (-1);
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		printf("i: %zu, arr[i]: %s\n", i, arr[i]);
+		free (arr[i]);
+		i++;
+	}
+	free (arr);
+	return (0);
+}
+*/
