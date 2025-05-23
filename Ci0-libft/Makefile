@@ -93,14 +93,36 @@ $(OBJ_DIR)/%.o:%.c $(INCS)
 
 .PHONY: clean
 clean:
-	$(RM) $(OBJS) $(OBJS_BONUS)
-	$(RM) $(TIMESTAMPFILE_BONUS)
-	-$(RMDIR) $(OBJ_DIR)
-	-$(RMDIR) $(OBJ_DIR_BONUS)
+	@echo '1. Removing object files, if any.'
+	@$(RM) $(OBJS) $(OBJS_BONUS)
+	@echo '2. Removing timestamp file (created for bonus part), if any.'
+	@$(RM) $(TIMESTAMPFILE_BONUS)
+	@echo '3.a) Removing directory for mandatory object files, if any.'
+	@if [ ! -d $(OBJ_DIR) ]; then \
+		echo 'No directory $(OBJ_DIR) for mandatory object files.'; \
+	elif [ $(OBJ_DIR) = '.' ]; then \
+		echo '       Well if the object files would be in their own separte'; \
+		echo '       directory that directory shall be removed, but here:'; \
+		echo '       Removing the directory . will not even been tried. ...'; \
+	else \
+		-$(RMDIR) $(OBJ_DIR); \
+	fi
+	@echo '3.b) Removing directory for bonus object files, if any.'
+	@if [ ! -d $(OBJ_DIR_BONUS) ]; then \
+		echo 'No directory $(OBJ_DIR_BONUS) for bonus object files.'; \
+	elif [ $(OBJ_DIR_BONUS) = '.' ]; then \
+		echo '       Well if the object files would be in their own separte'; \
+		echo '       directory that directory shall be removed, but here:'; \
+		echo '       Removing the directory . will not even been tried. ...'; \
+	else \
+		-$(RMDIR) $(OBJ_DIR_BONUS); \
+	fi
+	@echo '--------------------------------------------------------------------'
 
 .PHONY: fclean
 fclean: clean
-	$(RM) $(NAME)
+	@echo 'Removing $(NAME), if any.' 
+	@$(RM) $(NAME)
 
 .PHONY: re
 re: fclean all
