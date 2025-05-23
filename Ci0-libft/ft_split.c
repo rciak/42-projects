@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/23 19:56:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/23 20:16:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ char	**split_deli(char const *s, const char *deli)
 
 static void	st_free_allocs(char **strarr, size_t j_failed)
 {
-	size_t	j;
+	size_t	i;
 
-	j = 0;
-	while (j < j_failed)
-		free (strarr[j]);
+	i = 0;
+	while (i < j_failed)
+		free (strarr[i]);
 	free (strarr);
 }
