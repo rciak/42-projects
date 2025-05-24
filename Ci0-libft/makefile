@@ -84,11 +84,8 @@ docfclean: docclean
 
 MAXDEPTH=1           # For find command in rule  update_INCS__SRCS__SRCS_BONUS  
 
-# totalclean
-.PHONY: totalclean
+.PHONY: totalclean tclean
 totalclean: fclean docfclean testfclean
-#shortcut for total clean
-.PHONY: tclean
 tclean: totalclean
 
 .PHONY: update_INCS__SRCS__SRCS_BONUS
@@ -100,13 +97,13 @@ update_INCS__SRCS__SRCS_BONUS:
 	@echo
 	@echo 'SRCS := \'
 	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" | sort | \
-	    grep --color=none -v "ft_lst" | \
+	  grep --color=none -v "ft_lst" | \
 	  while read found_files; do echo "$$found_files \\"; done | \
 	  sed '$$ s# \\##'
 	@echo
 	@echo 'SRCS_BONUS := \'
 	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" | sort | \
-	    grep --color=none "ft_lst" | \
+	  grep --color=none "ft_lst" | \
 	  while read found_files; do echo "$$found_files \\"; done | \
 	  sed '$$ s# \\##'
 
