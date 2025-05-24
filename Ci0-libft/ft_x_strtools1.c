@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:15:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 15:57:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 16:05:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  */
 
 #include "libft.h"
+
+static void	st_free_allocs(char **strarr, size_t j_failed);
 
 /**
  * @brief Tell whether a character is in a string or not.
@@ -150,7 +152,6 @@ char	**split_deli(char const *s, const char *deli)
 	return (strarr);
 }
 
-// Helper function for split_deli
 static void	st_free_allocs(char **strarr, size_t j_failed)
 {
 	size_t	i;
