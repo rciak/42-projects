@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 12:42:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 12:50:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 #include "libft.h"
 
-static void		st_free_allocs(char **strarr, size_t j_failed);
+
 static size_t	st_count_words(const char *s, char c);
 static size_t	st_strlen_till(const char *s, char c);
+static void		st_free_allocs(char **strarr, size_t j_failed);
 
 /**
  * @brief Allocates memory (using malloc(3)) and returns an
@@ -73,7 +74,7 @@ char	**ft_split(char const *s, char c)
 	char	**word;
 
 	num_words = st_count_words(s, c);
-	word = malloc(num_words + 1);
+	word = ft_calloc(num_words + 1, sizeof(char *));
 	if (word == NULL)
 		return (NULL);
 	k = 0;
@@ -90,6 +91,7 @@ char	**ft_split(char const *s, char c)
 		s += word_len;
 		k++;
 	}
+	word[num_words] == NULL;
 	return (word);
 }
 
@@ -120,7 +122,6 @@ static size_t	st_strlen_till(const char *s, char c)
 		l++;
 	return (l);
 }
-
 
 static void	st_free_allocs(char **strarr, size_t k_failed)
 {
