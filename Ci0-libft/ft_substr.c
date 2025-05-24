@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:51:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 21:16:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 21:53:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
  *       can not any more be respresented by a size_t variable.
  * @note Assuming such a **regular** C string the check could be ommited,
  *       since then  
- *       `bytes_to_copy <= orilen <= SIZE_MAX -1`, such that  
+ *       `bytes_to_copy <= orilen <= SIZE_MAX - 1`, such that  
  *       `bytes_to_copy + 1 <= (SIZE_MAX - 1) + 1 <= SIZE_MAX`,  
  *       so that adding 1 to bytes_to_copy does not cause an overflow.
+ *       (This come as no surprise: A regular C string
+ *       (including its nullterminator) is "small" enough that it can
+ *       - in principle -
+ *       be allocated with malloc; then of course the same holds true
+ *       for its substrings)
  * @note If though the Nullterminator is placed irregularly only
  *       one byte after the SIZE_MAX-th byte of the string then
  *       ft_strlen() would theoretically return the value `SIZE_MAX`,
