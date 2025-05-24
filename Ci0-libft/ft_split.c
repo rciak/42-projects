@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 11:04:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 12:42:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,38 @@ static size_t	st_strlen_till(const char *s, char c);
  *        array of strings obtained by splitting \p s using
  *        the character \p c as a delimiter. The array must
  *        end with a `NULL` pointer, cf. Libft Subject (Version 16.7).
+ * @note Consider the theoretical case of a string consisiting of \f$b\f$ bytes
+ *       (including the nullterminator). Imaging this string should 
+ *       consist of as many words a possible, e.g. looking like  
+ *       `a a a a a a a a a a ... a a\0`,  
+ *       `a a a a a a a a a a ... a a \0`, or  
+ *       ` a a a a a a a a a a ... a a\0`. 
+ *       Clearly at most
+ *       \f[
+ *       \tfrac{b}{2} =: w
+ *       \f]
+ *       words are possible. Thus the array of words (including
+ *       a terminating `NULL` pointer)
+ *       might need up to
+ *       \f[
+ *       \t w \mathtt{sizeof(char *)} = \tfrac{b}{2}\mathtt{sizeof(char *)} =: B
+ *       \f]
+ *       bytes.
+ *       \f$B\f$ should consist of not more than \f$\mathtt{SIZE_MAX + 1}\f$
+ *       bytes. Reformulating the desired \f$B \leq \mathtt{SIZE_MAX + 1}\f$
+ *       leads to the following restricting demand on \f$b\f$.
  * @note **Theoretical assumption:** 
- *       We assume that the to be splitted string 
- *       (including its nullterminator) consits of at most `SIZE_MAX` bytes.
- *       This guarantees that the same size limits are also kept
- *       by the contained words.
+ *       The to be splitted string (including its nullterminator)
+ *       shall consist of
+ *       \f[
+ *       b \leq \tfrac{2}{\mathtt{sizeof(char *)}} \mathtt{SIZE_MAX + 1}
+ *       \f]
+ *       bytes.
+ * @note Provided \f$\mathtt{sizeof(char *)} \geq 2\f$ this assumption
+ *       also ensures \f$b \leq \mathtt{SIZE_MAX + 1}\f$. That inequality
+ *       is additionally assumed in the unlikely case of a system with
+ *       additionally assumed in the unlikely case of a system with
+ *       \f$\mathtt{sizeof(char *)} = 1\f$.
  * @param[in] s: The string to be split.
  * @param[in] c: The delimiter character.
  * @return 
