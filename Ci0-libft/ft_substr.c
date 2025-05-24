@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:51:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/15 12:53:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 21:16:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  *        substring from the string ’s’.
  *        The substring starts at index ’start’ and has a
  *        maximum length of ’len’, cf. Libft Subject (Version 16.7).
- * @note The subject strange has different data types for start and len.
+ * @note The subject strangely has different data types for start and len.
  * @remark It felt somewhat undefined what should happen / be returned 
  *         in the case `start > ft_strlen(s)`.
  *         The resulting substring would be the empty string, provided
@@ -65,13 +65,21 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
  *       if (si_is_overflow(bytes_to_copy, '+', 1))
  *		  return (NULL);
  *       @endcode
- *       should be in the implementation or not. In case of a 
- *       reasonable C string \p s, i.e. nullterminated on the latest
- *       at byte SIZE_MAX, the check can be omitted since 
- *       then `bytes_to_copy <= orilen < SIZE_MAX`.
- *       If though the Nullterminator is placed irregularly only 
+ *       should be in the implementation or not. Recall for the following that
+ *       a `size_t` variable can store 1+SIZE_MAX values, the value 
+ *       0 being the first and smallest value, the value 1 being the second, ...
+ *       the last value SIZE_MAX being the (SIZE_MAX + 1)-th and largest value.
+ *       Therefore the *size* of a C string (i.e. its length + 1 byte for its
+ *       nullterminator) can be at most SIZE_MAX bytes, since higher values
+ *       can not any more be respresented by a size_t variable.
+ * @note Assuming such a **regular** C string the check could be ommited,
+ *       since then  
+ *       `bytes_to_copy <= orilen <= SIZE_MAX -1`, such that  
+ *       `bytes_to_copy + 1 <= (SIZE_MAX - 1) + 1 <= SIZE_MAX`,  
+ *       so that adding 1 to bytes_to_copy does not cause an overflow.
+ * @note If though the Nullterminator is placed irregularly only
  *       one byte after the SIZE_MAX-th byte of the string then
- *       ft_strlen() would theoretically return (SIZE_MAX), 
+ *       ft_strlen() would theoretically return the value `SIZE_MAX`,
  *       making the check meaningful.
  * @param[in] s: The original string from which to create the substring.
  * @param[in] start: The starting index of the substring within ’s’.
@@ -86,7 +94,7 @@ char	*si_substr(char const *s, size_t start, size_t len)
 	size_t	ori_len;
 	size_t	bytes_to_copy;
 	char	*substr;
-	char	*walker;
+	char	*writer;
 
 	ori_len = ft_strlen(s);
 	if (start >= ori_len)
@@ -97,15 +105,15 @@ char	*si_substr(char const *s, size_t start, size_t len)
 	substr = malloc(bytes_to_copy + 1);
 	if (substr == NULL)
 		return (NULL);
-	walker = substr;
+	writer = substr;
 	s += start;
 	while (bytes_to_copy > 0)
 	{
-		*walker = *s;
-		walker++;
+		*writer = *s;
+		writer++;
 		s++;
 		bytes_to_copy--;
 	}
-	*walker = '\0';
+	*writer = '\0';
 	return (substr);
 }

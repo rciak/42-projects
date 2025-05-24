@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 15:40:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 21:12:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,16 @@ size_t	si_min(size_t a, size_t b);
 size_t	si_max(size_t a, size_t b);
 int		abs(int n);
 
+//ft_x_memtools1.c
+int		si_is_overflow(size_t a, char action, size_t b);
+
 //ft_x_strtools1.c
 bool	is_in(char c, const char *str);
+
+//ft_x_strtools2.c
 size_t	strlen_deli(const char *s, const char *deli);
 size_t	count_words(const char *s, const char *deli);
 char	**split_deli(char const *s, const char *deli);
-
-//ft_x_memtools1.c
-int		si_is_overflow(size_t a, char action, size_t b);
 
 // Variants of ft_* functions that are in the same file as their ft-relatives.
 char	*si_substr(char const *s, size_t start, size_t len);
