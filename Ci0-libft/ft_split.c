@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 15:32:53 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 21:39:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  */
 
 #include "libft.h"
-
 
 static size_t	st_count_words(const char *s, char c);
 static size_t	st_strlen_till(const char *s, char c);
@@ -41,7 +40,7 @@ static void		st_free_allocs(char **strarr, size_t j_failed);
  *       a terminating `NULL` pointer)
  *       might need up to
  *       \f[
- *       \t w \mathtt{sizeof(char *)} = \tfrac{b}{2}\mathtt{sizeof(char *)} =: B
+ *       w \mathtt{sizeof(char *)} = \tfrac{b}{2}\mathtt{sizeof(char *)} =: B
  *       \f]
  *       bytes.
  *       \f$B\f$ should consist of not more than \f$\mathtt{SIZE_MAX + 1}\f$
@@ -157,5 +156,3 @@ int main (void)
 	return (0);
 }
 */
-
-
