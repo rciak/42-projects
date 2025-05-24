@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 12:54:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 14:21:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,10 @@ static void	st_free_allocs(char **strarr, size_t k_failed)
 
 	i = 0;
 	while (i < k_failed)
+	{
 		free (strarr[i]);
+		i++;
+	}
 	free (strarr);
 }
 
