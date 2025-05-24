@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 08:53:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 11:04:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 #include "libft.h"
 
-static void	st_free_allocs(char **strarr, size_t j_failed);
+static void		st_free_allocs(char **strarr, size_t j_failed);
+static size_t	st_count_words(const char *s, char c);
+static size_t	st_strlen_till(const char *s, char c);
 
 /**
  * @brief Allocates memory (using malloc(3)) and returns an
@@ -39,27 +41,75 @@ static void	st_free_allocs(char **strarr, size_t j_failed);
 char	**ft_split(char const *s, char c)
 {
 	size_t	num_words;
+	size_t	k;
 	size_t	word_len;
 	char	**word;
 
+	num_words = st_count_words(s, c);
 	word = malloc(num_words + 1);
 	if (word == NULL)
 		return (NULL);
-	num_words = st_count_words(s, c);
-	while (i < num_words)
+	k = 0;
+	while (k < num_words)
 	{
 		while (*s == c)
 			s++;
-		word_len = st_count_wordlen(s, c);
-		word[i] = malloc(word_len + 1);
-		if (word[i] == NULL)
-			return (st_free_allocs(s, i), NULL);
-		i++;
+		word_len = st_strlen_till(s, c);
+		word[k] = malloc(word_len + 1);
+		if (word[k] == NULL)
+			return (st_free_allocs(word, k), NULL);
+		ft_memcpy(word[k], s, word_len);
+		word[k][word_len] = '\0';
+		s += word_len;
+		k++;
 	}
 	return (word);
 }
 
-// OLD TRY
+static size_t	st_count_words(const char *s, char c)
+{
+	size_t	counted;
+
+	counted = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s == '\0')
+			return (counted);
+		counted++;
+		while (*s != c && *s)
+			s++;
+	}
+	return (counted);
+}
+
+static size_t	st_strlen_till(const char *s, char c)
+{
+	size_t	l;
+
+	l = 0;
+	while (s[l] && s[l] != c)
+		l++;
+	return (l);
+}
+
+
+static void	st_free_allocs(char **strarr, size_t k_failed)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < k_failed)
+		free (strarr[i]);
+	free (strarr);
+}
+
+
+// FIRST TRY: If evaluator wants to investigate: 
+// Where is the cause of one tester failing it?
+// --> git checkout a7c86da
+//
 // char	**ft_split(char const *s, char c)
 // {
 // 	char	separators[2];
