@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 12:50:58 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/24 12:54:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	**ft_split(char const *s, char c)
 		s += word_len;
 		k++;
 	}
-	word[num_words] == NULL;
+	word[num_words] = NULL;
 	return (word);
 }
 
