@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/05/22 22:18:57 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/24 16:32:00 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,8 @@ docfclean: docclean
 # TOOL RULES                                                                   #
 ################################################################################
 
+MAXDEPTH=1           # For find command in rule  update_INCS__SRCS__SRCS_BONUS  
+
 # totalclean
 .PHONY: totalclean
 totalclean: fclean docfclean testfclean
@@ -92,17 +94,19 @@ tclean: totalclean
 .PHONY: update_INCS__SRCS__SRCS_BONUS
 update_INCS__SRCS__SRCS_BONUS:
 	@echo 'INCS := \'
-	@find $(SRC_DIR) -name "*.h" | \
+	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.h" | sort | \
 	  while read found_files; do echo "$$found_files \\"; done | \
 	  sed '$$ s# \\##'
 	@echo
 	@echo 'SRCS := \'
-	@find $(SRC_DIR) -name "*.c" | grep --color=none -v "ft_lst" | \
+	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" | sort | \
+	    grep --color=none -v "ft_lst" | \
 	  while read found_files; do echo "$$found_files \\"; done | \
 	  sed '$$ s# \\##'
 	@echo
 	@echo 'SRCS_BONUS := \'
-	@find $(SRC_DIR) -name "*.c" | grep --color=none "ft_lst" | \
+	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" | sort | \
+	    grep --color=none "ft_lst" | \
 	  while read found_files; do echo "$$found_files \\"; done | \
 	  sed '$$ s# \\##'
 
