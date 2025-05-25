@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:43:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 21:51:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/25 11:38:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  */
 
 #include "libft.h"
-#include <stdio.h>  // EOF
 
 /**
  * @brief Checks if the given input is an ASCII character, cf.
