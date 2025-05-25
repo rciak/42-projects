@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by Rene Ciak         #+#    #+#              #
-#    Updated: 2025/05/24 16:32:00 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/25 12:48:08 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,7 @@ ready_to_submit:
 
 .PHONY: show_vars
 show_vars:
+	@echo "CFLAGS:     |$(CFLAGS)|"
 	@echo "OBJ_DIR:    |$(OBJ_DIR)|"
 	@echo "SRCS:       |$(SRCS)|"
 	@echo "OBJS:       |$(OBJS)|"
