@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:24:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/17 18:28:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/25 11:16:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
  * @note If \p s is `NULL` then `ft_strlen` will segfault - this is intended.
  * @note A generalized version of ft_strlen() is strlen_deli() where
  *       counting can stop before the nullterminator if other addional
- *       delimiters are hit.
+ *       delimiters are hit. (In
+ *       commit f67e5c93ae1075d6a6dc969e8261e5d063186a4b
+ *       it has been moved to the subfolder `side_products`)
  * @remark The number `ft_strlen(s)` can be viewed in different ways:
  *         * As *length* of the string s,
  *         * As *index of the Nullterminator* of s.
