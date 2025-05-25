@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:39:15 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 16:18:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/25 09:38:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
  * @param[in] action the desired action; currently expected: '+' or '*'.
  * @param[in] b the second unsigned number (size_t)
  * @return In the irregular case of @c action being neither @c `+` nor @c '*'
- *         ERRUNEXPECTEDVAL is returned, otherwise:
+ *         E_ARG_VAL is returned, otherwise:
  *          * 0 if there would happen no overflow,
  *          * 1 if there would happen an overflow.
  */
@@ -62,5 +62,5 @@ int	si_is_overflow(size_t a, char action, size_t b)
 			return (0);
 		return (1);
 	}
-	return (ERRUNEXPECTEDVAL);
+	return (E_ARG_VAL);
 }
