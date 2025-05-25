@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by reciak            #+#    #+#              #
-#    Updated: 2025/05/25 13:16:24 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/25 14:35:25 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,8 @@ install_test:
 $(TEST_DIR):
 	$(CLONE_IF_NOT_THERE)
 
-.PHONY: unitests
-unitests: $(TEST_DIR)
+.PHONY: unit-tests
+unit-tests: $(TEST_DIR)
 	make -C $(TEST_DIR)/$(TEST_SUBDIR)
 
 .PHONY: testfclean
