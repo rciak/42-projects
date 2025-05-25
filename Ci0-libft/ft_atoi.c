@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:48:49 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/12 21:18:24 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/25 11:30:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_atoi.c
- * @brief Stores the definition of 
+ * @brief Stores the definition of ft_atoi
  */
 
 #include "libft.h"
