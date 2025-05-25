@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/25 09:47:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/25 13:26:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_list
 	struct s_list	*next;
 }						t_list;
 
-// Part 1: Some libc functions
+// Part 1: Some libc functions (and bsd relatives like  ft_strlcpy, ft_strcat)
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
