@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/24 16:33:02 by reciak           ###   ########.fr        #
+#    Updated: 2025/05/25 17:29:49 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,15 +67,15 @@ SRCS := \
 ./ft_x_strtools1.c
 
 SRCS_BONUS := \
-./ft_lstadd_back.c \
-./ft_lstadd_front.c \
-./ft_lstclear.c \
-./ft_lstdelone.c \
-./ft_lstiter.c \
-./ft_lstlast.c \
-./ft_lstmap.c \
-./ft_lstnew.c \
-./ft_lstsize.c
+./ft_lstadd_back_bonus.c \
+./ft_lstadd_front_bonus.c \
+./ft_lstclear_bonus.c \
+./ft_lstdelone_bonus.c \
+./ft_lstiter_bonus.c \
+./ft_lstlast_bonus.c \
+./ft_lstmap_bonus.c \
+./ft_lstnew_bonus.c \
+./ft_lstsize_bonus.c
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
