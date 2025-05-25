@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:20:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/22 08:10:26 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/25 11:27:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 /**
  * @brief Counts the number of nodes in the list,
  *        cf. Libft Subject (Version 16.7).
+ * @remark It would way more natural to have a return type that is not signed...
  * @param[in] lst: The beginning of the list, i.e. a pointer to its first node.
  * @return The length of the list, i.e. its number of nodes.
  */
