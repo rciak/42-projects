@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:51:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 22:01:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 19:13:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		n--;
 	}
 	return (dest);
+}
+
+int main() {
+	char str[] = "0123456789";
+	ft_memmove(str + 2, str, 4);
+	write(1, str, 10);
+	write(1, "\n", 1);
 }

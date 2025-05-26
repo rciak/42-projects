@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:15:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 17:37:04 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 20:34:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,5 @@
  */
 bool	is_in(char c, const char *str)
 {
-	if (c == '\0')
-		return (false);
-	return (ft_strchr(str, (int) c) != NULL);
+	return (c && ft_strchr(str, (int) c));
 }

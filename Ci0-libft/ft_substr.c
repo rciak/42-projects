@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:51:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 21:53:58 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 20:44:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ char	*si_substr(char const *s, size_t start, size_t len)
 	ori_len = ft_strlen(s);
 	if (start >= ori_len)
 		return (ft_strdup(""));
+	// can reuse len
 	bytes_to_copy = si_min(ori_len - start, len);
 	if (si_is_overflow(bytes_to_copy, '+', 1))
 		return (NULL);

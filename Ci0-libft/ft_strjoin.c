@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:59:54 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 22:19:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 20:54:24 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
+	// len1 + len2 < len1
+	// can we do better/only one?
 	if (si_is_overflow(len1, '+', len2) || si_is_overflow(len1 + len2, '+', 1))
 		return (NULL);
 	catenated = malloc (len1 + len2 + 1);

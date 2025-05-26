@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:27:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 23:58:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 20:05:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,8 @@
  */
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	while (*s1 == *s2 && *s1 && n > 0)
-	{
+	while (*s1 == *(s2++) && *s1 && n-- > 0)
 		s1++;
-		s2++;
-		n--;
-	}
 	if (n == 0)
 		return (0);
 	return ((unsigned char)*s1 - (unsigned char)*s2);

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:50:31 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 18:19:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 18:58:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	const t_uchar	*uc_src = (t_uchar *) src;
 
 	uc_dest = (t_uchar *) dest;
-	while (n > 0)
-	{
-		*uc_dest = *uc_src;
-		uc_dest++;
-		uc_src++;
-		n--;
-	}
+	while (n-- > 0)
+		*(uc_dest++) = *(uc_src++);
 	return (dest);
 }
