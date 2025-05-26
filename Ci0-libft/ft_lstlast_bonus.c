@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:37:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/21 14:49:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 07:57:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_lstlast.c
+ * @file ft_lstlast_bonus.c
  * @brief Stores the definition of ft_lstlast
  */
 

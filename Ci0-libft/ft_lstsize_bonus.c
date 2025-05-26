@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:20:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/25 11:27:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 07:58:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_lstsize.c
+ * @file ft_lstsize_bonus.c
  * @brief Stores the definition of ft_lstsize
  */
 

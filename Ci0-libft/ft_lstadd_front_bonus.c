@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 08:54:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/22 08:10:02 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 07:56:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_lstadd_front.c
+ * @file ft_lstadd_front_bonus.c
  * @brief Stores the definition of ft_lstadd_front
  */
 

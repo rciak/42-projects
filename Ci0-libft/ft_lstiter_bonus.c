@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:26:04 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/21 16:33:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/26 07:57:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_lstiter.c
+ * @file ft_lstiter_bonus.c
  * @brief Stores the definition of ft_lstiter
  */
 
