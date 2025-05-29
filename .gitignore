@@ -1,5 +1,6 @@
 # Own excluded stuff
 lokal_test_Ci0-libft 
+OTHERS 
 
 # Prerequisites
 *.d
