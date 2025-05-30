@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 12:50:18 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/14 18:26:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/30 16:11:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ char	*ft_strdup(const char *s)
 {
 	size_t	len;
 	char	*ptr;
-	char	*walker;
+	char	*writer;
 
 	len = ft_strlen(s);
 	ptr = malloc (len + 1);
 	if (ptr == NULL)
 		return (NULL);
-	walker = ptr;
+	writer = ptr;
 	while (*s)
 	{
-		*walker = *s;
-		walker++;
+		*writer = *s;
+		writer++;
 		s++;
 	}
-	*walker = '\0';
+	*writer = '\0';
 	return (ptr);
 }
