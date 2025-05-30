@@ -28,11 +28,11 @@
  */
 void	*ft_memset(void *s, int c, size_t n)
 {
-	t_uchar	least_significant_byte_of_c;
-	t_uchar	*uc_s;
+	unsigned char	least_significant_byte_of_c;
+	unsigned char	*uc_s;
 
-	uc_s = (t_uchar *) s;
-	least_significant_byte_of_c = (t_uchar) c;
+	uc_s = (unsigned char *) s;
+	least_significant_byte_of_c = (unsigned char) c;
 	while (n > 0)
 	{
 		uc_s[n - 1] = least_significant_byte_of_c;
