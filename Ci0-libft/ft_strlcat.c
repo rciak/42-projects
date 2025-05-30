@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:52:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 21:52:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/30 14:24:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	st_finish_counting_len(size_t *plen_src, const char *src);
  *        [string_copying]
  *          (https://man7.org/linux/man-pages/man7/string_copying.7.html)
  *        and
- *        [ft_strlcat](https://man.netbsd.org/strlcpy.3).
+ *        [strlcat](https://man.netbsd.org/strlcpy.3).
  *
  * ft_strlcat() attaches a source string to a destination string
  * addin a nullterminator, provided that the string plus the nullterminator
