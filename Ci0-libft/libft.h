@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/25 13:26:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/30 16:19:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ enum e_libft_errors
 {
 	E_ARG_VAL = -1
 };
-
-typedef unsigned char	t_uchar;
 
 typedef struct s_list
 {

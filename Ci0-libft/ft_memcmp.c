@@ -32,8 +32,8 @@
  */
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const t_uchar	*uc_s1 = (t_uchar *) s1;
-	const t_uchar	*uc_s2 = (t_uchar *) s2;
+	const unsigned char	*uc_s1 = (unsigned char *) s1;
+	const unsigned char	*uc_s2 = (unsigned char *) s2;
 
 	while (n > 0 && *uc_s1 == *uc_s2)
 	{

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 12:51:52 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 21:51:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/30 16:39:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@
  */
 void	*ft_memset(void *s, int c, size_t n)
 {
-	t_uchar	least_significant_byte_of_c;
-	t_uchar	*uc_s;
+	unsigned char	c_rightmost_byte;
+	unsigned char	*uc_s;
 
-	uc_s = (t_uchar *) s;
-	least_significant_byte_of_c = (t_uchar) c;
+	uc_s = (unsigned char *) s;
+	c_rightmost_byte = (unsigned char) c;
 	while (n > 0)
 	{
-		uc_s[n - 1] = least_significant_byte_of_c;
+		uc_s[n - 1] = c_rightmost_byte;
 		n--;
 	}
 	return (s);

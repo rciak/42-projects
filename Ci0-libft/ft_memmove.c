@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:51:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 22:01:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/05/30 16:18:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
  */
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	t_uchar			*uc_dest;
-	const t_uchar	*uc_src = (t_uchar *) src;
-	size_t			step;
+	unsigned char			*uc_dest;
+	const unsigned char		*uc_src = (unsigned char *) src;
+	size_t					step;
 
 	if (n == 0)
 		return (dest);
-	uc_dest = (t_uchar *) dest;
+	uc_dest = (unsigned char *) dest;
 	if (dest < src)
 		step = +1;
 	else if (dest > src)
