@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by reciak            #+#    #+#              #
-#    Updated: 2025/05/25 14:35:25 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/02 16:39:53 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ testfclean:
 
 .PHONY: https_autentifcation_to_ssh_autentification
 https_autentifcation_to_ssh_autentification:
-	make -C $(TEST_DIR) $<
+	make -C $(TEST_DIR) $@
 
 ################################################################################
 # DOCUMENTATION RULES                                                          #
