@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/04 18:05:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/06 13:46:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,5 @@
 int	ft_printf(const char *str, ...)
 {
 #include <stdio.h>
-printf(str);	
-//printf ("%s", str);
-	return (0);
+return (printf(str));
 }
