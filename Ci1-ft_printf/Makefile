@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/04 19:47:56 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/08 12:50:39 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,18 @@ RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
-ifdef DEV
+ifeq ($(DEV), 1)
   CFLAGS += -Wno-format-security
 else
-  $(info *********************************************************************)
-  $(info *                  !! IMPORTANT NOTE !!                             *)
-  $(info *                                                                   *)
-  $(info * In case of compiler error try running with the flag  DEV  set     *)
-  $(info * make DEV=1                                                        *)
-  $(info *********************************************************************)
+  $(info **********************************************************************)
+  $(info *                  !! IMPORTANT NOTE !!                              *)
+  $(info *                                                                    *)
+  $(info * In case of compiler error try running make with flag  DEV  , e.g.  *)
+  $(info *   make DEV=1 unit-tests                                            *)
+  $(info * Suppress Output to stdout:                                         *)
+  $(info *   make DEV=1 unit-tests  >  /dev/null                              *)
+  $(info **********************************************************************)
 endif
-
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################

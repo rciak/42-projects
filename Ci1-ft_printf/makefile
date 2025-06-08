@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/06/04 19:40:23 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/08 13:03:13 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,10 @@ $(TEST_DIR):
 
 .PHONY: unit-tests
 unit-tests: $(TEST_DIR)
-ifdef DEV
-	make -C $(TEST_DIR)/$(TEST_SUBDIR) DEV=1 unit-tests
+ifeq ($(DEV), 1)
+	make -C $(TEST_DIR)/$(TEST_SUBDIR) DEV=1 PRINT_NOTE=0 unit-tests
 else
-	make -C $(TEST_DIR)/$(TEST_SUBDIR) unit-tests
+	make -C $(TEST_DIR)/$(TEST_SUBDIR) DEV=0 PRINT_NOTE=0 unit-tests
 endif
 
 .PHONY: testfclean
