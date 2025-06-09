@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/09 17:35:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/09 20:40:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "ft_printf.h"
 
-int	st_write_by_spec(char *str);
+static int	st_write_by_spec(const char *str);
 
 /**
  * @brief Mimicks the orignal ft_printf, but only for the following conversion
@@ -50,14 +50,57 @@ int	st_write_by_spec(char *str);
    undefined.
    @endverbatim
  */
+
+//TODO: INCORPORATE va_ stuff...
 int	ft_printf(const char *str, ...)
 {
-	
+	const char	*specifiers = "cspdiuxX%";
+	int			bytes_sent;
+	int			bytes_total;
 
+	bytes_sent = 0;
+	bytes_total = 0;
 	while (*str)
 	{
-
+		if (*str != '%')
+			bytes_sent = write(STDOUT_FD, str, 1);
+		else
+			bytes_sent = st_write_by_spec(str, );
+		if (bytes_sent < 0)
+			return (bytes_sent);
+		bytes_total += bytes_sent;
 		str++;
 	}
+	return (bytes_total);
+}
 
+/**
+   @note the caller relies on st_write_by_spec() taking care itself 
+        of the edge case of the current '%' (== *str) being followed by '\0'.
+ */
+static int	st_write_by_spec(const char *str)
+{
+	if (!(*str == '%'))
+		return (E_NOT_AT_PERCENT);
+	str++;
+	if (! *str)
+		return (0);
+	if (*str == 'c')
+		return (put_c(str));
+	else if (*str == 's')
+		return (put_s(str));
+	else if (*str == 'p')
+		return (put_p(str));
+	else if (*str == 'd' && *str == 'i')
+		return (put_d(str));
+	else if (*str == 'u')
+		return (put_u(str));
+	else if (*str == 'x')
+		return (put_x(str));
+	else if (*str == 'X')
+		return (put_captial_x(str));
+	else if (*str == '%')
+		return (write(STDOUT_FD, str, 1));
+	else
+		return (E_BAD_ARG);
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:48:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/09 13:56:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/09 20:38:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "libft.h"
+
+enum e_ft_printf_errors
+{
+	E_WRITE = -10,
+	E_NOT_AT_PERCENT = -11,
+	E_BAD_ARG = -12
+};
 
 int	ft_printf(const char *str, ...);
 
