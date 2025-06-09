@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/06/09 14:32:50 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/09 14:43:30 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ SRC_DIR:=src
 DOXYFILE=$(DOC_DIR)/autogen_Doxyfile
 # For sed substitions in the Doxyfile
 SED_PROJECT_NAME=         PROJECT_NAME           = $(PROJECT_NAME)
-SED_INPUT=                INPUT                  = $(SRC_DIR) $(INC_DIR)
+SED_INPUT=                INPUT                  = $(INC_DIR) $(SRC_DIR)
 SED_OUTPUT_DIRECTORY=     OUTPUT_DIRECTORY       = $(DOC_DIR)
 SED_OPTIMIZE_OUTPUT_FOR_C=OPTIMIZE_OUTPUT_FOR_C  = YES
 SED_SOURCE_BROWSER=       SOURCE_BROWSER         = YES
