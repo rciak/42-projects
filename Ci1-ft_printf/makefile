@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/06/08 13:03:13 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/09 14:32:50 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,13 @@ https_autentifcation_to_ssh_autentification:
 # DOCUMENTATION RULES                                                          #
 ################################################################################
 DOC_DIR:=doc
+INC_DIR:=inc
+SRC_DIR:=src
+
 DOXYFILE=$(DOC_DIR)/autogen_Doxyfile
 # For sed substitions in the Doxyfile
 SED_PROJECT_NAME=         PROJECT_NAME           = $(PROJECT_NAME)
+SED_INPUT=                INPUT                  = $(SRC_DIR) $(INC_DIR)
 SED_OUTPUT_DIRECTORY=     OUTPUT_DIRECTORY       = $(DOC_DIR)
 SED_OPTIMIZE_OUTPUT_FOR_C=OPTIMIZE_OUTPUT_FOR_C  = YES
 SED_SOURCE_BROWSER=       SOURCE_BROWSER         = YES
@@ -72,6 +76,7 @@ $(DOC_DIR): $(SRCS) $(SRCS_BONUS) $(INCS)
 	@mkdir -p $(DOC_DIR)
 	doxygen -g $(DOXYFILE)
 	sed -i 's#PROJECT_NAME           =.*#$(SED_PROJECT_NAME)#'     $(DOXYFILE)
+	sed -i 's#INPUT                  =.*#$(SED_INPUT)#'            $(DOXYFILE)
 	sed -i 's#OUTPUT_DIRECTORY       =.*#$(SED_OUTPUT_DIRECTORY)#' $(DOXYFILE)
 	sed -i 's#OPTIMIZE_OUTPUT_FOR_C  =.*#$(SED_OPTIMIZE_OUTPUT_FOR_C)#' $(DOXYFILE)
 	sed -i 's#SOURCE_BROWSER         =.*#$(SED_SOURCE_BROWSER)#'   $(DOXYFILE)

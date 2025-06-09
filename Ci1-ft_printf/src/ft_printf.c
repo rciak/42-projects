@@ -29,6 +29,12 @@
  */
 int	ft_printf(const char *str, ...)
 {
-#include <stdio.h>
-return (printf(str));
+	
+
+	while (*str)
+	{
+
+		str++;
+	}
+
 }
