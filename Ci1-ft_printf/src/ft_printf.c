@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/09 13:52:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/09 15:20:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief Mimicks the orignal ft_printf, but only for the following converstion
- *        specifiers that should follow a `%`  
+ *        specifiers (that should follow a `%` character)  
  *        `c`, `s`, `p`, `d`, `i`, `u`, `x`, `X`, `%` (e.g. `%c`, `%%`).
  * @note On github there should be a version containing a `makefile` extending
  *       `Makefile` by useful rules like `unit-tests` to be called like e.g.
