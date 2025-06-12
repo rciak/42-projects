@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/12 10:55:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/12 11:13:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,13 @@ void	*calloc_uninit(size_t nmemb, size_t size);
 
 //ft_xx_out1.c
 int		out_nbr_fd(int fd, int nbr, char *digits);
-int		put_unbr_fd(int fd, unsigned int nbr, char *digits);
+int		out_unbr_fd(int fd, unsigned int nbr, char *digits);
 int		out_str_fd(int fd, char *str);
 int		out_vptr_fd(int fd, void *ptr);
 
 //ft_xx_out2.c: Convenience wrappers fd = STDOUT_FD in previous 4 functions.
 int		out_nbr(int nbr, char *digits);
-int		put_unbr(int fd, unsigned int nbr, char *digits);
+int		out_unbr(int fd, unsigned int nbr, char *digits);
 int		out_str(char *str);
 int		out_vptr(void *ptr);
 
