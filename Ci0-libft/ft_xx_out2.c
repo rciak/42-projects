@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:12:02 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/12 11:22:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/12 11:25:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ int		out_nbr(int nbr, char *digits)
 	return (out_nbr_fd(nbr, digits, STDOUT_FD));
 }
 
-int		out_unbr(int fd, unsigned int nbr, char *digits)
+int		out_unbr(unsigned int nbr, char *digits)
 {
 	return (out_unbr_fd(nbr, digits, STDOUT_FD));
 }
