@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/11 12:54:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/12 10:45:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static int	st_write_by_specifi(const char *s, va_list *parg)
 	else if (*s == 'p')
 		return (out_vptr(va_arg(*parg, void *)));
 	else if (*s == 's')
-		return (ft_putstr(va_arg(*parg, char *)));
+		return (out_str(va_arg(*parg, char *)));
 	else if (*s == 'c')
 		return (st_out_c(va_arg(*parg, int)));
 	else if (*s == '%')
