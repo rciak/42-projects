@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/08 12:50:39 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/13 20:10:00 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ libftfclean:
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJS) | libft
+$(NAME): $(OBJS) | libftall
 	ar -rcs $@ $^
 
 $(OBJ_DIR)/%.o:%.c $(INCS)
