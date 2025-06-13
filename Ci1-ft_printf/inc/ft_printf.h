@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:48:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/09 20:38:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/13 19:06:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "libft.h"
+# include <stdarg.h>    // va_list, va_start, va_arg, va_end
 
 enum e_ft_printf_errors
 {
-	E_WRITE = -10,
 	E_NOT_AT_PERCENT = -11,
 	E_BAD_ARG = -12
 };

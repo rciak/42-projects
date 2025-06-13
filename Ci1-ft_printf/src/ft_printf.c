@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/12 10:45:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/13 19:05:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 #include "ft_printf.h"
 
-static int	st_write_by_specifi(const char *str, va_list *parg);
+static int	st_write_by_specifi(const char *s, va_list *parg);
+static int	st_out_c(unsigned char uc);
 
 /**
  * @brief Mimicks the orignal ft_printf, but only for the following conversion
@@ -61,13 +62,13 @@ int	ft_printf(const char *str, ...)
 	while (*str)
 	{
 		if (*str != '%')
-			bytes_sent = write(STDOUT_FD, str, 1);
+			bytes_sent = write(STDOUT_FILENO, str, 1);
 		else
 			bytes_sent = st_write_by_specifi(str, &arg);
 		if (bytes_sent < 0)
 		{
 			va_end(arg);
-			return (bytes_sent);
+			return (E_WRITE);
 		}
 		bytes_total += bytes_sent;
 		str++;
@@ -115,15 +116,12 @@ static int	st_write_by_specifi(const char *s, va_list *parg)
 	else if (*s == 'c')
 		return (st_out_c(va_arg(*parg, int)));
 	else if (*s == '%')
-		return (write(STDOUT_FD, s, 1));
+		return (write(STDOUT_FILENO, s, 1));
 	else
 		return (E_BAD_ARG);
 }
 
-static int	t_out_c(va_list *parg)
+static int	st_out_c(unsigned char uc)
 {
-	unsigned char	uc;
-
-	uc = (unsigned char) va_arg(*parg, int);
-	return (write(STDOUT_FD, &uc, 1));
+	return (write(STDOUT_FILENO, &uc, 1));
 }
