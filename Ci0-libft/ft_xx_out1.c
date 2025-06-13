@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:08:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/13 19:39:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/13 19:58:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ int	out_unbr_fd(unsigned int unbr, char *digits, int fd)
 	}
 }
 
+/**
+ * @brief Same as out_uintptr_fd except that the first argument is of type
+ *        uintptr_t (instead of unsigned int)
+ */
 int	out_uintptr_fd(uintptr_t unbr, char *digits, int fd)
 {
 	int		new_bytes;
