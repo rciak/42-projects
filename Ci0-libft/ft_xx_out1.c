@@ -6,14 +6,14 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:08:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/13 14:14:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/13 19:39:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_xx_out1.c
  * @brief Stores the definition of output functions that write to
- *        a filedescriptor. In case of a number (int or unsigned int)
+ *        a filedescriptor. In case of a number (int or unsigned int uintptr_t)
  *        a digit set like "0123456789" or "0123456789abcdef" may be secified
  */
 
@@ -41,14 +41,14 @@ int	out_nbr_fd(int nbr, char *digits, int fd)
 	if (nbr == -2147483648)
 		return (write (fd, "-2147483648", 11));
 	bytes_sign = 0;
-	if (n < 0)
+	if (nbr < 0)
 	{
 		bytes_sign = write (fd, "-", 1);
 		if (bytes_sign < 0)
 			return (E_WRITE);
 		nbr *= -1;
 	}
-	bytes_abs_val = st_out_unbr_fd((unsigned int) nbr, digits, fd);
+	bytes_abs_val = out_unbr_fd((uintptr_t) nbr, digits, fd);
 	if (bytes_abs_val < 0)
 		return (E_WRITE);
 	return (bytes_sign + bytes_abs_val);
@@ -84,11 +84,40 @@ int	out_unbr_fd(unsigned int unbr, char *digits, int fd)
 	}
 	else
 	{
-		new_bytes = out_unbr_fd(unbr / base, fd);
+		new_bytes = out_unbr_fd(unbr / base, digits, fd);
 		if (new_bytes < 0)
 			return (E_WRITE);
-		bytes total += new_bytes;
-		new_bytes = out_unbr_fd(unbr % base, fd);
+		bytes_total += new_bytes;
+		new_bytes = out_unbr_fd(unbr % base, digits, fd);
+		if (new_bytes < 0)
+			return (E_WRITE);
+		bytes_total += new_bytes;
+		return (bytes_total);
+	}
+}
+
+int	out_uintptr_fd(uintptr_t unbr, char *digits, int fd)
+{
+	int		new_bytes;
+	int		bytes_total;
+	size_t	base;
+
+	base = ft_strlen(digits);
+	bytes_total = 0;
+	if (0 <= unbr && unbr < base)
+	{
+		new_bytes = write(fd, &digits[unbr], 1);
+		if (new_bytes < 0)
+			return (E_WRITE);
+		return (new_bytes);
+	}
+	else
+	{
+		new_bytes = out_unbr_fd(unbr / base, digits, fd);
+		if (new_bytes < 0)
+			return (E_WRITE);
+		bytes_total += new_bytes;
+		new_bytes = out_unbr_fd(unbr % base, digits, fd);
 		if (new_bytes < 0)
 			return (E_WRITE);
 		bytes_total += new_bytes;
@@ -113,18 +142,18 @@ int	out_str_fd(char *str, int fd)
 /**
  * @brief Outputs the address stored in \p ptr to the specified file descriptor.
  * @note **Assumption:** The program is executed on a system where an address
- *       can be stored in unsigned int
+ *       can be stored in uintptr_t
  * @param[in] n: The integer to output.
  * @param[in] fd: The file descriptor on which to write.
  * @note Potential improvement: Call not out_unbr_fd, but a variant of it
- *       that receives not an `unsigned int` but an `uint_ptr`.
+ *       that receives not an `uintptr_t` but an `uint_ptr`.
  */
 int	out_vptr_fd(void *ptr, int fd)
 {
-	unsigned int	address;
+	uintptr_t	address;
 
 	if (write(fd, "0x", 2) < 0)
 		return (E_WRITE);
-	address = (unsigned int) ptr;
+	address = (uintptr_t) ptr;
 	return (2 + out_unbr_fd(address, "0123456789abcdef", fd));
 }
