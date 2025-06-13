@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/05/25 17:29:49 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/13 14:21:35 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,9 @@ SRCS := \
 ./ft_toupper.c \
 ./ft_x_math01.c \
 ./ft_x_memtools1.c \
-./ft_x_strtools1.c
+./ft_x_strtools1.c \
+./ft_xx_out1.c \
+./ft_xx_out2.c
 
 SRCS_BONUS := \
 ./ft_lstadd_back_bonus.c \
