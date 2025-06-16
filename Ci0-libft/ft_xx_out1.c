@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:08:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 12:49:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 17:31:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,12 @@ int	out_vptr_fd(void *ptr, int fd)
 {
 	uintptr_t	address;
 
+	if (ptr == NULL)
+	{
+		if (write (1, "(nil)", 5) < 0)
+			return (E_WRITE);
+		return (5);
+	}
 	if (write(fd, "0x", 2) < 0)
 		return (E_WRITE);
 	address = (uintptr_t) ptr;
