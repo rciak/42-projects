@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 18:58:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 19:28:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int	ft_printf(const char *str, ...)
 		else
 		{
 			bytes_sent = st_write_by_specifi(str, &arg);
-			str++;
+			if (*(str + 1))
+				str++;
 		}
 		if (bytes_sent < 0)
 		{
