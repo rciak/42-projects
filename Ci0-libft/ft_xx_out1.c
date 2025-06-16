@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:08:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 17:52:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 18:03:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	out_str_fd(char *str, int fd)
 {
 	if (str == NULL)
 	{
-		if (write(1, "(NULL)", 6) < 0)
+		if (write(1, "(null)", 6) < 0)
 			return (E_WRITE);
 		return (6);
 	}
