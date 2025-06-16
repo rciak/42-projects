@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:08:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/13 19:58:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 12:49:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	out_unbr_fd(unsigned int unbr, char *digits, int fd)
 
 	base = ft_strlen(digits);
 	bytes_total = 0;
-	if (0 <= unbr && unbr < base)
+	if (unbr < base)
 	{
 		new_bytes = write(fd, &digits[unbr], 1);
 		if (new_bytes < 0)
@@ -108,7 +108,7 @@ int	out_uintptr_fd(uintptr_t unbr, char *digits, int fd)
 
 	base = ft_strlen(digits);
 	bytes_total = 0;
-	if (0 <= unbr && unbr < base)
+	if (unbr < base)
 	{
 		new_bytes = write(fd, &digits[unbr], 1);
 		if (new_bytes < 0)
