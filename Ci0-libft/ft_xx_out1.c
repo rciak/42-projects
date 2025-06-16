@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:08:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 17:31:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 17:52:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,12 @@ int	out_uintptr_fd(uintptr_t unbr, char *digits, int fd)
  */
 int	out_str_fd(char *str, int fd)
 {
+	if (str == NULL)
+	{
+		if (write(1, "(NULL)", 6) < 0)
+			return (E_WRITE);
+		return (6);
+	}
 	return (write(fd, str, ft_strlen(str)));
 }
 
