@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 19:28:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 19:34:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ int	ft_printf(const char *str, ...)
 		else
 		{
 			bytes_sent = st_write_by_specifi(str, &arg);
-			if (*(str + 1))
-				str++;
+			str++;
 		}
 		if (bytes_sent < 0)
 		{
@@ -106,7 +105,7 @@ static int	st_write_by_specifi(const char *s, va_list *parg)
 		return (E_NOT_AT_PERCENT);
 	s++;
 	if (! *s)
-		return (0);
+		return (E_PERCENT_AT_STRING_END);
 	if (is_in(*s, "di"))
 		return (out_nbr(va_arg(*parg, int), "0123456789"));
 	else if (*s == 'u')

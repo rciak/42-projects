@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:48:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 18:56:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 19:34:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 enum e_ft_printf_errors
 {
 	E_VALUE_OF_ORI_PRINTF = -1,
+	E_PERCENT_AT_STRING_END = -10,
 	E_NOT_AT_PERCENT = -11,
 	E_BAD_ARG = -12
 };
