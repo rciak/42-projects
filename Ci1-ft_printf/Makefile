@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/13 20:10:00 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/16 14:30:58 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,11 +69,6 @@ libftclean:
 .PHONY: libftfclean
 libftfclean:
 	make -C $(LIBFT_DIR) fclean
-
-
-
-.PHONY: all
-all: $(NAME)
 
 $(NAME): $(OBJS) | libftall
 	ar -rcs $@ $^
