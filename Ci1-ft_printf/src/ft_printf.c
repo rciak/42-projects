@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/13 19:05:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 16:48:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ int	ft_printf(const char *str, ...)
 		if (*str != '%')
 			bytes_sent = write(STDOUT_FILENO, str, 1);
 		else
+		{
 			bytes_sent = st_write_by_specifi(str, &arg);
+			str++;
+		}
 		if (bytes_sent < 0)
 		{
 			va_end(arg);
