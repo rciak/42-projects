@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:48:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 19:34:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 19:54:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
  * @note In order to have the same return value -1 that the original printf
  *       returns on error (at least on the 42 Vienna computers...)
  *       the core function ft_printf() will only return -1 on error.
+ * @warning In order that ft_printf() works properly the errorcodes should all
+ *          be < 0.
  */
 enum e_ft_printf_errors
 {
