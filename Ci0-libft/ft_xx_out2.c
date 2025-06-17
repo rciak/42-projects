@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 11:12:02 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/13 20:03:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/17 08:52:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file ft_xx_out2.c
  * @brief Stores the definition of convenience wrappers from the 
  *        output functions in ft_xx_out1.c that write to
- *        stdout. In case of a number (int or uintptr_t)
+ *        stdout. In case of a number (int, unsigned int or uintptr_t)
  *        a digit set like "0123456789" or "0123456789abcdef" may be secified
  */
 
