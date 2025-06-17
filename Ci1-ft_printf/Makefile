@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/17 11:00:21 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/17 20:02:08 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,6 @@ CFLAGS    = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
 ifeq ($(DEBUG), 1)
   CFLAGS += -g3 -fsanitize=address,undefined,leak
 endif
-ifeq ($(DEV), 1)
-  CFLAGS += -Wno-format-security
-else
-  $(info **********************************************************************)
-  $(info *                  !! IMPORTANT NOTE !!                              *)
-  $(info *                                                                    *)
-  $(info * In case of compiler error try running make with flag  DEV  , e.g.  *)
-  $(info *   make DEV=1 unit-tests                                            *)
-  $(info * Suppress Output to stdout:                                         *)
-  $(info *   make DEV=1 unit-tests  >  /dev/null                              *)
-  $(info **********************************************************************)
-endif
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
@@ -46,7 +34,6 @@ inc/ft_printf.h
 SRCS := \
 src/ft_printf.c
 #############################################
-
 
 .PHONY: all
 all: $(NAME)
