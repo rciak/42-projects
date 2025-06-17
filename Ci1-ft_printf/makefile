@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/06/17 12:50:46 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/17 20:05:47 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,7 @@ install_test: $(TEST_DIR)
 $(TEST_DIR):
 	$(CLONE_IF_NOT_THERE)
 
-EVA_LUA_FLAGS = PRINT_NOTE=0
-ifeq ($(DEV), 1)
-	EVA_LUA_FLAGS += DEV=1
-endif 
+EVA_LUA_FLAGS:=
 ifeq ($(DEBUG), 1)
 	EVA_LUA_FLAGS += DEBUG=1
 endif
