@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/16 14:30:58 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/17 20:02:08 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,8 @@ RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
-ifeq ($(DEV), 1)
-  CFLAGS += -Wno-format-security
-else
-  $(info **********************************************************************)
-  $(info *                  !! IMPORTANT NOTE !!                              *)
-  $(info *                                                                    *)
-  $(info * In case of compiler error try running make with flag  DEV  , e.g.  *)
-  $(info *   make DEV=1 unit-tests                                            *)
-  $(info * Suppress Output to stdout:                                         *)
-  $(info *   make DEV=1 unit-tests  >  /dev/null                              *)
-  $(info **********************************************************************)
+ifeq ($(DEBUG), 1)
+  CFLAGS += -g3 -fsanitize=address,undefined,leak
 endif
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
@@ -44,33 +35,11 @@ SRCS := \
 src/ft_printf.c
 #############################################
 
-
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJ)
-
-################################################################################
-#  libft  related rules                                                        #
-################################################################################
-
-.PHONY: libftall
-libftall:
-	make -C $(LIBFT_DIR) all
-
-.PHONY: libftbonus
-libftbonus:
-	make -C $(LIBFT_DIR) bonus
-
-.PHONY: libftclean
-libftclean:
-	make -C $(LIBFT_DIR) clean
-
-.PHONY: libftfclean
-libftfclean:
-	make -C $(LIBFT_DIR) fclean
-
 $(NAME): $(OBJS) | libftall
+	cp $(LIBFT_DIR)/$(LIBFT_NAME) $(NAME)
 	ar -rcs $@ $^
 
 $(OBJ_DIR)/%.o:%.c $(INCS)
@@ -99,3 +68,23 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+################################################################################
+#  libft  related rules                                                        #
+################################################################################
+
+.PHONY: libftall
+libftall:
+	make -C $(LIBFT_DIR) all
+
+.PHONY: libftbonus
+libftbonus:
+	make -C $(LIBFT_DIR) bonus
+
+.PHONY: libftclean
+libftclean:
+	make -C $(LIBFT_DIR) clean
+
+.PHONY: libftfclean
+libftfclean:
+	make -C $(LIBFT_DIR) fclean

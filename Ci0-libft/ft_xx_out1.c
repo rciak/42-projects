@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:08:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 12:49:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 21:07:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file ft_xx_out1.c
  * @brief Stores the definition of output functions that write to
  *        a filedescriptor. In case of a number (int or unsigned int uintptr_t)
- *        a digit set like "0123456789" or "0123456789abcdef" may be secified
+ *        a digit set like "0123456789" or "0123456789abcdef" may be specified
  */
 
 #include "libft.h"
@@ -57,7 +57,7 @@ int	out_nbr_fd(int nbr, char *digits, int fd)
 /**
  * @brief Transform the unsigned integer \p unbr to a digit representation
  *        to a given base and outputs that to specified file descriptor.
-  * @param[in] unbr: The unsigned integer to output.
+ * @param[in] unbr: The unsigned integer to output.
  * @param[in] digits: A pointer to a string containing the digits.
  * @param[in] fd: The file descriptor on which to write.
  * @return
@@ -117,11 +117,11 @@ int	out_uintptr_fd(uintptr_t unbr, char *digits, int fd)
 	}
 	else
 	{
-		new_bytes = out_unbr_fd(unbr / base, digits, fd);
+		new_bytes = out_uintptr_fd(unbr / base, digits, fd);
 		if (new_bytes < 0)
 			return (E_WRITE);
 		bytes_total += new_bytes;
-		new_bytes = out_unbr_fd(unbr % base, digits, fd);
+		new_bytes = out_uintptr_fd(unbr % base, digits, fd);
 		if (new_bytes < 0)
 			return (E_WRITE);
 		bytes_total += new_bytes;
@@ -140,6 +140,12 @@ int	out_uintptr_fd(uintptr_t unbr, char *digits, int fd)
  */
 int	out_str_fd(char *str, int fd)
 {
+	if (str == NULL)
+	{
+		if (write(1, "(null)", 6) < 0)
+			return (E_WRITE);
+		return (6);
+	}
 	return (write(fd, str, ft_strlen(str)));
 }
 
@@ -149,15 +155,19 @@ int	out_str_fd(char *str, int fd)
  *       can be stored in uintptr_t
  * @param[in] n: The integer to output.
  * @param[in] fd: The file descriptor on which to write.
- * @note Potential improvement: Call not out_unbr_fd, but a variant of it
- *       that receives not an `uintptr_t` but an `uint_ptr`.
  */
 int	out_vptr_fd(void *ptr, int fd)
 {
 	uintptr_t	address;
 
+	if (ptr == NULL)
+	{
+		if (write (1, "(nil)", 5) < 0)
+			return (E_WRITE);
+		return (5);
+	}
 	if (write(fd, "0x", 2) < 0)
 		return (E_WRITE);
 	address = (uintptr_t) ptr;
-	return (2 + out_unbr_fd(address, "0123456789abcdef", fd));
+	return (2 + out_uintptr_fd(address, "0123456789abcdef", fd));
 }

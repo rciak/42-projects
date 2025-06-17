@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/13 19:05:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/16 19:34:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,21 @@ int	ft_printf(const char *str, ...)
 
 	va_start (arg, str);
 	bytes_total = 0;
+	if (str == NULL)
+		return (E_VALUE_OF_ORI_PRINTF);
 	while (*str)
 	{
 		if (*str != '%')
 			bytes_sent = write(STDOUT_FILENO, str, 1);
 		else
+		{
 			bytes_sent = st_write_by_specifi(str, &arg);
+			str++;
+		}
 		if (bytes_sent < 0)
 		{
 			va_end(arg);
-			return (E_WRITE);
+			return (E_VALUE_OF_ORI_PRINTF);
 		}
 		bytes_total += bytes_sent;
 		str++;
@@ -100,7 +105,7 @@ static int	st_write_by_specifi(const char *s, va_list *parg)
 		return (E_NOT_AT_PERCENT);
 	s++;
 	if (! *s)
-		return (0);
+		return (E_PERCENT_AT_STRING_END);
 	if (is_in(*s, "di"))
 		return (out_nbr(va_arg(*parg, int), "0123456789"));
 	else if (*s == 'u')
