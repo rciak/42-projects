@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/17 09:19:13 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/17 11:00:21 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
+ifeq ($(DEBUG), 1)
+  CFLAGS += -g3 -fsanitize=address,undefined,leak
+endif
 ifeq ($(DEV), 1)
   CFLAGS += -Wno-format-security
 else
@@ -49,6 +52,7 @@ src/ft_printf.c
 all: $(NAME)
 
 $(NAME): $(OBJS) | libftall
+	cp $(LIBFT_DIR)/$(LIBFT_NAME) $(NAME)
 	ar -rcs $@ $^
 
 $(OBJ_DIR)/%.o:%.c $(INCS)
