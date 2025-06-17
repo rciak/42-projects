@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/16 14:30:58 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/17 09:19:13 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,28 +48,6 @@ src/ft_printf.c
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJ)
-
-################################################################################
-#  libft  related rules                                                        #
-################################################################################
-
-.PHONY: libftall
-libftall:
-	make -C $(LIBFT_DIR) all
-
-.PHONY: libftbonus
-libftbonus:
-	make -C $(LIBFT_DIR) bonus
-
-.PHONY: libftclean
-libftclean:
-	make -C $(LIBFT_DIR) clean
-
-.PHONY: libftfclean
-libftfclean:
-	make -C $(LIBFT_DIR) fclean
-
 $(NAME): $(OBJS) | libftall
 	ar -rcs $@ $^
 
@@ -99,3 +77,23 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+################################################################################
+#  libft  related rules                                                        #
+################################################################################
+
+.PHONY: libftall
+libftall:
+	make -C $(LIBFT_DIR) all
+
+.PHONY: libftbonus
+libftbonus:
+	make -C $(LIBFT_DIR) bonus
+
+.PHONY: libftclean
+libftclean:
+	make -C $(LIBFT_DIR) clean
+
+.PHONY: libftfclean
+libftfclean:
+	make -C $(LIBFT_DIR) fclean
