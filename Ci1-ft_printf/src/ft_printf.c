@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:40:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 19:34:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/18 08:39:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_printf(const char *str, ...)
 	va_start (arg, str);
 	bytes_total = 0;
 	if (str == NULL)
-		return (E_VALUE_OF_ORI_PRINTF);
+		return (va_end(arg), E_VALUE_OF_ORI_PRINTF);
 	while (*str)
 	{
 		if (*str != '%')
@@ -71,15 +71,11 @@ int	ft_printf(const char *str, ...)
 			str++;
 		}
 		if (bytes_sent < 0)
-		{
-			va_end(arg);
-			return (E_VALUE_OF_ORI_PRINTF);
-		}
+			return (va_end(arg), E_VALUE_OF_ORI_PRINTF);
 		bytes_total += bytes_sent;
 		str++;
 	}
-	va_end(arg);
-	return (bytes_total);
+	return (va_end(arg), bytes_total);
 }
 
 /**
