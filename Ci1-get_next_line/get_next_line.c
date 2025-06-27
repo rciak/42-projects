@@ -6,7 +6,14 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/27 15:54:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/27 17:21:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+char	*get_next_line(int fd)
+{
+	t_err err;
+
+	err = 0;
+	return (st_gnl_proper(fd, err));
+}
