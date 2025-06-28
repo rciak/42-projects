@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/06/28 14:14:07 by reciak           ###   ########.fr        #
+#    Updated: 2025/06/28 14:26:27 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,8 @@ https_autentifcation_to_ssh_autentification:
 # DOCUMENTATION RULES                                                          #
 ################################################################################
 DOC_DIR:=doc
-INC_DIR:=inc
-SRC_DIR:=src
+INC_DIR:=.
+SRC_DIR:=.
 
 DOXYFILE=$(DOC_DIR)/autogen_Doxyfile
 # For sed substitions in the Doxyfile

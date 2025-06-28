@@ -6,12 +6,12 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/28 13:15:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/28 14:22:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_prinf.h
+ * @file get_next_line.h
  * @brief The header file for reciak's get_next_line project of the Common Core
  */
 
