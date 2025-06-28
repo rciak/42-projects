@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/28 15:23:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/28 20:06:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 
 #include "get_next_line.h"
 
+//Indentation would be better but norminette does not allow any...
 const t_err	g_err[] = {
-{NO_ERROR, "No error"}
+{E_GNL_NONE, "gnl: No error"},
+{E_GNL_READ, "gnl: Read error"}
 };
 
 static char	*st_gnl_proper(int fd, t_err *err);
-
+static char 
 
 /**
  * @brief This is the core function of the project.
@@ -34,6 +36,7 @@ static char	*st_gnl_proper(int fd, t_err *err);
  *     * `make unit-tests`
  *     * `make DEV=1 unit-tests`
  *     * `make DEV=1 unit-tests > /dev/null`
+ * @note **Assumption:** @code fd < MAX_NUMB_FD @endcode
  * @param [in] fd A file descriptor
  * @return
  *     * a pointer to the extracted line from the file associated to 
@@ -43,13 +46,26 @@ char	*get_next_line(int fd)
 {
 	t_err	err;
 
-	err = g_err[NO_ERROR];
+	err = g_err[E_GNL_NONE];
 	return (st_gnl_proper(fd, &err));
 }
 
 static char	*st_gnl_proper(int fd, t_err *err)
 {
-	(void) fd;
-	(void) err;
+	static char	*buf[MAX_NUMB_FD];
+	ssize_t		bytes_read;
+
+	if (fd < 0 || fd >= MAX_NUMB_FD)
+		return (st_clear(&buf[fd], err, E_GNL_FD_RANGE), NULL);
+	while (1)
+	{
+		if (st_has_newline(buf[fd]))
+			return (st_extract_newline(buf[fd], err));
+		bytes_read = read(fd, buf[fd], BUFFER_SIZE);
+		if (bytes_read < 0)
+			return (st_clear(&buf[fd], err, E_GNL_READ), NULL);
+		if (bytes_read == 0)
+			return (duplicate_n_clear(&buf[fd], err), NULL);
+	}
 	return (NULL);
 }
