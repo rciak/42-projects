@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/28 19:06:31 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/29 17:57:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,31 @@ typedef struct s_err
 {
 	int			code;
 	const char	*msg;
-}	t_err;
+}	t_event;
 
 /**
- * @warning The enumaration of the below error codes must be 0, 1, 2, ...
- *          since they are used as index for the constant array g_err !
+ * @warning The enumaration of the below event codes must be 0, 1, 2, ...
+ *          since they are used as index for the constant array g_event !
  * @note In projects where the number of files / allowed number of functions
  *       is not limited this restriction can be removed by implementing
- *       a function  set_err() 
- *       with sample use @code err = seterr(NO_ERROR); @endcode
+ *       a function  set_event() 
+ *       with sample use @code err = seterr(O_GNL_EOF); @endcode
  */
-enum e_gnl_error_codes
+enum e_gnl_event_codes
 {
-	E_GNL_NONE = 0,
-	E_GNL_READ = 1,
-	E_GNL_FD_RANGE = 2
+	EVTGNL_NONE = 0,
+
+
+	
+	ERRGNL_READ = 1,
+	ERRGNL_FD_RANGE = 2,
+	ERRGNL_MALLOC = 3,
+	EVTGNL_EOF = 4
 };
 
 
 
-extern const t_err g_err[];
+extern const t_event g_event[];
 
 char	*get_next_line(int fd);
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/28 20:06:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/29 17:54:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@
 #include "get_next_line.h"
 
 //Indentation would be better but norminette does not allow any...
-const t_err	g_err[] = {
-{E_GNL_NONE, "gnl: No error"},
-{E_GNL_READ, "gnl: Read error"}
+const t_event	g_event[] = {
+{EVTGNL_NONE, "gnl: No error"},
+{ERRGNL_READ, "gnl: Read error"},
+{},
+{},
+{}
 };
 
-static char	*st_gnl_proper(int fd, t_err *err);
-static char 
+static char	*st_gnl_proper(int fd, t_event *err);
+static 
 
 /**
  * @brief This is the core function of the project.
@@ -44,28 +47,45 @@ static char
  */
 char	*get_next_line(int fd)
 {
-	t_err	err;
+	t_event	err;
 
-	err = g_err[E_GNL_NONE];
+	err = g_err[EVTGNL_NONE];
 	return (st_gnl_proper(fd, &err));
 }
 
-static char	*st_gnl_proper(int fd, t_err *err)
+/**
+ * @note When making this function non static, in future projects:
+ *       put the following from  get_next_line  here
+ *           t_err	err;
+ *           err = g_err[EVTGNL_NONE];
+ */
+static char	*st_gnl_proper(int fd, t_event *err)
 {
-	static char	*buf[MAX_NUMB_FD];
+	char		*read_in;
 	ssize_t		bytes_read;
-
+	static char	*buf[MAX_NUMB_FD];
+	
 	if (fd < 0 || fd >= MAX_NUMB_FD)
-		return (st_clear(&buf[fd], err, E_GNL_FD_RANGE), NULL);
+		return (st_act_on(ERRGNL_FD_RANGE, &buf[fd], err));
 	while (1)
 	{
-		if (st_has_newline(buf[fd]))
-			return (st_extract_newline(buf[fd], err));
-		bytes_read = read(fd, buf[fd], BUFFER_SIZE);
+		if (st_has_newline(buf[fd]))   //maybe strchr?
+			return (st_detach_line(&buf[fd], err));
+		read_in = malloc(BUFFER_SIZE);
+		if (read_in == NULL)
+			return (st_act_on(ERRGNL_MALLOC, &read_in, &buf[fd], err));
+		bytes_read = read(fd, read_in, BUFFER_SIZE);
 		if (bytes_read < 0)
-			return (st_clear(&buf[fd], err, E_GNL_READ), NULL);
+			return (st_act_on(ERRGNL_READ, &read_in, &buf[fd], err));
 		if (bytes_read == 0)
-			return (duplicate_n_clear(&buf[fd], err), NULL);
+			return (st_act_on(EVTGNL_EOF, &read_in, &buf[fd], err));
+		            //duplicate_n_clear
 	}
 	return (NULL);
+}
+
+
+st_detach_line(buf, err)
+{
+	// Set err to NOERR
 }
