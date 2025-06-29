@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/29 17:54:02 by reciak           ###   ########.fr       */
+/*   Updated: 2025/06/29 22:14:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 const t_event	g_event[] = {
 {EVTGNL_NONE, "gnl: No error"},
 {ERRGNL_READ, "gnl: Read error"},
-{},
-{},
-{}
+{ERRGNL_FD_RANGE, "gnl: File descriptor out of range"},
+{ERRGNL_MALLOC, "gnl: Malloc failed"},
+{EVTGNL_EOF, "gnl: End of file reached"}
 };
 
 static char	*st_gnl_proper(int fd, t_event *err);
@@ -49,7 +49,7 @@ char	*get_next_line(int fd)
 {
 	t_event	err;
 
-	err = g_err[EVTGNL_NONE];
+	err = g_event[EVTGNL_NONE];
 	return (st_gnl_proper(fd, &err));
 }
 
@@ -57,7 +57,7 @@ char	*get_next_line(int fd)
  * @note When making this function non static, in future projects:
  *       put the following from  get_next_line  here
  *           t_err	err;
- *           err = g_err[EVTGNL_NONE];
+ *           err = g_event[EVTGNL_NONE];
  */
 static char	*st_gnl_proper(int fd, t_event *err)
 {
