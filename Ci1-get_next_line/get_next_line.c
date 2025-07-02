@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/29 22:14:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/02 12:29:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ const t_event	g_event[] = {
 };
 
 static char	*st_gnl_proper(int fd, t_event *err);
-static 
+static bool st_has_newline(char *buffer, size_t *i_nl);
+static char	*st_detach_line(char *buffer, size_t i_nl, t_event *evt);
+
 
 /**
  * @brief This is the core function of the project.
@@ -47,10 +49,10 @@ static
  */
 char	*get_next_line(int fd)
 {
-	t_event	err;
+	t_event	evt;
 
-	err = g_event[EVTGNL_NONE];
-	return (st_gnl_proper(fd, &err));
+	evt = g_event[EVTGNL_NONE];
+	return (st_gnl_proper(fd, &evt));
 }
 
 /**
@@ -59,33 +61,78 @@ char	*get_next_line(int fd)
  *           t_err	err;
  *           err = g_event[EVTGNL_NONE];
  */
-static char	*st_gnl_proper(int fd, t_event *err)
+static char	*st_gnl_proper(int fd, t_event *evt)
 {
 	char		*read_in;
 	ssize_t		bytes_read;
 	static char	*buf[MAX_NUMB_FD];
+	size_t		i_nl;
 	
 	if (fd < 0 || fd >= MAX_NUMB_FD)
-		return (st_act_on(ERRGNL_FD_RANGE, &buf[fd], err));
+		return (st_act_on(ERRGNL_FD_RANGE, &buf[fd], evt));
 	while (1)
 	{
-		if (st_has_newline(buf[fd]))   //maybe strchr?
-			return (st_detach_line(&buf[fd], err));
+		if (st_has_newline(buf[fd]), &i_nl)
+			return (st_detach_line(&buf[fd], i_nl, evt));
 		read_in = malloc(BUFFER_SIZE);
 		if (read_in == NULL)
-			return (st_act_on(ERRGNL_MALLOC, &read_in, &buf[fd], err));
+			return (st_act_on(ERRGNL_MALLOC, &read_in, &buf[fd], evt));
 		bytes_read = read(fd, read_in, BUFFER_SIZE);
 		if (bytes_read < 0)
-			return (st_act_on(ERRGNL_READ, &read_in, &buf[fd], err));
+			return (st_act_on(ERRGNL_READ, &read_in, &buf[fd], evt));
 		if (bytes_read == 0)
-			return (st_act_on(EVTGNL_EOF, &read_in, &buf[fd], err));
+			return (st_act_on(EVTGNL_EOF, &read_in, &buf[fd], evt));
 		            //duplicate_n_clear
 	}
 	return (NULL);
 }
 
-
-st_detach_line(buf, err)
+static bool st_has_newline(char *buffer, size_t *i_nl)
 {
-	// Set err to NOERR
+	*i_nl = 0;
+
+	if (buffer == NULL)
+		return (false);
+	while (buffer[*i_nl] != '\0')
+	{
+		if (buffer[*i_nl] == '\n')
+			return (true);
+		(*i_nl)++;
+	}
+	return (false);
+}
+
+
+static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
+{
+	size_t	i;
+	size_t	len_buffer;
+	char 	*line;
+	char 	*left_over;
+
+	// if (i_nl >= SIZE_MAX - 2)
+	// 	//react
+	// if (*buffer == NULL)
+	// 	//react
+	len_buffer = ft_strlen(*buffer);
+	line = malloc(i_nl + 1 + 1);
+	left_over = malloc(len_buffer - i_nl);
+	// if (line == NULL || left_over == NULL)
+	// 		//react
+	i = 0;
+	while (i <= i_nl)
+	{
+		line[i] = (*buffer)[i];
+		i++;
+	}
+	line[i] = '\0';
+	while (i < len_buffer)
+	{
+		left_over[i - i_nl - 1] = (*buffer)[i];
+		i++;
+	}
+	left_over[len_buffer - i_nl - 1] = '\0';
+	*evt = g_event[EVTGNL_NONE];
+	free(*buffer);
+	*buffer = left_over;
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/29 17:57:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/02 10:47:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>      // malloc, free
 # include <unistd.h>      // read
+# include <stdbool.h>     // bool, true, false
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 3   // for didactic reasons BUFFER_SIZE is choosen small
 # endif
