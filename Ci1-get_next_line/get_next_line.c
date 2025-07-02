@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/02 15:25:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/02 15:53:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,10 +166,18 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 	}
 	else if (evt_no == EVTGNL_READ_NEW)
 	{
-		result = ft_strjoin(*buffer, *read_in);
-		free (*read_in);
-		free (*buffer);
-		return (result);
+		if (*buffer != NULL)
+		{
+			result = ft_strjoin(*buffer, *read_in);
+			free (*read_in);
+			free (*buffer);
+			return (result);
+		}
+		else {
+			*buffer = *read_in;
+			free(*read_in);
+			return (*buffer);
+		}
 	}
 	return (NULL); //Dummy: Compiler complains without / Print error message....
 }
