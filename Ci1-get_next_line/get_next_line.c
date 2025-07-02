@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/02 12:29:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/02 15:25:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ const t_event	g_event[] = {
 {ERRGNL_READ, "gnl: Read error"},
 {ERRGNL_FD_RANGE, "gnl: File descriptor out of range"},
 {ERRGNL_MALLOC, "gnl: Malloc failed"},
-{EVTGNL_EOF, "gnl: End of file reached"}
+{EVTGNL_EOF, "gnl: End of file reached"},
+{EVTGNL_READ_NEW, "gnl: Read > 0 bytes"}
 };
 
 static char	*st_gnl_proper(int fd, t_event *err);
-static bool st_has_newline(char *buffer, size_t *i_nl);
-static char	*st_detach_line(char *buffer, size_t i_nl, t_event *evt);
-
+static bool	st_has_newline(char *buffer, size_t *i_nl);
+static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt);
+static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt);
 
 /**
  * @brief This is the core function of the project.
@@ -51,7 +52,7 @@ char	*get_next_line(int fd)
 {
 	t_event	evt;
 
-	evt = g_event[EVTGNL_NONE];
+	evt = g_event[EVTGNL_NONE];         //put to st_gnl_proper
 	return (st_gnl_proper(fd, &evt));
 }
 
@@ -69,22 +70,23 @@ static char	*st_gnl_proper(int fd, t_event *evt)
 	size_t		i_nl;
 	
 	if (fd < 0 || fd >= MAX_NUMB_FD)
-		return (st_act_on(ERRGNL_FD_RANGE, &buf[fd], evt));
+		return (*evt = g_event[ERRGNL_FD_RANGE], NULL);
 	while (1)
 	{
-		if (st_has_newline(buf[fd]), &i_nl)
+		if (st_has_newline(buf[fd], &i_nl))
 			return (st_detach_line(&buf[fd], i_nl, evt));
-		read_in = malloc(BUFFER_SIZE);
+		read_in = malloc(BUFFER_SIZE + 1);
 		if (read_in == NULL)
 			return (st_act_on(ERRGNL_MALLOC, &read_in, &buf[fd], evt));
 		bytes_read = read(fd, read_in, BUFFER_SIZE);
 		if (bytes_read < 0)
 			return (st_act_on(ERRGNL_READ, &read_in, &buf[fd], evt));
+		read_in[bytes_read] = '\0';
 		if (bytes_read == 0)
 			return (st_act_on(EVTGNL_EOF, &read_in, &buf[fd], evt));
-		            //duplicate_n_clear
+		else
+			(void) st_act_on(EVTGNL_READ_NEW, &read_in, &buf[fd], evt); 
 	}
-	return (NULL);
 }
 
 static bool st_has_newline(char *buffer, size_t *i_nl)
@@ -111,7 +113,7 @@ static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
 	char 	*left_over;
 
 	// if (i_nl >= SIZE_MAX - 2)
-	// 	//react
+	// 	//react e.g. set evt in return statement
 	// if (*buffer == NULL)
 	// 	//react
 	len_buffer = ft_strlen(*buffer);
@@ -135,4 +137,40 @@ static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
 	*evt = g_event[EVTGNL_NONE];
 	free(*buffer);
 	*buffer = left_over;
+	return (line);
 }
+
+static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
+{
+	char	*result;
+
+	*evt = g_event[evt_no];
+	if (evt_no == ERRGNL_MALLOC)
+	{
+		free(*buffer);
+		return (NULL);
+	}
+	else if (evt_no == ERRGNL_READ)
+	{
+		free (*read_in);
+		free (*buffer);
+		*buffer = NULL;
+		return (NULL);
+	}
+	else if (evt_no == EVTGNL_EOF)
+	{
+		result = ft_strdup(*buffer);  //check / ensure that *buffer == NULL does not segfault! and NULL is returned
+		free (*buffer);
+		*buffer = NULL;
+		return (result);
+	}
+	else if (evt_no == EVTGNL_READ_NEW)
+	{
+		result = ft_strjoin(*buffer, *read_in);
+		free (*read_in);
+		free (*buffer);
+		return (result);
+	}
+	return (NULL); //Dummy: Compiler complains without / Print error message....
+}
+

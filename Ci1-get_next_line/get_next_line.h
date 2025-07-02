@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/02 10:47:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/02 15:26:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ enum e_gnl_event_codes
 	ERRGNL_READ = 1,
 	ERRGNL_FD_RANGE = 2,
 	ERRGNL_MALLOC = 3,
-	EVTGNL_EOF = 4
+	EVTGNL_EOF = 4,
+	EVTGNL_READ_NEW = 5
 };
 
 
@@ -56,5 +57,9 @@ enum e_gnl_event_codes
 extern const t_event g_event[];
 
 char	*get_next_line(int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif
