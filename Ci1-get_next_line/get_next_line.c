@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/02 18:28:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 08:18:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 		result = NULL;
 		if (*buffer != NULL && **buffer != '\0')
 			result = ft_strdup(*buffer);
+		free (*read_in);
 		free (*buffer);
 		*buffer = NULL;
 		return (result);
