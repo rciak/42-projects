@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 13:28:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 15:23:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*st_gnl_proper(int fd, t_event *evt)
 	ssize_t		bytes_read;
 	static char	*buf[MAX_NUMB_FD];
 	size_t		i_nl;
-	
+
 	if (fd < 0 || fd >= MAX_NUMB_FD)
 		return (*evt = gnl_evt(GNL_FDRANGE_ERR), NULL);
 	while (1)
@@ -70,14 +70,13 @@ static char	*st_gnl_proper(int fd, t_event *evt)
 		if (bytes_read == 0)
 			return (st_act_on(GNL_EOF, &parcel, &buf[fd], evt));
 		else
-			(void) st_act_on(GNL_STH_READIN, &parcel, &buf[fd], evt); 
+			(void) st_act_on(GNL_STH_READIN, &parcel, &buf[fd], evt);
 	}
 }
 
-static bool st_has_newline(char *buffer, size_t *i_nl)
+static bool	st_has_newline(char *buffer, size_t *i_nl)
 {
 	*i_nl = 0;
-
 	if (buffer == NULL)
 		return (false);
 	while (buffer[*i_nl] != '\0')
@@ -99,8 +98,8 @@ static bool st_has_newline(char *buffer, size_t *i_nl)
 static char	*st_detach_line(char **buf, size_t i_nl, t_event *evt)
 {
 	size_t	len_buf;
-	char 	*ln;
-	char 	*rem;
+	char	*ln;
+	char	*rem;
 
 	len_buf = ft_strlen(*buf);
 	ln = malloc(i_nl + 1 + 1);
@@ -168,4 +167,3 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 	*buffer = NULL;
 	return (result);
 }
-

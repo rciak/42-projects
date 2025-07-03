@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 15:55:03 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 13:13:19 by reciak           ###   ########.fr       */
+/*   Created: 2025/07/03 15:26:21 by reciak            #+#    #+#             */
+/*   Updated: 2025/07/03 15:26:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file get_next_line_utils.c
+ * @file get_next_line_utils_bonus.c
  * @brief Stores the definition of utilities for get_next_line
  */
 
@@ -19,8 +19,8 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t  i;
-	
+	size_t	i;
+
 	i = 0;
 	while (s[i])
 		i++;
@@ -69,16 +69,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char           *uc_dest;
-	const unsigned char     *uc_src = (unsigned char *) src;
+	unsigned char		*uc_dest;
+	const unsigned char	*uc_src = (unsigned char *) src;
 
 	uc_dest = (unsigned char *) dest;
 	while (n > 0)
 	{
-	    *uc_dest = *uc_src;
-	    uc_dest++;
-	    uc_src++;
-	    n--;
+		*uc_dest = *uc_src;
+		uc_dest++;
+		uc_src++;
+		n--;
 	}
 	return (dest);
 }

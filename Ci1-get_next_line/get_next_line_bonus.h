@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 13:18:27 by reciak           ###   ########.fr       */
+/*   Created: 2025/07/03 15:25:41 by reciak            #+#    #+#             */
+/*   Updated: 2025/07/03 15:27:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file get_next_line.h
+ * @file get_next_line_bonus.h
  * @brief The header file for reciak's get_next_line project of the Common Core
  */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h>      // malloc, free
 # include <unistd.h>      // read
 # include <stdbool.h>     // bool, true, false
