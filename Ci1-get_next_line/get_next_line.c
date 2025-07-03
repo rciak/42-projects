@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 11:16:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 12:45:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,49 +115,53 @@ static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
 	return (line);
 }
 
+/**
+ * @brief Reaction to different happenings / "events" in the core function.
+ * @note The events  GNL_FDRANGE_ERR  and  GNL_PARCEL_ALLOC_ERR
+ *       do not appear in the if construct, but the last lines of that function
+ *       are relevant for that cases.
+ * @note Setting @code *read_in = NULL; @endcode after freeing should not at 
+ *       all be neccessary. In the case of `evt_no` being different
+ *       from `GNL_STH_READIN`, i.e. when st_gnl_proper will immediately
+ *       return it is actually omitted, practically also staying within
+ *       the required 25 lines limits per functions ...
+ * @note It would be more nice to split this functions into two, but
+ *       either norminette would complain about "too many functions"
+ *       or the calls 
+ *       @code *evt = gnl_evt(evt_no) @endcode
+ *       had to be replaced again by the previous
+ *       @code *evt = g_event[event_no] @endcode
+ *       to get space for another helper function
+ *       (which would feel though weird to put in get_next_line_utils.c)
+ *       Although the latter would lead to a normconform (constant) global
+ *       variable it tried to fully avoid it.
+ */
 static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 {
 	char	*result;
 
 	*evt = gnl_evt(evt_no);
-	if (evt_no == GNL_PARCEL_ALLOC_ERR)
+	result = NULL;
+	if (evt_no == GNL_EOF && *buffer != NULL && **buffer != '\0')
+		result = ft_strdup(*buffer);
+	else if (evt_no == GNL_STH_READIN && *buffer == NULL)
 	{
-//		free (*read_in);      //TODO: Not neccessary
-		free (*buffer);
-		*buffer = NULL;
-		return (NULL);
+		*buffer = *read_in;
+		*read_in = NULL;
+		return ((char *) 0xdeadbeef);
 	}
-	else if (evt_no == GNL_READ_ERR)
+	else if (evt_no == GNL_STH_READIN && *buffer != NULL)
 	{
-		free (*read_in);
-		free (*buffer);
-		*buffer = NULL;
-		return (NULL);
-	}
-	else if (evt_no == GNL_EOF)
-	{
-		result = NULL;
-		if (*buffer != NULL && **buffer != '\0')
-			result = ft_strdup(*buffer);
-		free (*read_in);
-		free (*buffer);
-		*buffer = NULL;
-		return (result);
-	}
-	else if (evt_no == GNL_STH_READIN)
-	{
-		if (*buffer == NULL)
-		{
-			*buffer = *read_in;
-			*read_in = NULL;
-			return (*buffer);
-		}
 		result = ft_strjoin(*buffer, *read_in);
 		free (*read_in);
 		free (*buffer);
+		*read_in = NULL;
 		*buffer = result;
-		return (result);
+		return ((char *) 0xcafe2def);
 	}
-	return (NULL); //Dummy: Compiler complains without / Print error message....
+	free (*read_in);
+	free (*buffer);
+	*buffer = NULL;
+	return (result);
 }
 
