@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 07:44:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 08:34:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>      // read
 # include <stdbool.h>     // bool, true, false
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 20000
+#  define BUFFER_SIZE 4242
 # endif
 # define MAX_NUMB_FD 1024 // Cur. softlim. at 42 Vienna; hardlim. 1048576 = 2^20
 
