@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:26:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 15:26:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 15:46:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  * @brief Stores the definition of get_next_line() and st_gnl_proper()
  */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*st_gnl_proper(int fd, t_event *err);
 static bool	st_has_newline(char *buffer, size_t *i_nl);
