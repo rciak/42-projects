@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 09:46:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 10:21:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt);
  *     * `make DEV=1 unit-tests > /dev/null`
  * @note **Assumption:** @code fd < MAX_NUMB_FD @endcode
  * @warning To avoid memory leaks make sure that all files 
- *          have been read so often that EOF was detected by read!
+ *          have been read so often that EOF was detected by read/get_next_line!
  * @param [in] fd A file descriptor
  * @return
  *     * a pointer to the extracted line from the file associated to 
@@ -108,7 +108,6 @@ static bool st_has_newline(char *buffer, size_t *i_nl)
 
 static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
 {
-	size_t	i;
 	size_t	len_buffer;
 	char 	*line;
 	char 	*left_over;
@@ -122,18 +121,9 @@ static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
 	left_over = malloc(len_buffer - i_nl);
 	// if (line == NULL || left_over == NULL)
 	// 		//react
-	i = 0;
-	while (i <= i_nl)
-	{
-		line[i] = (*buffer)[i];
-		i++;
-	}
-	line[i] = '\0';
-	while (i < len_buffer)
-	{
-		left_over[i - i_nl - 1] = (*buffer)[i];
-		i++;
-	}
+	ft_memcpy(line, *buffer, i_nl + 1);
+	ft_memcpy(left_over, *buffer + i_nl + 1, len_buffer - i_nl - 1);
+	line[i_nl + 1] = '\0';
 	left_over[len_buffer - i_nl - 1] = '\0';
 	*evt = g_event[GNL_DETACH_LINE];
 	free(*buffer);
