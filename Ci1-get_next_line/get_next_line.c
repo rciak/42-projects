@@ -19,12 +19,12 @@
 
 //Indentation would be better but norminette does not allow any...
 const t_event	g_event[] = {
-{EVTGNL_NONE, "gnl: No error"},
-{ERRGNL_READ, "gnl: Read error"},
-{ERRGNL_FD_RANGE, "gnl: File descriptor out of range"},
-{ERRGNL_MALLOC, "gnl: Malloc failed"},
-{EVTGNL_EOF, "gnl: End of file reached"},
-{EVTGNL_READ_NEW, "gnl: Read > 0 bytes"}
+{GNL_DETACH_LINE, "gnl: Detached line from buffer"},
+{GNL_EOF, "gnl: End of file reached"},
+{GNL_STH_READIN, "gnl: Read > 0 bytes"},
+{GNL_READ_ERR, "gnl: Read error"},
+{GNL_FDRANGE_ERR, "gnl: File descriptor out of range"},
+{GNL_PARCEL_ALLOC_ERR, "gnl: Malloc failed"}
 };
 
 static char	*st_gnl_proper(int fd, t_event *err);
@@ -65,28 +65,28 @@ char	*get_next_line(int fd)
  */
 static char	*st_gnl_proper(int fd, t_event *evt)
 {
-	char		*read_in;
+	char		*parcel;
 	ssize_t		bytes_read;
 	static char	*buf[MAX_NUMB_FD];
 	size_t		i_nl;
 	
 	if (fd < 0 || fd >= MAX_NUMB_FD)
-		return (*evt = g_event[ERRGNL_FD_RANGE], NULL);
+		return (*evt = g_event[GNL_FDRANGE_ERR], NULL);
 	while (1)
 	{
 		if (st_has_newline(buf[fd], &i_nl))
 			return (st_detach_line(&buf[fd], i_nl, evt));
-		read_in = malloc(BUFFER_SIZE + 1);
-		if (read_in == NULL)
-			return (st_act_on(ERRGNL_MALLOC, &read_in, &buf[fd], evt));
-		bytes_read = read(fd, read_in, BUFFER_SIZE);
+		parcel = malloc(BUFFER_SIZE + 1);
+		if (parcel == NULL)
+			return (st_act_on(GNL_PARCEL_ALLOC_ERR, &parcel, &buf[fd], evt));
+		bytes_read = read(fd, parcel, BUFFER_SIZE);
 		if (bytes_read < 0)
-			return (st_act_on(ERRGNL_READ, &read_in, &buf[fd], evt));
-		read_in[bytes_read] = '\0';
+			return (st_act_on(GNL_READ_ERR, &parcel, &buf[fd], evt));
+		parcel[bytes_read] = '\0';
 		if (bytes_read == 0)
-			return (st_act_on(EVTGNL_EOF, &read_in, &buf[fd], evt));
+			return (st_act_on(GNL_EOF, &parcel, &buf[fd], evt));
 		else
-			(void) st_act_on(EVTGNL_READ_NEW, &read_in, &buf[fd], evt); 
+			(void) st_act_on(GNL_STH_READIN, &parcel, &buf[fd], evt); 
 	}
 }
 
@@ -135,7 +135,7 @@ static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
 		i++;
 	}
 	left_over[len_buffer - i_nl - 1] = '\0';
-	*evt = g_event[EVTGNL_NONE];
+	*evt = g_event[GNL_DETACH_LINE];
 	free(*buffer);
 	*buffer = left_over;
 	return (line);
@@ -146,20 +146,20 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 	char	*result;
 
 	*evt = g_event[evt_no];
-	if (evt_no == ERRGNL_MALLOC)
+	if (evt_no == GNL_PARCEL_ALLOC_ERR)
 	{
 //		free (*read_in);      //TODO: Not neccessary
 		free (*buffer);
 		return (NULL);
 	}
-	else if (evt_no == ERRGNL_READ)
+	else if (evt_no == GNL_READ_ERR)
 	{
 		free (*read_in);
 		free (*buffer);
 		*buffer = NULL;
 		return (NULL);
 	}
-	else if (evt_no == EVTGNL_EOF)
+	else if (evt_no == GNL_EOF)
 	{
 		result = NULL;
 		if (*buffer != NULL && **buffer != '\0')
@@ -169,7 +169,7 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 		*buffer = NULL;
 		return (result);
 	}
-	else if (evt_no == EVTGNL_READ_NEW)
+	else if (evt_no == GNL_STH_READIN)
 	{
 		if (*buffer == NULL)
 		{
