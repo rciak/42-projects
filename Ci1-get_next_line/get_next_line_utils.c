@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:55:03 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 10:51:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 11:04:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-t_event	gnl_event(int event_code)
+t_event	gnl_evt(int event_code)
 {
 	const t_event	event[] = {
 	{GNL_DETACH_LINE, "gnl: Detached line from buffer"},

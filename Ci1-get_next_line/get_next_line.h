@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 10:47:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 11:19:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,8 @@ typedef struct s_err
 }	t_event;
 
 /**
- * @warning The enumaration of the below event codes must be 0, 1, 2, ...
- *          since they are used as index for the constant array g_event !
- * @note In projects where the number of files / allowed number of functions
- *       is not limited this restriction can be removed by implementing
- *       a function  set_event() 
- *       with sample use @code err = setevt(GNL_EOF); @endcode
+ * @warning The enumaration of the below event codes **must** be 0, 1, 2, ...
+ *          since they are **used as index** in gnl_evt() !
  */
 enum e_gnl_event_codes
 {
@@ -54,6 +50,6 @@ size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-t_event	gnl_event(int event_code);
+t_event	gnl_evt(int event_code);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 10:53:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 11:16:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*st_gnl_proper(int fd, t_event *evt)
 	size_t		i_nl;
 	
 	if (fd < 0 || fd >= MAX_NUMB_FD)
-		return (*evt = gnl_event(GNL_FDRANGE_ERR), NULL);
+		return (*evt = gnl_evt(GNL_FDRANGE_ERR), NULL);
 	while (1)
 	{
 		if (st_has_newline(buf[fd], &i_nl))
@@ -109,7 +109,7 @@ static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
 	ft_memcpy(left_over, *buffer + i_nl + 1, len_buffer - i_nl - 1);
 	line[i_nl + 1] = '\0';
 	left_over[len_buffer - i_nl - 1] = '\0';
-	*evt = gnl_event(GNL_DETACH_LINE);
+	*evt = gnl_evt(GNL_DETACH_LINE);
 	free(*buffer);
 	*buffer = left_over;
 	return (line);
@@ -119,11 +119,12 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 {
 	char	*result;
 
-	*evt = gnl_event(evt_no);
+	*evt = gnl_evt(evt_no);
 	if (evt_no == GNL_PARCEL_ALLOC_ERR)
 	{
 //		free (*read_in);      //TODO: Not neccessary
 		free (*buffer);
+		*buffer = NULL;
 		return (NULL);
 	}
 	else if (evt_no == GNL_READ_ERR)
