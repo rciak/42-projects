@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:55:03 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/02 15:27:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 10:51:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,18 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	    n--;
 	}
 	return (dest);
+}
+
+t_event	gnl_event(int event_code)
+{
+	const t_event	event[] = {
+	{GNL_DETACH_LINE, "gnl: Detached line from buffer"},
+	{GNL_EOF, "gnl: End of file reached"},
+	{GNL_STH_READIN, "gnl: Read > 0 bytes"},
+	{GNL_READ_ERR, "gnl: Read error"},
+	{GNL_FDRANGE_ERR, "gnl: File descriptor out of range"},
+	{GNL_PARCEL_ALLOC_ERR, "gnl: Malloc failed"}
+	};
+
+	return (event[event_code]);
 }

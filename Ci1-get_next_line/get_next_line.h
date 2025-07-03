@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 10:25:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 10:47:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_err
  * @note In projects where the number of files / allowed number of functions
  *       is not limited this restriction can be removed by implementing
  *       a function  set_event() 
- *       with sample use @code err = seterr(O_GNL_EOF); @endcode
+ *       with sample use @code err = setevt(GNL_EOF); @endcode
  */
 enum e_gnl_event_codes
 {
@@ -49,12 +49,11 @@ enum e_gnl_event_codes
 	GNL_PARCEL_ALLOC_ERR = 5
 };
 
-extern const t_event	g_event[];
-
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+t_event	gnl_event(int event_code);
 
 #endif

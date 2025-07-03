@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 10:21:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 10:53:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
  */
 
 #include "get_next_line.h"
-
-//Indentation would be better but norminette does not allow any...
-const t_event	g_event[] = {
-{GNL_DETACH_LINE, "gnl: Detached line from buffer"},
-{GNL_EOF, "gnl: End of file reached"},
-{GNL_STH_READIN, "gnl: Read > 0 bytes"},
-{GNL_READ_ERR, "gnl: Read error"},
-{GNL_FDRANGE_ERR, "gnl: File descriptor out of range"},
-{GNL_PARCEL_ALLOC_ERR, "gnl: Malloc failed"}
-};
 
 static char	*st_gnl_proper(int fd, t_event *err);
 static bool	st_has_newline(char *buffer, size_t *i_nl);
@@ -57,12 +47,6 @@ char	*get_next_line(int fd)
 	return (st_gnl_proper(fd, &evt));
 }
 
-/**
- * @note When making this function non static, in future projects:
- *       put the following from  get_next_line  here
- *           t_err	err;
- *           err = g_event[EVTGNL_NONE];
- */
 static char	*st_gnl_proper(int fd, t_event *evt)
 {
 	char		*parcel;
@@ -71,7 +55,7 @@ static char	*st_gnl_proper(int fd, t_event *evt)
 	size_t		i_nl;
 	
 	if (fd < 0 || fd >= MAX_NUMB_FD)
-		return (*evt = g_event[GNL_FDRANGE_ERR], NULL);
+		return (*evt = gnl_event(GNL_FDRANGE_ERR), NULL);
 	while (1)
 	{
 		if (st_has_newline(buf[fd], &i_nl))
@@ -125,7 +109,7 @@ static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
 	ft_memcpy(left_over, *buffer + i_nl + 1, len_buffer - i_nl - 1);
 	line[i_nl + 1] = '\0';
 	left_over[len_buffer - i_nl - 1] = '\0';
-	*evt = g_event[GNL_DETACH_LINE];
+	*evt = gnl_event(GNL_DETACH_LINE);
 	free(*buffer);
 	*buffer = left_over;
 	return (line);
@@ -135,7 +119,7 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 {
 	char	*result;
 
-	*evt = g_event[evt_no];
+	*evt = gnl_event(evt_no);
 	if (evt_no == GNL_PARCEL_ALLOC_ERR)
 	{
 //		free (*read_in);      //TODO: Not neccessary
