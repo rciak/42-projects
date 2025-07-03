@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 09:44:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 10:25:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ enum e_gnl_event_codes
 	GNL_PARCEL_ALLOC_ERR = 5
 };
 
-
-
-extern const t_event g_event[];
+extern const t_event	g_event[];
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
