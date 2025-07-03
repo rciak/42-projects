@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/02 17:29:53 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/02 18:28:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt);
  *     * `make DEV=1 unit-tests`
  *     * `make DEV=1 unit-tests > /dev/null`
  * @note **Assumption:** @code fd < MAX_NUMB_FD @endcode
+ * @warning To avoid memory leaks make sure that all files 
+ *          have been read so often that EOF was detected by read!
  * @param [in] fd A file descriptor
  * @return
  *     * a pointer to the extracted line from the file associated to 
@@ -147,7 +149,8 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 	*evt = g_event[evt_no];
 	if (evt_no == ERRGNL_MALLOC)
 	{
-		free(*buffer);
+//		free (*read_in);      //TODO: Not neccessary
+		free (*buffer);
 		return (NULL);
 	}
 	else if (evt_no == ERRGNL_READ)
