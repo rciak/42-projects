@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:55:03 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 11:04:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 13:13:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ t_event	gnl_evt(int event_code)
 	{GNL_STH_READIN, "gnl: Read > 0 bytes"},
 	{GNL_READ_ERR, "gnl: Read error"},
 	{GNL_FDRANGE_ERR, "gnl: File descriptor out of range"},
-	{GNL_PARCEL_ALLOC_ERR, "gnl: Malloc failed"}
+	{GNL_PARCEL_ALLOC_ERR, "gnl: parcel: malloc failed"},
+	{GNL_LINE_ALLOC_ERR, "gnl: line: malloc failed"},
+	{GNL_REM_ALLOC_ERR, "gnl: rem: malloc failed"}
 	};
 
 	return (event[event_code]);

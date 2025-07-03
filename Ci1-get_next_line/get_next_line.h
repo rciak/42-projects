@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 11:19:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 13:18:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ enum e_gnl_event_codes
 	GNL_STH_READIN = 2,
 	GNL_READ_ERR = 3,
 	GNL_FDRANGE_ERR = 4,
-	GNL_PARCEL_ALLOC_ERR = 5
+	GNL_PARCEL_ALLOC_ERR = 5,
+	GNL_LINE_ALLOC_ERR = 6,
+	GNL_REM_ALLOC_ERR = 7
 };
 
 char	*get_next_line(int fd);

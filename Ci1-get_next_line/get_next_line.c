@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 12:45:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 13:28:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,30 +89,34 @@ static bool st_has_newline(char *buffer, size_t *i_nl)
 	return (false);
 }
 
-
-static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt)
+/**
+ * @note originally I thought about implementing a check like
+        `if (i_nl >= SIZE_MAX - 2)` this will slow down the program.
+        Given the huge size of SIZE_MAX (at least on 42 Vienna machines)
+        it did restrain from doing it. (A line that long is totally
+        unrealistic for now)
+ */
+static char	*st_detach_line(char **buf, size_t i_nl, t_event *evt)
 {
-	size_t	len_buffer;
-	char 	*line;
-	char 	*left_over;
+	size_t	len_buf;
+	char 	*ln;
+	char 	*rem;
 
-	// if (i_nl >= SIZE_MAX - 2)
-	// 	//react e.g. set evt in return statement
-	// if (*buffer == NULL)
-	// 	//react
-	len_buffer = ft_strlen(*buffer);
-	line = malloc(i_nl + 1 + 1);
-	left_over = malloc(len_buffer - i_nl);
-	// if (line == NULL || left_over == NULL)
-	// 		//react
-	ft_memcpy(line, *buffer, i_nl + 1);
-	ft_memcpy(left_over, *buffer + i_nl + 1, len_buffer - i_nl - 1);
-	line[i_nl + 1] = '\0';
-	left_over[len_buffer - i_nl - 1] = '\0';
+	len_buf = ft_strlen(*buf);
+	ln = malloc(i_nl + 1 + 1);
+	if (ln == NULL)
+		return (*evt = gnl_evt(GNL_LINE_ALLOC_ERR), free(*buf), NULL);
+	rem = malloc(len_buf - i_nl);
+	if (rem == NULL)
+		return (*evt = gnl_evt(GNL_REM_ALLOC_ERR), free(ln), free(*buf), NULL);
+	ft_memcpy(ln, *buf, i_nl + 1);
+	ft_memcpy(rem, *buf + i_nl + 1, len_buf - i_nl - 1);
+	ln[i_nl + 1] = '\0';
+	rem[len_buf - i_nl - 1] = '\0';
 	*evt = gnl_evt(GNL_DETACH_LINE);
-	free(*buffer);
-	*buffer = left_over;
-	return (line);
+	free(*buf);
+	*buf = rem;
+	return (ln);
 }
 
 /**
