@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <fcntl.h>
+#include <stdlib.h>
+
+#include "get_next_line.h"
+
 int main()
 {
     int    fd = open("test", O_RDONLY);
