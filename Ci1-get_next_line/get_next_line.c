@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 08:18:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/03 09:46:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ char	*get_next_line(int fd)
 {
 	t_event	evt;
 
-	evt = g_event[EVTGNL_NONE];         //put to st_gnl_proper
 	return (st_gnl_proper(fd, &evt));
 }
 
