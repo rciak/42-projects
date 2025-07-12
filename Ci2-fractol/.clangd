@@ -1,0 +1,2 @@
+CompileFlags:
+  Add: [-I/home/reciak/github/42-projects/Ci2-fractol/inc, -I/home/reciak/github/42-projects/Ci2-fractol/libft]
