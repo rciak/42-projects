@@ -6,14 +6,14 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/12 11:26:04 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/12 13:52:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 int main (void)
 {
-	printf("Hello World!");
+	ft_putstr_fd("Hello World!", 1);
 }
 

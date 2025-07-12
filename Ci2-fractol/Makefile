@@ -6,11 +6,11 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/17 20:02:08 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/12 14:00:29 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME       := libftprintf.a
+NAME       := fractol
 LIBFT_NAME := libft.a
 LIBFT_DIR  := libft
 INC_DIR    := inc
@@ -21,26 +21,28 @@ RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
-ifeq ($(DEBUG), 1)
+ifeq ($(DEBUG_SANITIZE), 1)
   CFLAGS += -g3 -fsanitize=address,undefined,leak
 endif
+ifeq ($(DEBUG_VALGRIND), 1)
+  CFLAGS += -g3
+endif
+LD_FLAGS  = -L $(LIBFT_DIR) -lft
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
 INCS := \
-libft/libft.h \
-inc/ft_printf.h
+libft/libft.h
 
 SRCS := \
-src/ft_printf.c
+src/main.c
 #############################################
 
 .PHONY: all
 all: $(NAME)
-
 $(NAME): $(OBJS) | libftall
-	cp $(LIBFT_DIR)/$(LIBFT_NAME) $(NAME)
-	ar -rcs $@ $^
+	@make --quiet libft_archive_provided
+	$(CC) $(OBJS) $(LD_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o:%.c $(INCS)
 	@mkdir -p $(@D)
@@ -74,17 +76,36 @@ re: fclean all
 ################################################################################
 
 .PHONY: libftall
-libftall:
-	make -C $(LIBFT_DIR) all
+libftall: libft_greeting
+	make -C  $(LIBFT_DIR) all
 
 .PHONY: libftbonus
-libftbonus:
+libftbonus: libft_greeting
 	make -C $(LIBFT_DIR) bonus
 
 .PHONY: libftclean
-libftclean:
+libftclean: libft_greeting
 	make -C $(LIBFT_DIR) clean
 
 .PHONY: libftfclean
-libftfclean:
+libftfclean: libft_greeting
 	make -C $(LIBFT_DIR) fclean
+
+.PHONY: libft_greeting
+libft_greeting:
+	@echo '########################  LIBFT  ###  LIBFT  ###  LIBFT  '\
+	      '########################'
+
+
+################################################################################
+#  tools and helpers                                                           #
+################################################################################
+
+#Check if libft.a is provided at the expected location
+.PHONY: libft_archive_provided
+libft_archive_provided:
+	@echo "Checking for $(LIBFT_DIR)/$(LIBFT_NAME) ..."
+	@if [ ! -e $(LIBFT_DIR)/$(LIBFT_NAME) ]; \
+		then echo "--> Not found!"; exit 1;  \
+	fi;
+
