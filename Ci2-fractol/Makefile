@@ -6,16 +6,16 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/07/12 14:00:29 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/12 16:51:11 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME       := fractol
-LIBFT_NAME := libft.a
-LIBFT_DIR  := libft
-INC_DIR    := inc
-SRC_DIR    := src
-OBJ_DIR    := obj
+NAME        := fractol
+LIBFT_NAME  := libft.a
+LIBFT_DIR   := libft
+INC_DIR     := inc
+SRC_DIR     := src
+OBJ_DIR     := obj
 
 RM       := rm -f
 RM_FR    := rm -fr
@@ -27,7 +27,7 @@ endif
 ifeq ($(DEBUG_VALGRIND), 1)
   CFLAGS += -g3
 endif
-LD_FLAGS  = -L $(LIBFT_DIR) -lft
+LD_FLAGS  = -L $(LIBFT_DIR) -lft -lmlx -lXext -lX11 -lm
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
