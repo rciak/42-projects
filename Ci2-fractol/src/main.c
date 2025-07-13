@@ -6,26 +6,26 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 21:32:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 22:44:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static bool	_args_ok(int argc, char **argv, t_err *err);
-static bool	_init_non_mlx_vars(t_all *all);
-static bool	_provide_windows(t_all *all);
+static bool	args__ok(int argc, char **argv, t_err *err);
+static bool	init__non_mlx_vars(t_all *all);
+static bool	provide__windows(t_all *all);
 
-int			draw_initial_fractal(t_all *all);
+int			waiting_for_godot(t_all *all);
 int			react_on_mouse(int button, int k, int j, t_all *all);
 
 int	main(int argc, char **argv)
 {
 	t_all	all;
 
-	if (!_args_ok(argc, argv, &all.err)
-		|| !_init_non_mlx_vars(&all)
-		|| !_provide_windows(&all)
+	if (!args__ok(argc, argv, &all.err)
+		|| !init__non_mlx_vars(&all)
+		|| !provide__windows(&all)
 	)
 		return (all.err.code);
 	mlx_loop_hook(all.x.disp, &draw_initial_fractal, &all);
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 }
 
 //TODO: Implement helper beyond dummy state
-static bool	_args_ok(int argc, char **argv, t_err *err)
+static bool	args__ok(int argc, char **argv, t_err *err)
 {
 	(void) argc;
 	(void) argv;
@@ -46,7 +46,7 @@ static bool	_args_ok(int argc, char **argv, t_err *err)
 }
 
 //TODO: Implement helper beyond dummy state
-static bool _init_non_mlx_vars(t_all *all)
+static bool init__non_mlx_vars(t_all *all)
 {
 	all->dummy_c = "Message";
 	all->dummy_i = 3;
@@ -55,7 +55,7 @@ static bool _init_non_mlx_vars(t_all *all)
 }
 
 //TODO: Implement helper beyond this half dummy state
-static bool	_provide_windows(t_all *all)
+static bool	provide__windows(t_all *all)
 {	
 	char	*title[2];
 	t_x		*x;
@@ -83,7 +83,7 @@ static bool	_provide_windows(t_all *all)
 	return (true);
 }
 
-int draw_initial_fractal(t_all *all)
+int waiting_for_godot(t_all *all)
 {
 	if (all->dummy_i == 3)
 	{
