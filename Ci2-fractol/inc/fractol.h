@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 12:37:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 19:40:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
  */
 enum e_geo_win
 {
-	WIN_WIDTH = 1025,
-	WIN_HEIGHT = 1025
+	WIN_WIDTH = 513,
+	WIN_HEIGHT = 513
 };
 
 /**
