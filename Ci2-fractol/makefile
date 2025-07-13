@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/06/17 20:05:47 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/13 12:30:10 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,6 +135,7 @@ show_vars:
 	@echo "PROJECT_NAME:  |$(PROJECT_NAME)|"
 	@echo '-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -'
 	@echo "CFLAGS:        |$(CFLAGS)|"
+	@echo "LDFLAGS:       |$(LDFLAGS)|"
 	@echo "LIBFT_DIR:     |$(LIBFT_DIR)|"
 	@echo "INC_DIR:       |$(INC_DIR)|"
 	@echo "OBJ_DIR:       |$(OBJ_DIR)|"

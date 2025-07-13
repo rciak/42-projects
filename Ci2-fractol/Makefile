@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/07/12 16:51:11 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/13 12:32:16 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,20 +21,24 @@ RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
+LDFLAGS  = -L $(LIBFT_DIR) -lft -lmlx -lXext -lX11 -lm
 ifeq ($(DEBUG_SANITIZE), 1)
   CFLAGS += -g3 -fsanitize=address,undefined,leak
+  LDFLAGS += -g3 -fsanitize=address,undefined,leak
 endif
 ifeq ($(DEBUG_VALGRIND), 1)
   CFLAGS += -g3
+  LDFLAGS += -g3
 endif
-LD_FLAGS  = -L $(LIBFT_DIR) -lft -lmlx -lXext -lX11 -lm
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
 INCS := \
-libft/libft.h
+libft/libft.h \
+inc/fractol.h
 
 SRCS := \
+src/error.c \
 src/main.c
 #############################################
 
@@ -42,7 +46,7 @@ src/main.c
 all: $(NAME)
 $(NAME): $(OBJS) | libftall
 	@make --quiet libft_archive_provided
-	$(CC) $(OBJS) $(LD_FLAGS) -o $(NAME)
+	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o:%.c $(INCS)
 	@mkdir -p $(@D)
