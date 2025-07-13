@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 17:35:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 17:59:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ static bool	_provide_windows(t_all *all)
 
 	title = "Fractol - Dummy title";
 	x = &(all->x);
-	x->disp = NULL;
-	x->win1 = NULL;
-	x->win2 = NULL;
+	ft_bzero(x, sizeof(*x));
 	x->disp = mlx_init();
 	if (x->disp == NULL)
 		return (all->err = error(ERR_MLX_INIT), false);
