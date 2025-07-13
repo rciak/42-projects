@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 20:42:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 21:32:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	)
 		return (all.err.code);
 	mlx_loop_hook(all.x.disp, &draw_initial_fractal, &all);
-	mlx_mouse_hook(all.x.win1, &react_on_mouse, &all);
+	mlx_mouse_hook(all.x.win0, &react_on_mouse, &all);
 	mlx_loop(all.x.disp);
 	mlx_destroy_display(all.x.disp);
 	free(all.x.disp);
@@ -57,25 +57,26 @@ static bool _init_non_mlx_vars(t_all *all)
 //TODO: Implement helper beyond this half dummy state
 static bool	_provide_windows(t_all *all)
 {	
-	char	*title;
+	char	*title[2];
 	t_x		*x;
 
-	title = "Fractol - Dummy title";
+	title[0] = "Fractol - Connectedness locus";
+	title[1] = "Fractol - Filled Julia set";
 	x = &(all->x);
-	
+
+	x->win0 = NULL;
 	x->win1 = NULL;
-	x->win2 = NULL;
 	x->disp = mlx_init();
 	if (x->disp == NULL)
 		return (all->err = error(ERR_MLX_INIT), false);
-	x->win1 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title);
-	if (x->win1 == NULL)
+	x->win0 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title[0]);
+	if (x->win0 == NULL)
 		return (all->err = error(ERR_MLX_NEW_WINDOW), free(x->disp), false);
-	x->win2 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title);
-	if (x->win2 == NULL)
+	x->win1 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title[1]);
+	if (x->win1 == NULL)
 		return (
 			all->err = error(ERR_MLX_NEW_WINDOW),
-			mlx_destroy_window(x->disp, x->win1),
+			mlx_destroy_window(x->disp, x->win0),
 			free(x->disp),
 			false
 		);
@@ -106,9 +107,9 @@ int react_on_mouse(int button, int k, int l, t_all *all)
 	{
 		ft_putstr_fd("\nButton2! ", 1);
 	}
+	if (button == Button3 && all->x.win0 != NULL)
+		mlx_destroy_window(all->x.disp, all->x.win0);
 	if (button == Button3 && all->x.win1 != NULL)
 		mlx_destroy_window(all->x.disp, all->x.win1);
-	if (button == Button3 && all->x.win2 != NULL)
-		mlx_destroy_window(all->x.disp, all->x.win2);
 	return (0);
 }

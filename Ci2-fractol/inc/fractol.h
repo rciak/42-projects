@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 19:40:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 21:08:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ enum e_misc
 typedef struct s_x
 {
 	void	*disp;
+	void	*win0;
 	void	*win1;
-	void	*win2;
 }	t_x;
 
 typedef struct s_err
