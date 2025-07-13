@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 21:08:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 23:50:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,14 @@ typedef struct s_all
 	t_x		x;
 	t_err	err;
 } t_all;
+
+//events_mbrot.c
+int key_mbrot(int keysym, t_all *all);
+int	mouse_mbrot(int button, int k, int l, t_all *all);
+
+//events_julia.c
+int	key_julia(int keysym, t_all *all);
+int	mouse_julia(int button, int k, int l, t_all *all);
 
 //error.c
 t_err	error(int error_code);

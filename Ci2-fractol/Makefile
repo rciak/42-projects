@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/07/13 19:43:39 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/13 23:49:22 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,8 @@ inc/fractol.h
 
 SRCS := \
 src/error.c \
+src/events_julia.c \
+src/events_mbrot.c \
 src/main.c
 #############################################
 

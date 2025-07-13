@@ -6,15 +6,17 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 22:44:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 23:48:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdbool.h>
 
 static bool	args__ok(int argc, char **argv, t_err *err);
 static bool	init__non_mlx_vars(t_all *all);
 static bool	provide__windows(t_all *all);
+static bool setup__hooks(t_all *all);
 
 int			waiting_for_godot(t_all *all);
 int			react_on_mouse(int button, int k, int j, t_all *all);
@@ -26,10 +28,9 @@ int	main(int argc, char **argv)
 	if (!args__ok(argc, argv, &all.err)
 		|| !init__non_mlx_vars(&all)
 		|| !provide__windows(&all)
+		|| !setup__hooks(&all)
 	)
-		return (all.err.code);
-	mlx_loop_hook(all.x.disp, &draw_initial_fractal, &all);
-	mlx_mouse_hook(all.x.win0, &react_on_mouse, &all);
+		return (all.err.code);	
 	mlx_loop(all.x.disp);
 	mlx_destroy_display(all.x.disp);
 	free(all.x.disp);
@@ -54,7 +55,6 @@ static bool init__non_mlx_vars(t_all *all)
 	return (true);
 }
 
-//TODO: Implement helper beyond this half dummy state
 static bool	provide__windows(t_all *all)
 {	
 	char	*title[2];
@@ -82,7 +82,17 @@ static bool	provide__windows(t_all *all)
 		);
 	return (true);
 }
+static bool	setup__hooks(t_all *all)
+{
+	mlx_loop_hook(all->x.disp, &waiting_for_godot, &all);
+	mlx_key_hook(all->x.win0, &key_mbrot, &all);
+	mlx_key_hook(all->x.win1, &key_julia, &all);
+	mlx_mouse_hook(all->x.win0, &mouse_mbrot, &all);
+	mlx_mouse_hook(all->x.win1, &mouse_julia, &all);
+	return (true);
+}
 
+//TODO: Replace  dummy content - maybe by essentiall nothing?
 int waiting_for_godot(t_all *all)
 {
 	if (all->dummy_i == 3)
@@ -91,25 +101,4 @@ int waiting_for_godot(t_all *all)
 		all->dummy_i = 0;
 	}
 	return (MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL);
-}
-
-int react_on_mouse(int button, int k, int l, t_all *all)
-{
-	if (k < l)
-		k = l;
-	if (button == Button1)
-	{
-		ft_putstr_fd("\nButton1! ", 1);
-		ft_putstr_fd(all->dummy_c, 1);
-		all->dummy_i++;
-	}
-	if (button == Button2)
-	{
-		ft_putstr_fd("\nButton2! ", 1);
-	}
-	if (button == Button3 && all->x.win0 != NULL)
-		mlx_destroy_window(all->x.disp, all->x.win0);
-	if (button == Button3 && all->x.win1 != NULL)
-		mlx_destroy_window(all->x.disp, all->x.win1);
-	return (0);
 }
