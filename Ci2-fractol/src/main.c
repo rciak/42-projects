@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 17:59:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 20:42:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,23 @@ static bool	_provide_windows(t_all *all)
 
 	title = "Fractol - Dummy title";
 	x = &(all->x);
-	ft_bzero(x, sizeof(*x));
+	
+	x->win1 = NULL;
+	x->win2 = NULL;
 	x->disp = mlx_init();
 	if (x->disp == NULL)
 		return (all->err = error(ERR_MLX_INIT), false);
 	x->win1 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title);
 	if (x->win1 == NULL)
+		return (all->err = error(ERR_MLX_NEW_WINDOW), free(x->disp), false);
+	x->win2 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title);
+	if (x->win2 == NULL)
 		return (
 			all->err = error(ERR_MLX_NEW_WINDOW),
+			mlx_destroy_window(x->disp, x->win1),
 			free(x->disp),
 			false
 		);
-	// x->win2 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title);
-	// if (x->win2 == NULL)
-	// 	return (
-	// 		all->err = error(ERR_MLX_NEW_WINDOW),
-	// 		mlx_destroy_window(x->disp, x->win1),
-	// 		free(x->disp),
-	// 		false
-	// 	);
 	return (true);
 }
 
