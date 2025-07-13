@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 11:08:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 12:37:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ typedef struct s_all
 
 //error.c
 t_err	error(int error_code);
+void	print_error(t_err err);
 
 #endif
