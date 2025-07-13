@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 15:31:11 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 17:35:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	return (ERR_NONE);
 }
 
-//TODO: Implement helpers beyond dummy state
+//TODO: Implement helper beyond dummy state
 static bool	_args_ok(int argc, char **argv, t_err *err)
 {
 	(void) argc;
@@ -45,6 +45,7 @@ static bool	_args_ok(int argc, char **argv, t_err *err)
 	return (true);
 }
 
+//TODO: Implement helper beyond dummy state
 static bool _init_non_mlx_vars(t_all *all)
 {
 	all->dummy_c = "Message";
@@ -53,6 +54,7 @@ static bool _init_non_mlx_vars(t_all *all)
 	return (true);
 }
 
+//TODO: Implement helper beyond this half dummy state
 static bool	_provide_windows(t_all *all)
 {	
 	char	*title;
