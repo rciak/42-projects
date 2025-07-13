@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/07/13 12:32:16 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/13 19:43:39 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,16 @@ RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
 LDFLAGS  = -L $(LIBFT_DIR) -lft -lmlx -lXext -lX11 -lm
-ifeq ($(DEBUG_SANITIZE), 1)
-  CFLAGS += -g3 -fsanitize=address,undefined,leak
+ifeq ($(DEBUG_LAUB_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=address,undefined,leak
   LDFLAGS += -g3 -fsanitize=address,undefined,leak
 endif
+ifeq ($(DEBUG_M_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=memory -fsanitize-memory-track-origins=2
+  LDFLAGS += -g3 -fsanitize=memory -fsanitize-memory-track-origins=2
+endif
 ifeq ($(DEBUG_VALGRIND), 1)
-  CFLAGS += -g3
+  CFLAGS  += -g3
   LDFLAGS += -g3
 endif
 
