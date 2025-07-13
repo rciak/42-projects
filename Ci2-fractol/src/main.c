@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 12:08:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/13 15:31:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	_args_ok(int argc, char **argv, t_err *err);
 static bool	_init_non_mlx_vars(t_all *all);
 static bool	_provide_windows(t_all *all);
 
-int			draw_initial_fractal(t_all all);
+int			draw_initial_fractal(t_all *all);
 int			react_on_mouse(int button, int k, int j, t_all *all);
 
 int	main(int argc, char **argv)
@@ -60,6 +60,9 @@ static bool	_provide_windows(t_all *all)
 
 	title = "Fractol - Dummy title";
 	x = &(all->x);
+	x->disp = NULL;
+	x->win1 = NULL;
+	x->win2 = NULL;
 	x->disp = mlx_init();
 	if (x->disp == NULL)
 		return (all->err = error(ERR_MLX_INIT), false);
@@ -81,12 +84,12 @@ static bool	_provide_windows(t_all *all)
 	return (true);
 }
 
-int draw_initial_fractal(t_all all)
+int draw_initial_fractal(t_all *all)
 {
-	if (all.dummy_i == 3)
+	if (all->dummy_i == 3)
 	{
 		ft_putstr_fd("Set i to 0\n", 1);
-		all.dummy_i = 0;
+		all->dummy_i = 0;
 	}
 	return (MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL);
 }
