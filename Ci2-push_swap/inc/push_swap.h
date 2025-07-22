@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/21 18:06:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/22 14:19:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@
 # include <stdbool.h>
 # include "libft.h"
 
+enum e_miscellaneous
+{
+	MAX_SIZE_HANDSORT = 5
+};
+
+/**
+ * @warning The enumaration of the below names **must** be 0, 1, 2, ...
+ *          since they are **used as index** for stack, defined in main() !
+ */
+enum e_push_swap_stacks
+{
+	A = 0,
+	B = 1
+};
 
 /**
  * @warning The enumaration of the below error codes **must** be 0, 1, 2, ...
@@ -31,12 +45,8 @@ enum e_push_swap_errors
 	ERR_NONE = 0,
 	ERR_ARG_NUM = 1,
 	ERR_ARGV = 2,
+	ERR_MALLOC = 3
 };
-
-// enum e_misc
-// {
-// 	MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL = 314
-// };
 
 typedef struct s_err
 {
@@ -46,13 +56,16 @@ typedef struct s_err
 
 /**
  * @note This is a **d**oubly **l**inked node as basic building block for a
- *       doubly linked list
+ *       doubly linked list or a doubly linked ring
  */
 typedef struct s_dl_node
 {
 	void				*obj;
 	struct s_bl_node	*prev;
 	struct t_bl_node	*next;
-}	t_bl_node;
+}	t_dl_node;
+
+//error.c
+t_err	error(int error_code);
 
 #endif
