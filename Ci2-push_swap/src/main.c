@@ -6,12 +6,11 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/22 14:24:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/23 12:04:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	main(int argc, char **argv)
 {
@@ -27,6 +26,9 @@ int	main(int argc, char **argv)
 		small_size_algo(&stack, &err);
 	else
 		big_size_algo(&stack, &err);
+	if (err.code != ERR_NONE)
+		print_error(err);
 	clear_ring(stack[A]);
 	clear_ring(stack[B]);
+	return (ERR_NONE);
 }
