@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/24 11:27:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/24 16:38:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef enum e_dl_list_type
 {
 	DL_EMPTY = 0,
 	DL_NON_EMPTY_LINEAR = 1,
-	DL_NON_EMPTY_RING = 2
+	DL_NON_EMPTY_CIRCULAR = 2
 }	t_dl_list_type;
 
 // Part 1: Some libc functions (and bsd relatives like  ft_strlcpy, ft_strcat)
