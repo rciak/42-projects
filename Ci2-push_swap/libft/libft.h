@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/24 16:38:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/24 18:47:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,11 +148,11 @@ const char	*color(int code);
 
 //doubly linked list stuff
 t_dl_node		*dl_lst_new_nd(void *obj);
-void			dl_lst_add_after(t_dl_node *dl_lst);
+void			dl_lst_add_after(t_dl_node **dl_lst, td_dl_node *const pnew);
 void			dl_lst_circularize(t_dl_node *dl_lst);
 void			dl_lst_linearize(t_dl_node *dl_lst);
-size_t			dl_lst_size(t_dl_node *dl_lst);
-t_dl_list_type	dl_lst_type(t_dl_node *dl_lst);
+size_t			dl_lst_size(const t_dl_node *const dl_lst);
+t_dl_list_type	dl_lst_type(const t_dl_node *const dl_lst);
 void			dl_lst_clear(t_dl_node **pdl_lst, void (*del)(void*));
 
 #endif
