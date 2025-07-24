@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/22 14:19:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/24 15:26:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,10 @@ typedef struct s_err
 	const char	*msg;
 }	t_err;
 
-/**
- * @note This is a **d**oubly **l**inked node as basic building block for a
- *       doubly linked list or a doubly linked ring
- */
-typedef struct s_dl_node
-{
-	void				*obj;
-	struct s_bl_node	*prev;
-	struct t_bl_node	*next;
-}	t_dl_node;
-
 //error.c
 t_err	error(int error_code);
+
+//main.c
+int		main(int argc, char **argv);
 
 #endif
