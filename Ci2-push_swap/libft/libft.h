@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/22 14:11:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/24 09:40:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,6 @@
 # define RESET "\033[0m"
 # define RED "\033[31m"
 # define GREEN "\033[32m"
-
-/**
- * @note The color number \p num seems of no use here at first glance,
- *       but it makes the definition of in color() less error prone / easier
- *       to debug, e.g. when adding new colors had accidentically messed up
- *       something.
- */
-typedef struct s_color
-{
-	int		name;
-	char	*esc_seq;
-}				t_color;
 
 enum e_libft_errors
 {
