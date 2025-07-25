@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/24 15:26:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/25 14:35:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_err
 
 //error.c
 t_err	error(int error_code);
+void	handle_error(t_err err);
 
 //main.c
 int		main(int argc, char **argv);

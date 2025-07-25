@@ -6,11 +6,14 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/23 12:04:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/25 13:45:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "push_swap.h"
+
+static 
 
 int	main(int argc, char **argv)
 {
@@ -21,14 +24,16 @@ int	main(int argc, char **argv)
 	stack[A] = NULL;
 	stack[B] = NULL;
 	if (!st_parse_n_init(argc, argv, &stack, &err))
-		return (err.code);
+		return (handle_error(err), err.code);
 	if (ring_len(stack[A]) <= MAX_SIZE_HANDSORT)
 		small_size_algo(&stack, &err);
 	else
 		big_size_algo(&stack, &err);
 	if (err.code != ERR_NONE)
 		print_error(err);
-	clear_ring(stack[A]);
-	clear_ring(stack[B]);
+	dl_lst_clear(stack[A]);
+	dl_lst_clear(stack[B]);
 	return (ERR_NONE);
 }
+
+
