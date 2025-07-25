@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 15:40:23 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/24 18:00:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/25 12:28:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
  */
 
 #include "libft.h"
+#include <unistd.h>
 
-static size_t	st_count_when_nonempty_linear(const t_dl_node *const dl_lst);
-static size_t	st_count_when_nonempty_circular(const t_dl_node *const dl_lst);
+static size_t	st_count_when_nonempty_linear(const t_dl_node *const pdl_node);
+static size_t	st_count_when_nonempty_circular(const t_dl_node *const pdl_node);
 
 /**
 * @brief Counts the number of nodes in the double linked list,
@@ -29,38 +30,43 @@ static size_t	st_count_when_nonempty_circular(const t_dl_node *const dl_lst);
 *       (with the need for renaming ...)
 * @remark Here a unsigned return type is prefered, contrasting
 *         ft_lstsize where return type `int` was requested.
-* @param[in] dl_lst: A pointer to **any** node of the doubly linked list.
+* @param[in] pdl_node: A pointer to **any** node of the doubly linked list.
 *                    (or `NULL` in case of an empty list)
 * @return The length of the list, i.e. its number of nodes.
 * @warning **Test Status:** not unit tested,
 *          circular case indirectly tested via push_swap_project.
 */
-size_t	dl_lst_size(const t_dl_node *const dl_lst)
+size_t	dl_lst_size(const t_dl_node *const pdl_node)
 {
-	t_dl_list_type	type;
+	t_dl_type	type;
 
-	type = dl_list_type(dl_lst);
+	type = dl_lst_type(pdl_node);
 	if (type == DL_EMPTY)
 		return (0);
 	else if (type == DL_NON_EMPTY_LINEAR)
-		return (st_count_when_nonempty_linear(dl_lst));
+		return (st_count_when_nonempty_linear(pdl_node));
 	else if (type == DL_NON_EMPTY_CIRCULAR)
-		return (st_count_when_nonempty_circular(dl_lst));
+		return (st_count_when_nonempty_circular(pdl_node));
+	else
+	{
+		ft_putstr_fd("  dl_lst_size: " RED"Error", STDERR_FILENO);
+		return (-1);
+	}
 }
 
-static size_t	st_count_when_nonempty_linear(const t_dl_node *const dl_lst)
+static size_t	st_count_when_nonempty_linear(const t_dl_node *const pdl_node)
 {
-	t_dl_node	*pnode;
-	size_t		len;
+	const t_dl_node	*pnode;
+	size_t			len;
 
-	pnode = dl_lst;
+	pnode = pdl_node;
 	len = 0;
 	while (pnode != NULL)
 	{
 		len++;
 		pnode = pnode->next;
 	}
-	pnode = dl_lst->prev;
+	pnode = pdl_node->prev;
 	while (pnode != NULL)
 	{
 		len++;
@@ -69,14 +75,14 @@ static size_t	st_count_when_nonempty_linear(const t_dl_node *const dl_lst)
 	return (len);
 }
 
-static size_t	st_count_when_nonempty_circular(const t_dl_node *const dl_lst)
+static size_t	st_count_when_nonempty_circular(const t_dl_node *const pdl_node)
 {
-	t_dl_node	*pnode;
-	size_t		len;
+	const t_dl_node	*pnode;
+	size_t			len;
 
-	pnode = dl_lst;
+	pnode = pdl_node;
 	len = 1;
-	while (pnode->next != dl_lst)
+	while (pnode->next != pdl_node)
 	{
 		len++;
 		pnode = pnode->next;

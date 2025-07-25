@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 17:31:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/24 18:22:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/25 10:46:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 *        (potentially empty).
 * @note A broken doubly linked list might cause infinite looping or other
 *       problematic behaviour.
-* @param[in] dl_lst A pointer to **any** node of the doubly linked list.
+* @param[in] pdl_node A pointer to **any** node of the doubly linked list.
 *                   (or `NULL` in case of an empty list)
 * @return One of the entries of t_dl_list_type
 *          * DL_EMPTY
@@ -31,14 +31,14 @@
 * @warning **Test Status:** not unit tested,
 *          circular case indirectly tested via push_swap_project.
 */
-t_dl_list_type	dl_lst_type(const t_dl_node *const dl_lst)
+t_dl_type	pdl_node_type(const t_dl_node *const pdl_node)
 {
 	const t_dl_node	*pnode;
 	
-	if (dl_lst == NULL)
+	if (pdl_node == NULL)
 		return (DL_EMPTY);
-	pnode = dl_lst->next;
-	while (pnode != NULL && pnode != dl_lst)
+	pnode = pdl_node->next;
+	while (pnode != NULL && pnode != pdl_node)
 		pnode = pnode->next;
 	if (pnode == NULL)
 		return (DL_NON_EMPTY_LINEAR);

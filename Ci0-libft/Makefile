@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/06/13 14:21:35 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/25 12:22:40 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,13 @@ INCS := \
 ./libft.h
 
 SRCS := \
+./dl_lst_add_after.c \
+./dl_lst_circularize.c \
+./dl_lst_clear.c \
+./dl_lst_linearize.c \
+./dl_lst_new_nd.c \
+./dl_lst_size.c \
+./dl_lst_type.c \
 ./ft_atoi.c \
 ./ft_bzero.c \
 ./ft_calloc.c \

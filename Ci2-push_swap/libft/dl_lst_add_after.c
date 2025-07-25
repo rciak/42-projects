@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 18:16:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/24 19:17:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/25 10:31:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,23 @@
 /**
  * @brief Add a node after the current node of the doubly linked list
  * @note 
- * @param[in, out] \p *dl_lst The caller's doubly linked list
+ * @param[in, out] \p addr_pdl_node The address of a pointer to the node after
+ *                 which the new node shall be inserted.
  * @param[in] \p pnew A pointer to the to be added node
  * @note In the case of an empty list, the outer list *lst will be changed
  *       to \p pnew and thus be potentially no longer `NULL`.
  */
-void	dl_lst_add_after(t_dl_node **dl_lst, t_dl_node *const pnew)
+void	dl_lst_add_after(t_dl_node **addr_pdl_node, t_dl_node *const pnew)
 {
-	if (*p_new == NULL)
+	if (pnew == NULL)
 		return ;
-	if (*dl_lst == NULL)
+	if (*addr_pdl_node == NULL)
 	{
-		*dl_lst = new;
+		*addr_pdl_node = pnew;
 		return ;
 	}
-	pnew->next = (*dl_lst)->next;
-	pnew->prev = (*dl_lst);
-	(*dl_lst)->next = pnew;
+	pnew->next = (*addr_pdl_node)->next;
+	pnew->prev = (*addr_pdl_node);
+	(*addr_pdl_node)->next = pnew;
 	pnew->next->prev = pnew;
 }
