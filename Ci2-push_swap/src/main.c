@@ -6,7 +6,7 @@
 /*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/26 08:47:54 by rene             ###   ########.fr       */
+/*   Updated: 2025/07/27 08:46:55 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "push_swap.h"
 #include <unistd.h>
 
-static bool	checkargs(int argc, char **argv);
+static bool	args__ok(int argc, char **argv, t_err *err);
 static bool init__stacks(int argc, char **argv, t_dl_node *stack, t_err *err);
 
 int	main(int argc, char **argv)
@@ -36,9 +36,18 @@ int	main(int argc, char **argv)
 	return (ERR_NONE);
 }
 
-static bool	checkargs(int argc, char **argv)
+static bool	args__ok(int argc, char **argv, t_err *err)
 {
-	ft_putstr_fd("DUMMY!\n", 2);
+	int	i;
+
+	if (argc < 1 + 1)
+		return (*err = error(ERR_ARG_NUM), false);
+	i = 0;
+	while (i < argc)
+	{
+		if (does_not_contain)
+		i++;
+	}
 	return (true);
 }
 
