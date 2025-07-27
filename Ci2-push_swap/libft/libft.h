@@ -29,11 +29,13 @@
 # define GREEN "\033[32m"
 # define YELLOW "\33[33m]"
 
-enum e_libft_errors
+typedef enum e_libft_err
 {
 	E_ARG_VAL = -1,
 	E_WRITE = -10,
-};
+	E_ATOI_BAD_STRING = -20,
+	E_ATOI_TOO_BIG_NUM = -21 
+} t_libft_err;
 
 typedef struct s_list
 {
@@ -155,5 +157,8 @@ void		dl_lst_linearize(t_dl_node *pdl_node);
 size_t		dl_lst_size(const t_dl_node *const pdl_node);
 t_dl_type	dl_lst_type(const t_dl_node *const pdl_node);
 void		dl_lst_clear(t_dl_node **addr_pdl_node, void (*del)(void*));
+
+//ft_atoi with error info
+int	atoi_proper(const char *nptr, t_libft_err *err);
 
 #endif
