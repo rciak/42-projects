@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/07/25 12:22:40 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/27 22:08:57 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,16 @@ CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 RM := rm -f
 RMDIR := rmdir
 
+ifeq ($(DEBUG_LAUB_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=address,undefined,leak
+endif
+ifeq ($(DEBUG_M_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=memory -fsanitize-memory-track-origins=2
+endif
+ifeq ($(DEBUG_VALGRIND), 1)
+  CFLAGS  += -g3
+endif
+
 # Dependencies can be handled better using DEP=.. stuff, cf.
 # https://stackoverflow.com/questions/2394609/makefile-header-dependencies
 # but that is currently beyond my understanding and for not too big projects
@@ -29,6 +39,7 @@ INCS := \
 
 SRCS := \
 ./dl_lst_add_after.c \
+./dl_lst_add_before.c \
 ./dl_lst_circularize.c \
 ./dl_lst_clear.c \
 ./dl_lst_linearize.c \

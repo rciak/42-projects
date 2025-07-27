@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 10:29:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 11:17:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 22:03:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	dl_lst_linearize(t_dl_node *pdl_node)
 {
 	if (pdl_node == NULL)
 		return ;
-	pdl_node->prev->next = NULL;
+	if (pdl_node->prev != NULL)
+		pdl_node->prev->next = NULL;
 	pdl_node->prev = NULL;
 	return ;
 }

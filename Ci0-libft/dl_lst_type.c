@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 17:31:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 09:57:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 21:53:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 * @warning **Test Status:** not unit tested,
 *          circular case indirectly tested via push_swap_project.
 */
-t_dl_type	pdl_node_type(const t_dl_node *const pdl_node)
+t_dl_type	dl_lst_type(const t_dl_node *const pdl_node)
 {
 	const t_dl_node	*pnode;
 
