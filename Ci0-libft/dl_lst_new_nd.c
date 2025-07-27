@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 15:28:59 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/24 18:19:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 09:51:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
  *          but indirectly tested via push_swap_project.
  */
 
- t_dl_node		*dl_lst_new_nd(void *obj)
- {
+t_dl_node	*dl_lst_new_nd(void *obj)
+{
 	t_dl_node	*pnode;
 
 	pnode = calloc_uninit(1, sizeof(t_dl_node));
@@ -42,4 +42,4 @@
 	pnode->prev = NULL;
 	pnode->next = NULL;
 	return (pnode);
- }
+}

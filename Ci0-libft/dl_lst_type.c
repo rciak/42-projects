@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 17:31:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 10:46:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 09:57:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 t_dl_type	pdl_node_type(const t_dl_node *const pdl_node)
 {
 	const t_dl_node	*pnode;
-	
+
 	if (pdl_node == NULL)
 		return (DL_EMPTY);
 	pnode = pdl_node->next;

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 08:47:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 11:49:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 09:57:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	st_clear_nonempty_linear(t_dl_node **addr_pdl_node, void (*del)(void*));
  * @param[in] del The address of the function used to delete
  *                the object belonging to the node.
  * @warning This function should be called only on "normal" doubly linked list
- *          such that two different nodes never contain the same address to the 
+ *          such that two different nodes never contain the same address to the
  *          same object!
  * @warning **Test Status:** not unit tested,
  *          circular case indirectly tested via push_swap_project.
  */
 void	dl_lst_clear(t_dl_node **addr_pdl_node, void (*del)(void*))
 {
-	t_dl_type type;
+	t_dl_type	type;
 
 	type = dl_lst_type(*addr_pdl_node);
 	if (type == DL_EMPTY)

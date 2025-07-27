@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 10:57:52 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 11:53:02 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 09:58:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 *                        to its predecessor.
 * @warning **Test Status:** not unit tested.
 */
-void		dl_lst_circularize(t_dl_node *pdl_node)
+void	dl_lst_circularize(t_dl_node *pdl_node)
 {
 	t_dl_node	*first;
 	t_dl_node	*last;
