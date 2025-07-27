@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 14:35:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 12:41:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ enum e_push_swap_errors
 	ERR_NONE = 0,
 	ERR_ARG_NUM = 1,
 	ERR_ARGV = 2,
-	ERR_MALLOC = 3
+	ERR_DUPLICATE = 3,
+	ERR_MALLOC = 4
 };
 
 typedef struct s_err
@@ -54,8 +55,22 @@ typedef struct s_err
 	const char	*msg;
 }	t_err;
 
+typedef struct s_group
+{
+	int		rank;
+	int		size;
+	bool	starts;
+	bool	ends;
+}	t_group;
+typedef struct s_push_swap_obj
+{
+	int		n;
+	int		rank;
+	t_group	group;
+}	t_ps_obj;
+
 //error.c
-t_err	error(int error_code);
+t_err	error(enum e_push_swap_errors error_code);
 void	handle_error(t_err err);
 
 //main.c

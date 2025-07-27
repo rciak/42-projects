@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:30:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 16:17:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 11:18:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @return A @c t_err object containing \p errorcode and the corresponding
  *         error message.
  */
-t_err	error(int error_code)
+t_err	error(enum e_push_swap_errors error_code)
 {
 	static const t_err	err[] = {
 	{ERR_NONE, "push_swap:"
@@ -48,10 +48,10 @@ t_err	error(int error_code)
 		RESET},
 	{ERR_ARGV, "push_swap:"
 		RED" Invalid arguments"
-		GREEN" - Only integers (of type int) are allowed."
+		GREEN" - Only integers (of type int) are allowed, appearing only once."
 		RESET},
-	{ERR_MALLOC, "push_swap:"
-		RED" Memory allocation failed"}
+	{ERR_DUPLICATE, "push_swap:" RED"Duplicate detected"RESET},
+	{ERR_MALLOC, "push_swap:" RED" Memory allocation failed"RESET}
 	};
 
 	return (err[error_code]);
