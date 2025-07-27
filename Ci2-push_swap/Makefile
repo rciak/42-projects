@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/07/21 17:13:11 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/27 22:10:12 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR)
-LDFLAGS  = -L $(LIBFT_DIR) -lft -lmlx -lXext -lX11 -lm
+LDFLAGS  = -L $(LIBFT_DIR) -lft
 ifeq ($(DEBUG_LAUB_SAN), 1)
   CFLAGS  += -g3 -fsanitize=address,undefined,leak
   LDFLAGS += -g3 -fsanitize=address,undefined,leak
@@ -42,7 +42,10 @@ libft/libft.h \
 inc/push_swap.h
 
 SRCS := \
-src/main.c
+src/error.c \
+src/main.c \
+src/group_tools/group_size.c \
+src/group_tools/update_group.c
 #############################################
 
 .PHONY: all

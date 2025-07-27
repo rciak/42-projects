@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 12:41:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/27 21:22:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,39 @@ typedef struct s_err
 	const char	*msg;
 }	t_err;
 
+/**
+ * @note \p rank describes how high or low a node is ranked in its current 
+ *               group, e.g. rank == 1 means that the node is ranked smallest
+ *               within the group (i.e. all other nodes of the same group
+ *               have a higher value for obj->n),
+ *               whereas rank == size  means that the node is ranked highest.
+ */
 typedef struct s_group
 {
-	int		rank;
 	int		size;
+	int		rank;
 	bool	starts;
 	bool	ends;
 }	t_group;
 typedef struct s_push_swap_obj
 {
 	int		n;
-	int		rank;
+	bool	is_green;
 	t_group	group;
 }	t_ps_obj;
 
-//error.c
+////////////////////////////////////////////////////////////////////////////////
+// src/*.c
+////////////////////////////////////////////////////////////////////////////////
+
+int		main(int argc, char **argv);
 t_err	error(enum e_push_swap_errors error_code);
 void	handle_error(t_err err);
 
-//main.c
-int		main(int argc, char **argv);
+////////////////////////////////////////////////////////////////////////////////
+// src/group_tools/*.c
+////////////////////////////////////////////////////////////////////////////////
+void	update_group(t_dl_node *stack_a);
+int		group_size(t_dl_node *ori_node);
 
 #endif

@@ -20,6 +20,16 @@ CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 RM := rm -f
 RMDIR := rmdir
 
+ifeq ($(DEBUG_LAUB_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=address,undefined,leak
+endif
+ifeq ($(DEBUG_M_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=memory -fsanitize-memory-track-origins=2
+endif
+ifeq ($(DEBUG_VALGRIND), 1)
+  CFLAGS  += -g3
+endif
+
 # Dependencies can be handled better using DEP=.. stuff, cf.
 # https://stackoverflow.com/questions/2394609/makefile-header-dependencies
 # but that is currently beyond my understanding and for not too big projects

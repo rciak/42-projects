@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/07/13 12:30:10 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/27 18:59:07 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ endif
 .PHONY: unit-tests
 unit-tests: $(TEST_DIR)
 	make -C $(TEST_DIR)/$(TEST_SUBDIR) $(EVA_LUA_FLAGS) unit-tests
+
+manual-test: $(TEST_DIR)
+	make -C $(TEST_DIR)/$(TEST_SUBDIR) $(EVA_LUA_FLAGS) manual-test
 
 .PHONY: testfclean
 testfclean:
@@ -97,7 +100,7 @@ docfclean: docclean
 # TOOL RULES                                                                   #
 ################################################################################
 
-MAXDEPTH=1           # For find command in rule  update_INCS__SRCS__SRCS_BONUS  
+MAXDEPTH=2           # For find command in rule  update_INCS__SRCS__SRCS_BONUS  
 
 .PHONY: totalclean tclean
 totalclean: fclean docfclean testfclean libftfclean
@@ -113,16 +116,17 @@ update_INCS__SRCS__SRCS_BONUS:
 	  sed '$$ s# \\##'
 	@echo
 	@echo 'SRCS := \'
-	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" | sort | \
-	  grep --color=none -v "ft_lst" | \
-	  while read found_files; do echo "$$found_files \\"; done | \
-	  sed '$$ s# \\##'
+	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" \
+	  | awk -F/ '{ print NF, $$0}' | sort | cut -d' ' -f2 \
+	  | while read found_files; do echo "$$found_files \\"; done \
+	  | sed '$$ s# \\##'
 	@echo
 	@echo 'SRCS_BONUS := \'
-	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" | sort | \
-	  grep --color=none "ft_lst" | \
-	  while read found_files; do echo "$$found_files \\"; done | \
-	  sed '$$ s# \\##'
+	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" \
+	  | awk -F/ '{ print NF, $$0}' | cut -d' ' -f2 \
+	  | grep "bonus" \
+	  | while read found_files; do echo "$$found_files \\"; done \
+	  | sed '$$ s# \\##'
 
 .PHONY: ready_to_submit
 ready_to_submit:
