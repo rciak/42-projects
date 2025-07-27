@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 13:45:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/26 08:47:54 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+#include <unistd.h>
 
-static 
+static bool	checkargs(int argc, char **argv);
+static bool init__stacks(int argc, char **argv, t_dl_node *stack, t_err *err);
 
 int	main(int argc, char **argv)
 {
@@ -21,9 +23,7 @@ int	main(int argc, char **argv)
 	t_dl_node	*stack[2];
 
 	err = error(ERR_NONE);
-	stack[A] = NULL;
-	stack[B] = NULL;
-	if (!st_parse_n_init(argc, argv, &stack, &err))
+	if (!args__ok(argc, argv, &err)|| !init__stacks(argc, argv, &stack, &err))
 		return (handle_error(err), err.code);
 	if (ring_len(stack[A]) <= MAX_SIZE_HANDSORT)
 		small_size_algo(&stack, &err);
@@ -36,4 +36,19 @@ int	main(int argc, char **argv)
 	return (ERR_NONE);
 }
 
+static bool	checkargs(int argc, char **argv)
+{
+	ft_putstr_fd("DUMMY!\n", 2);
+	return (true);
+}
 
+static bool init__stacks(int argc, char **argv, t_dl_node **stack, t_err *err)
+{
+	int	i;
+
+	stack[A] = NULL;
+	stack[B] = NULL;
+	i = 0;
+	while (i < argc)
+
+}
