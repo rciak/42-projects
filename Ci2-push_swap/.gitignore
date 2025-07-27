@@ -1,0 +1,6 @@
+../Ci2-fractol/
+.gitignore
+.vscode/
+TMP_local/
+doc/
+libft/doc/
