@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/07/27 18:59:07 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/28 16:02:03 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,20 +108,20 @@ tclean: totalclean
 
 .PHONY: update_INCS__SRCS__SRCS_BONUS
 update_INCS__SRCS__SRCS_BONUS:
-	@echo 'INCS := \'
+	@echo 'export INCS := \'
 	@find -L $(LIBFT_DIR) -maxdepth $(MAXDEPTH) -name "*.h" | sort | \
 	  while read found_files; do echo "$$found_files \\"; done
 	@find $(INC_DIR) -maxdepth $(MAXDEPTH) -name "*.h" | sort | \
 	  while read found_files; do echo "$$found_files \\"; done | \
 	  sed '$$ s# \\##'
 	@echo
-	@echo 'SRCS := \'
+	@echo 'export SRCS := \'
 	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" \
 	  | awk -F/ '{ print NF, $$0}' | sort | cut -d' ' -f2 \
 	  | while read found_files; do echo "$$found_files \\"; done \
 	  | sed '$$ s# \\##'
 	@echo
-	@echo 'SRCS_BONUS := \'
+	@echo 'export SRCS_BONUS := \'
 	@find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" \
 	  | awk -F/ '{ print NF, $$0}' | cut -d' ' -f2 \
 	  | grep "bonus" \

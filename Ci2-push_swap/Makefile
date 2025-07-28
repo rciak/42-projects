@@ -6,11 +6,11 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/07/27 22:10:12 by reciak           ###   ########.fr        #
+#    Updated: 2025/07/28 16:03:00 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        := push_swap
+export NAME := push_swap
 LIBFT_NAME  := libft.a
 LIBFT_DIR   := libft
 INC_DIR     := inc
@@ -37,13 +37,14 @@ endif
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
-INCS := \
+export INCS := \
 libft/libft.h \
 inc/push_swap.h
 
-SRCS := \
+export SRCS := \
 src/error.c \
 src/main.c \
+src/group_tools/group_already_sorted.c \
 src/group_tools/group_size.c \
 src/group_tools/update_group.c
 #############################################
