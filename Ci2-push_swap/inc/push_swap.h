@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/28 18:36:11 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/29 14:48:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ typedef struct s_push_swap_obj
 ////////////////////////////////////////////////////////////////////////////////
 
 int		main(int argc, char **argv);
+void	big_size_algo(t_dl_node **stack);
 t_err	error(enum e_push_swap_errors error_code);
 void	handle_error(t_err err);
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/group_tools/*.c
