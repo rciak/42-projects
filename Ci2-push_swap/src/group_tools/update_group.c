@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_group.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:01:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 21:09:39 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/29 20:51:57 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	write__groupsize_to_group_members(t_dl_node *first, int size)
 	while (i <= size)
 	{
 		((t_ps_obj*)first->obj)->group.size = size;
+		first=first->next;
 		i++;
 	}
 }
@@ -63,20 +64,14 @@ static void	write__groupsize_to_group_members(t_dl_node *first, int size)
 static void calc__n_write_rank_to_group_members(t_dl_node *first, int size)
 {
 	int			rank;
-	int			i;
 	t_dl_node	*smallest_unranked;
 
 	unset___rank_for_all_group_members(first, size);
 	rank = 1;
 	while (rank <= size)
 	{
-		i = 1;
-		while (i <= size)
-		{
-			smallest_unranked = find___smallest_unranked(first, size);
-			((t_ps_obj*)smallest_unranked->obj)->group.rank = rank;
-			i++;
-		}
+		smallest_unranked = find___smallest_unranked(first, size);
+		((t_ps_obj*)smallest_unranked->obj)->group.rank = rank;
 		rank++;
 	}
 }
@@ -89,6 +84,7 @@ static void	unset___rank_for_all_group_members(t_dl_node *first, int size)
 	while (i <= size)
 	{
 		((t_ps_obj*)first->obj)->group.rank = -1;
+		first=first->next;
 		i++;
 	}
 }
@@ -102,11 +98,15 @@ static t_dl_node	*find___smallest_unranked(t_dl_node *first, int size)
 
 		node = first;
 		smallest_unr = first;
+		while (((t_ps_obj*)smallest_unr->obj)->group.rank != -1)
+			smallest_unr=smallest_unr->next;
+		if (smallest_unr == NULL)
+			return (NULL);
 		i = 1;
 		while (i <= size)
 		{
 			if (((t_ps_obj*)node->obj)->n < ((t_ps_obj*)smallest_unr->obj)->n
-				&& ((t_ps_obj*)node->obj)->group.rank != -1
+				&& ((t_ps_obj*)node->obj)->group.rank == -1
 			)
 				smallest_unr = node;
 			node = node->next;
