@@ -49,7 +49,7 @@ endif
 unit-tests: $(TEST_DIR)
 	make -C $(TEST_DIR)/$(TEST_SUBDIR) $(EVA_LUA_FLAGS) unit-tests
 
-manual-test: $(TEST_DIR)
+manual-test: $(TEST_DIR) | libftall
 	make -C $(TEST_DIR)/$(TEST_SUBDIR) $(EVA_LUA_FLAGS) manual-test
 
 .PHONY: testfclean
