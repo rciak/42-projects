@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/29 11:42:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/29 17:22:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,17 +114,20 @@ static void	init__other_vars(t_dl_node *stack_a, int argc)
 	{
 		obj = (t_ps_obj *)node->obj;
 		obj->is_green = false;
-		if (i == 1)
-			obj->group.starts = true;
-		else
-			obj->group.starts = false;
-		if (i == argc - 1)
-			obj->group.ends = true;
-		else
-			obj->group.ends = false;		
-		node = node->next;
+		obj->group.starts = false;
+		obj->group.ends = false;
+		if (node ->next != NULL)
+			node = node->next;
 		i++;
 	}
+	((t_ps_obj*)stack_a->obj)->group.starts = true;
+	((t_ps_obj*)node->obj)->group.ends = true;
 	update_group(stack_a);
+	while (i-- > 1)
+	{
+		obj = (t_ps_obj *)node->obj;
+		obj->goal = obj->group.rank;
+		node=node->prev;
+	}
 }
 

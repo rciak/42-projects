@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/29 14:48:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/29 16:11:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_group
 typedef struct s_push_swap_obj
 {
 	int		n;
+	int		goal;
 	bool	is_green;
 	t_group	group;
 }	t_ps_obj;
@@ -89,8 +90,9 @@ void	handle_error(t_err err);
 ////////////////////////////////////////////////////////////////////////////////
 // src/group_tools/*.c
 ////////////////////////////////////////////////////////////////////////////////
-void	update_group(t_dl_node *stack_a);
-int		group_size(t_dl_node *ori_node);
-bool	group_already_sorted(t_dl_node *node);
+void		update_group(t_dl_node *stack_a);
+int			group_size(t_dl_node *ori_node);
+bool		group_already_sorted(t_dl_node *node);
+t_dl_node	*max_non_green_group(t_dl_node *stack_a);
 
 #endif
