@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/28 15:14:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/28 18:36:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 enum e_miscellaneous
 {
-	MAX_SIZE_HANDSORT = 5
+	MAX_SIZE_DIRECT_SORT = 5
 };
 
 /**
