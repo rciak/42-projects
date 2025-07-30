@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 11:15:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 14:58:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,10 @@ typedef struct s_push_swap_obj
 ////////////////////////////////////////////////////////////////////////////////
 // src/*.c
 ////////////////////////////////////////////////////////////////////////////////
-
 int		main(int argc, char **argv);
 void	big_size_algo(t_dl_node **stack);
 t_err	error(enum e_push_swap_errors error_code);
 void	handle_error(t_err err);
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/group_tools/*.c
@@ -110,5 +108,11 @@ int			group_size(t_dl_node *ori_node);
 bool		group_already_sorted(t_dl_node *node);
 t_dl_node	*max_non_green_group(t_dl_node *stack_a);
 t_dl_node	*group_memb_last(t_dl_node *node_of_group);
+
+////////////////////////////////////////////////////////////////////////////////
+// src/trivide/*.c
+////////////////////////////////////////////////////////////////////////////////
+void	trivide_top_group(t_dl_node* node, t_dl_node **stack);
+void	trivide_end_group(t_dl_node* node, t_dl_node **stack);
 
 #endif
