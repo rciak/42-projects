@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/29 14:48:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 09:40:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "libft.h"
 #include "push_swap.h"
+#include <stdbool.h>
 
 static bool	all__marked_green(t_dl_node **stack);
 
@@ -62,7 +63,19 @@ void	big_size_algo(t_dl_node **stack)
 
 static bool	all__marked_green(t_dl_node **stack)
 {
+	t_dl_node	*node;
+
 	if (stack[B] != NULL)
 		return (false);
-	//TODO: if everything on Stack a is marked green
+	if (stack[A] == NULL)
+		return (true);
+	node = stack[A];
+	if (((t_ps_obj*)node->obj)->is_green == false)
+		return (false);
+	while (node->next != stack[A])
+	{
+		if (((t_ps_obj*)node->obj)->is_green == false)
+			return (false);
+	}
+	return (true);
 }
