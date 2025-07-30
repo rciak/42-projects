@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 14:58:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 18:57:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ enum e_miscellaneous
 {
 	MAX_SIZE_DIRECT_SORT = 5,
 	SMALLER_THAN_ANY_GOAL = INT_MIN
+};
+
+/**
+ * @warning The enumaration of the below names **must** be 0, 1, 2, ...
+ *          since they are **used as index** for arrays,
+ *          defined in set__markers_subgroups(), cf. big_size_algo() !
+ */
+enum e_subgroup
+{
+	LEAVER_1 = 0,
+	LEAVER_2 = 1,
+	STAYER = 2
 };
 
 /**
