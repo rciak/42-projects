@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 08:52:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 10:11:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ enum e_push_swap_errors
 	ERR_ARG_NUM = 1,
 	ERR_ARGV = 2,
 	ERR_DUPLICATE = 3,
-	ERR_MALLOC = 4
+	ERR_MALLOC = 4,
+	ERR_LOGIC = 5
 };
 
 typedef struct s_err

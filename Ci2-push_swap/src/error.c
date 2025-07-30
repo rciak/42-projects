@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:30:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 11:18:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 10:16:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_err	error(enum e_push_swap_errors error_code)
 		GREEN" - Only integers (of type int) are allowed, appearing only once."
 		RESET},
 	{ERR_DUPLICATE, "push_swap:" RED"Duplicate detected"RESET},
-	{ERR_MALLOC, "push_swap:" RED" Memory allocation failed"RESET}
+	{ERR_MALLOC, "push_swap:" RED" Memory allocation failed"RESET},
+	{ERR_LOGIC, RED"push_swap: logic is flawed or wrongly implemented"RESET}
 	};
 
 	return (err[error_code]);
