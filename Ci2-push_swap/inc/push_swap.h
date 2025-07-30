@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 10:11:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 11:15:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ void		update_group(t_dl_node *stack_a);
 int			group_size(t_dl_node *ori_node);
 bool		group_already_sorted(t_dl_node *node);
 t_dl_node	*max_non_green_group(t_dl_node *stack_a);
+t_dl_node	*group_memb_last(t_dl_node *node_of_group);
 
 #endif
