@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 11:03:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 12:01:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,20 @@ static bool	all__marked_green(t_dl_node **stack)
 static void	trivide(t_dl_node** boundary_group, t_dl_node **stack)
 {
 	t_dl_node*	last;
+	t_dl_node*	new_wbg;
 
+	update_group(*boundary_group); //Should not be neccessary: Try out to comment if everything works
+	set_group_markers(*boundary_group);
+	new_wbg = new_wanna_be_green(*boundary_group);
 	last = group_memb_last(*boundary_group);
 	if (*boundary_group == stack[A] || *boundary_group == stack[B])
-		trivide_top_group(boundary_group, stack);
+		trivide_top_group(*boundary_group, stack);
 	else if (last == stack[A]->prev || last == stack[B]->prev)
-		trivide_end_group(boundary_group, stack);
+		trivide_end_group(*boundary_group, stack);
 	else
 	{
 		handle_error(error(ERR_LOGIC));
 		exit (ERR_LOGIC);
 	};
+	*boundary_group = new_wbg;
 }
