@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 08:54:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 09:12:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@
  *        The maximal of these "non green" groups is the one
  *        whose numbers are all bigger than the numbers of the
  *        other "non-green" groups, cf. big_size_algo()
- * @note This functions is designed to be applied to stack[A]
+ * @note This functions was orignally designed to be applied to stack[A]
  *       (any node of stack a).
- *       Calling it with stack[B] is not intended.
+ *       Calling it with stack[B] might work though for picking
+ *       the smallest group since pushing changes the sign...
  * @warning This function expects a doubly linked list in **circular**
  *          form!
  * @param[in] stack_a a pointer to a node of stack[A], being in
@@ -45,7 +46,7 @@ t_dl_node *max_non_green_group(t_dl_node *stack_a)
 	t_dl_node	*node;
 	t_ps_obj	*obj;
 
-	if (stack_a = NULL)
+	if (stack_a == NULL)
 		return (NULL);
 	best_so_far = NULL;
 	node = stack_a;
