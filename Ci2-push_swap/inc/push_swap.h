@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/29 16:11:20 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 08:52:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,23 @@
 # include <stdbool.h>
 # include "libft.h"
 
+/**
+ * @note @c SMALLER_THAN_ANY_GOAL would no longer rightly bear its name
+ *       in the theoretical case that push swap is given at least
+ *       @c -INT_MIN numbers as arguments. The implementation would
+ *       theoretically indeed fail anyway for such an amout of parameters;
+ *       so that there is no use to consider an alternative approaches via
+ *       @code # define	SMALLER_THAN_ANY_GOAL ((long long)INT_MIN - 1) @endcode
+ *       and corresponding addoptions in e.g. max_non_green_group().
+ * @note Note also that setting @c SMALLER_THAN_ANY_GOAL to @c 0 would be
+ *       fine when working on `stack a` but not when working on `stack_b` since
+ *       there the goal numbers are negative due the multiplication with -1
+ *       when pushing a number / node to the other stack.
+ */
 enum e_miscellaneous
 {
-	MAX_SIZE_DIRECT_SORT = 5
+	MAX_SIZE_DIRECT_SORT = 5,
+	SMALLER_THAN_ANY_GOAL = INT_MIN
 };
 
 /**

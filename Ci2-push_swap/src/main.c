@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/29 17:22:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 09:02:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ static bool	is__duplicate(int nbr, t_dl_node *stack_a);
 static bool	add__to_stack_a(int nbr, t_dl_node **stack_a);
 static void	init__other_vars(t_dl_node *stack_a, int argc);
 
+/**
+ * @note For practical sizes of input the program should work.
+ *       Analysis of the code shows that it will fail if at least`-INT_MIN`
+ *       parameters arre given - but being typically  2 147 483 648
+ *       this is many order of magnitudes beyond the scope of the project...
+ */
 int	main(int argc, char **argv)
 {
 	t_err		err;
