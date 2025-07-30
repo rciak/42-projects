@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 12:01:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/30 15:01:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <stdbool.h>
 
 static bool	all__marked_green(t_dl_node **stack);
-static void	trivide(t_dl_node** boundary_group, t_dl_node **stack);
+static void	tri__vide(t_dl_node** boundary_group, t_dl_node **stack);
 
 /**
  * @brief The main algorithm which is based on repeating the following idea:
@@ -43,7 +43,7 @@ void	big_size_algo(t_dl_node **stack)
 		while (wanna_be_green != NULL)
 		{
 			while (group_size(wanna_be_green) > MAX_SIZE_DIRECT_SORT)
-				trivide(&wanna_be_green, stack);
+				tri__vide(&wanna_be_green, stack);
 			join_green_directsort(&wanna_be_green, stack);
 			wanna_be_green = max_non_green_group(stack[A]);
 		}
@@ -56,7 +56,7 @@ void	big_size_algo(t_dl_node **stack)
 			wanna_be_green = quasi_max_group(stack[B]);
 		}
 		if (wanna_be_green != NULL)
-			trivide(&wanna_be_green, stack);
+			tri__vide(&wanna_be_green, stack);
 	}
 	//TODO: rotate till the smallest number is on top - theoretically there
 	//should be no need to do that, but who knows if I overlooked something ...
@@ -81,14 +81,14 @@ static bool	all__marked_green(t_dl_node **stack)
 	return (true);
 }
 
-static void	trivide(t_dl_node** boundary_group, t_dl_node **stack)
+static void	tri__vide(t_dl_node** boundary_group, t_dl_node **stack)
 {
 	t_dl_node*	last;
 	t_dl_node*	new_wbg;
 
-	update_group(*boundary_group); //Should not be neccessary: Try out to comment if everything works
-	set_group_markers(*boundary_group);
-	new_wbg = new_wanna_be_green(*boundary_group);
+	update_group(*boundary_group);
+	set__group_markers(*boundary_group);
+	new_wbg = new__wanna_be_green(*boundary_group);
 	last = group_memb_last(*boundary_group);
 	if (*boundary_group == stack[A] || *boundary_group == stack[B])
 		trivide_top_group(*boundary_group, stack);
