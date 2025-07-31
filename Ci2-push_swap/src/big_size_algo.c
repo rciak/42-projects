@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 09:39:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 12:06:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 
 static bool	all__marked_green(t_dl_node **stack);
 static void	tri__vide(t_dl_node **boundary_group, t_dl_node **stack);
-static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb);
-static void	detect___hits_of_subgroups(
-				t_dl_node **first_hit,
-				t_dl_node **last_hit,
-				t_dl_node *non_trivided,
-				int *outside);
 
 /**
  * @brief The main algorithm which is based on repeating the following idea:
@@ -86,6 +80,21 @@ static bool	all__marked_green(t_dl_node **stack)
 	}
 	return (true);
 }
+
+// @POLISHING and norminetting: ----------------------------------------------------
+// Consider the following thoughts:
+//  1) Put trivide and static helper in its own file?
+//  2) tri__vide --> tri_vide  (static --> non static)
+//  3) ___ --> __ for helper of tri_vide
+
+
+static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb);
+static void	detect___hits_of_subgroups(
+				t_dl_node **first_hit,
+				t_dl_node **last_hit,
+				t_dl_node *non_trivided,
+				int *outside);
+static void	remove___group_markers(t_dl_node *non_trivided);
 
 static void	tri__vide(t_dl_node **boundary_group, t_dl_node **stack)
 {
@@ -147,7 +156,7 @@ static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb)
 	outside[STAYER] = s - (s + 2) / 3;
 	outside[3] = s;
 	detect___hits_of_subgroups(first_hit, last_hit, non_trivided, outside);
-	remove_group_markers(non_trivided);
+	remove___group_markers(non_trivided);
 	((t_ps_obj *) first_hit[STAYER]->obj)->group.starts = true;
 	((t_ps_obj *) last_hit[STAYER]->obj)->group.ends = true;
 	((t_ps_obj *) first_hit[LEAVER_1]->obj)->group.ends = true;
@@ -186,4 +195,27 @@ static void	detect___hits_of_subgroups(
 		non_trivided = non_trivided->next;
 		i++;
 	}
+}
+
+static void	remove___group_markers(t_dl_node *non_trivided)
+{
+	int			size;
+
+	if (((t_ps_obj *)non_trivided->obj)->group.starts == false)
+		h_err_exit(error(ERR_LOGIC),"remove___group_markers"
+			"(group.starts was unset)");
+	size = ((t_ps_obj *)non_trivided->obj)->group.size;
+	while (size > 1)
+	{
+		((t_ps_obj *)non_trivided->obj)->group.starts = false;
+		((t_ps_obj *)non_trivided->obj)->group.ends = false;
+		non_trivided = non_trivided->next;
+		size--;
+	}
+	if (obj->group.ends == false)
+		h_err_exit(error(ERR_LOGIC),"remove___group_markers"
+			"(group.ends was unset)");
+	((t_ps_obj *)non_trivided->obj)->group.starts = false;
+	((t_ps_obj *)non_trivided->obj)->group.ends = false;
+
 }
