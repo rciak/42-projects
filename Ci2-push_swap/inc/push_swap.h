@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 10:34:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 11:46:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int		main(int argc, char **argv);
 void	big_size_algo(t_dl_node **stack);
 t_err	error(enum e_push_swap_errors error_code);
 void	handle_error(t_err err, char *by_caller);
+void	h_err_exit(t_err err, char *by_caller);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/group_tools/*.c

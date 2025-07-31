@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:30:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 11:09:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 11:46:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,10 @@ void	handle_error(t_err err, char *by_caller)
 	ft_putstr_fd("\nCode: ", STDERR_FILENO);
 	ft_putnbr_fd(err.code, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
+}
+
+void	h_err_exit(t_err err, char *by_caller)
+{
+	handle_error(t_err err, char *by_caller);
+	exit (err.code);
 }
