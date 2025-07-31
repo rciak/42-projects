@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 12:25:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 15:02:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void		update_group(t_dl_node *stack_a);
 ////////////////////////////////////////////////////////////////////////////////
 // src/trivide/*.c
 ////////////////////////////////////////////////////////////////////////////////
+void	trivide(t_dl_node **boundary_group, t_dl_node **stack);
 void	trivide_top_group(t_dl_node* node, t_dl_node **stack);
 void	trivide_end_group(t_dl_node* node, t_dl_node **stack);
 
