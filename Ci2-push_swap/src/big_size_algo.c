@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 19:59:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 09:39:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static bool	all__marked_green(t_dl_node **stack);
 static void	tri__vide(t_dl_node **boundary_group, t_dl_node **stack);
 static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb);
 static void	detect___hits_of_subgroups(
-				t_dl_node *first_hit,
-				t_dl_node *last_hit,
+				t_dl_node **first_hit,
+				t_dl_node **last_hit,
 				t_dl_node *non_trivided,
 				int *outside);
 
@@ -160,30 +160,30 @@ static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb)
 		*new_wb = last_hit[LEAVER_1];
 }
 
-static void	detect___hits_of_subgroups(  //////////// BETTER redo with fresh head !!!
-	t_dl_node *first_hit,
-	t_dl_node *last_hit,
+static void	detect___hits_of_subgroups(
+	t_dl_node **first_hit,
+	t_dl_node **last_hit,
 	t_dl_node *non_trivided,
 	int *outside)
 {
 	int	i;
-	int	r;
 	int	j;
-
+	int	r;
+	
 	i = 0;
-	while (i < ((t_ps_obj *)to_be_trivided->obj)->group.size)
+	while (i < ((t_ps_obj *)non_trivided->obj)->group.size)
 	{
 		j = 0;
 		while (j < 3)
 		{
-			r = ((t_ps_obj *)to_be_trivided->obj)->group.rank;
-			if (bound[j] < r && r <= bound[j + 1] && first_hit[j] != NULL)
-				first_hit[j] = to_be_trivided;
-			if (bound[j] < r && r <= bound[j + 1])
-				last_hit[j] = to_be_trivided;
+			r = ((t_ps_obj *)non_trivided->obj)->group.rank;
+			if (outside[j] < r && r <= outside[j + 1] && first_hit[j] == NULL)
+				first_hit[j] = non_trivided;
+			if (outside[j] < r && r <= outside[j + 1])
+				last_hit[j] = non_trivided;
 			j++;
 		}
-		to_be_trivided = to_be_trivided->next;
+		non_trivided = non_trivided->next;
 		i++;
 	}
 }
