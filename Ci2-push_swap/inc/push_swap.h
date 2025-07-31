@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 18:57:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 10:34:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,12 @@ void	handle_error(t_err err);
 ////////////////////////////////////////////////////////////////////////////////
 // src/group_tools/*.c
 ////////////////////////////////////////////////////////////////////////////////
-void		update_group(t_dl_node *stack_a);
-int			group_size(t_dl_node *ori_node);
+
 bool		group_already_sorted(t_dl_node *node);
-t_dl_node	*max_non_green_group(t_dl_node *stack_a);
 t_dl_node	*group_memb_last(t_dl_node *node_of_group);
+int			group_size(t_dl_node *ori_node);
+t_dl_node	*max_non_green_group(t_dl_node *stack_a);
+void		update_group(t_dl_node *stack_a);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/trivide/*.c
