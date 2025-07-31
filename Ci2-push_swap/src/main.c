@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 09:02:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 11:14:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ return (ERR_NONE);
 	return (ERR_NONE);
 }
 
+
+// More checks are needed, the following input should also raiser errors. .......
+// ./manual_test_push_swap '2 1'  (or handle it with split?)
+// ./manual_test_push_swap 2j
+// ./manual_test_push_swap 2
 static bool init__stacks(int argc, char **argv, t_dl_node **stack, t_err *err)
 {
 	t_libft_err	atoi_code;
