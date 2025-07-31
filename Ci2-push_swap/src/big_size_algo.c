@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 12:20:24 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 12:39:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ static void	remove___group_markers(t_dl_node *non_trivided)
 		non_trivided = non_trivided->next;
 		size--;
 	}
-	if (obj->group.ends == false)
+	if (((t_ps_obj *)non_trivided->obj)->group.ends == false)
 		h_err_exit(error(ERR_LOGIC),"remove___group_markers"
 			"(group.ends was unset)");
 	((t_ps_obj *)non_trivided->obj)->group.starts = false;
