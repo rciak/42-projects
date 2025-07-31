@@ -110,7 +110,7 @@ typedef struct s_push_swap_obj
 int		main(int argc, char **argv);
 void	big_size_algo(t_dl_node **stack);
 t_err	error(enum e_push_swap_errors error_code);
-void	handle_error(t_err err);
+void	handle_error(t_err err, char *by_caller);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/group_tools/*.c

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 12:51:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 10:50:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@
 # define RESET "\033[0m"
 # define RED "\033[31m"
 # define GREEN "\033[32m"
-# define YELLOW "\033[33m]"
+# define YELLOW "\033[33m"
+# define BLUE "\033[34m"
+# define CYAN "\033[36m"
 
 typedef enum e_libft_err
 {
