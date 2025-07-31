@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	stack[A] = NULL;
 	stack[B] = NULL;
 	if (!init__stacks(argc, argv, stack, &err))
-		return (handle_error(err), err.code);
+		return (handle_error(err, "main"), err.code);
 	if (group_already_sorted(stack[A]))
 		return (ERR_NONE);
 /*
