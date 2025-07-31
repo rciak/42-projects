@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 12:06:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/07/31 12:20:24 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb)
 	((t_ps_obj *) last_hit[LEAVER_1]->obj)->group.starts = true;
 	((t_ps_obj *) first_hit[LEAVER_2]->obj)->group.ends = true;
 	((t_ps_obj *) last_hit[LEAVER_2]->obj)->group.starts = true;
-	if (is_on_stack_a(non_trivided))
+	if (is_on_a(non_trivided))
 		*new_wb = first_hit[STAYER];
 	else
 		*new_wb = last_hit[LEAVER_1];
