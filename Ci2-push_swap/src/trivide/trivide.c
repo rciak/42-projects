@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:02:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 15:33:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 08:59:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	trivide(t_dl_node **boundary_group, t_dl_node **stack)
 		trivide_end_group(*boundary_group, stack);
 	else
 	{
-		handle_error(error(ERR_LOGIC));
+		handle_error(error(ERR_LOGIC), "trivide");
 		exit (ERR_LOGIC);
 	}
 	*boundary_group = new_wanna_be_green;
