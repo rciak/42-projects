@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 15:54:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 18:07:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,7 @@ void	trivide_end_group(t_dl_node* node, t_dl_node **stack);
 // src/join_green_directsort/*.c
 ////////////////////////////////////////////////////////////////////////////////
 void	join_green_directsort(t_dl_node *wanna_be_green, t_dl_node **stack);
+void	join_green_size_1(t_dl_node *group, t_dl_node **stack);
+void	join_green_size_2(t_dl_node *group, t_dl_node **stack);
 
 #endif
