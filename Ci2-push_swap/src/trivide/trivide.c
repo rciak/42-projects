@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:02:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 14:45:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 15:09:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 #include "push_swap.h"
 
-static void *mark_subgroups_in_top(t_dl_node *non_trivided);
-static void *mark_subgroups_in_end(t_dl_node *non_trivided);
+static void mark_subgroups_in_top(t_dl_node *non_trivided);
+static void mark_subgroups_in_end(t_dl_node *non_trivided);
 static void	detect___hits_of_subgroups(
 				t_dl_node **first_hit,
 				t_dl_node **last_hit,
@@ -42,18 +42,17 @@ static void	remove___group_markers(t_dl_node *non_trivided);
 void	trivide(t_dl_node *boundary_group, t_dl_node **stack)
 {
 	t_dl_node	*last;
-	t_dl_node	*new_wanna_be_green;
 
 	update_group(boundary_group);
 	last = group_memb_last(boundary_group);
 	if (boundary_group == stack[A] || boundary_group == stack[B])
 	{
-		new_wanna_be_green = mark_subgroups_in_top(boundary_group);
+		mark_subgroups_in_top(boundary_group);
 		trivide_top_group(boundary_group, stack);
 	}
 	else if (last == stack[A]->prev || last == stack[B]->prev)
 	{
-		new_wanna_be_green = mark_subgroups_in_end(boundary_group);
+		mark_subgroups_in_end(boundary_group);
 		trivide_end_group(boundary_group, stack);
 	}
 	else
@@ -113,7 +112,7 @@ static void	mark_subgroups_in_top(t_dl_node *non_trivided)
 	((t_ps_obj *) last_hit[STAYER]->obj)->group.ends = true;
 }
 
-static void mark_subgroups_in_end(t_dl_node *non_trivided)
+static void	mark_subgroups_in_end(t_dl_node *non_trivided)
 {
 	t_dl_node	*first_hit[3];
 	t_dl_node	*last_hit[3];
