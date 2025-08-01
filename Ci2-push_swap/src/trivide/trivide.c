@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:02:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 08:59:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 14:45:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 #include "push_swap.h"
 
-static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb);
+static void *mark_subgroups_in_top(t_dl_node *non_trivided);
+static void *mark_subgroups_in_end(t_dl_node *non_trivided);
 static void	detect___hits_of_subgroups(
 				t_dl_node **first_hit,
 				t_dl_node **last_hit,
@@ -32,32 +33,34 @@ static void	remove___group_markers(t_dl_node *non_trivided);
           more than `MAX_SIZE_DIRECT_SORT` numbers).
  * @note The actual spliting is done by the functions @c trivide_top_group
  *       and @c trivide_end_group , respectively.
- * @param[in,out] boundary_group When comming in: The address of a pointer 
- *                               to the first node of either the top group
+ * @param[in,out] boundary_group A pointer 
+ *                               to the **first node** of either the top group
  *                               or end group (on any of the two stacks).
- *                               When returning: The address of the next
- *                               "wanna_be_green" group.
  * @param[in,out] stack A double pointer such that `stack[A]` and `stack[B]`
  *                      are pointers to stack a and stack b, respectively.
  */
-void	trivide(t_dl_node **boundary_group, t_dl_node **stack)
+void	trivide(t_dl_node *boundary_group, t_dl_node **stack)
 {
 	t_dl_node	*last;
 	t_dl_node	*new_wanna_be_green;
 
-	update_group(*boundary_group);
-	set__markers_subgroups(*boundary_group, &new_wanna_be_green);
-	last = group_memb_last(*boundary_group);
-	if (*boundary_group == stack[A] || *boundary_group == stack[B])
-		trivide_top_group(*boundary_group, stack);
+	update_group(boundary_group);
+	last = group_memb_last(boundary_group);
+	if (boundary_group == stack[A] || boundary_group == stack[B])
+	{
+		new_wanna_be_green = mark_subgroups_in_top(boundary_group);
+		trivide_top_group(boundary_group, stack);
+	}
 	else if (last == stack[A]->prev || last == stack[B]->prev)
-		trivide_end_group(*boundary_group, stack);
+	{
+		new_wanna_be_green = mark_subgroups_in_end(boundary_group);
+		trivide_end_group(boundary_group, stack);
+	}
 	else
 	{
 		handle_error(error(ERR_LOGIC), "trivide");
 		exit (ERR_LOGIC);
 	}
-	*boundary_group = new_wanna_be_green;
 }
 
 /**
@@ -73,19 +76,20 @@ void	trivide(t_dl_node **boundary_group, t_dl_node **stack)
  *       This fits to the variable values set inside the function
          @code 
            s = 7; 
-           outside[LEAVER_1] = 0
-           outside[LEAVER_2] = s / 3 = 7 / 3 = 2
+           outside[LEAVER_UP] = 0
+           outside[LEAVER_DOWN] = s / 3 = 7 / 3 = 2
            outside[STAYER]   = s - (s+2)/3 = 7 - 9/3 = 7 - 3 = 4
          @endcode
  *       Finally `outside[3] = s` fit into the picture
  *       when rewriting the above slightly:
          @code  
-           outside[LEAVER_1] == 0 < {2 1} <= 2 == outside[LEAVER_2]
-           outside[LEAVER_2] == 2 < {3 4} <= 4 == outside[STAYER]
+           outside[LEAVER_UP] == 0 < {2 1} <= 2 == outside[LEAVER_DOWN]
+           outside[LEAVER_DOWN] == 2 < {3 4} <= 4 == outside[STAYER]
            outside[STAYER]   == 4 < {6 5 7} (<= 7 == outside[3])
          @endcode
+ *
  */
-static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb)
+static void	mark_subgroups_in_top(t_dl_node *non_trivided)
 {
 	t_dl_node	*first_hit[3];
 	t_dl_node	*last_hit[3];
@@ -95,22 +99,42 @@ static void	set__markers_subgroups(t_dl_node *non_trivided, t_dl_node **new_wb)
 	ft_bzero(first_hit, sizeof(first_hit));
 	ft_bzero(last_hit, sizeof(last_hit));
 	s = ((t_ps_obj *) non_trivided->obj)->group.size;
-	outside[LEAVER_1] = 0;
-	outside[LEAVER_2] = s / 3;
+	outside[LEAVER_UP] = 0;
+	outside[LEAVER_DOWN] = s / 3;
 	outside[STAYER] = s - (s + 2) / 3;
 	outside[3] = s;
 	detect___hits_of_subgroups(first_hit, last_hit, non_trivided, outside);
 	remove___group_markers(non_trivided);
+	((t_ps_obj *) first_hit[LEAVER_UP]->obj)->group.ends = true;
+	((t_ps_obj *) last_hit[LEAVER_UP]->obj)->group.starts = true;
+	((t_ps_obj *) first_hit[LEAVER_DOWN]->obj)->group.starts = true;
+	((t_ps_obj *) last_hit[LEAVER_DOWN]->obj)->group.ends = true;
 	((t_ps_obj *) first_hit[STAYER]->obj)->group.starts = true;
 	((t_ps_obj *) last_hit[STAYER]->obj)->group.ends = true;
-	((t_ps_obj *) first_hit[LEAVER_1]->obj)->group.ends = true;
-	((t_ps_obj *) last_hit[LEAVER_1]->obj)->group.starts = true;
-	((t_ps_obj *) first_hit[LEAVER_2]->obj)->group.ends = true;
-	((t_ps_obj *) last_hit[LEAVER_2]->obj)->group.starts = true;
-	if (is_on_a(non_trivided))
-		*new_wb = first_hit[STAYER];
-	else
-		*new_wb = last_hit[LEAVER_1];
+}
+
+static void mark_subgroups_in_end(t_dl_node *non_trivided)
+{
+	t_dl_node	*first_hit[3];
+	t_dl_node	*last_hit[3];
+	int			outside[4];
+	int			s;
+
+	ft_bzero(first_hit, sizeof(first_hit));
+	ft_bzero(last_hit, sizeof(last_hit));
+	s = ((t_ps_obj *) non_trivided->obj)->group.size;
+	outside[LEAVER_UP] = 0;
+	outside[LEAVER_DOWN] = s / 3;
+	outside[STAYER] = s - (s + 2) / 3;
+	outside[3] = s;
+	detect___hits_of_subgroups(first_hit, last_hit, non_trivided, outside);
+	remove___group_markers(non_trivided);
+	((t_ps_obj *) first_hit[LEAVER_UP]->obj)->group.starts = true;
+	((t_ps_obj *) last_hit[LEAVER_UP]->obj)->group.ends = true;
+	((t_ps_obj *) first_hit[LEAVER_DOWN]->obj)->group.ends = true;
+	((t_ps_obj *) last_hit[LEAVER_DOWN]->obj)->group.starts = true;
+	((t_ps_obj *) first_hit[STAYER]->obj)->group.starts = true;
+	((t_ps_obj *) last_hit[STAYER]->obj)->group.ends = true;
 }
 
 static void	detect___hits_of_subgroups(

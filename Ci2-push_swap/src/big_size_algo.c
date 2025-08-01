@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 15:29:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 15:02:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 #include <stdbool.h>
 
 static bool	all__marked_green(t_dl_node **stack);
-
+static void	act__on_a_till_green(t_dl_node **stack);
+static void	extend__green_area_by_small_groups_from_b(t_dl_node **stack);
 
 /**
  * @brief The main algorithm which is based on repeating the following idea:
@@ -35,31 +36,15 @@ static bool	all__marked_green(t_dl_node **stack);
  */
 void	big_size_algo(t_dl_node **stack)
 {
-	t_dl_node	*wanna_be_green;
-
 	while (!all__marked_green(stack))
 	{
-		wanna_be_green = max_non_green_group(stack[A]);
-		while (wanna_be_green != NULL)
-		{
-			while (group_size(wanna_be_green) > MAX_SIZE_DIRECT_SORT)
-				trivide(&wanna_be_green, stack);
-			join_green_directsort(&wanna_be_green, stack);
-			wanna_be_green = max_non_green_group(stack[A]);
-		}
-//TODO: Manual testing: Only "green" numbers left on stack A at this moment?
-		wanna_be_green = quasi_max_group(stack[B]);
-		while (group_size(wanna_be_green) <= MAX_SIZE_DIRECT_SORT
-			&& wanna_be_green != NULL)
-		{
-			join_green_directsort(&wanna_be_green, stack);
-			wanna_be_green = quasi_max_group(stack[B]);
-		}
-		if (wanna_be_green != NULL)
-			trivide(&wanna_be_green, stack);
+		act__on_a_till_green(stack); //Manual testing: Only "green" numbers left on stack A afterwards?
+		extend__green_area_by_small_groups_from_b(stack);
+		if (stack[B] != NULL)
+			trivide(truly_max_group(stack[B]), stack);
 	}
 	//TODO: rotate till the smallest number is on top - theoretically there
-	//should be no need to do that, but who knows if I overlooked something ...
+	//should be no need to do that, but who knows if I overlooked something ......
 }
 
 static bool	all__marked_green(t_dl_node **stack)
@@ -79,4 +64,34 @@ static bool	all__marked_green(t_dl_node **stack)
 			return (false);
 	}
 	return (true);
+}
+
+static void	act__on_a_till_green(t_dl_node **stack)
+{
+	t_dl_node	*wanna_be_green;
+
+	wanna_be_green = max_non_green_group(stack[A]);
+	while (wanna_be_green != NULL)
+	{
+		while (group_size(wanna_be_green) > MAX_SIZE_DIRECT_SORT)
+		{
+			trivide(wanna_be_green, stack);
+			wanna_be_green = max_non_green_group(stack[A]);
+		}
+		join_green_directsort(wanna_be_green, stack);
+		wanna_be_green = max_non_green_group(stack[A]);
+	}
+}
+
+static void	extend__green_area_by_small_groups_from_b(t_dl_node **stack)
+{
+	t_dl_node	*wanna_be_green;
+
+	wanna_be_green = truly_max_group(stack[B]);
+	while (group_size(wanna_be_green) <= MAX_SIZE_DIRECT_SORT
+		&& wanna_be_green != NULL)
+	{
+		join_green_directsort(wanna_be_green, stack);
+		wanna_be_green = truly_max_group(stack[B]);
+	}
 }

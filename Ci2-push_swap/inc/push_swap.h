@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 15:02:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 14:50:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,16 @@ enum e_miscellaneous
  * @warning The enumaration of the below names **must** be 0, 1, 2, ...
  *          since they are **used as index** for arrays,
  *          defined in set__markers_subgroups(), cf. big_size_algo() !
+ * @note `STAYER` indicates those subgroup (created by trivide()) that will
+ *       stay on the same stack as the original group, while
+ *       `LEAVER_UP` and `LEAVER_DOWN`, respectively, refers to the subgroups
+ *       that will become the other stack's new top group and end group,
+ *       respectively.
  */
 enum e_subgroup
 {
-	LEAVER_1 = 0,
-	LEAVER_2 = 1,
+	LEAVER_UP = 0,
+	LEAVER_DOWN = 1,
 	STAYER = 2
 };
 
@@ -127,8 +132,13 @@ void		update_group(t_dl_node *stack_a);
 ////////////////////////////////////////////////////////////////////////////////
 // src/trivide/*.c
 ////////////////////////////////////////////////////////////////////////////////
-void	trivide(t_dl_node **boundary_group, t_dl_node **stack);
+void	trivide(t_dl_node *boundary_group, t_dl_node **stack);
 void	trivide_top_group(t_dl_node* node, t_dl_node **stack);
 void	trivide_end_group(t_dl_node* node, t_dl_node **stack);
+
+////////////////////////////////////////////////////////////////////////////////
+// src/join_green_directsort/*.c
+////////////////////////////////////////////////////////////////////////////////
+void	join_green_directsort(t_dl_node *wanna_be_green, t_dl_node **stack);
 
 #endif
