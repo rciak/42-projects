@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 17:37:50 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 18:20:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 18:32:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,21 @@ void	join_green_size_1(t_dl_node *group, t_dl_node **stack)
 
 static void	sortin__a_top(t_dl_node **stack)
 {
-
+	(void) stack;
 }
 
 static void	sortin__a_end(t_dl_node **stack)
 {
-
+	rra(stack);
 }
 
 static void	sortin__b_top(t_dl_node **stack)
 {
-
+	pa(stack);
 }
 
 static void	sortin__b_end(t_dl_node **stack)
 {
-
+	rrb(stack);
+	pa(stack);
 }
