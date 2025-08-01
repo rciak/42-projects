@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:02:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 16:59:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 17:55:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ void	trivide(t_dl_node *boundary_group, t_dl_node **stack)
 		trivide_end_group(boundary_group, stack);
 	}
 	else
-	{
-		handle_error(error(ERR_LOGIC), "trivide");
-		exit (ERR_LOGIC);
-	}
+		h_err_exit(error(ERR_LOGIC), "trivide (unexpected state)");
 	update_group(subgroup[0]);
 	update_group(subgroup[1]);
 	update_group(subgroup[2]);
