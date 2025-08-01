@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 20:39:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 17:31:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 17:49:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static void	mark__group_as_green(t_dl_node *soon_green);
  * @brief Sort the prepared group (of `size <= MAX_SIZE_DIRECT_SORT`),
  *        put the sorted group in front of the "green" area on stack `a` and
  *        add it by marking it as green.
+ * @note By construction of the algorithm this function will be handed
+ *       over a group that is the top group or bottom group of stack A or B and 
+ *       thus close to the green area; more precise:
  * @note The position of the "soon_green" group `S` and the 
  *       already green area `G` is one of the following 
  *       (Bottom leftmost, Top rightmost; (ANY) means anything 
