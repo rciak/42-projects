@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:02:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 15:09:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 16:59:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 #include "push_swap.h"
 
-static void mark_subgroups_in_top(t_dl_node *non_trivided);
-static void mark_subgroups_in_end(t_dl_node *non_trivided);
+static void	mark_subgroups_in_top(t_dl_node *non_trivided, t_dl_node **subgrp);
+static void	mark_subgroups_in_end(t_dl_node *non_trivided, t_dl_node **subgrp);
 static void	detect___hits_of_subgroups(
 				t_dl_node **first_hit,
 				t_dl_node **last_hit,
@@ -42,17 +42,18 @@ static void	remove___group_markers(t_dl_node *non_trivided);
 void	trivide(t_dl_node *boundary_group, t_dl_node **stack)
 {
 	t_dl_node	*last;
+	t_dl_node	*subgroup[3];
 
-	update_group(boundary_group);
+	update_group(boundary_group);   //---------------------------------------------try to omit
 	last = group_memb_last(boundary_group);
 	if (boundary_group == stack[A] || boundary_group == stack[B])
 	{
-		mark_subgroups_in_top(boundary_group);
+		mark_subgroups_in_top(boundary_group, subgroup);
 		trivide_top_group(boundary_group, stack);
 	}
 	else if (last == stack[A]->prev || last == stack[B]->prev)
 	{
-		mark_subgroups_in_end(boundary_group);
+		mark_subgroups_in_end(boundary_group, subgroup);
 		trivide_end_group(boundary_group, stack);
 	}
 	else
@@ -60,6 +61,9 @@ void	trivide(t_dl_node *boundary_group, t_dl_node **stack)
 		handle_error(error(ERR_LOGIC), "trivide");
 		exit (ERR_LOGIC);
 	}
+	update_group(subgroup[0]);
+	update_group(subgroup[1]);
+	update_group(subgroup[2]);
 }
 
 /**
@@ -88,12 +92,13 @@ void	trivide(t_dl_node *boundary_group, t_dl_node **stack)
          @endcode
  *
  */
-static void	mark_subgroups_in_top(t_dl_node *non_trivided)
+static void	mark_subgroups_in_top(t_dl_node *non_trivided, t_dl_node **subgrp)
 {
 	t_dl_node	*first_hit[3];
 	t_dl_node	*last_hit[3];
 	int			outside[4];
 	int			s;
+	t_dl_node	*subgroup[3];
 
 	ft_bzero(first_hit, sizeof(first_hit));
 	ft_bzero(last_hit, sizeof(last_hit));
@@ -110,14 +115,18 @@ static void	mark_subgroups_in_top(t_dl_node *non_trivided)
 	((t_ps_obj *) last_hit[LEAVER_DOWN]->obj)->group.ends = true;
 	((t_ps_obj *) first_hit[STAYER]->obj)->group.starts = true;
 	((t_ps_obj *) last_hit[STAYER]->obj)->group.ends = true;
+	subgroup[0] = last_hit[LEAVER_UP];
+	subgroup[1] = first_hit[LEAVER_DOWN];
+	subgroup[2] = first_hit[STAYER];
 }
 
-static void	mark_subgroups_in_end(t_dl_node *non_trivided)
+static void	mark_subgroups_in_end(t_dl_node *non_trivided, t_dl_node **subgrp)
 {
 	t_dl_node	*first_hit[3];
 	t_dl_node	*last_hit[3];
 	int			outside[4];
 	int			s;
+	t_dl_node	*subgroup[3];
 
 	ft_bzero(first_hit, sizeof(first_hit));
 	ft_bzero(last_hit, sizeof(last_hit));
@@ -134,6 +143,9 @@ static void	mark_subgroups_in_end(t_dl_node *non_trivided)
 	((t_ps_obj *) last_hit[LEAVER_DOWN]->obj)->group.starts = true;
 	((t_ps_obj *) first_hit[STAYER]->obj)->group.starts = true;
 	((t_ps_obj *) last_hit[STAYER]->obj)->group.ends = true;
+	subgroup[0] = first_hit[LEAVER_UP];
+	subgroup[1] = last_hit[LEAVER_DOWN];
+	subgroup[2] = first_hit[STAYER];
 }
 
 static void	detect___hits_of_subgroups(
