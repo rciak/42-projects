@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 09:12:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/01 15:40:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@
  *        other "non-green" groups, cf. big_size_algo()
  * @note This functions was orignally designed to be applied to stack[A]
  *       (any node of stack a).
- *       Calling it with stack[B] might work though for picking
- *       the smallest group since pushing changes the sign...
+ *       Calling it with stack[B] makes no sense since it would pick the
+ *       **smallest** group since pushing causes a sign change...
+ * @note For picking the **effectively maximal** group in **stack b**
+ *       the function `truly_max_group` should be used.
  * @warning This function expects a doubly linked list in **circular**
  *          form!
- * @param[in] stack_a a pointer to a node of stack[A], being in
- *            circular form.
+ * @param[in] stack_a a pointer to a node of stack[A], being in circular form.
  * @return
  *          * a pointer to the group that is maximal amongst the
  *            "non-green" groups, if any, or
@@ -61,7 +62,7 @@ t_dl_node *max_non_green_group(t_dl_node *stack_a)
 		}
 		node = node->next;
 	}
-	if (max == 0)
+	if (max == SMALLER_THAN_ANY_GOAL)
 		return (NULL);
 	while (((t_ps_obj*)best_so_far->obj)->group.starts != true)
 		best_so_far = best_so_far->prev;
