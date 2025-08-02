@@ -32,19 +32,19 @@ static	t_dl_node *settle__estate_on_ori_stack(t_dl_node *ori);
  */
 void	pb (t_dl_node **stack)
 {
-	t_dl_node	*dest;
-	t_dl_node	*ori;
+	int			dest;
+	int			ori;
 	t_dl_node	*future_ori;
 	
-	dest = stack[B];
-	ori = stack[A];
-	if (ori == NULL)
+	dest = B;
+	ori = A;
+	if (stack[ori] == NULL)
 		return ;
-	future_ori = settle__estate_on_ori_stack(ori);
-	if (dest == NULL)
+	future_ori = settle__estate_on_ori_stack(stack[ori]);
+	if (stack[dest] == NULL)
 	{
-		ori->next = ori;
-		ori->prev = ori;
+		stack[ori]->next = stack[ori];
+		stack[ori]->prev = stack[ori];
 	}
 	else
 	{
@@ -52,9 +52,9 @@ void	pb (t_dl_node **stack)
 		ori->prev = dest->prev;
 		ori->next->prev = ori;
 		ori->prev->next = ori;
-	}	
-	dest = ori;
-	ori = future_ori;
+	}
+	stack[dest] = stack[ori];
+	stack[ori] = future_ori;
 	ft_putstr_fd("pb\n", STDOUT_FILENO);
 }
 

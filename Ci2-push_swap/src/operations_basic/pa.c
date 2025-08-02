@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 09:51:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 12:34:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 14:58:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,29 @@ static	t_dl_node *settle__estate_on_ori_stack(t_dl_node *ori);
  */
 void	pa (t_dl_node **stack)
 {
-	t_dl_node	*dest;
-	t_dl_node	*ori;
+	int			dest;
+	int			ori;
 	t_dl_node	*future_ori;
 	
-	dest = stack[A];
-	ori = stack[B];
-	if (ori == NULL)
+	dest = A;
+	ori = B;
+	if (stack[ori] == NULL)
 		return ;
-	future_ori = settle__estate_on_ori_stack(ori);
-	if (dest == NULL)
+	future_ori = settle__estate_on_ori_stack(stack[ori]);
+	if (stack[dest] == NULL)
 	{
-		ori->next = ori;
-		ori->prev = ori;
+		stack[ori]->next = stack[ori];
+		stack[ori]->prev = stack[ori];
 	}
 	else
 	{
-		ori->next = dest;
-		ori->prev = dest->prev;
-		ori->next->prev = ori;
-		ori->prev->next = ori;
-	}	
-	dest = ori;
-	ori = future_ori;
+		stack[ori]->next = stack[dest];
+		stack[ori]->prev = stack[dest]->prev;
+		stack[ori]->next->prev = stack[ori];
+		stack[ori]->prev->next = stack[ori];
+	}
+	stack[dest] = stack[ori];
+	stack[ori] = future_ori;
 	ft_putstr_fd("pa\n", STDOUT_FILENO);
 }
 
