@@ -15,7 +15,6 @@
  * @brief Stores the definition of pa()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 static	t_dl_node *settle__estate_on_ori_stack(t_dl_node *ori);
