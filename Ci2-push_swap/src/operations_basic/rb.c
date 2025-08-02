@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:01:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 10:04:58 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 10:14:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@
 void	(t_dl_node **stack);
 void	(t_dl_node **stack)
 {
-	
+	ft_putstr_fd("\n", STDOUT_FILENO);
 }
