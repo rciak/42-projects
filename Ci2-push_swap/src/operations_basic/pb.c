@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:00:54 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 12:38:24 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 20:45:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	pb (t_dl_node **stack)
 	}
 	else
 	{
-		ori->next = dest;
-		ori->prev = dest->prev;
-		ori->next->prev = ori;
-		ori->prev->next = ori;
+		stack[ori]->next = stack[dest];
+		stack[ori]->prev = stack[dest]->prev;
+		stack[ori]->next->prev = stack[ori];
+		stack[ori]->prev->next = stack[ori];
 	}
 	stack[dest] = stack[ori];
 	stack[ori] = future_ori;
