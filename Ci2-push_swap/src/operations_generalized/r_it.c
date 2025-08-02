@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:04:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 22:48:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 23:00:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  *                       respectively, if any; an empty stack is indicated by
  *                       `NULL`.
  */
-void	r_it(t_dl_node *node, **stack)
+void	r_it(t_dl_node *node, t_dl_node **stack)
 {
 	if (is_on_a(node))
 		ra(stack);
