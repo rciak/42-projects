@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:02:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 17:55:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 23:13:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static void	mark_subgroups_in_top(t_dl_node *non_trivided, t_dl_node **subgrp)
 	t_dl_node	*last_hit[3];
 	int			outside[4];
 	int			s;
-	t_dl_node	*subgroup[3];
 
 	ft_bzero(first_hit, sizeof(first_hit));
 	ft_bzero(last_hit, sizeof(last_hit));
@@ -112,9 +111,9 @@ static void	mark_subgroups_in_top(t_dl_node *non_trivided, t_dl_node **subgrp)
 	((t_ps_obj *) last_hit[LEAVER_DOWN]->obj)->group.ends = true;
 	((t_ps_obj *) first_hit[STAYER]->obj)->group.starts = true;
 	((t_ps_obj *) last_hit[STAYER]->obj)->group.ends = true;
-	subgroup[0] = last_hit[LEAVER_UP];
-	subgroup[1] = first_hit[LEAVER_DOWN];
-	subgroup[2] = first_hit[STAYER];
+	subgrp[0] = last_hit[LEAVER_UP];
+	subgrp[1] = first_hit[LEAVER_DOWN];
+	subgrp[2] = first_hit[STAYER];
 }
 
 static void	mark_subgroups_in_end(t_dl_node *non_trivided, t_dl_node **subgrp)
@@ -123,7 +122,6 @@ static void	mark_subgroups_in_end(t_dl_node *non_trivided, t_dl_node **subgrp)
 	t_dl_node	*last_hit[3];
 	int			outside[4];
 	int			s;
-	t_dl_node	*subgroup[3];
 
 	ft_bzero(first_hit, sizeof(first_hit));
 	ft_bzero(last_hit, sizeof(last_hit));
@@ -140,9 +138,9 @@ static void	mark_subgroups_in_end(t_dl_node *non_trivided, t_dl_node **subgrp)
 	((t_ps_obj *) last_hit[LEAVER_DOWN]->obj)->group.starts = true;
 	((t_ps_obj *) first_hit[STAYER]->obj)->group.starts = true;
 	((t_ps_obj *) last_hit[STAYER]->obj)->group.ends = true;
-	subgroup[0] = first_hit[LEAVER_UP];
-	subgroup[1] = last_hit[LEAVER_DOWN];
-	subgroup[2] = first_hit[STAYER];
+	subgrp[0] = first_hit[LEAVER_UP];
+	subgrp[1] = last_hit[LEAVER_DOWN];
+	subgrp[2] = first_hit[STAYER];
 }
 
 static void	detect___hits_of_subgroups(

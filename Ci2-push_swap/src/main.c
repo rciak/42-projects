@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 11:14:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 23:06:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int	main(int argc, char **argv)
 	if (group_size(stack[A]) <= MAX_SIZE_DIRECT_SORT)
 		small_size_algo(stack);
 	else
-		big_size_algo(stack);
 */
+big_size_algo(stack);
+
 dl_lst_linearize(stack[A]); print_stacks(stack);
 return (ERR_NONE);
 	dl_lst_clear(&stack[A], free);
