@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 12:47:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 21:48:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,14 @@ void	join_green_size_2(t_dl_node *group, t_dl_node **stack);
 ////////////////////////////////////////////////////////////////////////////////
 void	pa (t_dl_node **stack);
 void	pb (t_dl_node **stack);
+void	ra(t_dl_node **stack);
+void	rb(t_dl_node **stack);
+void	rra(t_dl_node **stack);
+void	rrb(t_dl_node **stack);
+void	sa(t_dl_node **stack);
+void	sb(t_dl_node **stack);
+void	ss(t_dl_node **stack);
+bool	swap(t_dl_node **stack, int chosen);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/operations_generalized/*.c
