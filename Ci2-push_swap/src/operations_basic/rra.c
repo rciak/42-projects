@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:05:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 13:08:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 21:21:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "push_swap.h"
 
 /**
- * @brief Rotates stack `a` such that the last element becomes the first.
- *
+ * @brief Rotates stack `a` such that the last element becomes the first
+ *        and prints the instruction "rra" followed by a newline.
+ *        Does nothing if stack `a` is empty.
  * @param[in, out] stack stack[A] and stack[B], respectively, are pointers to 
  *                       the first node of stack `a` and stack `b`,
  *                       respectively, if any; an empty stack is indicated by
