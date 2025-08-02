@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 09:51:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 12:30:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 12:34:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	t_dl_node *settle__estate_on_ori_stack(t_dl_node *ori);
  * @brief push (to) a: Take the first element at the top of stack `b`
  *                     and put it at the top of stack `a` and
  *                     print the instruction "pa" followed by a newline.
- *                     Do nothing if b is empty.
+ *                     Do nothing if `b` is empty.
  *
  * @param[in, out] stack stack[A] and stack[B], respectively, are pointers to 
  *                       the first node of stack `a` and stack `b`,
