@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:30:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 11:46:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 23:02:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	handle_error(t_err err, char *by_caller)
 
 void	h_err_exit(t_err err, char *by_caller)
 {
-	handle_error(t_err err, char *by_caller);
+	handle_error(err, by_caller);
 	exit (err.code);
 }
