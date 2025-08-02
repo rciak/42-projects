@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:03:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 09:38:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 22:54:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	trivide_end_group(t_dl_node* node, t_dl_node **stack)
 	i = 0;
 	while (i < s)
 	{
-		rr_it(node, stack);
+		rev_r_it(node, stack);
 		r = ((t_ps_obj*)node->obj)->group.rank;
 		if (r <= s / 3)
 			p_it(node, stack);

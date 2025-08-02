@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 22:37:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 22:56:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,6 @@ bool	swap(t_dl_node **stack, int chosen);
 ////////////////////////////////////////////////////////////////////////////////
 void	p_it(t_dl_node *node, t_dl_node **stack);
 void	r_it(t_dl_node *node, t_dl_node **stack);
+void	rev_r_it(t_dl_node *node, t_dl_node **stack);
 
 #endif
