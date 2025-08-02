@@ -6,27 +6,29 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:01:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 10:14:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 12:54:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file 
- * @brief Stores the definition of ()
+ * @file ra.c
+ * @brief Stores the definition of ra()
  */
 
 #include "push_swap.h"
 
 /**
- * @brief 
+ * @brief Rotates stack `a` such that the first element becomes the last.
  *
  * @param[in, out] stack stack[A] and stack[B], respectively, are pointers to 
  *                       the first node of stack `a` and stack `b`,
  *                       respectively, if any; an empty stack is indicated by
  *                       `NULL`.
  */
-void	(t_dl_node **stack);
-void	(t_dl_node **stack)
+void	ra(t_dl_node **stack)
 {
-	ft_putstr_fd("\n", STDOUT_FILENO);
+	if (stack[A] == NULL)
+		return ;
+	stack[A] = stack[A]->next;
+	ft_putstr_fd("ra\n", STDOUT_FILENO);
 }
