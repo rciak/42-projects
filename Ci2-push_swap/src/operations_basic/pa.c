@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 09:51:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 12:28:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/02 12:30:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	pa (t_dl_node **stack)
 	}	
 	dest = ori;
 	ori = future_ori;
+	ft_putstr_fd("pa\n", STDOUT_FILENO);
 }
 
 static	t_dl_node *settle__estate_on_ori_stack(t_dl_node *ori)
