@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 22:56:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/04 17:02:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
  */
 enum e_miscellaneous
 {
+	GO_FOR_BIG_SIZE_ALGO = 6,
 	MAX_SIZE_DIRECT_SORT = 5,
 	SMALLER_THAN_ANY_GOAL = INT_MIN,
 	BIGGER_THAN_ANY_GOAL = INT_MAX
@@ -115,6 +116,7 @@ typedef struct s_push_swap_obj
 // src/*.c
 ////////////////////////////////////////////////////////////////////////////////
 int		main(int argc, char **argv);
+void	small_size_algo(t_dl_node **stack, int size);
 void	big_size_algo(t_dl_node **stack);
 t_err	error(enum e_push_swap_errors error_code);
 void	handle_error(t_err err, char *by_caller);

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 23:06:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/04 17:02:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 {
 	t_err		err;
 	t_dl_node	*stack[2];
+	int			size;
 
 	err = error(ERR_NONE);
 	stack[A] = NULL;
@@ -38,12 +39,11 @@ int	main(int argc, char **argv)
 		return (handle_error(err, "main"), err.code);
 	if (group_already_sorted(stack[A]))
 		return (ERR_NONE);
-/*
-	if (group_size(stack[A]) <= MAX_SIZE_DIRECT_SORT)
-		small_size_algo(stack);
+	size = group_size(stack[A]);
+	if (size < GO_FOR_BIG_SIZE_ALGO)
+		small_size_algo(stack, size);
 	else
-*/
-big_size_algo(stack);
+		big_size_algo(stack);
 
 dl_lst_linearize(stack[A]); print_stacks(stack);
 return (ERR_NONE);
