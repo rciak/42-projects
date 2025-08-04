@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/04 19:38:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/04 19:50:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	small_size_algo(t_dl_node **stack, int size)
 		h_err_exit(error(ERR_LOGIC),
 		"small_size_algo: stack[A] == NULL should have been treated before");
 	if (is_cyclic(stack[A]))
-		rotate__smallest_element_to_top(stack[A]);
+		rotate__smallest_element_to_top(stack);
 	else if (size == 3 && !is_cyclic(stack[A]))
 	{
 		sa(stack);
-		rotate__smallest_element_to_top(stack[A]);
+		rotate__smallest_element_to_top(stack);
 	}
 	else if (size == 4)
 		size__4_algo(stack);
@@ -67,7 +67,7 @@ static void	rotate__smallest_element_to_top(t_dl_node **stack)
 		while (i-- > 0)
 			ra(stack);
 	else
-		while (i-- > 0)
+		while (i++ < size)
 			rra(stack);
 }
 
