@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/04 19:04:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/04 19:38:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	rotate__smallest_element_to_top(t_dl_node **stack)
 	size = group_size(stack[A]);
 	i = 0;
 	node = stack[A];
-	while (((t_ps_obj *)node->obj)->rank != 1)
+	while (((t_ps_obj *)node->obj)->group.rank != 1)
 	{
 		node = node->next;
 		i++;
