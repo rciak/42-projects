@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/04 17:02:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/04 20:41:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int argc, char **argv)
 	stack[B] = NULL;
 	if (!init__stacks(argc, argv, stack, &err))
 		return (handle_error(err, "main"), err.code);
+//ft_putstr_fd(RED"\nRead in:\n"RESET, 2);
+//dl_lst_linearize(stack[A]); print_stacks(stack);dl_lst_circularize(stack[A]);
 	if (group_already_sorted(stack[A]))
 		return (ERR_NONE);
 	size = group_size(stack[A]);
@@ -45,7 +47,8 @@ int	main(int argc, char **argv)
 	else
 		big_size_algo(stack);
 
-dl_lst_linearize(stack[A]); print_stacks(stack);
+//ft_putstr_fd(GREEN"Now:\n"RESET, 2);
+//dl_lst_linearize(stack[A]); print_stacks(stack);
 return (ERR_NONE);
 	dl_lst_clear(&stack[A], free);
 	dl_lst_clear(&stack[B], free);
