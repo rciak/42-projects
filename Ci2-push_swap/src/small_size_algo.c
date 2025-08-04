@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/04 17:26:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/04 19:04:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,36 @@ void	small_size_algo(t_dl_node **stack, int size)
 		size__4_algo(stack);
 	else if (size == 5)
 		size__5_algo(stack);
+}
+
+static void	rotate__smallest_element_to_top(t_dl_node **stack)
+{
+	int			size;
+	int			i;
+	t_dl_node	*node;
+
+	size = group_size(stack[A]);
+	i = 0;
+	node = stack[A];
+	while (((t_ps_obj *)node->obj)->rank != 1)
+	{
+		node = node->next;
+		i++;
+	}
+	if (i < size / 2)
+		while (i-- > 0)
+			ra(stack);
+	else
+		while (i-- > 0)
+			rra(stack);
+}
+
+static void	size__4_algo(t_dl_node **stack)
+{
+
+}
+
+static void	size__5_algo(t_dl_node **stack)
+{
+
 }
