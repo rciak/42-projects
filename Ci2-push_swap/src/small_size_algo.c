@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/04 20:13:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/04 23:49:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 static void	rotate__smallest_element_to_top(t_dl_node **stack, int size);
 static void	size__4_algo(t_dl_node **stack);
 static void	size__5_algo(t_dl_node **stack);
+static int	steps___next_till_rank(t_dl_node *node, int rank);
 
 /**
  * @brief Sorts an input stack of input size < `GO_FOR_BIG_SIZE_ALGO`
@@ -52,15 +53,8 @@ void	small_size_algo(t_dl_node **stack, int size)
 static void	rotate__smallest_element_to_top(t_dl_node **stack, int size)
 {
 	int			i;
-	t_dl_node	*node;
 
-	i = 0;
-	node = stack[A];
-	while (((t_ps_obj *)node->obj)->group.rank != 1)
-	{
-		node = node->next;
-		i++;
-	}
+	i = steps___next_till_rank(stack[A], 1);
 	if (i <= size / 2)
 		while (i-- > 0)
 			ra(stack);
@@ -79,4 +73,17 @@ static void	size__5_algo(t_dl_node **stack)
 {
 	(void) stack;
 	return ;
+}
+
+static int	steps___next_till_rank(t_dl_node *node, int rank)
+{
+	int			i;
+	
+	i = 0;
+	while (((t_ps_obj *)node->obj)->group.rank != rank)
+	{
+		node = node->next;
+		i++;
+	}
+	return (i);
 }
