@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_size_algo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/04 01:01:28 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/05 17:14:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "libft.h"
 #include "push_swap.h"
 
-static void	rotate__rank_to_top(t_dl_node **stack, int size);
+static void	rotate__rank_to_top(int rank, t_dl_node **stack, int size);
 static void	size__4_algo(t_dl_node **stack);
 static void	size__5_algo(t_dl_node **stack);
 static int	steps___next_till_rank(t_dl_node *node, int rank);
@@ -42,7 +42,7 @@ void	small_size_algo(t_dl_node **stack, int size)
 	else if (size == 3 && !is_cyclic(stack[A]))
 	{
 		sa(stack);
-		rotate__rank_to_top(stack, size);
+		rotate__rank_to_top(1, stack, size);
 	}
 	else if (size == 4)
 		size__4_algo(stack);
@@ -65,10 +65,12 @@ static void	rotate__rank_to_top(int rank, t_dl_node **stack, int size)
 
 static void	size__4_algo(t_dl_node **stack)
 {
-	int	i;
+	rotate__rank_to_top(1, stack, 4);
+	pb(stack);
+//	init__other_vars(stack[A], argc);
+//	dl_lst_circularize(stack[A]);
 
-	i = steps___next_till_rank(stack[A], 1);
-	rotate__rank_to_top(t_dl_node **stack, int size)
+//	pb(stack);
 }
 
 static void	size__5_algo(t_dl_node **stack)
