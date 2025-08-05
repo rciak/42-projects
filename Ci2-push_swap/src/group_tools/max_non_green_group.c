@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 15:40:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/05 22:07:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ t_dl_node *max_non_green_group(t_dl_node *stack_a)
 	best_so_far = NULL;
 	node = stack_a;
 	max = SMALLER_THAN_ANY_GOAL;
+	if (((t_ps_obj *) node->obj)->is_green == false)
+	{
+		best_so_far = node;
+		max = ((t_ps_obj*)node->obj)->goal;
+	}
 	while (node->next != stack_a)
 	{
 		obj = (t_ps_obj*)node->obj; 
