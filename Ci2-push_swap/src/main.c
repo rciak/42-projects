@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 17:16:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/05 18:50:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include <unistd.h>
 #include "/home/reciak/github/42-projects/Ci2-push_swap/42-eva-lua/Ci2-push_swap-crtests/manual-test.h" 
 
-static bool	init__stacks(int argc, char **argv, t_dl_node **stack, t_err *err);
+static bool	argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err);
 static bool	is__duplicate(int nbr, t_dl_node *stack_a);
 static bool	add__to_stack_a(int nbr, t_dl_node **stack_a);
-static void	init__other_vars(t_dl_node *stack_a, int argc);
+static void	init__is_green_and_goal_position(t_dl_node *stack_a, int size);
 
 /**
  * @note For practical sizes of input the program should work.
@@ -35,19 +35,21 @@ int	main(int argc, char **argv)
 	err = error(ERR_NONE);
 	stack[A] = NULL;
 	stack[B] = NULL;
-	if (!init__stacks(argc, argv, stack, &err))
+	if (!argv__to_list(argc, argv, stack, &err))
 		return (handle_error(err, "main"), err.code);
-ft_putstr_fd(RED"\nRead in:\n"RESET, 2); dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); print_stacks(stack);dl_lst_circularize(stack[A]); dl_lst_circularize(stack[B]);
+	size = dl_lst_size(stack[A]);
+	be_group(stack[A], size);
+	init__is_green_and_goal_position(stack[A], size);
+	dl_lst_circularize(stack[A]);
+//ft_putstr_fd(RED"\nRead in:\n"RESET, 2); dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); print_stacks(stack);dl_lst_circularize(stack[A]); dl_lst_circularize(stack[B]);
 	if (group_already_sorted(stack[A]))
 		return (ERR_NONE);
-	size = group_size(stack[A]);
 	if (size < GO_FOR_BIG_SIZE_ALGO)
 		small_size_algo(stack, size);
 	else
 		big_size_algo(stack);
-
-ft_putstr_fd(GREEN"Now:\n"RESET, 2); dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); print_stacks(stack);dl_lst_circularize(stack[A]); dl_lst_circularize(stack[B]);
-return (ERR_NONE);
+//ft_putstr_fd(GREEN"Now:\n"RESET, 2); dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); print_stacks(stack);dl_lst_circularize(stack[A]); dl_lst_circularize(stack[B]);
+//return (ERR_NONE);
 	dl_lst_clear(&stack[A], free);
 	dl_lst_clear(&stack[B], free);
 	return (ERR_NONE);
@@ -58,7 +60,7 @@ return (ERR_NONE);
 // ./manual_test_push_swap '2 1'  (or handle it with split?)
 // ./manual_test_push_swap 2j
 // ./manual_test_push_swap 2
-static bool init__stacks(int argc, char **argv, t_dl_node **stack, t_err *err)
+static bool argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err)
 {
 	t_libft_err	atoi_code;
 	int nbr;
@@ -78,8 +80,6 @@ static bool init__stacks(int argc, char **argv, t_dl_node **stack, t_err *err)
 			return (*err  = error(ERR_MALLOC), false);
 		i++;
 	}
-	init__other_vars(stack[A], argc);
-	dl_lst_circularize(stack[A]);
 	return (true);
 }
 
@@ -115,32 +115,15 @@ static bool	add__to_stack_a(int nbr, t_dl_node **stack_a)
 	return (true);
 }
 
-static void	init__other_vars(t_dl_node *stack_a, int argc)
+static void	init__is_green_and_goal_position(t_dl_node *stack_a, int size)
 {
-	t_dl_node	*node;
-	t_ps_obj	*obj;
-	int			i;
-
-	node = stack_a;
-	i = 1;
-	while (i < argc)
+	t_ps_obj * obj;
+	while (size > 0)
 	{
-		obj = (t_ps_obj *)node->obj;
+		obj = (t_ps_obj *)stack_a->obj;
 		obj->is_green = false;
-		obj->group.starts = false;
-		obj->group.ends = false;
-		if (node ->next != NULL)
-			node = node->next;
-		i++;
-	}
-	((t_ps_obj*)stack_a->obj)->group.starts = true;
-	((t_ps_obj*)node->obj)->group.ends = true;
-	update_group(stack_a);
-	while (i-- > 1)
-	{
-		obj = (t_ps_obj *)node->obj;
 		obj->goal = obj->group.rank;
-		node=node->prev;
+		stack_a = stack_a->next;
+		size--;
 	}
 }
-

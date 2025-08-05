@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/04 19:52:48 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/05 18:05:44 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ src/big_size_algo.c \
 src/error.c \
 src/main.c \
 src/small_size_algo.c \
+src/group_tools/be_group.c \
 src/group_tools/group_already_sorted.c \
 src/group_tools/group_memb_last.c \
 src/group_tools/group_size.c \
