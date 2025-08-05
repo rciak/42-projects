@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 15:02:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/05 21:21:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	big_size_algo(t_dl_node **stack)
 {
 	while (!all__marked_green(stack))
 	{
-		act__on_a_till_green(stack); //Manual testing: Only "green" numbers left on stack A afterwards?
+		act__on_a_till_green(stack);
 		extend__green_area_by_small_groups_from_b(stack);
 		if (stack[B] != NULL)
 			trivide(truly_max_group(stack[B]), stack);
@@ -62,6 +62,7 @@ static bool	all__marked_green(t_dl_node **stack)
 	{
 		if (((t_ps_obj *)node->obj)->is_green == false)
 			return (false);
+		node = node->next;
 	}
 	return (true);
 }
