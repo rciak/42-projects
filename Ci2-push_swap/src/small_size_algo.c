@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 19:20:26 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/05 19:29:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,11 @@ static void	size__4_algo(t_dl_node **stack)
 
 static void	size__5_algo(t_dl_node **stack)
 {
-	(void) stack;
-	return ;
+	rotate__rank_to_top_of_a(1, stack, 5);
+	pb(stack);
+	be_group(stack[A], 4);
+	small_size_algo(stack, 4);
+	pa(stack);
 }
 
 static int	steps___next_till_rank(t_dl_node *node, int rank)
