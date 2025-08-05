@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:03:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/31 09:37:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/05 20:46:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ void	trivide_top_group(t_dl_node* node, t_dl_node **stack)
 	int	s;
 	int	i;
 	int	r;
+	t_dl_node	*next_node;
 
 	s = ((t_ps_obj*)node->obj)->group.size;
 	i = 0;
 	while (i < s)
 	{
+		next_node  = node->next;
 		r = ((t_ps_obj*)node->obj)->group.rank;
 		if (r <= s / 3)
 			p_it(node, stack);
@@ -47,7 +49,7 @@ void	trivide_top_group(t_dl_node* node, t_dl_node **stack)
 		}
 		else if (s - (s + 2) / 3 < r && r <= s)
 			r_it(node, stack);
-		node = node->next;
+		node = next_node;
 		i++;
 	}
 }
