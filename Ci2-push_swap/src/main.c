@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 18:50:02 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/05 19:07:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ static bool	add__to_stack_a(int nbr, t_dl_node **stack_a)
 	return (true);
 }
 
+/**
+ * @warning: This replies on the vars group.rank being set!
+ *           Thus be_group() must be called first by main before this function!
+ */
 static void	init__is_green_and_goal_position(t_dl_node *stack_a, int size)
 {
 	t_ps_obj * obj;

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 17:14:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/05 19:20:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "libft.h"
 #include "push_swap.h"
 
-static void	rotate__rank_to_top(int rank, t_dl_node **stack, int size);
+static void	rotate__rank_to_top_of_a(int rank, t_dl_node **stack, int size);
 static void	size__4_algo(t_dl_node **stack);
 static void	size__5_algo(t_dl_node **stack);
 static int	steps___next_till_rank(t_dl_node *node, int rank);
@@ -38,11 +38,11 @@ void	small_size_algo(t_dl_node **stack, int size)
 		h_err_exit(error(ERR_LOGIC),
 		"small_size_algo: stack[A] == NULL should have been treated before");
 	if (is_cyclic(stack[A]))
-		rotate__rank_to_top(1, stack, size);
+		rotate__rank_to_top_of_a(1, stack, size);
 	else if (size == 3 && !is_cyclic(stack[A]))
 	{
 		sa(stack);
-		rotate__rank_to_top(1, stack, size);
+		rotate__rank_to_top_of_a(1, stack, size);
 	}
 	else if (size == 4)
 		size__4_algo(stack);
@@ -50,7 +50,7 @@ void	small_size_algo(t_dl_node **stack, int size)
 		size__5_algo(stack);
 }
 
-static void	rotate__rank_to_top(int rank, t_dl_node **stack, int size)
+static void	rotate__rank_to_top_of_a(int rank, t_dl_node **stack, int size)
 {
 	int	i;
 
@@ -65,12 +65,11 @@ static void	rotate__rank_to_top(int rank, t_dl_node **stack, int size)
 
 static void	size__4_algo(t_dl_node **stack)
 {
-	rotate__rank_to_top(1, stack, 4);
+	rotate__rank_to_top_of_a(1, stack, 4);
 	pb(stack);
-//	init__other_vars(stack[A], argc);
-//	dl_lst_circularize(stack[A]);
-
-//	pb(stack);
+	be_group(stack[A], 3);
+	small_size_algo(stack, 3);
+	pa(stack);
 }
 
 static void	size__5_algo(t_dl_node **stack)
