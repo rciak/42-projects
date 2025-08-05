@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_size_algo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/04 23:49:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/04 01:01:28 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "libft.h"
 #include "push_swap.h"
 
-static void	rotate__smallest_element_to_top(t_dl_node **stack, int size);
+static void	rotate__rank_to_top(t_dl_node **stack, int size);
 static void	size__4_algo(t_dl_node **stack);
 static void	size__5_algo(t_dl_node **stack);
 static int	steps___next_till_rank(t_dl_node *node, int rank);
@@ -38,11 +38,11 @@ void	small_size_algo(t_dl_node **stack, int size)
 		h_err_exit(error(ERR_LOGIC),
 		"small_size_algo: stack[A] == NULL should have been treated before");
 	if (is_cyclic(stack[A]))
-		rotate__smallest_element_to_top(stack, size);
+		rotate__rank_to_top(1, stack, size);
 	else if (size == 3 && !is_cyclic(stack[A]))
 	{
 		sa(stack);
-		rotate__smallest_element_to_top(stack, size);
+		rotate__rank_to_top(stack, size);
 	}
 	else if (size == 4)
 		size__4_algo(stack);
@@ -50,11 +50,11 @@ void	small_size_algo(t_dl_node **stack, int size)
 		size__5_algo(stack);
 }
 
-static void	rotate__smallest_element_to_top(t_dl_node **stack, int size)
+static void	rotate__rank_to_top(int rank, t_dl_node **stack, int size)
 {
-	int			i;
+	int	i;
 
-	i = steps___next_till_rank(stack[A], 1);
+	i = steps___next_till_rank(stack[A], rank);
 	if (i <= size / 2)
 		while (i-- > 0)
 			ra(stack);
@@ -65,8 +65,10 @@ static void	rotate__smallest_element_to_top(t_dl_node **stack, int size)
 
 static void	size__4_algo(t_dl_node **stack)
 {
-	(void) stack;
-	return ;
+	int	i;
+
+	i = steps___next_till_rank(stack[A], 1);
+	rotate__rank_to_top(t_dl_node **stack, int size)
 }
 
 static void	size__5_algo(t_dl_node **stack)
