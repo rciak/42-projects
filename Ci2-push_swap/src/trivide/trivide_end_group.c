@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:03:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/06 19:39:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/06 19:47:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ void	trivide_end_group(t_dl_node* node, t_dl_node **stack)
 		{
 			p_it(node, stack);
 			r_it(node, stack);
-		}
-		else if (s - (s + 2) / 3 < r && r <= s)
-		{
-			// Do nothing
 		}
 		node = subseq_node;
 		i++;
