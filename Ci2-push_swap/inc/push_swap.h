@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/06 10:28:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/06 12:30:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@
  *       fine when working on `stack a` but not when working on `stack_b` since
  *       there the goal numbers are negative due the multiplication with -1
  *       when pushing a number / node to the other stack.
- * @note Similar considerations hold true for @c BIGGER_THAN_ANY_GOAL
+///////////////// * @note Similar considerations hold true for @c BIGGER_THAN_ANY_GOAL
  */
 enum e_miscellaneous
 {
 	GO_FOR_BIG_SIZE_ALGO = 6,
 	MAX_SIZE_DIRECT_SORT = 2,
 	SMALLER_THAN_ANY_GOAL = INT_MIN,
-	BIGGER_THAN_ANY_GOAL = INT_MAX
+//  BIGGER_THAN_ANY_GOAL = INT_MAX                                      ///////////
 };
 
 /**
