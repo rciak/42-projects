@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 20:25:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/06 10:28:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 enum e_miscellaneous
 {
 	GO_FOR_BIG_SIZE_ALGO = 6,
-	MAX_SIZE_DIRECT_SORT = 5,
+	MAX_SIZE_DIRECT_SORT = 2,
 	SMALLER_THAN_ANY_GOAL = INT_MIN,
 	BIGGER_THAN_ANY_GOAL = INT_MAX
 };
