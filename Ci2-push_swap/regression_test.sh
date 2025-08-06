@@ -18,9 +18,10 @@ cd Ci2-push_swap || exit 1
 echo
 echo "***************************************************"
 echo "Building manual-test and renaming it to ./push_swap"
-echo "***************************************************"
-make DEBUG_VALGRIND=1 manual-test; cp 42-eva-lua/Ci2-push_swap-crtests/manual_test_push_swap .; mv manual_test_push_swap push_swap > /dev/null
-
+# Perplexity helped with wrongly placed > /dev/null (having no effect on make when placed at the end)
+make DEBUG_VALGRIND=1 manual-test > /dev/null; cp 42-eva-lua/Ci2-push_swap-crtests/manual_test_push_swap .; mv manual_test_push_swap push_swap 
+echo "Executing tests ...  "
+echo '--'
 
 ./push_swap 1   |./checker_linux             1 
 ./push_swap 1 2     |./checker_linux           1 2 
@@ -179,9 +180,10 @@ make DEBUG_VALGRIND=1 manual-test; cp 42-eva-lua/Ci2-push_swap-crtests/manual_te
 
 bash -c 'ARG="1 2 3 4 7 6 5"; ./push_swap $ARG | ./checker_linux $ARG'
 bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
-bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux 1 4 2 7 3 8 5'
+bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
 
-echo "------------------------------------------------------------------------"
-echo "regression_test.sh: All test executed                                   "
-echo "They passed iff there is no error output like 'KO' above the dashed line"
+echo "--"
+echo "regression_test.sh: All test executed"
+echo "They passed iff there is no error output"
+echo "like 'KO' between the two little dashed lines"
 
