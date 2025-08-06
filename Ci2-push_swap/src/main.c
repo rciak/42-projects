@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 19:07:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/06 17:23:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,16 @@ static bool is__duplicate(int nbr, t_dl_node *node)
 	}
 	return (false);
 }
+
+/**
+ * @note Not only `n` is set but also `goal`. For `goal`
+ *       this is just a temporarily helper initialisation to prepare proper
+ *       initialization: Before `main` deals with with its proper initialisation
+ *       by calling
+ *       init__is_green_and_goal_position() it is necessary to call
+ *       `update_group` (via `be_group`) -- which in turn needs goal values
+ *       in the correct orderring ...
+ */
 static bool	add__to_stack_a(int nbr, t_dl_node **stack_a)
 {
 	t_ps_obj	*obj;
@@ -110,6 +120,7 @@ static bool	add__to_stack_a(int nbr, t_dl_node **stack_a)
 		return (false);
 	}
 	((t_ps_obj*)node->obj)->n = nbr;
+	((t_ps_obj*)node->obj)->goal = nbr;
 	dl_lst_add_before(stack_a, node);
 	dl_lst_linearize(*stack_a);
 	return (true);

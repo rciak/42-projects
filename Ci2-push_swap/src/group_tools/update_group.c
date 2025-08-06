@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_group.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:01:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/29 20:51:57 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/06 16:57:29 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static t_dl_node	*find___smallest_unranked(t_dl_node *first, int size)
 		i = 1;
 		while (i <= size)
 		{
-			if (((t_ps_obj*)node->obj)->n < ((t_ps_obj*)smallest_unr->obj)->n
+			if (((t_ps_obj*)node->obj)->goal < ((t_ps_obj*)smallest_unr->obj)->goal
 				&& ((t_ps_obj*)node->obj)->group.rank == -1
 			)
 				smallest_unr = node;
