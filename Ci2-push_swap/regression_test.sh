@@ -1,20 +1,5 @@
 #! /bin/bash
 
-echo "************"
-echo "Preparing..."
-echo "************"
-
-# WITH AI Support:
-cd ~/github/42-projects || exit 1
-mkdir -p TEST
-rsync -av --exclude='42-eva-lua' Ci2-push_swap TEST/Ci2-push_swap || exit 1
-find TEST/Ci2-push_swap/src -type f -name "*.c" \
-    -not -path "Ci2-push_swap/src/operations_basic/*" | while read -r file; do
-        sed -i'' '/^ft_put/d' "$file"
-done
-cd TEST/Ci2-push_swap || exit 1
-
-# END of PERPLEXITY supported SCRIPT
 echo
 echo "***************************************************"
 echo "Building manual-test and renaming it to ./push_swap"
@@ -181,8 +166,8 @@ echo '--'
 bash -c 'ARG="1 2 3 4 7 6 5"; ./push_swap $ARG | ./checker_linux $ARG'
 bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
 bash -c 'ARG="10 40 20 70 30 80 50 60"; ./push_swap $ARG |./checker_linux $ARG'
-
-##Currently failing
+bash -c 'ARG="58 691 -519 6 320 -179 -997 -868 -353 1136 -984 -68 303 -726"; ./push_swap $ARG |./checker_linux $ARG'
+bash -c 'ARG="10 13 5 9 12 7 1 3 6 14 2 8 11 4"; ./push_swap $ARG |./checker_linux $ARG'
 
 echo "--"
 echo "regression_test.sh: All test executed"
