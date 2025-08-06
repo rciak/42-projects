@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 22:07:31 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/06 10:39:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ t_dl_node *max_non_green_group(t_dl_node *stack_a)
 		best_so_far = node;
 		max = ((t_ps_obj*)node->obj)->goal;
 	}
-	while (node->next != stack_a)
+	dl_lst_linearize(stack_a);
+	while (node != NULL)
 	{
 		obj = (t_ps_obj*)node->obj; 
 		if (obj->goal > max && obj->is_green == false)
@@ -67,6 +68,7 @@ t_dl_node *max_non_green_group(t_dl_node *stack_a)
 		}
 		node = node->next;
 	}
+	dl_lst_circularize(stack_a);
 	if (max == SMALLER_THAN_ANY_GOAL)
 		return (NULL);
 	while (((t_ps_obj*)best_so_far->obj)->group.starts != true)
