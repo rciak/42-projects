@@ -7,8 +7,8 @@ echo "************"
 # WITH AI Support:
 cd ~/github/42-projects || exit 1
 mkdir -p TEST
-rsync -av --exclude='42-eva-lua' Ci2-push_swap TEST/Ci2-push_swap
-find Ci2-push_swap/src -type f -name "*.c" \
+rsync -av --exclude='42-eva-lua' Ci2-push_swap TEST/Ci2-push_swap || exit 1
+find TEST/Ci2-push_swap/src -type f -name "*.c" \
     -not -path "Ci2-push_swap/src/operations_basic/*" | while read -r file; do
         sed -i'' '/^ft_put/d' "$file"
 done
