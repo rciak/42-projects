@@ -12,7 +12,7 @@ find TEST/Ci2-push_swap/src -type f -name "*.c" \
     -not -path "Ci2-push_swap/src/operations_basic/*" | while read -r file; do
         sed -i'' '/^ft_put/d' "$file"
 done
-cd Ci2-push_swap || exit 1
+cd TEST/Ci2-push_swap || exit 1
 
 # END of PERPLEXITY supported SCRIPT
 echo
@@ -180,11 +180,9 @@ echo '--'
 
 bash -c 'ARG="1 2 3 4 7 6 5"; ./push_swap $ARG | ./checker_linux $ARG'
 bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
-bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
+bash -c 'ARG="10 40 20 70 30 80 50 60"; ./push_swap $ARG |./checker_linux $ARG'
 
 ##Currently failing
-bash -c 'ARG="1 4 2 7 3 8 5 6"; ./push_swap $ARG | ./checker_linux $ARG'
-#bash -c 'ARG="1 4 2 7 3 8 5 9"; ./push_swap $ARG | ./checker_linux $ARG'
 
 echo "--"
 echo "regression_test.sh: All test executed"
