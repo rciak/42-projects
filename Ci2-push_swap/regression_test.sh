@@ -10,7 +10,7 @@ mkdir -p TEST
 rsync -av --exclude='42-eva-lua' Ci2-push_swap TEST/Ci2-push_swap
 find Ci2-push_swap/src -type f -name "*.c" \
     -not -path "Ci2-push_swap/src/operations_basic/*" | while read -r file; do
-        sed -i'' '/ft_put/d' "$file"
+        sed -i'' '/^ft_put/d' "$file"
 done
 cd Ci2-push_swap || exit 1
 
@@ -178,6 +178,8 @@ make DEBUG_VALGRIND=1 manual-test; cp 42-eva-lua/Ci2-push_swap-crtests/manual_te
 
 
 bash -c 'ARG="1 2 3 4 7 6 5"; ./push_swap $ARG | ./checker_linux $ARG'
+bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
+bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux 1 4 2 7 3 8 5'
 
 echo "------------------------------------------------------------------------"
 echo "regression_test.sh: All test executed                                   "
