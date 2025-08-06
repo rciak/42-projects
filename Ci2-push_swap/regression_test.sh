@@ -182,6 +182,10 @@ bash -c 'ARG="1 2 3 4 7 6 5"; ./push_swap $ARG | ./checker_linux $ARG'
 bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
 bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
 
+##Currently failing
+bash -c 'ARG="1 4 2 7 3 8 5 6"; ./push_swap $ARG | ./checker_linux $ARG'
+#bash -c 'ARG="1 4 2 7 3 8 5 9"; ./push_swap $ARG | ./checker_linux $ARG'
+
 echo "--"
 echo "regression_test.sh: All test executed"
 echo "They passed iff there is no error output"
