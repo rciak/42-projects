@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 11:02:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 11:12:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,11 @@
  * @brief Stores the definition of big_size_algo
  */
 
-#include "libft.h"
 #include "push_swap.h"
-#include <stdbool.h>
 
 static bool			all__marked_green(t_dl_node **stack);
 static void			exit__on_unexpected(t_dl_node *group, t_dl_node** stack);
 static t_dl_node	*get__max_non_green_group(t_dl_node **stack);
-////////////////////////////////////////////////////////////////////////////////////
-// static void	act__on_a_till_green(t_dl_node **stack);
-// static void	extend__green_area_by_small_groups_from_b(t_dl_node **stack);
 
 /**
  * @brief The main algorithm which is based on repeating the following idea:
@@ -51,12 +46,6 @@ void	big_size_algo(t_dl_node **stack)
 			join_green_directsort(max_group, stack);
 		else
 			trivide(max_group, stack);
-
-
-		// act__on_a_till_green(stack);
-		// extend__green_area_by_small_groups_from_b(stack);
-		// if (stack[B] != NULL)
-		// 	trivide(truly_max_group(stack[B]), stack);
 	}
 	//TODO: rotate till the smallest number is on top - theoretically there
 	//should be no need to do that, but who knows if I overlooked something ......
@@ -114,34 +103,3 @@ static t_dl_node	*get__max_non_green_group(t_dl_node **stack)
 	else
 		return (truly_max_group_b);
 }
-///////////////////////////////////////////////////////////////////////////////////////
-
-// static void	act__on_a_till_green(t_dl_node **stack)
-// {
-// 	t_dl_node	*wanna_be_green;
-
-// 	wanna_be_green = max_non_green_group(stack[A]);
-// 	while (wanna_be_green != NULL)
-// 	{
-// 		while (group_size(wanna_be_green) > MAX_SIZE_DIRECT_SORT)
-// 		{
-// 			trivide(wanna_be_green, stack);
-// 			wanna_be_green = max_non_green_group(stack[A]);
-// 		}
-// 		join_green_directsort(wanna_be_green, stack);
-// 		wanna_be_green = max_non_green_group(stack[A]);
-// 	}
-// }
-
-// static void	extend__green_area_by_small_groups_from_b(t_dl_node **stack)
-// {
-// 	t_dl_node	*wanna_be_green;
-
-// 	wanna_be_green = truly_max_group(stack[B]);
-// 	while (group_size(wanna_be_green) <= MAX_SIZE_DIRECT_SORT
-// 		&& wanna_be_green != NULL)
-// 	{
-// 		join_green_directsort(wanna_be_green, stack);
-// 		wanna_be_green = truly_max_group(stack[B]);
-// 	}
-// }
