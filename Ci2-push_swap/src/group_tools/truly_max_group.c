@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 15:16:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/06 10:40:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 10:49:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,32 @@
  *       a single `NULL` check is sufficient here - in contrast to
  *       max_non_green_group() !
  * @param[in] stack_b a pointer to a node of stack[B], being in circular form.
+ * @param[out] min a pointer to an int receiving the min goal number of stack
+ *                 `b`'s nodes. If stack `b` is empty the value 
+ *                 `0` is stored.
  * @return
  *          * a pointer to the maximal group on stack_b, if any, or
  *          * `NULL` if there are no groups on stack_b
  */
-t_dl_node *truly_max_group(t_dl_node *stack_b)
+t_dl_node *truly_max_group(t_dl_node *stack_b, int *min)
 {
-	int			min;
 	t_dl_node	*best_so_far;
 	t_dl_node	*node;
 	t_ps_obj	*obj;
 
+	*min = 0;
 	if (stack_b == NULL)
 		return (NULL);
 	best_so_far = stack_b;
-	min = ((t_ps_obj *) best_so_far->obj)->goal;
+	*min = ((t_ps_obj *) best_so_far->obj)->goal;
 	node = stack_b;
 	dl_lst_linearize(stack_b);
 	while (node != NULL)
 	{
 		obj = (t_ps_obj*)node->obj; 
-		if (obj->goal < min)
+		if (obj->goal < *min)
 		{
-			min = obj->goal;
+			*min = obj->goal;
 			best_so_far = node;
 		}
 		node = node->next;

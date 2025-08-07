@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/06 12:30:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 10:49:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ bool		group_already_sorted(t_dl_node *node);
 t_dl_node	*group_memb_last(t_dl_node *node_of_group);
 int			group_size(t_dl_node *ori_node);
 bool		is_on_a(t_dl_node *node);
-t_dl_node	*max_non_green_group(t_dl_node *stack_a);
-t_dl_node	*truly_max_group(t_dl_node *stack_b);
+t_dl_node	*max_non_green_group(t_dl_node *stack_a, int *max);
+t_dl_node	*truly_max_group(t_dl_node *stack_b, int *min);
 void		update_group(t_dl_node *stack_a);
 bool		is_cyclic(t_dl_node *node);
 

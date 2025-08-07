@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/06 10:39:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 10:43:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,18 @@
  * @warning This function expects a doubly linked list in **circular**
  *          form!
  * @param[in] stack_a a pointer to a node of stack[A], being in circular form.
+ * @param[out] max a pointer to an int receiving the max goal number of the
+ *                 "non green" nodes. In case that all nodes on stack `a` are
+ *                 green (also if stack `a` is empty) the value
+ *                 `SMALLER_THAN_ANY_GOAL` is stored.
  * @return
  *          * a pointer to the group that is maximal amongst the
  *            "non-green" groups, if any, or
  *          * `NULL` if there are no "non-green" groups
  *            on stack_a
  */
-t_dl_node *max_non_green_group(t_dl_node *stack_a)
+t_dl_node *max_non_green_group(t_dl_node *stack_a, int *max)
 {
-	int			max;
 	t_dl_node	*best_so_far;
 	t_dl_node	*node;
 	t_ps_obj	*obj;
@@ -51,25 +54,25 @@ t_dl_node *max_non_green_group(t_dl_node *stack_a)
 		return (NULL);
 	best_so_far = NULL;
 	node = stack_a;
-	max = SMALLER_THAN_ANY_GOAL;
+	*max = SMALLER_THAN_ANY_GOAL;
 	if (((t_ps_obj *) node->obj)->is_green == false)
 	{
 		best_so_far = node;
-		max = ((t_ps_obj*)node->obj)->goal;
+		*max = ((t_ps_obj*)node->obj)->goal;
 	}
 	dl_lst_linearize(stack_a);
 	while (node != NULL)
 	{
 		obj = (t_ps_obj*)node->obj; 
-		if (obj->goal > max && obj->is_green == false)
+		if (obj->goal > *max && obj->is_green == false)
 		{
-			max = obj->goal;
+			*max = obj->goal;
 			best_so_far = node;
 		}
 		node = node->next;
 	}
 	dl_lst_circularize(stack_a);
-	if (max == SMALLER_THAN_ANY_GOAL)
+	if (*max == SMALLER_THAN_ANY_GOAL)
 		return (NULL);
 	while (((t_ps_obj*)best_so_far->obj)->group.starts != true)
 		best_so_far = best_so_far->prev;
