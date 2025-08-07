@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 12:14:11 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 14:39:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 17:43:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ void	join_green_size_3(t_dl_node *group, t_dl_node **stack)
 
 static void	sortin__a_top(t_dl_node **stack, int *rank, size_t m, bool cyclic)
 {
-	if (m == 2 && cyclic)
-		return ;
-	else if (m == 2 && !cyclic)
-		sa(stack);
+	if (m == 2)
+	{
+		if (!cyclic)
+			sa(stack);
+	}
 	else if (m == 1)
 	{
 		ra(stack);
