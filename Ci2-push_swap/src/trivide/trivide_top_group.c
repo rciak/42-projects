@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:03:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 20:46:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 10:05:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  *        into three subgroups: 
  *        * One subgroup stays on the same stack becoming the new bottom group.
  *        * The two other groups are put to the other stack becoming its
- *          new top and bottim groups.
+ *          new top and bottom groups.
  * @note This functions was designed for a top group of at least three elements.
  * @param[in] node A pointer to the first node of a top group
  * @param[in,out] stack Stack a and b
