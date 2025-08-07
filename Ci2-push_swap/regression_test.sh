@@ -166,8 +166,18 @@ echo '--'
 bash -c 'ARG="1 2 3 4 7 6 5"; ./push_swap $ARG | ./checker_linux $ARG'
 bash -c 'ARG="1 4 2 7 3 8 5"; ./push_swap $ARG | ./checker_linux $ARG'
 bash -c 'ARG="10 40 20 70 30 80 50 60"; ./push_swap $ARG |./checker_linux $ARG'
+#
 bash -c 'ARG="58 691 -519 6 320 -179 -997 -868 -353 1136 -984 -68 303 -726"; ./push_swap $ARG |./checker_linux $ARG'
 bash -c 'ARG="10 13 5 9 12 7 1 3 6 14 2 8 11 4"; ./push_swap $ARG |./checker_linux $ARG'
+#
+bash -c 'ARG="58 691 -519 6 320 -179 -997 -868 -353 1136 -984 -68 303 -922 785 -726 -330 1175 -61 337"; ./push_swap $ARG |./checker_linux $ARG'
+bash -c 'ARG="58 691 -519 6 320 -179 -997 -868 -353 1136 -984 -68 303 -922 785 -726 -330 1175 -61 337 417 375"; ./push_swap $ARG |./checker_linux $ARG'
+bash -c 'ARG="13 19 6 12 15 9 1 4 7 21 2 10 14 3 20 5 8 22 11 16 18 17"; ./push_swap $ARG | ./checker_linux $ARG'
+
+
+##Currently failing
+bash -c 'ARG="58 691 -519 6 320 -179 -997 -868 -353 1136 -984 -68 303 -922 785 -726 -330 1175 -61 337 417 375 120 -188 -743 954 728 299 343 -562 -854 -280 1120 1083 393 -741 648 537 333 -790 -946"; ./push_swap $ARG |./checker_linux $ARG'
+ 
 
 echo "--"
 echo "regression_test.sh: All test executed"
