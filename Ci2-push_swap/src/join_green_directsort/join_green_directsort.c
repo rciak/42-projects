@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 20:39:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 17:49:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 12:08:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	join_green_directsort(t_dl_node *soon_green, t_dl_node **stack)
 		join_green_size_1(soon_green, stack);
 	else if (size == 2)
 		join_green_size_2(soon_green, stack);
+	else if (size == 3)
+		join_green_size_3(soon_green, stack);
 }
 	//
 	// ?? MAYBE NOT / no longer needed?! SETT all to groups of size 1 by setting the markers accorrdingly

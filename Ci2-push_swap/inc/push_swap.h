@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 10:49:04 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 14:42:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 enum e_miscellaneous
 {
 	GO_FOR_BIG_SIZE_ALGO = 6,
-	MAX_SIZE_DIRECT_SORT = 2,
+	MAX_SIZE_DIRECT_SORT = 3,
 	SMALLER_THAN_ANY_GOAL = INT_MIN,
 //  BIGGER_THAN_ANY_GOAL = INT_MAX                                      ///////////
 };
@@ -152,6 +152,7 @@ void	trivide_end_group(t_dl_node* node, t_dl_node **stack);
 void	join_green_directsort(t_dl_node *wanna_be_green, t_dl_node **stack);
 void	join_green_size_1(t_dl_node *group, t_dl_node **stack);
 void	join_green_size_2(t_dl_node *group, t_dl_node **stack);
+void	join_green_size_3(t_dl_node *group, t_dl_node **stack);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/operations_basic/*.c
