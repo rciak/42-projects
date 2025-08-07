@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:08:44 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/01 18:38:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/07 12:10:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	sortin__b_top(t_dl_node **stack);
 static void	sortin__b_end(t_dl_node **stack);
 
 /**
- * @brief For putting size 1 groups on top of the green area on stack `a`
+ * @brief For putting size 2 groups on top of the green area on stack `a`
  */
 void	join_green_size_2(t_dl_node *group, t_dl_node **stack)
 {
