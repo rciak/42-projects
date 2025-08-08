@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 20:39:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 12:08:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/08 19:13:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "push_swap.h"
 
 static void	mark__group_as_green(t_dl_node *soon_green);
+static void	set__ranks_as_if_on_stack_a(t_dl_node *group_of_size_3);
 
 /**
  * @brief Sort the prepared group (of `size <= MAX_SIZE_DIRECT_SORT`),
@@ -59,8 +60,11 @@ void	join_green_directsort(t_dl_node *soon_green, t_dl_node **stack)
 	else if (size == 2)
 		join_green_size_2(soon_green, stack);
 	else if (size == 3)
+	{
+		if (!is_on_a(soon_green))
+			set__ranks_as_if_on_stack_a(soon_green);
 		join_green_size_3(soon_green, stack);
-}
+	}
 	//
 	// ?? MAYBE NOT / no longer needed?! SETT all to groups of size 1 by setting the markers accorrdingly
 	//
@@ -81,4 +85,35 @@ static void	mark__group_as_green(t_dl_node *soon_green)
 	if (((t_ps_obj *)soon_green->obj)->group.ends == false)
 		h_err_exit(error(ERR_LOGIC),"mark_group_as_green (group.ends)");
 	((t_ps_obj *)soon_green->obj)->is_green = true;
+}
+
+/**
+ * @note This is a helper for treating the size 3 case
+ */
+static void	set__ranks_as_if_on_stack_a(t_dl_node *group_of_size_3)
+{
+	int		*rank[3];
+	size_t	i;
+	size_t	i_1;
+	size_t	i_3;
+
+	rank[0] = &((t_ps_obj *) group_of_size_3->obj)->group.rank;
+	rank[1] = &((t_ps_obj *) group_of_size_3->next->obj)->group.rank;
+	rank[2] = &((t_ps_obj *) group_of_size_3->next->next->obj)->group.rank;
+	i_1 = 0xdeaf;
+	i_3 = 0xdeaf;
+	i = 0;
+	while (i < 3)
+	{
+		if (*rank[i] == 1)
+			i_1 = i;
+		if (*rank[i] == 3)
+			i_3 = i;
+		i++;
+	}
+	if (i_1 == 0xdeaf || i_3 == 0xdeaf)
+		h_err_exit(error(ERR_LOGIC), "set__ranks_as_if_on_stack_a: "
+			"no rank 1 or rank 3 found!");
+	*rank[i_1] = 3;
+	*rank[i_3] = 1;
 }
