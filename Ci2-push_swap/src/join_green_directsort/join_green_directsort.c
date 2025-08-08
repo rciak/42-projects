@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 20:39:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/08 19:13:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/08 19:21:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	join_green_directsort(t_dl_node *soon_green, t_dl_node **stack)
 	//
 	// ?? MAYBE NOT / no longer needed?! SETT all to groups of size 1 by setting the markers accorrdingly
 	//
+}
 
 static void	mark__group_as_green(t_dl_node *soon_green)
 {
