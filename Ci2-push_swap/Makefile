@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/05 18:05:44 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/08 16:46:28 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ src/group_tools/update_group.c \
 src/join_green_directsort/join_green_directsort.c \
 src/join_green_directsort/join_green_size_1.c \
 src/join_green_directsort/join_green_size_2.c \
+src/join_green_directsort/join_green_size_3.c \
 src/operations_basic/pa.c \
 src/operations_basic/pb.c \
 src/operations_basic/ra.c \
