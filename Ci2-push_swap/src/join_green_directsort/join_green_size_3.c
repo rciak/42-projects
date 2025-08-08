@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 12:14:11 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/08 18:13:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/08 21:16:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ static void	sortin__a_end(t_dl_node **stack, size_t i_max, bool cyclic)
 
 static void	sortin__b_top(t_dl_node **stack, size_t i_max, bool cyclic)
 {
-static int j = 0; j++; dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); print_stacks(stack); dl_lst_circularize(stack[A]); dl_lst_circularize(stack[B]);
 	pa(stack);
 	if (i_max == 0)
 	{
@@ -126,7 +125,6 @@ static int j = 0; j++; dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); p
 		pa(stack);
 		if (!cyclic)
 			sa(stack);
-dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); print_stacks(stack); dl_lst_circularize(stack[A]); dl_lst_circularize(stack[B]);
 	}
 	else if (i_max == 2)
 	{
