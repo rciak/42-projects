@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 12:29:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 16:30:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 # define PUSH_SWAP_H
 # include <stdbool.h>
 # include "libft.h"
-
 #include "/home/reciak/github/42-projects/Ci2-push_swap/42-eva-lua/Ci2-push_swap-crtests/manual-test.h" 
 #include <stdio.h> //---------------------------------------------------------------
-
 
 /**
  * @note @c SMALLER_THAN_ANY_GOAL would no longer rightly bear its name
@@ -35,14 +33,12 @@
  *       fine when working on `stack a` but not when working on `stack_b` since
  *       there the goal numbers are negative due the multiplication with -1
  *       when pushing a number / node to the other stack.
-///////////////// * @note Similar considerations hold true for @c BIGGER_THAN_ANY_GOAL
  */
 enum e_miscellaneous
 {
 	GO_FOR_BIG_SIZE_ALGO = 6,
 	MAX_SIZE_DIRECT_SORT = 3,
 	SMALLER_THAN_ANY_GOAL = INT_MIN,
-//  BIGGER_THAN_ANY_GOAL = INT_MAX,                                      ///////////
 };
 
 /**
@@ -119,12 +115,12 @@ typedef struct s_push_swap_obj
 ////////////////////////////////////////////////////////////////////////////////
 // src/*.c
 ////////////////////////////////////////////////////////////////////////////////
-int		main(int argc, char **argv);
-void	small_size_algo(t_dl_node **stack, int size);
-void	big_size_algo(t_dl_node **stack);
-t_err	error(enum e_push_swap_errors error_code);
-void	handle_error(t_err err, char *by_caller);
-void	h_err_exit(t_err err, char *by_caller);
+int			main(int argc, char **argv);
+void		small_size_algo(t_dl_node **stack, int size);
+void		big_size_algo(t_dl_node **stack);
+t_err		error(enum e_push_swap_errors error_code);
+void		handle_error(t_err err, char *by_caller);
+void		h_err_exit(t_err err, char *by_caller);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/group_tools/*.c
@@ -142,37 +138,37 @@ bool		is_cyclic(t_dl_node *first);
 ////////////////////////////////////////////////////////////////////////////////
 // src/trivide/*.c
 ////////////////////////////////////////////////////////////////////////////////
-void	trivide(t_dl_node *boundary_group, t_dl_node **stack);
-void	trivide_top_group(t_dl_node* node, t_dl_node **stack);
-void	trivide_end_group(t_dl_node* node, t_dl_node **stack);
+void		trivide(t_dl_node *boundary_group, t_dl_node **stack);
+void		trivide_top_group(t_dl_node *node, t_dl_node **stack);
+void		trivide_end_group(t_dl_node *node, t_dl_node **stack);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/join_green_directsort/*.c
 ////////////////////////////////////////////////////////////////////////////////
-void	join_green_directsort(t_dl_node *wanna_be_green, t_dl_node **stack);
-void	join_green_size_1(t_dl_node *group, t_dl_node **stack);
-void	join_green_size_2(t_dl_node *group, t_dl_node **stack);
-void	join_green_size_3(t_dl_node *group, t_dl_node **stack);
+void		join_green_directsort(t_dl_node *wanna_be_green, t_dl_node **stack);
+void		join_green_size_1(t_dl_node *group, t_dl_node **stack);
+void		join_green_size_2(t_dl_node *group, t_dl_node **stack);
+void		join_green_size_3(t_dl_node *group, t_dl_node **stack);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/operations_basic/*.c
 ////////////////////////////////////////////////////////////////////////////////
-void	pa (t_dl_node **stack);
-void	pb (t_dl_node **stack);
-void	ra(t_dl_node **stack);
-void	rb(t_dl_node **stack);
-void	rra(t_dl_node **stack);
-void	rrb(t_dl_node **stack);
-void	sa(t_dl_node **stack);
-void	sb(t_dl_node **stack);
-void	ss(t_dl_node **stack);
-bool	swap(t_dl_node **stack, int chosen);
+void		pa(t_dl_node **stack);
+void		pb(t_dl_node **stack);
+void		ra(t_dl_node **stack);
+void		rb(t_dl_node **stack);
+void		rra(t_dl_node **stack);
+void		rrb(t_dl_node **stack);
+void		sa(t_dl_node **stack);
+void		sb(t_dl_node **stack);
+void		ss(t_dl_node **stack);
+bool		swap(t_dl_node **stack, int chosen);
 
 ////////////////////////////////////////////////////////////////////////////////
 // src/operations_generalized/*.c
 ////////////////////////////////////////////////////////////////////////////////
-void	p_it(t_dl_node *node, t_dl_node **stack);
-void	r_it(t_dl_node *node, t_dl_node **stack);
-void	rev_r_it(t_dl_node *node, t_dl_node **stack);
+void		p_it(t_dl_node *node, t_dl_node **stack);
+void		r_it(t_dl_node *node, t_dl_node **stack);
+void		rev_r_it(t_dl_node *node, t_dl_node **stack);
 
 #endif
