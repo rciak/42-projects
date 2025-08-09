@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:03:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 10:05:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 22:23:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@
  * @param[in] node A pointer to the first node of a top group
  * @param[in,out] stack Stack a and b
  */
-void	trivide_top_group(t_dl_node* node, t_dl_node **stack)
+void	trivide_top_group(t_dl_node *node, t_dl_node **stack)
 {
-	int	s;
-	int	i;
-	int	r;
+	int			s;
+	int			i;
+	int			r;
 	t_dl_node	*next_node;
 
-	s = ((t_ps_obj*)node->obj)->group.size;
+	s = ((t_ps_obj *)node->obj)->group.size;
 	i = 0;
 	while (i < s)
 	{
-		next_node  = node->next;
-		r = ((t_ps_obj*)node->obj)->group.rank;
+		next_node = node->next;
+		r = ((t_ps_obj *)node->obj)->group.rank;
 		if (r <= s / 3)
 			p_it(node, stack);
 		else if (s / 3 < r && r <= s - (s + 2) / 3)

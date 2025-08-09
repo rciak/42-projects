@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:02:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 07:39:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 22:26:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,8 @@ static void	detect___hits_of_subgroups(
 	int	i;
 	int	j;
 	int	r;
-	int size;
-	
+	int	size;
+
 	size = ((t_ps_obj *)non_trivided->obj)->group.size;
 	i = 0;
 	while (i < size)
@@ -178,7 +178,7 @@ static void	remove___group_markers(t_dl_node *non_trivided)
 	int			size;
 
 	if (((t_ps_obj *)non_trivided->obj)->group.starts == false)
-		h_err_exit(error(ERR_LOGIC),"remove___group_markers"
+		h_err_exit(error(ERR_LOGIC), "remove___group_markers"
 			"(group.starts was unset)");
 	size = ((t_ps_obj *)non_trivided->obj)->group.size;
 	while (size > 1)
@@ -189,9 +189,8 @@ static void	remove___group_markers(t_dl_node *non_trivided)
 		size--;
 	}
 	if (((t_ps_obj *)non_trivided->obj)->group.ends == false)
-		h_err_exit(error(ERR_LOGIC),"remove___group_markers"
+		h_err_exit(error(ERR_LOGIC), "remove___group_markers"
 			"(group.ends was unset)");
 	((t_ps_obj *)non_trivided->obj)->group.starts = false;
 	((t_ps_obj *)non_trivided->obj)->group.ends = false;
 }
-
