@@ -38,6 +38,7 @@ INCS := \
 ./libft.h
 
 SRCS := \
+./atoi_strict.c \
 ./dl_lst_add_after.c \
 ./dl_lst_add_before.c \
 ./dl_lst_circularize.c \

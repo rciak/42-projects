@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 10:46:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 12:29:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ enum e_miscellaneous
 	GO_FOR_BIG_SIZE_ALGO = 6,
 	MAX_SIZE_DIRECT_SORT = 3,
 	SMALLER_THAN_ANY_GOAL = INT_MIN,
-//  BIGGER_THAN_ANY_GOAL = INT_MAX                                      ///////////
+//  BIGGER_THAN_ANY_GOAL = INT_MAX,                                      ///////////
 };
 
 /**
@@ -75,7 +75,7 @@ enum e_push_swap_stacks
 /**
  * @warning The enumaration of the below error codes **must** be 0, 1, 2, ...
  *          since they are **used as index** in error() !
- * @warning Also the value 0 must be named by `ERR_NONE`, since ERR_NONE
+ * @warning Also the value **0 must be named by** `ERR_NONE`, since ERR_NONE
  *          is used to return from main in case of no error!
  */
 enum e_push_swap_errors

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/06 17:23:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 12:28:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static bool argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err)
 	i = 1;
 	while (i < argc)
 	{
-		nbr = atoi_proper(argv[i], &atoi_code);
+		nbr = atoi_strict(argv[i], &atoi_code);
 		if (atoi_code == E_ATOI_BAD_STRING || atoi_code == E_ATOI_RANGE)
 			return (*err = error(ERR_ARGV), false);
 		if (is__duplicate(nbr, stack[A]))
