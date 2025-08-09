@@ -6,14 +6,11 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 12:28:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 17:20:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
-#include <unistd.h>
-#include "/home/reciak/github/42-projects/Ci2-push_swap/42-eva-lua/Ci2-push_swap-crtests/manual-test.h" 
 
 static bool	argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err);
 static bool	is__duplicate(int nbr, t_dl_node *stack_a);
@@ -41,30 +38,22 @@ int	main(int argc, char **argv)
 	be_group(stack[A], size);
 	init__is_green_and_goal_position(stack[A], size);
 	dl_lst_circularize(stack[A]);
-//ft_putstr_fd(RED"\nRead in:\n"RESET, 2); dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); print_stacks(stack);dl_lst_circularize(stack[A]); dl_lst_circularize(stack[B]);
 	if (group_already_sorted(stack[A]))
 		return (ERR_NONE);
 	if (size < GO_FOR_BIG_SIZE_ALGO)
 		small_size_algo(stack, size);
 	else
 		big_size_algo(stack);
-//ft_putstr_fd(GREEN"Now:\n"RESET, 2); dl_lst_linearize(stack[A]); dl_lst_linearize(stack[B]); print_stacks(stack);dl_lst_circularize(stack[A]); dl_lst_circularize(stack[B]);
-//return (ERR_NONE);
 	dl_lst_clear(&stack[A], free);
 	dl_lst_clear(&stack[B], free);
 	return (ERR_NONE);
 }
 
-
-// More checks are needed, the following input should also raiser errors. .......
-// ./manual_test_push_swap '2 1'  (or handle it with split?)
-// ./manual_test_push_swap 2j
-// ./manual_test_push_swap 2
-static bool argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err)
+static bool	argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err)
 {
 	t_libft_err	atoi_code;
-	int nbr;
-	int	i;
+	int			nbr;
+	int			i;
 
 	if (argc < 1 + 1)
 		return (*err = error(ERR_ARG_NUM), false);
@@ -77,13 +66,13 @@ static bool argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err)
 		if (is__duplicate(nbr, stack[A]))
 			return (*err = error(ERR_DUPLICATE), false);
 		if (!add__to_stack_a(nbr, &stack[A]))
-			return (*err  = error(ERR_MALLOC), false);
+			return (*err = error(ERR_MALLOC), false);
 		i++;
 	}
 	return (true);
 }
 
-static bool is__duplicate(int nbr, t_dl_node *node)
+static bool	is__duplicate(int nbr, t_dl_node *node)
 {
 	while (node != NULL)
 	{
@@ -119,8 +108,8 @@ static bool	add__to_stack_a(int nbr, t_dl_node **stack_a)
 		dl_lst_clear(stack_a, free);
 		return (false);
 	}
-	((t_ps_obj*)node->obj)->n = nbr;
-	((t_ps_obj*)node->obj)->goal = nbr;
+	((t_ps_obj *) node->obj)->n = nbr;
+	((t_ps_obj *) node->obj)->goal = nbr;
 	dl_lst_add_before(stack_a, node);
 	dl_lst_linearize(*stack_a);
 	return (true);
@@ -132,7 +121,8 @@ static bool	add__to_stack_a(int nbr, t_dl_node **stack_a)
  */
 static void	init__is_green_and_goal_position(t_dl_node *stack_a, int size)
 {
-	t_ps_obj * obj;
+	t_ps_obj	*obj;
+
 	while (size > 0)
 	{
 		obj = (t_ps_obj *)stack_a->obj;

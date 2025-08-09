@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:53:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 11:12:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 16:51:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "push_swap.h"
 
 static bool			all__marked_green(t_dl_node **stack);
-static void			exit__on_unexpected(t_dl_node *group, t_dl_node** stack);
+static void			exit__on_unexpected(t_dl_node *group, t_dl_node **stack);
 static t_dl_node	*get__max_non_green_group(t_dl_node **stack);
 
 /**
@@ -34,8 +34,8 @@ static t_dl_node	*get__max_non_green_group(t_dl_node **stack);
  */
 void	big_size_algo(t_dl_node **stack)
 {
-	t_dl_node *max_group;
-	int	size;
+	t_dl_node	*max_group;
+	int			size;
 
 	while (!all__marked_green(stack))
 	{
@@ -47,11 +47,9 @@ void	big_size_algo(t_dl_node **stack)
 		else
 			trivide(max_group, stack);
 	}
-	//TODO: rotate till the smallest number is on top - theoretically there
-	//should be no need to do that, but who knows if I overlooked something ......
 }
 
-static void	exit__on_unexpected(t_dl_node *group, t_dl_node** stack)
+static void	exit__on_unexpected(t_dl_node *group, t_dl_node **stack)
 {
 	t_dl_node	*last;
 
@@ -87,10 +85,10 @@ static bool	all__marked_green(t_dl_node **stack)
 
 static t_dl_node	*get__max_non_green_group(t_dl_node **stack)
 {
-	t_dl_node *max_non_green_group_a;
-	t_dl_node *truly_max_group_b;
-	int max_goal_a;
-	int min_goal_b;
+	t_dl_node	*max_non_green_group_a;
+	t_dl_node	*truly_max_group_b;
+	int			max_goal_a;
+	int			min_goal_b;
 
 	max_non_green_group_a = max_non_green_group(stack[A], &max_goal_a);
 	truly_max_group_b = truly_max_group(stack[B], &min_goal_b);

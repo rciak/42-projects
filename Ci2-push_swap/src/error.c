@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:30:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 13:16:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 16:59:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
  */
 
 #include "push_swap.h"
-#include "libft.h"
-#include <unistd.h>
 
 /**
  * @brief Complements a push_swap error code, by the corresponding
@@ -34,13 +32,12 @@ t_err	error(enum e_push_swap_errors error_code)
 	{ERR_NONE,
 		GREEN"Success" " - no error detected in input."
 		RESET
-		"\n\nYet mourning..."
+		"\n\n             Yet mourning..."
 		"\n"
-		"\n  Oh why subject is declining"
-		"\n  my purpose by defining;"
-		"\n  Of these lines no print"
-		"\n  when of args there is no hint!"
-		"\n"},
+		"\n               Oh why subject is declining"
+		"\n               my purpose by defining;"
+		"\n               Of these lines no print"
+		"\n               when of args there is no hint!                   \n"},
 	{ERR_ARG_NUM,
 		YELLOW"providing 0 numbers is valid but questionable."
 		GREEN"- I'd like to suggest to provide at least one reasonable integer,"
@@ -54,6 +51,7 @@ t_err	error(enum e_push_swap_errors error_code)
 	{ERR_MALLOC, RED"Memory allocation failed"RESET},
 	{ERR_LOGIC, RED"logic is flawed or wrongly implemented"RESET}
 	};
+
 	return (err[error_code]);
 }
 

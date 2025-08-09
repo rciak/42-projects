@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/05 19:29:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 17:26:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	steps___next_till_rank(t_dl_node *node, int rank);
 void	small_size_algo(t_dl_node **stack, int size)
 {
 	if (stack[A] == NULL)
-		h_err_exit(error(ERR_LOGIC),
-		"small_size_algo: stack[A] == NULL should have been treated before");
+		h_err_exit(error(ERR_LOGIC), "small_size_algo: "
+			"stack[A] == NULL should have been treated before");
 	if (is_cyclic(stack[A]))
 		rotate__rank_to_top_of_a(1, stack, size);
 	else if (size == 3 && !is_cyclic(stack[A]))
@@ -84,7 +84,7 @@ static void	size__5_algo(t_dl_node **stack)
 static int	steps___next_till_rank(t_dl_node *node, int rank)
 {
 	int			i;
-	
+
 	i = 0;
 	while (((t_ps_obj *)node->obj)->group.rank != rank)
 	{
