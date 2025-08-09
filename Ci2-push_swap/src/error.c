@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 08:30:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 23:02:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 13:16:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ t_err	error(enum e_push_swap_errors error_code)
 	{ERR_ARG_NUM,
 		YELLOW"providing 0 numbers is valid but questionable."
 		GREEN"- I'd like to suggest to provide at least one reasonable integer,"
-		RED" but the subject prevents that I get ever printed!"
-		RESET},
+		RED" but the subject prevents that I get ever printed!"RESET},
 	{ERR_ARGV,
-		RED"Invalid arguments"
-		GREEN" - Only integers (of type int) are allowed, appearing only once."
-		RESET},
-	{ERR_DUPLICATE, RED"Duplicate detected"RESET},
+		RED"Invalid arguments - Only integers (of type int) are allowed, "
+		"appearing only once."RESET
+		"\n      E.g.  ./push_swap '2 -2147483648 3'  is invalid but\n      "
+		GREEN"  ./push_swap 2 -2147483648 ' 3  '"RESET"\n      should work"},
+	{ERR_DUPLICATE, RED"Invalid arguments - Duplicate detected"RESET},
 	{ERR_MALLOC, RED"Memory allocation failed"RESET},
 	{ERR_LOGIC, RED"logic is flawed or wrongly implemented"RESET}
 	};
