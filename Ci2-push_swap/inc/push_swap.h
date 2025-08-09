@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/08 20:47:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 10:46:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ enum e_miscellaneous
 };
 
 /**
- * @warning The enumaration of the below names **must** be 0, 1, 2, ...
+ * @warning The enumaration of the below names **must** be 0, 1, 2
  *          since they are **used as index** for arrays,
  *          defined in set__markers_subgroups(), cf. big_size_algo() !
  * @note `STAYER` indicates those subgroup (created by trivide()) that will
@@ -57,19 +57,19 @@ enum e_miscellaneous
  */
 enum e_subgroup
 {
-	LEAVER_UP = 0,
-	LEAVER_DOWN = 1,
-	STAYER = 2
+	LEAVER_UP,
+	LEAVER_DOWN,
+	STAYER,
 };
 
 /**
- * @warning The enumaration of the below names **must** be 0, 1, 2, ...
+ * @warning The enumaration of the below names **must** be 0, 1, ...
  *          since they are **used as index** for stack, defined in main() !
  */
 enum e_push_swap_stacks
 {
-	A = 0,
-	B = 1
+	A,
+	B,
 };
 
 /**
@@ -80,12 +80,12 @@ enum e_push_swap_stacks
  */
 enum e_push_swap_errors
 {
-	ERR_NONE = 0,
-	ERR_ARG_NUM = 1,
-	ERR_ARGV = 2,
-	ERR_DUPLICATE = 3,
-	ERR_MALLOC = 4,
-	ERR_LOGIC = 5
+	ERR_NONE,
+	ERR_ARG_NUM,
+	ERR_ARGV,
+	ERR_DUPLICATE,
+	ERR_MALLOC,
+	ERR_LOGIC,
 };
 
 typedef struct s_err
