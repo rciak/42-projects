@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:20:18 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 21:24:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:05:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,23 @@
  */
 int	group_size(t_dl_node *ori_node)
 {
-	t_dl_node *node;
-	int size;
+	t_dl_node	*node;
+	int			size;
 
 	if (ori_node == NULL)
 		return (0);
 	node = ori_node;
 	size = 1;
-	while (((t_ps_obj*)node->obj)->group.starts == false)
+	while (((t_ps_obj *)node->obj)->group.starts == false)
 	{
 		node = node->prev;
 		size++;
 	}
 	node = ori_node;
-	while (((t_ps_obj*)node->obj)->group.ends == false)
+	while (((t_ps_obj *)node->obj)->group.ends == false)
 	{
 		node = node->next;
 		size++;
 	}
 	return (size);
 }
-

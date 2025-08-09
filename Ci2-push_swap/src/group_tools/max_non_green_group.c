@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 10:43:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:08:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
  *          * `NULL` if there are no "non-green" groups
  *            on stack_a
  */
-t_dl_node *max_non_green_group(t_dl_node *stack_a, int *max)
+t_dl_node	*max_non_green_group(t_dl_node *stack_a, int *max)
 {
 	t_dl_node	*best_so_far;
 	t_dl_node	*node;
@@ -58,12 +58,12 @@ t_dl_node *max_non_green_group(t_dl_node *stack_a, int *max)
 	if (((t_ps_obj *) node->obj)->is_green == false)
 	{
 		best_so_far = node;
-		*max = ((t_ps_obj*)node->obj)->goal;
+		*max = ((t_ps_obj *)node->obj)->goal;
 	}
 	dl_lst_linearize(stack_a);
 	while (node != NULL)
 	{
-		obj = (t_ps_obj*)node->obj; 
+		obj = (t_ps_obj *)node->obj;
 		if (obj->goal > *max && obj->is_green == false)
 		{
 			*max = obj->goal;
@@ -74,7 +74,7 @@ t_dl_node *max_non_green_group(t_dl_node *stack_a, int *max)
 	dl_lst_circularize(stack_a);
 	if (*max == SMALLER_THAN_ANY_GOAL)
 		return (NULL);
-	while (((t_ps_obj*)best_so_far->obj)->group.starts != true)
+	while (((t_ps_obj *)best_so_far->obj)->group.starts != true)
 		best_so_far = best_so_far->prev;
 	return (best_so_far);
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:01:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/06 16:57:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:19:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	update_group(t_dl_node *node)
 	size = group_size(node);
 	if (size == 0)
 		return ;
-	while (((t_ps_obj*)node->obj)->group.starts == false)
+	while (((t_ps_obj *)node->obj)->group.starts == false)
 		node = node->prev;
 	write__groupsize_to_group_members(node, size);
 	calc__n_write_rank_to_group_members(node, size);
@@ -51,17 +51,17 @@ void	update_group(t_dl_node *node)
 static void	write__groupsize_to_group_members(t_dl_node *first, int size)
 {
 	int	i;
-	
+
 	i = 1;
 	while (i <= size)
 	{
-		((t_ps_obj*)first->obj)->group.size = size;
-		first=first->next;
+		((t_ps_obj *)first->obj)->group.size = size;
+		first = first->next;
 		i++;
 	}
 }
 
-static void calc__n_write_rank_to_group_members(t_dl_node *first, int size)
+static void	calc__n_write_rank_to_group_members(t_dl_node *first, int size)
 {
 	int			rank;
 	t_dl_node	*smallest_unranked;
@@ -71,7 +71,7 @@ static void calc__n_write_rank_to_group_members(t_dl_node *first, int size)
 	while (rank <= size)
 	{
 		smallest_unranked = find___smallest_unranked(first, size);
-		((t_ps_obj*)smallest_unranked->obj)->group.rank = rank;
+		((t_ps_obj *)smallest_unranked->obj)->group.rank = rank;
 		rank++;
 	}
 }
@@ -79,38 +79,37 @@ static void calc__n_write_rank_to_group_members(t_dl_node *first, int size)
 static void	unset___rank_for_all_group_members(t_dl_node *first, int size)
 {
 	int	i;
-	
+
 	i = 1;
 	while (i <= size)
 	{
-		((t_ps_obj*)first->obj)->group.rank = -1;
-		first=first->next;
+		((t_ps_obj *)first->obj)->group.rank = -1;
+		first = first->next;
 		i++;
 	}
 }
 
-
 static t_dl_node	*find___smallest_unranked(t_dl_node *first, int size)
 {
-		t_dl_node	*node;
-		t_dl_node	*smallest_unr;
-		int			i;
+	t_dl_node	*node;
+	t_dl_node	*min_unrank;
+	int			i;
 
-		node = first;
-		smallest_unr = first;
-		while (((t_ps_obj*)smallest_unr->obj)->group.rank != -1)
-			smallest_unr=smallest_unr->next;
-		if (smallest_unr == NULL)
-			return (NULL);
-		i = 1;
-		while (i <= size)
-		{
-			if (((t_ps_obj*)node->obj)->goal < ((t_ps_obj*)smallest_unr->obj)->goal
-				&& ((t_ps_obj*)node->obj)->group.rank == -1
-			)
-				smallest_unr = node;
-			node = node->next;
-			i++;
-		}
-		return (smallest_unr);
+	node = first;
+	min_unrank = first;
+	while (((t_ps_obj *)min_unrank->obj)->group.rank != -1)
+		min_unrank = min_unrank->next;
+	if (min_unrank == NULL)
+		return (NULL);
+	i = 1;
+	while (i <= size)
+	{
+		if (((t_ps_obj *)node->obj)->goal < ((t_ps_obj *)min_unrank->obj)->goal
+			&& ((t_ps_obj *)node->obj)->group.rank == -1
+		)
+			min_unrank = node;
+		node = node->next;
+		i++;
+	}
+	return (min_unrank);
 }

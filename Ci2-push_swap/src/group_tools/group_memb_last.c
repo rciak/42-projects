@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:12:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/30 11:20:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:04:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  */
 t_dl_node	*group_memb_last(t_dl_node *node_of_group)
 {
-	while (((t_ps_obj*)node_of_group->obj)->group.ends == false)
-		node_of_group=node_of_group->next;
+	while (((t_ps_obj *)node_of_group->obj)->group.ends == false)
+		node_of_group = node_of_group->next;
 	return (node_of_group);
 }

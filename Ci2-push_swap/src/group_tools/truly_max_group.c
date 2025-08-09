@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 15:16:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/07 10:49:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:09:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
  *          * a pointer to the maximal group on stack_b, if any, or
  *          * `NULL` if there are no groups on stack_b
  */
-t_dl_node *truly_max_group(t_dl_node *stack_b, int *min)
+t_dl_node	*truly_max_group(t_dl_node *stack_b, int *min)
 {
 	t_dl_node	*best_so_far;
 	t_dl_node	*node;
@@ -58,7 +58,7 @@ t_dl_node *truly_max_group(t_dl_node *stack_b, int *min)
 	dl_lst_linearize(stack_b);
 	while (node != NULL)
 	{
-		obj = (t_ps_obj*)node->obj; 
+		obj = (t_ps_obj *)node->obj;
 		if (obj->goal < *min)
 		{
 			*min = obj->goal;
@@ -67,7 +67,7 @@ t_dl_node *truly_max_group(t_dl_node *stack_b, int *min)
 		node = node->next;
 	}
 	dl_lst_circularize(stack_b);
-	while (((t_ps_obj*)best_so_far->obj)->group.starts != true)
+	while (((t_ps_obj *)best_so_far->obj)->group.starts != true)
 		best_so_far = best_so_far->prev;
 	return (best_so_far);
 }

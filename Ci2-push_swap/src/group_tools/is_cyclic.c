@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:10:19 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/08 20:52:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:06:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@
 bool	is_cyclic(t_dl_node *first)
 {
 	int	size;
-	int very_first_val;
+	int	very_first_val;
 	int	i;
-	int a;
-	int b;
+	int	a;
+	int	b;
 
 	size = group_size(first);
 	if (size == 1 || size == 2)

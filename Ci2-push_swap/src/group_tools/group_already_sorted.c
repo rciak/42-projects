@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:45:49 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/28 12:05:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 17:50:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ bool	group_already_sorted(t_dl_node *node)
 {
 	int	size;
 
-	while (((t_ps_obj*)node->obj)->group.starts == false)
+	while (((t_ps_obj *)node->obj)->group.starts == false)
 		node = node->prev;
 	size = group_size(node);
 	while (1 < size)
 	{
-		if (((t_ps_obj*)node->obj)->n >= ((t_ps_obj*)node->next->obj)->n)
+		if (((t_ps_obj *)node->obj)->n >= ((t_ps_obj *)node->next->obj)->n)
 			return (false);
-		node=node->next;
+		node = node->next;
 		size--;
 	}
 	return (true);
