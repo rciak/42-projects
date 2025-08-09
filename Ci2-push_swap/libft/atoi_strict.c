@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 11:29:50 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 12:19:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 12:24:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	out__of_range(int sign, long long nbr, t_libft_err *err_code);
  *        it is more strict than atoi_proper(), resp. ft_atoi(), resp. the
  *        orignal atoi (at least in its implementation on 42 machines)
  * @note In contrast to atoi_proper() (and hence ft_atoi()) weird input like
- *       "123abc" will not be converted into the number "123", but atoi_strict()
+ *       "123abc" will not be converted into the number `123`, but atoi_strict()
  *       will return "0" instead and set \p error_code to `E_ATOI_BAD_STRING`,
  *       seeing more inputs as invalid strings than atoi_strict() does.
  *       Additional white space after the digits part is though considered ok.
