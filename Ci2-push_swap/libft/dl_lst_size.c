@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 15:40:23 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/10 16:56:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 18:52:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  */
 
 #include "libft.h"
-#include <unistd.h>
 
 static size_t	count__when_nonempty_linear(const t_dl_node *const pdl_node);
 static size_t	count__when_nonempty_circular(const t_dl_node *const pdl_node);
