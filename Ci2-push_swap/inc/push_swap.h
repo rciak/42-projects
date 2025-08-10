@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 16:30:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 17:13:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # define PUSH_SWAP_H
 # include <stdbool.h>
 # include "libft.h"
-#include "/home/reciak/github/42-projects/Ci2-push_swap/42-eva-lua/Ci2-push_swap-crtests/manual-test.h" 
-#include <stdio.h> //---------------------------------------------------------------
 
 /**
  * @note @c SMALLER_THAN_ANY_GOAL would no longer rightly bear its name
