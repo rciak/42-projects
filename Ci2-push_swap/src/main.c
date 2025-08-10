@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 17:20:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 19:46:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ int	main(int argc, char **argv)
 	stack[A] = NULL;
 	stack[B] = NULL;
 	if (!argv__to_list(argc, argv, stack, &err))
+	{
+		dl_lst_clear(&stack[A], free);
 		return (handle_error(err, "main"), err.code);
+	}
 	size = dl_lst_size(stack[A]);
 	be_group(stack[A], size);
 	init__is_green_and_goal_position(stack[A], size);
 	dl_lst_circularize(stack[A]);
 	if (group_already_sorted(stack[A]))
-		return (ERR_NONE);
-	if (size < GO_FOR_BIG_SIZE_ALGO)
+		;
+	else if (size < GO_FOR_BIG_SIZE_ALGO)
 		small_size_algo(stack, size);
 	else
 		big_size_algo(stack);
