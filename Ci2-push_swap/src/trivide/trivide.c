@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:02:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 22:26:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 14:38:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	trivide(t_dl_node *boundary_group, t_dl_node **stack)
 	t_dl_node	*last;
 	t_dl_node	*subgroup[3];
 
-	update_group(boundary_group);   //---------------------------------------------try to omit
 	last = group_memb_last(boundary_group);
 	if (boundary_group == stack[A] || boundary_group == stack[B])
 	{
