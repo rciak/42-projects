@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 12:14:11 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/10 13:59:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 15:36:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static void	sortin__b_end(t_dl_node **stack, size_t i_max, bool cyclic);
 
 /**
  * @brief For putting size 3 groups on top of the green area on stack `a`
- * @note regarding the variable \p i_max_min note that
+ * @note note that this function repies on \p group on either on being on 
+ *       stack `a` or have its ranks rearranged as if it were on stack `a`
+ * @note This guaranted by join_green() via calling its static helper
+ *       set__ranks_as_if_on_stack_a() before calling this function.
  */
 void	join_green_size_3(t_dl_node *group, t_dl_node **stack)
 {
@@ -139,16 +142,11 @@ static void	sortin__b_top(t_dl_node **stack, size_t i_max, bool cyclic)
 
 static void	sortin__b_end(t_dl_node **stack, size_t i_max, bool cyclic)
 {
+	rrb(stack);
 	if (i_max == 0)
-	{
-		rrb(stack);
-		rrb(stack);
-		rrb(stack);
-		sortin__b_top(stack, i_max, cyclic);
-	}
+		return (rrb(stack), rrb(stack), sortin__b_top(stack, i_max, cyclic));
 	else if (i_max == 1)
 	{
-		rrb(stack);
 		rrb(stack);
 		pa(stack);
 		if (!cyclic)
@@ -160,7 +158,6 @@ static void	sortin__b_end(t_dl_node **stack, size_t i_max, bool cyclic)
 	}
 	else if (i_max == 2)
 	{
-		rrb(stack);
 		pa(stack);
 		rrb(stack);
 		pa(stack);
