@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:29:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 17:26:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 19:17:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of small_size_algo()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 static void	rotate__rank_to_top_of_a(int rank, t_dl_node **stack, int size);
