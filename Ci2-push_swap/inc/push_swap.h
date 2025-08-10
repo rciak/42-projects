@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 17:15:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/10 17:13:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 19:03:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  */
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stdbool.h>
 # include "libft.h"
 
 /**
