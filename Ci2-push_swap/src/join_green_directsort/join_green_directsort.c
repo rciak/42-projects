@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 20:39:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/10 13:58:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 19:14:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of join_green_directsort()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 static void	mark__group_as_green(t_dl_node *soon_green);
