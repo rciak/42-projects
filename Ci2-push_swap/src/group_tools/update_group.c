@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:01:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 18:19:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 15:07:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include "libft.h"
 #include "push_swap.h"
 
-static void		write__groupsize_to_group_members(t_dl_node *first, int size);
-static void		calc__n_write_rank_to_group_members(t_dl_node *first, int size);
-static void		unset___rank_for_all_group_members(t_dl_node *first, int size);
+static void			write__groupsize_to_members(t_dl_node *first, int size);
+static void			calc__and_write_rank_to_members(t_dl_node *first, int size);
+static void			unset___rank_of_members(t_dl_node *first, int size);
 static t_dl_node	*find___smallest_unranked(t_dl_node *first, int size);
 
 /**
@@ -44,11 +44,11 @@ void	update_group(t_dl_node *node)
 		return ;
 	while (((t_ps_obj *)node->obj)->group.starts == false)
 		node = node->prev;
-	write__groupsize_to_group_members(node, size);
-	calc__n_write_rank_to_group_members(node, size);
+	write__groupsize_to_members(node, size);
+	calc__and_write_rank_to_members(node, size);
 }
 
-static void	write__groupsize_to_group_members(t_dl_node *first, int size)
+static void	write__groupsize_to_members(t_dl_node *first, int size)
 {
 	int	i;
 
@@ -61,12 +61,12 @@ static void	write__groupsize_to_group_members(t_dl_node *first, int size)
 	}
 }
 
-static void	calc__n_write_rank_to_group_members(t_dl_node *first, int size)
+static void	calc__and_write_rank_to_members(t_dl_node *first, int size)
 {
 	int			rank;
 	t_dl_node	*smallest_unranked;
 
-	unset___rank_for_all_group_members(first, size);
+	unset___rank_of_members(first, size);
 	rank = 1;
 	while (rank <= size)
 	{
@@ -76,7 +76,7 @@ static void	calc__n_write_rank_to_group_members(t_dl_node *first, int size)
 	}
 }
 
-static void	unset___rank_for_all_group_members(t_dl_node *first, int size)
+static void	unset___rank_of_members(t_dl_node *first, int size)
 {
 	int	i;
 
