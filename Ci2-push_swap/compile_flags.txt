@@ -1,5 +1,0 @@
--I./inc
--I./libft
--Wall
--Wextra
--Werror
