@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 20:39:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/08 19:21:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 13:58:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	join_green_directsort(t_dl_node *soon_green, t_dl_node **stack)
 	int	size;
 
 	if (soon_green == NULL)
-		h_err_exit(error(ERR_LOGIC),"join_green_directsort (NULL input!)");
+		h_err_exit(error(ERR_LOGIC), "join_green_directsort (NULL input!)");
 	mark__group_as_green(soon_green);
 	size = ((t_ps_obj *)soon_green->obj)->group.size;
 	if (size == 1)
@@ -65,9 +65,6 @@ void	join_green_directsort(t_dl_node *soon_green, t_dl_node **stack)
 			set__ranks_as_if_on_stack_a(soon_green);
 		join_green_size_3(soon_green, stack);
 	}
-	//
-	// ?? MAYBE NOT / no longer needed?! SETT all to groups of size 1 by setting the markers accorrdingly
-	//
 }
 
 static void	mark__group_as_green(t_dl_node *soon_green)
@@ -75,7 +72,7 @@ static void	mark__group_as_green(t_dl_node *soon_green)
 	int			size;
 
 	if (((t_ps_obj *)soon_green->obj)->group.starts == false)
-		h_err_exit(error(ERR_LOGIC),"mark_group_as_green (group.starts)");
+		h_err_exit(error(ERR_LOGIC), "mark_group_as_green (group.starts)");
 	size = ((t_ps_obj *)soon_green->obj)->group.size;
 	while (size > 1)
 	{
@@ -84,7 +81,7 @@ static void	mark__group_as_green(t_dl_node *soon_green)
 		size--;
 	}
 	if (((t_ps_obj *)soon_green->obj)->group.ends == false)
-		h_err_exit(error(ERR_LOGIC),"mark_group_as_green (group.ends)");
+		h_err_exit(error(ERR_LOGIC), "mark_group_as_green (group.ends)");
 	((t_ps_obj *)soon_green->obj)->is_green = true;
 }
 

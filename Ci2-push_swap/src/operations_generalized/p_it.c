@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 10:02:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 22:37:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 14:24:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	p_it(t_dl_node *node, t_dl_node **stack)
 	if (is_on_a(node))
 		pb(stack);
 	else
-	 	pa(stack);
+		pa(stack);
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 21:14:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 21:52:11 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 14:23:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ bool	swap(t_dl_node **stack, int chosen)
 {
 	size_t		size;
 	t_dl_node	*node[4];
-	
+
 	size = dl_lst_size(stack[chosen]);
 	if (size <= 1)
 		return (false);
-	// When everything is working: Try to delete this redundantent seeming else if block
-	// and add a doxygen note about the size 2 case, (going in a circe - but no problem)
 	else if (size == 2)
 	{
 		stack[chosen] = stack[chosen]->next;

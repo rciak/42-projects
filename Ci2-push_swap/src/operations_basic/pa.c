@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 09:51:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/02 22:43:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 14:17:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "push_swap.h"
 
-static	t_dl_node *settle__estate_on_ori_stack(t_dl_node *ori);
+static	t_dl_node	*settle__estate_on_ori_stack(t_dl_node *ori);
 
 /**
  * @brief push (to) a: Take the first element at the top of stack `b`
@@ -31,12 +31,12 @@ static	t_dl_node *settle__estate_on_ori_stack(t_dl_node *ori);
  *                       respectively, if any; an empty stack is indicated by
  *                       `NULL`.
  */
-void	pa (t_dl_node **stack)
+void	pa(t_dl_node **stack)
 {
 	int			dest;
 	int			ori;
 	t_dl_node	*future_ori;
-	
+
 	dest = A;
 	ori = B;
 	if (stack[ori] == NULL)
@@ -60,7 +60,7 @@ void	pa (t_dl_node **stack)
 	ft_putstr_fd("pa\n", STDOUT_FILENO);
 }
 
-static	t_dl_node *settle__estate_on_ori_stack(t_dl_node *ori)
+static t_dl_node	*settle__estate_on_ori_stack(t_dl_node *ori)
 {
 	t_dl_node	*future_ori;
 

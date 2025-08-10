@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 12:14:11 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/08 21:16:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 13:59:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ static void	sortin__b_top(t_dl_node **stack, size_t i_max, bool cyclic)
 		sb(stack);
 		pa(stack);
 		sa(stack);
-		pa(stack); 
+		pa(stack);
 		if (cyclic)
 			sa(stack);
 	}
