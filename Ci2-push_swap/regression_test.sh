@@ -1,10 +1,14 @@
 #! /bin/bash
 
 echo
-echo "***************************************************"
-echo "Building manual-test and renaming it to ./push_swap"
+#echo "***************************************************"
+#echo "Building manual-test and renaming it to ./push_swap"
 # Perplexity helped with wrongly placed > /dev/null (having no effect on make when placed at the end)
-make DEBUG_VALGRIND=1 manual-test > /dev/null; cp 42-eva-lua/Ci2-push_swap-crtests/manual_test_push_swap .; mv manual_test_push_swap push_swap 
+#make DEBUG_VALGRIND=1 manual-test > /dev/null; cp 42-eva-lua/Ci2-push_swap-crtests/manual_test_push_swap .; mv manual_test_push_swap push_swap 
+
+#echo "***************************************************"
+#echo "running  make re ...
+make re
 echo "Executing tests ...  "
 echo '--'
 
