@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/10 16:46:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 17:17:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,3 @@ t_dl_node	*max_non_green_group(t_dl_node *stack_a, int *max)
 		best_so_far = best_so_far->prev;
 	return (best_so_far);
 }
-
