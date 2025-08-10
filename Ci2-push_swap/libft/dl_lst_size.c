@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 15:40:23 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 12:28:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 16:53:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,3 @@ static size_t	st_count_when_nonempty_circular(const t_dl_node *const pdl_node)
 	}
 	return (len);
 }
-

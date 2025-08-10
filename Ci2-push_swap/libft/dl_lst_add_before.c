@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:46:54 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 13:06:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 16:51:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  * @brief Stores the definition of dl_lst_add_before()
  */
 
- #include "libft.h"
+#include "libft.h"
 
 /**
  * @brief Add a node before the current node of the doubly linked list
