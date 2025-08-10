@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 18:07:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 17:43:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 18:57:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of be_group()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/10 17:17:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 18:57:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of max_non_green_group
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

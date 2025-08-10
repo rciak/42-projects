@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:12:34 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 18:04:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 18:57:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of group_memb_last
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

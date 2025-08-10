@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:01:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/10 15:07:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 18:57:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of update_group()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 static void			write__groupsize_to_members(t_dl_node *first, int size);

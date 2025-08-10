@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 19:20:18 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 18:05:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 18:57:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of group_size()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

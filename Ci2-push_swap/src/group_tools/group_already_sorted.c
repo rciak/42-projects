@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:45:49 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 17:50:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 18:57:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of group_already_sorted()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

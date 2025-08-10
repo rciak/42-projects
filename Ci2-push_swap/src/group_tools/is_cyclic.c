@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:10:19 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 18:06:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 18:57:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief Stores the definition of is_cyclic()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**
