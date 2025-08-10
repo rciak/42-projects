@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:08:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 18:08:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 16:46:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 #include "push_swap.h"
 
 /**
- * @brief Finds the maximal group in stack a
+ * @brief Finds the maximal group in stack `a`
  *        that is not yet added to the "green" region of
  *        already perfectly sorted numbers.
  *        The maximal of these "non green" groups is the one
  *        whose numbers are all bigger than the numbers of the
  *        other "non-green" groups, cf. big_size_algo()
  * @note This functions was orignally designed to be applied to stack[A]
- *       (any node of stack a).
+ *       (any node of stack `a`).
  *       Calling it with stack[B] makes no sense since it would pick the
  *       **smallest** group since pushing causes a sign change...
  * @note For picking the **effectively maximal** group in **stack b**
@@ -52,14 +52,8 @@ t_dl_node	*max_non_green_group(t_dl_node *stack_a, int *max)
 
 	if (stack_a == NULL)
 		return (NULL);
-	best_so_far = NULL;
 	node = stack_a;
 	*max = SMALLER_THAN_ANY_GOAL;
-	if (((t_ps_obj *) node->obj)->is_green == false)
-	{
-		best_so_far = node;
-		*max = ((t_ps_obj *)node->obj)->goal;
-	}
 	dl_lst_linearize(stack_a);
 	while (node != NULL)
 	{
@@ -78,3 +72,4 @@ t_dl_node	*max_non_green_group(t_dl_node *stack_a, int *max)
 		best_so_far = best_so_far->prev;
 	return (best_so_far);
 }
+
