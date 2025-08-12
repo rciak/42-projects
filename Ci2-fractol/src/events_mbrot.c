@@ -18,7 +18,7 @@
 int	key_mbrot(int keysym, t_all *all)
 {
 	if (keysym == XK_Escape)
-		mlx_destroy_window(all->x.disp, all->x.win0);
+		mlx_destroy_window(all->x.disp, all->x.win[MBROT]);
 	return (0);
 }
 

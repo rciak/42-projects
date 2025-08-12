@@ -64,19 +64,19 @@ static bool	provide__windows(t_all *all)
 	title[1] = "Fractol - Filled Julia set";
 	x = &(all->x);
 
-	x->win0 = NULL;
-	x->win1 = NULL;
+	x->win[MBROT] = NULL;
+	x->win[JULIA] = NULL;
 	x->disp = mlx_init();
 	if (x->disp == NULL)
 		return (all->err = error(ERR_MLX_INIT), false);
-	x->win0 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title[0]);
-	if (x->win0 == NULL)
+	x->win[MBROT] = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title[0]);
+	if (x->win[MBROT] == NULL)
 		return (all->err = error(ERR_MLX_NEW_WINDOW), free(x->disp), false);
-	x->win1 = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title[1]);
-	if (x->win1 == NULL)
+	x->win[JULIA] = mlx_new_window(x->disp, WIN_WIDTH, WIN_HEIGHT, title[1]);
+	if (x->win[JULIA] == NULL)
 		return (
 			all->err = error(ERR_MLX_NEW_WINDOW),
-			mlx_destroy_window(x->disp, x->win0),
+			mlx_destroy_window(x->disp, x->win[MBROT]),
 			free(x->disp),
 			false
 		);
@@ -85,10 +85,10 @@ static bool	provide__windows(t_all *all)
 static bool	setup__hooks(t_all *all)
 {
 	mlx_loop_hook(all->x.disp, &waiting_for_godot, all);
-	mlx_key_hook(all->x.win0, &key_mbrot, all);
-	mlx_key_hook(all->x.win1, &key_julia, all);
-	mlx_mouse_hook(all->x.win0, &mouse_mbrot, all);
-	mlx_mouse_hook(all->x.win1, &mouse_julia, all);
+	mlx_key_hook(all->x.win[MBROT], &key_mbrot, all);
+	mlx_key_hook(all->x.win[JULIA], &key_julia, all);
+	mlx_mouse_hook(all->x.win[MBROT], &mouse_mbrot, all);
+	mlx_mouse_hook(all->x.win[JULIA], &mouse_julia, all);
 	return (true);
 }
 

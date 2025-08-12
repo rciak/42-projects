@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/12 17:10:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/12 20:16:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ enum e_geo_win
 };
 
 /**
+ * @warning The names below must be  0 and 1
+ *          since they are **used as index** !
+ */
+enum e_which
+{
+	MBROT,
+	JULIA,
+};
+
+
+/**
  * @warning The enumaration of the below error codes **must** be 0, 1, 2, ...
  *          since they are **used as index** in error() !
  * @warning Also the value 0 must be named by `ERR_NONE`, since ERR_NONE
@@ -66,8 +77,7 @@ enum e_misc
 typedef struct s_x
 {
 	void	*disp;
-	void	*win0;
-	void	*win1;
+	void	*win[2];
 }	t_x;
 
 typedef struct s_err

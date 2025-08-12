@@ -17,7 +17,7 @@
 int	key_julia(int keysym, t_all *all)
 {
 	if (keysym == XK_Escape)
-		mlx_destroy_window(all->x.disp, all->x.win1);
+		mlx_destroy_window(all->x.disp, all->x.win[JULIA]);
 	return (0);
 }
 
