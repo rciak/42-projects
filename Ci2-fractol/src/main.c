@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 23:48:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/12 18:47:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ static bool	provide__windows(t_all *all)
 }
 static bool	setup__hooks(t_all *all)
 {
-	mlx_loop_hook(all->x.disp, &waiting_for_godot, &all);
-	mlx_key_hook(all->x.win0, &key_mbrot, &all);
-	mlx_key_hook(all->x.win1, &key_julia, &all);
-	mlx_mouse_hook(all->x.win0, &mouse_mbrot, &all);
-	mlx_mouse_hook(all->x.win1, &mouse_julia, &all);
+	mlx_loop_hook(all->x.disp, &waiting_for_godot, all);
+	mlx_key_hook(all->x.win0, &key_mbrot, all);
+	mlx_key_hook(all->x.win1, &key_julia, all);
+	mlx_mouse_hook(all->x.win0, &mouse_mbrot, all);
+	mlx_mouse_hook(all->x.win1, &mouse_julia, all);
 	return (true);
 }
 
