@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 23:50:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/12 17:10:29 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ enum e_geo_win
  */
 enum e_fractol_errors
 {
-	ERR_NONE = 0,
-	ERR_ARG_NUM = 1,
-	ERR_ARGV = 2,
-	ERR_MLX_INIT = 3,
-	ERR_MLX_NEW_WINDOW = 4,
-	ERR_MLX_NEW_IMAGE = 5
+	ERR_NONE,
+	ERR_ARG_NUM,
+	ERR_ARGV,
+	ERR_MLX_INIT,
+	ERR_MLX_NEW_WINDOW,
+	ERR_MLX_NEW_IMAGE,
 };
 
 enum e_misc
