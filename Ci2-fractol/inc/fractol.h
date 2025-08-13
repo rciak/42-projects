@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/13 10:41:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/13 18:52:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 //
-// Wenn das so nicht funktioniert:
+// Wenn das so nicht funktioniert:///////////////////////////////////////////////////
 // # define XK_MISCELLANY
 // # define XK_LATIN1
 // # include <X11/keysymdef.h>
@@ -39,11 +39,13 @@
  */
 enum e_geo_win
 {
-	WIN_WIDTH = 513,
-	WIN_HEIGHT = 513
+	WIDTH = 513,
+	HEIGHT = 513
 };
 
 /**
+ * @brief For distinguishing between the window / fractoltype of kind
+ *        Mandelbrot / Multibrot  or (one of the corresponding) Julia sets
  * @warning The names below must be  0 and 1
  *          since they are **used as index** !
  */
@@ -52,7 +54,6 @@ enum e_which
 	MBROT,
 	JULIA,
 };
-
 
 /**
  * @warning The enumaration of the below error codes **must** be 0, 1, 2, ...
@@ -63,8 +64,7 @@ enum e_which
 enum e_fractol_errors
 {
 	ERR_NONE,
-	ERR_ARG_NUM,
-	ERR_ARGV,
+	ERR_ARG,
 	ERR_MLX_INIT,
 	ERR_MLX_NEW_WINDOW,
 	ERR_MLX_NEW_IMAGE,
@@ -79,7 +79,44 @@ typedef struct s_x
 {
 	void	*disp;
 	void	*win[2];
+	void	*struct_img_iter[2];
+	void	*struct_img_draw[2];
 }	t_x;
+
+typedef struct s_image
+{
+	char	*buf;
+	int		bits_per_pixel;
+	int		bytes_pp;
+	int		size_line;
+	int		endian;
+}	t_image;
+
+typedef struct s_cmplx
+{
+	long double	re;
+	long double	im;
+}	t_cmplx;
+
+typedef struct s_square
+{
+	t_cmplx		up_left;
+	long double	side_len;
+}	t_square;
+
+typedef struct s_view
+{
+	t_cmplx	up_left;
+	t_cmplx	down_right;
+}	t_view;
+
+typedef struct s_math
+{
+	t_square	square;
+	t_view		view;
+	t_cmplx		(*iter_fun)(t_cmplx a, t_cmplx b);
+	bool		(*will_escape)(t_cmplx z);
+}	t_math;
 
 typedef struct s_err
 {
@@ -89,11 +126,18 @@ typedef struct s_err
 
 typedef struct s_all
 {
-	char	*dummy_c;
-	int		dummy_i;
+	t_cmplx	julia_param;
+	char	*title[2];
+	bool	recalc_need[2];
+	t_math	math[2];
+	t_image	img_iter[2];
+	t_image	img_draw[2];
 	t_x		x;
 	t_err	err;
 } t_all;
+
+//init_non_mlx_vars.c
+bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
 
 //events_mbrot.c
 int key_mbrot(int keysym, t_all *all);
