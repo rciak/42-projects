@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/12 20:16:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/13 10:41:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
  * @file fractol.h
  * @brief The header file for reciak's fractol project of the Common Core
  */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # include <stdbool.h>
