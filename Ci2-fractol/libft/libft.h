@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/14 12:41:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/14 16:17:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ void	*calloc_uninit(size_t nmemb, size_t size);
 // Extensions added after eval of libft
 //
 
-// Taken from Piscine:
-int		ft_strcmp(char *s1, char *s2);
+// Taken from Piscine / adopted:
+int	ft_strcmp(const char *s1, const char *s2);
 
 
 //ft_xx_out1.c
