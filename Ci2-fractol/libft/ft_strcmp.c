@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 12:40:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/14 16:15:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/14 16:24:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "libft.h"
 
 /**
- * @brief Comparison of two strings, up to (max.) their first n bytes, cf.
+ * @brief Comparison of two strings, cf.
  *        [strcmp](https://man7.org/linux/man-pages/man3/strcmp.3.html).
  * @note Cf. also strncmp()
  * @param[in] s1 The first string
