@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 12:02:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/15 17:19:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # define BLUE "\033[34m"
 # define CYAN "\033[36m"
 
+/**
+ * @warning The error code `E_ATOI_...`, `E_ATOLL_...`, `E_ATOF_...` are
+ *          related to each other. Their relative differences should not 
+ *          changed, since this will break the logic in 
+ *          `atoll__err_to atof_err`, c.f. atof_stric().
+ */
 typedef enum e_libft_err
 {
 	E_ARG_VAL = -1,
@@ -38,9 +44,13 @@ typedef enum e_libft_err
 	E_ATOI_NO_ERR = -20,
 	E_ATOI_BAD_STRING = -21,
 	E_ATOI_RANGE = -22,
-	E_ATOLL_NO_ERR = - 30,
+	E_ATOLL_NO_ERR = -30,
 	E_ATOLL_BAD_STRING = -31,
 	E_ATOLL_RANGE = -32,
+	E_ATOF_NO_ERR = -40,
+	E_ATOF_BAD_STRING = -41,
+	E_ATOF_RANGE = -42,
+	E_ATOF_MALLOC = -43,
 }				t_libft_err;
 
 typedef struct s_list
@@ -171,12 +181,20 @@ int			ft_strcmp(const char *s1, const char *s2);
 //currently in ft_x_strtools1.c
 size_t		skip(char **pstr, const char *chars_to_skip);
 
+//currently in sideproducts/ft_x_strtools2.c
+size_t	strlen_deli(const char *s, const char *deli);
+size_t	count_words(const char *s, const char *deli);
+char	**split_deli(char const *s, const char *deli);
+
 //ft_atoi with error info (with additional strictness in case of atoi_strict)
 int			atoi_proper(const char *nptr, t_libft_err *err_code);
 int			atoi_strict(const char *nptr, t_libft_err *err_code);
 
 long long	atoll_strict(const char *nptr, t_libft_err *err_code);
+double		atof_strict(const char *nptr, t_libft_err *err_code);
 
 bool		is_listed(const char *str, const char **list);
+
+void		free_array(char **string_array);
 
 #endif
