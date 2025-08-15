@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:48:49 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/09 12:25:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/15 12:02:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,5 @@ int	atoi_proper(const char *nptr, t_libft_err *err_code)
 	}
 	if (sign * nbr < INT_MIN || sign * nbr > INT_MAX)
 		return (*err_code = E_ATOI_RANGE, 0);
-	return (*err_code = E_ATOI_NOERR, (int)(sign * nbr));
+	return (*err_code = E_ATOI_NO_ERR, (int)(sign * nbr));
 }
