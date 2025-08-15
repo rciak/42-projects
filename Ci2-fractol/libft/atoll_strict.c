@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:52:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 13:18:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/15 13:36:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static bool	only__whitespace(const char *nptr, t_libft_err *err_code);
  *       so that operating within long long should work.
  * @param[in] nptr A char pointer to the input string
  * @param[out] err_code Feedbacking to caller if error happened and what kind.
- * @return 
- *          * 
- *          * 
+ * @return
+ *          * The converted number or
+ *          * 0 on error
  */
 long long	atoll_strict(const char *nptr, t_libft_err *err_code)
 {
