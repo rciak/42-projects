@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 11:29:50 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 11:55:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/15 12:02:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	atoi_strict(const char *nptr, t_libft_err *err_code)
 	}
 	if (!only__whitespace(nptr, err_code) || out__of_range(sign, nbr, err_code))
 		return (0);
-	return (*err_code = E_ATOI_NOERR, (int)(sign * nbr));
+	return (*err_code = E_ATOI_NO_ERR, (int)(sign * nbr));
 }
 
 static bool	only__whitespace(const char *nptr, t_libft_err *err_code)

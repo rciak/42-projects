@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 10:41:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/15 12:02:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef enum e_libft_err
 {
 	E_ARG_VAL = -1,
 	E_WRITE = -10,
-	E_ATOI_NOERR = -20,
+	E_ATOI_NO_ERR = -20,
 	E_ATOI_BAD_STRING = -21,
 	E_ATOI_RANGE = -22
 }				t_libft_err;
@@ -169,8 +169,8 @@ int			ft_strcmp(const char *s1, const char *s2);
 size_t		skip(char **pstr, const char *chars_to_skip);
 
 //ft_atoi with error info (with additional strictness in case of atoi_strict)
-int			atoi_proper(const char *nptr, t_libft_err *err);
-int			atoi_strict(const char *nptr, t_libft_err *err);
+int			atoi_proper(const char *nptr, t_libft_err *err_code);
+int			atoi_strict(const char *nptr, t_libft_err *err_code);
 
 bool		is_listed(const char *str, const char **list);
 
