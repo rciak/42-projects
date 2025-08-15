@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/08/15 09:36:13 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/15 10:23:00 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,16 @@ CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 RM := rm -f
 RMDIR := rmdir
 
+ifeq ($(DEBUG_LAUB_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=address,undefined,leak
+endif
+ifeq ($(DEBUG_M_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=memory -fsanitize-memory-track-origins=2
+endif
+ifeq ($(DEBUG_VALGRIND), 1)
+  CFLAGS  += -g3
+endif
+
 # Dependencies can be handled better using DEP=.. stuff, cf.
 # https://stackoverflow.com/questions/2394609/makefile-header-dependencies
 # but that is currently beyond my understanding and for not too big projects
@@ -28,6 +38,15 @@ INCS := \
 ./libft.h
 
 SRCS := \
+./atoi_strict.c \
+./dl_lst_add_after.c \
+./dl_lst_add_before.c \
+./dl_lst_circularize.c \
+./dl_lst_clear.c \
+./dl_lst_linearize.c \
+./dl_lst_new_nd.c \
+./dl_lst_size.c \
+./dl_lst_type.c \
 ./ft_atoi.c \
 ./ft_bzero.c \
 ./ft_calloc.c \
@@ -88,7 +107,7 @@ OBJS_BONUS = $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(SRCS_BONUS))
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(INCS)
 	ar -rcs $@ $^
 
 $(OBJ_DIR)/%.o:%.c $(INCS)
