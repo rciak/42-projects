@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/06/13 14:21:35 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/15 09:36:13 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS := \
 ./ft_putstr_fd.c \
 ./ft_split.c \
 ./ft_strchr.c \
+./ft_strcmp.c \
 ./ft_strdup.c \
 ./ft_striteri.c \
 ./ft_strjoin.c \
@@ -66,7 +67,8 @@ SRCS := \
 ./ft_x_memtools1.c \
 ./ft_x_strtools1.c \
 ./ft_xx_out1.c \
-./ft_xx_out2.c
+./ft_xx_out2.c \
+./is_listed.c
 
 SRCS_BONUS := \
 ./ft_lstadd_back_bonus.c \

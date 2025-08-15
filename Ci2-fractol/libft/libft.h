@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/14 16:17:58 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/15 09:39:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,6 @@ void	*calloc_uninit(size_t nmemb, size_t size);
 // Extensions added after eval of libft
 //
 
-// Taken from Piscine / adopted:
-int	ft_strcmp(const char *s1, const char *s2);
-
-
 //ft_xx_out1.c
 int		out_nbr_fd(int nbr, char *digits, int fd);
 int		out_unbr_fd(unsigned int nbr, char *digits, int fd);
@@ -121,5 +117,13 @@ int		out_unbr(unsigned int nbr, char *digits);
 int		out_uintptr(uintptr_t unbr, char *digits);
 int		out_str(char *str);
 int		out_vptr(void *ptr);
+
+// Taken from Piscine / adopted:
+int		ft_strcmp(const char *s1, const char *s2);
+
+//currently in ft_x_strtools1.c
+size_t	skip(char **pstr, const char *chars_to_skip);
+
+bool	is_listed(const char *str, const char **list);
 
 #endif

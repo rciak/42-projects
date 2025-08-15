@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:15:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 17:37:04 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/14 19:16:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,28 @@ bool	is_in(char c, const char *str)
 	if (c == '\0')
 		return (false);
 	return (ft_strchr(str, (int) c) != NULL);
+}
+
+/**
+ * @brief ++ a char pointer until it no longer sits on the to be
+ *        skipped characters
+ * @param[in] pstr The address of a pointer to a C string.
+ * @param[in] chars_to_skip A pointer to a string containing the to be skipped 
+ *            characters.
+ * @return 
+ *          * the number of skipped chars.
+ * @note If the first character is not to be skipped the above means that
+ *       the outside pointer `*pstr` will not be modified and `0` is returned.
+ */
+size_t	skip(char **pstr, const char *chars_to_skip)
+{
+	size_t	count;
+
+	count = 0;
+	while (is_in(**pstr, chars_to_skip))
+	{
+		(*pstr)++;
+		count++;
+	}
+	return (count);
 }
