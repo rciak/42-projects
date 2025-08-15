@@ -37,7 +37,10 @@ typedef enum e_libft_err
 	E_WRITE = -10,
 	E_ATOI_NO_ERR = -20,
 	E_ATOI_BAD_STRING = -21,
-	E_ATOI_RANGE = -22
+	E_ATOI_RANGE = -22,
+	E_ATOLL_NO_ERR = - 30,
+	E_ATOLL_BAD_STRING = -31,
+	E_ATOLL_RANGE = -32,
 }				t_libft_err;
 
 typedef struct s_list
@@ -171,6 +174,8 @@ size_t		skip(char **pstr, const char *chars_to_skip);
 //ft_atoi with error info (with additional strictness in case of atoi_strict)
 int			atoi_proper(const char *nptr, t_libft_err *err_code);
 int			atoi_strict(const char *nptr, t_libft_err *err_code);
+
+long long	atoll_strict(const char *nptr, t_libft_err *err_code);
 
 bool		is_listed(const char *str, const char **list);
 
