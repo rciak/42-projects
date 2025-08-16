@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 13:33:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/16 19:56:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/16 20:02:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,11 @@ static double	get__fract_part(const char **p_nptr, t_libft_err *err_code)
 		(*p_nptr)++;
 	}
 	return (*err_code = E_ATOF_NO_ERR, l_fract / magnitude);
-}	
-
+}
 
 static double	get__integer_part(const char **p_nptr, t_libft_err *err_code)
 {
-	double n;
+	double	n;
 
 	n = 0;
 	while (is_in(**p_nptr, "0123456789"))
