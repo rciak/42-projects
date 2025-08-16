@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/13 18:52:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/15 17:12:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,21 @@ enum e_fractol_errors
 {
 	ERR_NONE,
 	ERR_ARG,
+	ERR_ATOF_STRICT,
 	ERR_MLX_INIT,
 	ERR_MLX_NEW_WINDOW,
 	ERR_MLX_NEW_IMAGE,
 };
 
+enum e_max_num_digits_previous_and_after_decimalpoint_in_parsing
+{
+	PARSE_MAX_DIGITS_PRE = 2,
+	PARSE_MAX_DIGITS_AFTER = 7,
+};
+
 enum e_misc
 {
-	MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL = 314
+	MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL = 314,
 };
 
 typedef struct s_x
@@ -94,14 +101,14 @@ typedef struct s_image
 
 typedef struct s_cmplx
 {
-	long double	re;
-	long double	im;
+	double	re;
+	double	im;
 }	t_cmplx;
 
 typedef struct s_square
 {
 	t_cmplx		up_left;
-	long double	side_len;
+	double		side_len;
 }	t_square;
 
 typedef struct s_view
