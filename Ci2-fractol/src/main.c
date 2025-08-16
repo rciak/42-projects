@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/13 19:14:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/16 22:14:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ static void	setup__hooks(t_all *all)
 	mlx_key_hook(all->x.win[JULIA], &key_julia, all);
 	mlx_mouse_hook(all->x.win[MBROT], &mouse_mbrot, all);
 	mlx_mouse_hook(all->x.win[JULIA], &mouse_julia, all);
+	mlx_hook(all->x.win[MBROT], DestroyNotify, 0, &close_mbrot, all);
+	mlx_hook(all->x.win[JULIA], DestroyNotify, 0, &close_julia, all);
 	mlx_loop_hook(all->x.disp, &waiting_for_godot, all);
 }

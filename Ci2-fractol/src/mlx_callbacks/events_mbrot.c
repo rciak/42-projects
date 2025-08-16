@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/13 23:55:39 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/16 22:17:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 
 // TODO: Implement beyond these dummy versions!
 
+int close_mbrot(t_all *all)
+{
+	mlx_destroy_window(all->x.disp, all->x.win[MBROT]);
+	return (0);
+}
+
 int	key_mbrot(int keysym, t_all *all)
 {
 	if (keysym == XK_Escape)
-		mlx_destroy_window(all->x.disp, all->x.win[MBROT]);
+		close_mbrot(all);
 	return (0);
 }
 

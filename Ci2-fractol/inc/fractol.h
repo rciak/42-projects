@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 17:12:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/16 22:12:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,12 @@ typedef struct s_all
 bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
 
 //events_mbrot.c
+int close_mbrot(t_all *all);
 int key_mbrot(int keysym, t_all *all);
 int	mouse_mbrot(int button, int k, int l, t_all *all);
 
 //events_julia.c
+int close_julia(t_all *all);
 int	key_julia(int keysym, t_all *all);
 int	mouse_julia(int button, int k, int l, t_all *all);
 
