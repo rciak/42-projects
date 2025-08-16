@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:52:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 17:20:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/16 21:31:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static bool	args__ok(int ac, char **av);
 static bool	julia___param_ok(char *s);
 static bool	fractal___is_implemented(char *str);
 
-//TODO: Implement     this function and its
-//                    helper beyond current incomplete  state.........................
+//TODO: Implement     this function beyond current incomplete  state.........................
 
 /**
  * @brief Parses the input from the command line and inits the non mlx vars.
