@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 17:19:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/16 15:39:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdlib.h>   // malloc, free   (also NULL definition aside stddef.h)
 # include <stdint.h>   // intptr_t, uintptr_t
 # include <limits.h>   // UINT_MAX
+# include <float.h>   // DBL_MIN, DBL_MAX
 
 # define RESET "\033[0m"
 # define RED "\033[31m"
@@ -49,8 +50,8 @@ typedef enum e_libft_err
 	E_ATOLL_RANGE = -32,
 	E_ATOF_NO_ERR = -40,
 	E_ATOF_BAD_STRING = -41,
-	E_ATOF_RANGE = -42,
-	E_ATOF_MALLOC = -43,
+	E_ATOF_RANGE_PANIC = -42,
+	E_ATOF_MALLOC = -44,
 }				t_libft_err;
 
 typedef struct s_list
