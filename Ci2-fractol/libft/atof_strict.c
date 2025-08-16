@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 13:33:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/16 18:04:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/16 19:56:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 #include "libft.h"
 
-t_libft_err	atoll__err_to_atof_err(t_libft_err err_code);
-double		atof__strict_normal_case(const char *nptr, t_libft_err *err_code);
+static double	get__integer_part(const char **nptr, t_libft_err *err_code);
+static double	get__fract_part(const char **p_nptr, t_libft_err *err_code);
 
 /**
  * @brief Similar to atoi_strict() except that the return is not int 
@@ -49,24 +49,17 @@ double	atof_strict(const char *nptr, t_libft_err *err_code)
 	double	sign;
 	double	n;
 
-	sign = 1;
-	n = 0;
 	skip((char **) &nptr, " \n\t\f\r\v");
 	if (!is_in(*nptr, "+-0123456789"))
 		return (*err_code = E_ATOF_BAD_STRING, 0);
+	sign = 1;
 	if (*nptr == '-')
 		sign = -1;
 	if (is_in(*nptr, "+-"))
 		nptr++;
 	if (!is_in(*nptr, "0123456789"))
 		return (*err_code = E_ATOF_BAD_STRING, 0);
-	while (is_in(*nptr, "0123456789"))
-	{
-		if (sign * n > DBL_MAX / 100)
-			return (*err_code = E_ATOF_RANGE_PANIC, 0);
-		n = 10 * n + sign * (*nptr - '0');
-		nptr++;
-	}
+	n = sign * get__integer_part(&nptr, err_code);
 	if (*nptr == '\0')
 		return (*err_code = E_ATOF_NO_ERR, n);
 	if (*nptr != '.')
@@ -74,40 +67,69 @@ double	atof_strict(const char *nptr, t_libft_err *err_code)
 	nptr++;
 	if (!is_in(*nptr, "0123456789"))
 		return (*err_code = E_ATOF_BAD_STRING, 0);
+	n = n + sign * get__fract_part(&nptr, err_code);
+	if (*err_code != E_ATOF_NO_ERR)
+		return (0);
+	return (*err_code = E_ATOF_NO_ERR, n);
+}
 
-	double	magnitude;
-	long long l_fract;
-	double	fract;
-	fract = 0;
+static double	get__fract_part(const char **p_nptr, t_libft_err *err_code)
+{
+	double		magnitude;
+	long long	l_fract;
+
 	magnitude = 1;
-	while (is_in(*nptr, "0"))
+	while (is_in(**p_nptr, "0"))
 	{
 		if (magnitude > DBL_MAX / 100)
 			return (*err_code = E_ATOF_RANGE_PANIC, 0);
 		magnitude *= 10;
-		nptr++;
+		(*p_nptr)++;
 	}
-	if (*nptr == '0')
-		fract = 0;
-	else if (!is_in(*nptr, "0123456789"))
-		return (*err_code = E_ATOF_BAD_STRING, 0);
-	else
+	if (**p_nptr == '\0')
+		return (*err_code = E_ATOF_NO_ERR, 0);
+	l_fract = atoll_strict(*p_nptr, err_code);
+	if (*err_code != E_ATOLL_NO_ERR)
+		return (*err_code += (E_ATOF_NO_ERR - E_ATOLL_NO_ERR), 0);
+	while (is_in(**p_nptr, "0123456789"))
 	{
-		l_fract = atoll_strict(nptr, err_code);
-		while (is_in(*nptr, "0123456789"))
-		{
-			if (magnitude > DBL_MAX / 100)
-				return (*err_code = E_ATOF_RANGE_PANIC, 0);
-			magnitude *= 10;
-			nptr++;
-		}
-		fract = l_fract / magnitude;
-		if (*err_code != E_ATOLL_NO_ERR)
-			return (*err_code += (E_ATOF_NO_ERR - E_ATOLL_NO_ERR), 0);
+		if (magnitude > DBL_MAX / 100)
+			return (*err_code = E_ATOF_RANGE_PANIC, 0);
+		magnitude *= 10;
+		(*p_nptr)++;
 	}
-	return (*err_code = E_ATOF_NO_ERR, n + sign * fract);
+	return (*err_code = E_ATOF_NO_ERR, l_fract / magnitude);
+}	
+
+
+static double	get__integer_part(const char **p_nptr, t_libft_err *err_code)
+{
+	double n;
+
+	n = 0;
+	while (is_in(**p_nptr, "0123456789"))
+	{
+		if (n > DBL_MAX / 100)
+			return (*err_code = E_ATOF_RANGE_PANIC, 0);
+		n = 10 * n + (**p_nptr - '0');
+		(*p_nptr)++;
+	}
+	return (n);
 }
 
+/*
+// After compiling with
+//    make DEBUG_VALGRIND=1 re; echo "2"; cc -g3 atof_strict.c libft.a
+// the following are some possible tests:
+// ./a.out +0.1123;
+// ./a.out -0.1123;
+// ./a.out -654.000011230000000;
+// ./a.out -654.0a00;
+// ./a.out -654c.000;
+// ./a.out -654.00000001234567890123456789;
+// ./a.out -654.000000012345678901234567890
+// [Test for very big numbers is inconvenient to put here, but it seems
+//  to work till being close to DBL_MAX ]
 #include <stdio.h>
 int	main(int argc, char **argv)
 {
@@ -116,6 +138,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 1 +1)
 		return (-1);
+	printf("\n");
 	printf("argv[1]:   %s\n", argv[1]);
 	result = atof_strict(argv[1], &err_code);
 	printf("result:    %.20f\n", result);
@@ -123,3 +146,4 @@ int	main(int argc, char **argv)
 	printf("err_code:%d\n", err_code);
 	return (0);
 }
+*/
