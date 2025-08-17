@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:52:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 14:58:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 22:15:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,21 @@ bool	init_non_mlx_vars(int argc, char **argv, t_all *all)
 	
 	if (!args__ok(argc, argv))
 		return (all->err = error(ERR_ARG), false);
+	all->title[MBROT] = "Fractol - Connectedness locus";
+	all->title[JULIA] = "Fractol - Filled Julia set";
+	all->math[MBROT].z_0.re = 0.0;
+	all->math[MBROT].z_0.im = 0.0;
+	all->math[JULIA].w_0.re = 0.0;
+	all->math[JULIA].w_0.im = 0.0;
 	if (ft_strcmp(argv[1], "Julia") == 0)
 	{
 		err_atof[0] = E_ATOF_NO_ERR;
 		err_atof[1] = E_ATOF_NO_ERR;
-		all->julia_param.re = atof_strict(argv[2], &err_atof[0]);
-		all->julia_param.im = atof_strict(argv[2], &err_atof[1]);
+		all->math[JULIA].w_0.re = atof_strict(argv[2], &err_atof[0]);
+		all->math[JULIA].w_0.im = atof_strict(argv[2], &err_atof[1]);
 		if (err_atof[0] != E_ATOF_NO_ERR || err_atof[1] != E_ATOF_NO_ERR)
 			return (all->err = error(ERR_ATOF_STRICT), false);
 	}
-	else
-	{
-		all->julia_param.re = 0.0;
-		all->julia_param.im = 0.0;
-	}
-	all->title[MBROT] = "Fractol - Connectedness locus";
-	all->title[JULIA] = "Fractol - Filled Julia set";
 	return (all->err = error(ERR_NONE), true);
 }
 
