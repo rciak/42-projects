@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:52:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 13:23:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 14:58:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ bool	init_non_mlx_vars(int argc, char **argv, t_all *all)
 		return (all->err = error(ERR_ARG), false);
 	if (ft_strcmp(argv[1], "Julia") == 0)
 	{
+		err_atof[0] = E_ATOF_NO_ERR;
+		err_atof[1] = E_ATOF_NO_ERR;
 		all->julia_param.re = atof_strict(argv[2], &err_atof[0]);
 		all->julia_param.im = atof_strict(argv[2], &err_atof[1]);
 		if (err_atof[0] != E_ATOF_NO_ERR || err_atof[1] != E_ATOF_NO_ERR)
