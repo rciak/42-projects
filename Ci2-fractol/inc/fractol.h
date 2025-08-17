@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/16 22:12:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 11:40:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 enum e_geo_win
 {
 	WIDTH = 513,
-	HEIGHT = 513
+	HEIGHT = 513,
 };
 
 /**
@@ -87,7 +87,8 @@ typedef struct s_x
 	void	*disp;
 	void	*win[2];
 	void	*struct_img_iter[2];
-	void	*struct_img_draw[2];
+	bool	recalculate[2];
+	bool	close[2];
 }	t_x;
 
 typedef struct s_image
@@ -135,7 +136,6 @@ typedef struct s_all
 {
 	t_cmplx	julia_param;
 	char	*title[2];
-	bool	recalc_need[2];
 	t_math	math[2];
 	t_image	img_iter[2];
 	t_image	img_draw[2];
