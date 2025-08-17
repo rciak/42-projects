@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 22:15:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 23:56:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ typedef struct s_x
 {
 	void	*disp;
 	void	*win[2];
-	void	*img_meta_iter[2];
-	void	*img_meta_draw[2];
+	void	*meta_iter[2];
+	void	*meta_draw[2];
 	bool	recalc[2];
 	bool	redraw[2];
 	bool	close[2];
@@ -173,11 +173,12 @@ typedef struct s_all
 	t_image		img_draw[2];
 	t_x			x;
 	t_err		err;
-} t_all;
+}	t_all;
 
 //./*.c
 int		main(int argc, char **argv);
 bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
+bool	init_image_struct(t_image *img, void *img_meta);
 t_err	error(int error_code);
 
 //mlx_callbacks/*.c

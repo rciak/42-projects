@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 20:28:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 23:57:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,12 @@ int	main(int argc, char **argv)
 	if (!provide__windows(&all) 
 		|| !provide__image_buffers(MBROT, &all)
 		|| !provide__image_buffers(JULIA, &all)
+		|| !init_image_struct(&all.img_iter[MBROT], all.x.meta_iter[MBROT], &all.err)
+		|| !init_image_struct(&all.img_draw[MBROT], all.x.meta_draw[MBROT], &all.err)
+		|| !init_image_struct(&all.img_iter[JULIA], all.x.meta_iter[JULIA], &all.err)
+		|| !init_image_struct(&all.img_draw[JULIA], all.x.meta_draw[JULIA], &all.err)
 	)
-		return (all.err.code);
+		return (print_error(all.err), all.err.code);
 	setup__hooks(&all);
 	mlx_loop(all.x.disp);
 	mlx_destroy_display(all.x.disp);
@@ -67,15 +71,15 @@ static bool	provide__image_buffers(int there, t_all *all)
 	t_x		*x;
 
 	x = &(all->x);
-	x->img_meta_iter[there] = mlx_new_image(x->disp, WIDTH, HEIGHT);
-	if (x->img_meta_iter[there] == NULL)
+	x->meta_iter[there] = mlx_new_image(x->disp, WIDTH, HEIGHT);
+	if (x->meta_iter[there] == NULL)
 	{
 		destroy___all_allocated_images(x);
 		all->err = error(ERR_MLX_NEW_IMAGE);
 		return (false);
 	}
-	x->img_meta_draw[there] = mlx_new_image(x->disp, WIDTH, HEIGHT);
-	if (x->img_meta_draw[there] == NULL)
+	x->meta_draw[there] = mlx_new_image(x->disp, WIDTH, HEIGHT);
+	if (x->meta_draw[there] == NULL)
 	{
 		destroy___all_allocated_images(x);
 		all->err = error(ERR_MLX_NEW_IMAGE);
@@ -86,18 +90,18 @@ static bool	provide__image_buffers(int there, t_all *all)
 
 static void	destroy___all_allocated_images(t_x	*x)
 {
-	if (x->img_meta_iter[MBROT] != NULL)
-		mlx_destroy_image(x->disp, x->img_meta_iter[MBROT]);
-	if (x->img_meta_draw[MBROT] != NULL)
-		mlx_destroy_image(x->disp, x->img_meta_draw[MBROT]);
-	if (x->img_meta_iter[JULIA] != NULL)
-		mlx_destroy_image(x->disp, x->img_meta_iter[JULIA]);
-	if (x->img_meta_draw[JULIA] != NULL)
-		mlx_destroy_image(x->disp, x->img_meta_draw[JULIA]);
-	x->img_meta_iter[MBROT] = NULL;
-	x->img_meta_draw[MBROT] = NULL;
-	x->img_meta_iter[JULIA] = NULL;
-	x->img_meta_draw[JULIA] = NULL;
+	if (x->meta_iter[MBROT] != NULL)
+		mlx_destroy_image(x->disp, x->meta_iter[MBROT]);
+	if (x->meta_draw[MBROT] != NULL)
+		mlx_destroy_image(x->disp, x->meta_draw[MBROT]);
+	if (x->meta_iter[JULIA] != NULL)
+		mlx_destroy_image(x->disp, x->meta_iter[JULIA]);
+	if (x->meta_draw[JULIA] != NULL)
+		mlx_destroy_image(x->disp, x->meta_draw[JULIA]);
+	x->meta_iter[MBROT] = NULL;
+	x->meta_draw[MBROT] = NULL;
+	x->meta_iter[JULIA] = NULL;
+	x->meta_draw[JULIA] = NULL;
 }
 
 static void	setup__hooks(t_all *all)
