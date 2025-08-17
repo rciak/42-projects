@@ -6,14 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 14:18:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 15:38:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdbool.h>
 
-static void welcome__traveler(void);
 static bool	provide__windows(t_all *all);
 static bool	provide__image_buffers(int there, t_all *all);
 static void	destroy___all_allocated_images(t_x	*x);
@@ -24,7 +23,7 @@ int	main(int argc, char **argv)
 	t_all	all;
 
 	ft_bzero(&all, sizeof(all));
-	welcome__traveler();
+	welcome_traveler();
 	if (!init_non_mlx_vars(argc, argv, &all))
 		return (print_error(all.err), all.err.code);
 	all.x.disp = mlx_init();
@@ -40,12 +39,6 @@ int	main(int argc, char **argv)
 	mlx_destroy_display(all.x.disp);
 	free(all.x.disp);
 	return (ERR_NONE);
-}
-// TODO: Improve current (dummy like) greeting by adding Use instructions and call examples
-static void welcome__traveler(void)
-{
-	ft_putstr_fd("\nWelcome to fractol!", STDOUT_FILENO);
-	ft_putstr_fd("\n", STDOUT_FILENO);
 }
 
 static bool	provide__windows(t_all *all)

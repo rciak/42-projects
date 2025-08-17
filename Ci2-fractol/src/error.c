@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 09:19:29 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/16 20:14:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 15:32:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,4 @@ t_err error(int error_code)
 	{ERR_MLX_NEW_IMAGE, "fractol: mlx_new_image failed"}
 	};
 	return (err[error_code]);
-}
-
-void print_error(t_err err)
-{
-	ft_putstr_fd("\n", STDERR_FILENO);
-	ft_putstr_fd((char *) err.msg, STDERR_FILENO);
-	ft_putstr_fd("\nError code: ", STDERR_FILENO);
-	ft_putnbr_fd(err.code, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
 }
