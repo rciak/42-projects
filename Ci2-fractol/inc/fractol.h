@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 11:40:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 14:23:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,31 @@ enum e_misc
 	MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL = 314,
 };
 
+/**
+ * @brief Collects mlx related variables
+ * @param disp pointer from mlx_init
+ * @param win pointers from mlx_new_window
+ * @param img_iter pointers from mlx_new_image (!= pointer to the pixel data!!)
+ * @param img_draw pointers from mlx_new_image (!= pointer to the pixel data!!)
+ * @param recalculate Bools which indicate if recalculation is necessary,
+ *                    e.g. after zooming in further before the current calc
+ *                    has finished.
+ * @param close Bools which indicate if a window and its corresponding images
+ *              should be destroyed.
+ */
 typedef struct s_x
 {
 	void	*disp;
 	void	*win[2];
-	void	*struct_img_iter[2];
+	void	*img_iter[2];
+	void	*img_draw[2];
 	bool	recalculate[2];
 	bool	close[2];
 }	t_x;
 
 typedef struct s_image
 {
-	char	*buf;
+	char	*pix;
 	int		bits_per_pixel;
 	int		bytes_pp;
 	int		size_line;
@@ -155,6 +168,9 @@ int	mouse_mbrot(int button, int k, int l, t_all *all);
 int close_julia(t_all *all);
 int	key_julia(int keysym, t_all *all);
 int	mouse_julia(int button, int k, int l, t_all *all);
+
+//waiting_for_godot.c
+int waiting_for_godot(t_all *all);
 
 //error.c
 t_err	error(int error_code);

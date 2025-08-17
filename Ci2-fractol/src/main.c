@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/16 22:14:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 14:18:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,25 @@
 
 static void welcome__traveler(void);
 static bool	provide__windows(t_all *all);
-static bool	provide__buffers(t_all *all);
+static bool	provide__image_buffers(int there, t_all *all);
+static void	destroy___all_allocated_images(t_x	*x);
 static void	setup__hooks(t_all *all);
-
-int			waiting_for_godot(t_all *all);
 
 int	main(int argc, char **argv)
 {
 	t_all	all;
 
+	ft_bzero(&all, sizeof(all));
 	welcome__traveler();
 	if (!init_non_mlx_vars(argc, argv, &all))
 		return (print_error(all.err), all.err.code);
 	all.x.disp = mlx_init();
 	if (all.x.disp == NULL)
 		return (ERR_MLX_INIT);
-	if (!provide__windows(&all) || !provide__buffers(&all))
+	if (!provide__windows(&all) 
+		|| !provide__image_buffers(MBROT, &all)
+		|| !provide__image_buffers(JULIA, &all)
+	)
 		return (all.err.code);
 	setup__hooks(&all);
 	mlx_loop(all.x.disp);
@@ -66,10 +69,42 @@ static bool	provide__windows(t_all *all)
 
 //TODO: Implement beyond current dummy state..........................................
 // Also REMEMBER TODO after that: Delete images on quit
-static bool	provide__buffers(t_all *all)
+static bool	provide__image_buffers(int there, t_all *all)
 {
-	(void) all;
+	t_x		*x;
+
+	x = &(all->x);
+	x->img_iter[there] = mlx_new_image(x->disp, WIDTH, HEIGHT);
+	if (x->img_iter[there] == NULL)
+	{
+		destroy___all_allocated_images(x);
+		all->err = error(ERR_MLX_NEW_IMAGE);
+		return (false);
+	}
+	x->img_draw[there] = mlx_new_image(x->disp, WIDTH, HEIGHT);
+	if (x->img_draw[there] == NULL)
+	{
+		destroy___all_allocated_images(x);
+		all->err = error(ERR_MLX_NEW_IMAGE);
+		return (false);
+	}
 	return (true);
+}
+
+static void	destroy___all_allocated_images(t_x	*x)
+{
+	if (x->img_iter[MBROT] != NULL)
+		mlx_destroy_image(x->disp, x->img_iter[MBROT]);
+	if (x->img_draw[MBROT] != NULL)
+		mlx_destroy_image(x->disp, x->img_draw[MBROT]);
+	if (x->img_iter[JULIA] != NULL)
+		mlx_destroy_image(x->disp, x->img_iter[JULIA]);
+	if (x->img_draw[JULIA] != NULL)
+		mlx_destroy_image(x->disp, x->img_draw[JULIA]);
+	x->img_iter[MBROT] = NULL;
+	x->img_draw[MBROT] = NULL;
+	x->img_iter[JULIA] = NULL;
+	x->img_draw[JULIA] = NULL;
 }
 
 static void	setup__hooks(t_all *all)

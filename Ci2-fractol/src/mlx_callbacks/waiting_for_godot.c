@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 12:59:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 14:29:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,14 @@ static void	react__on(int there, t_all *all)
 
 static void	destroy___window_and_images(int there, t_x *x)
 {
-	/////////////////////////////////////// Implement also destruction of images later
+	if (x->img_iter[there] != NULL)
+		mlx_destroy_image(x->disp, x->img_iter[there]);
+	if (x->img_draw[there] != NULL)
+		mlx_destroy_image(x->disp, x->img_draw[there]);
 	mlx_destroy_window(x->disp, x->win[there]);
+	x->img_iter[there] = NULL;
+	x->img_draw[there] = NULL;
 	x->win[there] = NULL;
 	x->close[there] = false;
+	x->recalculate[there] = false;
 }
