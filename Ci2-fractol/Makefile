@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/17 15:42:02 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/17 21:52:53 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,11 @@ libft/libft.h \
 inc/fractol.h
 
 SRCS := \
+src/color/iter_to_color.c \
 src/error.c \
 src/init_non_mlx_vars.c \
 src/main.c \
+src/math/calc_iterations.c \
 src/mlx_callbacks/events_julia.c \
 src/mlx_callbacks/events_mbrot.c \
 src/mlx_callbacks/waiting_for_godot.c \

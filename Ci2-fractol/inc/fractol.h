@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 15:34:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 22:15:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ enum e_which
 	JULIA,
 };
 
+enum e_calc_mode
+{
+	START_ANEW,
+	CONTINUE,
+};
+
 /**
  * @warning The enumaration of the below error codes **must** be 0, 1, 2, ...
  *          since they are **used as index** in error() !
@@ -80,14 +86,17 @@ enum e_max_num_digits_previous_and_after_decimalpoint_in_parsing
 enum e_misc
 {
 	MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL = 314,
+	PALETTE_COLORS = 4,                                           // TODO: ADOPT!
 };
 
 /**
  * @brief Collects mlx related variables
  * @param disp pointer from mlx_init
  * @param win pointers from mlx_new_window
- * @param img_iter pointers from mlx_new_image (!= pointer to the pixel data!!)
- * @param img_draw pointers from mlx_new_image (!= pointer to the pixel data!!)
+ * @param img_meta_iter pointers from mlx_new_image 
+ *                      (!= pointer to the pixel data!!)
+ * @param img_meta_draw pointers from mlx_new_image 
+ *                      (!= pointer to the pixel data!!)
  * @param recalculate Bools which indicate if recalculation is necessary,
  *                    e.g. after zooming in further before the current calc
  *                    has finished.
@@ -98,15 +107,16 @@ typedef struct s_x
 {
 	void	*disp;
 	void	*win[2];
-	void	*img_iter[2];
-	void	*img_draw[2];
-	bool	recalculate[2];
+	void	*img_meta_iter[2];
+	void	*img_meta_draw[2];
+	bool	recalc[2];
+	bool	redraw[2];
 	bool	close[2];
 }	t_x;
 
 typedef struct s_image
 {
-	char	*pix;
+	int		*buf;
 	int		bits_per_pixel;
 	int		bytes_pp;
 	int		size_line;
@@ -135,9 +145,18 @@ typedef struct s_math
 {
 	t_square	square;
 	t_view		view;
-	t_cmplx		(*iter_fun)(t_cmplx a, t_cmplx b);
+	int			max_iter;
+	t_cmplx		z_0;
+	t_cmplx		w_0;
+	t_cmplx		(*iter_fun)(t_cmplx z, t_cmplx w);
 	bool		(*will_escape)(t_cmplx z);
 }	t_math;
+
+typedef struct s_palette
+{
+	int	color[PALETTE_COLORS];
+	int	shift;
+} t_palette;
 
 typedef struct s_err
 {
@@ -147,13 +166,13 @@ typedef struct s_err
 
 typedef struct s_all
 {
-	t_cmplx	julia_param;
-	char	*title[2];
-	t_math	math[2];
-	t_image	img_iter[2];
-	t_image	img_draw[2];
-	t_x		x;
-	t_err	err;
+	char		*title[2];
+	t_math		math[2];
+	t_image		img_iter[2];
+	t_palette	palette;
+	t_image		img_draw[2];
+	t_x			x;
+	t_err		err;
 } t_all;
 
 //./*.c
@@ -171,6 +190,12 @@ int		key_julia(int keysym, t_all *all);
 int		mouse_julia(int button, int k, int l, t_all *all);
 //
 int		waiting_for_godot(t_all *all);
+
+//math/*.c
+int		calc_iterations(int k, int l, t_math math, int fractal_kind);
+
+//color/*.c
+void iter_to_color(t_image iter, t_image draw, t_palette palette);
 
 //printing/*.c
 void	welcome_traveler(void);

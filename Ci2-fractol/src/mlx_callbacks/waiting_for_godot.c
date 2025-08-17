@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 14:29:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 22:21:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 static void	react__on(int there, t_all *all);
 static void	destroy___window_and_images(int there, t_x *x);
+static bool	calc___next_row(int there, int mode, t_all *all);
+static void	set__pixel(int k, int l, int iter, t_image img_iter);
 
 /**
  * @brief The function that will be called back over and over by the mlx_loop
@@ -40,20 +42,86 @@ int waiting_for_godot(t_all *all)
 
 static void	react__on(int there, t_all *all)
 {
+	bool	last_row_just_treated;
+
 	if (all->x.close[there] == true)
+	{
 		destroy___window_and_images(there, &all->x);
+		all->x.close[there] = false;
+		all->x.recalc[there] = false;
+		return ;
+	}
+	if (all->x.recalc[there] == true)
+		last_row_just_treated = calc___next_row(there, START_ANEW, all);
+	else
+		last_row_just_treated = calc___next_row(there, CONTINUE, all);
+	if (last_row_just_treated == true || all->x.redraw[there] == true)
+	{
+		all->x.redraw[there] = false;
+		iter_to_color(all->img_iter[there], all->img_draw[there], all->palette);
+		mlx_put_image_to_window(
+			all->x.disp,
+			all->x.win[there],
+			all->x.img_meta_draw[there],
+			0, 0
+		);
+	}
 }
 
 static void	destroy___window_and_images(int there, t_x *x)
 {
-	if (x->img_iter[there] != NULL)
-		mlx_destroy_image(x->disp, x->img_iter[there]);
-	if (x->img_draw[there] != NULL)
-		mlx_destroy_image(x->disp, x->img_draw[there]);
+	if (x->img_meta_iter[there] != NULL)
+		mlx_destroy_image(x->disp, x->img_meta_iter[there]);
+	if (x->img_meta_draw[there] != NULL)
+		mlx_destroy_image(x->disp, x->img_meta_draw[there]);
 	mlx_destroy_window(x->disp, x->win[there]);
-	x->img_iter[there] = NULL;
-	x->img_draw[there] = NULL;
+	x->img_meta_iter[there] = NULL;
+	x->img_meta_draw[there] = NULL;
 	x->win[there] = NULL;
-	x->close[there] = false;
-	x->recalculate[there] = false;
+}
+/**
+ * @brief Calculates the next row for "image" img_iter
+ * @note In each "pixel" is stored the number of iterations until
+ *       an escape criteria was fulfilled or the maximal number of iterations
+ *       was reached.
+ * @param[in] there Either `MBROT` or `JULIA`
+ * @param[in] mode Either `START_ANEW` or `CONTINUE`. In case of `START_ANEW`
+ *                 the calculation starts all over from the first line
+ *                 (with new math parameters that might have changed due to
+ *                 event handlers). In case of `CONTINUE` the next uncalculated
+ *                 row is treated.
+ * @return
+ *         * true, if the just calculated row was the last one
+ *         * false, else
+ * @note 
+ */
+static bool	calc___next_row(int there, int mode, t_all *all)
+{
+	int			k;
+	static int	l = 0;
+	int			iter;
+
+	if (mode == START_ANEW)
+		l = 0;
+	if (l >= HEIGHT)
+		return (false);
+	k = 0;
+	while (k < WIDTH)
+	{
+		iter = calc_iterations(k, l, all->math[there], there);
+		set__pixel(k, l, iter, all->img_iter[there]);
+		k++;
+	}
+	l++;
+	if (l == HEIGHT)
+			return (true);
+	return (false);
+}
+// TODO:                                                                 IMPLEMENT beyond dummy!
+static void	set__pixel(int k, int l, int iter, t_image img_iter)
+{
+	(void) k;
+	(void) l;
+	(void) iter;
+	(void) img_iter;
 }
