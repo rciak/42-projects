@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 13:00:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 13:07:24 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	key_julia(int keysym, t_all *all)
 int	mouse_julia(int button, int k, int l, t_all *all)
 {
 	(void) all;
-	if (k < l)
-		k = l;
+	(void) k; (void) l;
 	if (button == Button1)
 		ft_putstr_fd("\njulia: Button1! ", 1);
 	if (button == Button2)

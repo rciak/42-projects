@@ -6,14 +6,12 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 12:45:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 13:07:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <mlx.h>
-
-// TODO: Implement beyond these dummy versions!
 
 int close_mbrot(t_all *all)
 {
@@ -31,8 +29,7 @@ int	key_mbrot(int keysym, t_all *all)
 int	mouse_mbrot(int button, int k, int l, t_all *all)
 {
 	(void) all;
-	if (k < l)
-		k = l;
+	(void) k; (void) l;
 	if (button == Button1)
 		ft_putstr_fd("\nmbrot: Button1! ", 1);
 	if (button == Button2)
