@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 09:55:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/17 13:00:29 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 int close_julia(t_all *all)
 {
-	mlx_destroy_window(all->x.disp, all->x.win[JULIA]);
+	all->x.close[JULIA]  = true;
 	return (0);
 }
 
 int	key_julia(int keysym, t_all *all)
 {
 	if (keysym == XK_Escape)
-		mlx_destroy_window(all->x.disp, all->x.win[JULIA]);//        close_julia(all);
+		close_julia(all);
 	return (0);
 }
 
