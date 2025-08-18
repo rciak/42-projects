@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   waiting_for_godot.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 23:56:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/18 21:59:38 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static void	react__on(int there, t_all *all);
 static void	destroy___window_and_images(int there, t_x *x);
 static bool	calc___next_row(int there, int mode, t_all *all);
-static void	set__pixel(int k, int l, int iter, t_image img_iter);
+static void	set__pixel(int k, int l, int iter, t_image *img_iter);
 
 /**
  * @brief The function that will be called back over and over by the mlx_loop
@@ -109,7 +109,7 @@ static bool	calc___next_row(int there, int mode, t_all *all)
 	while (k < WIDTH)
 	{
 		iter = calc_iterations(k, l, all->math[there], there);
-		set__pixel(k, l, iter, all->img_iter[there]);
+		set__pixel(k, l, iter, &all->img_iter[there]);
 		k++;
 	}
 	l++;
@@ -117,11 +117,10 @@ static bool	calc___next_row(int there, int mode, t_all *all)
 			return (true);
 	return (false);
 }
-// TODO:                                                                 IMPLEMENT beyond dummy!
-static void	set__pixel(int k, int l, int iter, t_image img_iter)
+
+static void	set__pixel(int k, int l, int iter, t_image *img)
 {
-	(void) k;
-	(void) l;
-	(void) iter;
-	(void) img_iter;
+	*(img->buf 
+		+ l * img->size_line 
+		+ k * img->bytes_per_pixel) = iter;
 }
