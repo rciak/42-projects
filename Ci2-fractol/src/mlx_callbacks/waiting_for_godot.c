@@ -6,7 +6,7 @@
 /*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/18 21:59:38 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/19 02:50:51 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	react__on(int there, t_all *all)
 	if (last_row_just_treated == true || all->x.redraw[there] == true)
 	{
 		all->x.redraw[there] = false;
-		iter_to_color(all->img_iter[there], all->img_draw[there], all->palette);
+		img_iter_to_color(all->img_iter[there], all->img_draw[there], all->palette);
 		mlx_put_image_to_window(
 			all->x.disp,
 			all->x.win[there],

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 23:56:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/19 02:50:51 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 //
 # include <mlx.h>
 # include "libft.h"
+
+enum e_misc
+{
+	INIT_MAX_ITER = 57,
+	PALETTE_COLORS = 4,                                           // TODO: ADOPT!
+};
 
 /**
  * @note The window WIDTH and HEIGTH were chosen according to the heuristic
@@ -75,6 +81,9 @@ enum e_fractol_errors
 	ERR_MLX_INIT,
 	ERR_MLX_NEW_WINDOW,
 	ERR_MLX_NEW_IMAGE,
+	ERR_MLX_GET_DATA_ADDR_NULL,
+	ERR_UNEXP_BITS_PER_PIXEL,
+	ERR_UNEXP_BIG_ENDIAN,
 };
 
 enum e_max_num_digits_previous_and_after_decimalpoint_in_parsing
@@ -83,10 +92,15 @@ enum e_max_num_digits_previous_and_after_decimalpoint_in_parsing
 	PARSE_MAX_DIGITS_AFTER = 7,
 };
 
-enum e_misc
+enum e_endian
+{
+	LITTLE_ENDIAN = 0,
+	BIG_ENDIAN = 1,
+};
+
+enum e_at_least_one_complain_about_mlx_hinting_to_a_transcendent_number
 {
 	MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL = 314,
-	PALETTE_COLORS = 4,                                           // TODO: ADOPT!
 };
 
 /**
@@ -116,11 +130,11 @@ typedef struct s_x
 
 typedef struct s_image
 {
-	int		*buf;
-	int		bits_per_pixel;
-	int		bytes_pp;
+	char	*buf;
+	///////////////////////////////////////////////////////////////////int		bits_per_pixel;
+	int		bytes_per_pixel;
 	int		size_line;
-	int		endian;
+	///////////////////////////////////////////////////////////////////int		endian;
 }	t_image;
 
 typedef struct s_cmplx
@@ -133,21 +147,15 @@ typedef struct s_square
 {
 	t_cmplx		up_left;
 	double		side_len;
+	t_cmplx		down_right;
 }	t_square;
 
-typedef struct s_view
-{
-	t_cmplx	up_left;
-	t_cmplx	down_right;
-}	t_view;
-
 typedef struct s_math
-{
-	t_square	square;
-	t_view		view;
-	int			max_iter;
+{	
 	t_cmplx		z_0;
 	t_cmplx		w_0;
+	t_square	square;
+	int			max_iter;
 	t_cmplx		(*iter_fun)(t_cmplx z, t_cmplx w);
 	bool		(*will_escape)(t_cmplx z);
 }	t_math;
@@ -166,6 +174,7 @@ typedef struct s_err
 
 typedef struct s_all
 {
+	char		*id;
 	char		*title[2];
 	t_math		math[2];
 	t_image		img_iter[2];
@@ -177,9 +186,12 @@ typedef struct s_all
 
 //./*.c
 int		main(int argc, char **argv);
-bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
-bool	init_image_struct(t_image *img, void *img_meta);
+bool	init_image_struct(t_image *img, void *img_meta, t_err *err);
 t_err	error(int error_code);
+
+//init_non_mlx_vars
+bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
+bool    init_math(t_math *math, char **argv, char *id, t_err *err);
 
 //mlx_callbacks/*.c
 int		close_mbrot(t_all *all);
@@ -194,9 +206,11 @@ int		waiting_for_godot(t_all *all);
 
 //math/*.c
 int		calc_iterations(int k, int l, t_math math, int fractal_kind);
+t_cmplx fun_m2(t_cmplx z, t_cmplx w);
 
 //color/*.c
-void iter_to_color(t_image iter, t_image draw, t_palette palette);
+void	init_palette(t_palette *palette);
+void	img_iter_to_color(t_image iter, t_image draw, t_palette palette);
 
 //printing/*.c
 void	welcome_traveler(void);

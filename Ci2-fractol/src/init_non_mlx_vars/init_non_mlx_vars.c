@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_non_mlx_vars.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:52:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 22:15:02 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/19 02:03:37 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static bool	args__ok(int ac, char **av);
 static bool	julia___param_ok(char *s);
 static bool	fractal___is_implemented(char *str);
 
-//TODO: Implement     this function beyond current incomplete  state.........................
-
 /**
- * @brief Parses the input from the command line and inits the non mlx vars.
- *
+ * @brief Parses the input from the command line and inits the non mlx vars
+ *        as far it makes sense right now.
+ * @note E.g. in the called function init_math() not all variables are set,
+ *       cf. there for details.
  * @param[in] ac Number of arguments from the command line
  * @param[in] av The arguments `av[0]`, ..., `av[ac - 1]`
  * @param[out] all The accordingly set variables
@@ -36,25 +36,17 @@ static bool	fractal___is_implemented(char *str);
  */
 bool	init_non_mlx_vars(int argc, char **argv, t_all *all)
 {
-	t_libft_err err_atof[2];
-	
 	if (!args__ok(argc, argv))
 		return (all->err = error(ERR_ARG), false);
+	all->id = argv[1];
+	if (ft_strcmp(argv[1], "Mandelbrot") == 0 
+		|| ft_strcmp(argv[1], "Julia") == 0)
+		all->id = "m2";
 	all->title[MBROT] = "Fractol - Connectedness locus";
 	all->title[JULIA] = "Fractol - Filled Julia set";
-	all->math[MBROT].z_0.re = 0.0;
-	all->math[MBROT].z_0.im = 0.0;
-	all->math[JULIA].w_0.re = 0.0;
-	all->math[JULIA].w_0.im = 0.0;
-	if (ft_strcmp(argv[1], "Julia") == 0)
-	{
-		err_atof[0] = E_ATOF_NO_ERR;
-		err_atof[1] = E_ATOF_NO_ERR;
-		all->math[JULIA].w_0.re = atof_strict(argv[2], &err_atof[0]);
-		all->math[JULIA].w_0.im = atof_strict(argv[2], &err_atof[1]);
-		if (err_atof[0] != E_ATOF_NO_ERR || err_atof[1] != E_ATOF_NO_ERR)
-			return (all->err = error(ERR_ATOF_STRICT), false);
-	}
+	if (!init_math(all->math, argv, all->id, &all->err))
+		return (false);
+	init_palette(&all->palette);
 	return (all->err = error(ERR_NONE), true);
 }
 

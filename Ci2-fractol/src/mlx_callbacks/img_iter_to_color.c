@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter_to_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 21:22:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 21:53:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/19 02:50:51 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @param[in] palette Contains the colors and an index offset for color cycling.
  */
 // TODO:                                                                 IMPLEMENT!
-void iter_to_color(t_image iter, t_image draw, t_palette palette)
+void img_iter_to_color(t_image iter, t_image draw, t_palette palette)
 {
 	(void) iter;
 	(void) draw;

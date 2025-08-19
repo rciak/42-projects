@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 23:57:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/19 02:14:50 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdbool.h>
 
 static bool	provide__windows(t_all *all);
 static bool	provide__image_buffers(int there, t_all *all);
@@ -64,8 +63,6 @@ static bool	provide__windows(t_all *all)
 	return (true);
 }
 
-//TODO: Implement beyond current dummy state..........................................
-// Also REMEMBER TODO after that: Delete images on quit
 static bool	provide__image_buffers(int there, t_all *all)
 {
 	t_x		*x;
