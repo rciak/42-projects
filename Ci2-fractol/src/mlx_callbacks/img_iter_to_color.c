@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter_to_color.c                                    :+:      :+:    :+:   */
+/*   img_iter_to_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 21:22:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/19 02:50:51 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/25 18:56:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,22 @@
 // TODO:                                                                 IMPLEMENT!
 void img_iter_to_color(t_image iter, t_image draw, t_palette palette)
 {
-	(void) iter;
-	(void) draw;
-	(void) palette;
+	int	k;
+	int	l;
+	int it;
+	int *dest;
+
+	l = 0;
+	while (l < HEIGHT)
+	{
+		k = 0;
+		while (k < WIDTH)
+		{
+			it = *(int*)(iter.buf + l * iter.size_line + k * iter.bytes_per_pixel);
+			dest = (int *)(draw.buf + l * draw.size_line + k * draw.bytes_per_pixel);
+			*dest = palette.color[(it + palette.shift) % PALETTE_COLORS];
+			k++;
+		}
+		l++;
+	}
 }
