@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/19 02:50:51 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/25 16:23:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <math.h>         // fabs
 //
 // Wenn das so nicht funktioniert:///////////////////////////////////////////////////
 // # define XK_MISCELLANY
@@ -94,8 +95,8 @@ enum e_max_num_digits_previous_and_after_decimalpoint_in_parsing
 
 enum e_endian
 {
-	LITTLE_ENDIAN = 0,
-	BIG_ENDIAN = 1,
+	MLX_LITTLE_ENDIAN = 0,
+	MLX_BIG_ENDIAN = 1,
 };
 
 enum e_at_least_one_complain_about_mlx_hinting_to_a_transcendent_number
@@ -157,7 +158,7 @@ typedef struct s_math
 	t_square	square;
 	int			max_iter;
 	t_cmplx		(*iter_fun)(t_cmplx z, t_cmplx w);
-	bool		(*will_escape)(t_cmplx z);
+	bool		(*will_escape)(t_cmplx z, t_cmplx w);
 }	t_math;
 
 typedef struct s_palette
@@ -206,6 +207,10 @@ int		waiting_for_godot(t_all *all);
 
 //math/*.c
 int		calc_iterations(int k, int l, t_math math, int fractal_kind);
+bool	criteria_circle_mbrot(t_cmplx z, t_cmplx w);
+bool	criteria_square_mbrot(t_cmplx z, t_cmplx w);
+bool	criteria_circle_julia(t_cmplx z, t_cmplx w);
+bool	criteria_square_julia(t_cmplx z, t_cmplx w);
 t_cmplx fun_m2(t_cmplx z, t_cmplx w);
 
 //color/*.c

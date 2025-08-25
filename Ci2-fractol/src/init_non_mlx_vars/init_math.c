@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 00:03:03 by rene              #+#    #+#             */
-/*   Updated: 2025/08/19 02:03:48 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/25 16:21:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	set__iter_fun(t_cmplx (**fun)(t_cmplx z, t_cmplx w), char *formula);
  *        by changing the Julia parameters, which would change w_0 to the
  *        corresponding complex number).
  */
-bool    init_math(t_math *math, char **argv, char *id, t_err *err)
+bool	init_math(t_math *math, char **argv, char *id, t_err *err)
 {
 	t_libft_err err_atof[2];
 
@@ -55,8 +55,9 @@ bool    init_math(t_math *math, char **argv, char *id, t_err *err)
 	math[JULIA].max_iter = INIT_MAX_ITER;
 	set__iter_fun(&math[MBROT].iter_fun, id);
 	set__iter_fun(&math[JULIA].iter_fun, id);
-	math[MBROT].will_escape = &criteria_square;
-	math[JULIA].will_escape = &criteria_circle;
+	math[MBROT].will_escape = &criteria_square_mbrot;
+	math[JULIA].will_escape = &criteria_circle_julia;
+	return (true);
 }
 
 static void init__square(t_square *square)

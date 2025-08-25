@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/17 21:52:53 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/25 16:24:13 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,21 @@ libft/libft.h \
 inc/fractol.h
 
 SRCS := \
-src/color/iter_to_color.c \
 src/error.c \
-src/init_non_mlx_vars.c \
+src/init_image_struct.c \
+src/init_non_mlx_vars/init_math.c \
+src/init_non_mlx_vars/init_non_mlx_vars.c \
+src/init_non_mlx_vars/init_palette.c \
 src/main.c \
 src/math/calc_iterations.c \
+src/math/criteria_circle_julia.c \
+src/math/criteria_circle_mbrot.c \
+src/math/criteria_square_julia.c \
+src/math/criteria_square_mbrot.c \
+src/math/z_pow_2_plus_w.c \
 src/mlx_callbacks/events_julia.c \
 src/mlx_callbacks/events_mbrot.c \
+src/mlx_callbacks/img_iter_to_color.c \
 src/mlx_callbacks/waiting_for_godot.c \
 src/printing/print_error.c \
 src/printing/welcome_traveler.c
