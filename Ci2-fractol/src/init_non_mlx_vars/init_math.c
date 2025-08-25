@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 00:03:03 by rene              #+#    #+#             */
-/*   Updated: 2025/08/25 16:21:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/25 17:02:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ static void init__square(t_square *square)
 static void	set__iter_fun(t_cmplx (**fun)(t_cmplx z, t_cmplx w), char *formula)
 {
 	if (ft_strcmp(formula, "m2") == 0)
-		*fun = &fun_m2;
+		*fun = &z_pow_2_plus_w;
 }

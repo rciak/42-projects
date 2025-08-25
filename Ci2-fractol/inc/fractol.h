@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 16:33:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/25 17:02:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ bool	criteria_circle_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_square_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_circle_julia(t_cmplx z, t_cmplx w);
 bool	criteria_square_julia(t_cmplx z, t_cmplx w);
-t_cmplx fun_m2(t_cmplx z, t_cmplx w);
+t_cmplx z_pow_2_plus_w(t_cmplx z, t_cmplx w);
 
 //color/*.c
 void	init_palette(t_palette *palette);
