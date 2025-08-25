@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_image_struct.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 23:40:04 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/18 21:50:42 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/25 16:34:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
  *          * false if something unexpected happened
  *          * true, else.
  */
-
 bool	init_image_struct(t_image *img, void *img_meta, t_err *err)
 {
 	int	bits_per_pixel;
@@ -41,7 +40,7 @@ bool	init_image_struct(t_image *img, void *img_meta, t_err *err)
 		&img->size_line,
 		&endian
 	);
-	if (img->buf != NULL)
+	if (img->buf == NULL)
 		return (*err = error(ERR_MLX_GET_DATA_ADDR_NULL), false);
 	if (endian == BIG_ENDIAN)
 		return (*err = error(ERR_UNEXP_BIG_ENDIAN), false);

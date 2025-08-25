@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 16:23:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/25 16:33:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ t_err	error(int error_code);
 
 //init_non_mlx_vars
 bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
-bool    init_math(t_math *math, char **argv, char *id, t_err *err);
+bool	init_math(t_math *math, char **argv, char *id, t_err *err);
 
 //mlx_callbacks/*.c
 int		close_mbrot(t_all *all);
