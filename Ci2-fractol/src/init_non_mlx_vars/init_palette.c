@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_palette.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 01:52:30 by rene              #+#    #+#             */
-/*   Updated: 2025/08/19 02:03:19 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/25 19:23:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,15 @@ void	init_palette(t_palette *palette)
 {
 	palette->shift = 0;
 	palette->color[0] = 0x00FF0000;
-	palette->color[1] = 0x0000FF00;
-	palette->color[2] = 0x000000FF;
-	palette->color[3] = 0xdad2abba;
+	palette->color[1] = 0x00FF0000;
+	palette->color[2] = 0x00FF0000;
+	palette->color[3] = 0x0000FF00;
+	palette->color[4] = 0x0000FF00;
+	palette->color[5] = 0x0000FF00;
+	palette->color[6] = 0x000000FF;
+	palette->color[7] = 0x000000FF;
+	palette->color[8] = 0x000000FF;
+	palette->color[9] = 0xdad2abba;
+	palette->color[10] = 0xdad2abba;
+	palette->color[11] = 0xdad2abba;
 }

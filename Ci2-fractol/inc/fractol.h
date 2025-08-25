@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 17:02:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/25 18:58:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 enum e_misc
 {
 	INIT_MAX_ITER = 57,
-	PALETTE_COLORS = 4,                                           // TODO: ADOPT!
+	PALETTE_COLORS = 12,                                           // TODO: ADOPT!
 };
 
 /**
