@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 16:26:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/25 19:18:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	react__on(int there, t_all *all)
 	{
 		all->x.redraw[there] = false;
 		img_iter_to_color(all->img_iter[there], all->img_draw[there], all->palette);
-		mlx_put_image_to_window(
+			mlx_put_image_to_window(
 			all->x.disp,
 			all->x.win[there],
 			all->x.meta_draw[there],
@@ -98,29 +98,29 @@ static void	destroy___window_and_images(int there, t_x *x)
 static bool	calc___next_row(int there, int mode, t_all *all)
 {
 	int			k;
-	static int	l = 0;
+	static int	l[2] = {0, 0};
 	int			iter;
 
 	if (mode == START_ANEW)
-		l = 0;
-	if (l >= HEIGHT)
+		l[there] = 0;
+	if (l[there] >= HEIGHT)
 		return (false);
 	k = 0;
 	while (k < WIDTH)
 	{
-		iter = calc_iterations(k, l, all->math[there], there);
-		set__pixel(k, l, iter, &all->img_iter[there]);
+		iter = calc_iterations(k, l[there], all->math[there], there);
+		set__pixel(k, l[there], iter, &all->img_iter[there]);
 		k++;
 	}
-	l++;
-	if (l == HEIGHT)
+	l[there]++;
+	if (l[there] == HEIGHT)
 			return (true);
 	return (false);
 }
 
 static void	set__pixel(int k, int l, int iter, t_image *img)
 {
-	*(img->buf 
+	*(int*)(img->buf 
 		+ l * img->size_line 
 		+ k * img->bytes_per_pixel) = iter;
 }
