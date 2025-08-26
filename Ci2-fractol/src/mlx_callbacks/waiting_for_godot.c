@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 18:39:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 19:37:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static void	react__on(int there, t_all *all)
 		return ;
 	x->recalc[there] = false;
 	x->redraw[there] = false;
-	img_iter_to_color(all->img_iter[there], all->img_draw[there], all->palette);
+	img_iter_to_color(all->img_iter[there], all->img_draw[there], 
+		all->math[there].max_iter, all->palette);
 	mlx_put_image_to_window(x->disp, x->win[there], x->meta_draw[there], 0, 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 18:01:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 19:42:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ int		key_julia(int keysym, t_all *all);
 int		mouse_julia(int button, int k, int l, t_all *all);
 //
 int		waiting_for_godot(t_all *all);
-void	img_iter_to_color(t_image iter, t_image draw, t_palette palette);
+void	img_iter_to_color(t_image iter, t_image draw, int max, t_palette pal);
 
 //math/*.c
 t_cmplx	coord_transf(int k, int l, t_square range);
