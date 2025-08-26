@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 21:22:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 18:56:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 19:04:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void img_iter_to_color(t_image iter, t_image draw, t_palette palette)
 			it = *(int*)(iter.buf + l * iter.size_line + k * iter.bytes_per_pixel);
 			dest = (int *)(draw.buf + l * draw.size_line + k * draw.bytes_per_pixel);
 			*dest = palette.color[(it + palette.shift) % PALETTE_COLORS];
+			if (it == PALETTE_COLORS)
+				*dest = palette.not_escaped_color;
 			k++;
 		}
 		l++;
