@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 01:52:30 by rene              #+#    #+#             */
-/*   Updated: 2025/08/26 19:09:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 20:00:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	init_palette(t_palette *palette)
 	palette->color[5] = 0x00AAAAAA;
 	palette->color[6] = 0x00000000;
 	palette->color[7] = 0x000000FF;
-	palette->color[8] = 0x000000FF;
+	palette->color[8] = 0x000000AA;
 	palette->color[9] = 0x001D2311;
-	palette->color[10] = 0x00faded1;
+	palette->color[10] = 0x00abcdef;
 	palette->color[11] = 0xdad2abba;
 }
