@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 18:58:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 11:35:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,8 @@ int		mouse_julia(int button, int k, int l, t_all *all);
 int		waiting_for_godot(t_all *all);
 
 //math/*.c
-int		calc_iterations(int k, int l, t_math math, int fractal_kind);
+t_cmplx	coord_transf(int k, int l, t_square range);
+int		calc_iterations(int k, int l, const t_math *math, int fractal_kind);
 bool	criteria_circle_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_square_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_circle_julia(t_cmplx z, t_cmplx w);

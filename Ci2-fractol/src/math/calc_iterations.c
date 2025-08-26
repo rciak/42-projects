@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 21:37:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 19:13:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:36:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,27 @@
  */
 // TODO:                                                               Document better
 // TODO:                                                                 IMPLEMENT!
-int	calc_iterations(int k, int l, t_math math, int fractal_kind)
+int	calc_iterations(int k, int l, const t_math *math, int fractal_kind)
 {
-(void) math;
+	int		count;
+	t_cmplx	z;
+	t_cmplx	w;
+
 	if (fractal_kind == MBROT)
-		return ((k + l) % 120);
-		// STartvalues z = 0 and w = transf(k, l, math)
-	if (fractal_kind == JULIA)
-		return ((k) % PALETTE_COLORS);
-		// STartvalues z = transf(k, l, math) and w = Julia_params
-return (0);
-	
+	{
+		z = math->z_0;
+		w = coord_transf(k, l, math->square);
+	}
+	else if (fractal_kind == JULIA)
+	{
+		z = coord_transf(k, l, math->square);
+		w = math->w_0;
+	}
+	count = 0;
+	while (count < math->max_iter && math->will_escape(z, w) == false)
+	{
+		z = math->iter_fun(z, w);
+		count++;
+	}
+	return (count);
 }
