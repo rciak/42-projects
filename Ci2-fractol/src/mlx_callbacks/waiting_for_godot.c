@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 19:18:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 09:49:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	set__pixel(int k, int l, int iter, t_image *img_iter);
  * @param[in,out] all the name is program ...
  * @return `MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL` arbitrary value
  */
-int waiting_for_godot(t_all *all)
+int	waiting_for_godot(t_all *all)
 {
 	if (all->x.win[MBROT] != NULL)
 		react__on(MBROT, all);
@@ -43,29 +43,25 @@ int waiting_for_godot(t_all *all)
 static void	react__on(int there, t_all *all)
 {
 	bool	last_row_just_treated;
+	t_x		*x;
 
-	if (all->x.close[there] == true)
+	x = &all->x;
+	if (x->close[there] == true)
 	{
-		destroy___window_and_images(there, &all->x);
-		all->x.close[there] = false;
-		all->x.recalc[there] = false;
+		destroy___window_and_images(there, x);
+		x->close[there] = false;
+		x->recalc[there] = false;
 		return ;
 	}
-	if (all->x.recalc[there] == true)
+	if (x->recalc[there] == true)
 		last_row_just_treated = calc___next_row(there, START_ANEW, all);
 	else
 		last_row_just_treated = calc___next_row(there, CONTINUE, all);
-	if (last_row_just_treated == true || all->x.redraw[there] == true)
-	{
-		all->x.redraw[there] = false;
-		img_iter_to_color(all->img_iter[there], all->img_draw[there], all->palette);
-			mlx_put_image_to_window(
-			all->x.disp,
-			all->x.win[there],
-			all->x.meta_draw[there],
-			0, 0
-		);
-	}
+	if (last_row_just_treated == false && x->redraw[there] == false)
+		return ;
+	x->redraw[there] = false;
+	img_iter_to_color(all->img_iter[there], all->img_draw[there], all->palette);
+	mlx_put_image_to_window(x->disp, x->win[there], x->meta_draw[there], 0, 0);
 }
 
 static void	destroy___window_and_images(int there, t_x *x)
@@ -108,7 +104,7 @@ static bool	calc___next_row(int there, int mode, t_all *all)
 	k = 0;
 	while (k < WIDTH)
 	{
-		iter = calc_iterations(k, l[there], all->math[there], there);
+		iter = calc_iterations(k, l[there], &all->math[there], there);
 		set__pixel(k, l[there], iter, &all->img_iter[there]);
 		k++;
 	}
@@ -120,7 +116,7 @@ static bool	calc___next_row(int there, int mode, t_all *all)
 
 static void	set__pixel(int k, int l, int iter, t_image *img)
 {
-	*(int*)(img->buf 
-		+ l * img->size_line 
-		+ k * img->bytes_per_pixel) = iter;
+	*(int *)(img->buf
+			+ l * img->size_line
+			+ k * img->bytes_per_pixel) = iter;
 }

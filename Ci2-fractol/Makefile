@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/25 16:24:13 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/26 11:38:35 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ src/init_non_mlx_vars/init_non_mlx_vars.c \
 src/init_non_mlx_vars/init_palette.c \
 src/main.c \
 src/math/calc_iterations.c \
+src/math/coord_transf.c \
 src/math/criteria_circle_julia.c \
 src/math/criteria_circle_mbrot.c \
 src/math/criteria_square_julia.c \
@@ -93,7 +94,7 @@ fclean: clean
 	@echo '--------------------------------------------------------------------'
 
 .PHONY: re
-re: fclean all
+re: fclean libftfclean all
 
 ################################################################################
 #  libft  related rules                                                        #
