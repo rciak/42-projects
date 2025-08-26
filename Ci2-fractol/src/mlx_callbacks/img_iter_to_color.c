@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 21:22:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 19:04:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 19:43:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@
  * @brief Calculates the color image from the iterations "image"
  * @param[in] iter The "image" of iterations (calculated in each pixel)
  * @param[out] draw The image of colors
- * @param[in] palette Contains the colors and an index offset for color cycling.
+ * @param[in] max The maximum number of iterations
+ * @param[in] pal Contains the colors and an index offset for color cycling.
  */
 // TODO:                                                                 IMPLEMENT!
-void img_iter_to_color(t_image iter, t_image draw, t_palette palette)
+void	img_iter_to_color(t_image iter, t_image draw, int max, t_palette pal)
 {
 	int	k;
 	int	l;
-	int it;
+	int num_iter;
 	int *dest;
 
 	l = 0;
@@ -37,11 +38,11 @@ void img_iter_to_color(t_image iter, t_image draw, t_palette palette)
 		k = 0;
 		while (k < WIDTH)
 		{
-			it = *(int*)(iter.buf + l * iter.size_line + k * iter.bytes_per_pixel);
+			num_iter = *(int*)(iter.buf + l * iter.size_line + k * iter.bytes_per_pixel);
 			dest = (int *)(draw.buf + l * draw.size_line + k * draw.bytes_per_pixel);
-			*dest = palette.color[(it + palette.shift) % PALETTE_COLORS];
-			if (it == PALETTE_COLORS)
-				*dest = palette.not_escaped_color;
+			*dest = pal.color[(num_iter + pal.shift) % PALETTE_COLORS];
+			if (num_iter == max)
+				*dest = pal.not_escaped_color;
 			k++;
 		}
 		l++;
