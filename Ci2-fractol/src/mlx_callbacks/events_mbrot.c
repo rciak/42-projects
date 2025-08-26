@@ -6,12 +6,11 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/17 13:07:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 18:48:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <mlx.h>
 
 int close_mbrot(t_all *all)
 {
@@ -28,11 +27,14 @@ int	key_mbrot(int keysym, t_all *all)
 
 int	mouse_mbrot(int button, int k, int l, t_all *all)
 {
-	(void) all;
-	(void) k; (void) l;
-	if (button == Button1)
-		ft_putstr_fd("\nmbrot: Button1! ", 1);
-	if (button == Button2)
-		ft_putstr_fd("\nmbrot: Button2! ", 1);
+	if (button == Button4)
+		zoom(ZOOM_IN_FACTOR, k, l, &all->math[MBROT].square);
+	else if (button == Button5)
+		zoom(ZOOM_OUT_FACTOR, k, l, &all->math[MBROT].square);
+	else
+		return (0);
+	all->x.recalc[MBROT] = true;
+	all->x.redraw[MBROT] = true;
 	return (0);
 }
+

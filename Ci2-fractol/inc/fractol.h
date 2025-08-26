@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 11:35:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 18:01:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,14 @@
 # include <mlx.h>
 # include "libft.h"
 
+# define ZOOM_IN_FACTOR 0.5
+# define ZOOM_OUT_FACTOR 2.0
+# define SHIFT_FACTOR 0.5
+
 enum e_misc
 {
 	INIT_MAX_ITER = 57,
+	LIMIT_MAX_ITER = 7000,
 	PALETTE_COLORS = 12,                                           // TODO: ADOPT!
 };
 
@@ -148,7 +153,7 @@ typedef struct s_square
 {
 	t_cmplx		up_left;
 	double		side_len;
-	t_cmplx		down_right;
+	t_cmplx		down_right;								// Kick out if not needed / used
 }	t_square;
 
 typedef struct s_math
@@ -165,6 +170,7 @@ typedef struct s_palette
 {
 	int	color[PALETTE_COLORS];
 	int	shift;
+	int	not_escaped_color;
 } t_palette;
 
 typedef struct s_err
@@ -190,9 +196,10 @@ int		main(int argc, char **argv);
 bool	init_image_struct(t_image *img, void *img_meta, t_err *err);
 t_err	error(int error_code);
 
-//init_non_mlx_vars
+//init_non_mlx_vars/*
 bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
 bool	init_math(t_math *math, char **argv, char *id, t_err *err);
+void	init_palette(t_palette *palette);
 
 //mlx_callbacks/*.c
 int		close_mbrot(t_all *all);
@@ -204,6 +211,7 @@ int		key_julia(int keysym, t_all *all);
 int		mouse_julia(int button, int k, int l, t_all *all);
 //
 int		waiting_for_godot(t_all *all);
+void	img_iter_to_color(t_image iter, t_image draw, t_palette palette);
 
 //math/*.c
 t_cmplx	coord_transf(int k, int l, t_square range);
@@ -214,9 +222,8 @@ bool	criteria_circle_julia(t_cmplx z, t_cmplx w);
 bool	criteria_square_julia(t_cmplx z, t_cmplx w);
 t_cmplx z_pow_2_plus_w(t_cmplx z, t_cmplx w);
 
-//color/*.c
-void	init_palette(t_palette *palette);
-void	img_iter_to_color(t_image iter, t_image draw, t_palette palette);
+//math/change_square/*.c
+void	zoom(double factor, int k, int l, t_square *square);
 
 //printing/*.c
 void	welcome_traveler(void);

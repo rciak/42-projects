@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/02 11:15:18 by reciak            #+#    #+#              #
-#    Updated: 2025/08/17 15:41:22 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/26 18:01:38 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ docfclean: docclean
 # TOOL RULES                                                                   #
 ################################################################################
 
-MAXDEPTH=2           # For find command in rule  update_INCS__SRCS__SRCS_BONUS  
+MAXDEPTH=3           # For find command in rule  update_INCS__SRCS__SRCS_BONUS  
 
 .PHONY: totalclean tclean
 totalclean: fclean docfclean testfclean libftfclean
