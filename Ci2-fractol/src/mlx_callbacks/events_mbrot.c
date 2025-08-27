@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 14:46:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 15:10:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@ int close_mbrot(t_all *all)
 	return (0);
 }
 
-int	key_mbrot(int keysym, t_all *all)
+int	key_mbrot(int key, t_all *all)
 {
-	if (keysym == XK_Escape)
+	if (key == XK_Left || key == XK_Right || key == XK_Up || key == XK_Down)
+		shift(key, &all->math[MBROT].square);
+	else if (key == XK_Escape)
 		close_mbrot(all);
-	else if (keysym == XK_Left)
-		shift(LEFT_DIR, &all->math[MBROT].square);
-	else if (keysym == XK_Right)
-		shift(RIGHT_DIR, &all->math[MBROT].square);
-	else if (keysym == XK_Up)
-		shift(UP_DIR, &all->math[MBROT].square);
-	else if (keysym == XK_Down)
-		shift(DOWN_DIR, &all->math[MBROT].square);
 	else
+	{
+		if (key == XK_P)
+			;//print info                                                          ;
 		return (0);
+	}
 	all->x.recalc[MBROT] = true;
 	return (0);
 }

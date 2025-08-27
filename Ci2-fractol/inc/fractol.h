@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 14:30:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 15:08:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,11 +217,11 @@ void	init_palette(t_palette *palette);
 
 //mlx_callbacks/*.c
 int		close_mbrot(t_all *all);
-int		key_mbrot(int keysym, t_all *all);
+int		key_mbrot(int key, t_all *all);
 int		mouse_mbrot(int button, int k, int l, t_all *all);
 //
 int		close_julia(t_all *all);
-int		key_julia(int keysym, t_all *all);
+int		key_julia(int key, t_all *all);
 int		mouse_julia(int button, int k, int l, t_all *all);
 //
 int		waiting_for_godot(t_all *all);
