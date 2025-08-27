@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 10:52:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 12:00:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static void	react__on(int there, t_all *all);
 static void	destroy___window_and_images(int there, t_x *x);
-static bool	calc___next_row(int there, int mode, t_all *all);
+static int	calc___next_row(int there, int mode, t_all *all);
 static void	set__pixel(int k, int l, int iter, t_image *img_iter);
 
 /**
@@ -42,7 +42,6 @@ int	waiting_for_godot(t_all *all)
 
 static void	react__on(int there, t_all *all)
 {
-	bool		last_row_just_treated;
 	t_x			*x;
 
 	x = &all->x;
@@ -55,14 +54,13 @@ static void	react__on(int there, t_all *all)
 	}
 	if (x->recalc[there] == true)
 	{
-		last_row_just_treated = calc___next_row(there, START_ANEW, all);
+		(void) calc___next_row(there, START_ANEW, all);
 		x->recalc[there] = false;
-	}
-	else
-		last_row_just_treated = calc___next_row(there, CONTINUE, all);
-	if (last_row_just_treated == false)
 		return ;
-	x->recalc[there] = false;
+	}
+	if (calc___next_row(there, CONTINUE, all) != READY_TO_DRAW)
+		return ;
+	x->recalc[there] = false;                                           //remove ??
 	img_iter_to_color(all->img_iter[there], all->img_draw[there], 
 		all->math[there].max_iter, all->palette);
 	mlx_put_image_to_window(x->disp, x->win[there], x->meta_draw[there], 0, 0);
@@ -95,7 +93,7 @@ static void	destroy___window_and_images(int there, t_x *x)
  *         * false, else
  * @note 
  */
-static bool	calc___next_row(int there, int mode, t_all *all)
+static int	calc___next_row(int there, int mode, t_all *all)
 {
 	int			k;
 	static int	l[2] = {0, 0};
@@ -104,7 +102,7 @@ static bool	calc___next_row(int there, int mode, t_all *all)
 	if (mode == START_ANEW)
 		l[there] = 0;
 	if (l[there] >= HEIGHT)
-		return (false);
+		return (CALCULATION_ALREADY_FINISHED_BEFORE);
 	k = 0;
 	while (k < WIDTH)
 	{
@@ -114,8 +112,8 @@ static bool	calc___next_row(int there, int mode, t_all *all)
 	}
 	l[there]++;
 	if (l[there] == HEIGHT)
-			return (true);
-	return (false);
+		return (READY_TO_DRAW);
+	return (ROWS_LEFT_TO_CALCULATE);
 }
 
 static void	set__pixel(int k, int l, int iter, t_image *img)

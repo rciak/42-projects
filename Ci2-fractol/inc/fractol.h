@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 20:49:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 11:58:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ enum e_which
 {
 	MBROT,
 	JULIA,
+};
+
+enum e_calc_status
+{
+	READY_TO_DRAW,
+	ROWS_LEFT_TO_CALCULATE,
+	CALCULATION_ALREADY_FINISHED_BEFORE,
 };
 
 enum e_calc_mode
