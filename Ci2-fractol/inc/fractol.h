@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 11:58:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:30:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,15 @@
 
 # define ZOOM_IN_FACTOR 0.5
 # define ZOOM_OUT_FACTOR 2.0
-# define SHIFT_FACTOR 0.5
+# define SHIFT_FACTOR 0.25
+
+enum e_shift_directions
+{
+	LEFT_DIR,
+	RIGHT_DIR,
+	UP_DIR,
+	DOWN_DIR,
+};
 
 enum e_misc
 {
@@ -230,6 +238,7 @@ t_cmplx z_pow_2_plus_w(t_cmplx z, t_cmplx w);
 
 //math/change_square/*.c
 void	zoom(double factor, int k, int l, t_square *square);
+void	shift(int direction, t_square *square);
 
 //printing/*.c
 void	welcome_traveler(void);

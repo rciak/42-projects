@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 20:47:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:27:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ int	key_julia(int keysym, t_all *all)
 {
 	if (keysym == XK_Escape)
 		close_julia(all);
+	else if (keysym == XK_Left)
+		shift(LEFT_DIR, &all->math[JULIA].square);
+	else if (keysym == XK_Right)
+		shift(RIGHT_DIR, &all->math[JULIA].square);
+	else if (keysym == XK_Up)
+		shift(UP_DIR, &all->math[JULIA].square);
+	else if (keysym == XK_Down)
+		shift(DOWN_DIR, &all->math[JULIA].square);
+	else
+		return (0);
+	all->x.recalc[JULIA] = true;
 	return (0);
 }
 
