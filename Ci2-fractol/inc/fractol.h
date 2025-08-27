@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 15:08:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 19:17:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,16 +205,19 @@ typedef struct s_all
 	t_err		err;
 }	t_all;
 
+////////////////////////////////////////////////////////////////////////////////
 //./*.c
 int		main(int argc, char **argv);
 bool	init_image_struct(t_image *img, void *img_meta, t_err *err);
 t_err	error(int error_code);
 
+////////////////////////////////////////////////////////////////////////////////
 //init_non_mlx_vars/*
 bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
 bool	init_math(t_math *math, char **argv, char *id, t_err *err);
 void	init_palette(t_palette *palette);
 
+////////////////////////////////////////////////////////////////////////////////
 //mlx_callbacks/*.c
 int		close_mbrot(t_all *all);
 int		key_mbrot(int key, t_all *all);
@@ -226,7 +229,11 @@ int		mouse_julia(int button, int k, int l, t_all *all);
 //
 int		waiting_for_godot(t_all *all);
 void	img_iter_to_color(t_image iter, t_image draw, int max, t_palette pal);
+//
+//mlx_callbacks/induced_changes_of_vars
+void	toggle_escape_criteria(bool (**esc_criteria)(t_cmplx, t_cmplx));
 
+////////////////////////////////////////////////////////////////////////////////
 //math/*.c
 t_cmplx	coord_transf(int k, int l, t_square range);
 int		calc_iterations(int k, int l, const t_math *math, int fractal_kind);
@@ -234,12 +241,13 @@ bool	criteria_circle_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_square_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_circle_julia(t_cmplx z, t_cmplx w);
 bool	criteria_square_julia(t_cmplx z, t_cmplx w);
-t_cmplx z_pow_2_plus_w(t_cmplx z, t_cmplx w);
-
+t_cmplx	z_pow_2_plus_w(t_cmplx z, t_cmplx w);
+//
 //math/change_square/*.c
 void	zoom(double factor, int k, int l, t_square *square);
 void	shift(int direction, t_square *square);
 
+////////////////////////////////////////////////////////////////////////////////
 //printing/*.c
 void	welcome_traveler(void);
 void	print_error(t_err err);
