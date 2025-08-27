@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 17:06:56 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 17:57:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:07:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 /**
  * @brief "Zooming:"
  *        Changes the description of the square (that will be rendered).
- *
  * @note This function is related to the mathematical "zoom" function
  *         f(z) := c + factor * (z - c)
  *       where
