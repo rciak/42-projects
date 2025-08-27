@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 18:48:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 20:47:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	mouse_mbrot(int button, int k, int l, t_all *all)
 	else
 		return (0);
 	all->x.recalc[MBROT] = true;
-	all->x.redraw[MBROT] = true;
 	return (0);
 }
 

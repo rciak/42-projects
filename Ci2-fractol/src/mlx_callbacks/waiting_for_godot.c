@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 19:37:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 20:51:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int	waiting_for_godot(t_all *all)
 
 static void	react__on(int there, t_all *all)
 {
-	bool	last_row_just_treated;
-	t_x		*x;
+	static bool	redraw[2] = {true, true};
+	bool		last_row_just_treated;
+	t_x			*x;
 
 	x = &all->x;
 	if (x->close[there] == true)
@@ -54,13 +55,16 @@ static void	react__on(int there, t_all *all)
 		return ;
 	}
 	if (x->recalc[there] == true)
+	{
 		last_row_just_treated = calc___next_row(there, START_ANEW, all);
+		redraw[there] = true;
+	}
 	else
 		last_row_just_treated = calc___next_row(there, CONTINUE, all);
-	if (last_row_just_treated == false && x->redraw[there] == false)
+	if (last_row_just_treated == false && redraw[there] == false)
 		return ;
 	x->recalc[there] = false;
-	x->redraw[there] = false;
+	redraw[there] = false;
 	img_iter_to_color(all->img_iter[there], all->img_draw[there], 
 		all->math[there].max_iter, all->palette);
 	mlx_put_image_to_window(x->disp, x->win[there], x->meta_draw[there], 0, 0);

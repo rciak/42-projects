@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 19:42:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 20:49:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ typedef struct s_x
 	void	*meta_iter[2];
 	void	*meta_draw[2];
 	bool	recalc[2];
-	bool	redraw[2];
 	bool	close[2];
 }	t_x;
 

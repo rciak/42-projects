@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 18:10:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/26 20:47:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int	mouse_julia(int button, int k, int l, t_all *all)
 	else
 		return (0);
 	all->x.recalc[JULIA] = true;
-	all->x.redraw[JULIA] = true;
 	return (0);
 }
