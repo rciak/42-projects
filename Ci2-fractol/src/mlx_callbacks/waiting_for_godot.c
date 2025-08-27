@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 12:00:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 12:12:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	waiting_for_godot(t_all *all)
 
 static void	react__on(int there, t_all *all)
 {
-	t_x			*x;
+	t_x	*x;
 
 	x = &all->x;
 	if (x->close[there] == true)
@@ -60,8 +60,7 @@ static void	react__on(int there, t_all *all)
 	}
 	if (calc___next_row(there, CONTINUE, all) != READY_TO_DRAW)
 		return ;
-	x->recalc[there] = false;                                           //remove ??
-	img_iter_to_color(all->img_iter[there], all->img_draw[there], 
+	img_iter_to_color(all->img_iter[there], all->img_draw[there],
 		all->math[there].max_iter, all->palette);
 	mlx_put_image_to_window(x->disp, x->win[there], x->meta_draw[there], 0, 0);
 }
