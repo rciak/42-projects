@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 19:17:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/27 19:51:29 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ enum e_shift_directions
 	RIGHT_DIR,
 	UP_DIR,
 	DOWN_DIR,
+};
+
+enum e_iter_change_steps
+{
+	SMALL_STEP = 1,
+	BIG_STEP = 50,
 };
 
 enum e_misc
@@ -232,6 +238,7 @@ void	img_iter_to_color(t_image iter, t_image draw, int max, t_palette pal);
 //
 //mlx_callbacks/induced_changes_of_vars
 void	toggle_escape_criteria(bool (**esc_criteria)(t_cmplx, t_cmplx));
+void	change_max_iter(int key, int *max_iter);
 
 ////////////////////////////////////////////////////////////////////////////////
 //math/*.c
