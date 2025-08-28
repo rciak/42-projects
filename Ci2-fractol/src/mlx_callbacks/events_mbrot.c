@@ -24,6 +24,12 @@ int	mouse_mbrot(int button, int k, int l, t_all *all)
 		zoom(ZOOM_IN_FACTOR, k, l, &all->math[MBROT].square);
 	else if (button == Button5)
 		zoom(ZOOM_OUT_FACTOR, k, l, &all->math[MBROT].square);
+	else if (button == Button1)
+	{
+		change_julia_param(k, l, &all->math[JULIA].w_0, all->math[MBROT].square);
+		all->x.recalc[JULIA] = true;
+		return (0);
+	}
 	else
 		return (0);
 	all->x.recalc[MBROT] = true;
