@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 19:59:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/28 19:07:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int	mouse_julia(int button, int k, int l, t_all *all)
 		zoom(ZOOM_IN_FACTOR, k, l, &all->math[JULIA].square);
 	else if (button == Button5)
 		zoom(ZOOM_OUT_FACTOR, k, l, &all->math[JULIA].square);
+	else if (button == Button3)
+	{
+		print_info(k, l, all->title[JULIA], &all->math[JULIA]);
+		return (0);
+	}
 	else
 		return (0);
 	all->x.recalc[JULIA] = true;

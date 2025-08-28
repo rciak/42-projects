@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 20:57:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/28 17:11:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ void	shift(int direction, t_square *square);
 ////////////////////////////////////////////////////////////////////////////////
 //printing/*.c
 void	welcome_traveler(void);
+void	print_info(int k, int l, char *title, const t_math *math);
 void	print_error(t_err err);
 
 #endif

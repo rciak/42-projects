@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/28 11:20:58 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/28 17:18:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	mouse_mbrot(int button, int k, int l, t_all *all)
 	{
 		change_julia_param(k, l, &all->math[JULIA].w_0, all->math[MBROT].square);
 		all->x.recalc[JULIA] = true;
+		return (0);
+	}
+	else if (button == Button3)
+	{
+		print_info(k, l, all->title[MBROT], &all->math[MBROT]);
 		return (0);
 	}
 	else
