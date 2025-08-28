@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/08/15 14:26:38 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/28 15:26:34 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ SRCS := \
 ./ft_memset.c \
 ./ft_putchar_fd.c \
 ./ft_putendl_fd.c \
+./ft_putllnbr_fd.c \
 ./ft_putnbr_fd.c \
 ./ft_putstr_fd.c \
 ./ft_split.c \
@@ -102,6 +103,7 @@ SRCS_BONUS := \
 ./ft_lstmap_bonus.c \
 ./ft_lstnew_bonus.c \
 ./ft_lstsize_bonus.c
+
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
