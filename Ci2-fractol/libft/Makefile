@@ -104,7 +104,6 @@ SRCS_BONUS := \
 ./ft_lstnew_bonus.c \
 ./ft_lstsize_bonus.c
 
-
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
 OBJS_BONUS = $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(SRCS_BONUS))
