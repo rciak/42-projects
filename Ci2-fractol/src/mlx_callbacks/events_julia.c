@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/29 17:50:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/29 18:53:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	mouse_julia(int button, int k, int l, t_all *all)
 		zoom(ZOOM_OUT_FACTOR, k, l, &all->math[JULIA].square);
 	else if (button == Button2)
 	{
-		all->palette.shift += 1;
+		all->palette.shift = (all->palette.shift + 1 + PALETTE_COLORS) % PALETTE_COLORS;
 		all->x.color_shift_requires_redraw[JULIA] = true;
 		return (0);
 	}
@@ -56,7 +56,7 @@ int	key_julia(int key, t_all *all)
 	{
 		if (key == XK_space)
 		{
-			all->palette.shift -= 1;
+			all->palette.shift = (all->palette.shift - 1 + PALETTE_COLORS) % PALETTE_COLORS;
 			all->x.color_shift_requires_redraw[JULIA] = true;
 		}
 		return (0);
