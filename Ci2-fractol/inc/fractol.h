@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/29 17:43:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/29 19:27:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,9 @@ bool	criteria_circle_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_square_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_circle_julia(t_cmplx z, t_cmplx w);
 bool	criteria_square_julia(t_cmplx z, t_cmplx w);
+//math/fractal_genes/*.c
 t_cmplx	z_pow_2_plus_w(t_cmplx z, t_cmplx w);
+t_cmplx	z_pow_3_plus_w(t_cmplx z, t_cmplx w);
 //
 //math/change_square/*.c
 void	zoom(double factor, int k, int l, t_square *square);

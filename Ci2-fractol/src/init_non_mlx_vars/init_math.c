@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 00:03:03 by rene              #+#    #+#             */
-/*   Updated: 2025/08/25 17:02:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/29 19:25:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,6 @@ static void	set__iter_fun(t_cmplx (**fun)(t_cmplx z, t_cmplx w), char *formula)
 {
 	if (ft_strcmp(formula, "m2") == 0)
 		*fun = &z_pow_2_plus_w;
+	else if (ft_strcmp(formula, "m3") == 0)
+		*fun = &z_pow_3_plus_w;
 }
