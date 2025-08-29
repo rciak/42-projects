@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/28 17:18:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/29 17:51:29 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	mouse_mbrot(int button, int k, int l, t_all *all)
 	{
 		change_julia_param(k, l, &all->math[JULIA].w_0, all->math[MBROT].square);
 		all->x.recalc[JULIA] = true;
+		return (0);
+	}
+	else if (button == Button2)
+	{
+		all->palette.shift += 1;
+		all->x.color_shift_requires_redraw[MBROT] = true;
 		return (0);
 	}
 	else if (button == Button3)
@@ -54,8 +60,11 @@ int	key_mbrot(int key, t_all *all)
 		change_max_iter(key, &all->math[MBROT].max_iter);
 	else
 	{
-		if (key == XK_P)
-			;//print info                                                          ;
+		if (key == XK_space)
+		{
+			all->palette.shift -= 1;
+			all->x.color_shift_requires_redraw[MBROT] = true;
+		}
 		return (0);
 	}
 	all->x.recalc[MBROT] = true;

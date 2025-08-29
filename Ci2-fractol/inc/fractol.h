@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/28 17:11:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/29 17:43:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,9 @@ typedef struct s_x
 	void	*win[2];
 	void	*meta_iter[2];
 	void	*meta_draw[2];
-	bool	recalc[2];
 	bool	close[2];
+	bool	recalc[2];
+	bool	color_shift_requires_redraw[2];
 }	t_x;
 
 typedef struct s_image
@@ -188,9 +189,9 @@ typedef struct s_math
 
 typedef struct s_palette
 {
-	int	color[PALETTE_COLORS];
-	int	shift;
-	int	not_escaped_color;
+	int		color[PALETTE_COLORS];
+	int		shift;
+	int		not_escaped_color;
 } t_palette;
 
 typedef struct s_err

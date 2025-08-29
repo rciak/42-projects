@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/27 12:12:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/29 17:46:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ int	waiting_for_godot(t_all *all)
 
 static void	react__on(int there, t_all *all)
 {
+	int	status;
 	t_x	*x;
 
 	x = &all->x;
 	if (x->close[there] == true)
 	{
 		destroy___window_and_images(there, x);
-		x->close[there] = false;
-		x->recalc[there] = false;
+		x->close[there] = false;                                        //Weglassen?!
+		x->recalc[there] = false;                                       //Weglassen?!
 		return ;
 	}
 	if (x->recalc[there] == true)
@@ -58,11 +59,14 @@ static void	react__on(int there, t_all *all)
 		x->recalc[there] = false;
 		return ;
 	}
-	if (calc___next_row(there, CONTINUE, all) != READY_TO_DRAW)
+	status = calc___next_row(there, CONTINUE, all);
+	if (!(status == READY_TO_DRAW || (all->x.color_shift_requires_redraw[there]
+			&& status == CALCULATION_ALREADY_FINISHED_BEFORE)))
 		return ;
 	img_iter_to_color(all->img_iter[there], all->img_draw[there],
 		all->math[there].max_iter, all->palette);
 	mlx_put_image_to_window(x->disp, x->win[there], x->meta_draw[there], 0, 0);
+	all->x.color_shift_requires_redraw[there] = false;
 }
 
 static void	destroy___window_and_images(int there, t_x *x)
