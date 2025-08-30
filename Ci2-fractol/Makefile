@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/30 12:15:20 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/30 13:53:57 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,6 @@ src/init_non_mlx_vars/init_non_mlx_vars.c \
 src/init_non_mlx_vars/init_palette.c \
 src/main.c \
 src/math/calc_iterations.c \
-src/math/change_square/shift.c \
-src/math/change_square/zoom.c \
 src/math/coord_transf.c \
 src/math/criteria_circle_julia.c \
 src/math/criteria_circle_mbrot.c \
@@ -64,11 +62,14 @@ src/mlx_callbacks/img_iter_to_color.c \
 src/mlx_callbacks/induced_changes_of_vars/change_id.c \
 src/mlx_callbacks/induced_changes_of_vars/change_julia_param.c \
 src/mlx_callbacks/induced_changes_of_vars/change_max_iter.c \
+src/mlx_callbacks/induced_changes_of_vars/shift.c \
 src/mlx_callbacks/induced_changes_of_vars/toggle_escape_criteria.c \
+src/mlx_callbacks/induced_changes_of_vars/zoom.c \
 src/mlx_callbacks/waiting_for_godot.c \
 src/printing/print_error.c \
 src/printing/print_help.c \
 src/printing/print_info.c \
+src/printing/put_double.c \
 src/printing/welcome_traveler.c
 #############################################
 

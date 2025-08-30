@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 13:49:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/30 14:36:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define ZOOM_IN_FACTOR 0.5
 # define ZOOM_OUT_FACTOR 2.0
 # define SHIFT_FACTOR 0.25
+//# define ZOOM_IN_LIMIT 0.00000000000005684
+# define ZOOM_IN_LIMIT 0x1.p-46
+# define ZOOM_OUT_LIMIT 0x1p12
 
 enum e_shift_directions
 {

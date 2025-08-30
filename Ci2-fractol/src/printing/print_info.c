@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:17:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 13:49:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/30 14:33:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,19 @@ void	print_info(int k, int l, char *title, const t_math *math)
 
 	ft_putstr_fd("\n  "RED"x"RESET"------ ", STDOUT_FILENO);
 	ft_putstr_fd("\n  |      |", STDOUT_FILENO);
-	ft_putstr_fd("\n  |      | ", STDOUT_FILENO);
+	ft_putstr_fd("\n  |      |        ", STDOUT_FILENO);
 	put_double(math->square.side_len);
-	ft_putstr_fd("   <-- Side length of square", STDOUT_FILENO);
+	ft_putstr_fd("  <-- Side length of square", STDOUT_FILENO);
 	ft_putstr_fd("\n  |      |", STDOUT_FILENO);
 	ft_putstr_fd("\n   ------"YELLOW"x"RESET, STDOUT_FILENO);
 
-	ft_putstr_fd(RED"\n  Up-left:    "RESET, STDOUT_FILENO);
+	ft_putstr_fd(RED"\n  Up-left:        "RESET, STDOUT_FILENO);
 	put_double(math->square.up_left.re);
 	ft_putstr_fd("  +i(", STDOUT_FILENO);
 	put_double(math->square.up_left.im);
 	ft_putstr_fd(")", STDOUT_FILENO);
 
-
-	ft_putstr_fd(YELLOW"\n  Down-right: "RESET, STDOUT_FILENO);
+	ft_putstr_fd(YELLOW"\n  Down-right:     "RESET, STDOUT_FILENO);
 	put_double(math->square.down_right.re);
 	ft_putstr_fd("  +i(", STDOUT_FILENO);
 	put_double(math->square.down_right.im);
