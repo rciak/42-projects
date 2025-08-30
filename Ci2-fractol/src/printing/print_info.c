@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:17:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/28 19:06:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/30 13:49:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
  */
 
 #include "fractol.h"
-
-static void	put__double(double d);
 
 /**
  * @brief Prints info to the terminal
@@ -45,22 +43,22 @@ void	print_info(int k, int l, char *title, const t_math *math)
 	ft_putstr_fd("\n  "RED"x"RESET"------ ", STDOUT_FILENO);
 	ft_putstr_fd("\n  |      |", STDOUT_FILENO);
 	ft_putstr_fd("\n  |      | ", STDOUT_FILENO);
-	put__double(math->square.side_len);
+	put_double(math->square.side_len);
 	ft_putstr_fd("   <-- Side length of square", STDOUT_FILENO);
 	ft_putstr_fd("\n  |      |", STDOUT_FILENO);
 	ft_putstr_fd("\n   ------"YELLOW"x"RESET, STDOUT_FILENO);
 
 	ft_putstr_fd(RED"\n  Up-left:    "RESET, STDOUT_FILENO);
-	put__double(math->square.up_left.re);
+	put_double(math->square.up_left.re);
 	ft_putstr_fd("  +i(", STDOUT_FILENO);
-	put__double(math->square.up_left.im);
+	put_double(math->square.up_left.im);
 	ft_putstr_fd(")", STDOUT_FILENO);
 
 
 	ft_putstr_fd(YELLOW"\n  Down-right: "RESET, STDOUT_FILENO);
-	put__double(math->square.down_right.re);
+	put_double(math->square.down_right.re);
 	ft_putstr_fd("  +i(", STDOUT_FILENO);
-	put__double(math->square.down_right.im);
+	put_double(math->square.down_right.im);
 	ft_putstr_fd(")", STDOUT_FILENO);
 	ft_putstr_fd("\n           ", STDOUT_FILENO);
 
@@ -73,34 +71,10 @@ void	print_info(int k, int l, char *title, const t_math *math)
 	t_cmplx	a;
 	ft_putstr_fd("\n  Complex number: ", STDOUT_FILENO);
 	a = coord_transf(k, l, math->square);
-	put__double(a.re);
+	put_double(a.re);
 	ft_putstr_fd("  +i(", STDOUT_FILENO);
-	put__double(a.im);
+	put_double(a.im);
 	ft_putstr_fd(")", STDOUT_FILENO);
 	ft_putstr_fd("\n", STDOUT_FILENO);
-}
-
-static void	put__double(double d)
-{
-	long long	integer_part;
-	int			fractional_digits;
-
-	integer_part = (long long) d;
-	// if (d < 0)
-	// 	ft_putstr_fd("-", STDOUT_FILENO);
-	ft_putllnbr_fd(integer_part, STDOUT_FILENO);
-	ft_putstr_fd(".", STDOUT_FILENO);
-	d = d - (double) integer_part;
-	if (d < 0)
-		d *= -1;
-	fractional_digits = 17;
-	while (fractional_digits > 0)
-	{
-		d = d * 10;
-		integer_part = (long long) d;
-		d = d - (double) integer_part;
-		ft_putllnbr_fd(integer_part, STDOUT_FILENO);
-		fractional_digits--;
-	}
 }
 
