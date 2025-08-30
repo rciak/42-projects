@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/29 19:25:42 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/30 12:15:20 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,10 @@ src/math/fractal_genes/z_pow_3_plus_w.c \
 src/mlx_callbacks/events_julia.c \
 src/mlx_callbacks/events_mbrot.c \
 src/mlx_callbacks/img_iter_to_color.c \
-src/mlx_callbacks/induced_changes_of_math_vars/change_julia_param.c \
-src/mlx_callbacks/induced_changes_of_math_vars/change_max_iter.c \
-src/mlx_callbacks/induced_changes_of_math_vars/toggle_escape_criteria.c \
+src/mlx_callbacks/induced_changes_of_vars/change_id.c \
+src/mlx_callbacks/induced_changes_of_vars/change_julia_param.c \
+src/mlx_callbacks/induced_changes_of_vars/change_max_iter.c \
+src/mlx_callbacks/induced_changes_of_vars/toggle_escape_criteria.c \
 src/mlx_callbacks/waiting_for_godot.c \
 src/printing/print_error.c \
 src/printing/print_help.c \

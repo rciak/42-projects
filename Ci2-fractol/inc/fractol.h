@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/29 19:27:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/30 12:41:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,9 +238,10 @@ int		waiting_for_godot(t_all *all);
 void	img_iter_to_color(t_image iter, t_image draw, int max, t_palette pal);
 //
 //mlx_callbacks/induced_changes_of_vars
-void	toggle_escape_criteria(bool (**esc_criteria)(t_cmplx, t_cmplx));
+void	change_id(int key, char **id, t_math *math);
 void	change_max_iter(int key, int *max_iter);
 void	change_julia_param(int k, int l, t_cmplx *w_0, t_square square);
+void	toggle_escape_criteria(bool (**esc_criteria)(t_cmplx, t_cmplx));
 
 ////////////////////////////////////////////////////////////////////////////////
 //math/*.c

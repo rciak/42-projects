@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/29 18:55:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/30 12:40:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ int	key_mbrot(int key, t_all *all)
 		shift(key, &all->math[MBROT].square);
 	else if (key == XK_Escape)
 		close_mbrot(all);
+	else if (key == XK_2 || key == XK_3)
+	{
+		change_id(key, &all->id, all->math);
+		all->x.recalc[JULIA] = true;
+	}
 	else if (key == XK_t)
 		toggle_escape_criteria(&all->math[MBROT].will_escape);
 	else if (key == XK_h || key == XK_l || key == XK_j || key == XK_k
