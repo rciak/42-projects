@@ -33,7 +33,6 @@
 # define ZOOM_IN_FACTOR 0.5
 # define ZOOM_OUT_FACTOR 2.0
 # define SHIFT_FACTOR 0.25
-//# define ZOOM_IN_LIMIT 0.00000000000005684
 # define ZOOM_IN_LIMIT 0x1.p-46
 # define ZOOM_OUT_LIMIT 0x1p12
 
