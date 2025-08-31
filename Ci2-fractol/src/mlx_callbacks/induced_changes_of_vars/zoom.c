@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 17:06:56 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 14:35:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/30 22:12:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "fractol.h"
 
 static void	info__limits(void);
+static void	info__square_out_of_bounds(void);
 
 /**
  * @brief "Zooming:"
@@ -64,14 +65,24 @@ void	zoom(double factor, int k, int l, t_square *square)
 	}
 	else
 		info__limits();
+	if (square_in_allowed_region(square) == false)
+	{
+		info__square_out_of_bounds();
+		reset_square(square);
+	}
 }
 
 static void	info__limits(void)
 {
-	ft_putstr_fd("\nInfo: Approaching a zoomlimit.", STDOUT_FILENO);
+	ft_putstr_fd("\nInfo: Approaching a zoom limit.", STDOUT_FILENO);
 	ft_putstr_fd("\n  ZOOM_OUT_LIMIT: ", STDOUT_FILENO);
 	put_double(ZOOM_OUT_LIMIT);
 	ft_putstr_fd("\n  ZOOM_IN_LIMIT:  ", STDOUT_FILENO);
 	put_double(ZOOM_IN_LIMIT);
-	ft_putstr_fd("\n", STDOUT_FILENO);
+}
+
+static void	info__square_out_of_bounds(void)
+{
+	ft_putstr_fd("\nInfo: Zoom caused view to get out of intended area."
+		"\n  Reseting...", STDOUT_FILENO);
 }

@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/30 13:53:57 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/30 22:13:09 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ src/init_image_struct.c \
 src/init_non_mlx_vars/init_math.c \
 src/init_non_mlx_vars/init_non_mlx_vars.c \
 src/init_non_mlx_vars/init_palette.c \
+src/init_non_mlx_vars/reset_square.c \
 src/main.c \
 src/math/calc_iterations.c \
 src/math/coord_transf.c \
@@ -56,6 +57,7 @@ src/math/criteria_square_julia.c \
 src/math/criteria_square_mbrot.c \
 src/math/fractal_genes/z_pow_2_plus_w.c \
 src/math/fractal_genes/z_pow_3_plus_w.c \
+src/math/square_in_allowed_region.c \
 src/mlx_callbacks/events_julia.c \
 src/mlx_callbacks/events_mbrot.c \
 src/mlx_callbacks/img_iter_to_color.c \

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 00:03:03 by rene              #+#    #+#             */
-/*   Updated: 2025/08/29 19:25:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/30 21:58:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "fractol.h"
 
-static void init__square(t_square *square);
 static void	set__iter_fun(t_cmplx (**fun)(t_cmplx z, t_cmplx w), char *formula);
 
 /**
@@ -49,8 +48,8 @@ bool	init_math(t_math *math, char **argv, char *id, t_err *err)
 		if (err_atof[0] != E_ATOF_NO_ERR || err_atof[1] != E_ATOF_NO_ERR)
 			return (*err = error(ERR_ATOF_STRICT), false);
 	}
-	init__square(&math[MBROT].square);
-	init__square(&math[JULIA].square);
+	reset_square(&math[MBROT].square);
+	reset_square(&math[JULIA].square);
 	math[MBROT].max_iter = INIT_MAX_ITER;
 	math[JULIA].max_iter = INIT_MAX_ITER;
 	set__iter_fun(&math[MBROT].iter_fun, id);
@@ -58,15 +57,6 @@ bool	init_math(t_math *math, char **argv, char *id, t_err *err)
 	math[MBROT].will_escape = &criteria_square_mbrot;
 	math[JULIA].will_escape = &criteria_circle_julia;
 	return (true);
-}
-
-static void init__square(t_square *square)
-{
-	square->up_left.re = -2.0;
-	square->up_left.im = -2.0;
-	square->side_len = 4.0;
-	square->down_right.re = 2.0;
-	square->down_right.im = 2.0;
 }
 
 //                                                   EXTEND FUNCTION after the other math functions are implmented

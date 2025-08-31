@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 14:36:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/30 22:03:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 # define SHIFT_FACTOR 0.25
 # define ZOOM_IN_LIMIT 0x1.p-46
 # define ZOOM_OUT_LIMIT 0x1p12
+// Note that increasing the  ZOOM_OUT_LIMIT  may require adopting the following:
+# define UP_LEFT_LIMIT_RE -0x1p15
+# define UP_LEFT_LIMIT_IM -0x1p15
+# define DOWN_RIGHT_LIMIT_RE 0x1p15
+# define DOWN_RIGHT_LIMIT_IM 0x1p15
 
 enum e_shift_directions
 {
@@ -225,6 +230,7 @@ t_err	error(int error_code);
 bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
 bool	init_math(t_math *math, char **argv, char *id, t_err *err);
 void	init_palette(t_palette *palette);
+void	reset_square(t_square *square);
 
 ////////////////////////////////////////////////////////////////////////////////
 //mlx_callbacks/*.c
@@ -253,6 +259,7 @@ bool	criteria_circle_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_square_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_circle_julia(t_cmplx z, t_cmplx w);
 bool	criteria_square_julia(t_cmplx z, t_cmplx w);
+bool	square_in_allowed_region(const t_square *square);
 //math/fractal_genes/*.c
 t_cmplx	z_pow_2_plus_w(t_cmplx z, t_cmplx w);
 t_cmplx	z_pow_3_plus_w(t_cmplx z, t_cmplx w);
