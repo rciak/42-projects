@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/08/30 22:13:09 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/31 15:26:32 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,10 @@ endif
 ifeq ($(DEBUG_VALGRIND), 1)
   CFLAGS  += -g3
   LDFLAGS += -g3
+endif
+ifeq ($(GPROF), 1)
+  CFLAGS += -pg
+  LDFLAGS += -pg
 endif
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))

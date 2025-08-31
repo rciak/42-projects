@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/08/28 15:26:34 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/31 15:26:27 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,10 @@ endif
 ifeq ($(DEBUG_VALGRIND), 1)
   CFLAGS  += -g3
 endif
+ifeq ($(GPROF), 1)
+  CFLAGS += -pg
+endif
+
 
 # Dependencies can be handled better using DEP=.. stuff, cf.
 # https://stackoverflow.com/questions/2394609/makefile-header-dependencies
