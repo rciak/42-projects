@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 00:03:03 by rene              #+#    #+#             */
-/*   Updated: 2025/08/31 22:41:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/01 14:39:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	init_math(t_math *math, char **argv, char *id, t_err *err)
 		err_atof[0] = E_ATOF_NO_ERR;
 		err_atof[1] = E_ATOF_NO_ERR;
 		math[JULIA].w_0.re = atof_strict(argv[2], &err_atof[0]);
-		math[JULIA].w_0.im = atof_strict(argv[2], &err_atof[1]);
+		math[JULIA].w_0.im = atof_strict(argv[3], &err_atof[1]);
 		if (err_atof[0] != E_ATOF_NO_ERR || err_atof[1] != E_ATOF_NO_ERR)
 			return (*err = error(ERR_ATOF_STRICT), false);
 	}
