@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/31 22:55:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/01 12:26:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ enum e_fractol_errors
 	ERR_MLX_NEW_IMAGE,
 	ERR_MLX_GET_DATA_ADDR_NULL,
 	ERR_UNEXP_BITS_PER_PIXEL,
+	ERR_INT_NOT_FOUR_BYTES,
 	ERR_UNEXP_BIG_ENDIAN,
 };
 

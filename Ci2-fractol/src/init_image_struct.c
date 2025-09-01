@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 23:40:04 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/31 23:01:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/01 12:28:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ bool	init_image_struct(t_image *img, void *img_meta, t_err *err)
 	if (bits_per_pixel != 4 * 8)
 		return (*err = error(ERR_UNEXP_BITS_PER_PIXEL), false);
 	img->bytes_per_pixel = bits_per_pixel / 8;
+	if (sizeof(int) != 4)
+		return (*err = error(ERR_INT_NOT_FOUR_BYTES), false);
 	return (true);
 }
