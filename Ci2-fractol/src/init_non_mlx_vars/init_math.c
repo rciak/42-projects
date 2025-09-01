@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 00:03:03 by rene              #+#    #+#             */
-/*   Updated: 2025/08/30 21:58:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:41:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	set__iter_fun(t_cmplx (**fun)(t_cmplx z, t_cmplx w), char *formula);
  */
 bool	init_math(t_math *math, char **argv, char *id, t_err *err)
 {
-	t_libft_err err_atof[2];
+	t_libft_err	err_atof[2];
 
 	math[MBROT].z_0.re = 0.0;
 	math[MBROT].z_0.im = 0.0;
@@ -59,7 +59,6 @@ bool	init_math(t_math *math, char **argv, char *id, t_err *err)
 	return (true);
 }
 
-//                                                   EXTEND FUNCTION after the other math functions are implmented
 static void	set__iter_fun(t_cmplx (**fun)(t_cmplx z, t_cmplx w), char *formula)
 {
 	if (ft_strcmp(formula, "m2") == 0)

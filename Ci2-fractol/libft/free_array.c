@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 14:12:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 14:25:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 16:01:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  */
 void	free_array(char **string_array)
 {
-	char **p_char_pointer;
+	char	**p_char_pointer;
 
 	p_char_pointer = string_array;
 	while (*p_char_pointer != NULL)

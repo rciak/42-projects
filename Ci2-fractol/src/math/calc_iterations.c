@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 21:37:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/26 10:36:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:42:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@
  * @param[in,out]
  * @return The counted number of iterations
  */
-// TODO:                                                               Document better
-// TODO:                                                                 IMPLEMENT!
+// TODO:                                                               Document better: Vars!
 int	calc_iterations(int k, int l, const t_math *math, int fractal_kind)
 {
 	int		count;

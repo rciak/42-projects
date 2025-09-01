@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 12:40:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:55:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int close_mbrot(t_all *all)
+int	close_mbrot(t_all *all)
 {
 	all->x.close[MBROT] = true;
 	return (0);

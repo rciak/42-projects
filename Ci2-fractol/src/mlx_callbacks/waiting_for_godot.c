@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:14:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/29 17:46:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:58:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	react__on(int there, t_all *all)
 	if (x->close[there] == true)
 	{
 		destroy___window_and_images(there, x);
-		x->close[there] = false;                                        //Weglassen?!
-		x->recalc[there] = false;                                       //Weglassen?!
+		x->close[there] = false;
+		x->recalc[there] = false;
 		return ;
 	}
 	if (x->recalc[there] == true)
@@ -61,7 +61,7 @@ static void	react__on(int there, t_all *all)
 	}
 	status = calc___next_row(there, CONTINUE, all);
 	if (!(status == READY_TO_DRAW || (all->x.color_shift_requires_redraw[there]
-			&& status == CALCULATION_ALREADY_FINISHED_BEFORE)))
+				&& status == CALCULATION_ALREADY_FINISHED_BEFORE)))
 		return ;
 	img_iter_to_color(all->img_iter[there], all->img_draw[there],
 		all->math[there].max_iter, all->palette);
@@ -80,6 +80,7 @@ static void	destroy___window_and_images(int there, t_x *x)
 	x->meta_draw[there] = NULL;
 	x->win[there] = NULL;
 }
+
 /**
  * @brief Calculates the next row for "image" img_iter
  * @note In each "pixel" is stored the number of iterations until

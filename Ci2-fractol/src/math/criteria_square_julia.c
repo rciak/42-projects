@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:19:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 16:20:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:52:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@
  */
 bool	criteria_square_julia(t_cmplx z, t_cmplx w)
 {
-	if (fabs(z.re) > fabs(w.re) + fabs(w.im) && fabs(z.re) > 2.0	)
+	if (fabs(z.re) > fabs(w.re) + fabs(w.im) && fabs(z.re) > 2.0)
 		return (true);
 	else if (fabs(z.im) > fabs(w.re) + fabs(w.im) && fabs(z.im) > 2.0)
 		return (true);

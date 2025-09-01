@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 22:03:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:55:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,11 +181,11 @@ typedef struct s_square
 {
 	t_cmplx		up_left;
 	double		side_len;
-	t_cmplx		down_right;								// Kick out if not needed / used
+	t_cmplx		down_right;
 }	t_square;
 
 typedef struct s_math
-{	
+{
 	t_cmplx		z_0;
 	t_cmplx		w_0;
 	t_square	square;
@@ -199,7 +199,7 @@ typedef struct s_palette
 	int		color[PALETTE_COLORS];
 	int		shift;
 	int		not_escaped_color;
-} t_palette;
+}	t_palette;
 
 typedef struct s_err
 {

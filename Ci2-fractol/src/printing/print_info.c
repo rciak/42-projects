@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:17:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 14:33:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:59:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  */
 void	print_info(int k, int l, char *title, const t_math *math)
 {
-	static int info_nr = 0;
+	static int	info_nr = 0;
 
 	info_nr++;
 	ft_putstr_fd("\n*********************************************************"

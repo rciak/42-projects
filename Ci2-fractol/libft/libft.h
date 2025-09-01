@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/28 17:14:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:40:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdlib.h>   // malloc, free   (also NULL definition aside stddef.h)
 # include <stdint.h>   // intptr_t, uintptr_t
 # include <limits.h>   // UINT_MAX
-# include <float.h>   // DBL_MIN, DBL_MAX
+# include <float.h>    // DBL_MIN, DBL_MAX
 
 # define RESET "\033[0m"
 # define RED "\033[31m"
@@ -184,9 +184,9 @@ int			ft_strcmp(const char *s1, const char *s2);
 size_t		skip(char **pstr, const char *chars_to_skip);
 
 //currently in sideproducts/ft_x_strtools2.c
-size_t	strlen_deli(const char *s, const char *deli);
-size_t	count_words(const char *s, const char *deli);
-char	**split_deli(char const *s, const char *deli);
+size_t		strlen_deli(const char *s, const char *deli);
+size_t		count_words(const char *s, const char *deli);
+char		**split_deli(char const *s, const char *deli);
 
 //ft_atoi with error info (with additional strictness in case of atoi_strict)
 int			atoi_proper(const char *nptr, t_libft_err *err_code);

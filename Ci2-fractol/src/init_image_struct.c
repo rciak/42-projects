@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 23:40:04 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 16:34:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 23:01:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ bool	init_image_struct(t_image *img, void *img_meta, t_err *err)
 	int	endian;
 
 	img->buf = mlx_get_data_addr(
-		img_meta, 
-		&bits_per_pixel,
-		&img->size_line,
-		&endian
-	);
+			img_meta,
+			&bits_per_pixel,
+			&img->size_line,
+			&endian
+			);
 	if (img->buf == NULL)
 		return (*err = error(ERR_MLX_GET_DATA_ADDR_NULL), false);
 	if (endian == BIG_ENDIAN)

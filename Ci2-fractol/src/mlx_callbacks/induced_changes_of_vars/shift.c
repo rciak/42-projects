@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 13:56:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 22:27:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:53:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	translate__square(t_square *square, double diff_re, double diff_im)
 {
 	t_cmplx	*u;
 	t_cmplx	*d;
-	t_cmplx u_new;
-	t_cmplx d_new;
+	t_cmplx	u_new;
+	t_cmplx	d_new;
 
 	u = &square->up_left;
 	d = &square->down_right;

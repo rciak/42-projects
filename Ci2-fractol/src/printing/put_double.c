@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 13:48:52 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 13:54:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 23:00:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	put_double(double d)
 	int			fractional_digits;
 
 	integer_part = (long long) d;
-	// if (d < 0)
-	// 	ft_putstr_fd("-", STDOUT_FILENO);
 	ft_putllnbr_fd(integer_part, STDOUT_FILENO);
 	ft_putstr_fd(".", STDOUT_FILENO);
 	d = d - (double) integer_part;

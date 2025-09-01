@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 09:19:29 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/18 21:37:41 by rene             ###   ########.fr       */
+/*   Updated: 2025/08/31 23:00:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @note In contrast to gnl I declared it here as static reducing the
  *       "risk" of stack overflow (though it seems very unlikely anyway)
  */
-t_err error(int error_code)
+t_err	error(int error_code)
 {
 	static const t_err	err[] = {
 	{ERR_NONE, "fractol: Success - no error detected"},
@@ -27,8 +27,9 @@ t_err error(int error_code)
 	{ERR_MLX_NEW_IMAGE, "fractol: mlx_new_image failed"},
 	{ERR_MLX_GET_DATA_ADDR_NULL, "fractol: mlx_get_data_addr returned NULL"},
 	{ERR_UNEXP_BITS_PER_PIXEL, "fractol: pits per pixel is expected to be 32"},
-	{ERR_UNEXP_BIG_ENDIAN, "fractol: Big endian memory layout?" 
-                           "Did you buy your computer in the last century?! ;-)"},
+	{ERR_UNEXP_BIG_ENDIAN, "fractol: Big endian memory layout?"
+		"Did you buy your computer in the last century?! ;-)"},
 	};
+
 	return (err[error_code]);
 }

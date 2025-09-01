@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:10:08 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 16:10:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 16:00:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ bool	criteria_square_mbrot(t_cmplx z, t_cmplx w)
 		return (true);
 	return (false);
 }
-

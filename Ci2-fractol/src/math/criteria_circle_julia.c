@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:33:15 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 16:10:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:51:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  */
 bool	criteria_circle_julia(t_cmplx z, t_cmplx w)
 {
-	if (z.re * z.re + z.im * z.im > 4 
+	if (z.re * z.re + z.im * z.im > 4
 		&& z.re * z.re + z.im * z.im > w.re * w.re + w.im * w.im)
 		return (true);
 	return (false);

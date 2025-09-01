@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 17:06:56 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 22:12:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/31 22:53:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	zoom(double factor, int k, int l, t_square *square)
 	t_cmplx	c;
 	t_cmplx	*u;
 	double	*s;
-	t_cmplx *d;
-	
+	t_cmplx	*d;
+
 	c = coord_transf(k, l, *square);
 	u = &square->up_left;
 	s = &square->side_len;
 	d = &square->down_right;
-	if (*s * factor < 1.125 * ZOOM_OUT_LIMIT 
+	if (*s * factor < 1.125 * ZOOM_OUT_LIMIT
 		&& *s * factor > 0.875 * ZOOM_IN_LIMIT)
 	{
 		u->re = c.re + factor * (u->re - c.re);
