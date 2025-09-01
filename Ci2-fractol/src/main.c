@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/25 16:33:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/01 12:14:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 }
 
 static bool	provide__windows(t_all *all)
-{	
+{
 	t_x		*x;
 
 	x = &(all->x);
