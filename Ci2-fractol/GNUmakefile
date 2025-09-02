@@ -6,11 +6,13 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/02 14:34:44 by reciak            #+#    #+#              #
-#    Updated: 2025/09/02 15:10:23 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/02 17:06:49 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-include Makefile
+include makefile
 
-restore_original_beautiful_color:
+restore_original_beautiful_colors:
+	
+
 	
