@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:17:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/01 14:35:24 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/02 14:17:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,16 @@ void	print_info(int k, int l, char *title, const t_math *math)
 	ft_putstr_fd(")", STDOUT_FILENO);
 	ft_putstr_fd("\n", STDOUT_FILENO);
 
-	ft_putstr_fd("\n", STDOUT_FILENO);
-	ft_putstr_fd("\nDebug Info: ", STDOUT_FILENO);
+	ft_putstr_fd("\nInits ", STDOUT_FILENO);
 	ft_putstr_fd("\n  z_0: ", STDOUT_FILENO);
 	put_double(math->z_0.re);
 	ft_putstr_fd("  +i(", STDOUT_FILENO);
 	put_double(math->z_0.im);
+	ft_putstr_fd(")", STDOUT_FILENO);
 	ft_putstr_fd("\n  w_0: ", STDOUT_FILENO);
 	put_double(math->w_0.re);
 	ft_putstr_fd("  +i(", STDOUT_FILENO);
 	put_double(math->w_0.im);
-
+	ft_putstr_fd(")", STDOUT_FILENO);
 }
 
