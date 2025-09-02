@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_palette.c                                     :+:      :+:    :+:   */
+/*   init_palette_first_fractol.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 01:52:30 by rene              #+#    #+#             */
-/*   Updated: 2025/09/02 12:55:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/02 16:51:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 #include "fractol.h"
 
+void	set__first_cohort_colors(t_palette *palette);
 void	set__second_cohort_colors(t_palette *palette);
-void	set__fifth_cohort_colors(t_palette *palette);
+void	set__third_cohort_colors(t_palette *palette);
 
 /**
  * @brief This is a helper for init_non_mlx_vars()
@@ -28,75 +29,80 @@ void	set__fifth_cohort_colors(t_palette *palette);
 void	init_palette(t_palette *palette)
 {
 	palette->shift = 0;
-	palette->not_escaped_color = 0x00faded1;
-	palette->color[0] = 0x00FF00FF;
-	palette->color[1] = 0x00FF0000;
-	palette->color[2] = 0x00CFAEBD;
-	palette->color[3] = 0x0000FF00;
-	palette->color[4] = 0x00FAFAFA;
-	palette->color[5] = 0x00AAAAAA;
-	palette->color[6] = 0x00000000;
-	palette->color[7] = 0x000000FF;
-	palette->color[8] = 0x000000AA;
-	palette->color[9] = 0x001D2311;
-	palette->color[10] = 0x00abcdef;
-	palette->color[11] = 0xdad2abba;
+	palette->not_escaped_color = 0xFFFFA500;
+	set__first_cohort_colors(palette);
 	set__second_cohort_colors(palette);
-	set__fifth_cohort_colors(palette);
+	set__third_cohort_colors(palette);
+}
+
+void	set__first_cohort_colors(t_palette *palette)
+{
+	palette->color[0] = 0xFF0D47A1;
+	palette->color[1] = 0xFF1565C0;
+	palette->color[2] = 0xFF1976D2;
+	palette->color[3] = 0xFF1E88E5;
+	palette->color[4] = 0xFF2196F3;
+	palette->color[5] = 0xFF42A5F5;
+	palette->color[6] = 0xFF64B5F6;
+	palette->color[7] = 0xFF90CAF9;
+	palette->color[8] = 0xFFBBDEFB;
+	palette->color[9] = 0xFFE3F2FD;
+	palette->color[10] = 0xFFF8F9FA;
+	palette->color[11] = 0xFFE9ECEF;
+	palette->color[12] = 0xFFDEE2E6;
+	palette->color[13] = 0xFFCED4DA;
+	palette->color[14] = 0xFFADB5BD;
+	palette->color[15] = 0xFF6C757D;
+	palette->color[16] = 0xFF495057;
+	palette->color[17] = 0xFF343A40;
+	palette->color[18] = 0xFF212529;
+	palette->color[19] = 0xFF172531;
 }
 
 void	set__second_cohort_colors(t_palette *palette)
 {
-	palette->color[12] = 0x00E600E6;
-	palette->color[13] = 0x00E60000;
-	palette->color[14] = 0x00BA9DAA;
-	palette->color[15] = 0x0000E600;
-	palette->color[16] = 0x00E1E1E1;
-	palette->color[17] = 0x00999999;
-	palette->color[18] = 0x00000000;
-	palette->color[19] = 0x000000E6;
-	palette->color[20] = 0x00000099;
-	palette->color[21] = 0x001A200F;
-	palette->color[22] = 0x009AB8D7;
-	palette->color[23] = 0x00BD9AA7;
-	palette->color[24] = 0x00CF00CF;
-	palette->color[25] = 0x00CF0000;
-	palette->color[26] = 0x00A88D99;
-	palette->color[27] = 0x0000CF00;
-	palette->color[28] = 0x00CACACA;
-	palette->color[29] = 0x008A8A8A;
-	palette->color[30] = 0x00000000;
-	palette->color[31] = 0x000000CF;
-	palette->color[32] = 0x0000008A;
-	palette->color[33] = 0x00171C0E;
-	palette->color[34] = 0x008BA6C2;
-	palette->color[35] = 0x00AA8B97;
+	palette->color[20] = 0xFF081C15;
+	palette->color[21] = 0xFF1B4332;
+	palette->color[22] = 0xFF2D6A4F;
+	palette->color[23] = 0xFF40916C;
+	palette->color[24] = 0xFF52B788;
+	palette->color[25] = 0xFF74C69D;
+	palette->color[26] = 0xFF95D5B2;
+	palette->color[27] = 0xFFB7E4C7;
+	palette->color[28] = 0xFFD8F3DC;
+	palette->color[29] = 0xFFEAFFE0;
+	palette->color[30] = 0xFFF8F9FA;
+	palette->color[31] = 0xFFE9ECEF;
+	palette->color[32] = 0xFFDEE2E6;
+	palette->color[33] = 0xFFCED4DA;
+	palette->color[34] = 0xFFADB5BD;
+	palette->color[35] = 0xFF6C757D;
+	palette->color[36] = 0xFF495057;
+	palette->color[37] = 0xFF343A40;
+	palette->color[38] = 0xFF212529;
+	palette->color[39] = 0xFF172531;
 }
 
-void	set__fifth_cohort_colors(t_palette *palette)
+void	set__third_cohort_colors(t_palette *palette)
 {
-	palette->color[36] = 0x00B800B8;
-	palette->color[37] = 0x00B80000;
-	palette->color[38] = 0x00957D88;
-	palette->color[39] = 0x0000B700;
-	palette->color[40] = 0x00B4B4B4;
-	palette->color[41] = 0x007A7A7A;
-	palette->color[42] = 0x00000000;
-	palette->color[43] = 0x000000B7;
-	palette->color[44] = 0x0000007A;
-	palette->color[45] = 0x0015190C;
-	palette->color[46] = 0x007B94AC;
-	palette->color[47] = 0x00977B86;
-	palette->color[48] = 0x00A800A8;
-	palette->color[49] = 0x00A80000;
-	palette->color[50] = 0x0089737D;
-	palette->color[51] = 0x0000A700;
-	palette->color[52] = 0x00A5A5A5;
-	palette->color[53] = 0x00707070;
-	palette->color[54] = 0x00000000;
-	palette->color[55] = 0x000000A7;
-	palette->color[56] = 0x00000070;
-	palette->color[57] = 0x0013170B;
-	palette->color[58] = 0x0071878E;
-	palette->color[59] = 0x008A707A;
+	palette->color[40] = 0xFF590D22;
+	palette->color[41] = 0xFF800F2F;
+	palette->color[42] = 0xFFA4133C;
+	palette->color[43] = 0xFFC9184A;
+	palette->color[44] = 0xFFFF4D6D;
+	palette->color[45] = 0xFFFF758F;
+	palette->color[46] = 0xFFFF8FA3;
+	palette->color[47] = 0xFFFFB3C1;
+	palette->color[48] = 0xFFFFCCD5;
+	palette->color[49] = 0xFFFFF0F3;
+	palette->color[50] = 0xFFF8F9FA;
+	palette->color[51] = 0xFFE9ECEF;
+	palette->color[52] = 0xFFDEE2E6;
+	palette->color[53] = 0xFFCED4DA;
+	palette->color[54] = 0xFFADB5BD;
+	palette->color[55] = 0xFF6C757D;
+	palette->color[56] = 0xFF495057;
+	palette->color[57] = 0xFF343A40;
+	palette->color[58] = 0xFF212529;
+	palette->color[59] = 0xFF172531;
 }
