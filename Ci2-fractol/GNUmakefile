@@ -6,16 +6,43 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/02 14:34:44 by reciak            #+#    #+#              #
-#    Updated: 2025/09/02 17:24:06 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/02 19:40:46 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include makefile
 
+
+define TWINKING_HOLY_SNAIL
+      _____________
+     /             \\
+     \\_____________/
+     _______________
+    /               \\
+   |   O         -   |
+   |     \\_____/     |
+   |    \\_______/    |
+    \\_______________/  
+          \\
+           \\
+            \\
+             __________________________
+            /                          \\
+           | Protesting against a       |
+           | questionable rule while    |
+           | staying within the rules...|
+            \\__________________________/
+
+endef
+export TWINKING_HOLY_SNAIL
+
 restore_original_beautiful_colors:
+	@printf "$$TWINKING_HOLY_SNAIL"
+	@sleep 3
 	@echo "********************************************************************"
 	@echo "           Restoring beautiful original colors ...                  "
 	@echo "********************************************************************"
+	@echo	
 	@sleep 3
 	@echo
 	wget -O original_beautiful_colors.c \
