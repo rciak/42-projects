@@ -466,6 +466,11 @@
 },
 {
   "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/printing/put_complex_number.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/printing/put_complex_number.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/printing/put_complex_number.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
   "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/printing/put_double.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/printing/put_double.c",
   "file": "/home/reciak/github/42-projects/Ci2-fractol/src/printing/put_double.c"
 },
