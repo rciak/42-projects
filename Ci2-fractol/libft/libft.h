@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/31 22:40:20 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/03 09:58:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@
 # include <stdlib.h>   // malloc, free   (also NULL definition aside stddef.h)
 # include <stdint.h>   // intptr_t, uintptr_t
 # include <limits.h>   // UINT_MAX
-# include <float.h>    // DBL_MIN, DBL_MAX
+# include <values.h>   // Indirectly includes float.h --> DBL_MIN, DBL_MAX
+// Note: The following caused norminette to print an "error" in red,
+//       likely its parser does not deal properly with  float.h  ,
+//       messing it up with the keyword  float ?!
+//# include <float.h>    // DBL_MIN, DBL_MAX
 
 # define RESET "\033[0m"
 # define RED "\033[31m"
