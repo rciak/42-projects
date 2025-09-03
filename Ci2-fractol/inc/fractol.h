@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/02 11:59:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/03 10:21:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>         // fabs
-//
-// Wenn das so nicht funktioniert:///////////////////////////////////////////////////
-// # define XK_MISCELLANY
-// # define XK_LATIN1
-// # include <X11/keysymdef.h>
-//
 # include <mlx.h>
 # include "libft.h"
 
