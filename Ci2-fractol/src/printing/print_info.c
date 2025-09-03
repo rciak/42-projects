@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:17:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/02 14:17:02 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/03 16:25:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
  */
 
 #include "fractol.h"
+
+static void	put__general_info(void);
+static void	put__square(char *title, t_square square);
+static void	put__info_click(int k, int l, t_square square);
+static void	put__julia_param(t_cmplx c);
 
 /**
  * @brief Prints info to the terminal
@@ -27,6 +32,15 @@
  */
 void	print_info(int k, int l, char *title, const t_math *math)
 {
+	put__general_info();
+	put__square(title, math->square);
+	put__info_click(k, l, math->square);
+	if (ft_strcmp(title, "Fractol - Filled Julia set") == 0)
+		put__julia_param(math->w_0);
+}
+
+static void	put__general_info(void)
+{
 	static int	info_nr = 0;
 
 	info_nr++;
@@ -36,56 +50,54 @@ void	print_info(int k, int l, char *title, const t_math *math)
 	ft_putnbr_fd(info_nr, STDOUT_FILENO);
 	ft_putstr_fd("\n*********************************************************"
 		"***********", STDOUT_FILENO);
-	ft_putstr_fd("\n           ", STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+}
+
+static void	put__square(char *title, t_square square)
+{
 	ft_putstr_fd("\nWindow:  ", STDOUT_FILENO);
 	ft_putstr_fd(title, STDOUT_FILENO);
-
 	ft_putstr_fd("\n  "RED"x"RESET"------ ", STDOUT_FILENO);
 	ft_putstr_fd("\n  |      |", STDOUT_FILENO);
-	ft_putstr_fd("\n  |      |        ", STDOUT_FILENO);
-	put_double(math->square.side_len);
+	ft_putstr_fd("\n  |      |         ", STDOUT_FILENO);
+	put_double(square.side_len);
 	ft_putstr_fd("  <-- Side length of square", STDOUT_FILENO);
 	ft_putstr_fd("\n  |      |", STDOUT_FILENO);
 	ft_putstr_fd("\n   ------"YELLOW"x"RESET, STDOUT_FILENO);
-
 	ft_putstr_fd(RED"\n  Up-left:        "RESET, STDOUT_FILENO);
-	put_double(math->square.up_left.re);
-	ft_putstr_fd("  +i(", STDOUT_FILENO);
-	put_double(math->square.up_left.im);
-	ft_putstr_fd(")", STDOUT_FILENO);
-
+	if (square.up_left.re >= 0)
+		ft_putstr_fd(" ", STDOUT_FILENO);
+	put_complex_number(square.up_left);
 	ft_putstr_fd(YELLOW"\n  Down-right:     "RESET, STDOUT_FILENO);
-	put_double(math->square.down_right.re);
-	ft_putstr_fd("  +i(", STDOUT_FILENO);
-	put_double(math->square.down_right.im);
-	ft_putstr_fd(")", STDOUT_FILENO);
-	ft_putstr_fd("\n           ", STDOUT_FILENO);
+	if (square.down_right.re >= 0)
+		ft_putstr_fd(" ", STDOUT_FILENO);
+	put_complex_number(square.down_right);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+}
 
+static void	put__info_click(int k, int l, t_square square)
+{
+	t_cmplx a;
 	ft_putstr_fd("\nClick", STDOUT_FILENO);
 	ft_putstr_fd("\n  At: (", STDOUT_FILENO);
 	ft_putnbr_fd(k, STDOUT_FILENO);
 	ft_putstr_fd(", ", STDOUT_FILENO);
 	ft_putnbr_fd(l, STDOUT_FILENO);
 	ft_putstr_fd(")", STDOUT_FILENO);
-	t_cmplx	a;
 	ft_putstr_fd("\n  Complex number: ", STDOUT_FILENO);
-	a = coord_transf(k, l, math->square);
-	put_double(a.re);
-	ft_putstr_fd("  +i(", STDOUT_FILENO);
-	put_double(a.im);
-	ft_putstr_fd(")", STDOUT_FILENO);
+	a = coord_transf(k, l, square);
+	if (a.re >= 0)
+		ft_putstr_fd(" ", STDOUT_FILENO);
+	put_complex_number(a);
 	ft_putstr_fd("\n", STDOUT_FILENO);
-
-	ft_putstr_fd("\nInits ", STDOUT_FILENO);
-	ft_putstr_fd("\n  z_0: ", STDOUT_FILENO);
-	put_double(math->z_0.re);
-	ft_putstr_fd("  +i(", STDOUT_FILENO);
-	put_double(math->z_0.im);
-	ft_putstr_fd(")", STDOUT_FILENO);
-	ft_putstr_fd("\n  w_0: ", STDOUT_FILENO);
-	put_double(math->w_0.re);
-	ft_putstr_fd("  +i(", STDOUT_FILENO);
-	put_double(math->w_0.im);
-	ft_putstr_fd(")", STDOUT_FILENO);
 }
 
+static void	put__julia_param(t_cmplx c)
+{
+	ft_putstr_fd("\n"BLUE"(Julia Parameter: "RESET, STDOUT_FILENO);
+	if (c.re >= 0)
+		ft_putstr_fd(" ", STDOUT_FILENO);
+	put_complex_number(c);
+	ft_putstr_fd(BLUE")"RESET, STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+}

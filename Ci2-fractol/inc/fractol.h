@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/03 10:21:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/03 16:24:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,5 +269,6 @@ void	welcome_traveler(void);
 void	print_info(int k, int l, char *title, const t_math *math);
 void	print_error(t_err err);
 void	put_double(double d);
+void	put_complex_number(t_cmplx z);
 
 #endif
