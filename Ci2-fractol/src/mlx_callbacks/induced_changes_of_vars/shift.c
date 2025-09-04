@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 13:56:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/31 22:53:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/04 11:41:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ static void	translate__square(t_square *square, double diff_re, double diff_im)
 static void	info___limits(void)
 {
 	ft_putstr_fd("\nInfo: Approaching a translation limit.", STDOUT_FILENO);
-	ft_putstr_fd("\n  UP_LEFT_LIMIT_RE:  ", STDOUT_FILENO);
+	ft_putstr_fd("\n  UP_LEFT_LIMIT_RE:     ", STDOUT_FILENO);
 	put_double(UP_LEFT_LIMIT_RE);
-	ft_putstr_fd("\n  UP_LEFT_LIMIT_IM:  ", STDOUT_FILENO);
+	ft_putstr_fd("\n  UP_LEFT_LIMIT_IM:     ", STDOUT_FILENO);
 	put_double(UP_LEFT_LIMIT_IM);
 	ft_putstr_fd("\n  DOWN_RIGHT_LIMIT_RE:  ", STDOUT_FILENO);
 	put_double(DOWN_RIGHT_LIMIT_RE);
 	ft_putstr_fd("\n  DOWN_RIGHT_LIMIT_IM:  ", STDOUT_FILENO);
 	put_double(DOWN_RIGHT_LIMIT_IM);
-	ft_putstr_fd("\n  --> Resetting view", STDOUT_FILENO);
+	ft_putstr_fd("\n--> Resetting view", STDOUT_FILENO);
 	ft_putstr_fd("\n", STDOUT_FILENO);
 }

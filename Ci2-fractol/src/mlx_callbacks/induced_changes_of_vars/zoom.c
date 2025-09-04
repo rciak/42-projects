@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 17:06:56 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/31 22:53:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/04 11:43:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ static void	info__limits(void)
 	ft_putstr_fd("\nInfo: Approaching a zoom limit.", STDOUT_FILENO);
 	ft_putstr_fd("\n  ZOOM_OUT_LIMIT: ", STDOUT_FILENO);
 	put_double(ZOOM_OUT_LIMIT);
-	ft_putstr_fd("\n  ZOOM_IN_LIMIT:  ", STDOUT_FILENO);
+	ft_putstr_fd("\n  ZOOM_IN_LIMIT:     ", STDOUT_FILENO);
 	put_double(ZOOM_IN_LIMIT);
+	ft_putstr_fd("\n", STDOUT_FILENO);
 }
 
 static void	info__square_out_of_bounds(void)
