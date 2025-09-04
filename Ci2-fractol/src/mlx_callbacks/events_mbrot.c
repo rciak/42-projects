@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/02 11:39:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/04 18:29:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,11 @@ static void	check__keys_that_trigger_no_recalculation(int key, t_all *all)
 			= (all->palette.shift - 1 + PALETTE_COLORS) % PALETTE_COLORS;
 		all->x.color_shift_requires_redraw[MBROT] = true;
 	}
+	else if (key == XK_b)
+	{
+		all->palette.shift
+			= (all->palette.shift + 1 + PALETTE_COLORS) % PALETTE_COLORS;
+		all->x.color_shift_requires_redraw[MBROT] = true;
+	}
+
 }
