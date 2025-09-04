@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/03 16:24:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/04 19:17:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,56 @@
 # define UP_LEFT_LIMIT_IM -0x1p15
 # define DOWN_RIGHT_LIMIT_RE 0x1p15
 # define DOWN_RIGHT_LIMIT_IM 0x1p15
+# define WELCOME_MESSAGE "\n\
+******************************\n\
+* Welcome voyager to fractol *                                  For my friend\n\
+*    the next generation!    *                                  Елене / Lena\n\
+******************************\n\
+\n\
+EXAMPLES for STARTING fractol\n\
+  ./fractol m2\n\
+  ./fractol m3\n\
+  ./fractol Mandelbrot                    (same as ./fractol m2)\n\
+  ./fractol Julia -0.7751894 +0.124\n\
+  ./fractol Julia -1.4764854 -0.0025581\n\
+  ./fractol Julia -1.7577354 +0.0140434\n\
+Best put the two windows side by side and then click somewhere\n\
+in the window titled 'Fractol - Connectedness locus' ...\n\
+\n\
+INTERACTING with fractol via MOUSE\n\
+  Wheel Up / Down:  Zoom in / out\n\
+  Wheel-click:      Shift colors 'outwards'\n\
+  Right-click:      Print infos to terminal\n\
+  Left-click:       Set Julia Parameter to clicked complex number\n\
+                    in the window 'Fractol - Connectedness locus'\n\
+\n\
+INTERACTING with fractol via KEYBOARD\n\
+  Arrow keys:       Move fractal\n\
+  Fake arrow keys*: Increase / decrease number of iterations as follows\n\
+               W       +50\n\
+             A S D  -1 -50 +1\n\
+  T:                Toggle escape criteria\n\
+  b:                Shift colors 'outwards'\n\
+  Space Bar:        Shift colors 'inwards'\n\
+  Backspace:        Reset view (e.g. if one has lost the view)\n\
+  2 3               Change fractal type (Multibrot based on z |--> z^n + c)\n\
+  ESC:              Quits the program\n\
+  \n\
+Annotation to (*) - vim friends may also use HJKL instead of ASWS keys ;-)\n\
+  \n\
+HINT:\n\
+  If you like what you see here consider googeling xaos.app ... ;-)\n\
+  Live long and prosper! 🖖\n\
+\n\
+ACKNOWLEDGMENTS:\n\
+  Like its predecessor this fractal zoomer was strongly inspired by XaoS -\n\
+  Many thanks to the many persons involved with that magnificent program!\n\
+  (Cf. https://github.com/xaos-project/XaoS/blob/master/CREDITS.md)\n\
+  A very big thank also to my university teachers\n\
+    Stephan Ruscheweyh († 26. Juli 2019)  and  Oliver Roth\n\
+  for giving wonderful lectures in 'Funktionentheorie' and in particular on\n\
+  'Komplexe Chaotische Systeme'. :-)\n\
+"
 
 enum e_shift_directions
 {
