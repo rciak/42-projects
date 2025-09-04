@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 09:19:29 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/02 15:14:31 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/04 11:22:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_err	error(int error_code)
 	static const t_err	err[] = {
 	{ERR_NONE, "fractol: Success - no error detected"},
 	{ERR_ARG, "fractol: Bad arguments. Try e.g."
-		GREEN"\n   ./fractol Julia 0.73 0.20"RESET
-	    "\n(Enter at most 4 or 5 fractional digits)"},
+		GREEN"\n   ./fractol Julia -0.7751894 +0.124"RESET
+	    "   (Enter at most 2 integer digits and 7 fractional digits)"},
 	{ERR_ATOF_STRICT, "fractol: atof_strict from libft gave an error"},
 	{ERR_MLX_INIT, "fractol: mlx_init failed"},
 	{ERR_MLX_NEW_WINDOW, "fractol: mlx_new_window failed"},
