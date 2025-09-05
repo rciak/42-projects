@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 21:37:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/31 22:42:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 17:36:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@
  *        or the maximum number of iteration is reached and return the counted
  *        iterations.
  * @note 
- * @param[in]  ....
- * @param[out] ...
- * @param[in,out]
+ * @param[in] k The horizontal grid coordinate of the clicked pixel
+ * @param[in] l The vertical grid coordinate of the clicked pixel
+ * @param[in] math Well everything need for iterating -
+ *                 Initial values, view information (square),
+ *                 the (currently) max. number of iterations,
+ *                 a pointer to the function used for iterating 
+ *                 (in its first variable) and a pointer to the escape criteria
  * @return The counted number of iterations
  */
-// TODO:                                                               Document better: Vars!
 int	calc_iterations(int k, int l, const t_math *math, int fractal_kind)
 {
 	int		count;
