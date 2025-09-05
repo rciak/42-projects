@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/05 11:46:06 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/05 17:10:59 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ src/printing/put_complex_number.c \
 src/printing/put_double.c \
 src/printing/welcome_traveler.c
 #############################################
+SRCS := $(patsubst src/%,%,$(SRCS))
 
 .PHONY: all
 all: $(NAME)
@@ -92,7 +93,7 @@ $(NAME): $(OBJS) | libftall
 	@make --quiet libft_archive_provided
 	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(OBJ_DIR)/%.o:%.c $(INCS)
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
