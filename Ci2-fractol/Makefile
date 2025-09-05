@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/05 17:10:59 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/05 18:06:38 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ ifeq ($(GPROF), 1)
   LDFLAGS += -pg
 endif
 
-OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
 INCS := \
 libft/libft.h \
@@ -85,7 +85,6 @@ src/printing/put_complex_number.c \
 src/printing/put_double.c \
 src/printing/welcome_traveler.c
 #############################################
-SRCS := $(patsubst src/%,%,$(SRCS))
 
 .PHONY: all
 all: $(NAME)
