@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 18:21:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 18:29:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,11 +316,12 @@ void	toggle_escape_criteria(bool (**esc_criteria)(t_cmplx, t_cmplx));
 //math/*.c
 t_cmplx	coord_transf(int k, int l, t_square range);
 int		calc_iterations(int k, int l, const t_math *math, int fractal_kind);
+bool	square_in_allowed_region(const t_square *square);
+//math/escape_criteria/*.c
 bool	criteria_circle_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_square_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_circle_julia(t_cmplx z, t_cmplx w);
 bool	criteria_square_julia(t_cmplx z, t_cmplx w);
-bool	square_in_allowed_region(const t_square *square);
 //math/fractal_genes/*.c
 t_cmplx	z_pow_2_plus_w(t_cmplx z, t_cmplx w);
 t_cmplx	z_pow_3_plus_w(t_cmplx z, t_cmplx w);

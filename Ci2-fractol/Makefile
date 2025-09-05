@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/05 18:06:38 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/05 18:28:31 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,10 +55,10 @@ src/init_non_mlx_vars/reset_square.c \
 src/main.c \
 src/math/calc_iterations.c \
 src/math/coord_transf.c \
-src/math/criteria_circle_julia.c \
-src/math/criteria_circle_mbrot.c \
-src/math/criteria_square_julia.c \
-src/math/criteria_square_mbrot.c \
+src/math/escape_criteria/criteria_circle_julia.c \
+src/math/escape_criteria/criteria_circle_mbrot.c \
+src/math/escape_criteria/criteria_square_julia.c \
+src/math/escape_criteria/criteria_square_mbrot.c \
 src/math/fractal_genes/z_pow_2_plus_w.c \
 src/math/fractal_genes/z_pow_3_plus_w.c \
 src/math/fractal_genes/z_pow_4_plus_w.c \
