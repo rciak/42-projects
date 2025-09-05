@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 13:27:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 15:51:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,36 +48,34 @@ EXAMPLES for STARTING fractol\n\
   ./fractol Julia -0.7751894 +0.124\n\
   ./fractol Julia -1.4764854 -0.0025581\n\
   ./fractol Julia -1.7577354 +0.0140434\n\
-Best put the two windows side by side and then click somewhere\n\
-in the window titled 'Fractol - Connectedness locus' ...\n\
 \n\
 INTERACTING with fractol via MOUSE\n\
-  Wheel Up / Down:  Zoom in / out\n\
-  Wheel-click:      Shift colors 'outwards'\n\
-  Right-click:      Print infos to terminal\n\
-  Left-click:       Set Julia Parameter to clicked complex number\n\
-                    in the window 'Fractol - Connectedness locus'\n\
+  Wheel Up / Down   Zoom in / out\n\
+  Wheel-click       Shift colors 'outwards'\n\
+  Right-click       Print infos to terminal\n\
+  Left-click        Only for click in window 'Fractol - Connectedness locus':\n\
+                    Set Julia Parameter to the click-selected complex number\n\
 \n\
 INTERACTING with fractol via KEYBOARD\n\
-  Arrow keys:       Move fractal\n\
-  Fake arrow keys*: Increase / decrease number of iterations as follows\n\
-               W       +50\n\
-             A S D  -1 -50 +1\n\
-  T:                Toggle escape criteria\n\
-  B:                Shift colors 'outwards'\n\
-  Space Bar:        Shift colors 'inwards'\n\
-  Backspace:        Reset view (e.g. if one has lost the view)\n\
+  Arrow keys        Move fractal\n\
+  Fake arrow keys*  Increase / decrease number of iterations as follows\n\
+              W        +50\n\
+            A S D   -1 -50 +1\n\
+  T                 Toggle escape criteria\n\
+  B                 Shift colors 'outwards'\n\
+  Space Bar         Shift colors 'inwards'\n\
+  Backspace         Reset view (e.g. if one has lost the view)\n\
   2 3 4 5 6 7 8 9   Change fractal type (Multibrot** based on z |--> z^n + c)\n\
-  ESC:              Quits the program\n\
+  ESC               Quits the program\n\
   \n\
 Annotations\n\
-  to * - vim friends may also use HJKL instead of ASWS keys ;-)\n\
-  to ** - Considering the n-multibrot fractal and the corresponding Julia\n\
-          sets their rotational symmetry differs, being n-1 fold and n fold,\n\
-          respectively. (This geometrically reflects algebraic properties of\n\
-             f(z, c) := z^n + c\n\
-          Let a^n = 1 and b^(n-1). Regarding Julia we have on the one hand\n\
-             f(az, c) = f(z, c). Similar f(z, c/b) = 1/b f(bz, c)\n\
+  to *  - vim friends may also use HJKL instead of ASWD keys ;-)\n\
+  to ** - For n > 2, the n-multibrot fractal and the corresponding Julia sets\n\
+          show an n-1 fold and n fold rotational symmetry, respectively. \n\
+          [This geometrically reflects the following algebraic properties of\n\
+             f(z, c) := z^n + c . \n\
+          For any primitive n-root of unity a and (n-1)-root b of unity note\n\
+             f(az, c) = f(z, c)  and  f(bz, bc) = b f(z, c)  for all z.]\n\
   \n\
 HINT:\n\
   If you like what you see here consider googeling xaos.app ... ;-)\n\
@@ -89,7 +87,7 @@ ACKNOWLEDGMENTS:\n\
   (Cf. https://github.com/xaos-project/XaoS/blob/master/CREDITS.md)\n\
   A very big thank also to my university teachers\n\
     Stephan Ruscheweyh († 26. Juli 2019)  and  Oliver Roth\n\
-  for giving wonderful lectures in 'Funktionentheorie' and in particular on\n\
+  for giving wonderful lectures on 'Funktionentheorie' and in particular on\n\
   'Komplexe Chaotische Systeme'. :-)\n\
 "
 
