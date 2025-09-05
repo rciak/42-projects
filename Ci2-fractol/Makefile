@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/05 10:17:57 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/05 11:46:06 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,12 @@ src/math/criteria_square_julia.c \
 src/math/criteria_square_mbrot.c \
 src/math/fractal_genes/z_pow_2_plus_w.c \
 src/math/fractal_genes/z_pow_3_plus_w.c \
+src/math/fractal_genes/z_pow_4_plus_w.c \
+src/math/fractal_genes/z_pow_5_plus_w.c \
+src/math/fractal_genes/z_pow_6_plus_w.c \
+src/math/fractal_genes/z_pow_7_plus_w.c \
+src/math/fractal_genes/z_pow_8_plus_w.c \
+src/math/fractal_genes/z_pow_9_plus_w.c \
 src/math/square_in_allowed_region.c \
 src/mlx_callbacks/events_julia.c \
 src/mlx_callbacks/events_mbrot.c \

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 09:56:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 11:45:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,7 @@ bool	square_in_allowed_region(const t_square *square);
 //math/fractal_genes/*.c
 t_cmplx	z_pow_2_plus_w(t_cmplx z, t_cmplx w);
 t_cmplx	z_pow_3_plus_w(t_cmplx z, t_cmplx w);
+t_cmplx	z_pow_4_plus_w(t_cmplx z, t_cmplx w);
 //
 //math/change_square/*.c
 void	zoom(double factor, int k, int l, t_square *square);
