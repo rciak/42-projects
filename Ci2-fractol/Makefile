@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/03 16:31:43 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/05 10:17:57 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,8 +73,8 @@ src/mlx_callbacks/induced_changes_of_vars/toggle_escape_criteria.c \
 src/mlx_callbacks/induced_changes_of_vars/zoom.c \
 src/mlx_callbacks/waiting_for_godot.c \
 src/printing/print_error.c \
-src/printing/print_help.c \
 src/printing/print_info.c \
+src/printing/print_usage.c \
 src/printing/put_complex_number.c \
 src/printing/put_double.c \
 src/printing/welcome_traveler.c
