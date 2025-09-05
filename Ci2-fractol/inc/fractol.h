@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/04 19:17:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 09:49:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ INTERACTING with fractol via KEYBOARD\n\
                W       +50\n\
              A S D  -1 -50 +1\n\
   T:                Toggle escape criteria\n\
-  b:                Shift colors 'outwards'\n\
+  B:                Shift colors 'outwards'\n\
   Space Bar:        Shift colors 'inwards'\n\
   Backspace:        Reset view (e.g. if one has lost the view)\n\
   2 3               Change fractal type (Multibrot based on z |--> z^n + c)\n\
