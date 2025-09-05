@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 12:00:55 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 12:41:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 12:43:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,41 @@ void	change_id(int key, char **id, t_math *math)
 		*id = "m3";
 		math[MBROT].iter_fun = &z_pow_3_plus_w;
 		math[JULIA].iter_fun = &z_pow_3_plus_w;
+	}
+	else if (key == XK_4)
+	{
+		*id = "m4";
+		math[MBROT].iter_fun = &z_pow_4_plus_w;
+		math[JULIA].iter_fun = &z_pow_4_plus_w;
+	}
+	else if (key == XK_5)
+	{
+		*id = "m5";
+		math[MBROT].iter_fun = &z_pow_5_plus_w;
+		math[JULIA].iter_fun = &z_pow_5_plus_w;
+	}
+	else if (key == XK_6)
+	{
+		*id = "m6";
+		math[MBROT].iter_fun = &z_pow_6_plus_w;
+		math[JULIA].iter_fun = &z_pow_6_plus_w;
+	}
+	else if (key == XK_7)
+	{
+		*id = "m7";
+		math[MBROT].iter_fun = &z_pow_7_plus_w;
+		math[JULIA].iter_fun = &z_pow_7_plus_w;
+	}
+	else if (key == XK_8)
+	{
+		*id = "m8";
+		math[MBROT].iter_fun = &z_pow_8_plus_w;
+		math[JULIA].iter_fun = &z_pow_8_plus_w;
+	}
+	else if (key == XK_9)
+	{
+		*id = "m9";
+		math[MBROT].iter_fun = &z_pow_9_plus_w;
+		math[JULIA].iter_fun = &z_pow_9_plus_w;
 	}
 }

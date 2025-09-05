@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 00:03:03 by rene              #+#    #+#             */
-/*   Updated: 2025/09/01 14:39:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 12:34:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,16 @@ static void	set__iter_fun(t_cmplx (**fun)(t_cmplx z, t_cmplx w), char *formula)
 		*fun = &z_pow_2_plus_w;
 	else if (ft_strcmp(formula, "m3") == 0)
 		*fun = &z_pow_3_plus_w;
+	else if (ft_strcmp(formula, "m4") == 0)
+		*fun = &z_pow_4_plus_w;
+	else if (ft_strcmp(formula, "m5") == 0)
+		*fun = &z_pow_5_plus_w;
+	else if (ft_strcmp(formula, "m6") == 0)
+		*fun = &z_pow_6_plus_w;
+	else if (ft_strcmp(formula, "m7") == 0)
+		*fun = &z_pow_7_plus_w;
+	else if (ft_strcmp(formula, "m8") == 0)
+		*fun = &z_pow_8_plus_w;
+	else if (ft_strcmp(formula, "m9") == 0)
+		*fun = &z_pow_9_plus_w;
 }

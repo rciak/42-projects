@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_non_mlx_vars.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:52:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/19 02:03:37 by rene             ###   ########.fr       */
+/*   Updated: 2025/09/05 11:14:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static bool	julia___param_ok(char *s)
 static bool	fractal___is_implemented(char *str)
 {
 	const char	*allowed[] = {"Julia", "Mandelbrot", "m2",
-		"m3", "m4", "m5", "m6", "m7", "m8", NULL};
+		"m3", "m4", "m5", "m6", "m7", "m8", "m9", NULL};
 
 	if (is_listed(str, allowed))
 		return (true);

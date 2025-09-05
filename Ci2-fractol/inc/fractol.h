@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 11:45:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 13:27:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 EXAMPLES for STARTING fractol\n\
   ./fractol m2\n\
   ./fractol m3\n\
+  ./fractol m9\n\
   ./fractol Mandelbrot                    (same as ./fractol m2)\n\
   ./fractol Julia -0.7751894 +0.124\n\
   ./fractol Julia -1.4764854 -0.0025581\n\
@@ -66,10 +67,17 @@ INTERACTING with fractol via KEYBOARD\n\
   B:                Shift colors 'outwards'\n\
   Space Bar:        Shift colors 'inwards'\n\
   Backspace:        Reset view (e.g. if one has lost the view)\n\
-  2 3               Change fractal type (Multibrot based on z |--> z^n + c)\n\
+  2 3 4 5 6 7 8 9   Change fractal type (Multibrot** based on z |--> z^n + c)\n\
   ESC:              Quits the program\n\
   \n\
-Annotation to (*) - vim friends may also use HJKL instead of ASWS keys ;-)\n\
+Annotations\n\
+  to * - vim friends may also use HJKL instead of ASWS keys ;-)\n\
+  to ** - Considering the n-multibrot fractal and the corresponding Julia\n\
+          sets their rotational symmetry differs, being n-1 fold and n fold,\n\
+          respectively. (This geometrically reflects algebraic properties of\n\
+             f(z, c) := z^n + c\n\
+          Let a^n = 1 and b^(n-1). Regarding Julia we have on the one hand\n\
+             f(az, c) = f(z, c). Similar f(z, c/b) = 1/b f(bz, c)\n\
   \n\
 HINT:\n\
   If you like what you see here consider googeling xaos.app ... ;-)\n\
@@ -309,6 +317,11 @@ bool	square_in_allowed_region(const t_square *square);
 t_cmplx	z_pow_2_plus_w(t_cmplx z, t_cmplx w);
 t_cmplx	z_pow_3_plus_w(t_cmplx z, t_cmplx w);
 t_cmplx	z_pow_4_plus_w(t_cmplx z, t_cmplx w);
+t_cmplx	z_pow_5_plus_w(t_cmplx z, t_cmplx w);
+t_cmplx	z_pow_6_plus_w(t_cmplx z, t_cmplx w);
+t_cmplx	z_pow_7_plus_w(t_cmplx z, t_cmplx w);
+t_cmplx	z_pow_8_plus_w(t_cmplx z, t_cmplx w);
+t_cmplx	z_pow_9_plus_w(t_cmplx z, t_cmplx w);
 //
 //math/change_square/*.c
 void	zoom(double factor, int k, int l, t_square *square);

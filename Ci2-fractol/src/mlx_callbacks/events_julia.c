@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/04 18:28:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 12:40:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	key_julia(int key, t_all *all)
 		shift(key, &all->math[JULIA].square);
 	else if (key == XK_Escape)
 		close_julia(all);
-	else if (key == XK_2 || key == XK_3)
+	else if (key == XK_2 || key == XK_3 || key == XK_4 || key == XK_5
+		|| key == XK_6 || key == XK_7 || key == XK_8 || key == XK_9)
 	{
 		change_id(key, &all->id, all->math);
 		all->x.recalc[MBROT] = true;
