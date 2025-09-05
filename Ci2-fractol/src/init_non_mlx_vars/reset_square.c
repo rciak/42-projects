@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 21:42:03 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/30 22:00:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 18:23:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  *
  * @param[out] square Will receive the default values..
  */
-void reset_square(t_square *square)
+void	reset_square(t_square *square)
 {
 	square->up_left.re = -2.0;
 	square->up_left.im = -2.0;
