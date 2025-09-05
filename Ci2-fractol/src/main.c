@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/01 12:14:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 10:19:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&all, sizeof(all));
 	welcome_traveler();
 	if (!init_non_mlx_vars(argc, argv, &all))
-		return (print_error(all.err), all.err.code);
+		return (print_error(all.err), print_usage(), all.err.code);
 	all.x.disp = mlx_init();
 	if (all.x.disp == NULL)
 		return (ERR_MLX_INIT);
