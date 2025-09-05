@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 15:51:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 17:57:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define ZOOM_IN_FACTOR 0.5
 # define ZOOM_OUT_FACTOR 2.0
 # define SHIFT_FACTOR 0.25
+/**
+ @note norminette does not recognize that the following original is normconform!
+ @code
 # define ZOOM_IN_LIMIT 0x1.p-46
 # define ZOOM_OUT_LIMIT 0x1p12
 // Note that increasing the  ZOOM_OUT_LIMIT  may require adopting the following:
@@ -34,6 +37,15 @@
 # define UP_LEFT_LIMIT_IM -0x1p15
 # define DOWN_RIGHT_LIMIT_RE 0x1p15
 # define DOWN_RIGHT_LIMIT_IM 0x1p15
+ @endcode
+ */
+# define ZOOM_IN_LIMIT 1.4210854715202004e-14
+# define ZOOM_OUT_LIMIT 4096.0
+// // Note that increasing the  ZOOM_OUT_LIMIT  may require adopting the following:
+# define UP_LEFT_LIMIT_RE -32768.0
+# define UP_LEFT_LIMIT_IM -32768.0
+# define DOWN_RIGHT_LIMIT_RE 32768.0
+# define DOWN_RIGHT_LIMIT_IM 32768.0
 # define WELCOME_MESSAGE "\n\
 ******************************\n\
 * Welcome voyager to fractol *                                  For my friend\n\
