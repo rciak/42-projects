@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:17:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/03 16:25:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/05 16:27:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void	print_info(int k, int l, char *title, const t_math *math)
 	put__info_click(k, l, math->square);
 	if (ft_strcmp(title, "Fractol - Filled Julia set") == 0)
 		put__julia_param(math->w_0);
+	ft_putstr_fd("\nMax. Iterations:   ", STDOUT_FILENO);
+	ft_putnbr_fd(math->max_iter, STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
 }
 
 static void	put__general_info(void)
@@ -78,6 +81,7 @@ static void	put__square(char *title, t_square square)
 static void	put__info_click(int k, int l, t_square square)
 {
 	t_cmplx a;
+
 	ft_putstr_fd("\nClick", STDOUT_FILENO);
 	ft_putstr_fd("\n  At: (", STDOUT_FILENO);
 	ft_putnbr_fd(k, STDOUT_FILENO);
