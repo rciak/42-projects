@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/06 21:46:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/06 21:53:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,4 @@ static void	check__keys_that_trigger_no_recalculation(int key, t_all *all)
 			= (all->palette.shift + 1 + PALETTE_COLORS) % PALETTE_COLORS;
 		all->x.color_shift_requires_redraw[MBROT] = true;
 	}
-
 }
