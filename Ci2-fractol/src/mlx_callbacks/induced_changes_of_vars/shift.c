@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 13:56:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/04 11:41:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/06 21:01:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,13 @@ static void	translate__square(t_square *square, double diff_re, double diff_im)
 {
 	t_cmplx	*u;
 	t_cmplx	*d;
-	t_cmplx	u_new;
-	t_cmplx	d_new;
 
 	u = &square->up_left;
 	d = &square->down_right;
-	u_new.re = u->re + diff_re;
-	u_new.im = u->im + diff_im;
-	d_new.re = u_new.re + square->side_len;
-	d_new.im = u_new.im + square->side_len;
-		u->re = u_new.re;
-		u->im = u_new.im;
-		d->re = d_new.re;
-		d->im = d_new.im;
+	u->re = u->re + diff_re;
+	u->im = u->im + diff_im;
+	d->re = u->re + square->side_len;
+	d->im = u->im + square->side_len;
 	if (square_in_allowed_region(square) == false)
 	{
 		info___limits();
