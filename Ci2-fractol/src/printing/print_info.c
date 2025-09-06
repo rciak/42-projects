@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:17:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 16:27:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/06 21:59:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	put__square(char *title, t_square square)
 
 static void	put__info_click(int k, int l, t_square square)
 {
-	t_cmplx a;
+	t_cmplx	a;
 
 	ft_putstr_fd("\nClick", STDOUT_FILENO);
 	ft_putstr_fd("\n  At: (", STDOUT_FILENO);
