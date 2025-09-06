@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 23:32:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 12:40:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/06 21:50:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,21 @@ int	close_julia(t_all *all)
 
 int	mouse_julia(int button, int k, int l, t_all *all)
 {
-	if (button == Button4)
-		zoom(ZOOM_IN_FACTOR, k, l, &all->math[JULIA].square);
-	else if (button == Button5)
-		zoom(ZOOM_OUT_FACTOR, k, l, &all->math[JULIA].square);
-	else if (button == Button2)
+	if (button == Button2)
 	{
-		all->palette.shift = (all->palette.shift + 1 + PALETTE_COLORS) % PALETTE_COLORS;
 		all->x.color_shift_requires_redraw[JULIA] = true;
+		all->palette.shift
+			= (all->palette.shift + 1 + PALETTE_COLORS) % PALETTE_COLORS;
 		return (0);
 	}
 	else if (button == Button3)
-	{
 		print_info(k, l, all->title[JULIA], &all->math[JULIA]);
-		return (0);
-	}
-	else
-		return (0);
-	all->x.recalc[JULIA] = true;
+	else if (button == Button4)
+		zoom(ZOOM_IN_FACTOR, k, l, &all->math[JULIA].square);
+	else if (button == Button5)
+		zoom(ZOOM_OUT_FACTOR, k, l, &all->math[JULIA].square);
+	if (button == Button4 || button == Button5)
+		all->x.recalc[JULIA] = true;
 	return (0);
 }
 
