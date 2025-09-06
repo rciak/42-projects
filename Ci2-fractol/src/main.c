@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 10:19:26 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/06 22:09:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	setup__hooks(t_all *all);
 int	main(int argc, char **argv)
 {
 	t_all	all;
+	t_err	*err;
 
 	ft_bzero(&all, sizeof(all));
 	welcome_traveler();
@@ -28,13 +29,14 @@ int	main(int argc, char **argv)
 	all.x.disp = mlx_init();
 	if (all.x.disp == NULL)
 		return (ERR_MLX_INIT);
-	if (!provide__windows(&all) 
+	err = &all.err;
+	if (!provide__windows(&all)
 		|| !provide__image_buffers(MBROT, &all)
 		|| !provide__image_buffers(JULIA, &all)
-		|| !init_image_struct(&all.img_iter[MBROT], all.x.meta_iter[MBROT], &all.err)
-		|| !init_image_struct(&all.img_draw[MBROT], all.x.meta_draw[MBROT], &all.err)
-		|| !init_image_struct(&all.img_iter[JULIA], all.x.meta_iter[JULIA], &all.err)
-		|| !init_image_struct(&all.img_draw[JULIA], all.x.meta_draw[JULIA], &all.err)
+		|| !init_image_struct(&all.img_iter[MBROT], all.x.meta_iter[MBROT], err)
+		|| !init_image_struct(&all.img_draw[MBROT], all.x.meta_draw[MBROT], err)
+		|| !init_image_struct(&all.img_iter[JULIA], all.x.meta_iter[JULIA], err)
+		|| !init_image_struct(&all.img_draw[JULIA], all.x.meta_draw[JULIA], err)
 	)
 		return (print_error(all.err), all.err.code);
 	setup__hooks(&all);
