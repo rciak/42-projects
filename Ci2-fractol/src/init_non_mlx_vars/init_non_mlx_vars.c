@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 12:52:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 11:14:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/06 22:26:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	init_non_mlx_vars(int argc, char **argv, t_all *all)
 	if (!args__ok(argc, argv))
 		return (all->err = error(ERR_ARG), false);
 	all->id = argv[1];
-	if (ft_strcmp(argv[1], "Mandelbrot") == 0 
+	if (ft_strcmp(argv[1], "Mandelbrot") == 0
 		|| ft_strcmp(argv[1], "Julia") == 0)
 		all->id = "m2";
 	all->title[MBROT] = "Fractol - Connectedness locus";
@@ -93,4 +93,3 @@ static bool	fractal___is_implemented(char *str)
 		return (true);
 	return (false);
 }
-

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 11:37:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 11:43:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/06 22:26:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ t_cmplx	z_pow_4_plus_w(t_cmplx z, t_cmplx w)
 	zeta.im = 4 * x * x * x * y - 4 * x * y * y * y + v;
 	return (zeta);
 }
-
