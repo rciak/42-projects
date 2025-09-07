@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/07 12:48:04 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/07 13:27:32 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,47 +47,47 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
 INCS := \
 libft/libft.h \
-inc/fractol.h
+inc/fractol_bonus.h
 
 SRCS := \
-src/error.c \
-src/init_image_struct.c \
-src/init_non_mlx_vars/init_math.c \
-src/init_non_mlx_vars/init_non_mlx_vars.c \
-src/init_non_mlx_vars/init_palette.c \
-src/init_non_mlx_vars/reset_square.c \
-src/main.c \
-src/math/calc_iterations.c \
-src/math/coord_transf.c \
-src/math/escape_criteria/criteria_circle_julia.c \
-src/math/escape_criteria/criteria_circle_mbrot.c \
-src/math/escape_criteria/criteria_square_julia.c \
-src/math/escape_criteria/criteria_square_mbrot.c \
-src/math/fractal_genes/z_pow_2_plus_w.c \
-src/math/fractal_genes/z_pow_3_plus_w.c \
-src/math/fractal_genes/z_pow_4_plus_w.c \
-src/math/fractal_genes/z_pow_5_plus_w.c \
-src/math/fractal_genes/z_pow_6_plus_w.c \
-src/math/fractal_genes/z_pow_7_plus_w.c \
-src/math/fractal_genes/z_pow_8_plus_w.c \
-src/math/fractal_genes/z_pow_9_plus_w.c \
-src/math/square_in_allowed_region.c \
-src/mlx_callbacks/events_julia.c \
-src/mlx_callbacks/events_mbrot.c \
-src/mlx_callbacks/img_iter_to_color.c \
-src/mlx_callbacks/induced_changes_of_vars/change_id.c \
-src/mlx_callbacks/induced_changes_of_vars/change_julia_param.c \
-src/mlx_callbacks/induced_changes_of_vars/change_max_iter.c \
-src/mlx_callbacks/induced_changes_of_vars/shift.c \
-src/mlx_callbacks/induced_changes_of_vars/toggle_escape_criteria.c \
-src/mlx_callbacks/induced_changes_of_vars/zoom.c \
-src/mlx_callbacks/waiting_for_godot.c \
-src/printing/print_error.c \
-src/printing/print_info.c \
-src/printing/print_usage.c \
-src/printing/put_complex_number.c \
-src/printing/put_double.c \
-src/printing/welcome_traveler.c
+src/error_bonus.c \
+src/init_image_struct_bonus.c \
+src/init_non_mlx_vars/init_math_bonus.c \
+src/init_non_mlx_vars/init_non_mlx_vars_bonus.c \
+src/init_non_mlx_vars/init_palette_bonus.c \
+src/init_non_mlx_vars/reset_square_bonus.c \
+src/main_bonus.c \
+src/math/calc_iterations_bonus.c \
+src/math/coord_transf_bonus.c \
+src/math/escape_criteria/criteria_circle_julia_bonus.c \
+src/math/escape_criteria/criteria_circle_mbrot_bonus.c \
+src/math/escape_criteria/criteria_square_julia_bonus.c \
+src/math/escape_criteria/criteria_square_mbrot_bonus.c \
+src/math/fractal_genes/z_pow_2_plus_w_bonus.c \
+src/math/fractal_genes/z_pow_3_plus_w_bonus.c \
+src/math/fractal_genes/z_pow_4_plus_w_bonus.c \
+src/math/fractal_genes/z_pow_5_plus_w_bonus.c \
+src/math/fractal_genes/z_pow_6_plus_w_bonus.c \
+src/math/fractal_genes/z_pow_7_plus_w_bonus.c \
+src/math/fractal_genes/z_pow_8_plus_w_bonus.c \
+src/math/fractal_genes/z_pow_9_plus_w_bonus.c \
+src/math/square_in_allowed_region_bonus.c \
+src/mlx_callbacks/events_julia_bonus.c \
+src/mlx_callbacks/events_mbrot_bonus.c \
+src/mlx_callbacks/img_iter_to_color_bonus.c \
+src/mlx_callbacks/induced_changes_of_vars/change_id_bonus.c \
+src/mlx_callbacks/induced_changes_of_vars/change_julia_param_bonus.c \
+src/mlx_callbacks/induced_changes_of_vars/change_max_iter_bonus.c \
+src/mlx_callbacks/induced_changes_of_vars/shift_bonus.c \
+src/mlx_callbacks/induced_changes_of_vars/toggle_escape_criteria_bonus.c \
+src/mlx_callbacks/induced_changes_of_vars/zoom_bonus.c \
+src/mlx_callbacks/waiting_for_godot_bonus.c \
+src/printing/print_error_bonus.c \
+src/printing/print_info_bonus.c \
+src/printing/print_usage_bonus.c \
+src/printing/put_complex_number_bonus.c \
+src/printing/put_double_bonus.c \
+src/printing/welcome_traveler_bonus.c
 #############################################
 
 .PHONY: all
