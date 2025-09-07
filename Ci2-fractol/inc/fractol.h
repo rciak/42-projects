@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/05 18:29:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/07 11:14:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,23 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# include <stdbool.h>
-# include <X11/X.h>
+
+///////////////////////////
+//                       //
+//  1.  I N C L U D E S  //
+//                       //
+///////////////////////////
+# include <X11/X.h>        // DestroyNotify
 # include <X11/keysym.h>
 # include <math.h>         // fabs
 # include <mlx.h>
 # include "libft.h"
 
+/////////////////////////
+//                     //
+//  2.  D E F I N E S  //
+//                     //
+/////////////////////////
 # define ZOOM_IN_FACTOR 0.5
 # define ZOOM_OUT_FACTOR 2.0
 # define SHIFT_FACTOR 0.25
@@ -103,6 +113,11 @@ ACKNOWLEDGMENTS:\n\
   'Komplexe Chaotische Systeme'. :-)\n\
 "
 
+///////////////////////////////////
+//                               //
+//  3.  E N U M E R A T I O N S  //
+//                               //
+///////////////////////////////////
 enum e_shift_directions
 {
 	LEFT_DIR,
@@ -200,6 +215,11 @@ enum e_at_least_one_complain_about_mlx_hinting_to_a_transcendent_number
 	MLX_WILL_ANYWAY_TROUGH_AWAY_THE_RETURN_VAL = 314,
 };
 
+/////////////////////////
+//                     //
+//  4.  S T R U C T S  //
+//                     //
+/////////////////////////
 /**
  * @brief Collects mlx related variables
  * @param disp pointer from mlx_init
@@ -280,48 +300,50 @@ typedef struct s_all
 	t_err		err;
 }	t_all;
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////
+//                                            //
+//  5.  F U N C T I O N  P R O T O T Y P E S  //
+//                                            //
+////////////////////////////////////////////////
+
 //./*.c
 int		main(int argc, char **argv);
 bool	init_image_struct(t_image *img, void *img_meta, t_err *err);
 t_err	error(int error_code);
 
-////////////////////////////////////////////////////////////////////////////////
-//init_non_mlx_vars/*
+//init_non_mlx_vars/*.c
 bool	init_non_mlx_vars(int argc, char **argv, t_all *all);
 bool	init_math(t_math *math, char **argv, char *id, t_err *err);
 void	init_palette(t_palette *palette);
 void	reset_square(t_square *square);
 
-////////////////////////////////////////////////////////////////////////////////
 //mlx_callbacks/*.c
 int		close_mbrot(t_all *all);
 int		key_mbrot(int key, t_all *all);
 int		mouse_mbrot(int button, int k, int l, t_all *all);
-//
 int		close_julia(t_all *all);
 int		key_julia(int key, t_all *all);
 int		mouse_julia(int button, int k, int l, t_all *all);
-//
 int		waiting_for_godot(t_all *all);
 void	img_iter_to_color(t_image iter, t_image draw, int max, t_palette pal);
 //
-//mlx_callbacks/induced_changes_of_vars
+//mlx_callbacks/induced_changes_of_vars/*.c
 void	change_id(int key, char **id, t_math *math);
 void	change_max_iter(int key, int *max_iter);
 void	change_julia_param(int k, int l, t_cmplx *w_0, t_square square);
 void	toggle_escape_criteria(bool (**esc_criteria)(t_cmplx, t_cmplx));
 
-////////////////////////////////////////////////////////////////////////////////
 //math/*.c
 t_cmplx	coord_transf(int k, int l, t_square range);
 int		calc_iterations(int k, int l, const t_math *math, int fractal_kind);
 bool	square_in_allowed_region(const t_square *square);
+//
 //math/escape_criteria/*.c
 bool	criteria_circle_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_square_mbrot(t_cmplx z, t_cmplx w);
 bool	criteria_circle_julia(t_cmplx z, t_cmplx w);
 bool	criteria_square_julia(t_cmplx z, t_cmplx w);
+//
 //math/fractal_genes/*.c
 t_cmplx	z_pow_2_plus_w(t_cmplx z, t_cmplx w);
 t_cmplx	z_pow_3_plus_w(t_cmplx z, t_cmplx w);
@@ -336,7 +358,6 @@ t_cmplx	z_pow_9_plus_w(t_cmplx z, t_cmplx w);
 void	zoom(double factor, int k, int l, t_square *square);
 void	shift(int direction, t_square *square);
 
-////////////////////////////////////////////////////////////////////////////////
 //printing/*.c
 void	welcome_traveler(void);
 void	print_info(int k, int l, char *title, const t_math *math);
