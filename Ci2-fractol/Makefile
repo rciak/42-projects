@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/06 22:40:50 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/07 12:48:04 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,11 +92,11 @@ src/printing/welcome_traveler.c
 
 .PHONY: all
 all: $(NAME)
-$(NAME): $(OBJS) | libftall
+$(NAME): $(OBJS)
 	@make --quiet libft_archive_provided
 	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS)
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | libftall
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -130,10 +130,12 @@ re: fclean libftfclean all
 .PHONY: libftall
 libftall: libft_greeting
 	make -C  $(LIBFT_DIR) all
+	@echo
 
 .PHONY: libftbonus
 libftbonus: libft_greeting
 	make -C $(LIBFT_DIR) bonus
+	@echo
 
 .PHONY: libftclean
 libftclean: libft_greeting
