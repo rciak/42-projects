@@ -13,6 +13,7 @@
 NAME        := fractol
 LIBFT_NAME  := libft.a
 LIBFT_DIR   := libft
+LIBFT       := $(LIBFT_DIR)/$(LIBFT_NAME)
 INC_DIR     := inc
 SRC_DIR     := src
 OBJ_DIR     := obj
@@ -92,7 +93,7 @@ src/printing/welcome_traveler_bonus.c
 
 .PHONY: all
 all: $(NAME)
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
 	@make --quiet libft_archive_provided
 	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
@@ -131,7 +132,9 @@ bonus: all
 ################################################################################
 
 .PHONY: libftall
-libftall: libft_greeting
+libftall: $(LIBFT)
+
+$(LIBFT): libft_greeting
 	make -C  $(LIBFT_DIR) all
 	@echo
 
