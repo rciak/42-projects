@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/07 13:27:32 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/07 13:34:18 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,9 @@ fclean: clean
 
 .PHONY: re
 re: fclean libftfclean all
+
+.PHONY: bonus
+bonus: all
 
 ################################################################################
 #  libft  related rules                                                        #
