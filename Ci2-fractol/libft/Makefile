@@ -115,7 +115,7 @@ OBJS_BONUS = $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(SRCS_BONUS))
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJS) $(INCS)
+$(NAME): $(OBJS)
 	ar -rcs $@ $^
 
 $(OBJ_DIR)/%.o:%.c $(INCS)
