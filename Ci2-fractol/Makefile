@@ -6,13 +6,14 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/09/06 22:40:50 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/07 13:34:18 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        := fractol
 LIBFT_NAME  := libft.a
 LIBFT_DIR   := libft
+LIBFT       := $(LIBFT_DIR)/$(LIBFT_NAME)
 INC_DIR     := inc
 SRC_DIR     := src
 OBJ_DIR     := obj
@@ -92,11 +93,11 @@ src/printing/welcome_traveler.c
 
 .PHONY: all
 all: $(NAME)
-$(NAME): $(OBJS) | libftall
+$(NAME): $(OBJS) $(LIBFT)
 	@make --quiet libft_archive_provided
 	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS)
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -123,17 +124,24 @@ fclean: clean
 .PHONY: re
 re: fclean libftfclean all
 
+.PHONY: bonus
+bonus: all
+
 ################################################################################
 #  libft  related rules                                                        #
 ################################################################################
 
 .PHONY: libftall
-libftall: libft_greeting
+libftall: $(LIBFT)
+
+$(LIBFT): libft_greeting
 	make -C  $(LIBFT_DIR) all
+	@echo
 
 .PHONY: libftbonus
 libftbonus: libft_greeting
 	make -C $(LIBFT_DIR) bonus
+	@echo
 
 .PHONY: libftclean
 libftclean: libft_greeting
