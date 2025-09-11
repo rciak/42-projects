@@ -34,7 +34,7 @@ This is done such that the two needs
     99@_miscellaneous
     ```
 
-    Those functions are recognizable by the `ft_x_` - prefix 
+    Those functions are recognizable by the `ft_x_` - prefix
     of the name of the file or folder they are contained in.
 
 2. A remark regarding the `ft_xx_` prefix (if memory is valid):
