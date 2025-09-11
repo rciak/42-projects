@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 15:41:40 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/07 11:14:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/11 08:34:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ Annotations\n\
   to ** - For n > 2, the n-multibrot fractal and the corresponding Julia sets\n\
           show an n-1 fold and n fold rotational symmetry, respectively. \n\
           [This geometrically reflects the following algebraic properties of\n\
-             f(z, c) := z^n + c . \n\
-          For any primitive n-root of unity a and (n-1)-root b of unity note\n\
-             f(az, c) = f(z, c)  and  f(bz, bc) = b f(z, c)  for all z.]\n\
+               f(z, c) := z^n + c . \n\
+           For any primitive n- and (n-1)-root of unity a and b, resp., note\n\
+               f(az, c) = f(z, c),  resp.  f(bz, bc) = b f(z, c)  for all z.]\n\
   \n\
 HINT:\n\
   If you like what you see here consider googeling xaos.app ... ;-)\n\
