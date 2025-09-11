@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/11 15:27:47 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/11 19:25:59 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,75 +44,75 @@ INCS := \
 ./inc/libft.h
 
 SRCS := \
-./atof_strict.c \
-./atoi_strict.c \
-./atoll_strict.c \
-./dl_lst_add_after.c \
-./dl_lst_add_before.c \
-./dl_lst_circularize.c \
-./dl_lst_clear.c \
-./dl_lst_linearize.c \
-./dl_lst_new_nd.c \
-./dl_lst_size.c \
-./dl_lst_type.c \
-./free_array.c \
-./ft_atoi.c \
-./ft_bzero.c \
-./ft_calloc.c \
-./ft_isalnum.c \
-./ft_isalpha.c \
-./ft_isascii.c \
-./ft_isdigit.c \
-./ft_isprint.c \
-./ft_itoa.c \
-./ft_memchr.c \
-./ft_memcmp.c \
-./ft_memcpy.c \
-./ft_memmove.c \
-./ft_memset.c \
-./ft_putchar_fd.c \
-./ft_putendl_fd.c \
-./ft_putllnbr_fd.c \
-./ft_putnbr_fd.c \
-./ft_putstr_fd.c \
-./ft_split.c \
-./ft_strchr.c \
-./ft_strcmp.c \
-./ft_strdup.c \
-./ft_striteri.c \
-./ft_strjoin.c \
-./ft_strlcat.c \
-./ft_strlcpy.c \
-./ft_strlen.c \
-./ft_strmapi.c \
-./ft_strncmp.c \
-./ft_strnstr.c \
-./ft_strrchr.c \
-./ft_strtrim.c \
-./ft_substr.c \
-./ft_tolower.c \
-./ft_toupper.c \
-./ft_x_math01.c \
-./ft_x_memtools1.c \
-./ft_x_strtools1.c \
-./ft_xx_out1.c \
-./ft_xx_out2.c \
-./is_listed.c \
-./side_products/ft_x_strtools2.c \
-./src/ft_printf/src/ft_printf.c \
-./src/gnl/get_next_line.c \
-./src/gnl/get_next_line_utils.c
+./src/00_libft_piscine/ft_strcmp.c \
+./src/01_libft_libc/ft_atoi.c \
+./src/01_libft_libc/ft_bzero.c \
+./src/01_libft_libc/ft_calloc.c \
+./src/01_libft_libc/ft_isalnum.c \
+./src/01_libft_libc/ft_isalpha.c \
+./src/01_libft_libc/ft_isascii.c \
+./src/01_libft_libc/ft_isdigit.c \
+./src/01_libft_libc/ft_isprint.c \
+./src/01_libft_libc/ft_memchr.c \
+./src/01_libft_libc/ft_memcmp.c \
+./src/01_libft_libc/ft_memcpy.c \
+./src/01_libft_libc/ft_memmove.c \
+./src/01_libft_libc/ft_memset.c \
+./src/01_libft_libc/ft_strchr.c \
+./src/01_libft_libc/ft_strdup.c \
+./src/01_libft_libc/ft_strlcat.c \
+./src/01_libft_libc/ft_strlcpy.c \
+./src/01_libft_libc/ft_strlen.c \
+./src/01_libft_libc/ft_strncmp.c \
+./src/01_libft_libc/ft_strnstr.c \
+./src/01_libft_libc/ft_strrchr.c \
+./src/01_libft_libc/ft_tolower.c \
+./src/01_libft_libc/ft_toupper.c \
+./src/02_libft_others/ft_itoa.c \
+./src/02_libft_others/ft_putchar_fd.c \
+./src/02_libft_others/ft_putendl_fd.c \
+./src/02_libft_others/ft_putnbr_fd.c \
+./src/02_libft_others/ft_putstr_fd.c \
+./src/02_libft_others/ft_split.c \
+./src/02_libft_others/ft_striteri.c \
+./src/02_libft_others/ft_strjoin.c \
+./src/02_libft_others/ft_strmapi.c \
+./src/02_libft_others/ft_strtrim.c \
+./src/02_libft_others/ft_substr.c \
+./src/04_ft_printf/src/ft_printf.c \
+./src/05_get_next_line/get_next_line.c \
+./src/05_get_next_line/get_next_line_utils.c \
+./src/06_doubly_linked_list/dl_lst_add_after.c \
+./src/06_doubly_linked_list/dl_lst_add_before.c \
+./src/06_doubly_linked_list/dl_lst_circularize.c \
+./src/06_doubly_linked_list/dl_lst_clear.c \
+./src/06_doubly_linked_list/dl_lst_linearize.c \
+./src/06_doubly_linked_list/dl_lst_new_nd.c \
+./src/06_doubly_linked_list/dl_lst_size.c \
+./src/06_doubly_linked_list/dl_lst_type.c \
+./src/07_conversions/atof_strict.c \
+./src/07_conversions/atoi_strict.c \
+./src/07_conversions/atoll_strict.c \
+./src/08_output/ft_putllnbr_fd.c \
+./src/08_output/ft_xx_out1.c \
+./src/08_output/ft_xx_out2.c \
+./src/09@_string_tools/free_array.c \
+./src/09@_string_tools/ft_x_strtools1.c \
+./src/09@_string_tools/is_listed.c \
+./src/09@_string_tools/side_products/ft_x_strtools2.c \
+./src/10@_math/ft_x_math01.c \
+./src/99@_miscellaneous/ft_x_memtools1.c
 
 SRCS_BONUS := \
-./ft_lstadd_back_bonus.c \
-./ft_lstadd_front_bonus.c \
-./ft_lstclear_bonus.c \
-./ft_lstdelone_bonus.c \
-./ft_lstiter_bonus.c \
-./ft_lstlast_bonus.c \
-./ft_lstmap_bonus.c \
-./ft_lstnew_bonus.c \
-./ft_lstsize_bonus.c
+./src/03_libft_singly_linked_list/ft_lstadd_back_bonus.c \
+./src/03_libft_singly_linked_list/ft_lstadd_front_bonus.c \
+./src/03_libft_singly_linked_list/ft_lstclear_bonus.c \
+./src/03_libft_singly_linked_list/ft_lstdelone_bonus.c \
+./src/03_libft_singly_linked_list/ft_lstiter_bonus.c \
+./src/03_libft_singly_linked_list/ft_lstlast_bonus.c \
+./src/03_libft_singly_linked_list/ft_lstmap_bonus.c \
+./src/03_libft_singly_linked_list/ft_lstnew_bonus.c \
+./src/03_libft_singly_linked_list/ft_lstsize_bonus.c
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
