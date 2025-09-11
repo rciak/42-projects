@@ -1,4 +1,23 @@
-# How to restore the beautiful colors used in the first fractol project
+# Two how-to notes on fractol
+
+## How to see the user guide and available options
+
+Run
+
+```bash
+make
+./fractol m2
+```
+
+This will start fractol with the classical Mandelbrot and Julia sets and
+print a the one-page user manual on the terminal. To see all available options
+run
+
+```bash
+./fractol
+```
+
+## How to restore the beautiful colors used in the first fractol project
 
 Strangely not even copying the color codes from my first fractol project was
 permitted. Still a get-nonsense-unmade-way was found, achieving this
