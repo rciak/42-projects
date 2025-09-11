@@ -1,0 +1,134 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/12 11:25:06 by reciak            #+#    #+#             */
+/*   Updated: 2025/08/09 17:20:08 by reciak           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+static bool	argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err);
+static bool	is__duplicate(int nbr, t_dl_node *stack_a);
+static bool	add__to_stack_a(int nbr, t_dl_node **stack_a);
+static void	init__is_green_and_goal_position(t_dl_node *stack_a, int size);
+
+/**
+ * @note For practical sizes of input the program should work.
+ *       Analysis of the code shows that it will fail if at least`-INT_MIN`
+ *       parameters arre given - but being typically  2 147 483 648
+ *       this is many order of magnitudes beyond the scope of the project...
+ */
+int	main(int argc, char **argv)
+{
+	t_err		err;
+	t_dl_node	*stack[2];
+	int			size;
+
+	err = error(ERR_NONE);
+	stack[A] = NULL;
+	stack[B] = NULL;
+	if (!argv__to_list(argc, argv, stack, &err))
+		return (handle_error(err, "main"), err.code);
+	size = dl_lst_size(stack[A]);
+	be_group(stack[A], size);
+	init__is_green_and_goal_position(stack[A], size);
+	dl_lst_circularize(stack[A]);
+	if (group_already_sorted(stack[A]))
+		return (ERR_NONE);
+	if (size < GO_FOR_BIG_SIZE_ALGO)
+		small_size_algo(stack, size);
+	else
+		big_size_algo(stack);
+	dl_lst_clear(&stack[A], free);
+	dl_lst_clear(&stack[B], free);
+	return (ERR_NONE);
+}
+
+static bool	argv__to_list(int argc, char **argv, t_dl_node **stack, t_err *err)
+{
+	t_libft_err	atoi_code;
+	int			nbr;
+	int			i;
+
+	if (argc < 1 + 1)
+		return (*err = error(ERR_ARG_NUM), false);
+	i = 1;
+	while (i < argc)
+	{
+		nbr = atoi_strict(argv[i], &atoi_code);
+		if (atoi_code == E_ATOI_BAD_STRING || atoi_code == E_ATOI_RANGE)
+			return (*err = error(ERR_ARGV), false);
+		if (is__duplicate(nbr, stack[A]))
+			return (*err = error(ERR_DUPLICATE), false);
+		if (!add__to_stack_a(nbr, &stack[A]))
+			return (*err = error(ERR_MALLOC), false);
+		i++;
+	}
+	return (true);
+}
+
+static bool	is__duplicate(int nbr, t_dl_node *node)
+{
+	while (node != NULL)
+	{
+		if (nbr == ((t_ps_obj *)node->obj)->n)
+			return (true);
+		node = node->next;
+	}
+	return (false);
+}
+
+/**
+ * @note Not only `n` is set but also `goal`. For `goal`
+ *       this is just a temporarily helper initialisation to prepare proper
+ *       initialization: Before `main` deals with with its proper initialisation
+ *       by calling
+ *       init__is_green_and_goal_position() it is necessary to call
+ *       `update_group` (via `be_group`) -- which in turn needs goal values
+ *       in the correct orderring ...
+ */
+static bool	add__to_stack_a(int nbr, t_dl_node **stack_a)
+{
+	t_ps_obj	*obj;
+	t_dl_node	*node;
+
+	dl_lst_circularize(*stack_a);
+	obj = malloc(sizeof(t_ps_obj));
+	if (obj == NULL)
+		return (false);
+	node = dl_lst_new_nd(obj);
+	if (node == NULL)
+	{
+		free (obj);
+		dl_lst_clear(stack_a, free);
+		return (false);
+	}
+	((t_ps_obj *) node->obj)->n = nbr;
+	((t_ps_obj *) node->obj)->goal = nbr;
+	dl_lst_add_before(stack_a, node);
+	dl_lst_linearize(*stack_a);
+	return (true);
+}
+
+/**
+ * @warning: This replies on the vars group.rank being set!
+ *           Thus be_group() must be called first by main before this function!
+ */
+static void	init__is_green_and_goal_position(t_dl_node *stack_a, int size)
+{
+	t_ps_obj	*obj;
+
+	while (size > 0)
+	{
+		obj = (t_ps_obj *)stack_a->obj;
+		obj->is_green = false;
+		obj->goal = obj->group.rank;
+		stack_a = stack_a->next;
+		size--;
+	}
+}
