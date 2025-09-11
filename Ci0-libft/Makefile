@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/08/31 15:26:27 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/11 15:00:44 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ endif
 # but that is currently beyond my understanding and for not too big projects
 # it should be ok if everything is recompiled when the header changes.
 INCS := \
+./ft_printf/inc/ft_printf.h \
+./gnl/get_next_line.h \
 ./libft.h
 
 SRCS := \
@@ -68,6 +70,7 @@ SRCS := \
 ./ft_memcpy.c \
 ./ft_memmove.c \
 ./ft_memset.c \
+./ft_printf/src/ft_printf.c \
 ./ft_putchar_fd.c \
 ./ft_putendl_fd.c \
 ./ft_putllnbr_fd.c \
@@ -95,7 +98,10 @@ SRCS := \
 ./ft_x_strtools1.c \
 ./ft_xx_out1.c \
 ./ft_xx_out2.c \
-./is_listed.c
+./gnl/get_next_line.c \
+./gnl/get_next_line_utils.c \
+./is_listed.c \
+./side_products/ft_x_strtools2.c
 
 SRCS_BONUS := \
 ./ft_lstadd_back_bonus.c \
