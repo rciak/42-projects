@@ -15,7 +15,6 @@
  * @brief Stores the definition of truly_max_group()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

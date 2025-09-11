@@ -16,7 +16,6 @@
  */
 
 #include "libft.h"
-#include <unistd.h>
 
 static size_t	count__when_nonempty_linear(const t_dl_node *const pdl_node);
 static size_t	count__when_nonempty_circular(const t_dl_node *const pdl_node);

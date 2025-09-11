@@ -15,7 +15,6 @@
  * @brief Stores the definition of small_size_algo()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 static void	rotate__rank_to_top_of_a(int rank, t_dl_node **stack, int size);

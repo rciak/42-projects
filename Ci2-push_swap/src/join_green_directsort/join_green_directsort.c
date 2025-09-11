@@ -15,7 +15,6 @@
  * @brief Stores the definition of join_green_directsort()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 static void	mark__group_as_green(t_dl_node *soon_green);

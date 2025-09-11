@@ -15,7 +15,6 @@
  * @brief Stores the definition of update_group()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 static void			write__groupsize_to_members(t_dl_node *first, int size);

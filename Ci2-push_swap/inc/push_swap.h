@@ -16,7 +16,6 @@
  */
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stdbool.h>
 # include "libft.h"
 
 /**

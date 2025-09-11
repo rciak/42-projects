@@ -15,7 +15,6 @@
  * @brief Stores the definition of group_size()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

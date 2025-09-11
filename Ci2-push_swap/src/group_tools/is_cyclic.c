@@ -15,7 +15,6 @@
  * @brief Stores the definition of is_cyclic()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

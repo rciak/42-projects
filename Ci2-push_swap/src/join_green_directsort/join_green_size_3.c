@@ -16,8 +16,6 @@
  */
 
 #include "push_swap.h"
-#include <stdbool.h>
-#include <stddef.h>
 
 static void	sortin__a_top(t_dl_node **stack, size_t i_max, bool cyclic);
 static void	sortin__a_end(t_dl_node **stack, size_t i_max, bool cyclic);

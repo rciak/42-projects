@@ -15,7 +15,6 @@
  * @brief Stores the definition of group_already_sorted()
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**

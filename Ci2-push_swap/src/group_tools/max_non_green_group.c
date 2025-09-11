@@ -15,7 +15,6 @@
  * @brief Stores the definition of max_non_green_group
  */
 
-#include "libft.h"
 #include "push_swap.h"
 
 /**
