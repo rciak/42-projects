@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 15:40:23 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/25 12:28:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 16:56:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
  */
 
 #include "libft.h"
-#include <unistd.h>
 
-static size_t	st_count_when_nonempty_linear(const t_dl_node *const pdl_node);
-static size_t	st_count_when_nonempty_circular(const t_dl_node *const pdl_node);
+static size_t	count__when_nonempty_linear(const t_dl_node *const pdl_node);
+static size_t	count__when_nonempty_circular(const t_dl_node *const pdl_node);
 
 /**
 * @brief Counts the number of nodes in the double linked list,
@@ -44,9 +43,9 @@ size_t	dl_lst_size(const t_dl_node *const pdl_node)
 	if (type == DL_EMPTY)
 		return (0);
 	else if (type == DL_NON_EMPTY_LINEAR)
-		return (st_count_when_nonempty_linear(pdl_node));
+		return (count__when_nonempty_linear(pdl_node));
 	else if (type == DL_NON_EMPTY_CIRCULAR)
-		return (st_count_when_nonempty_circular(pdl_node));
+		return (count__when_nonempty_circular(pdl_node));
 	else
 	{
 		ft_putstr_fd("  dl_lst_size: " RED"Error", STDERR_FILENO);
@@ -54,7 +53,7 @@ size_t	dl_lst_size(const t_dl_node *const pdl_node)
 	}
 }
 
-static size_t	st_count_when_nonempty_linear(const t_dl_node *const pdl_node)
+static size_t	count__when_nonempty_linear(const t_dl_node *const pdl_node)
 {
 	const t_dl_node	*pnode;
 	size_t			len;
@@ -75,7 +74,7 @@ static size_t	st_count_when_nonempty_linear(const t_dl_node *const pdl_node)
 	return (len);
 }
 
-static size_t	st_count_when_nonempty_circular(const t_dl_node *const pdl_node)
+static size_t	count__when_nonempty_circular(const t_dl_node *const pdl_node)
 {
 	const t_dl_node	*pnode;
 	size_t			len;
@@ -89,4 +88,3 @@ static size_t	st_count_when_nonempty_circular(const t_dl_node *const pdl_node)
 	}
 	return (len);
 }
-

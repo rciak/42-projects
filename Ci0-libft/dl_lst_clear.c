@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 08:47:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 09:57:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/10 17:03:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "libft.h"
 
-void	st_clear_nonempty_linear(t_dl_node **addr_pdl_node, void (*del)(void*));
+static void	clear__nempty_linear(t_dl_node **addr_pdl_node, void (*del)(void*));
 
 /**
  * @brief Clear a doubly linked list, no matter if it linear or circular.
@@ -41,10 +41,10 @@ void	dl_lst_clear(t_dl_node **addr_pdl_node, void (*del)(void*))
 		return ;
 	if (type == DL_NON_EMPTY_CIRCULAR)
 		dl_lst_linearize(*addr_pdl_node);
-	st_clear_nonempty_linear(addr_pdl_node, del);
+	clear__nempty_linear(addr_pdl_node, del);
 }
 
-void	st_clear_nonempty_linear(t_dl_node **addr_pdl_node, void (*del)(void*))
+static void	clear__nempty_linear(t_dl_node **addr_pdl_node, void (*del)(void*))
 {
 	t_dl_node	*soon_gone;
 

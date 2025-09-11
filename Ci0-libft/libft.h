@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 12:51:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 11:29:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@
 # define RESET "\033[0m"
 # define RED "\033[31m"
 # define GREEN "\033[32m"
-# define YELLOW "\033[33m]"
+# define YELLOW "\033[33m"
+# define BLUE "\033[34m"
+# define CYAN "\033[36m"
 
 typedef enum e_libft_err
 {
@@ -160,7 +162,8 @@ size_t		dl_lst_size(const t_dl_node *const pdl_node);
 t_dl_type	dl_lst_type(const t_dl_node *const pdl_node);
 void		dl_lst_clear(t_dl_node **addr_pdl_node, void (*del)(void*));
 
-//ft_atoi with error info
+//ft_atoi with error info (with additional strictness in case of atoi_strict)
 int			atoi_proper(const char *nptr, t_libft_err *err);
+int			atoi_strict(const char *nptr, t_libft_err *err);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:48:49 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/27 10:12:31 by reciak           ###   ########.fr       */
+/*   Updated: 2025/08/09 12:25:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ int	ft_atoi(const char *nptr)
  *       out of range happenings -- including overflows in the iterative
  *       built up of \p nbr -- are regarded as errors. These are indicated by
  *       E_ATOI_RANGE and 0 is returned.
+ * @note Like `atoi` it will convert weird input like "123abc" into the number
+ *       `123` (so that ft_atoi() behaves the same as the original atoi).
+ *       See atoi_strict() for a variant where this is regarded as
+ *       an error.
  * @param[in] nptr A char pointer to the input string
  * @param[out] err_code Feedbacking to caller if error happened and what kind.
  * @return 
