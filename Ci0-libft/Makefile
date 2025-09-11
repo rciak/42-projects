@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/07/31 10:49:45 by reciak           ###   ########.fr        #
+#    Updated: 2025/08/31 15:26:27 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,10 @@ endif
 ifeq ($(DEBUG_VALGRIND), 1)
   CFLAGS  += -g3
 endif
+ifeq ($(GPROF), 1)
+  CFLAGS += -pg
+endif
+
 
 # Dependencies can be handled better using DEP=.. stuff, cf.
 # https://stackoverflow.com/questions/2394609/makefile-header-dependencies
@@ -38,7 +42,9 @@ INCS := \
 ./libft.h
 
 SRCS := \
+./atof_strict.c \
 ./atoi_strict.c \
+./atoll_strict.c \
 ./dl_lst_add_after.c \
 ./dl_lst_add_before.c \
 ./dl_lst_circularize.c \
@@ -47,6 +53,7 @@ SRCS := \
 ./dl_lst_new_nd.c \
 ./dl_lst_size.c \
 ./dl_lst_type.c \
+./free_array.c \
 ./ft_atoi.c \
 ./ft_bzero.c \
 ./ft_calloc.c \
@@ -63,10 +70,12 @@ SRCS := \
 ./ft_memset.c \
 ./ft_putchar_fd.c \
 ./ft_putendl_fd.c \
+./ft_putllnbr_fd.c \
 ./ft_putnbr_fd.c \
 ./ft_putstr_fd.c \
 ./ft_split.c \
 ./ft_strchr.c \
+./ft_strcmp.c \
 ./ft_strdup.c \
 ./ft_striteri.c \
 ./ft_strjoin.c \
@@ -85,7 +94,8 @@ SRCS := \
 ./ft_x_memtools1.c \
 ./ft_x_strtools1.c \
 ./ft_xx_out1.c \
-./ft_xx_out2.c
+./ft_xx_out2.c \
+./is_listed.c
 
 SRCS_BONUS := \
 ./ft_lstadd_back_bonus.c \
