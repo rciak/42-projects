@@ -1,0 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_x_strtools1.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/12 16:15:36 by reciak            #+#    #+#             */
+/*   Updated: 2025/08/14 19:16:38 by reciak           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/**
+ * @file ft_x_strtools1.c
+ * @brief Stores the definitions of some useful functions in the string context.
+ */
+
+#include "libft.h"
+
+/**
+ * @brief Tell whether a character is in a string or not.
+ * @note `is_in(c, str)` can in general not be replaced by the condition
+ *       `ft_strchr(str, (int) c) != NULL` as setting \p c to the
+ *       *nullterminator* illustrates:
+ * @note Consider this particular choice for `c` e.g. for `str = "0123456789"`.
+ *       Then
+ *       `is_in(c, "01234567889")` returns *false*,
+ *       whereas the condition `ft_strchr(str, (int) c) != NULL` would be
+ *       *true*, since `ft_strchr((int) c, "01234566789")`
+ *       would return the address of the 
+ *       nullterminator of "0123456789", being different from `NULL`!
+ * @param[in] c A character of interest
+ * @param[in] str A pointer to string that should be scanned for \p c.
+ * @return 
+ *          * true, if \p str contains \p c *before* the terminating  nullbyte.
+ *          * false, if \p str does not contain \p c *before*
+ *            the terminating nullbyte.
+ */
+bool	is_in(char c, const char *str)
+{
+	if (c == '\0')
+		return (false);
+	return (ft_strchr(str, (int) c) != NULL);
+}
+
+/**
+ * @brief ++ a char pointer until it no longer sits on the to be
+ *        skipped characters
+ * @param[in] pstr The address of a pointer to a C string.
+ * @param[in] chars_to_skip A pointer to a string containing the to be skipped 
+ *            characters.
+ * @return 
+ *          * the number of skipped chars.
+ * @note If the first character is not to be skipped the above means that
+ *       the outside pointer `*pstr` will not be modified and `0` is returned.
+ */
+size_t	skip(char **pstr, const char *chars_to_skip)
+{
+	size_t	count;
+
+	count = 0;
+	while (is_in(**pstr, chars_to_skip))
+	{
+		(*pstr)++;
+		count++;
+	}
+	return (count);
+}

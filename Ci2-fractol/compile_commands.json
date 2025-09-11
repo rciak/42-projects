@@ -1,0 +1,482 @@
+[
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/atof_strict.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/atof_strict.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/atof_strict.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/atoi_strict.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/atoi_strict.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/atoi_strict.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/atoll_strict.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/atoll_strict.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/atoll_strict.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/dl_lst_add_after.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_add_after.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_add_after.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/dl_lst_add_before.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_add_before.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_add_before.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/dl_lst_circularize.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_circularize.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_circularize.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/dl_lst_clear.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_clear.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_clear.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/dl_lst_linearize.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_linearize.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_linearize.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/dl_lst_new_nd.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_new_nd.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_new_nd.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/dl_lst_size.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_size.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_size.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/dl_lst_type.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_type.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/dl_lst_type.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/free_array.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/free_array.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/free_array.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_atoi.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_atoi.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_atoi.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_bzero.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_bzero.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_bzero.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_calloc.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_calloc.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_calloc.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_isalnum.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_isalnum.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_isalnum.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_isalpha.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_isalpha.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_isalpha.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_isascii.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_isascii.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_isascii.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_isdigit.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_isdigit.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_isdigit.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_isprint.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_isprint.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_isprint.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_itoa.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_itoa.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_itoa.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstadd_back_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstadd_back_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstadd_back_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstadd_front_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstadd_front_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstadd_front_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstclear_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstclear_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstclear_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstdelone_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstdelone_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstdelone_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstiter_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstiter_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstiter_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstlast_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstlast_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstlast_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstmap_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstmap_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstmap_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstnew_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstnew_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstnew_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_lstsize_bonus.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstsize_bonus.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_lstsize_bonus.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_memchr.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_memchr.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_memchr.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_memcmp.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_memcmp.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_memcmp.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_memcpy.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_memcpy.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_memcpy.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_memmove.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_memmove.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_memmove.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_memset.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_memset.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_memset.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_putchar_fd.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_putchar_fd.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_putchar_fd.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_putendl_fd.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_putendl_fd.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_putendl_fd.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_putllnbr_fd.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_putllnbr_fd.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_putllnbr_fd.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_putnbr_fd.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_putnbr_fd.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_putnbr_fd.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_putstr_fd.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_putstr_fd.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_putstr_fd.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_split.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_split.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_split.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strchr.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strchr.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strchr.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strcmp.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strcmp.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strcmp.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strdup.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strdup.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strdup.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_striteri.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_striteri.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_striteri.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strjoin.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strjoin.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strjoin.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strlcat.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strlcat.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strlcat.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strlcpy.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strlcpy.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strlcpy.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strlen.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strlen.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strlen.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strmapi.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strmapi.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strmapi.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strncmp.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strncmp.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strncmp.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strnstr.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strnstr.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strnstr.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strrchr.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strrchr.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strrchr.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_strtrim.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_strtrim.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_strtrim.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_substr.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_substr.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_substr.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_tolower.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_tolower.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_tolower.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_toupper.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_toupper.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_toupper.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_x_math01.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_x_math01.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_x_math01.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_x_memtools1.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_x_memtools1.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_x_memtools1.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_x_strtools1.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_x_strtools1.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_x_strtools1.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_xx_out1.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_xx_out1.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_xx_out1.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/ft_xx_out2.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/ft_xx_out2.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/ft_xx_out2.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/is_listed.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/is_listed.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/is_listed.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/libft/side_products/ft_x_strtools2.c.o -c /home/reciak/github/42-projects/Ci2-fractol/libft/side_products/ft_x_strtools2.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/libft/side_products/ft_x_strtools2.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/error.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/error.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/error.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/init_image_struct.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/init_image_struct.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/init_image_struct.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/init_non_mlx_vars/init_math.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/init_non_mlx_vars/init_math.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/init_non_mlx_vars/init_math.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/init_non_mlx_vars/init_non_mlx_vars.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/init_non_mlx_vars/init_non_mlx_vars.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/init_non_mlx_vars/init_non_mlx_vars.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/init_non_mlx_vars/init_palette.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/init_non_mlx_vars/init_palette.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/init_non_mlx_vars/init_palette.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/init_non_mlx_vars/reset_square.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/init_non_mlx_vars/reset_square.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/init_non_mlx_vars/reset_square.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/main.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/main.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/main.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/calc_iterations.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/calc_iterations.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/calc_iterations.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/coord_transf.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/coord_transf.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/coord_transf.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/criteria_circle_julia.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/criteria_circle_julia.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/criteria_circle_julia.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/criteria_circle_mbrot.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/criteria_circle_mbrot.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/criteria_circle_mbrot.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/criteria_square_julia.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/criteria_square_julia.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/criteria_square_julia.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/criteria_square_mbrot.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/criteria_square_mbrot.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/criteria_square_mbrot.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/fractal_genes/z_pow_2_plus_w.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/fractal_genes/z_pow_2_plus_w.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/fractal_genes/z_pow_2_plus_w.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/fractal_genes/z_pow_3_plus_w.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/fractal_genes/z_pow_3_plus_w.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/fractal_genes/z_pow_3_plus_w.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/math/square_in_allowed_region.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/math/square_in_allowed_region.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/math/square_in_allowed_region.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/events_julia.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/events_julia.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/events_julia.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/events_mbrot.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/events_mbrot.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/events_mbrot.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/img_iter_to_color.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/img_iter_to_color.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/img_iter_to_color.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/induced_changes_of_vars/change_id.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/change_id.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/change_id.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/induced_changes_of_vars/change_julia_param.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/change_julia_param.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/change_julia_param.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/induced_changes_of_vars/change_max_iter.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/change_max_iter.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/change_max_iter.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/induced_changes_of_vars/shift.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/shift.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/shift.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/induced_changes_of_vars/toggle_escape_criteria.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/toggle_escape_criteria.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/toggle_escape_criteria.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/induced_changes_of_vars/zoom.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/zoom.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/induced_changes_of_vars/zoom.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/mlx_callbacks/waiting_for_godot.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/waiting_for_godot.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/mlx_callbacks/waiting_for_godot.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/printing/print_error.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/printing/print_error.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/printing/print_error.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/printing/print_help.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/printing/print_help.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/printing/print_help.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/printing/print_info.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/printing/print_info.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/printing/print_info.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/printing/put_complex_number.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/printing/put_complex_number.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/printing/put_complex_number.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/printing/put_double.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/printing/put_double.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/printing/put_double.c"
+},
+{
+  "directory": "/home/reciak/github/42-projects/Ci2-fractol",
+  "command": "/usr/bin/cc  -I/home/reciak/github/42-projects/Ci2-fractol/inc -I/home/reciak/github/42-projects/Ci2-fractol/libft -std=gnu99 -o CMakeFiles/fractol.dir/src/printing/welcome_traveler.c.o -c /home/reciak/github/42-projects/Ci2-fractol/src/printing/welcome_traveler.c",
+  "file": "/home/reciak/github/42-projects/Ci2-fractol/src/printing/welcome_traveler.c"
+}
+]
