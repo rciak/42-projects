@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/25 12:46:36 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/25 12:56:30 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRCS := \
 ./src/09@_string_tools/is_listed.c \
 ./src/09@_string_tools/side_products/ft_x_strtools2.c \
 ./src/10@_math/ft_x_math01.c \
+./src/99@_miscellaneous/ft_x/calloc_uninit.c \
 ./src/99@_miscellaneous/ft_x_memtools1.c
 
 SRCS_BONUS := \
