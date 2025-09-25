@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 15:23:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/25 18:56:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,15 @@ static char	*st_detach_line(char **buf, size_t i_nl, t_event *evt)
 	char	*ln;
 	char	*rem;
 
-	len_buf = ft_strlen(*buf);
+	len_buf = gnl_strlen(*buf);
 	ln = malloc(i_nl + 1 + 1);
 	if (ln == NULL)
 		return (*evt = gnl_evt(GNL_LINE_ALLOC_ERR), free(*buf), NULL);
 	rem = malloc(len_buf - i_nl);
 	if (rem == NULL)
 		return (*evt = gnl_evt(GNL_REM_ALLOC_ERR), free(ln), free(*buf), NULL);
-	ft_memcpy(ln, *buf, i_nl + 1);
-	ft_memcpy(rem, *buf + i_nl + 1, len_buf - i_nl - 1);
+	gnl_memcpy(ln, *buf, i_nl + 1);
+	gnl_memcpy(rem, *buf + i_nl + 1, len_buf - i_nl - 1);
 	ln[i_nl + 1] = '\0';
 	rem[len_buf - i_nl - 1] = '\0';
 	*evt = gnl_evt(GNL_DETACH_LINE);
@@ -146,7 +146,7 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 	*evt = gnl_evt(evt_no);
 	result = NULL;
 	if (evt_no == GNL_EOF && *buffer != NULL && **buffer != '\0')
-		result = ft_strdup(*buffer);
+		result = gnl_strdup(*buffer);
 	else if (evt_no == GNL_STH_READIN && *buffer == NULL)
 	{
 		*buffer = *read_in;
@@ -155,7 +155,7 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt)
 	}
 	else if (evt_no == GNL_STH_READIN && *buffer != NULL)
 	{
-		result = ft_strjoin(*buffer, *read_in);
+		result = gnl_strjoin(*buffer, *read_in);
 		free (*read_in);
 		free (*buffer);
 		*read_in = NULL;

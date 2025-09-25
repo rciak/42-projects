@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:55:03 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 15:24:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/25 18:56:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	gnl_strlen(const char *s)
 {
 	size_t	i;
 
@@ -27,13 +27,13 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+char	*gnl_strdup(const char *s)
 {
 	size_t	len;
 	char	*ptr;
 	char	*writer;
 
-	len = ft_strlen(s);
+	len = gnl_strlen(s);
 	ptr = malloc (len + 1);
 	if (ptr == NULL)
 		return (NULL);
@@ -48,26 +48,26 @@ char	*ft_strdup(const char *s)
 	return (ptr);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*gnl_strjoin(char const *s1, char const *s2)
 {
 	size_t	len1;
 	size_t	len2;
 	char	*catenated;
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
+	len1 = gnl_strlen(s1);
+	len2 = gnl_strlen(s2);
 	if (len1 + len2 < len1 || len1 + len2 + 1 < 1)
 		return (NULL);
 	catenated = malloc (len1 + len2 + 1);
 	if (catenated == NULL)
 		return (NULL);
-	ft_memcpy(catenated, s1, len1);
-	ft_memcpy(catenated + len1, s2, len2);
+	gnl_memcpy(catenated, s1, len1);
+	gnl_memcpy(catenated + len1, s2, len2);
 	catenated[len1 + len2] = '\0';
 	return (catenated);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*gnl_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char		*uc_dest;
 	const unsigned char	*uc_src = (unsigned char *) src;

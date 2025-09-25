@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/07/03 15:42:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/25 18:58:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ enum e_gnl_event_codes
 };
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+size_t	gnl_strlen(const char *s);
+char	*gnl_strdup(const char *s);
+char	*gnl_strjoin(char const *s1, char const *s2);
+void	*gnl_memcpy(void *dest, const void *src, size_t n);
 t_event	gnl_evt(int event_code);
 
 #endif
