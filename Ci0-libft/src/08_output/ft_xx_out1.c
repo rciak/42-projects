@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 10:08:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/16 21:07:11 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/25 17:13:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	out_nbr_fd(int nbr, char *digits, int fd)
 			return (E_WRITE);
 		nbr *= -1;
 	}
-	bytes_abs_val = out_unbr_fd((uintptr_t) nbr, digits, fd);
+	bytes_abs_val = out_unbr_fd((unsigned int) nbr, digits, fd);
 	if (bytes_abs_val < 0)
 		return (E_WRITE);
 	return (bytes_sign + bytes_abs_val);
@@ -97,7 +97,7 @@ int	out_unbr_fd(unsigned int unbr, char *digits, int fd)
 }
 
 /**
- * @brief Same as out_uintptr_fd except that the first argument is of type
+ * @brief Same as out_unbr_fd() except that the first argument is of type
  *        uintptr_t (instead of unsigned int)
  */
 int	out_uintptr_fd(uintptr_t unbr, char *digits, int fd)
