@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/07 10:26:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/25 19:51:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ typedef enum e_dl_type
 	DL_NON_EMPTY_CIRCULAR = 2
 }	t_dl_type;
 
+// Section 0: Taken from Piscine / adopted:
+int			ft_strcmp(const char *s1, const char *s2);
+
+// Section 1: Most of very first common core project's
 // Part 1: Some libc functions (and bsd relatives like  ft_strlcpy, ft_strcat)
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -112,6 +116,7 @@ int			ft_atoi(const char *nptr);
 void		*ft_calloc(size_t nmemb, size_t size);
 char		*ft_strdup(const char *s);
 
+// Section 2: Most of very first common core project's
 //Part 2: Some additional functions
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
@@ -126,7 +131,8 @@ void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putllnbr_fd(long long n, int fd);
 
-// Part 3: Bonus
+// Section 3: Most of very first common core project's
+// Part 3: Bonus: Singly linked list functions
 t_list		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 int			ft_lstsize(t_list *lst);
@@ -137,11 +143,37 @@ void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-//ft_x_math01.c
+//Section 4: ft_printf     - see ft_printf.h
+
+//Section 5: get_next_line - see get_next_line.h
+
+//Section 6: Doubly linked list tools (developed during Ci2-Push_swap)
+t_dl_node	*dl_lst_new_nd(void *obj);
+void		dl_lst_add_after(t_dl_node **addr_pdl_node, t_dl_node *const pnew);
+void		dl_lst_add_before(t_dl_node **addr_pdl_node, t_dl_node *const pnew);
+void		dl_lst_circularize(t_dl_node *pdl_node);
+void		dl_lst_linearize(t_dl_node *pdl_node);
+size_t		dl_lst_size(const t_dl_node *const pdl_node);
+t_dl_type	dl_lst_type(const t_dl_node *const pdl_node);
+void		dl_lst_clear(t_dl_node **addr_pdl_node, void (*del)(void*));
+
+//Section 7: Conversions with error info
+//           (with additional strictness in case of atoi_strict)
+int			atoi_proper(const char *nptr, t_libft_err *err_code);
+int			atoi_strict(const char *nptr, t_libft_err *err_code);
+long long	atoll_strict(const char *nptr, t_libft_err *err_code);
+double		atof_strict(const char *nptr, t_libft_err *err_code);
+
+// Section 10: math / ft_x  
+//                    used by Part 1 - Part 3
 size_t		si_min(size_t a, size_t b);
 size_t		si_max(size_t a, size_t b);
 int			abs(int n);
 
+// Section 10: math  
+//             later add-ons
+
+// Section 
 //ft_x_memtools1.c
 int			si_is_overflow(size_t a, char action, size_t b);
 
@@ -173,18 +205,7 @@ int			out_vptr(void *ptr);
 //ft_xx_color_codes.c
 const char	*color(int code);
 
-//doubly linked list stuff
-t_dl_node	*dl_lst_new_nd(void *obj);
-void		dl_lst_add_after(t_dl_node **addr_pdl_node, t_dl_node *const pnew);
-void		dl_lst_add_before(t_dl_node **addr_pdl_node, t_dl_node *const pnew);
-void		dl_lst_circularize(t_dl_node *pdl_node);
-void		dl_lst_linearize(t_dl_node *pdl_node);
-size_t		dl_lst_size(const t_dl_node *const pdl_node);
-t_dl_type	dl_lst_type(const t_dl_node *const pdl_node);
-void		dl_lst_clear(t_dl_node **addr_pdl_node, void (*del)(void*));
 
-// Taken from Piscine / adopted:
-int			ft_strcmp(const char *s1, const char *s2);
 
 //currently in ft_x_strtools1.c
 size_t		skip(char **pstr, const char *chars_to_skip);
@@ -194,12 +215,6 @@ size_t		strlen_deli(const char *s, const char *deli);
 size_t		count_words(const char *s, const char *deli);
 char		**split_deli(char const *s, const char *deli);
 
-//ft_atoi with error info (with additional strictness in case of atoi_strict)
-int			atoi_proper(const char *nptr, t_libft_err *err_code);
-int			atoi_strict(const char *nptr, t_libft_err *err_code);
-
-long long	atoll_strict(const char *nptr, t_libft_err *err_code);
-double		atof_strict(const char *nptr, t_libft_err *err_code);
 
 bool		is_listed(const char *str, const char **list);
 
