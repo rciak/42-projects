@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/11 19:25:59 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/25 12:46:36 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ SRCS := \
 ./src/06_doubly_linked_list/dl_lst_size.c \
 ./src/06_doubly_linked_list/dl_lst_type.c \
 ./src/07_conversions/atof_strict.c \
+./src/07_conversions/atoi_proper.c \
 ./src/07_conversions/atoi_strict.c \
 ./src/07_conversions/atoll_strict.c \
 ./src/08_output/ft_putllnbr_fd.c \
