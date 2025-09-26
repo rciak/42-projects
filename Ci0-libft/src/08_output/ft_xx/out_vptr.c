@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 21:31:33 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/25 21:32:20 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/26 11:06:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,11 @@
  */
 
 #include "libft.h"
+
+/**
+ * @brief Convenience wrapper for out_vptr_fd() when the output goes to stdout.
+ */
+int	out_vptr(void *ptr)
+{
+	return (out_vptr_fd(ptr, STDOUT_FILENO));
+}

@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/25 19:36:18 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/26 11:11:57 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,8 +95,16 @@ SRCS := \
 ./src/07_conversions/atoi_strict.c \
 ./src/07_conversions/atoll_strict.c \
 ./src/08_output/ft_putllnbr_fd.c \
-./src/08_output/ft_xx_out1.c \
-./src/08_output/ft_xx_out2.c \
+./src/08_output/ft_xx/out_nbr.c \
+./src/08_output/ft_xx/out_nbr_fd.c \
+./src/08_output/ft_xx/out_str.c \
+./src/08_output/ft_xx/out_str_fd.c \
+./src/08_output/ft_xx/out_uintptr.c \
+./src/08_output/ft_xx/out_uintptr_fd.c \
+./src/08_output/ft_xx/out_unbr.c \
+./src/08_output/ft_xx/out_unbr_fd.c \
+./src/08_output/ft_xx/out_vptr.c \
+./src/08_output/ft_xx/out_vptr_fd.c \
 ./src/09@_string_tools/free_array.c \
 ./src/09@_string_tools/ft_x_strtools1.c \
 ./src/09@_string_tools/is_listed.c \

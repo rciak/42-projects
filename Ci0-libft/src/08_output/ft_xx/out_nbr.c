@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 21:30:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/25 21:31:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/26 11:04:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,11 @@
  */
 
 #include "libft.h"
+
+/**
+ * @brief Convenience wrapper for out_nbr_fd() when the output goes to stdout.
+ */
+int	out_nbr(int nbr, char *digits)
+{
+	return (out_nbr_fd(nbr, digits, STDOUT_FILENO));
+}
