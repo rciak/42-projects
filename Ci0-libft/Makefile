@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/26 11:11:57 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/27 21:49:39 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,10 +105,14 @@ SRCS := \
 ./src/08_output/ft_xx/out_unbr_fd.c \
 ./src/08_output/ft_xx/out_vptr.c \
 ./src/08_output/ft_xx/out_vptr_fd.c \
+./src/09@_string_tools/count_words.c \
 ./src/09@_string_tools/free_array.c \
-./src/09@_string_tools/ft_x_strtools1.c \
+./src/09@_string_tools/ft_x/si_substr.c \
+./src/09@_string_tools/is_in.c \
 ./src/09@_string_tools/is_listed.c \
-./src/09@_string_tools/side_products/ft_x_strtools2.c \
+./src/09@_string_tools/skip.c \
+./src/09@_string_tools/split_deli.c \
+./src/09@_string_tools/strlen_deli.c \
 ./src/10@_math/ft_x/abs.c \
 ./src/10@_math/ft_x/si_max.c \
 ./src/10@_math/ft_x/si_min.c \
