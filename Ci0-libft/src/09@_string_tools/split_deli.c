@@ -1,78 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_x_strtools2.c                                   :+:      :+:    :+:   */
+/*   split_deli.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 17:34:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 18:01:10 by reciak           ###   ########.fr       */
+/*   Created: 2025/09/27 21:23:37 by reciak            #+#    #+#             */
+/*   Updated: 2025/09/27 21:26:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_x_strtools2.c
- * @brief Stores the definitions of some useful functions in the string context.
- * @warning All functions in this files should be thoughly tested before using
- *          them.
+ * @file split_deli.c
+ * @brief Stores the definition of split_deli()
  */
 
 #include "libft.h"
 
 static void	st_free_allocs(char **strarr, size_t j_failed);
-
-/**
- * @brief Counts the length of given string till the nullterminator is hit
- *        or any of the additional defined delimiters.
- * @param[in] s pointer to a nullterminated string whose quasi-length
- *              shall be found.
- * @param[in] deli pointer to a nullterminated string which
- *                 contains the additional delimiting characters.
- * @note If \p s is `NULL` then `strlen_deli` will segfault - this is intended.
- * @note ft_strlen() corresponds to strlen_deli() with an empty string
- *       as delimiter set.
- * @remark The number `strlen_deli(s)` can be viewed in different ways:
- *         * As *quasi-length* of the string s,
- *         * As *index of the Nullterminator* of s or of the first occurence
- *           of one of the additional defined delimiters.
- * @return The quasi-length of the string.
- */
-size_t	strlen_deli(const char *s, const char *deli)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] && !is_in(s[i], deli))
-		i++;
-	return (i);
-}
-
-/**
- * @brief Counts the number of words in a given string
- * @param[in] s pointer to a nullterminated string.
- * @param[in] deli pointer to a nullterminated string which
- *                 contains the characters that act as delimiters
- *                 (in addition to the nullterminator).
- * @note If \p s is `NULL` then `count_words` will segfault - this is intended.
- * @return The number of counted words.
- */
-size_t	count_words(const char *s, const char *deli)
-{
-	size_t	num_words;
-
-	num_words = 0;
-	while (*s)
-	{
-		while (is_in(*s, deli))
-			s++;
-		if (*s == '\0')
-			return (num_words);
-		num_words += 1;
-		while (!is_in(*s, deli) && *s)
-			s++;
-	}
-	return (num_words);
-}
 
 /**
  * @brief An extension of ft_split():
