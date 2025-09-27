@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 20:03:08 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/26 10:50:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/27 21:57:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ int	out_nbr_fd(int nbr, char *digits, int fd)
 		return (E_WRITE);
 	return (bytes_sign + bytes_abs_val);
 }
-
