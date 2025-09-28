@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_x_memtools1.c                                   :+:      :+:    :+:   */
+/*   si_is_overflow.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:39:15 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/25 09:38:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/28 17:49:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file ft_x_memtools1.c
- * @brief Stores definitions of memory related stuff.
+ * @file si_is_overflow.c
+ * @brief Stores the definition of si_is_overflow()
  */
 
 #include "libft.h"
