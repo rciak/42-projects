@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:42:14 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/25 19:51:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/09/29 11:11:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void		*ft_calloc(size_t nmemb, size_t size);
 char		*ft_strdup(const char *s);
 
 // Section 2: Most of very first common core project's
-//Part 2: Some additional functions
+// Part 2: Some additional functions
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
@@ -129,7 +129,6 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
-void		ft_putllnbr_fd(long long n, int fd);
 
 // Section 3: Most of very first common core project's
 // Part 3: Bonus: Singly linked list functions
@@ -143,11 +142,11 @@ void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-//Section 4: ft_printf     - see ft_printf.h
+// Section 4: ft_printf     - see ft_printf.h
 
-//Section 5: get_next_line - see get_next_line.h
+// Section 5: get_next_line - see get_next_line.h
 
-//Section 6: Doubly linked list tools (developed during Ci2-Push_swap)
+// Section 6: Doubly linked list tools (developed during Ci2-Push_swap)
 t_dl_node	*dl_lst_new_nd(void *obj);
 void		dl_lst_add_after(t_dl_node **addr_pdl_node, t_dl_node *const pnew);
 void		dl_lst_add_before(t_dl_node **addr_pdl_node, t_dl_node *const pnew);
@@ -157,67 +156,48 @@ size_t		dl_lst_size(const t_dl_node *const pdl_node);
 t_dl_type	dl_lst_type(const t_dl_node *const pdl_node);
 void		dl_lst_clear(t_dl_node **addr_pdl_node, void (*del)(void*));
 
-//Section 7: Conversions with error info
+// Section 7: Conversions with error info
 //           (with additional strictness in case of atoi_strict)
 int			atoi_proper(const char *nptr, t_libft_err *err_code);
 int			atoi_strict(const char *nptr, t_libft_err *err_code);
 long long	atoll_strict(const char *nptr, t_libft_err *err_code);
 double		atof_strict(const char *nptr, t_libft_err *err_code);
 
-// Section 10: math / ft_x  
-//                    used by Part 1 - Part 3
-size_t		si_min(size_t a, size_t b);
-size_t		si_max(size_t a, size_t b);
-int			abs(int n);
-
-// Section 10: math  
-//             later add-ons
-
-// Section 
-//ft_x_memtools1.c
-int			si_is_overflow(size_t a, char action, size_t b);
-
-//ft_x_strtools1.c
-bool		is_in(char c, const char *str);
-
-// Variants of ft_* functions that are in the same file as their ft-relatives.
-char		*si_substr(char const *s, size_t start, size_t len);
-void		*calloc_uninit(size_t nmemb, size_t size);
-
-//
-// Extensions added after eval of libft
-//
-
-//ft_xx_out1.c
+// Section 8a: Output / ft_xx   (project ft_printf ...)
 int			out_nbr_fd(int nbr, char *digits, int fd);
 int			out_unbr_fd(unsigned int nbr, char *digits, int fd);
 int			out_uintptr_fd(uintptr_t unbr, char *digits, int fd);
 int			out_str_fd(char *str, int fd);
 int			out_vptr_fd(void *ptr, int fd);
-
-//ft_xx_out2.c: Convenience wrappers fd = STDOUT_FD in previous 4 functions.
+// Convenience wrappers fd = STDOUT_FD in previous 4 functions.
 int			out_nbr(int nbr, char *digits);
 int			out_unbr(unsigned int nbr, char *digits);
 int			out_uintptr(uintptr_t unbr, char *digits);
 int			out_str(char *str);
 int			out_vptr(void *ptr);
+// Section 8b: output functions - added after ft_printf project
+void		ft_putllnbr_fd(long long n, int fd);
 
-//ft_xx_color_codes.c
-const char	*color(int code);
+//Section 9: memtools
+void		*calloc_uninit(size_t nmemb, size_t size);
+int			si_is_overflow(size_t a, char action, size_t b);
 
-
-
-//currently in ft_x_strtools1.c
+//Section 10a: String tools / ft_x
+char		*si_substr(char const *s, size_t start, size_t len);
+bool		is_in(char c, const char *str);
+// Section 10b: String tools - added after libft project
 size_t		skip(char **pstr, const char *chars_to_skip);
-
-//currently in sideproducts/ft_x_strtools2.c
 size_t		strlen_deli(const char *s, const char *deli);
 size_t		count_words(const char *s, const char *deli);
 char		**split_deli(char const *s, const char *deli);
-
-
 bool		is_listed(const char *str, const char **list);
-
 void		free_array(char **string_array);
+
+// Section 11a: math / ft_x  
+//                    used by Part 1 - Part 3
+size_t		si_min(size_t a, size_t b);
+size_t		si_max(size_t a, size_t b);
+int			abs(int n);
+// Section 11b: math - later add-ons
 
 #endif

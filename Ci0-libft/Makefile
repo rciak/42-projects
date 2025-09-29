@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/27 21:49:39 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/29 11:18:15 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,30 +94,30 @@ SRCS := \
 ./src/07_conversions/atoi_proper.c \
 ./src/07_conversions/atoi_strict.c \
 ./src/07_conversions/atoll_strict.c \
-./src/08_output/ft_putllnbr_fd.c \
-./src/08_output/ft_xx/out_nbr.c \
-./src/08_output/ft_xx/out_nbr_fd.c \
-./src/08_output/ft_xx/out_str.c \
-./src/08_output/ft_xx/out_str_fd.c \
-./src/08_output/ft_xx/out_uintptr.c \
-./src/08_output/ft_xx/out_uintptr_fd.c \
-./src/08_output/ft_xx/out_unbr.c \
-./src/08_output/ft_xx/out_unbr_fd.c \
-./src/08_output/ft_xx/out_vptr.c \
-./src/08_output/ft_xx/out_vptr_fd.c \
-./src/09@_string_tools/count_words.c \
-./src/09@_string_tools/free_array.c \
-./src/09@_string_tools/ft_x/si_substr.c \
-./src/09@_string_tools/is_in.c \
-./src/09@_string_tools/is_listed.c \
-./src/09@_string_tools/skip.c \
-./src/09@_string_tools/split_deli.c \
-./src/09@_string_tools/strlen_deli.c \
-./src/10@_math/ft_x/abs.c \
-./src/10@_math/ft_x/si_max.c \
-./src/10@_math/ft_x/si_min.c \
-./src/99@_miscellaneous/ft_x/calloc_uninit.c \
-./src/99@_miscellaneous/ft_x_memtools1.c
+./src/08xx_output/ft_putllnbr_fd.c \
+./src/08xx_output/ft_xx_astatic_helpers/out_uintptr.c \
+./src/08xx_output/ft_xx_astatic_helpers/out_uintptr_fd.c \
+./src/08xx_output/ft_xx_behind_wrappers/out_nbr_fd.c \
+./src/08xx_output/ft_xx_behind_wrappers/out_str_fd.c \
+./src/08xx_output/ft_xx_behind_wrappers/out_unbr_fd.c \
+./src/08xx_output/ft_xx_behind_wrappers/out_vptr_fd.c \
+./src/08xx_output/ft_xx_wrappers_for_ft_printf/out_nbr.c \
+./src/08xx_output/ft_xx_wrappers_for_ft_printf/out_str.c \
+./src/08xx_output/ft_xx_wrappers_for_ft_printf/out_unbr.c \
+./src/08xx_output/ft_xx_wrappers_for_ft_printf/out_vptr.c \
+./src/09x_memtools/ft_x/calloc_uninit.c \
+./src/09x_memtools/ft_x/si_is_overflow.c \
+./src/10x_string_tools/count_words.c \
+./src/10x_string_tools/free_array.c \
+./src/10x_string_tools/ft_x/is_in.c \
+./src/10x_string_tools/ft_x/si_substr.c \
+./src/10x_string_tools/is_listed.c \
+./src/10x_string_tools/skip.c \
+./src/10x_string_tools/split_deli.c \
+./src/10x_string_tools/strlen_deli.c \
+./src/11x_math/ft_x/abs.c \
+./src/11x_math/ft_x/si_min.c \
+./src/11x_math/si_max.c
 
 SRCS_BONUS := \
 ./src/03_libft_singly_linked_list/ft_lstadd_back_bonus.c \
