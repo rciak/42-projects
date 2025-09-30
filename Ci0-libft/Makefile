@@ -6,15 +6,17 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/30 11:18:57 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/30 18:43:43 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
+COPY_NAME := ftprintf.a
+#
 INC_DIR := inc 
 OBJ_DIR := obj
 OBJ_DIR_BONUS := obj
-
+#
 CC := cc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 RM := rm -fr
@@ -31,7 +33,15 @@ endif
 ifeq ($(GPROF), 1)
   CFLAGS += -pg
 endif
-
+### If  VERBOSITY=1  then some more stuff will be printed to stdout
+ifeq ($(VERBOSITY), 1)
+  COMPILE_COMMAND = $(CC) $(CFLAGS) -c $< -o $@
+  LINK_COMMAND = ar -rcs $@ $^
+else
+  COMPILE_COMMAND = @$(CC) $(CFLAGS) -c $< -o $@
+  LINK_COMMAND =  @ar -rcs $@ $^
+  LINK_COMMAND_BONUS = @ar -rcs $(NAME) $^
+endif
 
 # Dependencies can be handled better using DEP=.. stuff, cf.
 # https://stackoverflow.com/questions/2394609/makefile-header-dependencies
@@ -134,17 +144,21 @@ TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
 OBJS_BONUS = $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(SRCS_BONUS))
 
 .PHONY: all
-all: $(NAME)
+all: print_libft $(NAME) bonus
 
 $(NAME): $(OBJS)
-	ar -rcs $@ $^
+	@echo 'Linking object files ...'
+	$(LINK_COMMAND)
+	@echo '  --> $(NAME)'
+	@rsync -a "$(NAME)" "$(COPY_NAME)" 
+	@echo '  --> $(COPY_NAME)  (copy of $(NAME))'
 
-$(OBJ_DIR)/%.o:%.c $(INCS)
+$(OBJ_DIR)/%.o: %.c $(INCS) | entry_message_compile
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(COMPILE_COMMAND)
 
 .PHONY: clean
-clean:
+clean: print_libft
 	@echo 'CLEANING via rule  clean'
 	@echo '1.   Removing object files, if any.'
 	@$(RM) $(OBJS) $(OBJS_BONUS)
@@ -174,25 +188,43 @@ clean:
 	@echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 
 .PHONY: fclean
-fclean: clean
+fclean: clean | print_libft
 	@echo 'CLEANING additional via rule  fclean:'
 	@echo 'Removing $(NAME), if any.' 
 	@$(RM) $(NAME)
 	@echo '--------------------------------------------------------------------'
 
 .PHONY: re
-re: fclean all
+re: fclean all | print_libft
 
 .PHONY: bonus
-bonus: $(TIMESTAMPFILE_BONUS)
+bonus:  print_libft $(TIMESTAMPFILE_BONUS)
 
 $(TIMESTAMPFILE_BONUS): $(OBJS) $(OBJS_BONUS)
 	touch	$(TIMESTAMPFILE_BONUS)
-	ar -crs	$(NAME) $(OBJS) $(OBJS_BONUS)
+	@echo 'Linking object files including bonus object files ...'
+	$(LINK_COMMAND_BONUS)
+	@echo '  --> $(NAME)'
+	@rsync -a "$(NAME)" "$(COPY_NAME)" 
+	@echo '  --> $(COPY_NAME)  (copy of $(NAME))'
 
-$(OBJ_DIR_BONUS)/%.o:%.c $(INCS)
+$(OBJ_DIR_BONUS)/%.o:%.c entry_message_compile $(INCS)
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(COMPILE_COMMAND)
 
 .PHONY: rebonus
 rebonus: fclean bonus
+
+################################################################################
+# PRINTING RULES                                                               #
+################################################################################
+
+PHONY: print_libft
+print_libft:
+	@echo '*******************************************************************'
+	@echo '*                              LIBFT                              *'
+	@echo '*******************************************************************'
+
+.PHONY: entry_message_compile
+entry_message_compile:
+	@echo 'Compiling (if need) ...'
