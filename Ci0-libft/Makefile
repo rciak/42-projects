@@ -6,13 +6,13 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/29 11:18:15 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/30 10:41:04 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
 INC_DIR := inc 
-OBJ_DIR := .
+OBJ_DIR := obj
 OBJ_DIR_BONUS := .
 
 CC := cc
