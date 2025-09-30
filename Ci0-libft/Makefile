@@ -6,19 +6,18 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/30 10:41:04 by reciak           ###   ########.fr        #
+#    Updated: 2025/09/30 11:18:57 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
 INC_DIR := inc 
 OBJ_DIR := obj
-OBJ_DIR_BONUS := .
+OBJ_DIR_BONUS := obj
 
 CC := cc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
-RM := rm -f
-RMDIR := rmdir
+RM := rm -fr
 
 ifeq ($(DEBUG_LAUB_SAN), 1)
   CFLAGS  += -g3 -fsanitize=address,undefined,leak
@@ -147,29 +146,30 @@ $(OBJ_DIR)/%.o:%.c $(INCS)
 .PHONY: clean
 clean:
 	@echo 'CLEANING via rule  clean'
-	@echo '1. Removing object files, if any.'
+	@echo '1.   Removing object files, if any.'
 	@$(RM) $(OBJS) $(OBJS_BONUS)
-	@echo '2. Removing timestamp file (created for bonus part), if any.'
+	@echo '2.   Removing timestamp file (created for bonus part), if any.'
 	@$(RM) $(TIMESTAMPFILE_BONUS)
-	@echo '3.a) Removing directory for mandatory object files, if any.'
+	@echo '3.a) Removing directory $(OBJ_DIR), if any.'
 	@if [ ! -d $(OBJ_DIR) ]; then \
-		echo 'No directory $(OBJ_DIR) for mandatory object files.'; \
+		echo '     --> No directory $(OBJ_DIR) for mandatory object files.'; \
 	elif [ $(OBJ_DIR) = '.' ]; then \
-		echo '       Well if the object files would be in their own separte'; \
-		echo '       directory that directory shall be removed, but here:'; \
-		echo '       Removing the directory . will not even been tried. ...'; \
+		echo '     Well if the object files would be in their own separte'; \
+		echo '     directory that directory shall be removed, but here:'; \
+		echo '     Removing the directory . will not even been tried. ...'; \
 	else \
-		-$(RMDIR) $(OBJ_DIR); \
+		$(RM) $(OBJ_DIR); \
 	fi
 	@echo '3.b) Removing directory for bonus object files, if any.'
-	@if [ ! -d $(OBJ_DIR_BONUS) ]; then \
-		echo 'No directory $(OBJ_DIR_BONUS) for bonus object files.'; \
+	@if [ ! -d $(OBJ_DIR_BONUS) ] && [ "$(OBJ_DIR)" = "$(OBJ_DIR_BONUS)" ]; \
+	then \
+		echo '     --> No directory $(OBJ_DIR_BONUS) for bonus object files.'; \
 	elif [ $(OBJ_DIR_BONUS) = '.' ]; then \
-		echo '       Well if the object files would be in their own separte'; \
-		echo '       directory that directory shall be removed, but here:'; \
-		echo '       Removing the directory . will not even been tried. ...'; \
+		echo '     Well if the object files would be in their own separte'; \
+		echo '     directory that directory shall be removed, but here:'; \
+		echo '     Removing the directory . will not even been tried. ...'; \
 	else \
-		-$(RMDIR) $(OBJ_DIR_BONUS); \
+		$(RM) $(OBJ_DIR_BONUS); \
 	fi
 	@echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 
