@@ -1,22 +1,34 @@
-DIR_BASE = ../
-DIR_LIBFT_TESTER = libftTester
+BASE_DIR := ..
+LIBFT_TESTER_DIR := libftTester
+PRINTF_TESTER_DIR := printfTester
 
 .PHONY: all
-all: libft_tester_tripouille
+all: libft_tester_tripouille \
+     printf_tester_tripouille 
 
 .PHONY: libft_tester_tripouille
 libft_tester_tripouille:
-	@if [ ! -d $(DIR_BASE)/$(DIR_LIBFT_TESTER) ]; then \
+	@if [ ! -d $(BASE_DIR)/$(LIBFT_TESTER_DIR) ]; then \
 		echo 'Cloning Libft Tester... '; sleep 1; \
-		cd $(DIR_BASE) ; \
+		cd $(BASE_DIR) ; \
 		git clone git@github.com:Tripouille/libftTester.git; \
 		echo; \
 		echo 'Making Makefile compatible with my libft ...'; sleep 1; \
-		cd $(DIR_LIBFT_TESTER); \
+		cd $(LIBFT_TESTER_DIR); \
 		sed -i '/^CFLAGS[ \t]=*/ s#$$# -I$$(LIBFT_PATH)/inc#' Makefile; \
 	fi
-	make -C $(DIR_BASE)/$(DIR_LIBFT_TESTER)
+	make -C $(BASE_DIR)/$(LIBFT_TESTER_DIR)
+
+.PHONY: printf_tester_tripouille
+printf_tester_tripouille:
+	@if [ ! -d $(BASE_DIR)/$(PRINTF_TESTER_DIR) ]; then \
+		echo 'Cloning Tester for ft_printf'; sleep 1; \
+		cd $(BASE_DIR) ; \
+		git clone git@github.com:Tripouille/printfTester.git; \
+	fi
+	make -C $(BASE_DIR)/$(PRINTF_TESTER_DIR)
 
 .PHONY: remove_testers
 remove_testers:
-	rm -fr $(DIR_BASE)/$(DIR_LIBFT_TESTER)
+	rm -fr $(BASE_DIR)/$(LIBFT_TESTER_DIR)
+	rm -fr $(BASE_DIR)/$(PRINTF_TESTER_DIR)
