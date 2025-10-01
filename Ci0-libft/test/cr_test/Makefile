@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 21:15:03 by reciak            #+#    #+#              #
-#    Updated: 2025/10/01 21:04:57 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/01 21:38:15 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,6 @@ ifneq ($(VERBOSITY), 1)
   INFLUENCE_STDOUT = > /dev/null
 endif
 
-
-
 .PHONY: unit-tests
 unit-tests:
 	@echo
@@ -70,7 +68,9 @@ unit-tests:
 	@echo '   -->  ./$(OUT_UNIT_TEST)'
 	@echo
 	@./$(OUT_UNIT_TEST) $(INFLUENCE_STDOUT)
-
+	@echo
+	@echo 'HINT:   make help   or   make show_vars   list also flags' \
+	      'for e.g. debugging or showing more output'
 .PHONY: fclean
 fclean:
 	$(RM) $(OUT_UNIT_TEST)
@@ -78,18 +78,21 @@ fclean:
 .PHONY: re
 re: fclean unit-tests
 
+.PHONY: help
+help: show_vars
+
 .PHONY: show_vars
 show_vars:
 	@echo "CFLAGS:          |$(CFLAGS)|"
 	@echo "BASE_DIR         |$(BASE_DIR)|"
 	@echo "INC_DIRS         |$(INC_DIRS)|"
 	@echo "LIB_FILE_NAME    |$(LIB_FILE_NAME)|"
-	@echo "INC_DIRS         |$(INC_DIRS)|"
 	@echo "LIB_FILE         |$(LIB_FILE)|"
 	@echo "CFLAGS           |$(CFLAGS)|"
+	@echo "LFLAGS           |$(LFLAGS)|"
 	@echo "INFLUENCE_STDOUT |$(INFLUENCE_STDOUT)|"
 	@echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
 	@echo "DEBUG_LAUB_SAN   |$(DEBUG_LAUB_SAN)|"
 	@echo "DEBUG_M_SAN      |$(DEBUG_M_SAN)|"
 	@echo "DEBUG_VALGRIND   |$(DEBUG_VALGRIND)|"
-	@echo "LFLAGS           |$(LFLAGS)|"
+	@echo "VERBOSITY        |$(VERBOSITY)|"
