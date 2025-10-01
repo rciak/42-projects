@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/10/01 09:05:12 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/01 17:24:41 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -189,6 +189,8 @@ fclean: clean | print_libft
 	@echo 'CLEANING additional via rule  fclean'
 	@echo '  Removing $(NAME), if any.' 
 	@$(RM) $(NAME)
+	@echo '  Removing $(COPY_NAME), if any.' 
+	@$(RM) $(COPY_NAME)
 
 .PHONY: re
 re: fclean all | print_libft
