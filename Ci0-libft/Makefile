@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/09/30 18:43:43 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/01 08:33:47 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,13 +160,12 @@ $(OBJ_DIR)/%.o: %.c $(INCS) | entry_message_compile
 .PHONY: clean
 clean: print_libft
 	@echo 'CLEANING via rule  clean'
-	@echo '1.   Removing object files, if any.'
-	@$(RM) $(OBJS) $(OBJS_BONUS)
-	@echo '2.   Removing timestamp file (created for bonus part), if any.'
+	@echo '  1. Removing timestamp file (created for bonus part), if any.'
 	@$(RM) $(TIMESTAMPFILE_BONUS)
-	@echo '3.a) Removing directory $(OBJ_DIR), if any.'
+	@echo '  2. Removing object files, if any.'
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
-		echo '     --> No directory $(OBJ_DIR) for mandatory object files.'; \
+		: ; \
 	elif [ $(OBJ_DIR) = '.' ]; then \
 		echo '     Well if the object files would be in their own separte'; \
 		echo '     directory that directory shall be removed, but here:'; \
@@ -174,10 +173,9 @@ clean: print_libft
 	else \
 		$(RM) $(OBJ_DIR); \
 	fi
-	@echo '3.b) Removing directory for bonus object files, if any.'
 	@if [ ! -d $(OBJ_DIR_BONUS) ] && [ "$(OBJ_DIR)" = "$(OBJ_DIR_BONUS)" ]; \
 	then \
-		echo '     --> No directory $(OBJ_DIR_BONUS) for bonus object files.'; \
+		: ; \
 	elif [ $(OBJ_DIR_BONUS) = '.' ]; then \
 		echo '     Well if the object files would be in their own separte'; \
 		echo '     directory that directory shall be removed, but here:'; \
@@ -185,14 +183,12 @@ clean: print_libft
 	else \
 		$(RM) $(OBJ_DIR_BONUS); \
 	fi
-	@echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
 
 .PHONY: fclean
 fclean: clean | print_libft
-	@echo 'CLEANING additional via rule  fclean:'
-	@echo 'Removing $(NAME), if any.' 
+	@echo 'CLEANING additional via rule  fclean'
+	@echo '  Removing $(NAME), if any.' 
 	@$(RM) $(NAME)
-	@echo '--------------------------------------------------------------------'
 
 .PHONY: re
 re: fclean all | print_libft
@@ -227,4 +223,4 @@ print_libft:
 
 .PHONY: entry_message_compile
 entry_message_compile:
-	@echo 'Compiling (if need) ...'
+	@echo 'COMPILING (if need) ...'
