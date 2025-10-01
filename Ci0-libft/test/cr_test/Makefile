@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 21:15:03 by reciak            #+#    #+#              #
-#    Updated: 2025/10/01 21:38:15 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/01 22:13:31 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,7 @@ ifneq ($(VERBOSITY), 1)
 endif
 
 .PHONY: unit-tests
-unit-tests:
-	@echo
-	@echo '************************** Criterion Test **************************'
-	@echo '* $(PROJECT_TITLE)'
-	@echo '********************************************************************'
+unit-tests: print_banner
 	@echo
 	@echo '1. Calling make in $(BASE_DIR) which should provide $(LIB_FILE_NAME)'
 	@make -C $(BASE_DIR)
@@ -71,12 +67,23 @@ unit-tests:
 	@echo
 	@echo 'HINT:   make help   or   make show_vars   list also flags' \
 	      'for e.g. debugging or showing more output'
+
+.PHONY: clean
+clean: print_banner 
+	@echo "make clean  has no effect in cr_test (except this printing)"
+
 .PHONY: fclean
-fclean:
+fclean: print_banner 
 	$(RM) $(OUT_UNIT_TEST)
 
 .PHONY: re
-re: fclean unit-tests
+re: print_banner fclean unit-tests
+
+.PHONY: print_banner
+print_banner:
+	@echo '************************** Criterion Test **************************'
+	@echo '* $(PROJECT_TITLE)'
+	@echo '********************************************************************'
 
 .PHONY: help
 help: show_vars
@@ -96,3 +103,4 @@ show_vars:
 	@echo "DEBUG_M_SAN      |$(DEBUG_M_SAN)|"
 	@echo "DEBUG_VALGRIND   |$(DEBUG_VALGRIND)|"
 	@echo "VERBOSITY        |$(VERBOSITY)|"
+

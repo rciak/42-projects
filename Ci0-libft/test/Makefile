@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/01 19:35:24 by reciak            #+#    #+#              #
-#    Updated: 2025/10/01 19:35:26 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/01 22:08:06 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,11 +76,15 @@ gnl_tester:
 		cd $(BASE_DIR)/$(GNL_COPY_DIR) ; \
 		git clone git@github.com:Tripouille/gnlTester.git; \
 	fi
-	make -C $(BASE_DIR)/$(GNL_TESTER_DIR)
+	@make -C $(BASE_DIR)/$(GNL_TESTER_DIR)
+
+.PHONY: re
+re: fclean all
 
 .PHONY: fclean
 fclean: clean
 	rm -fr $(BASE_DIR)/$(GNL_COPY_DIR)
+	@make -C $(CR_TEST_DIR) fclean
 
 .PHONY: clean
 clean: remove_testers
