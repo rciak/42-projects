@@ -6,12 +6,12 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/10/01 08:33:47 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/01 09:05:12 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
-COPY_NAME := ftprintf.a
+COPY_NAME := libftprintf.a
 #
 INC_DIR := inc 
 OBJ_DIR := obj
