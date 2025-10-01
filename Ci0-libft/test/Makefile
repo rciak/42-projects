@@ -1,4 +1,7 @@
 BASE_DIR := ..
+#
+CR_TEST_DIR := cr_test
+#
 LIBFT_TESTER_DIR := libftTester
 PRINTF_TESTER_DIR := printfTester
 #
@@ -8,9 +11,14 @@ GNL_TESTER_DIR := $(GNL_COPY_DIR)/gnlTester
 GNL_HEADER_ORI_LOC := inc/get_next_line.h
 
 .PHONY: all
-all: libft_tester_tripouille \
+all: cr_test \
+	 libft_tester_tripouille \
 	 printf_tester_tripouille \
 	 gnl_tester
+
+.PHONY: cr_test
+cr_test: 
+	make -C $(CR_TEST_DIR)
 
 .PHONY: libft_tester_tripouille
 libft_tester_tripouille:
