@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/01 19:35:24 by reciak            #+#    #+#              #
+#    Updated: 2025/10/01 19:35:26 by reciak           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 BASE_DIR := ..
 #
 CR_TEST_DIR := cr_test
@@ -18,7 +30,7 @@ all: cr_test \
 
 .PHONY: cr_test
 cr_test: 
-	make -C $(CR_TEST_DIR)
+	@make -C $(CR_TEST_DIR)
 
 .PHONY: libft_tester_tripouille
 libft_tester_tripouille:
