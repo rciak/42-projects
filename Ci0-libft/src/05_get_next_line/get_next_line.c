@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/25 18:56:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/01 12:24:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "get_next_line.h"
 
-static char	*st_gnl_proper(int fd, t_event *err);
 static bool	st_has_newline(char *buffer, size_t *i_nl);
 static char	*st_detach_line(char **buffer, size_t i_nl, t_event *evt);
 static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt);
@@ -44,10 +43,10 @@ char	*get_next_line(int fd)
 {
 	t_event	evt;
 
-	return (st_gnl_proper(fd, &evt));
+	return (gnl_proper(fd, &evt));
 }
 
-static char	*st_gnl_proper(int fd, t_event *evt)
+char	*gnl_proper(int fd, t_event *evt)
 {
 	char		*parcel;
 	ssize_t		bytes_read;
