@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:50:31 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/30 16:18:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_memcpy.c
- * @brief Stores the definition of ft_memcpy
+ * @brief Stores the definition of ft_memcpy()
  */
 
 #include "libft.h"

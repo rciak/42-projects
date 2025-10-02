@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:13:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 17:32:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_memchr.c
- * @brief Stores the definition of ft_memchr
+ * @brief Stores the definition of ft_memchr()
  */
 
 #include "libft.h"

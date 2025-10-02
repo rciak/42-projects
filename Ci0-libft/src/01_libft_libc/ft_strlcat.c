@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:52:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/30 14:24:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_strlcat.c
- * @brief Stores the definition of ft_strlcat
+ * @brief Stores the definition of ft_strlcat()
  */
 
 #include "libft.h"

@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 22:45:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/15 12:59:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:06:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_putendl_fd.c
- * @brief Stores the definition of ft_putendl_fd
+ * @brief Stores the definition of ft_putendl_fd()
  */
 
 #include "libft.h"

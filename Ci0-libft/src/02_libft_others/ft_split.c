@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:43:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/24 21:39:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:06:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_split.c
- * @brief Stores the definition of ft_split
+ * @brief Stores the definition of ft_split()
  */
 
 #include "libft.h"

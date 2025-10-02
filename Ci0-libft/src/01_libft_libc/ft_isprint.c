@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 11:31:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 21:51:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_isprint.c
- * @brief Stores the definition of ft_isprint
+ * @brief Stores the definition of ft_isprint()
  */
 
 #include "libft.h"

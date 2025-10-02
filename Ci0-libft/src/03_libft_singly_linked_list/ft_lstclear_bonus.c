@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:05:55 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/26 07:57:02 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:08:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_lstclear_bonus.c
- * @brief Stores the definition of ft_lstclear
+ * @brief Stores the definition of ft_lstclear()
  */
 
 #include "libft.h"

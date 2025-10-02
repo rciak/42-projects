@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:36:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/30 19:43:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:08:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_lstmap_bonus.c
- * @brief Stores the definition of ft_lstmap
+ * @brief Stores the definition of ft_lstmap()
  */
 
 #include "libft.h"

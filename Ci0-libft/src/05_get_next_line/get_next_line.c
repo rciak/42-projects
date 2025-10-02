@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/01 12:24:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:09:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file get_next_line.c
- * @brief Stores the definition of get_next_line() and st_gnl_proper()
+ * @brief Stores the definition of get_next_line() and gnl_proper()
  */
 
 #include "get_next_line.h"

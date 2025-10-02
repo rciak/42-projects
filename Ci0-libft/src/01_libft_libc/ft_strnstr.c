@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:22:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/13 11:42:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_strnstr.c
- * @brief Stores the definition of ft_strnstr
+ * @brief Stores the definition of ft_strnstr()
  */
 
 #include "libft.h"

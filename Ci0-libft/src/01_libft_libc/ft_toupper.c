@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 22:05:02 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/11 21:53:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_toupper.c
- * @brief Stores the definition of ft_toupper
+ * @brief Stores the definition of ft_toupper()
  */
 
 #include "libft.h"

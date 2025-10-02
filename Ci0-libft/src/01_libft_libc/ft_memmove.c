@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:51:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/30 16:18:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_memmove.c
- * @brief Stores the definition of ft_memmove
+ * @brief Stores the definition of ft_memmove()
  */
 
 #include "libft.h"

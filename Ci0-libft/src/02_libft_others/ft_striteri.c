@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:48:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/19 19:12:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:06:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_striteri.c
- * @brief Stores the definition of ft_striteri
+ * @brief Stores the definition of ft_striteri()
  */
 
 #include "libft.h"

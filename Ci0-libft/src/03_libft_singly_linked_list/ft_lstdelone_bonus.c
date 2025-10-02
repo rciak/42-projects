@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 15:26:18 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/26 07:57:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:08:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_lstdelone_bonus.c
- * @brief Stores the definition of ft_lstdelone
+ * @brief Stores the definition of ft_lstdelone()
  */
 
 #include "libft.h"

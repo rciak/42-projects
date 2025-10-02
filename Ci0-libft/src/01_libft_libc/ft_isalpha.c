@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:42:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/25 13:30:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:05:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_isalpha.c
- * @brief Stores the definition of ft_isalpha
+ * @brief Stores the definition of ft_isalpha()
  */
 
 #include "libft.h"

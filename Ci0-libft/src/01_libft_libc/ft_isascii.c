@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:43:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/25 11:38:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:17:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_isascii.c
- * @brief Stores the definition of isascii
+ * @brief Stores the definition of ft_isascii()
  */
 
 #include "libft.h"

@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:19:50 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/26 07:57:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:08:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_lstnew_bonus.c
- * @brief Stores the definition of ft_lstnew
+ * @brief Stores the definition of ft_lstnew()
  */
 
 #include "libft.h"

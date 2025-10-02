@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 12:50:18 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/30 16:11:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:04:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_strdup.c
- * @brief Stores the definition of ft_strdup
+ * @brief Stores the definition of ft_strdup()
  */
 
 #include "libft.h"

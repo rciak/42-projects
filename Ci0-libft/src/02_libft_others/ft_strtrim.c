@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 18:26:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/15 10:06:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:06:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_strtrim.c
- * @brief Stores the definition of ft_strtrim
+ * @brief Stores the definition of ft_strtrim()
  */
 
 #include "libft.h"

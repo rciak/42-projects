@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 08:54:05 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/26 07:56:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:08:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_lstadd_front_bonus.c
- * @brief Stores the definition of ft_lstadd_front
+ * @brief Stores the definition of ft_lstadd_front()
  */
 
 #include "libft.h"

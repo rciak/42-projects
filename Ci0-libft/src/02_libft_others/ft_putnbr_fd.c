@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 13:35:13 by reciak            #+#    #+#             */
-/*   Updated: 2025/06/12 11:21:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:06:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_putnbr_fd.c
- * @brief Stores the definition of ft_putnbr_fd
+ * @brief Stores the definition of ft_putnbr_fd()
  */
 
 #include "libft.h"

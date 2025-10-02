@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:51:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/27 20:44:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:06:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_substr.c
- * @brief Stores the definition of ft_substr
+ * @brief Stores the definition of ft_substr()
  */
 
 #include "libft.h"

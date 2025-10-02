@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:24:15 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/25 12:56:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:05:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_calloc.c
- * @brief Stores the definition of ft_calloc
+ * @brief Stores the definition of ft_calloc()
  */
 
 #include "libft.h"

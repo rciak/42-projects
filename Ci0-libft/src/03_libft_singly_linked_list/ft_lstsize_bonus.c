@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:20:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/26 07:58:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:08:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_lstsize_bonus.c
- * @brief Stores the definition of ft_lstsize
+ * @brief Stores the definition of ft_lstsize()
  */
 
 #include "libft.h"

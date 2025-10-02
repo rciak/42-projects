@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 07:37:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/05/21 08:44:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:06:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_itoa.c
- * @brief Stores the definition of ft_itoa
+ * @brief Stores the definition of ft_itoa()
  */
 
 #include "libft.h"

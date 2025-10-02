@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 12:40:17 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/14 16:24:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 19:05:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file ft_strcmp.c
- * @brief Stores the definition of ft_strcmp, implemented during Piscine
+ * @brief Stores the definition of ft_strcmp(), implemented during Piscine
  *        and copied here and slightly adopted an commented on 14.08.2025.
  */
 
