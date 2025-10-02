@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by reciak            #+#    #+#              #
-#    Updated: 2025/10/02 16:23:45 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/02 18:20:37 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,9 +87,22 @@ update_INCS__SRCS__SRCS_BONUS:
 
 .PHONY: show_vars
 show_vars:
-	@echo "CFLAGS:     |$(CFLAGS)|"
-	@echo "OBJ_DIR:    |$(OBJ_DIR)|"
-	@echo "SRCS:       |$(SRCS)|"
-	@echo "OBJS:       |$(OBJS)|"
-	@echo "SRCS_BONUS: |$(SRCS_BONUS)|"
-	@echo "OBJS_BONUS: |$(OBJS_BONUS)|"
+	@echo "CFLAGS                    |$(CFLAGS)|"
+	@echo "OBJ_DIR                   |$(OBJ_DIR)|"
+	@echo "SRCS                      |$(SRCS)|"
+	@echo "OBJS                      |$(OBJS)|"
+	@echo "SRCS_BONUS                |$(SRCS_BONUS)|"
+	@echo "OBJS_BONUS                |$(OBJS_BONUS)|"
+	@echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+	@echo "TEST_DIR                  |$(TEST_DIR)|"
+	@echo "DOC_DIR                   |$(DOC_DIR)|"
+	@echo "DOXYFILE                  |$(DOXYFILE)|"
+	@echo "SED_PROJECT_NAME          |$(SED_PROJECT_NAME)|"
+	@echo "SED_OUTPUT_DIRECTORY      |$(SED_OUTPUT_DIRECTORY)|"
+	@echo "SED_OPTIMIZE_OUTPUT_FOR_C |$(SED_OPTIMIZE_OUTPUT_FOR_C)|"
+	@echo "SED_SOURCE_BROWSER        |$(SED_SOURCE_BROWSER)|"
+	@echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+	@echo "DEBUG_LAUB_SAN            |$(DEBUG_LAUB_SAN)|"
+	@echo "DEBUG_M_SAN               |$(DEBUG_M_SAN)|"
+	@echo "DEBUG_VALGRIND            |$(DEBUG_VALGRIND)|"
+	@echo "VERBOSITY                 |$(VERBOSITY)|"

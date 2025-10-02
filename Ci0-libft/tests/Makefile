@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/01 19:35:24 by reciak            #+#    #+#              #
-#    Updated: 2025/10/01 22:08:06 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/02 18:12:31 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,3 +94,23 @@ remove_testers:
 	rm -fr $(BASE_DIR)/$(LIBFT_TESTER_DIR)
 	rm -fr $(BASE_DIR)/$(PRINTF_TESTER_DIR)
 	rm -fr $(BASE_DIR)/$(GNL_TESTER_DIR)
+
+.PHONY: help
+help: show_vars
+
+.PHONY: show_vars
+show_vars:
+	@echo "BASE_DIR            |$(BASE_DIR)|"
+	@echo "CR_TEST_DIR         |$(CR_TEST_DIR)|"
+	@echo "GNL_ORI_DIR         |$(GNL_ORI_DIR)|"
+	@echo "GNL_COPY_DIR        |$(GNL_COPY_DIR)|"
+	@echo "GNL_TESTER_DIR      |$(GNL_TESTER_DIR)|"
+	@echo "LIBFT_TESTER_DIR    |$(LIBFT_TESTER_DIR)|"
+	@echo "PRINTF_TESTER_DIR   |$(PRINTF_TESTER_DIR)|"
+	@echo "GNL_HEADER_ORI_LOC  |$(GNL_HEADER_ORI_LOC)|"
+	@echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "
+	@echo "DEBUG_LAUB_SAN      |$(DEBUG_LAUB_SAN)|"
+	@echo "DEBUG_M_SAN         |$(DEBUG_M_SAN)|"
+	@echo "DEBUG_VALGRIND      |$(DEBUG_VALGRIND)|"
+	@echo "VERBOSITY           |$(VERBOSITY)|"
+
