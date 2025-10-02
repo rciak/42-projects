@@ -6,15 +6,13 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/26 11:30:19 by reciak            #+#    #+#              #
-#    Updated: 2025/09/11 15:27:02 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/02 16:23:45 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include Makefile
 
-TEST_ORIGIN=https://github.com/rciak/$(TEST_DIR).git
-TEST_DIR:=42-eva-lua
-TEST_SUBDIR:=Ci0-libft-crtests
+TEST_DIR:=tests
 
 DOC_DIR:=doc
 DOXYFILE=$(DOC_DIR)/autogen_Doxyfile
@@ -27,33 +25,13 @@ SED_SOURCE_BROWSER=       SOURCE_BROWSER         = YES
 ################################################################################
 # TEST RULES                                                                   #
 ################################################################################
-CLONE_IF_NOT_THERE=\
-	@if [ -d $(TEST_DIR) ]; then \
-	  echo "Directory $(TEST_DIR) already exists.\
-	        For cloning freshly delete it first with:";\
-	  echo "make testfclean"; \
-	else \
-	  git clone $(TEST_ORIGIN); \
-	fi
+.PHONY: testsall
+testsall: $(TEST_DIR)
+	@make -C $(TEST_DIR) all
 
-.PHONY: install_test
-install_test:
-	$(CLONE_IF_NOT_THERE)
-
-$(TEST_DIR):
-	$(CLONE_IF_NOT_THERE)
-
-.PHONY: unit-tests
-unit-tests: $(TEST_DIR)
-	make -C $(TEST_DIR)/$(TEST_SUBDIR)
-
-.PHONY: testfclean
-testfclean:
-	rm -fr $(TEST_DIR)
-
-.PHONY: https_autentifcation_to_ssh_autentification
-https_autentifcation_to_ssh_autentification:
-	make -C $(TEST_DIR) $@
+.PHONY: testsfclean
+testsfclean:
+	@make -C $(TEST_DIR) fclean
 
 ################################################################################
 # DOCUMENTATION RULES                                                          #
@@ -106,10 +84,6 @@ update_INCS__SRCS__SRCS_BONUS:
 	  grep --color=none "ft_lst" | \
 	  while read found_files; do echo "$$found_files \\"; done | \
 	  sed '$$ s# \\##'
-
-.PHONY: ready_to_submit
-ready_to_submit:
-	@echo "Not implemented yet beyond this dummy version..."
 
 .PHONY: show_vars
 show_vars:
