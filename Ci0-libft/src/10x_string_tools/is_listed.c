@@ -6,12 +6,12 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 09:21:37 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/15 09:39:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 20:04:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file is_listed
+ * @file is_listed.c
  * @brief Stores the definition of is_listed()
  */
 

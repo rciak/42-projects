@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 12:55:06 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/25 12:55:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 20:13:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file calloc_uninit.c
- * @brief Stores the definition of calloc_uninit
+ * @brief Stores the definition of calloc_uninit()
  */
 
 #include "libft.h"
