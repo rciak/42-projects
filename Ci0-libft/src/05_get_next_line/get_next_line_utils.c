@@ -6,13 +6,13 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:55:03 by reciak            #+#    #+#             */
-/*   Updated: 2025/09/25 18:56:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 20:00:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file get_next_line_utils.c
- * @brief Stores the definition of utilities for get_next_line
+ * @brief Stores the definition of utilities for get_next_line()
  */
 
 #include "get_next_line.h"
@@ -83,6 +83,13 @@ void	*gnl_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
+/**
+ * @brief Complements a (get_next_line) error event (possible an error) by
+ *        a corresponding message.
+ * @param [in] event_code A named number 
+ * @return
+ *     * a t_event consisting of the event_code and a corresponding message.
+ */
 t_event	gnl_evt(int event_code)
 {
 	const t_event	event[] = {

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:54:58 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/02 19:09:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/02 20:09:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt);
 
 /**
  * @brief This is the core function of the project.
- * @note  This function is just a wrapper for st_gnl_proper, which -
+ * @note  This function is just a wrapper for gnl_proper(), which -
  *        in contrast to  get_next_line  - allows to distinguish if a returned
  *        (NULL) stands for an error or for having the file fully read.
  * @note On github there should be a version containing a `makefile` with rules
@@ -36,8 +36,8 @@ static char	*st_act_on(int evt_no, char **read_in, char **buffer, t_event *evt);
  *          have been read so often that EOF was detected by read/get_next_line!
  * @param [in] fd A file descriptor
  * @return
- *     * a pointer to the extracted line from the file associated to 
- *     * (NULL) when write has finished reading from \p fd or on error.
+ *     * a pointer to the extracted line from the file associated to \p fd
+ *     * (NULL) when write has finished reading from \p fd or on error
  */
 char	*get_next_line(int fd)
 {
@@ -46,6 +46,40 @@ char	*get_next_line(int fd)
 	return (gnl_proper(fd, &evt));
 }
 
+/**
+ * @brief A variant of get_next_line that allows to distinguish if a return 
+ *        value of (NULL) is caused by read indicating the end of file or an
+ *        error.
+ * @note  This function is just a wrapper for st_gnl_proper, which -
+ *        in contrast to  get_next_line  - allows to distinguish if a returned
+ *        (NULL) stands for an error or for having the file fully read.
+ * @note On github there should be a version containing a `makefile` with rules
+ *     * `make doc`
+ *     * `make unit-tests`
+ *     * `make DEV=1 unit-tests`
+ *     * `make DEV=1 unit-tests > /dev/null`
+ * @note **Assumption:** @code fd < MAX_NUMB_FD @endcode
+ * @warning To avoid memory leaks make sure that all files 
+ *          have been read so often that EOF was detected by read/get_next_line!
+ * @param [in] fd A file descriptor
+ * @param [out] evt Information for the caller beyond the return value.
+ *                  After gnl_proper has returned `*evt` will be set to one
+ *                  of the following values:
+ *                  @code
+GNL_FDRANGE_ERR
+GNL_LINE_ALLOC_ERR
+GNL_REM_ALLOC_ERR
+GNL_PARCEL_ALLOC_ERR
+GNL_READ_ERR
+GNL_DETACH_LINE
+GNL_EOF
+ *                  @endcode
+ *                  For details to these values cf. also gnl_evt().
+ *                  
+ * @return
+ *     * a pointer to the extracted line from the file associated to \p fd
+ *     * (NULL) when write has finished reading from \p fd or on error
+ */
 char	*gnl_proper(int fd, t_event *evt)
 {
 	char		*parcel;
