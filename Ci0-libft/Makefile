@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/10/01 17:24:41 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/02 11:20:40 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJ_DIR_BONUS := obj
 #
 CC := cc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
-RM := rm -fr
+RM_FR := rm -fr
 
 ifeq ($(DEBUG_LAUB_SAN), 1)
   CFLAGS  += -g3 -fsanitize=address,undefined,leak
@@ -161,9 +161,9 @@ $(OBJ_DIR)/%.o: %.c $(INCS) | entry_message_compile
 clean: print_libft
 	@echo 'CLEANING via rule  clean'
 	@echo '  1. Removing timestamp file (created for bonus part), if any.'
-	@$(RM) $(TIMESTAMPFILE_BONUS)
+	@$(RM_FR) $(TIMESTAMPFILE_BONUS)
 	@echo '  2. Removing object files, if any.'
-	@$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
 		: ; \
 	elif [ $(OBJ_DIR) = '.' ]; then \
@@ -171,7 +171,7 @@ clean: print_libft
 		echo '     directory that directory shall be removed, but here:'; \
 		echo '     Removing the directory . will not even been tried. ...'; \
 	else \
-		$(RM) $(OBJ_DIR); \
+		$(RM_FR) $(OBJ_DIR); \
 	fi
 	@if [ ! -d $(OBJ_DIR_BONUS) ] && [ "$(OBJ_DIR)" = "$(OBJ_DIR_BONUS)" ]; \
 	then \
@@ -181,16 +181,16 @@ clean: print_libft
 		echo '     directory that directory shall be removed, but here:'; \
 		echo '     Removing the directory . will not even been tried. ...'; \
 	else \
-		$(RM) $(OBJ_DIR_BONUS); \
+		$(RM_FR) $(OBJ_DIR_BONUS); \
 	fi
 
 .PHONY: fclean
 fclean: clean | print_libft
 	@echo 'CLEANING additional via rule  fclean'
 	@echo '  Removing $(NAME), if any.' 
-	@$(RM) $(NAME)
+	@$(RM_FR) $(NAME)
 	@echo '  Removing $(COPY_NAME), if any.' 
-	@$(RM) $(COPY_NAME)
+	@$(RM_FR) $(COPY_NAME)
 
 .PHONY: re
 re: fclean all | print_libft
