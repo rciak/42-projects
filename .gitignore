@@ -1,5 +1,13 @@
 # Own excluded stuff
-lokal_test_Ci0-libft 
+lokal_test_Ci0-libft
+Ci0-libft/tmp_build/
+Ci0-libft/.cache/
+Ci2-fractol/fractol_O3
+Ci2-push_swap/checker_linux
+Ci2-push_swap/manual_test_push_swap
+Ci2-push_swap/push_swap_visualizer/
+Ci2-push_swap/small_permutations.sh
+Ci2-push_swap/tests/
 OTHERS 
 
 # Prerequisites
