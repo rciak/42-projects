@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/02 16:11:38 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/03 16:11:38 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,11 @@ endif
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
-# update via
+# update via makefile rule (small "m" !)
 #   make update_INCS__SRCS__SRCS_BONUS
 #############################################
-include makefile_inc/def_headers.mk
-include makefile_inc/def_sources.mk
+include makefile_dir/def_headers.mk
+include makefile_dir/def_sources.mk
 #############################################
 
 .PHONY: all
