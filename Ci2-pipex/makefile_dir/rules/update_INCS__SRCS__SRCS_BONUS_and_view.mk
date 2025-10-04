@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 15:11:09 by reciak            #+#    #+#              #
-#    Updated: 2025/10/04 18:08:44 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/04 19:20:21 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,29 @@ include $(CHECK_VARIABLES)
 # To prevent getting caught in an infinite loop the -maxdepth flag is used
 MAXDEPTH := 10
 
+# Print the files $(DEF_INCS)  and  $(DEF_SRCS) after updating them
+.PHONY: update_INCS__SRCS__SRCS_BONUS_and_view
+update_INCS__SRCS__SRCS_BONUS_display:  update_INCS__SRCS__SRCS_BONUS
+	@cat $(DEF_INCS)
+	@echo
+	@cat $(DEF_SRCS)
+
 # Update the files  $(DEF_INCS)  and  $(DEF_SRCS)
 .PHONY: update_INCS__SRCS__SRCS_BONUS
-update_INCS__SRCS__SRCS_BONUS:
+update_INCS__SRCS__SRCS_BONUS:  _update_INCS  _update_SRCS__SRCS_BONUS
+
+# Update the file  $(DEF_INCS)
+.PHONY: _update_INCS
+_update_INCS:
 	@exec > $(DEF_INCS); \
 	  echo 'INCS := \'; \
 	  find $(INC_DIRS) -maxdepth $(MAXDEPTH) -name "*.h" | sort | \
 	    while read found_files; do echo "$$found_files \\"; done | \
 	    sed '$$ s# \\##'
+
+# Update the file  $(DEF_SRCS)
+.PHONY: _update_SRCS__SRCS_BONUS
+_update_SRCS__SRCS_BONUS:
 	@exec > $(DEF_SRCS); \
 	  echo 'SRCS := \' ; \
 	  find $(SRC_DIR) -maxdepth $(MAXDEPTH) -name "*.c" | sort | \
@@ -51,10 +66,3 @@ update_INCS__SRCS__SRCS_BONUS:
 	    grep --color=none "_bonus" | \
 	    while read found_files; do echo "$$found_files \\"; done | \
 	    sed '$$ s# \\##'
-
-# Prints the content of the above files after updating them
-.PHONY: update_INCS__SRCS__SRCS_BONUS_and_view
-update_INCS__SRCS__SRCS_BONUS_display:  update_INCS__SRCS__SRCS_BONUS
-	@cat $(DEF_INCS)
-	@echo
-	@cat $(DEF_SRCS)
