@@ -1,16 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    update_def_headers.mk                              :+:      :+:    :+:    #
+#    update_INCS__SRCS__SRCS_BONUS_and_view.mk          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 15:11:09 by reciak            #+#    #+#              #
-#    Updated: 2025/10/04 19:20:21 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/04 20:03:02 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-THIS_FILE := $(UPDATE_INCS)
+THIS_FILE := $(RULE_UPDATE_AND_VIEW)
 
 #
 # REMARK:
@@ -33,14 +33,14 @@ MAXDEPTH := 10
 
 # Print the files $(DEF_INCS)  and  $(DEF_SRCS) after updating them
 .PHONY: update_INCS__SRCS__SRCS_BONUS_and_view
-update_INCS__SRCS__SRCS_BONUS_display:  update_INCS__SRCS__SRCS_BONUS
+update_INCS__SRCS__SRCS_BONUS_and_view: update_INCS__SRCS__SRCS_BONUS
 	@cat $(DEF_INCS)
 	@echo
 	@cat $(DEF_SRCS)
 
 # Update the files  $(DEF_INCS)  and  $(DEF_SRCS)
 .PHONY: update_INCS__SRCS__SRCS_BONUS
-update_INCS__SRCS__SRCS_BONUS:  _update_INCS  _update_SRCS__SRCS_BONUS
+update_INCS__SRCS__SRCS_BONUS: _update_INCS _update_SRCS__SRCS_BONUS
 
 # Update the file  $(DEF_INCS)
 .PHONY: _update_INCS

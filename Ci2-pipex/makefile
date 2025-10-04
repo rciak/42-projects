@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 11:20:39 by reciak            #+#    #+#              #
-#    Updated: 2025/10/03 17:15:07 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/04 19:56:32 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ ADDITIONAL_RULES_DIR := makefile_dir/rules
 DEF_INCS        := $(MAKEFILE_INC_DIR)/def_headers.mk
 DEF_SRCS        := $(MAKEFILE_INC_DIR)/def_sources.mk
 #
-CHECK_VARIABLES := $(ADDITIONAL_RULES_DIR)/checks/check_variables.mk
-UPDATE_INCS     := $(ADDITIONAL_RULES_DIR)/update_def_headers.mk
-UPDATE_SRCS     := $(ADDITIONAL_RULES_DIR)/update_def_sources.mk
-include $(UPDATE_INCS)
-include $(UPDATE_SRCS)
+CHECK_VARIABLES      := $(ADDITIONAL_RULES_DIR)/checks/check_variables.mk
+RULE_UPDATE_AND_VIEW := \
+  $(ADDITIONAL_RULES_DIR)/update_INCS__SRCS__SRCS_BONUS_and_view.mk
+include $(RULE_UPDATE_AND_VIEW)
+
