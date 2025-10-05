@@ -6,27 +6,35 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 15:47:14 by reciak            #+#    #+#              #
-#    Updated: 2025/10/04 19:55:24 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/05 12:50:26 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+ifndef INCL_FROM_DIR
+$(error INCL_FROM_DIR must be defined by the including makefile)
+endif
+
+ifndef THIS_FILE
+$(error THIS_FILE must be defined by all files *.mk in parent directoy rules)
+endif
+
 ifndef LIBFT_DIR
-$(error LIBFT_DIR must be defined by the including makefile!)
+$(error LIBFT_DIR must be defined by the including makefile)
 endif
 
 ifndef INC_DIRS
-$(error INC_DIRS must be defined by the including makefile!)
+$(error INC_DIRS must be defined by the including makefile)
 endif
 
 ifndef DEF_INCS
-$(error DEF_INCS must be defined by the including makefile!)
+$(error DEF_INCS must be defined by the including makefile)
 endif
 
 ifndef DEF_SRCS
-$(error DEF_SRCS must be defined by the including makefile!)
+$(error DEF_SRCS must be defined by the including makefile)
 endif
 
 ifndef RULE_UPDATE_AND_VIEW
-$(error RULE_UPDATE_AND_VIEW must be defined by the including makefile!)
+$(error RULE_UPDATE_AND_VIEW must be defined by the including makefile)
 endif
 

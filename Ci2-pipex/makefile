@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 11:20:39 by reciak            #+#    #+#              #
-#    Updated: 2025/10/04 19:56:32 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/05 12:49:11 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ LIBFT_DIR := libft
 endif
 
 # Folder definitions
+INCL_FROM_DIR        := .
 MAKEFILE_INC_DIR     := makefile_dir
 ADDITIONAL_RULES_DIR := makefile_dir/rules
 
