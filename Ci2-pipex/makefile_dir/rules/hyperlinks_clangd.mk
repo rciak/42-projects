@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/05 12:22:22 by reciak            #+#    #+#              #
-#    Updated: 2025/10/05 17:10:03 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/05 17:56:07 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ CMAKELISTS        := $(INCLUDED_FROM_DIR)/CMakeLists.txt
 
 # Hopefully the following is not total bullshit ... (no clue about cmake ...)
 .PHONY: hyperlinks_clangd
-hyperlinks_clangd: _abort_if_cmakelists provide_cmakelists
+hyperlinks_clangd: _abort_if_cmakelists _provide_cmakelists
 	@mkdir -p $(HYCL_TMP_DIR)
 	@echo 'Calling CMake ...'
 	@cmake $(GENERATE_FOI_FLAG) $(INCLUDED_FROM_DIR) -B $(HYCL_TMP_DIR) \
@@ -61,8 +61,8 @@ _abort_if_cmakelists:
 		exit -1; \
 	fi
 
-.PHONY: provide_cmakelists
-provide_cmakelists:
+.PHONY: _provide_cmakelists
+_provide_cmakelists:
 	@exec > $(CMAKELISTS); \
 		echo 'cmake_minimum_required(VERSION 3.10)'; \
 		echo 'project(Dummy_Projectname)'; \
