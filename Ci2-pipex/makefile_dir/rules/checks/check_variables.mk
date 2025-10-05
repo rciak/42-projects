@@ -6,12 +6,12 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 15:47:14 by reciak            #+#    #+#              #
-#    Updated: 2025/10/05 12:50:26 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/05 12:56:38 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-ifndef INCL_FROM_DIR
-$(error INCL_FROM_DIR must be defined by the including makefile)
+ifndef INCLUDED_FROM_DIR
+$(error INCLUDED_FROM_DIR must be defined by the including makefile)
 endif
 
 ifndef THIS_FILE

@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 11:20:39 by reciak            #+#    #+#              #
-#    Updated: 2025/10/05 12:49:11 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/05 12:57:06 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBFT_DIR := libft
 endif
 
 # Folder definitions
-INCL_FROM_DIR        := .
+INCLUDED_FROM_DIR    := .
 MAKEFILE_INC_DIR     := makefile_dir
 ADDITIONAL_RULES_DIR := makefile_dir/rules
 
@@ -36,8 +36,10 @@ ADDITIONAL_RULES_DIR := makefile_dir/rules
 DEF_INCS        := $(MAKEFILE_INC_DIR)/def_headers.mk
 DEF_SRCS        := $(MAKEFILE_INC_DIR)/def_sources.mk
 #
-CHECK_VARIABLES      := $(ADDITIONAL_RULES_DIR)/checks/check_variables.mk
-RULE_UPDATE_AND_VIEW := \
+CHECK_VARIABLES        := $(ADDITIONAL_RULES_DIR)/checks/check_variables.mk
+RULE_HYPERLINKS_CLANGD := $(ADDITIONAL_RULES_DIR)/hyperlinks_clangd.mk
+RULE_UPDATE_AND_VIEW   := \
   $(ADDITIONAL_RULES_DIR)/update_INCS__SRCS__SRCS_BONUS_and_view.mk
+include $(RULE_HYPERLINKS_CLANGD)
 include $(RULE_UPDATE_AND_VIEW)
 
