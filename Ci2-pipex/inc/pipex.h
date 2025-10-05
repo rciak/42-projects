@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/02 10:34:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/05 17:47:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@
 enum e_pipex_errors
 {
 	ERR_NONE,
-	ERR_ARG,
-	ERR_ATOF_STRICT,
+	ERR_OVERFLOW,
 };
 
 /////////////////////////
@@ -68,6 +67,14 @@ typedef struct s_all
 ////////////////////////////////////////////////
 
 // *.c
-int		main(int argc, char **argv);
+int				main(int argc, char **argv, char **envp);
+t_err			error(int error_code);
 
+// subdir/*.c
+void			hello(void);
+void			bye(void);
+
+// subdir/*.c
+unsigned int	add_with_overflow_indicator(
+					unsigned int a, unsigned int b, t_err *err);
 #endif
