@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 15:47:14 by reciak            #+#    #+#              #
-#    Updated: 2025/10/05 12:56:38 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/06 18:31:01 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,14 @@ endif
 
 ifndef DEF_SRCS
 $(error DEF_SRCS must be defined by the including makefile)
+endif
+
+ifndef RULE_HYPERLINKS_CLANGD
+$(error RULE_HYPERLINKS_CLANGD must be defined by the including makefile)
+endif
+
+ifndef RULE_DOCUMENTATION
+$(error RULE_RULE_DOCUMENTATION must be defined by the including makefile)
 endif
 
 ifndef RULE_UPDATE_AND_VIEW
