@@ -6,10 +6,9 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/05 12:22:22 by reciak            #+#    #+#              #
-#    Updated: 2025/10/05 17:56:07 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/06 18:25:16 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 THIS_FILE := $(RULE_HYPERLINKS_CLANGD)
 
