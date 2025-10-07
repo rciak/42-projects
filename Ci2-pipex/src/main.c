@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/05 17:48:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/06 16:25:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@ static	bool	verbose__add(unsigned int a, unsigned int b, t_err *err);
 /**
  * @brief The entry point and dirigent for the pipex programm ...
  * @note A note 
- * @note A yes: run
+ * @note For building the documentation from comment blocks like this one run
  *         make doc; open doc/html/index.html
- * @param[in]  argc The number of arguments handed over by the calling shell
+ * @param[in] argc The number of arguments handed over by the calling shell
  * @param[in] argv argv[0], argv[1], ... argv[argc - 1] are pointers to strings
  *                  containing the programms name and the command-line arguments
  *                  passed to the program.
  * @param[in] envp Well similar but for the environment variables.
- * @return 
- *          * 
- *          * 
+ * @return a return code indicating success or an error.
  */
 int	main(int argc, char **argv, char**envp)
 {
