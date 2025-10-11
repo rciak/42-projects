@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/06 16:25:20 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/11 11:07:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <stdio.h>                                           // Forbidden function...
 
 static	bool	verbose__add(unsigned int a, unsigned int b, t_err *err);
+static	void	handle__error(t_err err);
+static	void	print__numbers_and_their_max(int a, int b);
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -36,19 +38,16 @@ int	main(int argc, char **argv, char**envp)
 {
 	t_err	err;
 
-	err = error(ERR_NONE);
 	(void) argc;
 	(void) argv;
 	(void) envp;
+	err = error(ERR_NONE);
 	hello();
+	print__numbers_and_their_max(1, -3);
 	if (verbose__add(1, UINT_MAX - 1, &err) == false)
-		ft_putstr_fd("main --> stderr: Something wrong. \n\n", STDERR_FILENO);
-	else
-		ft_putstr_fd("main --> stdout: Ok. \n\n", STDOUT_FILENO);
+		return (handle__error(err), err.code);
 	if (verbose__add(1, UINT_MAX, &err) == false)
-		ft_putstr_fd("main --> stderr: Something wrong. \n\n", STDERR_FILENO);
-	else
-		ft_putstr_fd("main --> stdout: Ok. \n\n", STDOUT_FILENO);
+		return (handle__error(err), err.code);
 	bye();
 	return (err.code);
 }
@@ -58,6 +57,7 @@ static	bool	verbose__add(unsigned int a, unsigned int b, t_err *err)
 	unsigned int	sum;
 	bool			re_val;
 
+	printf("------------------------ verbose__add -------------------------\n");
 	sum = add_with_overflow_indicator(a, b, err);
 	if (err->code == ERR_NONE)
 		re_val = true;
@@ -66,9 +66,34 @@ static	bool	verbose__add(unsigned int a, unsigned int b, t_err *err)
 	printf("a:         %u\n", a);
 	printf("b:         %u\n", b);
 	printf("sum:       %u\n", sum);
-	printf("err->code: %d\n", err->code);
-	printf("err->msg:  %s\n", err->msg);
-	printf("re_val:    %d\n", re_val);
-	printf("Well the rest is left to main ...\n");
+	if (re_val == true)
+		printf("re_val:    true\n");
+	else
+		printf("re_val:    false\n");
+	fprintf(stderr, "err->code: %d\n", err->code);
+	fprintf(stderr, "err->msg:  %s\n", err->msg);
+	printf("The error checking and handling is left to main where lives err\n");
+	printf("\n");
 	return (re_val);
+}
+
+static	void	handle__error(t_err err)
+{
+	printf("------------------------ handle__error ------------------------\n");
+	fprintf(stderr, "Error!\n");
+	fprintf(stderr, "   Code:      %d\n", err.code);
+	fprintf(stderr, "   Message:   %s\n", err.msg);
+	fprintf(stderr, "Error handling,\n");
+	fprintf(stderr, "   freeing,\n");
+	fprintf(stderr, "   closing filedescriptors,\n");
+	fprintf(stderr, "   ...\n");
+}
+
+static	void	print__numbers_and_their_max(int a, int b)
+{
+	printf("------------------------ print__numbers_and_their_max ---------\n");
+	printf("a:             %d\n", a);
+	printf("b:             %d\n", b);
+	printf("The bigger is: %d\n", buggy_max(a, b));
+	printf("\n");
 }

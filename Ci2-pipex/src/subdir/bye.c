@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 17:35:19 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/05 17:39:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/11 10:05:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@
  */
 void	bye(void)
 {
-	write(STDOUT_FILENO, "Goodbye!\n", ft_strlen("Goodbye!\n"));
+	write(STDOUT_FILENO, "\nGoodbye!\n", ft_strlen("\nGoodbye!\n"));
 }
