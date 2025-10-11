@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 11:36:22 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 12:46:04 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 15:27:46 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,4 +29,4 @@ include $(CHECK_VARIABLES)
 
 .PHONY: tests
 tests:
-	@make -C $(TESTS_DIR)
+	@$(MAKE) -C $(TESTS_DIR) LIBFT_DIR=$(LIBFT_DIR) run_all

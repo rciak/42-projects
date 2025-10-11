@@ -6,15 +6,20 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 12:35:02 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 14:16:39 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 15:42:21 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+BASEDIR := ..
 TEST_NAME := TESTS pipex
 
-CC := clang
-CFLAGS := -g3
-LDFLAGS := -lcriterion
+ifdef LIBFT_DIR
+LIBFT_DIR := $(BASEDIR)/$(LIBFT_DIR)
+else
+$(info Undefined: LIBFT_DIR)
+$(info Trying:    LIBFT_DIR:=$(BASEDIR)/libft)
+LIBFT_DIR := $(BASEDIR)/libft
+endif
 
 TEST_BINS := \
 	typo_a \
@@ -22,6 +27,10 @@ TEST_BINS := \
 	test_wuff
 
 TEST_BINS := $(addprefix ./,$(TEST_BINS))
+
+CC := clang
+CFLAGS := -g3
+LDFLAGS := -lcriterion -lft -L $(LIBFT_DIR)
 
 .PHONY: all
 all: print_test_banner $(TEST_BINS)
@@ -48,12 +57,12 @@ run_all: print_test_banner $(TEST_BINS)
 .PHONY: re
 re: fclean all
 
-.PHONY: clean
+.PHONY: print_test_banner clean
 clean:
 	rm -fr $(TEST_BINS)
 
 .PHONY: fclean
-fclean: clean
+fclean: print_test_banner clean
 
 ################################################################################
 # PRINTING RULES                                                               #
