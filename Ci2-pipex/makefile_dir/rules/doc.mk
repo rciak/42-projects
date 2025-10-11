@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/06 18:24:11 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 12:34:00 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 14:26:22 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ SED_INPUT=                INPUT                  = $(DOXY_IN_DIRS)
 SED_RECURSIVE=            RECURSIVE              = YES
 SED_OPTIMIZE_OUTPUT_FOR_C=OPTIMIZE_OUTPUT_FOR_C  = YES
 SED_SOURCE_BROWSER=       SOURCE_BROWSER         = YES
-
 
 $(DOXY_OUT_DIR): $(SRCS) $(SRCS_BONUS) $(INCS)
 	@mkdir -p $(DOXY_OUT_DIR)
