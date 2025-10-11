@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_miau.c                                        :+:      :+:    :+:   */
+/*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/11 15:58:01 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/11 16:47:39 by reciak           ###   ########.fr       */
+/*   Created: 2025/10/11 16:06:01 by reciak            #+#    #+#             */
+/*   Updated: 2025/10/11 16:19:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
-
-int	main(void)
-{
-	ft_putstr_fd("Hello World!\n", STDOUT_FILENO);
-	return (0);
-}
+#include <criterion/criterion.h>
+#include <criterion/redirect.h>
+#include <criterion/new/assert.h>
+#include "libft.h"
