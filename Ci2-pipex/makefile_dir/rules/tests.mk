@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 11:36:22 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 15:27:46 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 15:50:21 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,4 +29,6 @@ include $(CHECK_VARIABLES)
 
 .PHONY: tests
 tests:
+	@echo 'Handing over Makefile Variable'
+	@echo '  LIBFT_DIR: $(LIBFT_DIR)'
 	@$(MAKE) -C $(TESTS_DIR) LIBFT_DIR=$(LIBFT_DIR) run_all
