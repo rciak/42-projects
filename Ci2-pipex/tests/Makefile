@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 12:35:02 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 21:55:04 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 22:28:39 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,9 @@ test_% : test_%.c $(SRCS_REBASED_HERE_NO_MAIN) | entry_message_compile
 .PHONY: run_all
 run_all: print_test_banner  all
 	-@for f in $(TEST_BINS); do \
+		echo "$$f"; \
 		$$f; \
+		echo; \
 	done
 
 .PHONY: re
