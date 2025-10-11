@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 12:35:02 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 20:59:11 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 21:46:05 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,14 @@ DEF_SRCS := makefile_dir/def_sources.mk
 endif
 DEF_SRCS_REBASED_HERE := $(addprefix $(BASEDIR)/,$(DEF_SRCS))
 
-#Defines the Var SRCS (hopefully) i.e. the sources of the ro be tested programm
+#Defines the Var SRCS (hopefully) i.e. the sources of the to be tested programm
 include $(DEF_SRCS_REBASED_HERE)
-$(info DEF_SRCS_REBASED_HERE: $(DEF_SRCS_REBASED_HERE))
-$(info SRCS: $(SRCS))
 SRCS_REBASED_HERE := $(addprefix $(BASEDIR)/,$(SRCS))
-$(info SRCS_REBASED_HERE: $(SRCS_REBASED_HERE))
+SRCS_REBASED_HERE_NO_MAIN := $(filter-out %main.c,$(SRCS_REBASED_HERE))
+
+$(info DEF_SRCS_REBASED_HERE: $(DEF_SRCS_REBASED_HERE))
+$(info SRCS (from include): $(SRCS))
+$(info SRCS_REBASED_HERE: $(SRCS_REBASED_HERE_NO_MAIN))
 
 TEST_BINS := \
 	typo_a \
@@ -66,8 +68,8 @@ all: print_test_banner $(TEST_BINS)
 
 #Notes that SRCS might be handed over as SHELL variable from the calling mother
 #Makefile, i.e. it might be kinda writeprotected (unless "override" is used)!
-test_% : test_%.c $(SRCS_REBASED_HERE) | entry_message_compile
-	@$(CC) $(CFLAGS) $(SRCS_REBASED_HERE) $< $(LDFLAGS) -o $@
+test_% : test_%.c $(SRCS_REBASED_HERE_NO_MAIN) | entry_message_compile
+	@$(CC) $(CFLAGS) $< $(SRCS_REBASED_HERE_NO_MAIN) $(LDFLAGS) -o $@
 	@echo '  $<'
 
 .PHONY: run_all
