@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 11:36:22 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 17:36:16 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 19:22:50 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,4 +32,8 @@ tests:
 	@echo 'Handing over Makefile Variables'
 	@echo '  LIBFT_DIR: $(LIBFT_DIR)'
 	@echo '  INC_DIRS: $(INC_DIRS)'
-	@$(MAKE) -C $(TESTS_DIR) LIBFT_DIR=$(LIBFT_DIR) INC_DIRS="$(INC_DIRS)" run_all
+	@$(MAKE) -C $(TESTS_DIR) \
+		LIBFT_DIR=$(LIBFT_DIR) \
+		INC_DIRS='$(INC_DIRS)' \
+		DEF_SRCS='$(DEF_SRCS)' \
+		run_all

@@ -6,10 +6,11 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 12:35:02 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 17:42:16 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 20:59:11 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+SHELL := /bin/bash  #needed for the process substituion >(...) in rule run_all
 BASEDIR := ..
 TEST_NAME := TESTS pipex
 
@@ -19,11 +20,28 @@ $(info Undefined: LIBFT_DIR)
 $(info Trying:    LIBFT_DIR:=libft)
 LIBFT_DIR := libft
 endif
+LIBFT_DIR_REBASED_HERE := $(BASEDIR)/$(LIBFT_DIR)
+#
 ifndef INC_DIRS
 $(info Undefined: INC_DIRS)
 $(info Trying:    INC_DIRS:=libft/inc inc)
-INC_DIRS := libft/inc inc
+INC_DIRS := libft/inc  inc
 endif
+INC_DIRS_REBASED_HERE := $(addprefix $(BASEDIR)/,$(INC_DIRS))
+#
+ifndef DEF_SRCS
+$(info Undefined: DEF_SRCS)
+$(info Trying:    DEF_SRCS:=makefile_dir/def_sources.mk)
+DEF_SRCS := makefile_dir/def_sources.mk
+endif
+DEF_SRCS_REBASED_HERE := $(addprefix $(BASEDIR)/,$(DEF_SRCS))
+
+#Defines the Var SRCS (hopefully) i.e. the sources of the ro be tested programm
+include $(DEF_SRCS_REBASED_HERE)
+$(info DEF_SRCS_REBASED_HERE: $(DEF_SRCS_REBASED_HERE))
+$(info SRCS: $(SRCS))
+SRCS_REBASED_HERE := $(addprefix $(BASEDIR)/,$(SRCS))
+$(info SRCS_REBASED_HERE: $(SRCS_REBASED_HERE))
 
 TEST_BINS := \
 	typo_a \
@@ -33,8 +51,8 @@ TEST_BINS := \
 TEST_BINS := $(addprefix ./,$(TEST_BINS))
 
 CC := clang
-CFLAGS := -g3 $(addprefix -I$(BASEDIR)/,$(INC_DIRS))
-LDFLAGS := -lcriterion -lft -L $(BASEDIR)/$(LIBFT_DIR)
+CFLAGS := -g3 $(addprefix -I,$(INC_DIRS_REBASED_HERE))
+LDFLAGS := -lcriterion -lft -L $(LIBFT_DIR_REBASED_HERE)
 
 .PHONY: all
 all: print_test_banner $(TEST_BINS)
@@ -46,16 +64,16 @@ all: print_test_banner $(TEST_BINS)
 	@echo '  make run_all'
 	@echo
 
-test_% : test_%.c | entry_message_compile
-	@$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
+#Notes that SRCS might be handed over as SHELL variable from the calling mother
+#Makefile, i.e. it might be kinda writeprotected (unless "override" is used)!
+test_% : test_%.c $(SRCS_REBASED_HERE) | entry_message_compile
+	@$(CC) $(CFLAGS) $(SRCS_REBASED_HERE) $< $(LDFLAGS) -o $@
 	@echo '  $<'
 
 .PHONY: run_all
-run_all: print_test_banner $(TEST_BINS) 
-	@for f in $(TEST_BINS); do \
-		echo "Executing $$f"; \
-		bash -c "$$f"; \
-		echo; \
+run_all: print_test_banner  all
+	-@for f in $(TEST_BINS); do \
+		$$f --color=always 2> >(sed "s+$$+   <--   $$f+" >&2); \
 	done
 
 .PHONY: re
