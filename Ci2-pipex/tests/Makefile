@@ -6,11 +6,10 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 12:35:02 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 21:46:05 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 21:55:04 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SHELL := /bin/bash  #needed for the process substituion >(...) in rule run_all
 BASEDIR := ..
 TEST_NAME := TESTS pipex
 
@@ -40,10 +39,6 @@ DEF_SRCS_REBASED_HERE := $(addprefix $(BASEDIR)/,$(DEF_SRCS))
 include $(DEF_SRCS_REBASED_HERE)
 SRCS_REBASED_HERE := $(addprefix $(BASEDIR)/,$(SRCS))
 SRCS_REBASED_HERE_NO_MAIN := $(filter-out %main.c,$(SRCS_REBASED_HERE))
-
-$(info DEF_SRCS_REBASED_HERE: $(DEF_SRCS_REBASED_HERE))
-$(info SRCS (from include): $(SRCS))
-$(info SRCS_REBASED_HERE: $(SRCS_REBASED_HERE_NO_MAIN))
 
 TEST_BINS := \
 	typo_a \
@@ -75,7 +70,7 @@ test_% : test_%.c $(SRCS_REBASED_HERE_NO_MAIN) | entry_message_compile
 .PHONY: run_all
 run_all: print_test_banner  all
 	-@for f in $(TEST_BINS); do \
-		$$f --color=always 2> >(sed "s+$$+   <--   $$f+" >&2); \
+		$$f; \
 	done
 
 .PHONY: re
