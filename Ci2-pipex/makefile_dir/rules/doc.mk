@@ -6,9 +6,19 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/06 18:24:11 by reciak            #+#    #+#              #
-#    Updated: 2025/10/06 19:38:39 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 12:34:00 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#
+# REMARK:
+#
+#   This files shall be included from the makefile (small "m" !) in the
+#   base directory (likely the grandparent directory of this file's folder)
+#
+#   This calling makefile shall define the variables named exactly like
+#   in the subsequent checks:
+#
 
 THIS_FILE := $(RULE_DOCUMENTATION)
 
