@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:33:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/05 17:39:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/11 22:12:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@
  */
 void	hello(void)
 {
-	write(STDOUT_FILENO, "Hello World!\n\n", 15);
+	write(STDOUT_FILENO, "Hello World!\n\n", ft_strlen("Hello World!\n\n"));
 }
