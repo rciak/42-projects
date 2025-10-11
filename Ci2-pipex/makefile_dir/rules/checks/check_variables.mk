@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 15:47:14 by reciak            #+#    #+#              #
-#    Updated: 2025/10/06 19:11:27 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 12:45:24 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,10 @@ ifndef INC_DIRS
 $(error INC_DIRS must be defined by the including makefile)
 endif
 
+ifndef TESTS_DIR
+$(error TESTS_DIR must be defined by the including makefile)
+endif
+
 #
 # Checking of local paths to files
 #
@@ -52,6 +56,10 @@ endif
 
 ifndef RULE_DOCUMENTATION
 $(error file path RULE_RULE_DOCUMENTATION not defined by the including makefile)
+endif
+
+ifndef RULE_TESTS
+$(error file path RULE_TESTS not defined by the including makefile)
 endif
 
 ifndef RULE_UPDATE_AND_VIEW

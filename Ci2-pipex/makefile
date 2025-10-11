@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 11:20:39 by reciak            #+#    #+#              #
-#    Updated: 2025/10/06 18:34:56 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/11 12:50:38 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,23 @@ endif
 INCLUDED_FROM_DIR    := .
 MAKEFILE_INC_DIR     := makefile_dir
 ADDITIONAL_RULES_DIR := makefile_dir/rules
+TESTS_DIR            := tests
 
 # Files containing Variable Definitions (updatable, see above REMARK 2)
 DEF_INCS        := $(MAKEFILE_INC_DIR)/def_headers.mk
 DEF_SRCS        := $(MAKEFILE_INC_DIR)/def_sources.mk
-#
+
+# File with the checks of variables to somewhat safeguard the below inclusions
+# at least if the uncluded files themselve include this rule:
 CHECK_VARIABLES        := $(ADDITIONAL_RULES_DIR)/checks/check_variables.mk
+
+# Include Rules
 RULE_HYPERLINKS_CLANGD := $(ADDITIONAL_RULES_DIR)/hyperlinks_clangd.mk
-RULE_DOCUMENTATION     := $(ADDITIONAL_RULES_DIR)/doc.mk
 RULE_UPDATE_AND_VIEW   := \
   $(ADDITIONAL_RULES_DIR)/update_INCS__SRCS__SRCS_BONUS_and_view.mk
+RULE_DOCUMENTATION     := $(ADDITIONAL_RULES_DIR)/doc.mk
+RULE_TESTS             := $(ADDITIONAL_RULES_DIR)/tests.mk
 include $(RULE_HYPERLINKS_CLANGD)
-include $(RULE_DOCUMENTATION)
 include $(RULE_UPDATE_AND_VIEW)
-
+include $(RULE_DOCUMENTATION)
+include $(RULE_TESTS)
