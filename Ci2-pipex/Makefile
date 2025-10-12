@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 19:43:42 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/12 20:00:45 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ include makefile_dir/def_sources.mk
 all: _print_banner $(NAME)
 $(NAME): $(OBJS) $(LIBFT)
 	@make --quiet _libft_archive_provided
-	@echo 'Linking object files and libraries ...'
+	@echo 'LINKING object files and libraries ...'
 	$(LINK_COMMAND)
 	@echo '  --> $(NAME)'
 
@@ -82,10 +82,10 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 
 .PHONY: clean
 clean: _print_banner
-	@echo 'CLEANING via rule  clean'
-	@echo '  1. Removing timestamp file (created for bonus part), if any.'
+	@echo 'CLEANING (clean)'
+	@echo '  Removing timestamp file (created for bonus part), if any.'
 	@$(RM_FR) $(TIMESTAMPFILE_BONUS)
-	@echo '  2. Removing object files, if any.'
+	@echo '  Removing object files, if any.'
 	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
 		: ; \
@@ -109,13 +109,12 @@ clean: _print_banner
 
 .PHONY: fclean
 fclean: clean
-	@echo 'CLEANING additional via rule  fclean'
-	@echo 'Removing $(NAME), if any.' 
+	@echo 'CLEANING (fclean)'
+	@echo '  REMOVING $(NAME), if any.' 
 	@$(RM_FR) $(NAME)
-	@echo '--------------------------------------------------------------------'
 
 .PHONY: re
-re: fclean libftfclean all
+re: fclean libftre all
 
 .PHONY: bonus
 bonus: all
@@ -135,6 +134,11 @@ $(LIBFT):
 libftbonus:
 	@make -C $(LIBFT_DIR) bonus
 
+.PHONY: libftre
+libftre:
+	@make -C $(LIBFT_DIR) re
+	@$(MAKE) _print_banner
+
 .PHONY: libftclean
 libftclean:
 	@make -C $(LIBFT_DIR) clean
@@ -150,7 +154,7 @@ libftfclean:
 #Check if libft.a is provided at the expected location
 .PHONY: _libft_archive_provided
 _libft_archive_provided:
-	@echo "Checking for $(LIBFT_DIR)/$(LIBFT_NAME) ..."
+	@echo "CHECKING for $(LIBFT_DIR)/$(LIBFT_NAME) ..."
 	@if [ ! -e $(LIBFT_DIR)/$(LIBFT_NAME) ]; \
 		then echo "--> Not found!"; exit 1;  \
 	fi;
