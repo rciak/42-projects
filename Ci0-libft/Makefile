@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 21:34:08 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/12 22:39:09 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ COPY_NAME := libftprintf.a
 #
 INC_DIR := inc 
 OBJ_DIR := obj
-OBJ_DIR_BONUS := obj
+OBJ_DIR_BONUS := obj_bonus
 #
 CC := cc
 CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
@@ -37,6 +37,7 @@ endif
 ifeq ($(VERBOSITY), 1)
   COMPILE_COMMAND = $(CC) $(CFLAGS) -c $< -o $@
   LINK_COMMAND = ar -rcs $@ $^
+  LINK_COMMAND_BONUS = ar -rcs $(NAME) $^
 else
   COMPILE_COMMAND = @$(CC) $(CFLAGS) -c $< -o $@
   LINK_COMMAND =  @ar -rcs $@ $^
@@ -207,7 +208,7 @@ $(TIMESTAMPFILE_BONUS): $(OBJS) $(OBJS_BONUS)
 	@rsync -a "$(NAME)" "$(COPY_NAME)" 
 	@echo '  --> $(COPY_NAME)  (copy of $(NAME))'
 
-$(OBJ_DIR_BONUS)/%.o:%.c entry_message_compile $(INCS)
+$(OBJ_DIR_BONUS)/%.o:%.c $(INCS) | entry_message_compile_bonus
 	@mkdir -p $(@D)
 	$(COMPILE_COMMAND)
 
@@ -225,6 +226,10 @@ print_banner:
 .PHONY: entry_message_compile
 entry_message_compile:
 	@echo 'COMPILING (if need) ...'
+
+.PHONY: entry_message_compile_bonus
+entry_message_compile_bonus:
+	@echo 'BONUS COMPILING (if need) ...'
 
 ################################################################################
 # Def. of larger Output                                                        #
