@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 20:00:45 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/12 20:53:39 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -193,7 +193,7 @@ INTRO := $\
 I  This Makefile can be run with CONTROL VARIABLES for differnt purposes:   \n$\
                                                                             \n$\
 ---------                                                                   \n$\
-Debugging        ONLY ONE of the following three at once to avoid conflicts \n$\
+Debugging        CAUTION, cf. section V                                     \n$\
 ---------                                                                   \n$\
 DEBUG_VALGRIND  (For debugging:                                   adds -g3) \n$\
 DEBUG_LAUB_SAN  (Leak, Address, Undef. Behaviour;            also adds -g3) \n$\
@@ -260,9 +260,11 @@ III  Rules in  makefile   (small "m"!)                                      \n$\
 In the makefile that should reside next to this Makefile other useful rules \n$\
 are defined / included from file in the subfolder makefile_dir/rules, e.g.: \n$\
                                                                             \n$\
-doc                                           (Doxgen comments --> html doc)\n$\
-tests                                       (runs rule  run_all  in ./tests)\n$\
-update_INCS__SRCS__SRCS_BONUS_and_view  (easy updating of INCS and SRCS ...)\n$\
+******************************************                                  \n$\
+* doc                                    *    (Doxgen comments --> html doc)\n$\
+* tests                                  *  (runs rule  run_all  in ./tests)\n$\
+* update_INCS__SRCS__SRCS_BONUS_and_view *   (updating of INCS and SRCS ...)\n$\
+******************************************                                  \n$\
                                                                             \n$\
 REMARK: Stuff to remove before project submission:                          \n$\
 1. tests                                                                    \n$\
@@ -273,3 +275,14 @@ REMARK: Stuff to remove before project submission:                          \n$\
 IV  Potential intersting idea for the future                                \n$\
                                                                             \n$\
 rule qa (quality assurance - like tkolar)                                   \n$\
+                                                                            \n$\
+                                                                            \n$\
+V   R E M A R K   T O   U S A G E   O F  S A N I T I Z E R S                \n$\
+                                                                            \n$\
+When using the sanitizer flags all libraries (in particular libft) need to  \n$\
+be compiled with these flags as well. Otherwise the linking should fail.    \n$\
+E.g. running     make  DEBUG_M_SAN=1  re; make clean; make all              \n$\
+demonstrates this effect.                                                   \n$\
+                                                                            \n$\
+After debugging remember to turn things back to normal in both              \n$\
+libft and the current project by running once    make  re                   \n$\
