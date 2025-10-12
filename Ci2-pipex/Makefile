@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 17:08:30 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/12 18:31:49 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -156,7 +156,7 @@ print_banner:
 .PHONY: help info
 help: info 
 info:
-	@printf "%b\n" '$(INTRO)'
+	@printf "%b\n" '$(INTRO)' | less 
 
 BANNER  := $\
 ****************************************************************************\n$\
@@ -171,71 +171,78 @@ INTRO := $\
 I  This Makefile can be run with CONTROL VARIABLES for differnt purposes:   \n$\
                                                                             \n$\
 ---------                                                                   \n$\
-Debugging        ONLY ONE of the following at once to avoid conflicts       \n$\
+Debugging        ONLY ONE of the following three at once to avoid conflicts \n$\
 ---------                                                                   \n$\
-DEBUG_VALGRIND  (For debugging: Compiler & linker flags get added -g3 flag) \n$\
-DEBUG_LAUB_SAN  (Leak, Address, Undefined Behavious;    also adds -g3 flag) \n$\
-DEBUG_M_SAN     (Memory;                                also adds -g3 flag) \n$\
+DEBUG_VALGRIND  (For debugging:                                   adds -g3) \n$\
+DEBUG_LAUB_SAN  (Leak, Address, Undef. Behaviour;            also adds -g3) \n$\
+DEBUG_M_SAN     (Memory;                                     also adds -g3) \n$\
                                                                             \n$\
 ------------                                                                \n$\
 Optimazation                                                                \n$\
 ------------                                                                \n$\
-OPTI_ON         (Caution:                                    adds -O3 flag) \n$\
-GPROF           (Performance analysis with gprof:            adds -pg flags)\n$\
+OPTI_ON         (Caution:                                         adds -O3) \n$\
+GPROF           (Performance analysis with gprof:                 adds -pg) \n$\
                                                                             \n$\
 --------------                                                              \n$\
 OUTPUT CONTROL                                                              \n$\
 --------------                                                              \n$\
 VERBOSITY       (For more output - currently affects only libft, cf. below) \n$\
-OPTIMIZATION FLAGS:                                                         \n$\
                                                                             \n$\
-EXAMPLE: Compare the output that the subsequent two commands create         \n$\
-make re                                                                     \n$\
-make VERBOSITY=1 re                                                         \n$\
+HowTo-Example:   make VERBOSITY=1 re                                        \n$\
                                                                             \n$\
                                                                             \n$\
-II.1  This Makefile offers the following primary USER INTERFACE RULES       \n$\                                                             \n$\
-all:           print_banner $$(NAME)          (create the program, ! cf. 1) \n$\
-$$(NAME):       $$(OBJS) $$(LIBFT)            (create the program, ! cf. 1) \n$\
-$$(OBJ_DIR)/%.o:$$(SRC_DIR)/%.c $$(INCS) | $$(LIBFT) entry_message_compile  \n$\
-                                                                        (2) \n$\
+II  RULES that this Makefile provides                                       \n$\
+                                                                            \n$\
+There are three kinds of rules: User interface rules (II.1), Convenience    \n$\
+rules for remote controling libft (II.2) avoiding changing directory, and    \n$\
+rules meant to be used only internally / as helpers for other rules (II.3). \n$\
+VERY USEFUL rules are also provided in the accompangying makefile (III).    \n$\
+                                                                            \n$\
+II.1                                                                        \n$\
+all:           print_banner $$(NAME)                                     (1)\n$\
+$$(NAME):       $$(OBJS) $$(LIBFT)                                          \n$\
+$$(OBJ_DIR)/%.o:$$(SRC_DIR)/%.c $$(INCS) | $$(LIBFT) entry_message_compile  $\
+(2) \n$\
 clean:         print_banner                                             (3) \n$\
-fclean: clean                            (additionally deletes the program) \n$\
-re: fclean libftfclean all              (rebuilds everything, also libft.a) \n$\
-bonus: all                            (only an alias for all at the moment) \n$\
-help: info                                                (print this help) \n$\
+fclean:        clean                             (also removes the program) \n$\
+re:            fclean libftfclean all             (rebuilds - also libft.a) \n$\
+bonus:         all                                (currently alias for all) \n$\
+help:          info                                       (print this help) \n$\
 info:                                                     (print this help) \n$\
                                                                             \n$\
-II.2  Convenience remote control rules for libft folder:                    \n$\
+(1) Create the program. Note though that the rule does only require libft.a \n$\
+--- to exist but not request a fresh built of libft.a if already existing.  \n$\
+--- (even not if some of the sources of libft.a had changed - use           \n$\
+---     make re   for building libft.a freshly or run make in libft folder) \n$\
+(2) for creating object files from the source files                         \n$\
+(3) Removes object files and their folder (unless OBJ := .);                \n$\
+--- also a potential timestamp file (in case of bonus) might be deleted.    \n$\
+                                                                            \n$\
+II.2                                                                        \n$\
 libftall:   $$(LIBFT)                                                       \n$\
-$$(LIBFT):                            (calls   make -C  $$(LIBFT_DIR) all ) \n$\
+$$(LIBFT):                                                                  \n$\
 libftbonus:                                                                 \n$\
 libftclean                                                                  \n$\
 libftfclean:                                                                \n$\
+---------------------> Note that $$(LIBFT) calls  make -C  $$(LIBFT_DIR) all\n$\
                                                                             \n$\
-III.3   "Private" rules                                                     \n$\
+II.3                                                                        \n$\
 Though all GNUmake rule can be called from outside the remaining rules are  \n$\
 intended to be called only internally. They are e.g for printing tasks or   \n$\
 to ensure that libft.a is provided. These rules might be recognizable       \n$\
 by an underscore ('_') prefix character.                                    \n$\
                                                                             \n$\
-ANNOTATIONS:                                                                \n$\
-(1) In contrast to  make re  this does only require libft.a to exist but    \n$\
-____does not request libft.a to be built freshly if it already exists       \n$\
-____(even not if some of the sources of libft.a had changed - use           \n$\
-____     make re   for building libft.a freshly or run make in libft folder)\n$\
-(2) for creating object files from the source files                         \n$\
-(3) Removes object files and their folder (unless OBJ := .);                \n$\
-____also a potential timestamp file (in case of bonus) might be deleted.    \n$\
                                                                             \n$\
+III  Rules in  makefile   (small "m"!)                                      \n$\
                                                                             \n$\
+In the makefile that should reside next to this Makefile other useful rules \n$\
+are defined / included from file in the subfolder makefile_dir/rules, e.g.: \n$\
                                                                             \n$\
-III  Remarks to nice rules in  makefile  resp. in  makefile_dir/rules       \n$\
 doc    (Transforms doxgen comments in sourcode to a nice html documentation)\n$\
 tests                          (runs the Makefile rule  run_all  in ./tests)\n$\
 update_INCS__SRCS__SRCS_BONUS_and_view  (easy updating of INCS and SRCS ...)\n$\
                                                                             \n$\
-REMARK 2: Stuff to remove before project submission:                        \n$\
+REMARK: Stuff to remove before project submission:                          \n$\
 1. makefile,                                                                \n$\
 2. makefile_dir                                                             \n$\
 3. tests                                                                    \n$\
