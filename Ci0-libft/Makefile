@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:37:47 by reciak            #+#    #+#              #
-#    Updated: 2025/10/02 11:20:40 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/12 21:34:08 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,10 +144,10 @@ TIMESTAMPFILE_BONUS = .timestamp_file_bonus_avoiding_unnecessary_relinking
 OBJS_BONUS = $(patsubst %.c,$(OBJ_DIR_BONUS)/%.o,$(SRCS_BONUS))
 
 .PHONY: all
-all: print_libft $(NAME) bonus
+all: print_banner $(NAME) bonus
 
 $(NAME): $(OBJS)
-	@echo 'Linking object files ...'
+	@echo 'LINKING object files ...'
 	$(LINK_COMMAND)
 	@echo '  --> $(NAME)'
 	@rsync -a "$(NAME)" "$(COPY_NAME)" 
@@ -158,11 +158,11 @@ $(OBJ_DIR)/%.o: %.c $(INCS) | entry_message_compile
 	$(COMPILE_COMMAND)
 
 .PHONY: clean
-clean: print_libft
+clean: print_banner
 	@echo 'CLEANING via rule  clean'
-	@echo '  1. Removing timestamp file (created for bonus part), if any.'
+	@echo '  Removing timestamp file (created for bonus part), if any.'
 	@$(RM_FR) $(TIMESTAMPFILE_BONUS)
-	@echo '  2. Removing object files, if any.'
+	@echo '  Removing object files, if any.'
 	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
 		: ; \
@@ -185,7 +185,7 @@ clean: print_libft
 	fi
 
 .PHONY: fclean
-fclean: clean | print_libft
+fclean: clean | print_banner
 	@echo 'CLEANING additional via rule  fclean'
 	@echo '  Removing $(NAME), if any.' 
 	@$(RM_FR) $(NAME)
@@ -193,14 +193,15 @@ fclean: clean | print_libft
 	@$(RM_FR) $(COPY_NAME)
 
 .PHONY: re
-re: fclean all | print_libft
+re: fclean all | print_banner
 
 .PHONY: bonus
-bonus:  print_libft $(TIMESTAMPFILE_BONUS)
+bonus:  print_banner $(TIMESTAMPFILE_BONUS)
 
 $(TIMESTAMPFILE_BONUS): $(OBJS) $(OBJS_BONUS)
-	touch	$(TIMESTAMPFILE_BONUS)
-	@echo 'Linking object files including bonus object files ...'
+	@echo 'TOUCHING timestampfile'
+	@touch	$(TIMESTAMPFILE_BONUS)
+	@echo 'LINKING object files including bonus object files ...'
 	$(LINK_COMMAND_BONUS)
 	@echo '  --> $(NAME)'
 	@rsync -a "$(NAME)" "$(COPY_NAME)" 
@@ -217,12 +218,19 @@ rebonus: fclean bonus
 # PRINTING RULES                                                               #
 ################################################################################
 
-PHONY: print_libft
-print_libft:
-	@echo '*******************************************************************'
-	@echo '*                              LIBFT                              *'
-	@echo '*******************************************************************'
+PHONY: print_banner
+print_banner:
+	@printf '%b' '$(BANNER)'
 
 .PHONY: entry_message_compile
 entry_message_compile:
 	@echo 'COMPILING (if need) ...'
+
+################################################################################
+# Def. of larger Output                                                        #
+################################################################################
+
+BANNER  := $\
+****************************************************************************\n$\
+*                                  LIBFT                                   *\n$\
+****************************************************************************\n$\
