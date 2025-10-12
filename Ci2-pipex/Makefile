@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 18:31:49 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/12 18:44:36 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -238,11 +238,16 @@ III  Rules in  makefile   (small "m"!)                                      \n$\
 In the makefile that should reside next to this Makefile other useful rules \n$\
 are defined / included from file in the subfolder makefile_dir/rules, e.g.: \n$\
                                                                             \n$\
-doc    (Transforms doxgen comments in sourcode to a nice html documentation)\n$\
-tests                          (runs the Makefile rule  run_all  in ./tests)\n$\
+doc                                           (Doxgen comments --> html doc)\n$\
+tests                                       (runs rule  run_all  in ./tests)\n$\
 update_INCS__SRCS__SRCS_BONUS_and_view  (easy updating of INCS and SRCS ...)\n$\
                                                                             \n$\
 REMARK: Stuff to remove before project submission:                          \n$\
-1. makefile,                                                                \n$\
-2. makefile_dir                                                             \n$\
-3. tests                                                                    \n$\
+1. tests                                                                    \n$\
+2. makefile,                                                                \n$\
+3. makefile_dir                                                             \n$\
+                                                                            \n$\
+                                                                            \n$\
+IV  Potential intersting idea for the future                                \n$\
+                                                                            \n$\
+rule qa (quality assurance - like tkolar)                                   \n$\
