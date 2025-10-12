@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 18:44:36 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/12 19:00:27 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,18 +54,22 @@ include makefile_dir/def_headers.mk
 include makefile_dir/def_sources.mk
 #############################################
 
+################################################################################
+#  CORE rules                                                                  #
+################################################################################
+
 .PHONY: all
-all: print_banner $(NAME)
+all: _print_banner $(NAME)
 $(NAME): $(OBJS) $(LIBFT)
-	@make --quiet libft_archive_provided
+	@make --quiet _libft_archive_provided
 	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) entry_message_compile
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
-clean: print_banner
+clean: _print_banner
 	@echo 'CLEANING via rule  clean'
 	@echo '  1. Removing timestamp file (created for bonus part), if any.'
 	@$(RM_FR) $(TIMESTAMPFILE_BONUS)
@@ -114,7 +118,7 @@ libftall: $(LIBFT)
 $(LIBFT):
 	@make -C  $(LIBFT_DIR) all
 	@echo
-	@$(MAKE) print_banner
+	@$(MAKE) _print_banner
 
 .PHONY: libftbonus
 libftbonus:
@@ -130,33 +134,37 @@ libftfclean:
 	@make -C $(LIBFT_DIR) fclean
 
 ################################################################################
-#  tools and helpers                                                           #
+#  helper rules  (not inteded to be used as parameters to make)                #
 ################################################################################
 
 #Check if libft.a is provided at the expected location
-.PHONY: libft_archive_provided
-libft_archive_provided:
+.PHONY: _libft_archive_provided
+_libft_archive_provided:
 	@echo "Checking for $(LIBFT_DIR)/$(LIBFT_NAME) ..."
 	@if [ ! -e $(LIBFT_DIR)/$(LIBFT_NAME) ]; \
 		then echo "--> Not found!"; exit 1;  \
 	fi;
 
-################################################################################
-# PRINTING RULES                                                               #
-################################################################################
-
-.PHONY: entry_message_compile
-entry_message_compile:
+.PHONY: _entry_message_compile
+_entry_message_compile:
 	@echo 'COMPILING (if need) ...'
 
-PHONY: print_banner
-print_banner:
+PHONY: _print_banner
+_print_banner:
 	@printf '%b\n' '$(BANNER)'
+
+################################################################################
+# INFO / HELP                                                                  #
+################################################################################
 
 .PHONY: help info
 help: info 
 info:
 	@printf "%b\n" '$(INTRO)' | less 
+
+################################################################################
+# Def. of larger Output                                                        #
+################################################################################
 
 BANNER  := $\
 ****************************************************************************\n$\
@@ -194,16 +202,16 @@ HowTo-Example:   make VERBOSITY=1 re                                        \n$\
 II  RULES that this Makefile provides                                       \n$\
                                                                             \n$\
 There are three kinds of rules: User interface rules (II.1), Convenience    \n$\
-rules for remote controling libft (II.2) avoiding changing directory, and    \n$\
+rules for remote controling libft (II.2) avoiding changing directory, and   \n$\
 rules meant to be used only internally / as helpers for other rules (II.3). \n$\
 VERY USEFUL rules are also provided in the accompangying makefile (III).    \n$\
                                                                             \n$\
 II.1                                                                        \n$\
-all:           print_banner $$(NAME)                                     (1)\n$\
+all:           _print_banner $$(NAME)                                    (1)\n$\
 $$(NAME):       $$(OBJS) $$(LIBFT)                                          \n$\
-$$(OBJ_DIR)/%.o:$$(SRC_DIR)/%.c $$(INCS) | $$(LIBFT) entry_message_compile  $\
+$$(OBJ_DIR)/%.o:$$(SRC_DIR)/%.c $$(INCS) | $$(LIBFT) _entry_message_compile $\
 (2) \n$\
-clean:         print_banner                                             (3) \n$\
+clean:         _print_banner                                            (3) \n$\
 fclean:        clean                             (also removes the program) \n$\
 re:            fclean libftfclean all             (rebuilds - also libft.a) \n$\
 bonus:         all                                (currently alias for all) \n$\
