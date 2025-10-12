@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 19:00:27 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/12 19:43:42 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,15 @@ ifeq ($(OPTI_ON), 1)
   CFLAGS += -O3
   NAME := $(NAME)_O3
 endif
+### If  VERBOSITY=1  then some more stuff will be printed to stdout
+ifeq ($(VERBOSITY), 1)
+  COMPILE_COMMAND = $(CC) $(CFLAGS) -c $< -o $@
+  LINK_COMMAND =  $(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+else
+  COMPILE_COMMAND = @$(CC) $(CFLAGS) -c $< -o $@
+  LINK_COMMAND =  @$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+endif
+
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
@@ -62,11 +71,14 @@ include makefile_dir/def_sources.mk
 all: _print_banner $(NAME)
 $(NAME): $(OBJS) $(LIBFT)
 	@make --quiet _libft_archive_provided
-	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@echo 'Linking object files and libraries ...'
+	$(LINK_COMMAND)
+	@echo '  --> $(NAME)'
+
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(COMPILE_COMMAND)
 
 .PHONY: clean
 clean: _print_banner
@@ -117,13 +129,11 @@ libftall: $(LIBFT)
 
 $(LIBFT):
 	@make -C  $(LIBFT_DIR) all
-	@echo
 	@$(MAKE) _print_banner
 
 .PHONY: libftbonus
 libftbonus:
 	@make -C $(LIBFT_DIR) bonus
-	@echo
 
 .PHONY: libftclean
 libftclean:
@@ -151,7 +161,7 @@ _entry_message_compile:
 
 PHONY: _print_banner
 _print_banner:
-	@printf '%b\n' '$(BANNER)'
+	@printf '%b' '$(BANNER)'
 
 ################################################################################
 # INFO / HELP                                                                  #
