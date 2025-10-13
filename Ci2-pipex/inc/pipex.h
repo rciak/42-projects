@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/13 16:49:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/13 18:33:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 //                               //
 ///////////////////////////////////
 
-enum e_pipex_errors
+enum e_pipex_errors                                                     // Fill in at error.c
 {
 	ERR_NONE,
 	ERR_ALLOC,
@@ -63,10 +63,19 @@ typedef struct s_err
 	const char	*msg;
 }	t_err;
 
-
+typedef struct s_exec_unit
+{
+	int		fd_in;
+	int		fd_out;
+	char	*redir_in;
+	char	*redir_out;
+	char	**argv;
+	uint	argc;
+}	t_exec_unit;
 
 typedef struct s_all
 {
+	t_exec_unit	*pipe_line;
 	t_err		err;
 }	t_all;
 
