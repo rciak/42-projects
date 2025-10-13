@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/13 12:46:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/13 16:49:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,18 @@ enum e_pipex_errors
 //                     //
 /////////////////////////
 
+/**
+ * @brief This structure serves for error handling
+ * @param code  One of the errorcode names in the above enum
+ * @param msg   A pointer to a string literal defined in error()
+ */
 typedef struct s_err
 {
 	int			code;
 	const char	*msg;
 }	t_err;
+
+
 
 typedef struct s_all
 {
