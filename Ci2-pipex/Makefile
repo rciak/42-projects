@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 20:53:39 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/13 12:36:10 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,6 +112,8 @@ fclean: clean
 	@echo 'CLEANING (fclean)'
 	@echo '  REMOVING $(NAME), if any.' 
 	@$(RM_FR) $(NAME)
+	@echo '  REMOVING $(NAME)_O3, if any.'
+	@$(RM_FR) $(NAME)_O3
 
 .PHONY: re
 re: fclean libftre all
