@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/13 12:36:10 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/13 14:59:47 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ_DIR_BONUS := obj
 RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
-CFLAGS    = -Wall -Wextra -Werror $(addprefix -I,$(INC_DIRS))
+CFLAGS    = -std=c99 -Wall -Wextra -Werror $(addprefix -I,$(INC_DIRS))
 LDFLAGS  = -L $(LIBFT_DIR) -lft
 ifeq ($(DEBUG_LAUB_SAN), 1)
   CFLAGS  += -g3 -fsanitize=address,undefined,leak
