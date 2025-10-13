@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/11 10:40:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/13 12:46:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ enum e_pipex_errors
 {
 	ERR_NONE,
 	ERR_ALLOC,
-	ERR_OVERFLOW,
+	ERR_FILE_NOT_FOUND,
+	ERR_NO_READ_PERM,
+	ERR_NO_WRITE_PERM,
 };
 
 /////////////////////////
@@ -71,12 +73,4 @@ typedef struct s_all
 int				main(int argc, char **argv, char **envp);
 t_err			error(int error_code);
 
-// subdir/*.c
-void			hello(void);
-int				buggy_max(int a, int b);
-void			bye(void);
-
-// subdir2/*.c
-unsigned int	add_with_overflow_indicator(
-					unsigned int a, unsigned int b, t_err *err);
 #endif
