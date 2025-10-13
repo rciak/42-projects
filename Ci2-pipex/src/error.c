@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:39:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/11 10:39:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/13 15:00:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ t_err	error(int error_code)
 	static const t_err	err[] = {
 	{ERR_NONE, "pipex: Success - no error detected"},
 	{ERR_ALLOC, "If one day memory is allocated change this message ;-)"},
-	{ERR_OVERFLOW, "pipex: Overflow!"
-		GREEN"   Try with less critical number. "RESET},
 	};
 
 	return (err[error_code]);
