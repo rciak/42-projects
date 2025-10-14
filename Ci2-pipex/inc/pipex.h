@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/14 20:09:53 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/14 21:11:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ typedef struct s_err
 typedef struct s_x_err
 {
 	t_err		err;
-	const char	*origin;
 	int			saved_errno;
+	const char	*origin;
 }	t_x_err;
 
 typedef struct s_exec_unit
@@ -107,7 +107,9 @@ typedef struct s_all
 ////////////////////////////////////////////////
 
 // *.c
-int				main(int argc, char **argv, char **envp);
-t_err			error(int error_code);
+int		main(int argc, char **argv, char **envp);
+t_err	error(int error_code);
+t_x_err	x_error(int error_code, int cur_errno, const char *origin);
+
 
 #endif
