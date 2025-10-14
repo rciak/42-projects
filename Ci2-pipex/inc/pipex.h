@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/13 18:33:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/14 20:09:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 //  1.  I N C L U D E S  //
 //                       //
 ///////////////////////////
+# include <stdint.h>
 # include "libft.h"
 
 /////////////////////////
@@ -36,6 +37,19 @@
 //  3.  E N U M E R A T I O N S  //
 //                               //
 ///////////////////////////////////
+
+/**
+ * @brief Used when calling x_error().
+ * @note x_error() can either be called in its second argument like
+ *           x_error( , errno , )   or
+ *           x_error( , KEEP , ).
+ * @note Therefore KEEP needs to be a negative integer to avoid overlapping
+ *       with errno values.
+ */
+enum e_prevent_overwriting
+{
+	KEEP = -1,
+};
 
 enum e_pipex_errors                                                     // Fill in at error.c
 {
@@ -63,19 +77,26 @@ typedef struct s_err
 	const char	*msg;
 }	t_err;
 
+typedef struct s_x_err
+{
+	t_err		err;
+	const char	*origin;
+	int			saved_errno;
+}	t_x_err;
+
 typedef struct s_exec_unit
 {
-	int		fd_in;
-	int		fd_out;
-	char	*redir_in;
-	char	*redir_out;
-	char	**argv;
-	uint	argc;
+	int				fd_in;
+	int				fd_out;
+	char			*redir_in;
+	char			*redir_out;
+	char			**argv;
+	unsigned int	argc;
 }	t_exec_unit;
 
 typedef struct s_all
 {
-	t_exec_unit	*pipe_line;
+	t_exec_unit	*cmd;
 	t_err		err;
 }	t_all;
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/13 15:01:26 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/14 20:10:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@
  */
 int	main(int argc, char **argv, char**envp)
 {
-	t_err	err;
+	t_exec_unit	*cmd;
+	t_err		err;
 
 	(void) argc;
 	(void) argv;
 	(void) envp;
+	(void) cmd;
 	err = error(ERR_NONE);
 	return (err.code);
 }
