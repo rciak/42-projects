@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/15 09:23:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/15 10:05:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,14 @@ typedef struct s_err
 	const char	*msg;
 }	t_err;
 
+/**
+ * @brief This extends s_err adding a storage option for current errno 
+ *        and a note (like which function caused the error).
+ */
 typedef struct s_x_err
 {
-	int			saved_errno;
 	int			code;
+	int			saved_errno;
 	const char	*msg;
 	const char	*origin;
 }	t_x_err;
