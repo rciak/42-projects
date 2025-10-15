@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:24:41 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/14 19:23:01 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/15 09:41:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ return (*x_err = x_error(ERR_MALLOC, KEEP, "in main:"), false);
  */
 t_x_err	x_error(int error_code, int cur_errno, const char *origin)
 {
+	t_err	err;
 	t_x_err	x_err;
 
-	x_err.err = error(error_code);
 	if (cur_errno >= 0)
 		x_err.saved_errno = cur_errno;
+	err = error(error_code);
+	x_err.code = err.code;
+	x_err.msg = err.msg;
 	x_err.origin = origin;
 	return (x_err);
 }
