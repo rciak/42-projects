@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:24:41 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/15 09:41:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/16 11:18:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  */
 
 #include "pipex.h"
-
 
 /**
  * @brief Complements an error code, defined in pipex.h by an error message,

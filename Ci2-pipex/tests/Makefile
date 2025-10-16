@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 12:35:02 by reciak            #+#    #+#              #
-#    Updated: 2025/10/14 20:30:44 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/15 21:53:56 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS_REBASED_HERE_NO_MAIN := $(filter-out %main.c,$(SRCS_REBASED_HERE))
 
 TEST_BINS := \
 	typo_a \
+	test_parse \
 	test_x_error \
 	test_miau \
 	test_wuff

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:39:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/14 15:29:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/15 15:51:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ return (*err = error(ERR_OVERFLOW), false);
 t_err	error(int error_code)
 {
 	static const t_err	err[] = {
-	{ERR_NONE, "pipex: Success - no error detected"},
-	{ERR_ALLOC, "If one day memory is allocated change this message ;-)"},
+	{ERR_NONE, "Success - no error detected"},
+	{ERR_ARGC, "There must be at least 4 arguments"},
+	{ERR_ALLOC, "Memory allocation failed"},
 	};
 
 	return (err[error_code]);

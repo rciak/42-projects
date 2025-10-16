@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/15 10:05:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/16 18:50:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 //                       //
 ///////////////////////////
 # include <stdint.h>
+# include <errno.h>
 # include "libft.h"
 
 /////////////////////////
@@ -51,13 +52,17 @@ enum e_prevent_overwriting
 	KEEP = -1,
 };
 
+enum e_indexing_std__fds_exec_unit
+{
+	IN,
+	OUT,
+};
+
 enum e_pipex_errors                                                     // Fill in at error.c
 {
 	ERR_NONE,
+	ERR_ARGC,
 	ERR_ALLOC,
-	ERR_FILE_NOT_FOUND,
-	ERR_NO_READ_PERM,
-	ERR_NO_WRITE_PERM,
 };
 
 /////////////////////////
@@ -89,20 +94,17 @@ typedef struct s_x_err
 	const char	*origin;
 }	t_x_err;
 
-typedef struct s_exec_unit
+typedef struct s_parse_unit
 {
-	int		fd_in;
-	int		fd_out;
-	char	*redir_in;
-	char	*redir_out;
-	char	**argv;
-	int		argc;
-}	t_exec_unit;
+	char	*redir[2];
+	char	**av;
+	size_t	ac;
+}	t_parse_unit;
 
 typedef struct s_data
 {
-	size_t		count_cmd;
-	t_exec_unit	*cmd;
+	size_t		ac_cmd;
+	t_parse_unit	*cmd;
 }	t_data;
 
 ////////////////////////////////////////////////
@@ -114,6 +116,9 @@ typedef struct s_data
 // *.c
 int		main(int argc, char **argv, char **envp);
 t_err	error(int error_code);
+bool	parse(int argc, char** argv, t_data *data, t_x_err *x_err);
+
+// error_management/*.c
 t_x_err	x_error(int error_code, int cur_errno, const char *origin);
 
 

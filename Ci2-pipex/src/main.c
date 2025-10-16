@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/15 09:49:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/16 12:40:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@
  */
 int	main(int argc, char **argv, char**envp)
 {
-																		(void) envp;
 	t_data	data;
 	t_x_err	x_err;
 
 	x_err = x_error(ERR_NONE, 0, "main");
-	if (parse(&data, &x_err, argc, argv) == false)
+	if (!parse(argc, argv, &data, &x_err))
 		return (x_err.code);
-	execute_pipeline(data, envp, &x_err);
-	tidy_up(data);
+	// execute_pipeline(data, envp, &x_err);
+	// tidy_up(data);
+																		(void) envp;
 	return (x_err.code);
 }

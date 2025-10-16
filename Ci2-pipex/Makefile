@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/13 14:59:47 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/15 21:09:36 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,9 @@ else
   COMPILE_COMMAND = @$(CC) $(CFLAGS) -c $< -o $@
   LINK_COMMAND =  @$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 endif
-
+ifeq ($(CC_LESS_STRICT), 1)
+  CFLAGS := $(filter-out -Werror,$(CFLAGS))
+endif
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
@@ -62,6 +64,7 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 include makefile_dir/def_headers.mk
 include makefile_dir/def_sources.mk
 #############################################
+
 
 ################################################################################
 #  CORE rules                                                                  #
@@ -200,6 +203,7 @@ Debugging        CAUTION, cf. section V                                     \n$\
 DEBUG_VALGRIND  (For debugging:                                   adds -g3) \n$\
 DEBUG_LAUB_SAN  (Leak, Address, Undef. Behaviour;            also adds -g3) \n$\
 DEBUG_M_SAN     (Memory;                                     also adds -g3) \n$\
+CC_LESS_STRICT  (Remove -Werror flag                                      ) \n$\
                                                                             \n$\
 ------------                                                                \n$\
 Optimazation                                                                \n$\
