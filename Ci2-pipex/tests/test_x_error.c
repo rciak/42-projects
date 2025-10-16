@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 19:24:12 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/15 10:11:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/16 23:42:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ Test(x_error, ERRNONE_test)
 	t_x_err x_err;
 	t_x_err expected = {ERR_NONE, errno, "pipex: Success - no error detected",
 		"Sample Message"};
+
+cr_log_info("Info -- Arrived in test");
+cr_log_warn("Warn -- Arrived in test");
+cr_log_error("Error -- Arrived in test");
 
 	x_err = x_error(ERR_NONE, errno, "Sample Message");
 	cr_assert(eq_x_error(&x_err , &expected));
