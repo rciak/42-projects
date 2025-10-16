@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/16 18:50:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/16 21:33:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@ enum e_prevent_overwriting
 	KEEP = -1,
 };
 
-enum e_indexing_std__fds_exec_unit
-{
-	IN,
-	OUT,
-};
-
 enum e_pipex_errors                                                     // Fill in at error.c
 {
 	ERR_NONE,
@@ -96,14 +90,15 @@ typedef struct s_x_err
 
 typedef struct s_parse_unit
 {
-	char	*redir[2];
+	char	*infile;
+	char	*outfile;
 	char	**av;
 	size_t	ac;
 }	t_parse_unit;
 
 typedef struct s_data
 {
-	size_t		ac_cmd;
+	size_t			n_cmds;
 	t_parse_unit	*cmd;
 }	t_data;
 
@@ -121,5 +116,7 @@ bool	parse(int argc, char** argv, t_data *data, t_x_err *x_err);
 // error_management/*.c
 t_x_err	x_error(int error_code, int cur_errno, const char *origin);
 
+// memory/*.c
+void	final_free(t_data data);
 
 #endif

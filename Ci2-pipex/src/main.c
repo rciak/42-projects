@@ -6,10 +6,11 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/16 12:40:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/16 22:52:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+																	#include <stdio.h>
 /**
  * @file main.c
  * @brief Stores the definition of main()
@@ -39,7 +40,22 @@ int	main(int argc, char **argv, char**envp)
 	if (!parse(argc, argv, &data, &x_err))
 		return (x_err.code);
 	// execute_pipeline(data, envp, &x_err);
-	// tidy_up(data);
+
+printf("data.n_cmds:      |%zu|\n", data.n_cmds);
+printf("data.cmd:         |%p|\n", data.cmd);
+printf("data.cmd->infile: |%s|\n", data.cmd[0].infile);
+printf("data.cmd->outfile:|%s|\n", data.cmd[0].outfile);
+printf("data.cmd->infile: |%s|\n", data.cmd[1].infile);
+printf("data.cmd->outfile:|%s|\n", data.cmd[1].outfile);
+printf("data.cmd->av:     |%p|\n", data.cmd[0].av);
+printf("                  |%s|\n", data.cmd[0].av[0]);
+printf("                  |%s|\n", data.cmd[0].av[1]);
+printf("data.cmd->av:     |%p|\n", data.cmd[0].av);
+printf("                  |%s|\n", data.cmd[1].av[0]);
+printf("                  |%s|\n", data.cmd[1].av[1]);
+
+	
+	final_free(data);
 																		(void) envp;
 	return (x_err.code);
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:30:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/16 12:22:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/16 22:41:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 #include "pipex.h"
 
-static bool	set__redir(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err);
-static bool	create__av(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err);
+static bool	set__files(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err);
+static bool	set_ac_and_create__av(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err);
 static void	free__av_before_index(t_parse_unit *cmd, size_t i_last);
 
 /**
@@ -37,24 +37,24 @@ bool	parse(int argc, char **argv, t_data *data, t_x_err *x_err)
 
 	if (argc < 1 + 4)
 		return (*x_err = x_error(ERR_ARGC, errno, "parse"), false);
-	data->ac_cmd = (size_t) argc - 3;
+	data->n_cmds = (size_t) argc - 3;
+	data->cmd = malloc((data->n_cmds + 1) * sizeof (*cmd));
 	cmd = data->cmd;
-	cmd = malloc((data->ac_cmd + 1) * sizeof (*cmd));
 	if (cmd == NULL)
 		return (*x_err = x_error(ERR_ALLOC, errno, "parse: cmd"), false);
-	if (!set__redir(cmd, argc, argv, x_err))
+	if (!set__files(cmd, argc, argv, x_err))
 		return (free(cmd), false);
-	if (!create__av(cmd, argc, argv, x_err))
+	if (!set_ac_and_create__av(cmd, argc, argv, x_err))
 	{
-		free(cmd[0].redir[IN]);
-		free(cmd[data->ac_cmd - 1].redir[OUT]);
+		free(cmd[0].infile);
+		free(cmd[data->n_cmds - 1].outfile);
 		free(cmd);
 		return (false);
 	}
-	return (*x_err = x_error(ERR_NONE, errno, "parse: ok"), false);
+	return (*x_err = x_error(ERR_NONE, errno, "parse: ok"), true);
 }
 
-static bool	set__redir(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err)
+static bool	set__files(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err)
 {
 	size_t	ac_cmds;
 	size_t	i;
@@ -63,22 +63,23 @@ static bool	set__redir(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err)
 	i = 0;
 	while (i < ac_cmds)
 	{
-		cmd[i].redir[IN] = NULL;
-		cmd[i].redir[OUT] = NULL;
+		cmd[i].infile = NULL;
+		cmd[i].outfile = NULL;
 		i++;
 	}
-	cmd[0].redir[IN] = ft_strdup(av[1]);
-	cmd[ac_cmds - 1].redir[OUT] = ft_strdup(av[ac - 1]);
-	if (cmd[0].redir[IN] == NULL || cmd[ac_cmds - 1].redir[OUT] == NULL)
+	cmd[0].infile = ft_strdup(av[1]);
+	cmd[ac_cmds - 1].outfile = ft_strdup(av[ac - 1]);
+	if (cmd[0].infile == NULL || cmd[ac_cmds - 1].outfile == NULL)
 	{
-		free(cmd[0].redir[IN]);
-		free(cmd[ac_cmds - 1].redir[OUT]);
-		return (*x_err = x_error(ERR_ALLOC, errno, "parse: set__redir"), false);
+		free(cmd[0].infile);
+		free(cmd[ac_cmds - 1].outfile);
+		return (*x_err = x_error(ERR_ALLOC, errno, "parse: set__files"), false);
 	}
 	return (true);
 }
 
-static bool	create__av(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err)
+static bool	set_ac_and_create__av(t_parse_unit *cmd, int ac, char **av,
+	t_x_err *x_err)
 {
 	size_t	ac_cmds;
 	size_t	i;
@@ -87,6 +88,7 @@ static bool	create__av(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err)
 	i = 0;
 	while (i < ac_cmds)
 	{
+		cmd[i].ac = count_words(av[i + 2], " ");
 		cmd[i].av = ft_split(av[i + 2], ' ');
 		if (cmd[i].av == NULL)
 		{
