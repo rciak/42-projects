@@ -4,11 +4,10 @@
 	{
 		"type": "lldb",
 		"request": "launch",
-		"name": "Launch",
+		"name": "Launch lldb Debugger",
 		"program": "${workspaceFolder}/pipex",
 		"args": ["Makefile", "ls", "wc", "outfile"],
 		"cwd": "${workspaceFolder}",
-		"preLaunchTask": "C/C++: clang++ build active file" //<-- your build task name 
 	}
 	]
 }
