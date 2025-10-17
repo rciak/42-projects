@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 20:04:57 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/16 22:57:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/17 11:22:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 void	final_free(t_data data)
 {
 	size_t			i;
-	size_t			j;
 	t_parse_unit	*cmd;
 
 	cmd = data.cmd;
@@ -34,13 +33,8 @@ void	final_free(t_data data)
 	{
 		free(cmd[i].infile);
 		free(cmd[i].outfile);
-		j = 0;
-		while (j < cmd->ac + 1)                                 // simpler use my free_array when everything works?!
-		{
-			free(cmd[i].av[j]);
-			j++;
-		}
-		free (cmd[i].av);
+		free_array(cmd[i].av);
+		cmd[i].av = NULL;
 		i++;
 	}
 	free(cmd);
