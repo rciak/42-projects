@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/16 22:52:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/17 16:29:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char **argv, char**envp)
 	x_err = x_error(ERR_NONE, 0, "main");
 	if (!parse(argc, argv, &data, &x_err))
 		return (x_err.code);
+	no_left_and_right_pipes(data.cmd, data.n_cmds);
 	// execute_pipeline(data, envp, &x_err);
 
 printf("data.n_cmds:      |%zu|\n", data.n_cmds);
