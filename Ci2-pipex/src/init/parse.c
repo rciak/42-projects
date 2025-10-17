@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:30:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/16 22:41:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/17 19:08:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #include "pipex.h"
 
-static bool	set__files(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err);
-static bool	set_ac_and_create__av(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err);
-static void	free__av_before_index(t_parse_unit *cmd, size_t i_last);
+static bool	set__files(t_cmd *cmd, int ac, char **av, t_x_err *x_err);
+static bool	set_ac_and_create__av(t_cmd *cmd, int ac, char **av, t_x_err *x_err);
+static void	free__av_before_index(t_cmd *cmd, size_t i_last);
 
 /**
  * @brief This parses the input into the s_exec_unit_structure
@@ -33,12 +33,12 @@ static void	free__av_before_index(t_parse_unit *cmd, size_t i_last);
  */
 bool	parse(int argc, char **argv, t_data *data, t_x_err *x_err)
 {
-	t_parse_unit	*cmd;
+	t_cmd	*cmd;
 
 	if (argc < 1 + 4)
 		return (*x_err = x_error(ERR_ARGC, errno, "parse"), false);
-	data->n_cmds = (size_t) argc - 3;
-	data->cmd = malloc((data->n_cmds + 1) * sizeof (*cmd));
+	data->num_cmds = (size_t) argc - 3;
+	data->cmd = malloc((data->num_cmds + 1) * sizeof (*cmd));
 	cmd = data->cmd;
 	if (cmd == NULL)
 		return (*x_err = x_error(ERR_ALLOC, errno, "parse: cmd"), false);
@@ -47,14 +47,14 @@ bool	parse(int argc, char **argv, t_data *data, t_x_err *x_err)
 	if (!set_ac_and_create__av(cmd, argc, argv, x_err))
 	{
 		free(cmd[0].infile);
-		free(cmd[data->n_cmds - 1].outfile);
+		free(cmd[data->num_cmds - 1].outfile);
 		free(cmd);
 		return (false);
 	}
 	return (*x_err = x_error(ERR_NONE, errno, "parse: ok"), true);
 }
 
-static bool	set__files(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err)
+static bool	set__files(t_cmd *cmd, int ac, char **av, t_x_err *x_err)
 {
 	size_t	ac_cmds;
 	size_t	i;
@@ -78,7 +78,7 @@ static bool	set__files(t_parse_unit *cmd, int ac, char **av, t_x_err *x_err)
 	return (true);
 }
 
-static bool	set_ac_and_create__av(t_parse_unit *cmd, int ac, char **av,
+static bool	set_ac_and_create__av(t_cmd *cmd, int ac, char **av,
 	t_x_err *x_err)
 {
 	size_t	ac_cmds;
@@ -101,7 +101,7 @@ static bool	set_ac_and_create__av(t_parse_unit *cmd, int ac, char **av,
 	return (true);
 }
 
-static void	free__av_before_index(t_parse_unit *cmd, size_t i_fail)
+static void	free__av_before_index(t_cmd *cmd, size_t i_fail)
 {
 	size_t	i;
 	size_t	j;

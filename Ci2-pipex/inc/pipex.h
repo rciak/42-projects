@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/17 16:30:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/17 19:10:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_x_err
 	const char	*origin;
 }	t_x_err;
 
-typedef struct s_parse_unit
+typedef struct s_cmd
 {
 	char	*infile;
 	char	*outfile;
@@ -96,12 +96,12 @@ typedef struct s_parse_unit
 	int		*right_pipe;
 	char	**av;
 	size_t	ac;
-}	t_parse_unit;
+}	t_cmd;
 
 typedef struct s_data
 {
-	size_t			n_cmds;
-	t_parse_unit	*cmd;
+	size_t	num_cmds;
+	t_cmd	*cmd;
 }	t_data;
 
 ////////////////////////////////////////////////
@@ -113,13 +113,14 @@ typedef struct s_data
 // *.c
 int		main(int argc, char **argv, char **envp);
 t_err	error(int error_code);
-bool	parse(int argc, char** argv, t_data *data, t_x_err *x_err);
+void	exec_pipeline(t_cmd *cmd, size_t num_cmds, char** envp, t_x_err *x_err);
 
 // error_management/*.c
 t_x_err	x_error(int error_code, int cur_errno, const char *origin);
 
 // init/*.c
-void	no_left_and_right_pipes(t_parse_unit *cmd, size_t num_commands);
+bool	parse(int argc, char** argv, t_data *data, t_x_err *x_err);
+void	no_left_and_right_pipes(t_cmd *cmd, size_t num_commands);
 
 // memory/*.c
 void	final_free(t_data data);

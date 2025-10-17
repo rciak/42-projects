@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:55:26 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/17 16:35:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/17 17:43:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @param[in] cmd a pointer to an array of t_parse_unit - objects.
  * @param[out] num_commands the number of elements the array consists of
  */
-void	no_left_and_right_pipes(t_parse_unit *cmd, size_t num_commands)
+void	no_left_and_right_pipes(t_cmd *cmd, size_t num_commands)
 {
 	size_t	i;
 
