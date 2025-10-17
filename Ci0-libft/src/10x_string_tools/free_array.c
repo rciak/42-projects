@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 14:12:45 by reciak            #+#    #+#             */
-/*   Updated: 2025/08/31 16:01:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/17 11:48:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
  * @brief Frees the corresponding strings and the array (`NULL` terminated!).
  * @note Typical used to free the allocations done by ft_split().
  * @param[in] string_array Containing pointers to the allocated strings.
+ * @remark (17.10.2025) Found and fixed a bug that was in till commit
+ *         3a5f6e5a4109daf61fec0bc4b86b671e9bd550c3    (branch  Ci2-pipex)
  */
 void	free_array(char **string_array)
 {
@@ -30,7 +32,7 @@ void	free_array(char **string_array)
 	while (*p_char_pointer != NULL)
 	{
 		free (*p_char_pointer);
-		(*p_char_pointer)++;
+		p_char_pointer++;
 	}
 	free (string_array);
 }
