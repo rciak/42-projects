@@ -14,6 +14,7 @@
 #include <stddef.h>
 #include <errno.h>
 #include <criterion/criterion.h>
+#include <criterion/logging.h>
 #include <criterion/redirect.h>
 #include <criterion/new/assert.h>
 #include "libft.h"
