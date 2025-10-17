@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/17 19:10:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/17 19:25:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ typedef struct s_cmd
 {
 	char	*infile;
 	char	*outfile;
-	int		*left_pipe;
-	int		*right_pipe;
 	char	**av;
 	size_t	ac;
 }	t_cmd;
