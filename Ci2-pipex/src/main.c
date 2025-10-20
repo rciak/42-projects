@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/20 11:31:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/20 11:40:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 #include "pipex.h"
 #include <stdio.h>                                           // Forbidden function...
-
-static int handle__error(t_x_err x_err);
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -43,15 +41,9 @@ int	main(int argc, char **argv, char**envp)
 	if (!parse(argc, argv, &data, &x_err)
 		|| !extract_path(envp, data.cmd)
 		|| !exec_pipeline(data.cmd, data.num_cmds, &pid_last_cmd, &x_err))
-		return (handle__error(x_err));
+		return (handle_error(x_err));
 	wait_without_creating_zombies(pid_last_cmd);
 	final_free(data);
 	return (EXIT_OK);
 }
 
-static int handle__error(t_x_err x_err)
-{
-	if (x_err.code == ERR_NONE)
-		return (EX_OK);
-	else
-}
