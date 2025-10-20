@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_pipeline.c                                 :+:      :+:    :+:   */
+/*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/17 19:04:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/20 10:47:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,63 @@
 
 #include "pipex.h"
 
-static int	exec__first(t_cmd first_cmd);
-static int	exec__mid(t_cmd mid_cmd, int fd_read);
-static void	exec__last(t_cmd _last_cmd, int fd_read);
+static int		exec__first(t_cmd first_cmd, t_x_err x_err);
+static int		exec__mid(t_cmd mid_cmd, int fd_read, t_x_err x_err);
+static pid_t	exec__last(t_cmd _last_cmd, int fd_read, t_x_err x_err);
 
 /**
  * @brief This setups and executes the pipe(x)line
+ * @note Neither the flags WUNTRACED nor WCCONTINUED are given as option to 
+         to waitpid.
+         Thus the *wait status* set by waitpid covers exactly the
+         *termination status* of the child process for the last command, cf.
+         Kerrisk (The Linux Programming Interface, Sec. 26.1.3
+         "The Wait Status Value", p. 545).
+ * @note @code waitpid(-1, &termination_status, 0); @endcode is equivalent to
+ *       @code wait(&termination_status); @endcode
  * @param[in] data
- * @param[in] envp
- * @param[out] x_err
+ * @param[out] pid Stores the pid returned by fork before exec the last command 
+ *                 (or -1 if an error occured before that)
+ * @param[out] x_err Providing feedback to the caller for error handling
+ * @return
+ *          * false,  if a fork failed or if an execv failed
+ *          * true, else 
  */
-void	exec_pipeline(t_cmd	*cmd, size_t n_cmds, char** envp, t_x_err *x_err)
+bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, pid_t	*pid, t_x_err *x_err)
 {
 	int		fd_read;
 	size_t	i;
-
+	
 	if (n_cmds < 2)
 		; //                                                                Error!
+	*pid = -1;
 	i = 0;
 	while (i < n_cmds)
 	{
 		if (i == 0)
-			fd_read = exec__first(cmd[i]);
+			fd_read = exec__first(cmd[i], x_err);
 		else if (0 < i && i < n_cmds - 1)
-			fd_read = exec__mid(cmd[i], fd_read);
-		else if (i == n_cmds - 1)
-			exec__last(cmd[i], fd_read);
+			fd_read = exec__mid(cmd[i], fd_read, x_err);
 		else
-			; //                                                    Skip or better Error for debugging?!
+			*pid = exec__last(cmd[i], fd_read, x_err);
+		if (x_err->code == ERR_FORK || x_err->code == ERR_EXECV)
+			return (false);
 		i++;
 	}
+	return (true);
 }
 
-static int	exec__first(t_cmd first_cmd)
+static int	exec__first(t_cmd first_cmd, t_x_err x_err)
 {
 	return (0);
 }
 
-static int	exec__mid(t_cmd mid_cmd, int fd_read)
+static int	exec__mid(t_cmd mid_cmd, int fd_read, t_x_err x_err)
 {
 	return (0);
 }
 
-static void	exec__last(t_cmd _last_cmd, int fd_read)
+static pid_t	exec__last(t_cmd _last_cmd, int fd_read, t_x_err x_err)
 {
 
 }

@@ -6,11 +6,10 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/17 19:27:26 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/20 11:31:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-																	#include <stdio.h>
 /**
  * @file main.c
  * @brief Stores the definition of main()
@@ -18,6 +17,8 @@
 
 #include "pipex.h"
 #include <stdio.h>                                           // Forbidden function...
+
+static int handle__error(t_x_err x_err);
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -35,28 +36,22 @@ int	main(int argc, char **argv, char**envp)
 {
 	t_data	data;
 	t_x_err	x_err;
+	pid_t	pid_last_cmd;
 
+	pid_last_cmd = -1;
 	x_err = x_error(ERR_NONE, 0, "main");
-	if (!parse(argc, argv, &data, &x_err))
-		return (x_err.code);
-	exec_pipeline(data.cmd, data.num_cmds, envp, &x_err);
-
-
-printf("data.n_cmds:      |%zu|\n", data.num_cmds);
-printf("data.cmd:         |%p|\n", data.cmd);
-printf("data.cmd->infile: |%s|\n", data.cmd[0].infile);
-printf("data.cmd->outfile:|%s|\n", data.cmd[0].outfile);
-printf("data.cmd->infile: |%s|\n", data.cmd[1].infile);
-printf("data.cmd->outfile:|%s|\n", data.cmd[1].outfile);
-printf("data.cmd->av:     |%p|\n", data.cmd[0].av);
-printf("                  |%s|\n", data.cmd[0].av[0]);
-printf("                  |%s|\n", data.cmd[0].av[1]);
-printf("data.cmd->av:     |%p|\n", data.cmd[0].av);
-printf("                  |%s|\n", data.cmd[1].av[0]);
-printf("                  |%s|\n", data.cmd[1].av[1]);
-
-	
+	if (!parse(argc, argv, &data, &x_err)
+		|| !extract_path(envp, data.cmd)
+		|| !exec_pipeline(data.cmd, data.num_cmds, &pid_last_cmd, &x_err))
+		return (handle__error(x_err));
+	wait_without_creating_zombies(pid_last_cmd);
 	final_free(data);
-																		(void) envp;
-	return (x_err.code);
+	return (EXIT_OK);
+}
+
+static int handle__error(t_x_err x_err)
+{
+	if (x_err.code == ERR_NONE)
+		return (EX_OK);
+	else
 }

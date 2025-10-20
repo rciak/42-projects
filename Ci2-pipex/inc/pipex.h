@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/17 19:25:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/20 11:31:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 //  1.  I N C L U D E S  //
 //                       //
 ///////////////////////////
+# include <sys/wait.h>
 # include <stdint.h>
 # include <errno.h>
 # include "libft.h"
@@ -57,6 +58,13 @@ enum e_pipex_errors                                                     // Fill 
 	ERR_NONE,
 	ERR_ARGC,
 	ERR_ALLOC,
+	ERR_FORK,
+	ERR_EXECV,
+};
+
+enum e_exit_codes
+{
+	EXIT_OK = 0,
 };
 
 /////////////////////////
@@ -92,8 +100,9 @@ typedef struct s_cmd
 {
 	char	*infile;
 	char	*outfile;
-	char	**av;
 	size_t	ac;
+	char	**av;
+	char	**path;
 }	t_cmd;
 
 typedef struct s_data
@@ -111,7 +120,7 @@ typedef struct s_data
 // *.c
 int		main(int argc, char **argv, char **envp);
 t_err	error(int error_code);
-void	exec_pipeline(t_cmd *cmd, size_t num_cmds, char** envp, t_x_err *x_err);
+bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, pid_t	*pid, t_x_err *x_err);
 
 // error_management/*.c
 t_x_err	x_error(int error_code, int cur_errno, const char *origin);
