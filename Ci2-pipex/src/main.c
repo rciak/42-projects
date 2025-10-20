@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/20 11:40:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/20 17:49:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #include "pipex.h"
 #include <stdio.h>                                           // Forbidden function...
+
+static int	wait__without_creating_zombies(pid_t pid_last_cmd);
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -35,6 +37,7 @@ int	main(int argc, char **argv, char**envp)
 	t_data	data;
 	t_x_err	x_err;
 	pid_t	pid_last_cmd;
+	int		termination_status_last_cmd;
 
 	pid_last_cmd = -1;
 	x_err = x_error(ERR_NONE, 0, "main");
@@ -42,8 +45,34 @@ int	main(int argc, char **argv, char**envp)
 		|| !extract_path(envp, data.cmd)
 		|| !exec_pipeline(data.cmd, data.num_cmds, &pid_last_cmd, &x_err))
 		return (handle_error(x_err));
-	wait_without_creating_zombies(pid_last_cmd);
+	termination_status_last_cmd = wait__without_creating_zombies(pid_last_cmd);
 	final_free(data);
-	return (EXIT_OK);
+	return (termination_status_last_cmd);
 }
+/**
+ * @note Neither the flags WUNTRACED nor WCCONTINUED are given as option to 
+         to waitpid.
+         Thus the *wait status* set by waitpid covers exactly the
+         *termination status* of the child process for the last command, cf.
+         Kerrisk (The Linux Programming Interface, Sec. 26.1.3
+         "The Wait Status Value", p. 545).
+ * @note @code waitpid(-1, &termination_status, 0); @endcode is equivalent to
+ *       @code wait(&termination_status); @endcode
+ */
+static int	wait__without_creating_zombies(pid_t pid_last_cmd)
+{
+	pid_t	pid;
+	int		wstatus;
+	int		status_last_cmd;
 
+	pid = 1;
+	while(pid > 0)
+	{
+		pid = waitpid(-1, &wstatus, 0);
+		if (pid == pid_last_cmd && WIFEXITED(wstatus))
+			status_last_cmd = WEXITSTATUS(wstatus);
+		else if (pid == pid_last_cmd && WIFSIGNALED(wstatus))
+			status_last_cmd = 128 + WTERMSIG(wstatus);
+	}
+	return (status_last_cmd);
+}

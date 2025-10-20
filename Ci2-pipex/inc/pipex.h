@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/20 11:39:24 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/20 17:58:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 //  1.  I N C L U D E S  //
 //                       //
 ///////////////////////////
+# include <sysexits.h>      // suggestions for exit codes (for system programms)
 # include <sys/wait.h>
 # include <stdint.h>
 # include <errno.h>
@@ -56,15 +57,25 @@ enum e_prevent_overwriting
 enum e_pipex_errors                                                     // Fill in at error.c
 {
 	ERR_NONE,
-	ERR_ARGC,
-	ERR_ALLOC,
-	ERR_FORK,
 	ERR_EXECV,
+	ERR_ALLOC,
+	ERR_ARGC,
+	ERR_FORK,
+	ERR_PIPE,
 };
 
 enum e_exit_codes
 {
-	EXIT_OK = 0,
+	EXITCODE_ERR_NONE = 0,
+	EXITCODE_ERR_EXECV = 1,
+	EXITCODE_MISC_ERROR = 2,
+	EXITCODE_ERR_ALLOC = 2,
+	EXITCODE_ERR_ARGC = EX_USAGE,
+	EXITCODE_ERR_FORK = EX_OSERR,
+	EXITCODE_ERR_PIPE = EX_OSERR,
+	EXITCODE_NOT_EXECUTABLE = 126,
+	EXITCODE_NOT_FOUND = 127,
+	EXITCODE_SIGINT = 130,
 };
 
 /////////////////////////
@@ -83,6 +94,12 @@ typedef struct s_err
 	int			code;
 	const char	*msg;
 }	t_err;
+
+typedef struct s_exit_pair
+{
+	int			code;
+	const char	*msg;
+}	t_exit_pair;
 
 /**
  * @brief This extends s_err adding a storage option for current errno 
