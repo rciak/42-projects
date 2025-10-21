@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/21 11:27:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/21 12:35:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ int	main(int argc, char **argv, char**envp)
 	pid_t	pid_last_cmd;
 	int		termination_status_last_cmd;
 
-	pid_last_cmd = -1;
 	x_err = x_error(ERR_NONE, 0, "main");
 	if (!parse(argc, argv, &data, &x_err)
 		|| !parse_path(envp, data.num_cmds, data.cmd, &x_err)
-		|| !exec_pipeline(data.cmd, data.num_cmds, &pid_last_cmd, &x_err))
+		|| !exec_pipeline(data.cmd, data.num_cmds, &x_err))
 		return (handle_error(x_err));
-	termination_status_last_cmd = wait__without_creating_zombies(pid_last_cmd);
+	pid_last_cmd = data.cmd[data.num_cmds - 1].pid;
+	termination_status_last_cmd
+		= wait__without_creating_zombies(pid_last_cmd);
 	final_free(data);
 	return (termination_status_last_cmd);
 }

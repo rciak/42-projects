@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/21 10:39:18 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/21 12:50:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ static pid_t	exec__last(t_cmd _last_cmd, int fd_read, t_x_err *x_err);
  *          * false,  if a fork failed or if an execv failed
  *          * true, else 
  */
-bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, pid_t	*pid, t_x_err *x_err)
+bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 {
 	int		fd_read;
 	size_t	i;
 	
 	if (n_cmds < 2)
 		; //                                                                Error!
-	*pid = -1;
 	i = 0;
 	while (i < n_cmds)
 	{
