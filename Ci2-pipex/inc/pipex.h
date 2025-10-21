@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/20 17:58:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/21 10:54:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,12 @@ enum e_pipex_errors                                                     // Fill 
 	ERR_NONE,
 	ERR_EXECV,
 	ERR_ALLOC,
+	ERR_LOGIC_ELSE,
 	ERR_ARGC,
 	ERR_FORK,
 	ERR_PIPE,
+	ERR_ENVP,
+	ERR_TOO_FEW_CMDS,
 };
 
 enum e_exit_codes
@@ -70,6 +73,7 @@ enum e_exit_codes
 	EXITCODE_ERR_EXECV = 1,
 	EXITCODE_MISC_ERROR = 2,
 	EXITCODE_ERR_ALLOC = 2,
+	EXITCODE_ERR_HOW_ELSE = 3,
 	EXITCODE_ERR_ARGC = EX_USAGE,
 	EXITCODE_ERR_FORK = EX_OSERR,
 	EXITCODE_ERR_PIPE = EX_OSERR,
@@ -115,11 +119,14 @@ typedef struct s_x_err
 
 typedef struct s_cmd
 {
-	char	*infile;
-	char	*outfile;
 	size_t	ac;
 	char	**av;
 	char	**path;
+	char	*infile;
+	char	*outfile;
+	int		fd_in;
+	int		fd_out;
+	pid_t	pid;
 }	t_cmd;
 
 typedef struct s_data
@@ -141,11 +148,11 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, pid_t	*pid, t_x_err *x_err);
 
 // error_management/*.c
 t_x_err	x_error(int error_code, int cur_errno, const char *origin);
-int		handle__error(t_x_err x_err);
+int		handle_error(t_x_err x_err);
 
 // init/*.c
 bool	parse(int argc, char** argv, t_data *data, t_x_err *x_err);
-void	no_left_and_right_pipes(t_cmd *cmd, size_t num_commands);
+bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_x_err *x_err);
 
 // memory/*.c
 void	final_free(t_data data);

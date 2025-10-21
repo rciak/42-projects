@@ -5,6 +5,7 @@ src/error_management/x_error.c \
 src/exec_pipeline.c \
 src/exit_msg.c \
 src/init/parse.c \
+src/init/parse_path.c \
 src/main.c \
 src/memory/final_free.c
 

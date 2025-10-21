@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 11:40:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/20 17:58:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/21 10:41:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param[in] x_err Error information
  * @return exit code
  */
-int	handle__error(t_x_err x_err)
+int	handle_error(t_x_err x_err)
 {
 	if (x_err.code == ERR_NONE)
 		return (EXITCODE_ERR_NONE);

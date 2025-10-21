@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:39:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/15 15:51:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/21 10:55:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_err	error(int error_code)
 	{ERR_NONE, "Success - no error detected"},
 	{ERR_ARGC, "There must be at least 4 arguments"},
 	{ERR_ALLOC, "Memory allocation failed"},
+	{ERR_LOGIC_ELSE, "Logic error: Else branch shound not be  reachable ..."},
 	};
 
 	return (err[error_code]);

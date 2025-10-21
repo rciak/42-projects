@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/20 18:07:24 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/21 10:39:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, pid_t	*pid, t_x_err *x_err)
 
 static int	exec__first(t_cmd first_cmd, t_x_err *x_err)
 {
-	
+																			return (0);
 }
 
 static int	exec__mid(t_cmd mid_cmd, int fd_read, t_x_err *x_err)
 {
-	
+																			return (0);
 }
 
 static pid_t	exec__last(t_cmd _last_cmd, int fd_read, t_x_err *x_err)
 {
-
+																			return (0);
 }

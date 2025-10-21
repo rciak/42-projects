@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 12:29:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/20 18:07:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/21 10:58:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ char *	exit_msg(int exit_code)
 	else if (exit_code == EXITCODE_SIGINT)
 		str = "Received Signal SIGINT"
 		" - I told you so many times not to press CRTL + C ...";
+	else
+		exit (ERR_LOGIC_ELSE);
 	return (str);
 }
