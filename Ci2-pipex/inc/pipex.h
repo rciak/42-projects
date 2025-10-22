@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/21 12:42:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/22 15:03:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 ///////////////////////////
 # include <sysexits.h>      // suggestions for exit codes (for system programms)
 # include <sys/wait.h>
+# include <fcntl.h>         // open
 # include <stdint.h>
 # include <errno.h>
 # include "libft.h"
@@ -54,17 +55,27 @@ enum e_prevent_overwriting
 	KEEP = -1,
 };
 
+enum e_pipe_fd_kind
+{
+	READ_FROM = 0,
+	WRITE_TO = 0,
+};
+
 enum e_pipex_errors                                                     // Fill in at error.c
 {
 	ERR_NONE,
 	ERR_EXECV,
 	ERR_ALLOC,
-	ERR_LOGIC_ELSE,
 	ERR_ARGC,
 	ERR_FORK,
 	ERR_PIPE,
+	ERR_DUP,
 	ERR_ENVP,
 	ERR_TOO_FEW_CMDS,
+	ERR_OPEN,
+	ERR_CLOSE,
+	ERR_LOGIC,
+	ERR_LOGIC_ELSE,
 };
 
 enum e_exit_codes
@@ -73,13 +84,17 @@ enum e_exit_codes
 	EXITCODE_ERR_EXECV = 1,
 	EXITCODE_MISC_ERROR = 2,
 	EXITCODE_ERR_ALLOC = 2,
-	EXITCODE_ERR_HOW_ELSE = 3,
 	EXITCODE_ERR_ARGC = EX_USAGE,
+	EXITCODE_OPEN = EX_IOERR,
+	EXITOCDE_ERR_CLOSE = EX_IOERR,
+	EXITCODE_ERR_DUP = EX_OSERR,
 	EXITCODE_ERR_FORK = EX_OSERR,
 	EXITCODE_ERR_PIPE = EX_OSERR,
 	EXITCODE_NOT_EXECUTABLE = 126,
 	EXITCODE_NOT_FOUND = 127,
 	EXITCODE_SIGINT = 130,
+	EXITCODE_ERR_LOGIC = 3,
+	EXITCODE_ERR_LOGIC_ELSE = 4,
 };
 
 /////////////////////////
