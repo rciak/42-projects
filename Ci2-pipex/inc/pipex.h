@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/22 16:18:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/22 18:29:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ enum e_prevent_overwriting
 enum e_pipe_fd_kind
 {
 	READ_FROM = 0,
-	WRITE_TO = 0,
+	WRITE_TO = 1,
 };
 
 enum e_pipex_errors                                                     // Fill in at error.c
