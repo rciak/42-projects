@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/22 15:03:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/22 16:18:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,8 @@ typedef struct s_cmd
 	char	**path;
 	char	*infile;
 	char	*outfile;
-	int		fd_in;
-	int		fd_out;
+	int		fd_in;                                                  // remove if possible
+	int		fd_out;                                                 // remove if possible
 	pid_t	pid;
 	                                                                // int		status;
 }	t_cmd;

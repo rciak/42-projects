@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/22 15:47:48 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/22 16:23:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include "pipex.h"
 
 static int		exec__first(t_cmd first_cmd, t_x_err *x_err);
-static int		exec__mid(t_cmd mid_cmd, int fd_read, t_x_err *x_err);
-static void		exec__last(t_cmd _last_cmd, int fd_read, t_x_err *x_err);
+static int		exec__mid(t_cmd mid_cmd, int left_pipe_fd_read, t_x_err *x_err);
+static void		exec__last(t_cmd last_cmd, int left_pipe_fd_read, t_x_err *x_err);
 
 /**
  * @brief This setups and executes the pipe(x)line
@@ -73,17 +73,7 @@ static int	exec__first(t_cmd first_cmd, t_x_err *x_err)
 	close(pfd[1]);
 	return (pfd[0]);
 }
-static void	exec__last(t_cmd last_cmd, int left_pipe_fd_read, t_x_err *x_err)
-{
-	last_cmd.pid = fork();
-	if (last_cmd.pid == 0)
-	{
-		dup2(left_pipe_fd_read, STDIN_FILENO);
-		close (left_pipe_fd_read);
-		execv(last_cmd.av[0], last_cmd.av);
-	}
-	close (left_pipe_fd_read);
-}
+
 static int	exec__mid(t_cmd mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 {
 	int	pfd[2];
@@ -99,7 +89,20 @@ static int	exec__mid(t_cmd mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 		execv(mid_cmd.av[0], mid_cmd.av);
 	}
 	close (left_pipe_fd_read);
+	close (pfd[1]);
 	return (pfd[0]);
+}
+
+static void	exec__last(t_cmd last_cmd, int left_pipe_fd_read, t_x_err *x_err)
+{
+	last_cmd.pid = fork();
+	if (last_cmd.pid == 0)
+	{
+		dup2(left_pipe_fd_read, STDIN_FILENO);
+		close (left_pipe_fd_read);
+		execv(last_cmd.av[0], last_cmd.av);
+	}
+	close (left_pipe_fd_read);
 }
 
 
