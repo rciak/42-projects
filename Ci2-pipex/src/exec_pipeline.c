@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/22 16:23:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/22 18:42:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 			exec__last(cmd[i], pfd_read, x_err);
 		if (x_err->code != ERR_NONE)
 			return (false);
-ft_putnbr_fd(i, STDERR_FILENO);
-sleep(2);
 		i++;
 	}
 	return (true);
@@ -66,12 +64,12 @@ static int	exec__first(t_cmd first_cmd, t_x_err *x_err)
 	first_cmd.pid = fork();
 	if (first_cmd.pid == 0)
 	{
-		dup2(pfd[1], STDOUT_FILENO);
-		close(pfd[1]);
+		dup2(pfd[WRITE_TO], STDOUT_FILENO);
+		close(pfd[WRITE_TO]);
 		execv(first_cmd.av[0], first_cmd.av);
 	}
-	close(pfd[1]);
-	return (pfd[0]);
+	close(pfd[WRITE_TO]);
+	return (pfd[READ_FROM]);
 }
 
 static int	exec__mid(t_cmd mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
@@ -84,14 +82,14 @@ static int	exec__mid(t_cmd mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 	{
 		dup2(left_pipe_fd_read, STDIN_FILENO);
 		close (left_pipe_fd_read);
-		dup2(pfd[1], STDOUT_FILENO);
-		close(pfd[1]);
+		dup2(pfd[WRITE_TO], STDOUT_FILENO);
+		close(pfd[WRITE_TO]);
 		execv(mid_cmd.av[0], mid_cmd.av);
 	}
 	close (left_pipe_fd_read);
-	close (pfd[1]);
-	return (pfd[0]);
-}
+	close (pfd[WRITE_TO]);
+	return (pfd[READ_FROM]);
+	}
 
 static void	exec__last(t_cmd last_cmd, int left_pipe_fd_read, t_x_err *x_err)
 {
