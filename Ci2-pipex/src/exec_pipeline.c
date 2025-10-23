@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 14:53:04 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 15:03:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,12 @@ static int	exec__first(t_cmd *first_cmd, t_x_err *x_err)
 	first_cmd->pid = fork();
 	if (first_cmd->pid == 0)
 	{
+		first_cmd->fd_in = open(first_cmd->infile, O_RDONLY);
+		dup2(first_cmd->fd_in, STDIN_FILENO);
 		dup2(pfd[WRITE_TO], STDOUT_FILENO);
-		close(pfd[WRITE_TO]);
+		close(first_cmd->fd_in);
 		close(pfd[READ_FROM]);
+		close(pfd[WRITE_TO]);
 		execv(first_cmd->av[0], first_cmd->av);
 	}
 	close(pfd[WRITE_TO]);
