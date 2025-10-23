@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 14:39:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 14:53:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ static int	exec__mid(t_cmd *mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 	if (mid_cmd->pid == 0)
 	{
 		dup2(left_pipe_fd_read, STDIN_FILENO);
-		close (left_pipe_fd_read);
 		dup2(pfd[WRITE_TO], STDOUT_FILENO);
+		close (left_pipe_fd_read);
 		close(pfd[WRITE_TO]);
 		close(pfd[READ_FROM]);
 		execv(mid_cmd->av[0], mid_cmd->av);
