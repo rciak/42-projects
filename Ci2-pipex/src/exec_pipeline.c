@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/22 18:42:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 10:22:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #include "pipex.h"
 
-static int		exec__first(t_cmd first_cmd, t_x_err *x_err);
-static int		exec__mid(t_cmd mid_cmd, int left_pipe_fd_read, t_x_err *x_err);
-static void		exec__last(t_cmd last_cmd, int left_pipe_fd_read, t_x_err *x_err);
+static int		exec__first(t_cmd *first_cmd, t_x_err *x_err);
+static int		exec__mid(t_cmd *mid_cmd, int left_pipe_fd_read, t_x_err *x_err);
+static void		exec__last(t_cmd *last_cmd, int left_pipe_fd_read, t_x_err *x_err);
 
 /**
  * @brief This setups and executes the pipe(x)line
@@ -44,11 +44,11 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 	while (i < n_cmds)
 	{
 		if (i == 0)
-			pfd_read = exec__first(cmd[i], x_err);
+			pfd_read = exec__first(&cmd[i], x_err);
 		else if (0 < i && i < n_cmds - 1)
-			pfd_read = exec__mid(cmd[i], pfd_read, x_err);
+			pfd_read = exec__mid(&cmd[i], pfd_read, x_err);
 		else
-			exec__last(cmd[i], pfd_read, x_err);
+			exec__last(&cmd[i], pfd_read, x_err);
 		if (x_err->code != ERR_NONE)
 			return (false);
 		i++;
@@ -56,49 +56,49 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 	return (true);
 }
 
-static int	exec__first(t_cmd first_cmd, t_x_err *x_err)
+static int	exec__first(t_cmd *first_cmd, t_x_err *x_err)
 {
 	int	pfd[2];
 
 	pipe(pfd);
-	first_cmd.pid = fork();
-	if (first_cmd.pid == 0)
+	first_cmd->pid = fork();
+	if (first_cmd->pid == 0)
 	{
 		dup2(pfd[WRITE_TO], STDOUT_FILENO);
 		close(pfd[WRITE_TO]);
-		execv(first_cmd.av[0], first_cmd.av);
+		execv(first_cmd->av[0], first_cmd->av);
 	}
 	close(pfd[WRITE_TO]);
 	return (pfd[READ_FROM]);
 }
 
-static int	exec__mid(t_cmd mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
+static int	exec__mid(t_cmd *mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 {
 	int	pfd[2];
 
 	pipe (pfd);
-	mid_cmd.pid = fork();
-	if (mid_cmd.pid == 0)
+	mid_cmd->pid = fork();
+	if (mid_cmd->pid == 0)
 	{
 		dup2(left_pipe_fd_read, STDIN_FILENO);
 		close (left_pipe_fd_read);
 		dup2(pfd[WRITE_TO], STDOUT_FILENO);
 		close(pfd[WRITE_TO]);
-		execv(mid_cmd.av[0], mid_cmd.av);
+		execv(mid_cmd->av[0], mid_cmd->av);
 	}
 	close (left_pipe_fd_read);
 	close (pfd[WRITE_TO]);
 	return (pfd[READ_FROM]);
 	}
 
-static void	exec__last(t_cmd last_cmd, int left_pipe_fd_read, t_x_err *x_err)
+static void	exec__last(t_cmd *last_cmd, int left_pipe_fd_read, t_x_err *x_err)
 {
-	last_cmd.pid = fork();
-	if (last_cmd.pid == 0)
+	last_cmd->pid = fork();
+	if (last_cmd->pid == 0)
 	{
 		dup2(left_pipe_fd_read, STDIN_FILENO);
 		close (left_pipe_fd_read);
-		execv(last_cmd.av[0], last_cmd.av);
+		execv(last_cmd->av[0], last_cmd->av);
 	}
 	close (left_pipe_fd_read);
 }

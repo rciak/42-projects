@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 09:09:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 10:00:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ static int	wait__without_creating_zombies(pid_t pid_last_cmd)
 	int		status_last_cmd;
 
 	pid = 1;
-	wstatus = 0;
-	status_last_cmd = 0;
 	while(pid > 0)
 	{
 		pid = waitpid(-1, &wstatus, 0);
