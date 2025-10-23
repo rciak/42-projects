@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 16:04:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 16:53:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ static int	exec__first(t_cmd *first_cmd, t_x_err *x_err)
 		close(first_cmd->fd_in);
 		close(pfd[READ_FROM]);
 		close(pfd[WRITE_TO]);
+		// Check mit access
 		execv(first_cmd->av[0], first_cmd->av);
+		//-1 ...  
 	}
 	close(pfd[WRITE_TO]);
 	return (pfd[READ_FROM]);
@@ -79,7 +81,7 @@ static int	exec__first(t_cmd *first_cmd, t_x_err *x_err)
 static int	exec__mid(t_cmd *mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 {
 	int	pfd[2];
-
+// Was wenn left_pipe_fd_read < 0 ????
 	pipe (pfd);
 	mid_cmd->pid = fork();
 	if (mid_cmd->pid == 0)
