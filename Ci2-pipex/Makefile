@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/15 21:09:36 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/23 09:52:38 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,6 +120,9 @@ fclean: clean
 
 .PHONY: re
 re: fclean libftre all
+
+.PHONY: re_but_no_libft_rebuilt
+re_but_no_libft_rebuilt: fclean all
 
 .PHONY: bonus
 bonus: all
