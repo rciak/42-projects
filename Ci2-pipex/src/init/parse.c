@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:30:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/17 19:08:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 09:34:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "pipex.h"
 
+static void	pre__init(t_cmd *cmd, size_t num_cmds);
 static bool	set__files(t_cmd *cmd, int ac, char **av, t_x_err *x_err);
 static bool	set_ac_and_create__av(t_cmd *cmd, int ac, char **av, t_x_err *x_err);
 static void	free__av_before_index(t_cmd *cmd, size_t i_last);
@@ -42,6 +43,7 @@ bool	parse(int argc, char **argv, t_data *data, t_x_err *x_err)
 	cmd = data->cmd;
 	if (cmd == NULL)
 		return (*x_err = x_error(ERR_ALLOC, errno, "parse: cmd"), false);
+	pre__init(cmd, data->num_cmds);
 	if (!set__files(cmd, argc, argv, x_err))
 		return (free(cmd), false);
 	if (!set_ac_and_create__av(cmd, argc, argv, x_err))
@@ -52,6 +54,26 @@ bool	parse(int argc, char **argv, t_data *data, t_x_err *x_err)
 		return (false);
 	}
 	return (*x_err = x_error(ERR_NONE, errno, "parse: ok"), true);
+}
+
+static void	pre__init(t_cmd *cmd, size_t num_cmds)
+{
+	size_t i;
+
+	i = 0;
+	while (i < num_cmds)
+	{
+		cmd[i].ac = 0;
+		cmd[i].av = NULL;
+		cmd[i].path = NULL;
+		cmd[i].infile = NULL;
+		cmd[i].outfile = NULL;
+		cmd[i].fd_in = -1;             // remove if item .fd_in is remove from struct s_cmd in pipex.h
+		cmd[i].fd_out = -1;            // remove if item .fd_out is remove from struct s_cmd in pipex.h
+		cmd[i].pid = -1;
+		                               // Decomment if  .status  gets added to struct s_cmd:  cmd[i].status = EXITCODE_ERR_NONE;
+		i++;
+	}
 }
 
 static bool	set__files(t_cmd *cmd, int ac, char **av, t_x_err *x_err)
