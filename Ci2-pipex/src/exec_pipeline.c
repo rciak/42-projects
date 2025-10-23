@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 15:03:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 16:04:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ static void	exec__last(t_cmd *last_cmd, int left_pipe_fd_read, t_x_err *x_err)
 	last_cmd->pid = fork();
 	if (last_cmd->pid == 0)
 	{
+		last_cmd->fd_out = open(last_cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		dup2(last_cmd->fd_out, STDOUT_FILENO);
 		dup2(left_pipe_fd_read, STDIN_FILENO);
+		close (last_cmd->fd_out);
 		close (left_pipe_fd_read);
 		execv(last_cmd->av[0], last_cmd->av);
 	}
