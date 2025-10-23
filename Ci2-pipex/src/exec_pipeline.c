@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 16:53:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:25:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	exec__first(t_cmd *first_cmd, t_x_err *x_err)
 		close(pfd[READ_FROM]);
 		close(pfd[WRITE_TO]);
 		// Check mit access
-		execv(first_cmd->av[0], first_cmd->av);
+		execute(first_cmd->av, first_cmd->path);
 		//-1 ...  
 	}
 	close(pfd[WRITE_TO]);
@@ -91,7 +91,7 @@ static int	exec__mid(t_cmd *mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 		close (left_pipe_fd_read);
 		close(pfd[WRITE_TO]);
 		close(pfd[READ_FROM]);
-		execv(mid_cmd->av[0], mid_cmd->av);
+		execute(mid_cmd->av, mid_cmd->path);
 	}
 	close (left_pipe_fd_read);
 	close (pfd[WRITE_TO]);
@@ -108,7 +108,7 @@ static void	exec__last(t_cmd *last_cmd, int left_pipe_fd_read, t_x_err *x_err)
 		dup2(left_pipe_fd_read, STDIN_FILENO);
 		close (last_cmd->fd_out);
 		close (left_pipe_fd_read);
-		execv(last_cmd->av[0], last_cmd->av);
+		execute(last_cmd->av, last_cmd->path);
 	}
 	close (left_pipe_fd_read);
 }

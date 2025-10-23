@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 09:01:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:23:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,9 @@ typedef struct s_data
 int		main(int argc, char **argv, char **envp);
 t_err	error(int error_code);
 bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err);
+
+// exec_pipeline/*.c
+void	execute(char **av, char **path);
 
 // error_management/*.c
 t_x_err	x_error(int error_code, int cur_errno, const char *origin);
