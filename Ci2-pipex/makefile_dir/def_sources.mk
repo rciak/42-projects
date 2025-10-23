@@ -3,6 +3,7 @@ src/error.c \
 src/error_management/handle_error.c \
 src/error_management/x_error.c \
 src/exec_pipeline.c \
+src/exec_pipeline/execute.c \
 src/exit_msg.c \
 src/init/parse.c \
 src/init/parse_path.c \
