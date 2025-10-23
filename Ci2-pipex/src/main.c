@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/21 12:35:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/23 09:09:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static int	wait__without_creating_zombies(pid_t pid_last_cmd);
  */
 int	main(int argc, char **argv, char**envp)
 {
-	t_data	data;
 	t_x_err	x_err;
+	t_data	data;
 	pid_t	pid_last_cmd;
 	int		termination_status_last_cmd;
 
