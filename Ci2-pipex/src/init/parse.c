@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:30:42 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 10:29:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/24 12:50:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ bool	parse(int argc, char **argv, t_data *data, t_x_err *x_err)
 	if (cmd == NULL)
 		return (*x_err = x_error(ERR_ALLOC, errno, "parse: cmd"), false);
 // During development this should be commented out: Pre__init might otherwise
-// Turn good bugs (indicated by valgrind) into hard to find bugs (not indicated)
-//		pre__init(cmd, data->num_cmds);
+// Turn good bugs (indicated by valgrind) into hard to find bugs (not indicated) ..
+	pre__init(cmd, data->num_cmds);
 	if (!set__files(cmd, argc, argv, x_err))
 		return (free(cmd), false);
 	if (!set_ac_and_create__av(cmd, argc, argv, x_err))
@@ -65,15 +65,15 @@ static void	pre__init(t_cmd *cmd, size_t num_cmds)
 	i = 0;
 	while (i < num_cmds)
 	{
-		// cmd[i].ac = 0;
-		// cmd[i].av = NULL;
-		// cmd[i].path = NULL;
-		// cmd[i].infile = NULL;
-		// cmd[i].outfile = NULL;
-		// cmd[i].fd_in = -1;             // remove if item .fd_in is remove from struct s_cmd in pipex.h
-		// cmd[i].fd_out = -1;            // remove if item .fd_out is remove from struct s_cmd in pipex.h
-		// cmd[i].pid = -1;
-		                               // Decomment if  .status  gets added to struct s_cmd:  cmd[i].status = EXITCODE_ERR_NONE;
+		cmd[i].ac = 0;
+		cmd[i].av = NULL;
+		cmd[i].path = NULL;
+		cmd[i].infile = NULL;
+		cmd[i].outfile = NULL;
+		cmd[i].fd_in = -1;             // remove if item .fd_in is remove from struct s_cmd in pipex.h
+		cmd[i].fd_out = -1;            // remove if item .fd_out is remove from struct s_cmd in pipex.h
+		cmd[i].pid = -1;
+		                            //    Decomment if  .status  gets added to struct s_cmd:  cmd[i].status = EXITCODE_ERR_NONE;
 		i++;
 	}
 }

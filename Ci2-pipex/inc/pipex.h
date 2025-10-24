@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 20:23:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/24 14:50:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ enum e_pipe_fd_kind
 enum e_pipex_errors                                                     // Fill in at error.c
 {
 	ERR_NONE,
-	ERR_EXECV,
-	ERR_ALLOC,
 	ERR_ARGC,
+	ERR_ACCESS,
+	ERR_EXECVE,
+	ERR_ALLOC,
 	ERR_FORK,
 	ERR_PIPE,
 	ERR_DUP,
@@ -76,12 +77,15 @@ enum e_pipex_errors                                                     // Fill 
 	ERR_CLOSE,
 	ERR_LOGIC,
 	ERR_LOGIC_ELSE,
+	ERR_PATH,
+	ERR_DENY_NULL,
+	ERR_EMPTY_STRING,
 };
 
 enum e_exit_codes
 {
 	EXITCODE_ERR_NONE = 0,
-	EXITCODE_ERR_EXECV = 1,
+	EXITCODE_ERR_EXECVE = 1,
 	EXITCODE_MISC_ERROR = 2,
 	EXITCODE_ERR_ALLOC = 2,
 	EXITCODE_ERR_ARGC = EX_USAGE,
@@ -90,11 +94,15 @@ enum e_exit_codes
 	EXITCODE_ERR_DUP = EX_OSERR,
 	EXITCODE_ERR_FORK = EX_OSERR,
 	EXITCODE_ERR_PIPE = EX_OSERR,
+	EXITCODE_ERR_ACCESS = EX_NOPERM,
 	EXITCODE_NOT_EXECUTABLE = 126,
 	EXITCODE_NOT_FOUND = 127,
 	EXITCODE_SIGINT = 130,
 	EXITCODE_ERR_LOGIC = 3,
 	EXITCODE_ERR_LOGIC_ELSE = 4,
+	EXITCODE_ERR_PATH = 5,
+	EXITCODE_DENY_NULL = 6,
+	EXITCODE_ERR_EMPTY_STRING = 7,
 };
 
 /////////////////////////
@@ -163,11 +171,12 @@ t_err	error(int error_code);
 bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err);
 
 // exec_pipeline/*.c
-void	execute(char **av, char **path);
+bool	execute(char **av, char **path, t_x_err *x_err);
 
 // error_management/*.c
 t_x_err	x_error(int error_code, int cur_errno, const char *origin);
-int		handle_error(t_x_err x_err);
+int		handle_error(t_data *data, t_x_err *x_err);
+int		err_execve(t_data *data, t_x_err *x_err);
 
 // init/*.c
 bool	parse(int argc, char** argv, t_data *data, t_x_err *x_err);

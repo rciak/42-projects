@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/23 20:25:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/24 11:44:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 		if (x_err->code != ERR_NONE)
 			return (false);
 		i++;
+sleep(1);
 	}
 	return (true);
 }
@@ -71,7 +72,7 @@ static int	exec__first(t_cmd *first_cmd, t_x_err *x_err)
 		close(pfd[READ_FROM]);
 		close(pfd[WRITE_TO]);
 		// Check mit access
-		execute(first_cmd->av, first_cmd->path);
+		execute(first_cmd->av, first_cmd->path, x_err);
 		//-1 ...  
 	}
 	close(pfd[WRITE_TO]);
@@ -91,7 +92,8 @@ static int	exec__mid(t_cmd *mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 		close (left_pipe_fd_read);
 		close(pfd[WRITE_TO]);
 		close(pfd[READ_FROM]);
-		execute(mid_cmd->av, mid_cmd->path);
+		if (!execute(mid_cmd->av, mid_cmd->path, x_err))
+			;  // Handle error
 	}
 	close (left_pipe_fd_read);
 	close (pfd[WRITE_TO]);
@@ -108,7 +110,7 @@ static void	exec__last(t_cmd *last_cmd, int left_pipe_fd_read, t_x_err *x_err)
 		dup2(left_pipe_fd_read, STDIN_FILENO);
 		close (last_cmd->fd_out);
 		close (left_pipe_fd_read);
-		execute(last_cmd->av, last_cmd->path);
+		execute(last_cmd->av, last_cmd->path, x_err);
 	}
 	close (left_pipe_fd_read);
 }

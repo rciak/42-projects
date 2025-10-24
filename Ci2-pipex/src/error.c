@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 20:39:35 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/21 10:55:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/24 14:52:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,24 @@ t_err	error(int error_code)
 	static const t_err	err[] = {
 	{ERR_NONE, "Success - no error detected"},
 	{ERR_ARGC, "There must be at least 4 arguments"},
+	{ERR_ACCESS, "Bla"},
+	{ERR_EXECVE, "Bla"},
 	{ERR_ALLOC, "Memory allocation failed"},
+	{ERR_FORK, "Bla"},
+	{ERR_PIPE, "Bla"},
+	{ERR_DUP, "Bla"},
+	{ERR_ENVP, "Bla"},
+	{ERR_TOO_FEW_CMDS, "Bla"},
+	{ERR_OPEN, "Bla"},
+	{ERR_CLOSE, "Bla"},
+	{ERR_LOGIC, "Bla"},
 	{ERR_LOGIC_ELSE, "Logic error: Else branch shound not be  reachable ..."},
+	{ERR_PATH, "Bla"},
+	{ERR_DENY_NULL, "Bla"},
+	{ERR_EMPTY_STRING, "Bla"},
 	};
-
+	
 	return (err[error_code]);
 }
+
+

@@ -1,6 +1,7 @@
 SRCS := \
 src/error.c \
 src/error_management/handle_error.c \
+src/error_management/handle_error/err_execve.c \
 src/error_management/x_error.c \
 src/exec_pipeline.c \
 src/exec_pipeline/execute.c \
