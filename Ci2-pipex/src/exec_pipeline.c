@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/24 11:44:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/24 18:41:24 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 	if (x_err->code != ERR_NONE)
 		exit (ERR_LOGIC);
 	if (n_cmds < 2)
+	{
 		; //                                                                Error!
+	}
+
 	i = 0;
 	while (i < n_cmds)
 	{
@@ -93,7 +96,9 @@ static int	exec__mid(t_cmd *mid_cmd, int left_pipe_fd_read, t_x_err *x_err)
 		close(pfd[WRITE_TO]);
 		close(pfd[READ_FROM]);
 		if (!execute(mid_cmd->av, mid_cmd->path, x_err))
+		{
 			;  // Handle error
+		}
 	}
 	close (left_pipe_fd_read);
 	close (pfd[WRITE_TO]);
