@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/23 09:52:38 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/24 11:09:55 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,8 +121,8 @@ fclean: clean
 .PHONY: re
 re: fclean libftre all
 
-.PHONY: re_but_no_libft_rebuilt
-re_but_no_libft_rebuilt: fclean all
+.PHONY: re_not_libft
+re_not_libft: fclean all
 
 .PHONY: bonus
 bonus: all
@@ -237,6 +237,7 @@ $$(OBJ_DIR)/%.o:$$(SRC_DIR)/%.c $$(INCS) | $$(LIBFT) _entry_message_compile $\
 clean:         _print_banner                                            (3) \n$\
 fclean:        clean                             (also removes the program) \n$\
 re:            fclean libftfclean all             (rebuilds - also libft.a) \n$\
+re_not_libft:  fclean all                        (rebuilds - libft.a stays) \n$\
 bonus:         all                                (currently alias for all) \n$\
 help:          info                                       (print this help) \n$\
 info:                                                     (print this help) \n$\
