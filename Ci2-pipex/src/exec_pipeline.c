@@ -6,7 +6,7 @@
 /*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/24 18:41:24 by rene             ###   ########.fr       */
+/*   Updated: 2025/10/25 08:27:02 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,8 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 	int		pfd_read;
 	size_t	i;
 	
-	if (x_err->code != ERR_NONE)
-		exit (ERR_LOGIC);
-	if (n_cmds < 2)
-	{
-		; //                                                                Error!
-	}
-
+	if (x_err->code != ERR_NONE || n_cmds < 2)
+		return (*x_err = x_error(ERR_LOGIC, errno, "exec_pipeline"), false);
 	i = 0;
 	while (i < n_cmds)
 	{
@@ -55,9 +50,9 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 		if (x_err->code != ERR_NONE)
 			return (false);
 		i++;
-sleep(1);
+sleep(1);                                                                                // Remove after dev done
 	}
-	return (true);
+	return (*x_err = x_error(ERR_LOGIC, errno, "exec_pipeline"), false);
 }
 
 static int	exec__first(t_cmd *first_cmd, t_x_err *x_err)
