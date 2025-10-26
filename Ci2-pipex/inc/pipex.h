@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/24 14:50:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/26 18:05:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@
 ///////////////////////////////////
 
 /**
- * @brief Used when calling x_error().
- * @note x_error() can either be called in its second argument like
- *           x_error( , errno , )   or
- *           x_error( , KEEP , ).
+ * @brief Used when calling error().
+ * @note error() can either be called in its second argument like
+ *           error( , errno , )   or
+ *           error( , KEEP , ).
  * @note Therefore KEEP needs to be a negative integer to avoid overlapping
  *       with errno values.
  */
@@ -63,46 +63,8 @@ enum e_pipe_fd_kind
 
 enum e_pipex_errors                                                     // Fill in at error.c
 {
-	ERR_NONE,
-	ERR_ARGC,
-	ERR_ACCESS,
-	ERR_EXECVE,
-	ERR_ALLOC,
-	ERR_FORK,
-	ERR_PIPE,
-	ERR_DUP,
-	ERR_ENVP,
-	ERR_TOO_FEW_CMDS,
-	ERR_OPEN,
-	ERR_CLOSE,
-	ERR_LOGIC,
-	ERR_LOGIC_ELSE,
-	ERR_PATH,
-	ERR_DENY_NULL,
-	ERR_EMPTY_STRING,
-};
-
-enum e_exit_codes
-{
-	EXITCODE_ERR_NONE = 0,
-	EXITCODE_ERR_EXECVE = 1,
-	EXITCODE_MISC_ERROR = 2,
-	EXITCODE_ERR_ALLOC = 2,
-	EXITCODE_ERR_ARGC = EX_USAGE,
-	EXITCODE_OPEN = EX_IOERR,
-	EXITOCDE_ERR_CLOSE = EX_IOERR,
-	EXITCODE_ERR_DUP = EX_OSERR,
-	EXITCODE_ERR_FORK = EX_OSERR,
-	EXITCODE_ERR_PIPE = EX_OSERR,
-	EXITCODE_ERR_ACCESS = EX_NOPERM,
-	EXITCODE_NOT_EXECUTABLE = 126,
-	EXITCODE_NOT_FOUND = 127,
-	EXITCODE_SIGINT = 130,
-	EXITCODE_ERR_LOGIC = 3,
-	EXITCODE_ERR_LOGIC_ELSE = 4,
-	EXITCODE_ERR_PATH = 5,
-	EXITCODE_DENY_NULL = 6,
-	EXITCODE_ERR_EMPTY_STRING = 7,
+	E_NONE,
+	E_ARGC,
 };
 
 /////////////////////////
@@ -112,33 +74,39 @@ enum e_exit_codes
 /////////////////////////
 
 /**
+ * @brief For convenient mapping of error type to error message, cf. set_err()
+ */
+typedef struct s_err_type_to_msg
+{
+	int		type;
+	char	*msg;
+}	t_err_type_to_msg;
+
+
+/**
+ * @brief This serves as substructure for t_err
+ */
+typedef struct s_exit
+{
+	int			code;
+	const char	*msg;
+}	t_exit;
+
+/**
  * @brief This structure serves for error handling
  * @param code  One of the errorcode names in the above enum
- * @param msg   A pointer to a string literal defined in error()
+ * @param msg   A pointer to a string literal: error message
+ * @param origin A pointer to a string literal: origin of the error
  */
 typedef struct s_err
 {
-	int			code;
-	const char	*msg;
-}	t_err;
-
-typedef struct s_exit_pair
-{
-	int			code;
-	const char	*msg;
-}	t_exit_pair;
-
-/**
- * @brief This extends s_err adding a storage option for current errno 
- *        and a note (like which function caused the error).
- */
-typedef struct s_x_err
-{
-	int			code;
+	int			type;
 	int			saved_errno;
 	const char	*msg;
 	const char	*origin;
-}	t_x_err;
+	t_exit		exit;
+}	t_err;
+
 
 typedef struct s_cmd
 {
@@ -164,25 +132,18 @@ typedef struct s_data
 //  5.  F U N C T I O N  P R O T O T Y P E S  //
 //                                            //
 ////////////////////////////////////////////////
+//
+//  see src and subfolders for implementation
+//
 
 // *.c
-int		main(int argc, char **argv, char **envp);
-t_err	error(int error_code);
-bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err);
+void	set_err(t_err *err, int error_type, int cur_errno, const char *origin);
 
-// exec_pipeline/*.c
-bool	execute(char **av, char **path, t_x_err *x_err);
+// a_col_exiting/*.c
+void	logic_error_exit(const char *msg);
 
-// error_management/*.c
-t_x_err	x_error(int error_code, int cur_errno, const char *origin);
-int		handle_error(t_data *data, t_x_err *x_err);
-int		err_execve(t_data *data, t_x_err *x_err);
+// a_collection/*.c
+void print_err(const t_err *err);
 
-// init/*.c
-bool	parse(int argc, char** argv, t_data *data, t_x_err *x_err);
-bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_x_err *x_err);
-
-// memory/*.c
-void	final_free(t_data data);
 
 #endif

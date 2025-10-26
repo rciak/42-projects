@@ -1,14 +1,7 @@
 SRCS := \
-src/error.c \
-src/error_management/handle_error.c \
-src/error_management/handle_error/err_execve.c \
-src/error_management/x_error.c \
-src/exec_pipeline.c \
-src/exec_pipeline/execute.c \
-src/exit_msg.c \
-src/init/parse.c \
-src/init/parse_path.c \
+src/a_col_exiting/logic_error_exit.c \
+src/a_collection/print_err.c \
 src/main.c \
-src/memory/final_free.c
+src/set_err.c
 
 SRCS_BONUS := \
