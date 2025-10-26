@@ -6,7 +6,7 @@
 /*   By: rene <rene@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 17:17:38 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/25 08:27:02 by rene             ###   ########.fr       */
+/*   Updated: 2025/10/26 12:21:07 by rene             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	exec_pipeline(t_cmd	*cmd, size_t n_cmds, t_x_err *x_err)
 			pfd_read = exec__mid(&cmd[i], pfd_read, x_err);
 		else
 			exec__last(&cmd[i], pfd_read, x_err);
-		if (x_err->code != ERR_NONE)
+		if (x_err->code == ERR_PIPE || x_err->code == ERR_FORK)
 			return (false);
 		i++;
 sleep(1);                                                                                // Remove after dev done
