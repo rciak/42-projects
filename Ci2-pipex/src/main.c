@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/26 18:13:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/26 18:25:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,6 @@ int	main(int argc, char **argv, char**envp)
 	int		termination_status_last_cmd;
 
 	set_err(&err, E_NONE, 0, "main");
-	//
-	print_err(&err);
-	set_err(&err, E_ARGC, 2, "main");
-	print_err(&err);
-	//
-	set_err(&err, E_NONE, errno, "main");
-	print_err(&err);
-write(35535, "Wuff", 5);
-	set_err(&err, E_ARGC, errno, "main: Sorry E_ARGC for the missnomer");
-	print_err(&err);
-//
-write(35535, "Miau", 5);
-	set_err(&err, E_NONE, errno, "main");
-	print_err(&err);
-//
-	set_err(&err, E_NONE, 0, "main: This should not be printed");
-	print_err(&err);
+
 }
 
