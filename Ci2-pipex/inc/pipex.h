@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 08:38:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 13:18:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ enum e_prevent_overwriting
 	KEEP = -1,
 };
 
+enum e_prevent_reusing
+{
+	DO_NOT_USE = -1,
+};
+
+
 enum e_pipe_fd_kind
 {
 	READ_FROM = 0,
@@ -66,6 +72,8 @@ enum e_pipex_errors                                                     // Fill 
 	E_NONE,
 	E_ARGC,
 	E_ALLOC,
+	E_NEGATIVE_FD,
+	E_CLOSE_FAILED,
 };
 
 /////////////////////////
@@ -145,7 +153,12 @@ bool	parse_argv(int argc, char **argv, t_data *data, t_err *err);
 void	print_err(const t_err *err);
 void	print_exit_msg(const t_err *err);
 void	print_exit_msg_and_exit(const t_err *err);
-void	h_err_exit(const t_err *err);
+void	h_err_exit(size_t num_cmds, t_cmd *cmd, t_err *err);
 void	logic_error_exit(const char *msg);
+
+// a_col_tools/*.c
+int		close_and_reset(int *fd, t_err *err);
+void	free_and_reset(char **p_ptr);
+void	free_array_and_reset(char ***p_arr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 08:39:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 10:27:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ void	set_err(t_err *err, int type, int cur_errno, const char *origin)
 static char	*error__message(int type)
 {
 	static t_err_type_to_msg	pair[] = {
-		{E_NONE, "Success - no error detected"},
+		{E_NONE, "success - no error detected"},
 		{E_ARGC, "argc: Wrong number of arguments"},
 		{E_ALLOC, "memory allocation failed"},
+		{E_NEGATIVE_FD, "filedesciptor is < 0"},
+		{E_CLOSE_FAILED, "close failed"},
 	};
 
 	if (type < 0 || (unsigned long) type > sizeof(pair) / sizeof(pair[0]) - 1)
@@ -55,13 +57,17 @@ static t_exit	exit__pair(int type, int cur_errno)
 	t_exit	pair;
 
 	if (type == E_NONE && cur_errno == 0)
-		pair = (t_exit){0, "Success - no error detected"};
+		pair = (t_exit){0, error__message(type)};
 	else if (type == E_ARGC)
-		pair = (t_exit){EX_USAGE, "argc: Wrong number of arguments"};
-//	else if (type == E_PARSE_ARGV)
-//		pair = (t_exit){2, "argv: Parsing failed"};
+		pair = (t_exit){EX_USAGE, error__message(type)};
+	else if (type == E_ALLOC)
+		pair = (t_exit){2, error__message(type)};
+	else if (type == E_NEGATIVE_FD)
+		pair = (t_exit){2, error__message(type)};
+	else if (type == E_CLOSE_FAILED)
+		pair = (t_exit){EX_IOERR, error__message(type)};
 	else if (type == E_NONE && cur_errno != 0)
-		logic_error_exit(RED"exit__pair: "RESET"E_NONE but cur_errno != 0 ?!");	
+		logic_error_exit(RED"exit__pair: "RESET"E_NONE but cur_errno != 0 ?!");
 	else
 		logic_error_exit(RED"exit__pair: "RESET"No pair defined");
 	return (pair);

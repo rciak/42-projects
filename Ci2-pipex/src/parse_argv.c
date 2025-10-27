@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:44:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 08:41:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 10:30:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ static void	pre__init(t_cmd *cmd, size_t num_cmds)
 		cmd[i].path = NULL;
 		cmd[i].infile = NULL;
 		cmd[i].outfile = NULL;
-		cmd[i].fd_in = -1;
-		cmd[i].fd_out = -1;
-		cmd[i].pid = -1;
+		cmd[i].fd_in = DO_NOT_USE;
+		cmd[i].fd_out = DO_NOT_USE;
+		cmd[i].pid = DO_NOT_USE;
 		                            //    Decomment if  .status  gets added to struct s_cmd:  cmd[i].status = EXITCODE_ERR_NONE;
 		i++;
 	}

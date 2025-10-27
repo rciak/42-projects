@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 09:08:41 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 13:18:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	main(int argc, char **argv, char**envp)
 	set_err(&err, E_NONE, 0, "main");
 	if (!parse_argv(argc, argv, &data, &err))
 		print_exit_msg_and_exit(&err);
-
+	if (!parse_path(envp, data.num_cmds, data.cmd, &err))
+		h_err_exit(data.num_cmds, data.cmd, &err);
 	
 	printf("\ndata.n_cmds:         |%zu|\n\n", data.num_cmds);
 	int i = 0;
