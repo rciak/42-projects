@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/26 18:05:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 08:38:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ enum e_pipex_errors                                                     // Fill 
 {
 	E_NONE,
 	E_ARGC,
+	E_ALLOC,
 };
 
 /////////////////////////
@@ -138,12 +139,13 @@ typedef struct s_data
 
 // *.c
 void	set_err(t_err *err, int error_type, int cur_errno, const char *origin);
+bool	parse_argv(int argc, char **argv, t_data *data, t_err *err);
 
 // a_col_exiting/*.c
+void	print_err(const t_err *err);
+void	print_exit_msg(const t_err *err);
+void	print_exit_msg_and_exit(const t_err *err);
+void	h_err_exit(const t_err *err);
 void	logic_error_exit(const char *msg);
-
-// a_collection/*.c
-void print_err(const t_err *err);
-
 
 #endif
