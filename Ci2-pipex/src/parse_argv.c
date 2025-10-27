@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:44:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 20:45:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 20:58:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,8 @@ bool	parse_argv(int argc, char **argv, t_data *data, t_err *err)
 static bool	set__files(t_cmd *cmd, int ac, char **av, t_err *err)
 {
 	size_t	ac_cmds;
-	size_t	i;
 
 	ac_cmds = (size_t) ac - 3;
-	i = 0;
-	while (i < ac_cmds)
-	{
-		cmd[i].infile = NULL;
-		cmd[i].outfile = NULL;
-		i++;
-	}
 	cmd[0].infile = ft_strdup(av[1]);
 	cmd[ac_cmds - 1].outfile = ft_strdup(av[ac - 1]);
 	if (cmd[0].infile == NULL || cmd[ac_cmds - 1].outfile == NULL)
