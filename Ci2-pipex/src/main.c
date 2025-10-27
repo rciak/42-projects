@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 18:41:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 20:33:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "pipex.h"
 #include <stdio.h>                                           // Forbidden function...
 
+static bool	argc__ok(int argc, t_err *err);
+static bool	alloc__cmds_pre_init(t_data *data, t_err *err);
 static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err);
 
 /**
@@ -40,7 +42,10 @@ int	main(int argc, char **argv, char**envp)
 	int		termination_status_last_cmd;
 
 	set_err(&err, E_NONE, 0, "main");
-	if (!parse_argv(argc, argv, &data, &err))
+	data.num_cmds = (size_t) argc - 3;
+	if (!argc__ok(argc, &err)
+		|| !alloc__cmds_pre_init(&data, &err)
+		|| !parse_argv(argc, argv, &data, &err))
 		print_exit_msg_and_exit(&err);
 	if (!parse_path(envp, data.num_cmds, data.cmd, &err))
 		h_err_exit(data.num_cmds, data.cmd, &err);
@@ -53,6 +58,8 @@ int	main(int argc, char **argv, char**envp)
 	{
 		printf("data.cmd[%d]->infile: |%s|\n", i, data.cmd[i].infile);
 		printf("data.cmd[%d]->outfile:|%s|\n", i, data.cmd[i].outfile);
+		printf("data.cmd[%d]->fd_in:  |%d|\n", i, data.cmd[i].fd_in);
+		printf("data.cmd[%d]->fd_out: |%d|\n", i, data.cmd[i].fd_out);
 		printf("data.cmd[%d]->av:     |%p|\n", i, data.cmd[i].av);
 		j = 0;
 		while (j < (int) data.cmd[i].ac + 1)
@@ -62,12 +69,12 @@ int	main(int argc, char **argv, char**envp)
 		}
 		printf("data.cmd[%d]->ac:     |%zu|\n", i, data.cmd[i].ac);
 		path = data.cmd[i].path;
-		while (*path != NULL)
-		{
-			printf("data.cmd[%d]->path:     |%s|\n", i, *path);
-			path++;
-		}
-		printf("data.cmd[%d]->path:     |%s|\n", i, *path);
+		// while (*path != NULL)
+		// {
+		// 	printf("data.cmd[%d]->path:     |%s|\n", i, *path);
+		// 	path++;
+		// }
+		// printf("data.cmd[%d]->path:     |%s|\n", i, *path);
 		printf("\n");
 		i++;
 	}
@@ -76,6 +83,42 @@ int	main(int argc, char **argv, char**envp)
 	final__tidy_up(data.num_cmds, data.cmd, &err);
 	return (termination_status_last_cmd);
 
+}
+
+static bool	argc__ok(int argc, t_err *err)
+{
+	if (argc >= 1 + 4)
+		return (true);
+	set_err(err, E_ARGC, errno, "main");
+	return (false);
+}
+
+static bool	alloc__cmds_pre_init(t_data *data, t_err *err)
+{
+	size_t	num_cmds;
+	t_cmd	*cmd;
+	size_t	i;
+	
+	data->cmd = malloc(data->num_cmds * sizeof (*data->cmd));
+	if (data->cmd == NULL)
+		return (set_err(err, E_ALLOC, errno, "alloc__cmds_pre_init"), false);
+	num_cmds = data->num_cmds;
+	cmd = data->cmd;
+	i = 0;
+	while (i < num_cmds)
+	{
+		cmd[i].ac = 0;
+		cmd[i].av = NULL;
+		cmd[i].path = NULL;
+		cmd[i].infile = NULL;
+		cmd[i].outfile = NULL;
+		cmd[i].fd_in = DO_NOT_USE;
+		cmd[i].fd_out = DO_NOT_USE;
+		cmd[i].pid = DO_NOT_USE;
+		                            //    Decomment if  .status  gets added to struct s_cmd:  cmd[i].status = EXITCODE_ERR_NONE;
+		i++;
+	}
+	return (true);
 }
 
 static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err)

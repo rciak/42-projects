@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:44:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 19:14:30 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 20:15:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "pipex.h"
 
-static void	pre__init(t_cmd *cmd, size_t num_cmds);
 static bool	set__files(t_cmd *cmd, int ac, char **av, t_err *err);
 static bool	set_ac_and_create__av(t_cmd *cmd, int ac, char **av, t_err *err);
 static void	free__av_before_index(t_cmd *cmd, size_t i_last);
@@ -32,22 +31,11 @@ static void	free__av_before_index(t_cmd *cmd, size_t i_last);
  *          * true if parsing worked
  *          * false if an error occured
  */
-
 bool	parse_argv(int argc, char **argv, t_data *data, t_err *err)
 {
 	t_cmd	*cmd;
-// Refactor later after parsing works: THE NEXT three lines should go to main....
-// Then argc
-	if (argc < 1 + 4)
-		return (set_err(err, E_ARGC, errno, "parse_argv"), false);
-	data->num_cmds = (size_t) argc - 3;
-	data->cmd = malloc(data->num_cmds * sizeof (*cmd));
+
 	cmd = data->cmd;
-	if (cmd == NULL)
-		return (set_err(err, E_ALLOC, errno, "parse: cmd"), false);
-// During development this should be commented out: Pre__init might otherwise
-// Turn good bugs (indicated by valgrind) into hard to find bugs (not indicated) ..
-	pre__init(cmd, data->num_cmds);
 	if (!set__files(cmd, argc, argv, err))
 		return (free(cmd), false);
 	if (!set_ac_and_create__av(cmd, argc, argv, err))
@@ -58,26 +46,6 @@ bool	parse_argv(int argc, char **argv, t_data *data, t_err *err)
 		return (false);
 	}
 	return (set_err(err, E_NONE, errno, "parse: ok"), true);
-}
-
-static void	pre__init(t_cmd *cmd, size_t num_cmds)
-{
-	size_t i;
-
-	i = 0;
-	while (i < num_cmds)
-	{
-		cmd[i].ac = 0;
-		cmd[i].av = NULL;
-		cmd[i].path = NULL;
-		cmd[i].infile = NULL;
-		cmd[i].outfile = NULL;
-		cmd[i].fd_in = DO_NOT_USE;
-		cmd[i].fd_out = DO_NOT_USE;
-		cmd[i].pid = DO_NOT_USE;
-		                            //    Decomment if  .status  gets added to struct s_cmd:  cmd[i].status = EXITCODE_ERR_NONE;
-		i++;
-	}
 }
 
 static bool	set__files(t_cmd *cmd, int ac, char **av, t_err *err)
