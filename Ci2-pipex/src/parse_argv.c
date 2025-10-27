@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:44:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 18:44:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 19:14:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ bool	parse_argv(int argc, char **argv, t_data *data, t_err *err)
 		free(cmd[0].infile);
 		free(cmd[data->num_cmds - 1].outfile);
 		free(cmd);
-		data->cmd = NULL;
 		return (false);
 	}
 	return (set_err(err, E_NONE, errno, "parse: ok"), true);
