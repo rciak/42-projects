@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 20:33:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 21:07:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,36 +49,7 @@ int	main(int argc, char **argv, char**envp)
 		print_exit_msg_and_exit(&err);
 	if (!parse_path(envp, data.num_cmds, data.cmd, &err))
 		h_err_exit(data.num_cmds, data.cmd, &err);
-	
-	printf("\ndata.n_cmds:         |%zu|\n\n", data.num_cmds);
-	int i = 0;
-	int j;
-	char **path;
-	while (i < (int) data.num_cmds)
-	{
-		printf("data.cmd[%d]->infile: |%s|\n", i, data.cmd[i].infile);
-		printf("data.cmd[%d]->outfile:|%s|\n", i, data.cmd[i].outfile);
-		printf("data.cmd[%d]->fd_in:  |%d|\n", i, data.cmd[i].fd_in);
-		printf("data.cmd[%d]->fd_out: |%d|\n", i, data.cmd[i].fd_out);
-		printf("data.cmd[%d]->av:     |%p|\n", i, data.cmd[i].av);
-		j = 0;
-		while (j < (int) data.cmd[i].ac + 1)
-		{
-			printf("                        |%s|\n", data.cmd[i].av[j]);
-			j++;
-		}
-		printf("data.cmd[%d]->ac:     |%zu|\n", i, data.cmd[i].ac);
-		path = data.cmd[i].path;
-		// while (*path != NULL)
-		// {
-		// 	printf("data.cmd[%d]->path:     |%s|\n", i, *path);
-		// 	path++;
-		// }
-		// printf("data.cmd[%d]->path:     |%s|\n", i, *path);
-		printf("\n");
-		i++;
-	}
-	
+
 	termination_status_last_cmd = 1;
 	final__tidy_up(data.num_cmds, data.cmd, &err);
 	return (termination_status_last_cmd);
@@ -127,24 +98,14 @@ static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err)
 	size_t	i;
 
 	copy = *err;
-
-
 	i = 0;
 	while (i < num_cmds)
 	{
-		
-out_nbr_fd((int) i, "0123456789", STDERR_FILENO); 
-print_err(err);
-print_err(&copy);
-if (err->type != copy.type)
-	out_str_fd(RED"Copy bad\n\n"RESET, STDERR_FILENO);
-
 		tidy_up_and_reset_cmd_items(&cmd[i], err);
 		i++;
 	}
 	free (cmd);
 	if (err->type != copy.type)
 		out_str_fd(BLUE"What?! Even on tidying up another error happend?!\n"
-			"Not investigating that ...\n"RESET,
-			STDERR_FILENO);
+			"Not investigating that ...\n"RESET, STDERR_FILENO);
 }
