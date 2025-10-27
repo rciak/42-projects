@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:44:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 20:15:53 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 20:45:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	free__av_before_index(t_cmd *cmd, size_t i_last);
 
 /**
  * @brief This parses the input into the s_cmd_structure (most item of it)
- * @param[in] ac Number of arguments given to this program
+ * @param[in] argc Number of arguments given to this program
  * @param[in] argv Arguments of this program
  * @param[out] data the parsed data
  * @param[out] x_err error information for caller

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:12:43 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 17:30:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 20:51:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ static void	free__path_before_index(t_cmd *cmd, size_t i_fail)
 		j = 0;
 		while (cmd[i].path[j] != NULL)
 		{
-			free_and_reset(&cmd[i].path[j]);
+			free(cmd[i].path[j]);
 			j++;
 		}
-		free_and_reset(cmd[i].path);
+		free(cmd[i].path);
 		i++;
 	}
 }
