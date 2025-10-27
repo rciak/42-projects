@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:12:43 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 16:51:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 17:30:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "pipex.h"
 
-static char **	extract__path(char **envp, t_err *err);
+static char **extract__path(char **envp, t_err *err);
 static void	free__path_before_index(t_cmd *cmd, size_t i_fail);
 
 /**
@@ -87,7 +87,7 @@ static void	free__path_before_index(t_cmd *cmd, size_t i_fail)
 			free_and_reset(&cmd[i].path[j]);
 			j++;
 		}
-		free(cmd[i].path);
+		free_and_reset(cmd[i].path);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 16:28:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 18:41:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #include "pipex.h"
 #include <stdio.h>                                           // Forbidden function...
+
+static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err);
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -46,6 +48,7 @@ int	main(int argc, char **argv, char**envp)
 	printf("\ndata.n_cmds:         |%zu|\n\n", data.num_cmds);
 	int i = 0;
 	int j;
+	char **path;
 	while (i < (int) data.num_cmds)
 	{
 		printf("data.cmd[%d]->infile: |%s|\n", i, data.cmd[i].infile);
@@ -58,19 +61,47 @@ int	main(int argc, char **argv, char**envp)
 			j++;
 		}
 		printf("data.cmd[%d]->ac:     |%zu|\n", i, data.cmd[i].ac);
-		while (*data.cmd[i].path != NULL)
+		path = data.cmd[i].path;
+		while (*path != NULL)
 		{
-			printf("data.cmd[%d]->path:     |%s|\n", i, *data.cmd[i].path);
-			data.cmd[i].path++;
+			printf("data.cmd[%d]->path:     |%s|\n", i, *path);
+			path++;
 		}
+		printf("data.cmd[%d]->path:     |%s|\n", i, *path);
 		printf("\n");
 		i++;
 	}
-
-
-termination_status_last_cmd = 1;
-	tidy_up_all_cmds(data.num_cmds, data.cmd, &err);
+	
+	termination_status_last_cmd = 1;
+	final__tidy_up(data.num_cmds, data.cmd, &err);
 	return (termination_status_last_cmd);
 
 }
 
+static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err)
+{
+	t_err	copy;
+	size_t	i;
+
+	copy = *err;
+
+
+	i = 0;
+	while (i < num_cmds)
+	{
+		
+out_nbr_fd((int) i, "0123456789", STDERR_FILENO); 
+print_err(err);
+print_err(&copy);
+if (err->type != copy.type)
+	out_str_fd(RED"Copy bad\n\n"RESET, STDERR_FILENO);
+
+		tidy_up_and_reset_cmd_items(&cmd[i], err);
+		i++;
+	}
+	free (cmd);
+	if (err->type != copy.type)
+		out_str_fd(BLUE"What?! Even on tidying up another error happend?!\n"
+			"Not investigating that ...\n"RESET,
+			STDERR_FILENO);
+}

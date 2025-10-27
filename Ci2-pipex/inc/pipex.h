@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 16:03:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 18:24:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void	h_err_exit(size_t num_cmds, t_cmd *cmd, t_err *err);
 void	logic_error_exit(const char *msg);
 
 // a_col_tools/*.c
-void	tidy_up_all_cmds(size_t num_cmds, t_cmd *cmd, t_err *err);
+void	tidy_up_and_reset_cmd_items(t_cmd *cmd, t_err *err);
 int		close_and_reset(int *fd, t_err *err);
 void	free_and_reset(char **p_ptr);
 void	free_array_and_reset(char ***p_arr);

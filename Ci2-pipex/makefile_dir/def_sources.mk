@@ -7,7 +7,7 @@ src/a_col_exiting/print_exit_msg.c \
 src/a_col_tools/close_and_reset.c \
 src/a_col_tools/free_and_reset.c \
 src/a_col_tools/free_array_and_reset.c \
-src/a_col_tools/tidy_up_all_cmds.c \
+src/a_col_tools/tidy_up_and_reset_cmd_itmes.c \
 src/main.c \
 src/parse_argv.c \
 src/parse_path.c \
