@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 10:27:58 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 15:52:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 static char		*error__message(int type);
 static t_exit	exit__pair(int type, int cur_errno);
+static void		exit__on_logic_error(int type, int cur_errno);
 
 /**
  * @brief Sets and error struct based on the handed over information.
@@ -45,6 +46,9 @@ static char	*error__message(int type)
 		{E_ALLOC, "memory allocation failed"},
 		{E_NEGATIVE_FD, "filedesciptor is < 0"},
 		{E_CLOSE_FAILED, "close failed"},
+		{E_ENVP_NULL, "envp == NULL"},
+		{E_ENVP_EMPTY_ARRAY, "envp contains no strings"},
+		{E_TOO_FEW_CMDS, "number of commands too little, min. 2 required"},
 	};
 
 	if (type < 0 || (unsigned long) type > sizeof(pair) / sizeof(pair[0]) - 1)
@@ -54,21 +58,31 @@ static char	*error__message(int type)
 
 static t_exit	exit__pair(int type, int cur_errno)
 {
-	t_exit	pair;
+	if (type == E_NONE 
+		&& cur_errno == 0)
+		return ((t_exit){error__message(type), 0});
+	if (type == E_ARGC)
+		return ((t_exit){error__message(type), EX_USAGE});
+	if (type == E_ALLOC)
+		return ((t_exit){error__message(type), EX_OSERR});
+	if (type == E_NEGATIVE_FD)
+		return ((t_exit){error__message(type), 1});
+	if (type == E_CLOSE_FAILED)
+		return ((t_exit){error__message(type), EX_IOERR});
+	if (type == E_ENVP_NULL)
+		return ((t_exit){error__message(type), 2});
+	if (type == E_ENVP_EMPTY_ARRAY)
+		return ((t_exit){error__message(type), 2});
+	if (type == E_TOO_FEW_CMDS)
+		return ((t_exit){error__message(type), 1});
+	exit__on_logic_error(type, cur_errno);
+	return ((t_exit){"Silencing compiler - how can this ever be reached?!", 1});
+}
 
-	if (type == E_NONE && cur_errno == 0)
-		pair = (t_exit){0, error__message(type)};
-	else if (type == E_ARGC)
-		pair = (t_exit){EX_USAGE, error__message(type)};
-	else if (type == E_ALLOC)
-		pair = (t_exit){2, error__message(type)};
-	else if (type == E_NEGATIVE_FD)
-		pair = (t_exit){2, error__message(type)};
-	else if (type == E_CLOSE_FAILED)
-		pair = (t_exit){EX_IOERR, error__message(type)};
-	else if (type == E_NONE && cur_errno != 0)
+static void	exit__on_logic_error(int type, int cur_errno)
+{
+	if (type == E_NONE && cur_errno != 0)
 		logic_error_exit(RED"exit__pair: "RESET"E_NONE but cur_errno != 0 ?!");
 	else
 		logic_error_exit(RED"exit__pair: "RESET"No pair defined");
-	return (pair);
 }

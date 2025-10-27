@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 13:18:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 16:28:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,31 @@ int	main(int argc, char **argv, char**envp)
 	printf("\ndata.n_cmds:         |%zu|\n\n", data.num_cmds);
 	int i = 0;
 	int j;
-	while (i < data.num_cmds)
+	while (i < (int) data.num_cmds)
 	{
 		printf("data.cmd[%d]->infile: |%s|\n", i, data.cmd[i].infile);
 		printf("data.cmd[%d]->outfile:|%s|\n", i, data.cmd[i].outfile);
 		printf("data.cmd[%d]->av:     |%p|\n", i, data.cmd[i].av);
 		j = 0;
-		while (j < data.cmd[i].ac )
+		while (j < (int) data.cmd[i].ac + 1)
 		{
 			printf("                        |%s|\n", data.cmd[i].av[j]);
 			j++;
 		}
 		printf("data.cmd[%d]->ac:     |%zu|\n", i, data.cmd[i].ac);
-		//while (*data.cmd[i].path != NULL)
-		//{
-		//	printf("data.cmd[%d]->path:     |%s|\n", i, *data.cmd[i].path);
-		//	data.cmd[i].path++;
-		//}
+		while (*data.cmd[i].path != NULL)
+		{
+			printf("data.cmd[%d]->path:     |%s|\n", i, *data.cmd[i].path);
+			data.cmd[i].path++;
+		}
 		printf("\n");
 		i++;
 	}
+
+
+termination_status_last_cmd = 1;
+	tidy_up_all_cmds(data.num_cmds, data.cmd, &err);
+	return (termination_status_last_cmd);
+
 }
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 13:18:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 16:03:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ enum e_pipex_errors                                                     // Fill 
 	E_ALLOC,
 	E_NEGATIVE_FD,
 	E_CLOSE_FAILED,
+	E_ENVP_NULL,
+	E_ENVP_EMPTY_ARRAY,
+	E_TOO_FEW_CMDS,
 };
 
 /////////////////////////
@@ -97,8 +100,8 @@ typedef struct s_err_type_to_msg
  */
 typedef struct s_exit
 {
-	int			code;
 	const char	*msg;
+	int			code;
 }	t_exit;
 
 /**
@@ -148,6 +151,7 @@ typedef struct s_data
 // *.c
 void	set_err(t_err *err, int error_type, int cur_errno, const char *origin);
 bool	parse_argv(int argc, char **argv, t_data *data, t_err *err);
+bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err);
 
 // a_col_exiting/*.c
 void	print_err(const t_err *err);
@@ -157,6 +161,7 @@ void	h_err_exit(size_t num_cmds, t_cmd *cmd, t_err *err);
 void	logic_error_exit(const char *msg);
 
 // a_col_tools/*.c
+void	tidy_up_all_cmds(size_t num_cmds, t_cmd *cmd, t_err *err);
 int		close_and_reset(int *fd, t_err *err);
 void	free_and_reset(char **p_ptr);
 void	free_array_and_reset(char ***p_arr);

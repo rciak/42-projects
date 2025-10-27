@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:12:43 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 13:19:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 16:51:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,12 @@ bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err)
 {
 	size_t	i;
 
-	if (envp == NULL || *envp == NULL)
-		return (set_err(err, E_ENVP, errno, "parse_path"), false);
+	if (envp == NULL)
+		return (set_err(err, E_ENVP_NULL, errno, "parse_path"), false);
+	if (*envp == NULL)
+		return (set_err(err, E_ENVP_EMPTY_ARRAY, errno, "parse_path"), false);
 	if (num_cmds < 2)
 		return (set_err(err, E_TOO_FEW_CMDS, errno, "parse_path"), false);
-	i = 0;
-	while (i < num_cmds)
-	{
-		cmd[i].path = NULL;
-		i++;
-	}
 	i = 0;
 	while (i < num_cmds)
 	{
@@ -53,7 +49,6 @@ bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err)
 			&& ft_strcmp(err->origin, "extract__path") == 0)
 		{
 			free__path_before_index(cmd, i);
-			free (cmd);
 			return (false);
 		}
 		i++;
@@ -89,7 +84,7 @@ static void	free__path_before_index(t_cmd *cmd, size_t i_fail)
 		j = 0;
 		while (cmd[i].path[j] != NULL)
 		{
-			free(cmd[i].path[j]);
+			free_and_reset(&cmd[i].path[j]);
 			j++;
 		}
 		free(cmd[i].path);

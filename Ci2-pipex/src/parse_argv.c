@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:44:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 14:54:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 16:57:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ bool	parse_argv(int argc, char **argv, t_data *data, t_err *err)
 	if (argc < 1 + 4)
 		return (set_err(err, E_ARGC, errno, "parse_argv"), false);
 	data->num_cmds = (size_t) argc - 3;
-	data->cmd = malloc((data->num_cmds + 1) * sizeof (*cmd));
+	data->cmd = malloc(data->num_cmds * sizeof (*cmd));
 	cmd = data->cmd;
 	if (cmd == NULL)
 		return (set_err(err, E_ALLOC, errno, "parse: cmd"), false);
 // During development this should be commented out: Pre__init might otherwise
 // Turn good bugs (indicated by valgrind) into hard to find bugs (not indicated) ..
-//	pre__init(cmd, data->num_cmds);
+	pre__init(cmd, data->num_cmds);
 	if (!set__files(cmd, argc, argv, err))
 		return (free(cmd), false);
 	if (!set_ac_and_create__av(cmd, argc, argv, err))
