@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:44:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 10:30:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/27 14:54:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	free__av_before_index(t_cmd *cmd, size_t i_last);
 bool	parse_argv(int argc, char **argv, t_data *data, t_err *err)
 {
 	t_cmd	*cmd;
-
+// Refactor later after parsing works: THE NEXT three lines should go to main....
+// Then argc
 	if (argc < 1 + 4)
 		return (set_err(err, E_ARGC, errno, "parse_argv"), false);
 	data->num_cmds = (size_t) argc - 3;
