@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 21:07:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 10:14:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	main(int argc, char **argv, char**envp)
 		print_exit_msg_and_exit(&err);
 	if (!parse_path(envp, data.num_cmds, data.cmd, &err))
 		h_err_exit(data.num_cmds, data.cmd, &err);
-
+	if (!open_pipes(data.num_cmds, data.cmd, &err))
+		h_err_exit(data.num_cmds, data.cmd, &err);
+	
 	termination_status_last_cmd = 1;
 	final__tidy_up(data.num_cmds, data.cmd, &err);
 	return (termination_status_last_cmd);

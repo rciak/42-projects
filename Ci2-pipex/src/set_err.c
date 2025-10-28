@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 15:52:36 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 09:52:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static char	*error__message(int type)
 		{E_ENVP_NULL, "envp == NULL"},
 		{E_ENVP_EMPTY_ARRAY, "envp contains no strings"},
 		{E_TOO_FEW_CMDS, "number of commands too little, min. 2 required"},
+		{E_CREATE_PIPE, "creation of pipe failed"},
 	};
 
 	if (type < 0 || (unsigned long) type > sizeof(pair) / sizeof(pair[0]) - 1)
@@ -75,6 +76,8 @@ static t_exit	exit__pair(int type, int cur_errno)
 		return ((t_exit){error__message(type), 2});
 	if (type == E_TOO_FEW_CMDS)
 		return ((t_exit){error__message(type), 1});
+	if (type == E_CREATE_PIPE)
+		return ((t_exit){error__message(type), EX_OSERR});
 	exit__on_logic_error(type, cur_errno);
 	return ((t_exit){"Silencing compiler - how can this ever be reached?!", 1});
 }
