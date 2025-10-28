@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:56:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 20:26:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 22:58:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "pipex.h"
 
 static bool	do__child_stuff(t_data *data, size_t i, char **envp, t_err *err);
+static bool set___pathname(char	**pathname, t_cmd *cmd, t_err *err);
 static void	close__nonstd_fds(t_data *data);
 
 /**
@@ -54,12 +55,41 @@ bool	exec_pipeline(t_data *data, char **envp, t_err *err)
 
 static bool	do__child_stuff(t_data *data, size_t i, char **envp, t_err *err)
 {
+	char *pathname;
+
 	dup2(data->cmd[i].fd_in, STDIN_FILENO);
 	dup2(data->cmd[i].fd_out, STDOUT_FILENO);
 	close__nonstd_fds(data);
-	//check if envp == NULL...
-	execve(data->cmd[i].av[0], data->cmd[i].av, envp);
-	exit (EXIT_FAILURE);
+	if (!set___pathname(&pathname, &data->cmd[i], err))
+		return (false);
+	execve(pathname, data->cmd[i].av, envp);
+	free (pathname);
+	set_err(err, E_EXECVE_FAILED, errno, "do__child_stuff");
+	return (false);
+}
+
+/////////////////////////////
+if (pathname == NULL)
+return (set_err(err, E_CMD_NOT_FOUND, errno, "do__child_stuff"), false);
+//
+static bool set___pathname(char	**pathname, t_cmd *cmd, t_err *err)
+{
+	char **av;
+
+	av = cmd->av;
+	if (av == NULL || *av == NULL)
+		return (set_err(err, E_FUN_ASSERTION, errno, "set___pathname"), false);
+	if (ft_strcmp(av[0], "") == 0)
+		return (set_err(err, E_EMPTY_CMD, errno, "set___pathname"), false);
+	if (av[0][0] == '/')
+		*pathname = ft_strdup(av[0]);
+	else if (ft_strlen(av[0]) >= 2 && ft_strncmp(av[0], "./", 2) == 0)
+		*pathname = ft_strdup(av[0]);
+	else
+		*pathname = 
+	if (*pathname == NULL)
+		return (false);
+	return (true);
 }
 
 static void	close__nonstd_fds(t_data *data)
