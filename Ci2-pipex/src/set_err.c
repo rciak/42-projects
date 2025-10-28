@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 17:16:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 18:12:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static char	*error__message(int type)
 		{E_OPEN_READ, "Opening for reading failed"},
 		{E_OPEN_WRITE, "Opening for writing failed"},
 		{E_FUN_ASSERTION, "Assertion in function failed"},
+		{E_FORK, "Fork failed"},
 	};
 	
 	if (type < 0 || (unsigned long) type > sizeof(pair) / sizeof(pair[0]) - 1)
@@ -83,6 +84,8 @@ static t_exit	exit__pair(int type, int cur_errno)
 	if (type == E_CREATE_PIPE)
 		return ((t_exit){error__message(type), EX_OSERR});
 	if (type == E_FUN_ASSERTION)
+		return ((t_exit){error__message(type), 2});
+	if (type == E_FORK)
 		return ((t_exit){error__message(type), 2});
 	return (other__situation(type, cur_errno));
 }

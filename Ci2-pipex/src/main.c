@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 15:03:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 20:31:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 static bool	argc__ok(int argc, t_err *err);
 static bool	alloc__cmds_pre_init(t_data *data, t_err *err);
 static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err);
+static int	wait__without_creating_zombies(pid_t pid_last_cmd);
+
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -51,13 +53,14 @@ int	main(int argc, char **argv, char**envp)
 		|| !open_pipes(data.num_cmds, data.cmd, &err)
 		|| !open_files(data.num_cmds, data.cmd, &err))
 		h_err_exit(data.num_cmds, data.cmd, &err);
-	if (!exec_pipeline(data.num_cmds, data.cmd, envp, &err))
+	if (!exec_pipeline(&data, envp, &err))
 		h_err_exit(data.num_cmds, data.cmd, &err);
 
-	termination_status_last_cmd = 1;
+	//termination_status_last_cmd = 1;
+	termination_status_last_cmd
+		= wait__without_creating_zombies(data.cmd[data.num_cmds - 1].pid);
 	final__tidy_up(data.num_cmds, data.cmd, &err);
 	return (termination_status_last_cmd);
-
 }
 
 static bool	argc__ok(int argc, t_err *err)
@@ -112,4 +115,35 @@ static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err)
 	if (err->type != copy.type)
 		out_str_fd(BLUE"What?! Even on tidying up another error happend?!\n"
 			"Not investigating that ...\n"RESET, STDERR_FILENO);
+}
+
+
+
+
+/**
+ * @note Neither the flags WUNTRACED nor WCCONTINUED are given as option to 
+         to waitpid.
+         Thus the *wait status* set by waitpid covers exactly the
+         *termination status* of the child process for the last command, cf.
+         Kerrisk (The Linux Programming Interface, Sec. 26.1.3
+         "The Wait Status Value", p. 545).
+ * @note @code waitpid(-1, &termination_status, 0); @endcode is equivalent to
+ *       @code wait(&termination_status); @endcode
+ */
+static int	wait__without_creating_zombies(pid_t pid_last_cmd)
+{
+	pid_t	pid;
+	int		wstatus;
+	int		status_last_cmd;
+
+	pid = 1;
+	while(pid > 0)
+	{
+		pid = waitpid(-1, &wstatus, 0);
+		if (pid == pid_last_cmd && WIFEXITED(wstatus))
+			status_last_cmd = WEXITSTATUS(wstatus);
+		else if (pid == pid_last_cmd && WIFSIGNALED(wstatus))
+			status_last_cmd = 128 + WTERMSIG(wstatus);
+	}
+	return (status_last_cmd);
 }
