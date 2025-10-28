@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 09:31:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 10:25:35 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 10:42:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ bool	open_pipes(size_t num_cmds, t_cmd *cmd, t_err *err)
 	i = 0;
 	while (i < num_cmds - 1)
 	{
-#include <stdio.h>
-printf("i: %zu\n", i);
 		if (pipe(pfd) == -1)
 			return (set_err(err, E_CREATE_PIPE, errno, "open_pipes"), false);
 		cmd[i].fd_out = pfd[WRITE_TO];
