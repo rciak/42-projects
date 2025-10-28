@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 10:48:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 14:00:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 17:13:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static bool	open__outfile(t_cmd *cmd, t_err *err);
  */
 bool	open_files(size_t num_cmds, t_cmd *cmd, t_err* err)
 {
-	int fd;
 	size_t i;
 
 	i = 0;
