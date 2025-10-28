@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 17:00:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 17:16:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static char		*error__message(int type);
 static t_exit	exit__pair(int type, int cur_errno);
 static t_exit	other__situation(int type, int cur_errno);
-static void		exit__on_logic_error(int type, int cur_errno);
+// static void		more__other_situation(int type, int cur_errno);
 
 /**
  * @brief Sets and error struct based on the handed over information.
@@ -55,6 +55,7 @@ static char	*error__message(int type)
 		{E_OPEN_WRITE, "Opening for writing failed"},
 		{E_FUN_ASSERTION, "Assertion in function failed"},
 	};
+	
 	if (type < 0 || (unsigned long) type > sizeof(pair) / sizeof(pair[0]) - 1)
 		logic_error_exit(RED"error__message: "RESET"param type out of range");
 	return (pair[type].msg);
@@ -62,8 +63,6 @@ static char	*error__message(int type)
 
 static t_exit	exit__pair(int type, int cur_errno)
 {
-	t_exit	pair;
-
 	if (type == E_NONE 
 		&& cur_errno == 0)
 		return ((t_exit){error__message(type), 0});
@@ -83,6 +82,8 @@ static t_exit	exit__pair(int type, int cur_errno)
 		return ((t_exit){error__message(type), 1});
 	if (type == E_CREATE_PIPE)
 		return ((t_exit){error__message(type), EX_OSERR});
+	if (type == E_FUN_ASSERTION)
+		return ((t_exit){error__message(type), 2});
 	return (other__situation(type, cur_errno));
 }
 
@@ -100,16 +101,14 @@ static t_exit	other__situation(int type, int cur_errno)
 		return ((t_exit){"r-Open failed", EX_IOERR});
 	if (type == E_OPEN_WRITE && (cur_errno != ENOENT && cur_errno != EACCES))
 		return ((t_exit){"w-Open failed", EX_NOPERM});
-	if (type == E_FUN_ASSERTION)
-		return ((t_exit){error__message(type), 2});
-	exit__on_logic_error(type, cur_errno);
-	return ((t_exit){"Silencing compiler - how can this ever be reached?!", 1});
-}
-
-static void	exit__on_logic_error(int type, int cur_errno)
-{
 	if (type == E_NONE && cur_errno != 0)
 		logic_error_exit(RED"exit__pair: "RESET"E_NONE but cur_errno != 0 ?!");
 	else
 		logic_error_exit(RED"exit__pair: "RESET"No pair defined");
+	return ((t_exit){"Silencing compiler - how can this ever be reached?!", 1});
 }
+
+// static void	more__other_situation(int type, int cur_errno)
+// {
+	
+// }
