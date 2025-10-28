@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:21:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 09:54:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 16:04:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ static void	default__err_handling(size_t num_cmds, t_cmd *cmd, t_err *err);
  */
 void	h_err_exit(size_t num_cmds, t_cmd *cmd, t_err *err)
 {
-
-	// if ...
-	//else
-	//  Unexpected error occured
 	default__err_handling(num_cmds, cmd, err);
 }
 

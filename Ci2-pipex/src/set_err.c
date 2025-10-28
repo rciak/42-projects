@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 12:50:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 17:00:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static char		*error__message(int type);
 static t_exit	exit__pair(int type, int cur_errno);
-static bool		other__situation(int type, int cur_errno, t_exit *pair);
+static t_exit	other__situation(int type, int cur_errno);
 static void		exit__on_logic_error(int type, int cur_errno);
 
 /**
@@ -53,8 +53,8 @@ static char	*error__message(int type)
 		{E_CREATE_PIPE, "creation of pipe failed"},
 		{E_OPEN_READ, "Opening for reading failed"},
 		{E_OPEN_WRITE, "Opening for writing failed"},
+		{E_FUN_ASSERTION, "Assertion in function failed"},
 	};
-
 	if (type < 0 || (unsigned long) type > sizeof(pair) / sizeof(pair[0]) - 1)
 		logic_error_exit(RED"error__message: "RESET"param type out of range");
 	return (pair[type].msg);
@@ -83,27 +83,27 @@ static t_exit	exit__pair(int type, int cur_errno)
 		return ((t_exit){error__message(type), 1});
 	if (type == E_CREATE_PIPE)
 		return ((t_exit){error__message(type), EX_OSERR});
-	if (other__situation(type, cur_errno, &pair))
-		return (pair);
-	exit__on_logic_error(type, cur_errno);
-	return ((t_exit){"Silencing compiler - how can this ever be reached?!", 1});
+	return (other__situation(type, cur_errno));
 }
 
-static bool	other__situation(int type, int cur_errno, t_exit *pair)
+static t_exit	other__situation(int type, int cur_errno)
 {
 	if (type == E_OPEN_READ && cur_errno == ENOENT)
-		return (*pair = (t_exit){"r-Open failed: not found", EX_IOERR}, true);
+		return ((t_exit){"r-Open failed: not found", EX_IOERR});
 	if (type == E_OPEN_READ && cur_errno == EACCES)
-		return (*pair = (t_exit){"r-Open failed: no access", EX_NOPERM}, true);
-	if (type == E_OPEN_READ && (cur_errno != ENOENT && cur_errno != EACCES))
-		return (*pair = (t_exit){"r-Open failed", EX_IOERR}, true);
+		return ((t_exit){"r-Open failed: no access", EX_NOPERM});
 	if (type == E_OPEN_WRITE && cur_errno == ENOENT)
-		return (*pair = (t_exit){"w-Open failed: not found", EX_IOERR}, true);
+		return ((t_exit){"w-Open failed: not found", EX_IOERR});
 	if (type == E_OPEN_WRITE && cur_errno == EACCES)
-		return (*pair = (t_exit){"w-Open failed: no access", EX_NOPERM}, true);
+		return ((t_exit){"w-Open failed: no access", EX_NOPERM});
+	if (type == E_OPEN_READ && (cur_errno != ENOENT && cur_errno != EACCES))
+		return ((t_exit){"r-Open failed", EX_IOERR});
 	if (type == E_OPEN_WRITE && (cur_errno != ENOENT && cur_errno != EACCES))
-		return (*pair = (t_exit){"w-Open failed", EX_NOPERM}, true);
-	return (false);
+		return ((t_exit){"w-Open failed", EX_NOPERM});
+	if (type == E_FUN_ASSERTION)
+		return ((t_exit){error__message(type), 2});
+	exit__on_logic_error(type, cur_errno);
+	return ((t_exit){"Silencing compiler - how can this ever be reached?!", 1});
 }
 
 static void	exit__on_logic_error(int type, int cur_errno)
