@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 10:14:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 12:11:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ enum e_pipex_errors                                                     // Fill 
 	E_ENVP_EMPTY_ARRAY,
 	E_TOO_FEW_CMDS,
 	E_CREATE_PIPE,
+	E_OPEN_READ,
+	E_OPEN_WRITE,
 };
 
 /////////////////////////
