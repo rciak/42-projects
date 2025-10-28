@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 10:48:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 12:51:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 14:00:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,10 @@ static bool	open__infile(t_cmd *cmd, t_err *err)
 	if (cmd->fd_in == -1)
 	{
 		out_str_fd(cmd->infile, STDERR_FILENO);
-		out_str_fd(" : ", STDERR_FILENO);
+		out_str_fd(": ", STDERR_FILENO);
 		set_err(err, E_OPEN_READ, errno, "open__infile");
 		return (false);
 	}
-		
 	return (true);
 }
 
@@ -71,6 +70,5 @@ static bool	open__outfile(t_cmd *cmd, t_err *err)
 		set_err(err, E_OPEN_WRITE, errno, "open__outfile");
 		return (false);
 	}
-		
 	return (true);
 }
