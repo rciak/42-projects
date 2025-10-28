@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 12:11:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/28 13:58:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void	set_err(t_err *err, int error_type, int cur_errno, const char *origin);
 bool	parse_argv(int argc, char **argv, t_data *data, t_err *err);
 bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err);
 bool	open_pipes(size_t num_cmds, t_cmd *cmd, t_err *err);
+bool	open_files(size_t num_cmds, t_cmd *cmd, t_err* err);
 
 // a_col_exiting/*.c
 void	print_err(const t_err *err);
