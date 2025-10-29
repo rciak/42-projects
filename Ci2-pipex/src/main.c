@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 14:59:38 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:09:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char **argv, char**envp)
 	int		termination_status_last_cmd;
 
 	set_err(&err, E_NONE, 0, "main");
+	err.cmd_index = -1;
 	data.num_cmds = (size_t) argc - 3;
 	if (!argc__ok(argc, &err)
 		|| !alloc__cmds_pre_init(&data, &err)

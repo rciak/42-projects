@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:21:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 16:46:54 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:06:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 #include "pipex.h"
 
-static void	do__nonsense_cleanup(size_t num_cmds, t_cmd *cmd, t_err *err);
 static void	print_msg__assertion(t_err *err);
-static void	print_msg__not_found(t_cmd *cmd);
+static void print_msg__not_found(t_cmd *cmd, t_err *err);
 static void	print_msg__execve(t_cmd *cmd, t_err *err);
+static void	do__nonsense_cleanup(size_t num_cmds, t_cmd *cmd, t_err *err);
 
 /**
  * @brief Handles the passed error and exits
@@ -30,13 +30,54 @@ void	h_err_exit(size_t num_cmds, t_cmd *cmd, t_err *err)
 	if (err->type == E_FUN_ASSERTION)
 		print_msg__assertion(err);
 	else if (err->type == E_NOT_FOUND)
-		print_msg__not_found(cmd);
+		print_msg__not_found(cmd, err);
 	else if (err->type == E_EXECVE_FAILED)
 		print_msg__execve(cmd, err);
 	else
 		print_exit_msg(err);
 	do__nonsense_cleanup(num_cmds, cmd, err);
 	exit(err->exit.code);
+}
+
+static void	print_msg__assertion(t_err *err)
+{
+	out_str_fd("\nExiting ... ", STDERR_FILENO);
+	out_str_fd("\n  --> Assertion in function  ", STDERR_FILENO);
+	out_str_fd((char *) err->origin, STDERR_FILENO);
+	out_str_fd("  failed\n", STDERR_FILENO);
+}
+
+static void print_msg__not_found(t_cmd *cmd, t_err *err)
+{
+	size_t	i;
+
+	i = err->cmd_index;
+	out_str_fd("\nExiting ... ", STDERR_FILENO);
+	out_str_fd("\n  --> not found: ", STDERR_FILENO);
+	out_str_fd(cmd[i].av[0], STDERR_FILENO);
+	out_str_fd("\n", STDERR_FILENO);
+}
+
+static void	print_msg__execve(t_cmd *cmd, t_err *err)
+{
+	size_t	i;
+
+	i = err->cmd_index;
+	out_str_fd("\nExiting ... ", STDERR_FILENO);
+	if (err->saved_errno == ENOENT)
+	{
+		out_str_fd("\n  --> not found: ", STDERR_FILENO);
+		out_str_fd(cmd[i].av[0], STDERR_FILENO);
+		out_str_fd("\n", STDERR_FILENO);
+	}
+	else if (err->saved_errno == EACCES)
+	{
+		out_str_fd("\n  --> no access: ", STDERR_FILENO);
+		out_str_fd(cmd[i].av[0], STDERR_FILENO);
+		out_str_fd("\n", STDERR_FILENO);
+	}
+	else
+		print_exit_msg(err);
 }
 
 static void	do__nonsense_cleanup(size_t num_cmds, t_cmd *cmd, t_err *err)
@@ -59,38 +100,4 @@ static void	do__nonsense_cleanup(size_t num_cmds, t_cmd *cmd, t_err *err)
 			"REMARK to (*) : Who came up with the 'good' idea of cleaning\n"
 			"before exiting although the OS can do this better? ;-) )\n\n"RESET,
 			STDERR_FILENO);
-}
-static void	print_msg__assertion(t_err *err)
-{
-	out_str_fd("\nExiting ... ", STDERR_FILENO);
-	out_str_fd("\n  --> Assertion in function  ", STDERR_FILENO);
-	out_str_fd((char *) err->origin, STDERR_FILENO);
-	out_str_fd("  failed\n", STDERR_FILENO);
-}
-
-static void print_msg__not_found(t_cmd *cmd)
-{
-	out_str_fd("\nExiting ... ", STDERR_FILENO);
-	out_str_fd("\n  --> not found: ", STDERR_FILENO);
-out_str_fd(cmd[0].av[0], STDERR_FILENO);
-	out_str_fd("\n", STDERR_FILENO);
-}
-
-static void	print_msg__execve(t_cmd *cmd, t_err *err)
-{
-	out_str_fd("\nExiting ... ", STDERR_FILENO);
-	if (err->saved_errno == ENOENT)
-	{
-		out_str_fd("\n  --> not found: ", STDERR_FILENO);
-out_str_fd(cmd[0].av[0], STDERR_FILENO);
-		out_str_fd("\n", STDERR_FILENO);
-	}
-	else if (err->saved_errno == EACCES)
-	{
-		out_str_fd("\n  --> no access: ", STDERR_FILENO);
-out_str_fd(cmd[0].av[0], STDERR_FILENO);
-		out_str_fd("\n", STDERR_FILENO);
-	}
-	else
-		print_exit_msg(err);
 }

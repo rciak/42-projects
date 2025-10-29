@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:56:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 16:18:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:09:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,14 @@ bool	exec_pipeline(t_data *data, char **envp, t_err *err)
 	i = 0;
 	while (i < data->num_cmds)
 	{
-			cmd[i].pid = fork();
+		cmd[i].pid = fork();
 		if (cmd[i].pid == -1)
 			return (set_err(err, E_FORK, errno, "exec_pipeline"), false);
 		else if (cmd[i].pid == 0 && !do__child_stuff(data, i, envp, err))
+		{
+			err->cmd_index = i;
 			return (false);
+		}
 		i++;
 	}
 	close__nonstd_fds(data);

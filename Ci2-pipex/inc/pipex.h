@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 15:50:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 16:59:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,12 @@ typedef struct s_exit
 
 /**
  * @brief This structure serves for error handling
- * @param code  One of the errorcode names in the above enum
+ * @param type  One of the errorcode names in the above enum
+ * @param saved_errno
  * @param msg   A pointer to a string literal: error message
  * @param origin A pointer to a string literal: origin of the error
+ * @param exit Exit code and (potential) exit message
+ * @param cmd_index The command index that caused the issue. (Mostly not needed)
  */
 typedef struct s_err
 {
@@ -130,6 +133,7 @@ typedef struct s_err
 	const char	*msg;
 	const char	*origin;
 	t_exit		exit;
+	size_t		cmd_index;
 }	t_err;
 
 
