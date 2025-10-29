@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:12:43 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 20:51:57 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:15:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "pipex.h"
 
-static char **extract__path(char **envp, t_err *err);
+static char	**extract__path(char **envp, t_err *err);
 static void	free__path_before_index(t_cmd *cmd, size_t i_fail);
 
 /**
@@ -56,9 +56,10 @@ bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err)
 	return (true);
 }
 
-static char **extract__path(char **envp, t_err *err)
+static char	**extract__path(char **envp, t_err *err)
 {
 	char	**path;
+
 	while (*envp)
 	{
 		if (ft_strncmp(*envp, "PATH=", ft_strlen("PATH=")) == 0)

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:03:31 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/27 18:39:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:34:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  * @param[in] err Pointing to error struct instance
  */
 void	tidy_up_and_reset_cmd_items(t_cmd *cmd, t_err *err)
-{	
+{
 	cmd->ac = 0;
 	free_array_and_reset(&cmd->av);
 	free_array_and_reset(&cmd->path);

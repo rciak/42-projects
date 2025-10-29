@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 17:39:27 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/26 18:15:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:32:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @brief Printing error information.
  * @param[in] 
  */
-void print_err(const t_err *err)
+void	print_err(const t_err *err)
 {
 	out_str_fd("\nERROR INFO:", STDERR_FILENO);
 	out_str_fd("\n  Type:   ", STDERR_FILENO);

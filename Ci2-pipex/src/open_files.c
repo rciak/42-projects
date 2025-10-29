@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 10:48:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 17:13:26 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:16:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static bool	open__outfile(t_cmd *cmd, t_err *err);
  *          * true, of opening of files was succesful
  *          * false, if it did not work
  */
-bool	open_files(size_t num_cmds, t_cmd *cmd, t_err* err)
+bool	open_files(size_t num_cmds, t_cmd *cmd, t_err *err)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < num_cmds)

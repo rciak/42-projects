@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:56:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 17:20:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:32:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static bool	do__child_stuff(t_data *data, size_t i, char **envp, t_err *err);
 static bool	set___pathname(char	**pathname, t_cmd *cmd, t_err *err);
-static char *combine____on_match(char *prog, char *dir, t_err *err);
+static char	*combine____on_match(char *prog, char *dir, t_err *err);
 static void	close__nonstd_fds(t_data *data);
 
 /**
@@ -80,7 +80,7 @@ static bool	do__child_stuff(t_data *data, size_t i, char **envp, t_err *err)
 	return (false);
 }
 
-static bool set___pathname(char	**pathname, t_cmd *cmd, t_err *err)
+static bool	set___pathname(char	**pathname, t_cmd *cmd, t_err *err)
 {
 	char	**av;
 	char	**p_dir;
@@ -105,10 +105,10 @@ static bool set___pathname(char	**pathname, t_cmd *cmd, t_err *err)
 	return (false);
 }
 
-static char *combine____on_match(char *prog, char *dir, t_err *err)
+static char	*combine____on_match(char *prog, char *dir, t_err *err)
 {
-	char *dir_with_slash;
-	char *combined;
+	char	*dir_with_slash;
+	char	*combined;
 
 	dir_with_slash = ft_strjoin(dir, "/");
 	if (dir_with_slash == NULL)
@@ -129,12 +129,12 @@ static char *combine____on_match(char *prog, char *dir, t_err *err)
 		free(combined);
 		return (NULL);
 	}
-	return(combined);
+	return (combined);
 }
 
 static void	close__nonstd_fds(t_data *data)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < data->num_cmds)

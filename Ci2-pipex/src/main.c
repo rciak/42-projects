@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 17:29:20 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:16:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static bool	argc__ok(int argc, t_err *err);
 static bool	alloc__cmds_pre_init(t_data *data, t_err *err);
 static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err);
 static int	wait__without_creating_zombies(pid_t pid_last_cmd);
-
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -73,7 +72,7 @@ static bool	alloc__cmds_pre_init(t_data *data, t_err *err)
 	size_t	num_cmds;
 	t_cmd	*cmd;
 	size_t	i;
-	
+
 	data->cmd = malloc(data->num_cmds * sizeof (*data->cmd));
 	if (data->cmd == NULL)
 		return (set_err(err, E_ALLOC, errno, "alloc__cmds_pre_init"), false);
@@ -113,9 +112,6 @@ static void	final__tidy_up(size_t num_cmds, t_cmd *cmd, t_err *err)
 			"Not investigating that ...\n"RESET, STDERR_FILENO);
 }
 
-
-
-
 /**
  * @note Neither the flags WUNTRACED nor WCCONTINUED are given as option to 
          to waitpid.
@@ -133,7 +129,7 @@ static int	wait__without_creating_zombies(pid_t pid_last_cmd)
 	int		status_last_cmd;
 
 	pid = 1;
-	while(pid > 0)
+	while (pid > 0)
 	{
 		pid = waitpid(-1, &wstatus, 0);
 		if (pid == pid_last_cmd && WIFEXITED(wstatus))

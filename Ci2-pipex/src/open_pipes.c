@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 09:31:07 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 10:42:12 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:16:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  */
 bool	open_pipes(size_t num_cmds, t_cmd *cmd, t_err *err)
 {
-	int	pfd[2];
+	int		pfd[2];
 	size_t	i;
 
 	i = 0;

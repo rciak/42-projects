@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 17:37:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:15:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,23 @@ void	set_err(t_err *err, int type, int cur_errno, const char *origin)
 static char	*error__message(int type)
 {
 	static t_err_type_to_msg	pair[] = {
-		{E_NONE, "success - no error detected"},
-		{E_ARGC, "argc: Wrong number of arguments"},
-		{E_ALLOC, "memory allocation failed"},
-		{E_NEGATIVE_FD, "filedesciptor is < 0"},
-		{E_CLOSE_FAILED, "close failed"},
-		{E_ENVP_NULL, "envp == NULL"},
-		{E_ENVP_EMPTY_ARRAY, "envp contains no strings"},
-		{E_TOO_FEW_CMDS, "number of commands too little, min. 2 required"},
-		{E_CREATE_PIPE, "creation of pipe failed"},
-		{E_OPEN_READ, "Opening for reading failed"},
-		{E_OPEN_WRITE, "Opening for writing failed"},
-		{E_FUN_ASSERTION, "Assertion in function failed"},
-		{E_FORK, "Fork failed"},
-		{E_NOT_FOUND, "not found"},
-		{E_EXECVE_FAILED, "Execve failed"},
+	{E_NONE, "success - no error detected"},
+	{E_ARGC, "argc: Wrong number of arguments"},
+	{E_ALLOC, "memory allocation failed"},
+	{E_NEGATIVE_FD, "filedesciptor is < 0"},
+	{E_CLOSE_FAILED, "close failed"},
+	{E_ENVP_NULL, "envp == NULL"},
+	{E_ENVP_EMPTY_ARRAY, "envp contains no strings"},
+	{E_TOO_FEW_CMDS, "number of commands too little, min. 2 required"},
+	{E_CREATE_PIPE, "creation of pipe failed"},
+	{E_OPEN_READ, "Opening for reading failed"},
+	{E_OPEN_WRITE, "Opening for writing failed"},
+	{E_FUN_ASSERTION, "Assertion in function failed"},
+	{E_FORK, "Fork failed"},
+	{E_NOT_FOUND, "not found"},
+	{E_EXECVE_FAILED, "Execve failed"},
 	};
-	
+
 	if (type < 0 || (unsigned long) type > sizeof(pair) / sizeof(pair[0]) - 1)
 		logic_error_exit(RED"error__message: "RESET"param type out of range");
 	return (pair[type].msg);
@@ -66,7 +66,7 @@ static char	*error__message(int type)
 
 static t_exit	exit__pair(int type, int cur_errno)
 {
-	if (type == E_NONE 
+	if (type == E_NONE
 		&& cur_errno == 0)
 		return ((t_exit){error__message(type), 0});
 	if (type == E_ARGC)

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 07:21:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 17:06:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:33:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "pipex.h"
 
 static void	print_msg__assertion(t_err *err);
-static void print_msg__not_found(t_cmd *cmd, t_err *err);
+static void	print_msg__not_found(t_cmd *cmd, t_err *err);
 static void	print_msg__execve(t_cmd *cmd, t_err *err);
 static void	do__nonsense_cleanup(size_t num_cmds, t_cmd *cmd, t_err *err);
 
@@ -47,7 +47,7 @@ static void	print_msg__assertion(t_err *err)
 	out_str_fd("  failed\n", STDERR_FILENO);
 }
 
-static void print_msg__not_found(t_cmd *cmd, t_err *err)
+static void	print_msg__not_found(t_cmd *cmd, t_err *err)
 {
 	size_t	i;
 
