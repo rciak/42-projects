@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/29 19:18:57 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/29 20:01:08 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,6 @@ libft/inc/libft.h
 SRCS := \
 src/a_col_exiting/h_err_exit.c \
 src/a_col_exiting/logic_error_exit.c \
-src/a_col_exiting/print_err.c \
 src/a_col_exiting/print_exit_msg_and_exit.c \
 src/a_col_exiting/print_exit_msg.c \
 src/a_col_tools/close_and_reset.c \

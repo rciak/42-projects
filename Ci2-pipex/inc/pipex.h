@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 18:11:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 20:00:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,6 @@ bool	open_files(size_t num_cmds, t_cmd *cmd, t_err *err);
 bool	exec_pipeline(t_data *data, char **envp, t_err *err);
 
 // a_col_exiting/*.c
-void	print_err(const t_err *err);
 void	print_exit_msg(const t_err *err);
 void	print_exit_msg_and_exit(const t_err *err);
 void	h_err_exit(size_t num_cmds, t_cmd *cmd, t_err *err);
