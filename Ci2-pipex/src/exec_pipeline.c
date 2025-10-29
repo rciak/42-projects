@@ -85,7 +85,11 @@ static bool	set___pathname(char	**pathname, t_cmd *cmd, t_err *err)
 	char	**p_dir;
 
 	av = cmd->av;
-	if (ft_strncmp(av[0], "/", 1) == 0 || ft_strncmp(av[0], "./", 2) == 0)
+
+	//Also when cmd->path == NULL
+// Why second check? Z.b export PATH="" bzw. export PATH=":::" --> Leeres Array
+
+	if (cmd->path == NULL || *cmd->path == NULL || is_in('/', av[0]))
 	{
 		*pathname = ft_strdup(av[0]);
 		if (*pathname == NULL)

@@ -131,7 +131,7 @@ static int	wait__without_creating_zombies(pid_t pid_last_cmd)
 	pid = 1;
 	while (pid > 0)
 	{
-		pid = waitpid(-1, &wstatus, 0);
+		pid = waitpid(-1, &wstatus, 0);  // wait(&wstatus)
 		if (pid == pid_last_cmd && WIFEXITED(wstatus))
 			status_last_cmd = WEXITSTATUS(wstatus);
 		else if (pid == pid_last_cmd && WIFSIGNALED(wstatus))
