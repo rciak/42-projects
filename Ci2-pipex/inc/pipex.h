@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 18:10:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 15:50:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,14 @@ enum e_pipex_errors                                                     // Fill 
 	E_OPEN_WRITE,
 	E_FUN_ASSERTION,
 	E_FORK,
+	E_NOT_FOUND,
+	E_EXECVE_FAILED,
+};
+
+enum e_some_manually_defined_exit_codes
+{
+	MEX_PERM_DENIED = 126,
+	MEX_NOT_FOUND = 127,
 };
 
 /////////////////////////

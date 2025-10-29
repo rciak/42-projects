@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/28 18:12:14 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 15:54:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ void	set_err(t_err *err, int type, int cur_errno, const char *origin)
 	err->exit = exit__pair(type, cur_errno);
 }
 
+
+
+
+
+
+
+
 static char	*error__message(int type)
 {
 	static t_err_type_to_msg	pair[] = {
@@ -55,6 +62,8 @@ static char	*error__message(int type)
 		{E_OPEN_WRITE, "Opening for writing failed"},
 		{E_FUN_ASSERTION, "Assertion in function failed"},
 		{E_FORK, "Fork failed"},
+		{E_NOT_FOUND, "not found"},
+		{E_EXECVE_FAILED, "Execve failed"},
 	};
 	
 	if (type < 0 || (unsigned long) type > sizeof(pair) / sizeof(pair[0]) - 1)
@@ -104,6 +113,16 @@ static t_exit	other__situation(int type, int cur_errno)
 		return ((t_exit){"r-Open failed", EX_IOERR});
 	if (type == E_OPEN_WRITE && (cur_errno != ENOENT && cur_errno != EACCES))
 		return ((t_exit){"w-Open failed", EX_NOPERM});
+	
+	if (type == E_NOT_FOUND)
+		return ((t_exit){"not found", MEX_NOT_FOUND});
+
+	if (type == E_EXECVE_FAILED && (cur_errno == ENOENT))
+		return ((t_exit){"not found", MEX_NOT_FOUND});
+	if (type == E_EXECVE_FAILED && (cur_errno == EACCES))
+		return ((t_exit){"permission denied", MEX_PERM_DENIED});
+	if (type == E_EXECVE_FAILED)
+		return ((t_exit){error__message(type), EX_OSERR});
 	if (type == E_NONE && cur_errno != 0)
 		logic_error_exit(RED"exit__pair: "RESET"E_NONE but cur_errno != 0 ?!");
 	else
