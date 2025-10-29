@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:56:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 18:32:11 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:53:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ static bool	do__child_stuff(t_data *data, size_t i, char **envp, t_err *err)
 
 	cmd = &data->cmd[i];
 	pathname = NULL;
-	if (cmd->av == NULL || *cmd->av == NULL)
+	if (cmd->av == NULL)
 		return (set_err(err, E_FUN_ASSERTION, errno, "do__child_stuff"), false);
-	// likely not needed: Hsould be handled with the other stuff              ,,..   
-	// if (ft_strcmp(cmd->av[0], "") == 0)
-	// 	return (set_err(err, E_EMPTY_CMD, errno, "do__child_stuff"), false);
+	if (*cmd->av == NULL)
+		return (set_err(err, E_NOT_FOUND, errno, "do__child_stuff"), false);
 	dup2(cmd->fd_in, STDIN_FILENO);
 	dup2(cmd->fd_out, STDOUT_FILENO);
 	close__nonstd_fds(data);
