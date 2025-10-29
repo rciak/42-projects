@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 17:32:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:37:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ void	set_err(t_err *err, int type, int cur_errno, const char *origin)
 	err->origin = origin;
 	err->exit = exit__pair(type, cur_errno);
 }
-
-
-
-
-
-
-
 
 static char	*error__message(int type)
 {
