@@ -63,8 +63,8 @@ static bool	do__child_stuff(t_data *data, size_t i, char **envp, t_err *err)
 	if (!set___pathname(&pathname, &data->cmd[i], err))
 		return (false);
 	execve(pathname, data->cmd[i].av, envp);
-	free (pathname);
 	set_err(err, E_EXECVE_FAILED, errno, "do__child_stuff");
+	free (pathname);
 	return (false);
 }
 
