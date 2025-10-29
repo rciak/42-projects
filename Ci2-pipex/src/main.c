@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:54:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 17:09:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:29:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  */
 
 #include "pipex.h"
-#include <stdio.h>                                           // Forbidden function...
 
 static bool	argc__ok(int argc, t_err *err);
 static bool	alloc__cmds_pre_init(t_data *data, t_err *err);
@@ -53,43 +52,8 @@ int	main(int argc, char **argv, char**envp)
 		|| !open_pipes(data.num_cmds, data.cmd, &err)
 		|| !open_files(data.num_cmds, data.cmd, &err))
 		h_err_exit(data.num_cmds, data.cmd, &err);
-
-// int i;
-// i = 0;
-// while (i < (int) data.num_cmds)
-// {
-// printf("\ni: |%d|\n", i);
-// printf("\ndata.n_cmds:         |%zu|\n\n", data.num_cmds);
-// int j;
-// char **path;
-
-// printf("data.cmd[%d]->infile: |%s|\n", i, data.cmd[i].infile);
-// printf("data.cmd[%d]->outfile:|%s|\n", i, data.cmd[i].outfile);
-// printf("data.cmd[%d]->fd_in:  |%d|\n", i, data.cmd[i].fd_in);
-// printf("data.cmd[%d]->fd_out: |%d|\n", i, data.cmd[i].fd_out);
-// printf("data.cmd[%d]->av:     |%p|\n", i, data.cmd[i].av);
-// j = 0;
-// while (j < (int) data.cmd[i].ac + 1)
-// {
-// 		printf("                        |%s|\n", data.cmd[i].av[j]);
-// 		j++;
-// }
-// printf("data.cmd[%d]->ac:     |%zu|\n", i, data.cmd[i].ac);
-// path = data.cmd[i].path;
-// while (*path != NULL)
-// {
-//      printf("data.cmd[%d]->path:     |%s|\n", i, *path);
-//      path++;
-// }
-// printf("data.cmd[%d]->path:     |%s|\n", i, *path);
-// printf("\n");
-// i++;
-// }
-
 	if (!exec_pipeline(&data, envp, &err))
 		h_err_exit(data.num_cmds, data.cmd, &err);
-
-	//termination_status_last_cmd = 1;
 	termination_status_last_cmd
 		= wait__without_creating_zombies(data.cmd[data.num_cmds - 1].pid);
 	final__tidy_up(data.num_cmds, data.cmd, &err);
@@ -126,7 +90,6 @@ static bool	alloc__cmds_pre_init(t_data *data, t_err *err)
 		cmd[i].fd_in = DO_NOT_USE;
 		cmd[i].fd_out = DO_NOT_USE;
 		cmd[i].pid = DO_NOT_USE;
-		                            //    Decomment if  .status  gets added to struct s_cmd:  cmd[i].status = EXITCODE_ERR_NONE;
 		i++;
 	}
 	return (true);

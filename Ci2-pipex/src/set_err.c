@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:57:48 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 15:54:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:32:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,8 @@ static t_exit	other__situation(int type, int cur_errno)
 		return ((t_exit){"r-Open failed", EX_IOERR});
 	if (type == E_OPEN_WRITE && (cur_errno != ENOENT && cur_errno != EACCES))
 		return ((t_exit){"w-Open failed", EX_NOPERM});
-	
 	if (type == E_NOT_FOUND)
 		return ((t_exit){"not found", MEX_NOT_FOUND});
-
 	if (type == E_EXECVE_FAILED && (cur_errno == ENOENT))
 		return ((t_exit){"not found", MEX_NOT_FOUND});
 	if (type == E_EXECVE_FAILED && (cur_errno == EACCES))
@@ -129,8 +127,3 @@ static t_exit	other__situation(int type, int cur_errno)
 		logic_error_exit(RED"exit__pair: "RESET"No pair defined");
 	return ((t_exit){"Silencing compiler - how can this ever be reached?!", 1});
 }
-
-// static void	more__other_situation(int type, int cur_errno)
-// {
-	
-// }
