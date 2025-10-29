@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:56:36 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 17:09:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:20:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,9 @@ static bool	do__child_stuff(t_data *data, size_t i, char **envp, t_err *err)
 	dup2(cmd->fd_in, STDIN_FILENO);
 	dup2(cmd->fd_out, STDOUT_FILENO);
 	close__nonstd_fds(data);
-
-#include <stdio.h>
-fprintf(stderr, "\nA:\n");
 	if (!set___pathname(&pathname, cmd, err))
 		return (false);
-fprintf(stderr, "B:\n");
-fprintf(stderr, "pathname: |%s|\n", pathname);
 	execve(pathname, cmd->av, envp);
-fprintf(stderr, "C:\n");
 	set_err(err, E_EXECVE_FAILED, errno, "do__child_stuff");
 	free (pathname);
 	return (false);
