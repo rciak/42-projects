@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/24 11:09:55 by reciak           ###   ########.fr        #
+#    Updated: 2025/10/29 19:18:57 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,14 +57,30 @@ ifeq ($(CC_LESS_STRICT), 1)
 endif
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
-#############################################
-# update via makefile rule (small "m" !)
-#   make update_INCS__SRCS__SRCS_BONUS
-#############################################
-include makefile_dir/def_headers.mk
-include makefile_dir/def_sources.mk
-#############################################
 
+INCS := \
+inc/pipex.h \
+libft/inc/ft_printf.h \
+libft/inc/get_next_line.h \
+libft/inc/libft.h
+
+SRCS := \
+src/a_col_exiting/h_err_exit.c \
+src/a_col_exiting/logic_error_exit.c \
+src/a_col_exiting/print_err.c \
+src/a_col_exiting/print_exit_msg_and_exit.c \
+src/a_col_exiting/print_exit_msg.c \
+src/a_col_tools/close_and_reset.c \
+src/a_col_tools/free_and_reset.c \
+src/a_col_tools/free_array_and_reset.c \
+src/a_col_tools/tidy_up_and_reset_cmd_itmes.c \
+src/exec_pipeline.c \
+src/main.c \
+src/open_files.c \
+src/open_pipes.c \
+src/parse_argv.c \
+src/parse_path.c \
+src/set_err.c
 
 ################################################################################
 #  CORE rules                                                                  #
