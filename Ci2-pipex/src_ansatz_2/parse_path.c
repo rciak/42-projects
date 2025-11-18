@@ -89,6 +89,7 @@ static void	free__path_before_index(t_cmd *cmd, size_t i_fail)
 			j++;
 		}
 		free(cmd[i].path);
+		cmd[i].path = NULL;
 		i++;
 	}
 }
