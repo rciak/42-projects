@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/21 15:47:27 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/21 18:03:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "pipex.h"
 
 static void	connect__by_a_pipe(t_data *data, int i_left, int i_right);
+static void	redir__input(t_data *data, int i)
 static void	close__io(t_data *data, int i);
 
  /**
@@ -42,7 +43,11 @@ void	exec_pipeline(t_data *data, char **envp)
 		if (cmd[i].pid == -1)
 			exit_on(E_FORK, errno, "exec_pipeline", data);
 		else if (cmd[i].pid == 0)
-			exec_cmd(data, i);
+		{
+			redir__input(data, i);
+			redir__output(data, i);
+			exec_cmd(data, i, envp);
+		}
 		close__io(data, i);
 		i++;
 	}
@@ -58,6 +63,30 @@ static void	connect__by_a_pipe(t_data *data, int i_left, int i_right)
 		exit_on(E_CREATE_PIPE, errno, "connect__by_a_pipe", data);
 	data->cmd[i_left].fd_out = pfd[WRITE_TO];
 	data->cmd[i_right].fd_in = pfd[READ_FROM];
+}
+
+static void	redir__input(t_data *data, int i)
+{
+	t_cmd	*cmd;
+
+	cmd = &(data->cmd[i]);
+	if (cmd->infile == NULL)
+		return ;
+	if (cmd->fd_in >= 0)
+	{
+		if (cmd->fd_in == STDIN_FILENO)
+			out_str_fd(RED"Warning"RESET" - closing standard fd for input\n",
+				STDERR_FILENO);
+		close(cmd->fd_in);
+		cmd->fd_in = UNUSED;
+	}
+	cmd->fd_in = open(cmd->infile, O_RDONLY);
+	if (cmd->fd_in == -1)
+		exit_on(E_OPEN_READ, errno, "redir__input", data);
+	dup2(cmd->fd_in, STDIN_FILENO);
+	close(cmd->fd_in);
+	cmd->fd_in = UNUSED;
+
 }
 
 static void	close__io(t_data *data, int i)
