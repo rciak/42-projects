@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/29 18:11:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/21 15:51:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,15 @@
 //                               //
 ///////////////////////////////////
 
-/**
- * @brief Used when calling error().
- * @note error() can either be called in its second argument like
- *           error( , errno , )   or
- *           error( , KEEP , ).
- * @note Therefore KEEP needs to be a negative integer to avoid overlapping
- *       with errno values.
- */
-enum e_prevent_overwriting
+enum e_saved_errno_specials
 {
 	KEEP = -1,
+	ERRNO_IRREL = -2,
 };
 
-enum e_prevent_reusing
+enum e_cmd_io_specials
 {
-	DO_NOT_USE = -1,
+	UNUSED = -10,
 };
 
 enum e_pipe_fd_kind
@@ -78,17 +71,17 @@ enum e_pipex_errors
 	E_CREATE_PIPE,
 	E_OPEN_READ,
 	E_OPEN_WRITE,
-	E_FUN_ASSERTION,
+	E_ASSERTION,
 	E_FORK,
 	E_NOT_FOUND,
 	E_EXECVE_FAILED,
 };
 
-enum e_some_manually_defined_exit_codes
-{
-	MEX_PERM_DENIED = 126,
-	MEX_NOT_FOUND = 127,
-};
+//enum e_some_manually_defined_exit_codes
+//{
+//	MEX_PERM_DENIED = 126,
+//	MEX_NOT_FOUND = 127,
+//};
 
 /////////////////////////
 //                     //
@@ -118,26 +111,26 @@ typedef struct s_exit
  * @brief This structure serves for error handling
  * @param type  One of the errorcode names in the above enum
  * @param saved_errno
- * @param msg   A pointer to a string literal: error message
  * @param origin A pointer to a string literal: origin of the error
- * @param exit Exit code and (potential) exit message
- * @param cmd_index The command index that caused the issue. (Mostly not needed)
+// * @param msg   A pointer to a string literal: error message
+// * @param exit Exit code and (potential) exit message
+// * @param cmd_index The command index that caused the issue. (Mostly not needed)
  */
 typedef struct s_err
 {
 	int			type;
 	int			saved_errno;
-	const char	*msg;
-	const char	*origin;
-	t_exit		exit;
-	size_t		cmd_index;
+//	const char	*origin;
+//const char	*msg;
+//t_exit		exit;
+//size_t		cmd_index;
 }	t_err;
 
 typedef struct s_cmd
 {
 	size_t	ac;
 	char	**av;
-	char	**path;
+	char	*pathname;
 	char	*infile;
 	char	*outfile;
 	int		fd_in;
@@ -147,7 +140,9 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
-	size_t	num_cmds;
+	char	**path;
+	int		i_cmd_err;
+	int		num_cmds;
 	t_cmd	*cmd;
 }	t_data;
 
@@ -161,24 +156,25 @@ typedef struct s_data
 //
 
 // *.c
-void	set_err(t_err *err, int error_type, int cur_errno, const char *origin);
-bool	parse_argv(int argc, char **argv, t_data *data, t_err *err);
-bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err);
-bool	open_pipes(size_t num_cmds, t_cmd *cmd, t_err *err);
-bool	open_files(size_t num_cmds, t_cmd *cmd, t_err *err);
-bool	exec_pipeline(t_data *data, char **envp, t_err *err);
+void	exec_pipeline(t_data *data, char **envp);
+//void	set_err(t_err *err, int error_type, int cur_errno, const char *origin);
+//bool	parse_argv(int argc, char **argv, t_data *data, t_err *err);
+//bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err);
+//bool	open_pipes(size_t num_cmds, t_cmd *cmd, t_err *err);
+//bool	open_files(size_t num_cmds, t_cmd *cmd, t_err *err);
+//bool	exec_pipeline(t_data *data, char **envp, t_err *err);
 
 // a_col_exiting/*.c
-void	print_err(const t_err *err);
-void	print_exit_msg(const t_err *err);
-void	print_exit_msg_and_exit(const t_err *err);
-void	h_err_exit(size_t num_cmds, t_cmd *cmd, t_err *err);
-void	logic_error_exit(const char *msg);
+//void	print_err(const t_err *err);
+//void	print_exit_msg(const t_err *err);
+//void	print_exit_msg_and_exit(const t_err *err);
+//void	h_err_exit(size_t num_cmds, t_cmd *cmd, t_err *err);
+//void	logic_error_exit(const char *msg);
 
 // a_col_tools/*.c
-void	tidy_up_and_reset_cmd_items(t_cmd *cmd, t_err *err);
-int		close_and_reset(int *fd, t_err *err);
-void	free_and_reset(char **p_ptr);
-void	free_array_and_reset(char ***p_arr);
+//void	tidy_up_and_reset_cmd_items(t_cmd *cmd, t_err *err);
+//int		close_and_reset(int *fd, t_err *err);
+//void	free_and_reset(char **p_ptr);
+//void	free_array_and_reset(char ***p_arr);
 
 #endif
