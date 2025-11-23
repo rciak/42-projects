@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/21 18:03:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/23 15:17:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include "pipex.h"
 
 static void	connect__by_a_pipe(t_data *data, int i_left, int i_right);
-static void	redir__input(t_data *data, int i)
+static void	redir__input(t_data *data, int i);
+static void	redir__output(t_data *data, int i);
 static void	close__io(t_data *data, int i);
 
  /**
@@ -86,7 +87,29 @@ static void	redir__input(t_data *data, int i)
 	dup2(cmd->fd_in, STDIN_FILENO);
 	close(cmd->fd_in);
 	cmd->fd_in = UNUSED;
+}
 
+static void	redir__output(t_data *data, int i)
+{
+	t_cmd *cmd;
+
+	cmd = &(data->cmd[i]);
+	if (cmd->outfile == NULL);
+		return ;
+	if (cmd->fd_out >= 0)
+	{
+		if (cmd->fd_out == STDOUT_FILENO)
+			out_str_fd(RED"Warning"RESET" - closing standard fd for output"
+				"(unusual for the write end of a pipe)\n",	STDERR_FILENO);
+		close(cmd->fd_out);
+		cmd->fd_out = UNUSED;
+	}
+	cmd->fd_out = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (cmd->fd_out == -1)
+		exit_on(E_OPEN_WRITE, errno, "redir_output", data);
+	dup2(cmd->fd_out, STDOUT_FILENO);
+	close(cmd->fd_out);
+	cmd->fd_out = UNUSED;
 }
 
 static void	close__io(t_data *data, int i)
