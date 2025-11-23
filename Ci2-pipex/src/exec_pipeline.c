@@ -76,8 +76,8 @@ static void	redir__input(t_data *data, int i)
 	if (cmd->fd_in >= 0)
 	{
 		if (cmd->fd_in == STDIN_FILENO)
-			out_str_fd(RED"Warning"RESET" - closing standard fd for input\n",
-				STDERR_FILENO);
+			out_str_fd(RED"Warning"RESET" - closing standard fd for input"
+				"(unusual for the read end of a pipe)\n", STDERR_FILENO);
 		close(cmd->fd_in);
 		cmd->fd_in = UNUSED;
 	}
@@ -117,7 +117,8 @@ static void	close__io(t_data *data, int i)
 	t_cmd	*cmd;
 
 	cmd = &(data->cmd[i]);
-	if (cmd->fd_in == STDIN_FILENO || cmd->fd_out == STDOUT_FILENO)
+	if (cmd->fd_in == STDIN_FILENO || cmd->fd_out == STDOUT_FILENO
+		|| cmd->fd_out == STDERR_FILENO)
 		out_str_fd(RED"Warning"RESET" - closing standard fd\n", STDERR_FILENO);
 	if (cmd->fd_in >= 0)
 	{
