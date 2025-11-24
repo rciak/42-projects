@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/24 16:56:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/24 18:19:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct s_data
 
 // *.c
 void	parse_argv(int argc, char **argv, t_data *data);
+void	parse_path(char **envp, t_data *data);
 int		exec_pipeline(t_data *data, char **envp);
 
 // exec_pipeline_d/*.c
