@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/23 15:17:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/24 13:11:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ static void	close__io(t_data *data, int i);
  * @brief Executes the pipe(x)line
  * @param[in, out] data
  * @param[in] envp
+ * @return Exitstatus of the last (rightmost) command of the pipe(x)line
  */
-void	exec_pipeline(t_data *data, char **envp)
+int	exec_pipeline(t_data *data, char **envp)
 {
 	t_cmd	*cmd;
 	int		i;
@@ -39,7 +40,8 @@ void	exec_pipeline(t_data *data, char **envp)
 	while (i < data->num_cmds)
 	{
 		data->i_cmd_err = i;
-		connect__by_a_pipe(data, i, i + 1);
+		if (i < data->num_cmds - 1)
+			connect__by_a_pipe(data, i, i + 1);
 		cmd[i].pid = fork ();
 		if (cmd[i].pid == -1)
 			exit_on(E_FORK, errno, "exec_pipeline", data);
@@ -52,14 +54,13 @@ void	exec_pipeline(t_data *data, char **envp)
 		close__io(data, i);
 		i++;
 	}
+	return (wait_without_creating_zombies(cmd[data->num_cmds - 1].pid));
 }
 
 static void	connect__by_a_pipe(t_data *data, int i_left, int i_right)
 {
 	int pfd[2];
 
-	if (i_right >= data->num_cmds)
-		return ;
 	if (pipe(pfd) == -1)
 		exit_on(E_CREATE_PIPE, errno, "connect__by_a_pipe", data);
 	data->cmd[i_left].fd_out = pfd[WRITE_TO];

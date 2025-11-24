@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/21 15:51:46 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/24 12:53:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ enum e_saved_errno_specials
 	ERRNO_IRREL = -2,
 };
 
-enum e_cmd_io_specials
+enum e_special_negative_integer_states
 {
 	UNUSED = -10,
 };
@@ -140,10 +140,10 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
-	char	**path;
 	int		i_cmd_err;
 	int		num_cmds;
 	t_cmd	*cmd;
+	char	**path;
 }	t_data;
 
 ////////////////////////////////////////////////
@@ -156,7 +156,7 @@ typedef struct s_data
 //
 
 // *.c
-void	exec_pipeline(t_data *data, char **envp);
+int	exec_pipeline(t_data *data, char **envp);
 //void	set_err(t_err *err, int error_type, int cur_errno, const char *origin);
 //bool	parse_argv(int argc, char **argv, t_data *data, t_err *err);
 //bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err);

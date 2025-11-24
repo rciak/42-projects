@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/23 18:38:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/24 11:18:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,3 @@ static char	*combine___on_match(char *prog_name, char *dir, t_data *data)
 	}
 	return (combined);
 }
-
