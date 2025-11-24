@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/24 13:11:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/24 13:43:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	redir__output(t_data *data, int i)
 	t_cmd *cmd;
 
 	cmd = &(data->cmd[i]);
-	if (cmd->outfile == NULL);
+	if (cmd->outfile == NULL)
 		return ;
 	if (cmd->fd_out >= 0)
 	{
