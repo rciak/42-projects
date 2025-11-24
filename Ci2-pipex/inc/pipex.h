@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/24 12:53:52 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/24 16:32:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,11 @@ typedef struct s_data
 //
 
 // *.c
-int	exec_pipeline(t_data *data, char **envp);
+int		exec_pipeline(t_data *data, char **envp);
+
+// exec_pipeline_d/*.c
+void	exec_cmd(t_data *data, int i, char **envp);
+int		wait_without_creating_zombies(pid_t pid_last_cmd);
 //void	set_err(t_err *err, int error_type, int cur_errno, const char *origin);
 //bool	parse_argv(int argc, char **argv, t_data *data, t_err *err);
 //bool	parse_path(char **envp, size_t num_cmds, t_cmd *cmd, t_err *err);
