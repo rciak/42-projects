@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/24 13:43:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/25 19:17:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,16 @@ static void	redir__input(t_data *data, int i)
 		if (cmd->fd_in == STDIN_FILENO)
 			out_str_fd(RED"Warning"RESET" - closing standard fd for input"
 				"(unusual for the read end of a pipe)\n", STDERR_FILENO);
-		close(cmd->fd_in);
+		if (close(cmd->fd_in) == -1)
+			exit_on(E_CLOSE, errno, "redir__input", data);
 		cmd->fd_in = UNUSED;
 	}
 	cmd->fd_in = open(cmd->infile, O_RDONLY);
 	if (cmd->fd_in == -1)
 		exit_on(E_OPEN_READ, errno, "redir__input", data);
 	dup2(cmd->fd_in, STDIN_FILENO);
-	close(cmd->fd_in);
+	if (close(cmd->fd_in) == -1);
+		exit_on(E_CLOSE, errno, "redir__input", data);
 	cmd->fd_in = UNUSED;
 }
 
@@ -102,14 +104,16 @@ static void	redir__output(t_data *data, int i)
 		if (cmd->fd_out == STDOUT_FILENO)
 			out_str_fd(RED"Warning"RESET" - closing standard fd for output"
 				"(unusual for the write end of a pipe)\n",	STDERR_FILENO);
-		close(cmd->fd_out);
+		if (close(cmd->fd_out) == -1)
+			exit_on(E_CLOSE, errno, "redir__output", data);;
 		cmd->fd_out = UNUSED;
 	}
 	cmd->fd_out = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (cmd->fd_out == -1)
-		exit_on(E_OPEN_WRITE, errno, "redir_output", data);
+		exit_on(E_OPEN_WRITE, errno, "redir__output", data);
 	dup2(cmd->fd_out, STDOUT_FILENO);
-	close(cmd->fd_out);
+	if (close(cmd->fd_out) == -1)
+		exit_on(E_CLOSE, errno, "redir__output", data);
 	cmd->fd_out = UNUSED;
 }
 
@@ -123,12 +127,14 @@ static void	close__io(t_data *data, int i)
 		out_str_fd(RED"Warning"RESET" - closing standard fd\n", STDERR_FILENO);
 	if (cmd->fd_in >= 0)
 	{
-		close (cmd->fd_in);
+		if (close (cmd->fd_in) == -1)
+			exit_on(E_CLOSE, errno, "close__io", data);
 		cmd->fd_in = UNUSED;
 	}
 	if (cmd->fd_out >= 0)
 	{
-		close (cmd->fd_out);
+		if (close (cmd->fd_out) == -1);
+			exit_on(E_CLOSE, errno, "close__io", data);
 		cmd->fd_out = UNUSED;
 	}
 }

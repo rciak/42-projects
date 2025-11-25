@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/25 16:04:19 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/25 19:13:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void exit_on(int type, int saved_errno, const char *origin, t_data *data)
 	err.saved_errno = saved_errno;
 	info = map__to_exit_info(err);
 	print__msg(info, origin, data);
-	if (data != NULL)
+	if (data != NULL && type != E_CLOSE)
 		do_final_nonsense_tidy_up(&data);
 	exit (info.code);
 }
