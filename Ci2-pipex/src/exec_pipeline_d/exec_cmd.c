@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/24 11:18:28 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/25 08:35:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	exec_cmd(t_data *data, int i, char **envp)
 	{
 		free (data->cmd[i].pathname);
 		data->cmd[i].pathname = NULL;
-		exit_on(E_EXECVE_FAILED, errno, "exec_pipeline", data);
+		exit_on(E_EXECVE, errno, "exec_pipeline", data);
 	}
 }
 

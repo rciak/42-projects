@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/24 13:27:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/25 09:22:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int	main(int argc, char **argv, char**envp)
 	int		termination_status_last_cmd;
 
 	if (argc < 1 + 4)
-		print_exit_msg_and_exit(E_ARGC, errno, "main");
+		exit_on(E_ARGC, errno, "main", NULL);
 	pre__init_data(&data, argc);
 	parse_argv(argc, argv, &data);
 	parse_path(envp, &data);
 	termination_status_last_cmd
 		= exec_pipeline(&data, envp);
-	final_nonsense_tidy_up(&data);
+	do_final_nonsense_tidy_up(&data);
 	return (termination_status_last_cmd);
 }
 
@@ -56,7 +56,7 @@ static void	pre__init_data(t_data *data, int argc)
 	data->num_cmds = argc - 3;
 	data->cmd = malloc(data->num_cmds * sizeof (*data->cmd));
 	if (data->cmd == NULL)
-		print_exit_msg_and_exit(E_ALLOC, errno, "pre__init_data");
+		exit_on(E_ALLOC, errno, "pre__init_data", NULL);
 	i = 0;
 	while (i < data->num_cmds)
 	{
