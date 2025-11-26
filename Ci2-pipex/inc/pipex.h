@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/25 16:13:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 08:03:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ enum e_saved_errno_specials
 
 enum e_special_negative_integer_states
 {
-	UNUSED = -10,
+	UNUSED = -1,
 };
 
 enum e_pipe_fd_kind
