@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 07:51:22 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 08:40:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 08:57:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  */
 
 #include "pipex.h"
+
+static void	tidy__up_and_reset_cmd_items(t_cmd *cmd);
 
 /**
  * @brief Free allocated memory, close open filedescriptors...
@@ -30,12 +32,12 @@ void	do_final_nonsense_tidy_up(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < num_cmds)
+	while (i < data->num_cmds)
 	{
-		tidy_up_and_reset_cmd_items(&data->cmd[i]);
+		tidy__up_and_reset_cmd_items(&data->cmd[i]);
 		i++;
 	}
-	free (cmd);
+	free (data->cmd);
 	free_array_and_reset(&data->path);
 }
 
@@ -48,7 +50,7 @@ void	do_final_nonsense_tidy_up(t_data *data)
  *          bugs into bad (hard to detect) bugs...)
  * @param[in] cmd Pointing to command struct instances
  */
-static void	tidy_up_and_reset_cmd_items(t_cmd *cmd)
+static void	tidy__up_and_reset_cmd_items(t_cmd *cmd)
 {
 	cmd->ac = 0;
 	if (cmd->av != NULL)
@@ -60,8 +62,8 @@ static void	tidy_up_and_reset_cmd_items(t_cmd *cmd)
 	if (cmd->outfile != NULL)
 		free_and_reset(&cmd->outfile);
 	if (cmd->fd_in >= 0)
-		close_and_reset(&cmd->fd_in, err);
+		close_and_reset(&cmd->fd_in);
 	if (cmd->fd_out >= 0)
-		close_and_reset(&cmd->fd_out, err);
-	cmd->pid == UNUSED;
+		close_and_reset(&cmd->fd_out);
+	cmd->pid = UNUSED;
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/25 08:35:13 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 08:59:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	set__pathname(t_data *data, int i)
 			return ;
 		p_dir++;
 	}
-	exit_on(E_NOT_FOUND, errno, "set__pathname");
+	exit_on(E_NOT_FOUND, errno, "set__pathname", data);
 }
 
 static char	*combine___on_match(char *prog_name, char *dir, t_data *data)

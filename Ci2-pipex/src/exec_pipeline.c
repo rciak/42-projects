@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/25 19:17:32 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 08:45:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	redir__input(t_data *data, int i)
 	if (cmd->fd_in == -1)
 		exit_on(E_OPEN_READ, errno, "redir__input", data);
 	dup2(cmd->fd_in, STDIN_FILENO);
-	if (close(cmd->fd_in) == -1);
+	if (close(cmd->fd_in) == -1)
 		exit_on(E_CLOSE, errno, "redir__input", data);
 	cmd->fd_in = UNUSED;
 }
@@ -133,7 +133,7 @@ static void	close__io(t_data *data, int i)
 	}
 	if (cmd->fd_out >= 0)
 	{
-		if (close (cmd->fd_out) == -1);
+		if (close (cmd->fd_out) == -1)
 			exit_on(E_CLOSE, errno, "close__io", data);
 		cmd->fd_out = UNUSED;
 	}

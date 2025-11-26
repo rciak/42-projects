@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/25 19:13:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 08:58:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void exit_on(int type, int saved_errno, const char *origin, t_data *data)
 	info = map__to_exit_info(err);
 	print__msg(info, origin, data);
 	if (data != NULL && type != E_CLOSE)
-		do_final_nonsense_tidy_up(&data);
+		do_final_nonsense_tidy_up(data);
 	exit (info.code);
 }
 
@@ -108,8 +108,6 @@ static bool	set___matching_info(
 	return (false);
 }
 
-}
-
 static t_exit_info	default___exit_info(void)
 {
 	t_exit_info info;
@@ -117,6 +115,8 @@ static t_exit_info	default___exit_info(void)
 	info.str1 = "An error has happened in:";
 	info.str2 = "origin";
 	info.code = MEX_GENERIC;
+
+	return (info);
 }
 
 static void	print__msg(t_exit_info info, const char *origin, t_data *data)

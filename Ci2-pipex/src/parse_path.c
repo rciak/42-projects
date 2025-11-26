@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 18:09:46 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/24 18:51:33 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 09:00:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
  */
 
 #include "pipex.h"
-
-static char	**extract__path(char **envp, t_data *data);
-static void	free__path_before_index(t_cmd *cmd, size_t i_fail);
 
 /**
  * @brief Check if there is envp contains a PATH variable and parses it in case.

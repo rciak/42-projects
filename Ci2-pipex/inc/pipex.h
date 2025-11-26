@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 08:03:49 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 08:57:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,13 @@ int		wait_without_creating_zombies(pid_t pid_last_cmd);
 //bool	exec_pipeline(t_data *data, char **envp, t_err *err);
 
 // a_col_ending/*.c
-void exit_on(int type, int saved_errno, const char *origin, t_data *data)
+void	exit_on(int type, int saved_errno, const char *origin, t_data *data);
+void	do_final_nonsense_tidy_up(t_data *data);
+
+// a_col_ending/do_final_nonsense_tidy_up/*.c
+void	close_and_reset(int *fd);
+void	free_and_reset(char **p_ptr);
+void	free_array_and_reset(char ***p_arr);
 
 // a_col_exiting/*.c
 //void	print_err(const t_err *err);

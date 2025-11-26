@@ -1,5 +1,14 @@
 SRCS := \
+src/a_dir_ending/do_final_nonsense_tidy_up.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/close_and_reset.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/free_and_reset.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/free_array_and_reset.c \
+src/a_dir_ending/exit_on.c \
 src/exec_pipeline.c \
-src/main.c
+src/exec_pipeline/exec_cmd.c \
+src/exec_pipeline/wait_without_creating_zombies.c \
+src/main.c \
+src/parse_argv.c \
+src/parse_path.c
 
 SRCS_BONUS := \
