@@ -4,7 +4,7 @@
   (so hatte ich es sogar in meinem ersten Ansatz, ... bei meinem zweiten Ansatz nicht mehr jedoch)
 * Nur mit einer offnen Pipe arbeiten (ähnlich wie bei meinem ersten Ansatz, aber da binich nicht mehr durchgestiegen als ich Fehler behandlung einbauen wollte auf der Rückreise von der Beerdigung)
 
-* Tests die er durchgeführt hat und fixe von Cami sollten auf dem Campus noch in einem nicht gepushten branch vorliegen... (18.11.2025: Probably: `Ci2-pipex-submission-prep-debugging`)
+* Tests die er durchgeführt hat und fixe von Cami sollten auf dem Campus noch in einem nicht gepushten branch vorliegen... (18.11.2025: Probably: `Ci2-pipex-submission-prep-debugging`; 26.11.2025: Nö da war nicht sehr interesanntes zeug in dem einzigen Commit auf diesem Branch -> nicht gepusht)
 
 * 18.11.2025 History mit vora allem einigen von Bernhard benutzten Befehlen (erste Befehle noch von mir?):
 
