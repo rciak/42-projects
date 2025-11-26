@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 08:45:05 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 11:02:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	exec_pipeline(t_data *data, char **envp)
 		data->i_cmd_err = i;
 		if (i < data->num_cmds - 1)
 			connect__by_a_pipe(data, i, i + 1);
+print_cmds(data);
 		cmd[i].pid = fork ();
 		if (cmd[i].pid == -1)
 			exit_on(E_FORK, errno, "exec_pipeline", data);

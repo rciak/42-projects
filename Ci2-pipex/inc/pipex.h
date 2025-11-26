@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 08:57:00 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 10:42:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,11 @@ void	free_array_and_reset(char ***p_arr);
 //int		close_and_reset(int *fd, t_err *err);
 //void	free_and_reset(char **p_ptr);
 //void	free_array_and_reset(char ***p_arr);
+
+// debug/*.c
+void	print_data(t_data *data);
+void	print_cmds(t_data *data);
+void	print_cmd_i(t_data *data, int i);
+void	print_arr(char **arr, char *prefix);
 
 #endif

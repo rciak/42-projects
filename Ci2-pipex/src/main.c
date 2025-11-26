@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/25 09:22:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 11:04:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char **argv, char**envp)
 	pre__init_data(&data, argc);
 	parse_argv(argc, argv, &data);
 	parse_path(envp, &data);
+//print_data(&data);
 	termination_status_last_cmd
 		= exec_pipeline(&data, envp);
 	do_final_nonsense_tidy_up(&data);

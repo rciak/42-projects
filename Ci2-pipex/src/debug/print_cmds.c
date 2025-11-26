@@ -1,0 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_cmds.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 10:02:14 by reciak            #+#    #+#             */
+/*   Updated: 2025/11/26 11:05:04 by reciak           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/**
+ * @file print_cmds.c
+ * @brief Stores the definition of print_cmds()
+ */
+
+#include "pipex.h"
+#include <stdio.h>
+
+void print_cmds(t_data *data)
+{
+	fprintf(stderr, "***********************\n");
+	fprintf(stderr, "* PRINTING COMMANDS: %d\n", data->num_cmds);
+	fprintf(stderr, "***********************\n");
+	int i = 0;
+	while (i < data->num_cmds)
+	{
+		print_cmd_i(data, i);
+		i++;
+	}
+}
