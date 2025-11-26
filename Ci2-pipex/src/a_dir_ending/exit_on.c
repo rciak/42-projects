@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 12:38:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 18:37:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void exit_on(int type, int saved_errno, const char *origin, t_data *data)
 	err.saved_errno = saved_errno;
 	info = map__to_exit_info(err);
 	print__msg(info, origin, data);
-	if (data != NULL && type != E_CLOSE)
+	//if (data != NULL && type != E_CLOSE)
+	if (data != NULL)
 		do_final_nonsense_tidy_up(data);
 	exit (info.code);
 }
@@ -63,7 +64,7 @@ static t_exit_info	map__to_exit_info(t_err err)
 	{{E_ARGC, ANY}, {"Wrong number of arguments", "", EX_USAGE}},
 	{{E_ASSERTION, ANY}, {"Failed assertion in:", "origin", MEX_ASSERTION}},
 	{{E_ALLOC, ANY}, {"Memory allocation failed in:", "origin", EX_OSERR}},
-	{{E_CLOSE, ANY}, {"Close failed -->", "a job for the OS ..", EX_OSERR}},
+	{{E_CLOSE, ANY}, {"Close failed in:", "origin", EX_OSERR}},
 	{{E_EXECVE, EACCES}, {"Permission denied:", "cmd[i].av[0]", MEX_NO_PERM}},
 	{{E_EXECVE, ENOENT}, {"Not found:", "cmd[i].av[0]", MEX_NOT_FOUND}},
 	{{E_EXECVE, ANY}, {"Execve failed", "", MEX_GENERIC}},
