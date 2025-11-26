@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 11:02:16 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/26 12:15:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,24 @@ int	exec_pipeline(t_data *data, char **envp)
 	i = 0;
 	while (i < data->num_cmds)
 	{
+usleep(137);
 		data->i_cmd_err = i;
 		if (i < data->num_cmds - 1)
 			connect__by_a_pipe(data, i, i + 1);
-print_cmds(data);
 		cmd[i].pid = fork ();
 		if (cmd[i].pid == -1)
 			exit_on(E_FORK, errno, "exec_pipeline", data);
 		else if (cmd[i].pid == 0)
 		{
+#include <stdio.h>
+fprintf(stderr, "\ni: %d\n", i);
+print_cmds(data, "Child: Before redirs\n", "fds");
 			redir__input(data, i);
 			redir__output(data, i);
+print_cmds(data, "\nChild: After redirs\n", "fds");
 			exec_cmd(data, i, envp);
 		}
-		close__io(data, i);
+//		close__io(data, i);
 		i++;
 	}
 	return (wait_without_creating_zombies(cmd[data->num_cmds - 1].pid));
@@ -85,6 +89,8 @@ static void	redir__input(t_data *data, int i)
 		cmd->fd_in = UNUSED;
 	}
 	cmd->fd_in = open(cmd->infile, O_RDONLY);
+fprintf(stderr, "redir__input: infile: %s\n", cmd->infile);
+fprintf(stderr, "redir__input: fd_in: %d\n", cmd->fd_in);
 	if (cmd->fd_in == -1)
 		exit_on(E_OPEN_READ, errno, "redir__input", data);
 	dup2(cmd->fd_in, STDIN_FILENO);
