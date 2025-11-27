@@ -4,10 +4,13 @@
   (so hatte ich es sogar in meinem ersten Ansatz, ... bei meinem zweiten Ansatz nicht mehr jedoch)
 * Nur mit einer offnen Pipe arbeiten (ähnlich wie bei meinem ersten Ansatz, aber da binich nicht mehr durchgestiegen als ich Fehler behandlung einbauen wollte auf der Rückreise von der Beerdigung)
 
-* Tests die er durchgeführt hat und fixe von Cami sollten auf dem Campus noch in einem nicht gepushten branch vorliegen... (18.11.2025: Probably: `Ci2-pipex-submission-prep-debugging`; 26.11.2025: Nö da war nicht sehr interesanntes zeug in dem einzigen Commit auf diesem Branch -> nicht gepusht)
+* Tests die er durchgeführt hat und fixe von Cami sollten auf dem Campus noch in einem nicht gepushten branch vorliegen... (18.11.2025: Probably: `Ci2-pipex-submission-prep-debugging`; 26.11.2025: Nö da war nicht sehr interesanntes zeug in dem einzigen Commit auf diesem Branch -> nicht gepusht deswegen)
 
 * 18.11.2025 History mit vora allem einigen von Bernhard benutzten Befehlen (erste Befehle noch von mir?):
 
+## Probably by me
+
+```bash
  git add inc/pipex.h  src/a_col_exiting/h_err_exit.c src/exec_pipeline.c src/main.c src/set_err.c 
  valgrind --leak-check=full --trace-children=yes --track-origins=yes --track-fds=yes   ./pipex Makefile "/usr/bin/echo Hi " cat  outfile_for_diff.txt; diff outfile.txt outfile_for_diff.txt\n
  valgrind --leak-check=full --trace-children=yes --track-origins=yes --track-fds=yes  ./pipex Makefile 'echo Miau' cawt OUTfile\n
@@ -37,9 +40,11 @@
  make DEBUG_VALGRIND=1 re_not_libft
  make DEBUG_VALGRIND=1 re
  funcheck -ac ./pipex Makefile '' '' OUTfile
+```
 
+## Probably by Bernhard
 
-
+```bash
  valgrind ./pipex infile cat cat outfile
  export PS1="$ "
 
@@ -134,3 +139,4 @@ time ./pipex infile "sleep 5" "sleep 10" outfile
 time ./pipex infile "sleep 5" "sleep 10" cat outfile
 time ./pipex infile "sleep 5" "sleep 10" cat cat outfile
 (ulimit -n 15; /usr/bin/valgrind --trace-children=yes --track-fds=yes ./pipex infile cat cat cat cat cat cat cat cat cat cat outfile)
+```
