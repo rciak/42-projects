@@ -150,3 +150,10 @@ chmod 000 outfile
 Exiting ... 
   --> r-Open: No access: echo
 ```
+
+```bash
+chmod 777 infile
+chmod 644 outfile
+unset PATH
+/usr/bin/valgrind ./pipex infile cat cat outfile
+```
