@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 12:23:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:21:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,9 @@ enum e_pipex_errors
 	E_NONE,
 	E_ARGC,
 	E_ALLOC,
-	//E_NEGATIVE_FD,
 	E_CLOSE,
-	//E_ENVP_NULL,
-	//E_ENVP_EMPTY_ARRAY,
-	//E_TOO_FEW_CMDS,
 	E_CREATE_PIPE,
+	E_DUP_TWO,
 	E_OPEN_READ,
 	E_OPEN_WRITE,
 	E_ASSERTION,

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 19:34:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:31:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ static void	close__nonstd_fds(t_data *data, int i);
 void	exec_cmd(t_data *data, int i, char **envp)
 {
 	set__pathname(data, i);
-	// error handling for dup2 ??????????????????????????????????????????????????????
-	dup2(data->cmd[i].fd_in, STDIN_FILENO);
-	dup2(data->cmd[i].fd_out, STDOUT_FILENO);
+	if (dup2(data->cmd[i].fd_in, STDIN_FILENO) == -1)
+		exit_on(E_DUP_TWO, errno, "exec_cmd", data);
+	if (dup2(data->cmd[i].fd_out, STDOUT_FILENO) == -1)
+		exit_on(E_DUP_TWO, errno, "exec_cmd", data);
 	close__nonstd_fds(data, i);
 	if (i < data->num_cmds - 1)
 		close__nonstd_fds(data, i + 1);

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 18:42:40 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:26:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	update__fd_out_on_redir(t_data *data, int i)
 	{
 		if (cmd->fd_out == STDOUT_FILENO)
 			out_str_fd(RED"Warning"RESET" - closing standard fd for output"
-				"(unusual for the write end of a pipe)\n",	STDERR_FILENO);
+				"(unusual for the write end of a pipe)\n", STDERR_FILENO);
 		if (close(cmd->fd_out) == -1)
 			exit_on(E_CLOSE, errno, "update__fd_out_on_redir", data);;
 		cmd->fd_out = UNUSED;
