@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:02:30 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 12:05:34 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:50:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	print__cmd(t_cmd cmd, char *prefix, char *prefix2, char *what);
 
 void	print_cmd_i(t_data *data, int i, char *what)
 {
-
 	fprintf(stderr, "cmd[%i] -------------------------------------------\n", i);
 	print__cmd(data->cmd[i], "       ", "                   ", what);
 }
@@ -46,12 +45,7 @@ static void	print__cmd(t_cmd cmd, char *prefix, char *prefix2, char *what)
 		fprintf(stderr, "%sfd_in:    %d\n", prefix, cmd.fd_in);
 		fprintf(stderr, "%sfd_out:   %d\n", prefix, cmd.fd_out);
 	}
-	else if (ft_strcmp(what, "fds_inv") == 0)
-	{
-		fprintf(stderr, "%sfd_out:   %d\n", prefix, cmd.fd_out);
-		fprintf(stderr, "%sfd_in:    %d\n", prefix, cmd.fd_in);
-	}
-	else if(ft_strcmp(what, "fds+iofiles") == 0)
+	else if (ft_strcmp(what, "fds+iofiles") == 0)
 	{
 		fprintf(stderr, "%sinfile:   %s\n", prefix, cmd.infile);
 		fprintf(stderr, "%soutfile:  %s\n", prefix, cmd.outfile);
