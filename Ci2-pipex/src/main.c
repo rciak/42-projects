@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 12:42:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:42:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	main(int argc, char **argv, char**envp)
 
 static void	pre__init_data(t_data *data, int argc)
 {
-	int i;
-	
+	int	i;
+
 	data->i_cmd_err = UNUSED;
 	data->num_cmds = argc - 3;
 	data->cmd = malloc(data->num_cmds * sizeof (*data->cmd));

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 10:26:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:41:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ static void	update__fd_in_on_redir(t_data *data, int i);
 static void	update__fd_out_on_redir(t_data *data, int i);
 static void	close__fd_in_fd_out(t_data *data, int i);
 
- /**
- * @brief Executes the pipe(x)line
- * @param[in, out] data
- * @param[in] envp
- * @return Exitstatus of the last (rightmost) command of the pipe(x)line
- */
+/**
+* @brief Executes the pipe(x)line
+* @param[in, out] data
+* @param[in] envp
+* @return Exitstatus of the last (rightmost) command of the pipe(x)line
+*/
 int	exec_pipeline(t_data *data, char **envp)
 {
 	t_cmd	*cmd;
 	int		i;
-	
+
 	cmd = data->cmd;
 	if (data->num_cmds < 2)
 		exit_on(E_ASSERTION, ERRNO_IRREL, "exec_pipeline", data);
@@ -59,7 +59,7 @@ int	exec_pipeline(t_data *data, char **envp)
 
 static void	connect__by_a_pipe(t_data *data, int i_left, int i_right)
 {
-	int pfd[2];
+	int	pfd[2];
 
 	if (pipe(pfd) == -1)
 		exit_on(E_CREATE_PIPE, errno, "connect__by_a_pipe", data);
@@ -90,7 +90,7 @@ static void	update__fd_in_on_redir(t_data *data, int i)
 
 static void	update__fd_out_on_redir(t_data *data, int i)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = &(data->cmd[i]);
 	if (cmd->outfile == NULL)
@@ -101,7 +101,7 @@ static void	update__fd_out_on_redir(t_data *data, int i)
 			out_str_fd(RED"Warning"RESET" - closing standard fd for output"
 				"(unusual for the write end of a pipe)\n", STDERR_FILENO);
 		if (close(cmd->fd_out) == -1)
-			exit_on(E_CLOSE, errno, "update__fd_out_on_redir", data);;
+			exit_on(E_CLOSE, errno, "update__fd_out_on_redir", data);
 		cmd->fd_out = UNUSED;
 	}
 	cmd->fd_out = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);

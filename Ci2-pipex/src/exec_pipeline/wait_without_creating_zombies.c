@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:03:04 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/24 16:42:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:48:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  */
 
 #include "pipex.h"
-
 
 /**
  * @brief Waits for the last command to finish such that no zombies are
@@ -50,7 +49,6 @@ int	wait_without_creating_zombies(pid_t pid_last_cmd)
 	}
 	return (status_last_cmd);
 }
-
 
 int	wait__without_creating_zombies(pid_t pid_last_cmd)
 {

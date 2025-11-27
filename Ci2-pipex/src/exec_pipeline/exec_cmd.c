@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 10:31:15 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:47:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static void	close__nonstd_fds(t_data *data, int i)
 	}
 }
 
-
 /**
  * @brief Sets data->cmd[i].pathname
  * @param[in, out] data
@@ -100,7 +99,7 @@ static void	set__pathname(t_data *data, int i)
 		return ;
 	}
 	p_dir = data->path;
-	while(*p_dir != NULL)
+	while (*p_dir != NULL)
 	{
 		cmd->pathname = combine___on_match(cmd->av[0], *p_dir, data);
 		if (cmd->pathname != NULL)

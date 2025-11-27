@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 10:24:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 10:47:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 
 #include "pipex.h"
 
-static t_exit_info	map__to_exit_info(t_err err);
-static bool	set___matching_info(
-	t_err err,
-	t_err_to_exit *rel,
-	t_exit_info *info,
-	int num_elements
-	);
-static t_exit_info	default___exit_info(void);
-static void	print__msg(t_exit_info info, const char *origin, t_data *data);
+static t_x_info	map__to_exit_info(t_err err);
+static bool		set___matching_info(
+					t_err err,
+					t_err_to_exit *rel,
+					t_x_info *info,
+					int num_elements
+					);
+static t_x_info	default___exit_info(void);
+static void		print__msg(t_x_info info, const char *origin, t_data *data);
 
 /**
  * @brief Handles the error described by the first and (potentially) second arg
@@ -38,10 +38,10 @@ static void	print__msg(t_exit_info info, const char *origin, t_data *data);
  *                 If being \c NULL then no tidying up is done.
  * @param[in] 
  */
-void exit_on(int type, int saved_errno, const char *origin, t_data *data)
+void	exit_on(int type, int saved_errno, const char *origin, t_data *data)
 {
 	t_err		err;
-	t_exit_info	info;
+	t_x_info	info;
 
 	err.type = type;
 	err.saved_errno = saved_errno;
@@ -57,9 +57,9 @@ void exit_on(int type, int saved_errno, const char *origin, t_data *data)
  *       Other more precise specifications for `saved_errno` are also allowed,
  *       but must be placed in lines above the one with the `ANY` entry.
  */
-static t_exit_info	map__to_exit_info(t_err err)
+static t_x_info	map__to_exit_info(t_err err)
 {
-	static t_err_to_exit err_to_exit[] = {
+	static t_err_to_exit	err_to_exit[] = {
 	{{E_ARGC, ANY}, {"Wrong number of arguments", "", EX_USAGE}},
 	{{E_ASSERTION, ANY}, {"Failed assertion in:", "origin", MEX_ASSERTION}},
 	{{E_ALLOC, ANY}, {"Memory allocation failed in:", "origin", EX_OSERR}},
@@ -78,10 +78,10 @@ static t_exit_info	map__to_exit_info(t_err err)
 	{{E_OPEN_WRITE, ENOENT}, {"r-Open: Not found:", "cmd[i].av[0]", EX_IOERR}},
 	{{E_OPEN_WRITE, ANY}, {"r-Open failed for:", "cmd[i].av[0]", EX_IOERR}},
 	};
-	t_exit_info info;
+	t_x_info				info;
 
 	if (set___matching_info(err, err_to_exit, &info,
-			sizeof(err_to_exit)/sizeof(err_to_exit[0])))
+			sizeof(err_to_exit) / sizeof(err_to_exit[0])))
 		return (info);
 	return (default___exit_info());
 }
@@ -89,17 +89,17 @@ static t_exit_info	map__to_exit_info(t_err err)
 static bool	set___matching_info(
 	t_err err,
 	t_err_to_exit *rel,
-	t_exit_info *info,
+	t_x_info *info,
 	int num_elements
 	)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < num_elements)
 	{
 		if (rel[i].err.type == err.type && (rel[i].err.saved_errno == ANY
-			|| rel[i].err.saved_errno == err.saved_errno))
+				|| rel[i].err.saved_errno == err.saved_errno))
 		{
 			*info = rel[i].info;
 			return (true);
@@ -109,18 +109,17 @@ static bool	set___matching_info(
 	return (false);
 }
 
-static t_exit_info	default___exit_info(void)
+static t_x_info	default___exit_info(void)
 {
-	t_exit_info info;
+	t_x_info	info;
 
 	info.str1 = "An error has happened in:";
 	info.str2 = "origin";
 	info.code = MEX_GENERIC;
-
 	return (info);
 }
 
-static void	print__msg(t_exit_info info, const char *origin, t_data *data)
+static void	print__msg(t_x_info info, const char *origin, t_data *data)
 {
 	t_cmd	*cmd;
 	int		i;
@@ -143,4 +142,3 @@ static void	print__msg(t_exit_info info, const char *origin, t_data *data)
 		out_str_fd(info.str2, STDERR_FILENO);
 	out_str_fd("\n", STDERR_FILENO);
 }
-
