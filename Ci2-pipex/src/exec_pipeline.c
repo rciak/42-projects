@@ -39,7 +39,6 @@ int	exec_pipeline(t_data *data, char **envp)
 	i = 0;
 	while (i < data->num_cmds)
 	{
-																				sleep(2);
 		data->i_cmd_err = i;
 		if (i < data->num_cmds - 1)
 			connect__by_a_pipe(data, i, i + 1);
@@ -48,16 +47,11 @@ int	exec_pipeline(t_data *data, char **envp)
 			exit_on(E_FORK, errno, "exec_pipeline", data);
 		else if (cmd[i].pid == 0)
 		{
-																				fprintf(stderr, GREEN"\ni: %d\n"RESET, i);
-																				print_cmds(data, GREEN"Child: Before redirs\n"RESET, "fds");
 			update__fd_in_on_redir(data, i);
 			update__fd_out_on_redir(data, i);
-																				print_cmds(data, CYAN"\nChild: After redirs\n"RESET, "fds");
 			exec_cmd(data, i, envp);
 		}
-																				sleep(1); print_cmds(data, YELLOW"Parent 1:"RESET" Before closing fd_in and fd_out\n"RESET, "fds");
 		close__fd_in_fd_out(data, i);
-																				print_cmds(data, YELLOW"Parent 2:"RESET" After closing fd_in and fd_out\n"RESET, "fds");
 		i++;
 	}
 	return (wait_without_creating_zombies(cmd[data->num_cmds - 1].pid));

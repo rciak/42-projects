@@ -34,12 +34,9 @@ void	exec_cmd(t_data *data, int i, char **envp)
 	// error handling for dup2 ??????????????????????????????????????????????????????
 	dup2(data->cmd[i].fd_in, STDIN_FILENO);
 	dup2(data->cmd[i].fd_out, STDOUT_FILENO);
-print_cmds(data, BLUE"Child[exec_cmd]A: Before close__nonstd_fds\n"RESET, "fds");
 	close__nonstd_fds(data, i);
-//print_cmds(data, BLUE"Child[exec_cmd]B: Before close__nonstd_fds\n"RESET, "fds");
 	if (i < data->num_cmds - 1)
 		close__nonstd_fds(data, i + 1);
-//print_cmds(data, BLUE"Child[exec_cmd]C: Before close__nonstd_fds\n"RESET, "fds");																				print_cmds(data, BLUE"Child: Before execve\n"RESET, "fds");
 	if (execve(data->cmd[i].pathname, data->cmd[i].av, envp) == -1)
 	{
 		free (data->cmd[i].pathname);
@@ -68,17 +65,10 @@ static void	close__nonstd_fds(t_data *data, int i)
 			exit_on(E_CLOSE, errno, "close__nonstd_fds", data);
 		cmd->fd_in = UNUSED;
 	}
-print_cmds(data, BLUE"Child[exec_cmd]: After closing fd_in\n"RESET, "fds");
 	if (cmd->fd_out >= 0)
 	{
-print_cmds(data, GREEN"Child[exec_cmd]: BEFORE closing fd_out\n"RESET, "fds");
 		if (close (cmd->fd_out) == -1)
-{
-fprintf(stderr, "errno: %d\n", errno);
-fprintf(stderr, "cmd->fd_out: %d\n", cmd->fd_out);
-print_cmds(data, GREEN"Child[exec_cmd]: AFTER closing fd_out\n"RESET, "fds");
-			exit_on(E_CLOSE, errno, "close__nonstd_fds----C", data);
-}
+			exit_on(E_CLOSE, errno, "close__nonstd_fds", data);
 		cmd->fd_out = UNUSED;
 	}
 }
