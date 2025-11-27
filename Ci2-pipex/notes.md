@@ -140,3 +140,13 @@ time ./pipex infile "sleep 5" "sleep 10" cat outfile
 time ./pipex infile "sleep 5" "sleep 10" cat cat outfile
 (ulimit -n 15; /usr/bin/valgrind --trace-children=yes --track-fds=yes ./pipex infile cat cat cat cat cat cat cat cat cat cat outfile)
 ```
+
+## Wo mein pipex noch nicht funktioniert:
+
+```bash
+chmod 000 outfile
+./pipex infile cat "echo A" outfile
+
+Exiting ... 
+  --> r-Open: No access: echo
+```

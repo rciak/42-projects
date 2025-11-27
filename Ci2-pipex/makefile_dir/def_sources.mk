@@ -4,6 +4,7 @@ src/a_dir_ending/do_final_nonsense_tidy_up/close_and_reset.c \
 src/a_dir_ending/do_final_nonsense_tidy_up/free_and_reset.c \
 src/a_dir_ending/do_final_nonsense_tidy_up/free_array_and_reset.c \
 src/a_dir_ending/exit_on.c \
+src/a_dir_ending/print_msg.c \
 src/debug/print_arr.c \
 src/debug/print_cmd_i.c \
 src/debug/print_cmds.c \

@@ -1,4 +1,6 @@
 INCS := \
+inc/debug.h \
+inc/pipex_bonus.h \
 inc/pipex.h \
 libft/inc/ft_printf.h \
 libft/inc/get_next_line.h \

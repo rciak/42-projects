@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 10:45:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 15:59:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ typedef struct s_exit_info
 	char	*str1;
 	char	*str2;
 	int		code;
-}	t_x_info;
+}	t_exit_info;
 
 typedef struct s_err_to_exit
 {
 	t_err		err;
-	t_x_info	info;
+	t_exit_info	info;
 }	t_err_to_exit;
 
 typedef struct s_cmd
@@ -156,6 +156,7 @@ int		wait_without_creating_zombies(pid_t pid_last_cmd);
 
 // a_col_ending/*.c
 void	exit_on(int type, int saved_errno, const char *origin, t_data *data);
+void	print_msg(t_exit_info info, const char *origin, t_data *data);
 void	do_final_nonsense_tidy_up(t_data *data);
 
 // a_col_ending/do_final_nonsense_tidy_up/*.c

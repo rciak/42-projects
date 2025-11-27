@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 10:47:20 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 15:59:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@
 
 #include "pipex.h"
 
-static t_x_info	map__to_exit_info(t_err err);
+static t_exit_info	map__to_exit_info(t_err err);
 static bool		set___matching_info(
 					t_err err,
 					t_err_to_exit *rel,
-					t_x_info *info,
+					t_exit_info *info,
 					int num_elements
 					);
-static t_x_info	default___exit_info(void);
-static void		print__msg(t_x_info info, const char *origin, t_data *data);
+static t_exit_info	default___exit_info(void);
 
 /**
  * @brief Handles the error described by the first and (potentially) second arg
@@ -41,12 +40,12 @@ static void		print__msg(t_x_info info, const char *origin, t_data *data);
 void	exit_on(int type, int saved_errno, const char *origin, t_data *data)
 {
 	t_err		err;
-	t_x_info	info;
+	t_exit_info	info;
 
 	err.type = type;
 	err.saved_errno = saved_errno;
 	info = map__to_exit_info(err);
-	print__msg(info, origin, data);
+	print_msg(info, origin, data);
 	if (data != NULL)
 		do_final_nonsense_tidy_up(data);
 	exit (info.code);
@@ -57,7 +56,7 @@ void	exit_on(int type, int saved_errno, const char *origin, t_data *data)
  *       Other more precise specifications for `saved_errno` are also allowed,
  *       but must be placed in lines above the one with the `ANY` entry.
  */
-static t_x_info	map__to_exit_info(t_err err)
+static t_exit_info	map__to_exit_info(t_err err)
 {
 	static t_err_to_exit	err_to_exit[] = {
 	{{E_ARGC, ANY}, {"Wrong number of arguments", "", EX_USAGE}},
@@ -71,14 +70,16 @@ static t_x_info	map__to_exit_info(t_err err)
 	{{E_NOT_FOUND, ANY}, {"Not found:", "cmd[i].av[0]", MEX_NOT_FOUND}},
 	{{E_FORK, ANY}, {"Fork failed", "", EX_OSERR}},
 	{{E_CREATE_PIPE, ANY}, {"Creating of pipe failed", "", EX_OSERR}},
-	{{E_OPEN_READ, EACCES}, {"r-Open: No access:", "cmd[i].av[0]", EX_NOPERM}},
-	{{E_OPEN_READ, ENOENT}, {"r-Open: Not found:", "cmd[i].av[0]", EX_IOERR}},
-	{{E_OPEN_READ, ANY}, {"r-Open failed for:", "cmd[i].av[0]", EX_IOERR}},
-	{{E_OPEN_WRITE, EACCES}, {"r-Open: No access:", "cmd[i].av[0]", EX_NOPERM}},
-	{{E_OPEN_WRITE, ENOENT}, {"r-Open: Not found:", "cmd[i].av[0]", EX_IOERR}},
+	{{E_OPEN_READ, EACCES}, {"r-Open: No access:", "cmd[i].infile", EX_NOPERM}},
+	{{E_OPEN_READ, ENOENT}, {"r-Open: Not found:", "cmd[i].infile", EX_IOERR}},
+	{{E_OPEN_READ, ANY}, {"r-Open failed in:", "origin", EX_IOERR}},
+	{{E_OPEN_WRITE, EACCES},
+		{"w-Open: No access:", "cmd[i].outfile", EX_NOPERM}},
+	{{E_OPEN_WRITE, ENOENT},
+		{"w-Open: Not found:", "cmd[i].outfile", EX_IOERR}},
 	{{E_OPEN_WRITE, ANY}, {"r-Open failed for:", "cmd[i].av[0]", EX_IOERR}},
 	};
-	t_x_info				info;
+	t_exit_info				info;
 
 	if (set___matching_info(err, err_to_exit, &info,
 			sizeof(err_to_exit) / sizeof(err_to_exit[0])))
@@ -89,7 +90,7 @@ static t_x_info	map__to_exit_info(t_err err)
 static bool	set___matching_info(
 	t_err err,
 	t_err_to_exit *rel,
-	t_x_info *info,
+	t_exit_info *info,
 	int num_elements
 	)
 {
@@ -109,36 +110,12 @@ static bool	set___matching_info(
 	return (false);
 }
 
-static t_x_info	default___exit_info(void)
+static t_exit_info	default___exit_info(void)
 {
-	t_x_info	info;
+	t_exit_info	info;
 
 	info.str1 = "An error has happened in:";
 	info.str2 = "origin";
 	info.code = MEX_GENERIC;
 	return (info);
-}
-
-static void	print__msg(t_x_info info, const char *origin, t_data *data)
-{
-	t_cmd	*cmd;
-	int		i;
-
-	cmd = NULL;
-	if (data != NULL)
-	{
-		cmd = data->cmd;
-		i = data->i_cmd_err;
-	}
-	out_str_fd("\nExiting ... ", STDERR_FILENO);
-	out_str_fd("\n  --> ", STDERR_FILENO);
-	out_str_fd(info.str1, STDERR_FILENO);
-	out_str_fd(" ", STDERR_FILENO);
-	if (ft_strcmp(info.str2, "cmd[i].av[0]") == 0)
-		out_str_fd(cmd[i].av[0], STDERR_FILENO);
-	else if (ft_strcmp(info.str2, "origin") == 0)
-		out_str_fd((char *) origin, STDERR_FILENO);
-	else
-		out_str_fd(info.str2, STDERR_FILENO);
-	out_str_fd("\n", STDERR_FILENO);
 }

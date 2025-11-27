@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:53:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 15:20:39 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 15:59:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "pipex.h"
 
-static void	treat_string_two(t_x_info info, const char *origin, t_data *data);
+static void	treat_string_two(t_exit_info info, const char *origin, t_data *data);
 
 /**
  * @brief Print a message on exititing
@@ -27,7 +27,7 @@ static void	treat_string_two(t_x_info info, const char *origin, t_data *data);
  * @param[in] data providing access to usuable information
  */
 
-void	print_msg(t_x_info info, const char *origin, t_data *data)
+void	print_msg(t_exit_info info, const char *origin, t_data *data)
 {
 	t_cmd	*cmd;
 	int		i;
@@ -46,7 +46,7 @@ void	print_msg(t_x_info info, const char *origin, t_data *data)
 	out_str_fd("\n", STDERR_FILENO);
 }
 
-static void	treat_string_two(t_x_info info, const char *origin, t_data *data)
+static void	treat_string_two(t_exit_info info, const char *origin, t_data *data)
 {
 	t_cmd	*cmd;
 	int		i;
@@ -55,6 +55,10 @@ static void	treat_string_two(t_x_info info, const char *origin, t_data *data)
 	i = data->i_cmd_err;
 	if (ft_strcmp(info.str2, "cmd[i].av[0]") == 0)
 		out_str_fd(cmd[i].av[0], STDERR_FILENO);
+	else if (ft_strcmp(info.str2, "cmd[i].infile") == 0)
+		out_str_fd(cmd[i].infile, STDERR_FILENO);
+	else if (ft_strcmp(info.str2, "cmd[i].outfile") == 0)
+		out_str_fd(cmd[i].outfile, STDERR_FILENO);
 	else if (ft_strcmp(info.str2, "origin") == 0)
 		out_str_fd((char *) origin, STDERR_FILENO);
 	else
