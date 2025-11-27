@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 15:59:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 16:20:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 #include "pipex.h"
 
 static t_exit_info	map__to_exit_info(t_err err);
-static bool		set___matching_info(
-					t_err err,
-					t_err_to_exit *rel,
-					t_exit_info *info,
-					int num_elements
-					);
+static bool			set___matching_info(
+						t_err err,
+						t_err_to_exit *rel,
+						t_exit_info *info,
+						int num_elements
+						);
 static t_exit_info	default___exit_info(void);
 
 /**
@@ -74,9 +74,9 @@ static t_exit_info	map__to_exit_info(t_err err)
 	{{E_OPEN_READ, ENOENT}, {"r-Open: Not found:", "cmd[i].infile", EX_IOERR}},
 	{{E_OPEN_READ, ANY}, {"r-Open failed in:", "origin", EX_IOERR}},
 	{{E_OPEN_WRITE, EACCES},
-		{"w-Open: No access:", "cmd[i].outfile", EX_NOPERM}},
+	{"w-Open: No access:", "cmd[i].outfile", EX_NOPERM}},
 	{{E_OPEN_WRITE, ENOENT},
-		{"w-Open: Not found:", "cmd[i].outfile", EX_IOERR}},
+	{"w-Open: Not found:", "cmd[i].outfile", EX_IOERR}},
 	{{E_OPEN_WRITE, ANY}, {"r-Open failed for:", "cmd[i].av[0]", EX_IOERR}},
 	};
 	t_exit_info				info;

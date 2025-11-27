@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:53:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 15:59:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 16:43:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "pipex.h"
 
-static void	treat_string_two(t_exit_info info, const char *origin, t_data *data);
+static void	treat_str2(t_exit_info info, const char *origin, t_data *data);
 
 /**
  * @brief Print a message on exititing
@@ -42,11 +42,11 @@ void	print_msg(t_exit_info info, const char *origin, t_data *data)
 	out_str_fd("\n  --> ", STDERR_FILENO);
 	out_str_fd(info.str1, STDERR_FILENO);
 	out_str_fd(" ", STDERR_FILENO);
-	treat_string_two(info, origin, data);
+	treat_str2(info, origin, data);
 	out_str_fd("\n", STDERR_FILENO);
 }
 
-static void	treat_string_two(t_exit_info info, const char *origin, t_data *data)
+static void	treat_str2(t_exit_info info, const char *origin, t_data *data)
 {
 	t_cmd	*cmd;
 	int		i;
