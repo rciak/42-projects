@@ -113,8 +113,6 @@ static void	update__fd_out_on_redir(t_data *data, int i)
 	cmd->fd_out = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (cmd->fd_out == -1)
 		exit_on(E_OPEN_WRITE, errno, "update__fd_out_on_redir", data);
-	if (close(cmd->fd_out) == -1)
-		exit_on(E_CLOSE, errno, "update__fd_out_on_redir", data);
 }
 
 static void	close__fd_in_fd_out(t_data *data, int i)
