@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 15:59:43 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 16:58:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ enum e_pipex_errors
 	E_CLOSE,
 	E_CREATE_PIPE,
 	E_DUP_TWO,
-	E_OPEN_READ,
-	E_OPEN_WRITE,
+	E_OPEN_RD,
+	E_OPEN_WR,
 	E_ASSERTION,
 	E_FORK,
 	E_NOT_FOUND,

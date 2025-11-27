@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 16:14:21 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 16:58:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	update__fd_in_on_redir(t_data *data, int i)
 	}
 	cmd->fd_in = open(cmd->infile, O_RDONLY);
 	if (cmd->fd_in == -1)
-		exit_on(E_OPEN_READ, errno, "update__fd_in_on_redir", data);
+		exit_on(E_OPEN_RD, errno, "update__fd_in_on_redir", data);
 }
 
 static void	update__fd_out_on_redir(t_data *data, int i)
@@ -106,7 +106,7 @@ static void	update__fd_out_on_redir(t_data *data, int i)
 	}
 	cmd->fd_out = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (cmd->fd_out == -1)
-		exit_on(E_OPEN_WRITE, errno, "update__fd_out_on_redir", data);
+		exit_on(E_OPEN_WR, errno, "update__fd_out_on_redir", data);
 }
 
 static void	close__fd_in_fd_out(t_data *data, int i)

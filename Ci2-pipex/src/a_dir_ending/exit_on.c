@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 16:20:03 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/27 16:59:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,12 @@ static t_exit_info	map__to_exit_info(t_err err)
 	{{E_NOT_FOUND, ANY}, {"Not found:", "cmd[i].av[0]", MEX_NOT_FOUND}},
 	{{E_FORK, ANY}, {"Fork failed", "", EX_OSERR}},
 	{{E_CREATE_PIPE, ANY}, {"Creating of pipe failed", "", EX_OSERR}},
-	{{E_OPEN_READ, EACCES}, {"r-Open: No access:", "cmd[i].infile", EX_NOPERM}},
-	{{E_OPEN_READ, ENOENT}, {"r-Open: Not found:", "cmd[i].infile", EX_IOERR}},
-	{{E_OPEN_READ, ANY}, {"r-Open failed in:", "origin", EX_IOERR}},
-	{{E_OPEN_WRITE, EACCES},
-	{"w-Open: No access:", "cmd[i].outfile", EX_NOPERM}},
-	{{E_OPEN_WRITE, ENOENT},
-	{"w-Open: Not found:", "cmd[i].outfile", EX_IOERR}},
-	{{E_OPEN_WRITE, ANY}, {"r-Open failed for:", "cmd[i].av[0]", EX_IOERR}},
+	{{E_OPEN_RD, EACCES}, {"r-Open: No access:", "cmd[i].infile", EX_NOPERM}},
+	{{E_OPEN_RD, ENOENT}, {"r-Open: Not found:", "cmd[i].infile", EX_IOERR}},
+	{{E_OPEN_RD, ANY}, {"r-Open failed in:", "origin", EX_IOERR}},
+	{{E_OPEN_WR, EACCES}, {"w-Open: No access:", "cmd[i].outfile", EX_NOPERM}},
+	{{E_OPEN_WR, ENOENT}, {"w-Open: Not found:", "cmd[i].outfile", EX_IOERR}},
+	{{E_OPEN_WR, ANY}, {"r-Open failed for:", "cmd[i].av[0]", EX_IOERR}},
 	};
 	t_exit_info				info;
 
