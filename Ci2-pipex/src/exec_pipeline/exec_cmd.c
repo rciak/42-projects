@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 15:56:06 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 19:36:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "pipex.h"
 
 static void	set__pathname(t_data *data, int i);
-static void prefix___with_dot_slash(char **pathname);
+static void	prefix___with_dot_slash(char **pathname);
 static void	set___pathname_via_path(t_data *data, int i);
 static char	*combine____on_match(char *prog_name, char *dir, t_data *data);
 
@@ -30,7 +30,6 @@ static char	*combine____on_match(char *prog_name, char *dir, t_data *data);
  */
 void	exec_cmd(t_data *data, int i, char **envp)
 {
-	set__pathname(data, i);                     // Maybe directly before execve???
 	if (dup2(data->cmd[i].fd_in, STDIN_FILENO) == -1)
 		exit_on(E_DUP_TWO, errno, "exec_cmd", data);
 	if (dup2(data->cmd[i].fd_out, STDOUT_FILENO) == -1)
@@ -38,6 +37,7 @@ void	exec_cmd(t_data *data, int i, char **envp)
 	close_fd_in_fd_out(data, i);
 	if (i < data->num_cmds - 1)
 		close_fd_in_fd_out(data, i + 1);
+	set__pathname(data, i);
 	if (execve(data->cmd[i].pathname, data->cmd[i].av, envp) == -1)
 	{
 		free (data->cmd[i].pathname);               // Redundant? 
@@ -89,7 +89,7 @@ static void	set__pathname(t_data *data, int i)
 static void	prefix___with_dot_slash(char **pathname)
 {
 	char	*new;
-	
+
 	new = ft_strjoin("./", *pathname);
 	if (new == NULL)
 		exit_on(E_ALLOC, errno, "prefix___with_dot_slash", NULL);
