@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:53:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 17:49:45 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 18:15:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "pipex.h"
 
 static char	*interpretation__str2(t_exit_info info, t_data *data);
-static bool	add__to_str(char **str, char *postfix);
-static char	*null__ft_strdup(char *str);
+static bool	compose__msg(char **msg, const char *origin, char *s1, char *s2);
+static bool	add___to_str(char **str, char *postfix);
+static char	*null___ft_strdup(char *str);
 
 /**
  * @brief Print a message on exititing
@@ -38,40 +39,22 @@ void	print_msg(t_exit_info info, const char *origin, t_data *data)
 	str2_final = interpretation__str2(info, data);
 	if (str2_final == NULL)
 	{
-		out_str_fd("Sorry: Mem seems too low ...\n", STDERR_FILENO);
+		out_str_fd("print_msg: Sorry: Mem seems too low to interprete str2..\n",
+			STDERR_FILENO);
 		return ;
 	}
 	msg = NULL;
-	if (!add__to_str(&msg, "Exiting  ") || !add__to_str(&msg, (char *) origin)
-		|| !add__to_str(&msg, "\n  ---->  ") || !add__to_str(&msg, info.str1)
-		|| !add__to_str(&msg, " ") || !add__to_str(&msg, str2_final)
-		|| !add__to_str(&msg, "\n\n")
-	)
+	if (!compose__msg(&msg, origin, info.str1, str2_final))
 	{
 		free(str2_final);
 		free(msg);
-		out_str_fd("Sorry: Mem seems too low to create better exit message.\n",
-			STDERR_FILENO);
+		out_str_fd("print_msg: Sorry: Mem seems too low to"
+			" create better exit message.\n", STDERR_FILENO);
 		return ;
 	}
 	out_str_fd(msg, STDERR_FILENO);
 	free(str2_final);
 	free(msg);
-}
-
-static bool	add__to_str(char **str, char *postfix)
-{
-	char	*new;
-
-	if (*str == NULL)
-		new = null__ft_strdup(postfix);
-	else
-		new = ft_strjoin(*str, postfix);
-	if (new == NULL)
-		return (false);
-	free(*str);
-	*str = new;
-	return (true);
 }
 
 static char	*interpretation__str2(t_exit_info info, t_data *data)
@@ -84,17 +67,46 @@ static char	*interpretation__str2(t_exit_info info, t_data *data)
 	i = data->i_cmd_err;
 	take = NULL;
 	if (ft_strcmp(info.str2, "cmd[i].av[0]") == 0)
-		take = null__ft_strdup(cmd[i].av[0]);
+		take = null___ft_strdup(cmd[i].av[0]);
 	else if (ft_strcmp(info.str2, "cmd[i].infile") == 0)
-		take = null__ft_strdup(cmd[i].infile);
+		take = null___ft_strdup(cmd[i].infile);
 	else if (ft_strcmp(info.str2, "cmd[i].outfile") == 0)
-		take = null__ft_strdup(cmd[i].outfile);
+		take = null___ft_strdup(cmd[i].outfile);
 	else
-		take = null__ft_strdup(info.str2);
+		take = null___ft_strdup(info.str2);
 	return (take);
 }
 
-static char	*null__ft_strdup(char *str)
+static bool	compose__msg(char **msg, const char *origin, char *s1, char *s2)
+{
+	if (!add___to_str(msg, "Exiting  ")
+		|| !add___to_str(msg, (char *) origin)
+		|| !add___to_str(msg, "\n  ---->  ")
+		|| !add___to_str(msg, s1)
+		|| !add___to_str(msg, " ")
+		|| !add___to_str(msg, s2)
+		|| !add___to_str(msg, "\n\n")
+	)
+		return (false);
+	return (true);
+}
+
+static bool	add___to_str(char **str, char *postfix)
+{
+	char	*new;
+
+	if (*str == NULL)
+		new = null___ft_strdup(postfix);
+	else
+		new = ft_strjoin(*str, postfix);
+	if (new == NULL)
+		return (false);
+	free(*str);
+	*str = new;
+	return (true);
+}
+
+static char	*null___ft_strdup(char *str)
 {
 	if (str == NULL)
 		return (ft_strdup("(null)"));
