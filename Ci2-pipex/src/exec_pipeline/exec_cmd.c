@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 12:00:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 12:23:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void	exec_cmd(t_data *data, int i, char **envp)
  *       `cmd->path == NULL` and `*cmd->path == NULL`, respectively,
  *       are relevant for the cases 
  *       `unset PATH` and `PATH` `PATH=":::"` (--> Empty array), respectively.
+ * @note The second condition in the check 
+         @code av == NULL || av[0] == NULL @endcode
+         should be neglectable (), but just to be sure it is kept
  * @param[in] i The index of the current command
  */
 static void	set__pathname(t_data *data, int i)
