@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 10:47:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 09:54:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include "pipex.h"
 
 static void	set__pathname(t_data *data, int i);
-static char	*combine___on_match(char *prog_name, char *dir, t_data *data);
+static void	set___pathname_via_path(t_data *data, int i);
+static char	*combine____on_match(char *prog_name, char *dir, t_data *data);
 static void	close__nonstd_fds(t_data *data, int i);
 
 /**
@@ -30,7 +31,7 @@ static void	close__nonstd_fds(t_data *data, int i);
 
 void	exec_cmd(t_data *data, int i, char **envp)
 {
-	set__pathname(data, i);
+	set__pathname(data, i);                     // Maybe directly before execve???
 	if (dup2(data->cmd[i].fd_in, STDIN_FILENO) == -1)
 		exit_on(E_DUP_TWO, errno, "exec_cmd", data);
 	if (dup2(data->cmd[i].fd_out, STDOUT_FILENO) == -1)
@@ -40,9 +41,9 @@ void	exec_cmd(t_data *data, int i, char **envp)
 		close__nonstd_fds(data, i + 1);
 	if (execve(data->cmd[i].pathname, data->cmd[i].av, envp) == -1)
 	{
-		free (data->cmd[i].pathname);
-		data->cmd[i].pathname = NULL;
-		exit_on(E_EXECVE, errno, "exec_pipeline", data);
+		free (data->cmd[i].pathname);               // Redundant? 
+		data->cmd[i].pathname = NULL;               // --> Done in tidy up anyway?
+		exit_on(E_EXECVE, errno, "exec_cmd", data);
 	}
 }
 
@@ -87,21 +88,41 @@ static void	set__pathname(t_data *data, int i)
 {
 	t_cmd	*cmd;
 	char	**av;
-	char	**p_dir;
-
+	
 	cmd = &(data->cmd[i]);
 	av = data->cmd[i].av;
-	if (data->path == NULL || *data->path == NULL || is_in('/', av[0]))
+	if ((ft_strlen(av[0]) >= 1 && ft_strcmp(av[0], "/") == 0)
+		|| (ft_strlen(av[0]) >= 2 && ft_strcmp(av[0], "./") == 0))
 	{
 		cmd->pathname = ft_strdup(av[0]);
 		if (cmd->pathname == NULL)
 			exit_on(E_ALLOC, errno, "set__pathname", data);
 		return ;
 	}
+	else if (data->path == NULL || *data->path == NULL)
+	{
+		cmd->pathname = ft_strdup(av[0]);
+		if (cmd->pathname == NULL)
+			exit_on(E_ALLOC, errno, "set__pathname", data);
+		cmd->pathname = ft_strjoin("./", cmd->pathname);
+		if (cmd->pathname == NULL)
+			exit_on(E_ALLOC, errno, "set__pathname", data);
+		return ;
+	}
+	else
+		set___pathname_via_path(data, i);
+}
+
+static void	set___pathname_via_path(t_data *data, int i)
+{
+	t_cmd	*cmd;
+	char	**p_dir;
+
+	cmd = &(data->cmd[i]);
 	p_dir = data->path;
 	while (*p_dir != NULL)
 	{
-		cmd->pathname = combine___on_match(cmd->av[0], *p_dir, data);
+		cmd->pathname = combine____on_match(cmd->av[0], *p_dir, data);
 		if (cmd->pathname != NULL)
 			return ;
 		p_dir++;
@@ -109,7 +130,7 @@ static void	set__pathname(t_data *data, int i)
 	exit_on(E_NOT_FOUND, errno, "set__pathname", data);
 }
 
-static char	*combine___on_match(char *prog_name, char *dir, t_data *data)
+static char	*combine____on_match(char *prog_name, char *dir, t_data *data)
 {
 	char	*dir_with_slash;
 	char	*combined;
