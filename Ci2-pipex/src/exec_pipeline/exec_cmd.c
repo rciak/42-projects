@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 12:30:56 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 12:59:37 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static void	prefix___with_dot_slash(char **pathname)
 	new = ft_strjoin("./", *pathname);
 	if (new == NULL)
 		exit_on(E_ALLOC, errno, "prefix___with_dot_slash", NULL);
+	free(*pathname);
 	*pathname = new;
 }
 
