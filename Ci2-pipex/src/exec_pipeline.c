@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 16:58:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 10:32:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 static void	connect__by_a_pipe(t_data *data, int i_left, int i_right);
 static void	update__fd_in_on_redir(t_data *data, int i);
 static void	update__fd_out_on_redir(t_data *data, int i);
-static void	close__fd_in_fd_out(t_data *data, int i);
 
 /**
 * @brief Executes the pipe(x)line
@@ -51,7 +50,7 @@ int	exec_pipeline(t_data *data, char **envp)
 			update__fd_out_on_redir(data, i);
 			exec_cmd(data, i, envp);
 		}
-		close__fd_in_fd_out(data, i);
+		close_fd_in_fd_out(data, i);
 		i++;
 	}
 	return (wait_without_creating_zombies(cmd[data->num_cmds - 1].pid));
@@ -109,24 +108,3 @@ static void	update__fd_out_on_redir(t_data *data, int i)
 		exit_on(E_OPEN_WR, errno, "update__fd_out_on_redir", data);
 }
 
-static void	close__fd_in_fd_out(t_data *data, int i)
-{
-	t_cmd	*cmd;
-
-	cmd = &(data->cmd[i]);
-	if (cmd->fd_in == STDIN_FILENO || cmd->fd_out == STDOUT_FILENO
-		|| cmd->fd_out == STDERR_FILENO)
-		out_str_fd(RED"Warning"RESET" - closing standard fd\n", STDERR_FILENO);
-	if (cmd->fd_in >= 0)
-	{
-		if (close (cmd->fd_in) == -1)
-			exit_on(E_CLOSE, errno, "close__fd_in_fd_out", data);
-		cmd->fd_in = UNUSED;
-	}
-	if (cmd->fd_out >= 0)
-	{
-		if (close (cmd->fd_out) == -1)
-			exit_on(E_CLOSE, errno, "close__fd_in_fd_out", data);
-		cmd->fd_out = UNUSED;
-	}
-}

@@ -10,6 +10,7 @@ src/debug/print_cmd_i.c \
 src/debug/print_cmds.c \
 src/debug/print_data.c \
 src/exec_pipeline.c \
+src/exec_pipeline/close_fd_in_fd_out.c \
 src/exec_pipeline/exec_cmd.c \
 src/exec_pipeline/wait_without_creating_zombies.c \
 src/main.c \

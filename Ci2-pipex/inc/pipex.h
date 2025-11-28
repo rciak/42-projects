@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 16:58:50 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 10:17:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int		exec_pipeline(t_data *data, char **envp);
 
 // exec_pipeline_d/*.c
 void	exec_cmd(t_data *data, int i, char **envp);
+void	close_fd_in_fd_out(t_data *data, int i);
 int		wait_without_creating_zombies(pid_t pid_last_cmd);
 
 // a_col_ending/*.c

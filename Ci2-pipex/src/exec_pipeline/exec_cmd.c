@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 09:54:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 10:34:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 static void	set__pathname(t_data *data, int i);
 static void	set___pathname_via_path(t_data *data, int i);
 static char	*combine____on_match(char *prog_name, char *dir, t_data *data);
-static void	close__nonstd_fds(t_data *data, int i);
 
 /**
  * @brief Perpares the execution of a single command of the pipe(x)line
@@ -38,40 +37,12 @@ void	exec_cmd(t_data *data, int i, char **envp)
 		exit_on(E_DUP_TWO, errno, "exec_cmd", data);
 	close__nonstd_fds(data, i);
 	if (i < data->num_cmds - 1)
-		close__nonstd_fds(data, i + 1);
+		close_fd_in_fd_out(data, i + 1);
 	if (execve(data->cmd[i].pathname, data->cmd[i].av, envp) == -1)
 	{
 		free (data->cmd[i].pathname);               // Redundant? 
 		data->cmd[i].pathname = NULL;               // --> Done in tidy up anyway?
 		exit_on(E_EXECVE, errno, "exec_cmd", data);
-	}
-}
-
-static void	close__nonstd_fds(t_data *data, int i)
-{
-	t_cmd	*cmd;
-
-	if (i > data->num_cmds - 1)
-	{
-		out_str_fd(RED"Warning"RESET" - close__nonstd_fds: Miscalled\n",
-			STDERR_FILENO);
-		return ;
-	}
-	cmd = &(data->cmd[i]);
-	if (cmd->fd_in == STDIN_FILENO || cmd->fd_out == STDOUT_FILENO
-		|| cmd->fd_out == STDERR_FILENO)
-		out_str_fd(RED"Warning"RESET" - closing standard fd\n", STDERR_FILENO);
-	if (cmd->fd_in >= 0)
-	{
-		if (close (cmd->fd_in) == -1)
-			exit_on(E_CLOSE, errno, "close__nonstd_fds", data);
-		cmd->fd_in = UNUSED;
-	}
-	if (cmd->fd_out >= 0)
-	{
-		if (close (cmd->fd_out) == -1)
-			exit_on(E_CLOSE, errno, "close__nonstd_fds", data);
-		cmd->fd_out = UNUSED;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:53:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 16:43:59 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 10:33:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@ static void	treat_str2(t_exit_info info, const char *origin, t_data *data);
 
 void	print_msg(t_exit_info info, const char *origin, t_data *data)
 {
-	t_cmd	*cmd;
-	int		i;
-
-	cmd = NULL;
-	if (data != NULL)
-	{
-		cmd = data->cmd;
-		i = data->i_cmd_err;
-	}
 	out_str_fd("\nExiting ... ", STDERR_FILENO);
 	out_str_fd("\n  --> ", STDERR_FILENO);
 	out_str_fd(info.str1, STDERR_FILENO);
