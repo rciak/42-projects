@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 10:52:17 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 12:00:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "pipex.h"
 
 static void	set__pathname(t_data *data, int i);
+static void prefix___with_dot_slash(char **pathname);
 static void	set___pathname_via_path(t_data *data, int i);
 static char	*combine____on_match(char *prog_name, char *dir, t_data *data);
 
@@ -27,7 +28,6 @@ static char	*combine____on_match(char *prog_name, char *dir, t_data *data);
  * @param[in] i The index of the current command
  * @param[in] envp The environment handed over to execve
  */
-
 void	exec_cmd(t_data *data, int i, char **envp)
 {
 	set__pathname(data, i);                     // Maybe directly before execve???
@@ -62,26 +62,36 @@ static void	set__pathname(t_data *data, int i)
 	
 	cmd = &(data->cmd[i]);
 	av = data->cmd[i].av;
+	if (av == NULL || av[0] == NULL)
+		exit_on(E_NOT_FOUND, errno, "set__pathname", data);
 	if ((ft_strlen(av[0]) >= 1 && ft_strcmp(av[0], "/") == 0)
 		|| (ft_strlen(av[0]) >= 2 && ft_strcmp(av[0], "./") == 0))
 	{
 		cmd->pathname = ft_strdup(av[0]);
 		if (cmd->pathname == NULL)
 			exit_on(E_ALLOC, errno, "set__pathname", data);
-		return ;
 	}
 	else if (data->path == NULL || *data->path == NULL)
 	{
 		cmd->pathname = ft_strdup(av[0]);
 		if (cmd->pathname == NULL)
 			exit_on(E_ALLOC, errno, "set__pathname", data);
-		cmd->pathname = ft_strjoin("./", cmd->pathname);
+		prefix___with_dot_slash(&(cmd->pathname));
 		if (cmd->pathname == NULL)
 			exit_on(E_ALLOC, errno, "set__pathname", data);
-		return ;
 	}
 	else
 		set___pathname_via_path(data, i);
+}
+
+static void	prefix___with_dot_slash(char **pathname)
+{
+	char	*new;
+	
+	new = ft_strjoin("./", *pathname);
+	if (new == NULL)
+		exit_on(E_ALLOC, errno, "prefix___with_dot_slash", NULL);
+	*pathname = new;
 }
 
 static void	set___pathname_via_path(t_data *data, int i)
