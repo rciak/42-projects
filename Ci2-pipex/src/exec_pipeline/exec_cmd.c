@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 10:34:22 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 10:50:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	exec_cmd(t_data *data, int i, char **envp)
 		exit_on(E_DUP_TWO, errno, "exec_cmd", data);
 	if (dup2(data->cmd[i].fd_out, STDOUT_FILENO) == -1)
 		exit_on(E_DUP_TWO, errno, "exec_cmd", data);
-	close__nonstd_fds(data, i);
+	close__fd_in_fd_out(data, i);
 	if (i < data->num_cmds - 1)
 		close_fd_in_fd_out(data, i + 1);
 	if (execve(data->cmd[i].pathname, data->cmd[i].av, envp) == -1)
