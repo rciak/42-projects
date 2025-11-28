@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 10:17:07 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 17:23:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 //  2.  D E F I N E S  //
 //                     //
 /////////////////////////
+
+# define GENERAL_ERROR_MSG "An error happened (not in the specification list)\n"
 
 ///////////////////////////////////
 //                               //
@@ -64,8 +66,6 @@ enum e_pipe_fd_kind
 
 enum e_pipex_errors
 {
-	E_NONE,
-	E_ARGC,
 	E_ALLOC,
 	E_CLOSE,
 	E_CREATE_PIPE,

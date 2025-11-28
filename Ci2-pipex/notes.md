@@ -157,3 +157,10 @@ chmod 644 outfile
 unset PATH
 /usr/bin/valgrind ./pipex infile cat cat outfile
 ```
+
+### Segfault
+
+(PATH fully set)
+```bash
+./pipex infile  cat wc
+```

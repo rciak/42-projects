@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 16:59:20 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 17:28:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static t_exit_info	default___exit_info(void);
 
 /**
  * @brief Handles the error described by the first and (potentially) second arg
+ * @warning The check `data != NULL` is needed in case that parse_argv fails!
  * @param[in] type The type of error, cf. the enum  e_pipex_errors  in pipex.h
  * @param[in] saved_errno A copy of errno or `ERRNO_IRREL`
  * @param[in] origin A string literal
@@ -45,7 +46,10 @@ void	exit_on(int type, int saved_errno, const char *origin, t_data *data)
 	err.type = type;
 	err.saved_errno = saved_errno;
 	info = map__to_exit_info(err);
-	print_msg(info, origin, data);
+	if (ft_strcmp(info.str1, GENERAL_ERROR_MSG) == 0)
+		out_str_fd(GENERAL_ERROR_MSG, STDERR_FILENO);
+	else
+		print_msg(info, origin, data);
 	if (data != NULL)
 		do_final_nonsense_tidy_up(data);
 	exit (info.code);
@@ -55,11 +59,12 @@ void	exit_on(int type, int saved_errno, const char *origin, t_data *data)
  * @note Each error type should have at least one `ANY` entry for `saved_errno`,
  *       Other more precise specifications for `saved_errno` are also allowed,
  *       but must be placed in lines above the one with the `ANY` entry.
+ * @warning Do not add an entry for argc errors in this list, but keep treating
+ *          that separately!
  */
 static t_exit_info	map__to_exit_info(t_err err)
 {
 	static t_err_to_exit	err_to_exit[] = {
-	{{E_ARGC, ANY}, {"Wrong number of arguments", "", EX_USAGE}},
 	{{E_ASSERTION, ANY}, {"Failed assertion in:", "origin", MEX_ASSERTION}},
 	{{E_ALLOC, ANY}, {"Memory allocation failed in:", "origin", EX_OSERR}},
 	{{E_CLOSE, ANY}, {"Close failed in:", "origin", EX_OSERR}},
@@ -112,8 +117,8 @@ static t_exit_info	default___exit_info(void)
 {
 	t_exit_info	info;
 
-	info.str1 = "An error has happened in:";
-	info.str2 = "origin";
+	info.str1 = GENERAL_ERROR_MSG;
+	info.str2 = "";
 	info.code = MEX_GENERIC;
 	return (info);
 }

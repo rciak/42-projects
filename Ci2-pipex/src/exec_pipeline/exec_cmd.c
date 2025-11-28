@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 12:59:37 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 15:56:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	set__pathname(t_data *data, int i)
 {
 	t_cmd	*cmd;
 	char	**av;
-	
+
 	cmd = &(data->cmd[i]);
 	av = data->cmd[i].av;
 	if (av[0] == NULL)

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 10:42:08 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/28 17:52:29 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ static void	pre__init_data(t_data *data, int argc);
  * @return a return code indicating success or an error.
  */
 
+static void	handle__argc_error_separately(void);
+
 int	main(int argc, char **argv, char**envp)
 {
 	t_data	data;
 	int		termination_status_last_cmd;
 
 	if (argc < 1 + 4)
-		exit_on(E_ARGC, errno, "main", NULL);
+		handle__argc_error_separately();
 	pre__init_data(&data, argc);
 	parse_argv(argc, argv, &data);
 	parse_path(envp, &data);
@@ -46,6 +48,12 @@ int	main(int argc, char **argv, char**envp)
 		= exec_pipeline(&data, envp);
 	do_final_nonsense_tidy_up(&data);
 	return (termination_status_last_cmd);
+}
+
+static void	handle__argc_error_separately(void)
+{
+	out_str_fd("Wrong number of arguments\n", STDERR_FILENO);
+	exit(EX_USAGE);
 }
 
 static void	pre__init_data(t_data *data, int argc)
