@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 10:32:09 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 14:14:39 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 static void	connect__by_a_pipe(t_data *data, int i_left, int i_right);
 static void	update__fd_in_on_redir(t_data *data, int i);
 static void	update__fd_out_on_redir(t_data *data, int i);
+static void	exec__cmd(t_data *data, int i, char **envp);
 
 /**
 * @brief Executes the pipe(x)line
@@ -48,7 +49,7 @@ int	exec_pipeline(t_data *data, char **envp)
 		{
 			update__fd_in_on_redir(data, i);
 			update__fd_out_on_redir(data, i);
-			exec_cmd(data, i, envp);
+			exec__cmd(data, i, envp);
 		}
 		close_fd_in_fd_out(data, i);
 		i++;
@@ -106,5 +107,42 @@ static void	update__fd_out_on_redir(t_data *data, int i)
 	cmd->fd_out = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (cmd->fd_out == -1)
 		exit_on(E_OPEN_WR, errno, "update__fd_out_on_redir", data);
+}
+
+/**
+ * @brief Perpares and executes a single command of the pipe(x)line
+ * @note The check `av[0] == NULL` is for the case that an empty command
+ *       ('' or "") was given as a parameter to pipex.
+ * @param[in, out] data The data
+ * @param[in] i The index of the current command
+ * @param[in] envp The environment handed over to execve
+ */
+static void	exec__cmd(t_data *data, int i, char **envp)
+{
+	t_cmd	*cmd;
+	char	**av;
+	
+	cmd = &(data->cmd[i]);
+	av = data->cmd[i].av;
+	if (dup2(cmd->fd_in, STDIN_FILENO) == -1
+		|| dup2(cmd->fd_out, STDOUT_FILENO) == -1)
+		exit_on(E_DUP_TWO, errno, "exec_cmd", data);
+	close_fd_in_fd_out(data, i);
+	if (i < data->num_cmds - 1)
+		close_fd_in_fd_out(data, i + 1);
+	if (av[0] == NULL)
+		exit_on(E_NOT_FOUND, errno, "exec__cmd", data);
+	if ((ft_strncmp(av[0], "/", 1) == 0  || ft_strncmp(av[0], "./", 2) == 0))
+		set_pathname_as_av0(data, i);
+	else if (data->path == NULL || *data->path == NULL)
+		set_pathname_as_cur_dir_av0(data, i);
+	else
+		set_pathname_via_path(data, i);
+	if (execve(cmd->pathname, av, envp) == -1)
+	{
+		free (cmd->pathname);               // Redundant? 
+		cmd->pathname = NULL;               // --> Done in tidy up anyway?
+		exit_on(E_EXECVE, errno, "exec_cmd", data);
+	}
 }
 

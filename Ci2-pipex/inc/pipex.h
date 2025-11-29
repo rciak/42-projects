@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 10:27:51 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 14:17:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,14 @@ void	parse_argv(int argc, char **argv, t_data *data);
 void	parse_path(char **envp, t_data *data);
 int		exec_pipeline(t_data *data, char **envp);
 
-// exec_pipeline_d/*.c
-void	exec_cmd(t_data *data, int i, char **envp);
+// exec_pipeline/*.c
 void	close_fd_in_fd_out(t_data *data, int i);
 int		wait_without_creating_zombies(pid_t pid_last_cmd);
+
+// exec_pipeline/exec__cmd/*.c
+void	set_pathname_as_av0(t_data *data, int i);
+void	set_pathname_as_cur_dir_av0(t_data *data, int i);
+void	set_pathname_via_path(t_data *data, int i);
 
 // a_col_ending/*.c
 void	exit_on(int type, int saved_errno, const char *origin, t_data *data);

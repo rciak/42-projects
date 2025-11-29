@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 10:34:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 14:13:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ static t_exit_info	map__to_exit_info(t_err err)
 	//{{E_EXECVE, ENOENT}, {"Execve err ENOENT:", "cmd[i].av[0]", MEX_NOT_FOUND}},
 	{{E_FORK, ANY}, {"Fork failed for:", "cmd[i].av[0]", EX_OSERR}},
 	{{E_EXECVE, ANY}, {"Execve failed", "", MEX_GENERIC}},
+	{{E_NO_PERM, ANY}, {"No permission:", "cmd[i].av[0]", MEX_NO_PERM}},
 	{{E_NOT_FOUND, ANY}, {"Not found:", "cmd[i].av[0]", MEX_NOT_FOUND}},
-	{{E_PERM, ANY}, {"No permission:", "cmd[i].av[0]", MEX_NO_PERM}},
 	{{E_OPEN_RD, EACCES}, {"r-Open - No access:", "cmd[i].infile", EX_NOPERM}},
 	{{E_OPEN_RD, ENOENT}, {"r-Open - Not found:", "cmd[i].infile", EX_IOERR}},
 	{{E_OPEN_RD, ANY}, {"r-Open failed for:", "cmd[i].infile", EX_IOERR}},
