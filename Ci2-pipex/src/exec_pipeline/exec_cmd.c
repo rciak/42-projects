@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:59:16 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 19:36:23 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 10:51:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	exec_cmd(t_data *data, int i, char **envp)
 /**
  * @brief Sets data->cmd[i].pathname
  * @param[in, out] data
- * @note Not that the checks
+ * @note Note that the checks
  *       `cmd->path == NULL` and `*cmd->path == NULL`, respectively,
  *       are relevant for the cases 
  *       `unset PATH` and `PATH` `PATH=":::"` (--> Empty array), respectively.
