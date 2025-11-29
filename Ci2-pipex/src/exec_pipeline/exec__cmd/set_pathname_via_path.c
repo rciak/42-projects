@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:56:15 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 17:11:58 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 19:22:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	set_pathname_via_path(t_data *data, int i)
 	t_cmd	*cmd;
 	char	**p_dir;
 	char	*abs_path;
-	
+
 	cmd = &(data->cmd[i]);
 	p_dir = data->path;
 	abs_path = NULL;
