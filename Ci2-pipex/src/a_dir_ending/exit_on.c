@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 10:17:42 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 10:34:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ static t_exit_info	map__to_exit_info(t_err err)
 	{{E_ASSERTION, ANY}, {"Failed assertion", "", MEX_ASSERTION}},
 	{{E_ALLOC, ANY}, {"Memory allocation failed", "", EX_OSERR}},
 	{{E_CLOSE, ANY}, {"Close failed", "", EX_OSERR}},
+	{{E_CREATE_PIPE, ANY}, {"Creating of pipe failed", "", EX_OSERR}},
 	{{E_DUP_TWO, ANY}, {"dup2 failed", "", EX_OSERR}},
 	//{{E_EXECVE, EACCES}, {"Execve err EACCES:", "cmd[i].av[0]", MEX_NO_PERM}},
 	//{{E_EXECVE, ENOENT}, {"Execve err ENOENT:", "cmd[i].av[0]", MEX_NOT_FOUND}},
+	{{E_FORK, ANY}, {"Fork failed for:", "cmd[i].av[0]", EX_OSERR}},
 	{{E_EXECVE, ANY}, {"Execve failed", "", MEX_GENERIC}},
 	{{E_NOT_FOUND, ANY}, {"Not found:", "cmd[i].av[0]", MEX_NOT_FOUND}},
 	{{E_PERM, ANY}, {"No permission:", "cmd[i].av[0]", MEX_NO_PERM}},
-	{{E_FORK, ANY}, {"Fork failed for:", "cmd[i].av[0]", EX_OSERR}},
-	{{E_CREATE_PIPE, ANY}, {"Creating of pipe failed", "", EX_OSERR}},
 	{{E_OPEN_RD, EACCES}, {"r-Open - No access:", "cmd[i].infile", EX_NOPERM}},
 	{{E_OPEN_RD, ENOENT}, {"r-Open - Not found:", "cmd[i].infile", EX_IOERR}},
 	{{E_OPEN_RD, ANY}, {"r-Open failed for:", "cmd[i].infile", EX_IOERR}},

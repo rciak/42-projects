@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 10:14:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 10:27:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,17 @@ enum e_pipe_fd_kind
 
 enum e_pipex_errors
 {
+	E_ASSERTION,
 	E_ALLOC,
 	E_CLOSE,
 	E_CREATE_PIPE,
 	E_DUP_TWO,
+	E_EXECVE,
+	E_FORK,
+	E_NO_PERM,
+	E_NOT_FOUND,
 	E_OPEN_RD,
 	E_OPEN_WR,
-	E_ASSERTION,
-	E_FORK,
-	E_NOT_FOUND,
-	E_NO_PERM,
-	E_EXECVE,
 };
 
 enum e_some_manually_defined_exit_codes
