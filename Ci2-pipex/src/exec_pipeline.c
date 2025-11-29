@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 19:29:44 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/30 00:26:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,5 @@ static void	exec__cmd(t_data *data, int i, char **envp)
 	else
 		set_pathname_via_path(data, i);
 	if (execve(cmd->pathname, av, envp) == -1)
-	{
-		// free (cmd->pathname);               // Redundant? 
-		// cmd->pathname = NULL;               // --> Done in tidy up anyway?
 		exit_on(E_EXECVE, errno, "exec_cmd", data);
-	}
 }
