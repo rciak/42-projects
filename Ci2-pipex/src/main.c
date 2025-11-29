@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 17:26:25 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/30 00:19:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 #include "pipex.h"
 
+static void	handle__argc_error_separately(void);
 static void	pre__init_data(t_data *data, int argc);
+static void	handle___cmd_alloc_error_separately(void);
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -31,9 +33,6 @@ static void	pre__init_data(t_data *data, int argc);
  * @param[in] envp Well similar but for the environment variables.
  * @return a return code indicating success or an error.
  */
-
-static void	handle__argc_error_separately(void);
-
 int	main(int argc, char **argv, char**envp)
 {
 	t_data	data;
@@ -64,7 +63,7 @@ static void	pre__init_data(t_data *data, int argc)
 	data->num_cmds = argc - 3;
 	data->cmd = malloc(data->num_cmds * sizeof (*data->cmd));
 	if (data->cmd == NULL)
-		exit_on(E_ALLOC, errno, "pre__init_data", NULL);
+		handle___cmd_alloc_error_separately();
 	i = 0;
 	while (i < data->num_cmds)
 	{
@@ -80,4 +79,10 @@ static void	pre__init_data(t_data *data, int argc)
 		i++;
 	}
 	data->path = NULL;
+}
+
+static void	handle___cmd_alloc_error_separately(void)
+{
+	out_str_fd("Memory allocation of data->cmd failed\n", STDERR_FILENO);
+	exit(EX_OSERR);
 }
