@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 01:40:47 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 14:14:39 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 19:03:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ static void	exec__cmd(t_data *data, int i, char **envp)
 {
 	t_cmd	*cmd;
 	char	**av;
-	
+
 	cmd = &(data->cmd[i]);
 	av = data->cmd[i].av;
 	if (dup2(cmd->fd_in, STDIN_FILENO) == -1
@@ -132,7 +132,7 @@ static void	exec__cmd(t_data *data, int i, char **envp)
 		close_fd_in_fd_out(data, i + 1);
 	if (av[0] == NULL)
 		exit_on(E_NOT_FOUND, errno, "exec__cmd", data);
-	if ((ft_strncmp(av[0], "/", 1) == 0  || ft_strncmp(av[0], "./", 2) == 0))
+	if ((ft_strncmp(av[0], "/", 1) == 0 || ft_strncmp(av[0], "./", 2) == 0))
 		set_pathname_as_av0(data, i);
 	else if (data->path == NULL || *data->path == NULL)
 		set_pathname_as_cur_dir_av0(data, i);
@@ -145,4 +145,3 @@ static void	exec__cmd(t_data *data, int i, char **envp)
 		exit_on(E_EXECVE, errno, "exec_cmd", data);
 	}
 }
-
