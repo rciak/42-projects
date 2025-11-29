@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 20:40:09 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 17:05:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 23:34:24 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void	exit_on(int type, int saved_errno, const char *origin, t_data *data)
  *       but must be placed in lines above the one with the `ANY` entry.
  * @note 29.11.2025 `{E_EXECVE, EACCES}` and `{E_EXECVE, ENOENT}` turned out
  *       to behave not always as expected and were removed
+ * @note 29.11.2025
+ *       The following felt wrong / not to be always the correct mapping:
+ *       {{E_EXECVE, EACCES}, {"Execve: Is directory:", "cmd[i].av[0]", 126}},
  * @warning Do not add an entry for argc errors in this list, but keep treating
  *          that separately!
  */
@@ -72,8 +75,6 @@ static t_exit_info	map__to_exit_info(t_err err)
 	{{E_CLOSE, ANY}, {"Close failed", "", EX_OSERR}},
 	{{E_CREATE_PIPE, ANY}, {"Creating of pipe failed", "", EX_OSERR}},
 	{{E_DUP_TWO, ANY}, {"dup2 failed", "", EX_OSERR}},
-	//{{E_EXECVE, EACCES}, {"Execve err EACCES:", "cmd[i].av[0]", MEX_NO_PERM}},
-	//{{E_EXECVE, ENOENT}, {"Execve err ENOENT:", "cmd[i].av[0]", MEX_NOT_FOUND}},
 	{{E_FORK, ANY}, {"Fork failed for:", "cmd[i].av[0]", EX_OSERR}},
 	{{E_EXECVE, ANY}, {"Execve failed", "", MEX_GENERIC}},
 	{{E_NO_PERM, ANY}, {"No permission:", "cmd[i].av[0]", MEX_NO_PERM}},
