@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 17:52:29 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:26:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	pre__init_data(t_data *data, int argc)
 		data->cmd[i].ac = 0;
 		data->cmd[i].av = NULL;
 		data->cmd[i].pathname = NULL;
+		data->cmd[i].pathname_first_match = NULL;
 		data->cmd[i].infile = NULL;
 		data->cmd[i].outfile = NULL;
 		data->cmd[i].fd_in = UNUSED;
