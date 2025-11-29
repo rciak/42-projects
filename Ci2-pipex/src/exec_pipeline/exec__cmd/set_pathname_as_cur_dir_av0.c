@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:48:43 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 14:26:55 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 14:50:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	set_pathname_as_cur_dir_av0(t_data *data, int i)
 		if (data->cmd[i].pathname == NULL)
 			exit_on(E_ALLOC, errno, "set_pathname_as_cur_dir_av0", data);
 	}
+	if (access(data->cmd[i].pathname, F_OK) != -1)
+		exit_on(E_NOT_FOUND, errno, "set_pathname_as_av0", data);
+	if (access(data->cmd[i].pathname, X_OK) != -1)
+		exit_on(E_NO_PERM, errno, "set_pathname_as_av0", data);
 }
 
 static void	prefix__with_dot_slash(char **pathname)

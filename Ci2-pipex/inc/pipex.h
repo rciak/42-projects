@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 10:23:24 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 14:17:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:06:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ enum e_pipex_errors
 	E_EXECVE,
 	E_FORK,
 	E_NO_PERM,
+	E_NO_PERM_VIA_PATH,
 	E_NOT_FOUND,
 	E_OPEN_RD,
 	E_OPEN_WR,
@@ -122,6 +123,7 @@ typedef struct s_cmd
 	size_t	ac;
 	char	**av;
 	char	*pathname;
+	char	*pathname_first_match;
 	char	*infile;
 	char	*outfile;
 	int		fd_in;

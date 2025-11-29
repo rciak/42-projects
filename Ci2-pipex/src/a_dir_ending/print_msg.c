@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:53:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/28 18:15:10 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 17:05:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static char	*interpretation__str2(t_exit_info info, t_data *data)
 		take = null___ft_strdup(cmd[i].infile);
 	else if (ft_strcmp(info.str2, "cmd[i].outfile") == 0)
 		take = null___ft_strdup(cmd[i].outfile);
+	else if (ft_strcmp(info.str2, "pathname_fm") == 0)
+		take = null___ft_strdup(cmd[i].pathname_first_match);
 	else
 		take = null___ft_strdup(info.str2);
 	return (take);

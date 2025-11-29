@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 07:51:22 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/26 08:57:47 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/29 16:21:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static void	tidy__up_and_reset_cmd_items(t_cmd *cmd)
 		free_array_and_reset(&cmd->av);
 	if (cmd->pathname != NULL)
 		free_and_reset(&cmd->pathname);
+	if (cmd->pathname_first_match != NULL)
+		free_and_reset(&cmd->pathname_first_match);
 	if (cmd->infile != NULL)
 		free_and_reset(&cmd->infile);
 	if (cmd->outfile != NULL)
