@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/24 11:09:55 by reciak           ###   ########.fr        #
+#    Updated: 2025/11/30 15:36:48 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,6 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(LINK_COMMAND)
 	@echo '  --> $(NAME)'
 
-
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 	@mkdir -p $(@D)
 	$(COMPILE_COMMAND)
@@ -106,8 +105,6 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 .PHONY: clean
 clean: _print_banner
 	@echo 'CLEANING (clean)'
-	@echo '  Removing timestamp file (created for bonus part), if any.'
-	@$(RM_FR) $(TIMESTAMPFILE_BONUS)
 	@echo '  Removing object files, if any.'
 	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
@@ -119,24 +116,17 @@ clean: _print_banner
 	else \
 		$(RM_FR) $(OBJ_DIR); \
 	fi
-	@if [ ! -d $(OBJ_DIR_BONUS) ] && [ "$(OBJ_DIR)" = "$(OBJ_DIR_BONUS)" ]; \
-	then \
-		: ; \
-	elif [ $(OBJ_DIR_BONUS) = '.' ]; then \
-		echo '     Well if the object files would be in their own separte'; \
-		echo '     directory that directory shall be removed, but here:'; \
-		echo '     Removing the directory . will not even been tried. ...'; \
-	else \
-		$(RM_FR) $(OBJ_DIR_BONUS); \
-	fi
 
 .PHONY: fclean
 fclean: clean
 	@echo 'CLEANING (fclean)'
-	@echo '  REMOVING $(NAME), if any.' 
+	@echo '  REMOVING $(NAME), if any.'
 	@$(RM_FR) $(NAME)
 	@echo '  REMOVING $(NAME)_O3, if any.'
 	@$(RM_FR) $(NAME)_O3
+	@echo '  REMOVING $(NAME)_bonus, if any.'
+	@$(RM_FR) $(NAME)_bonus
+	@make -C bonus fclean
 
 .PHONY: re
 re: fclean libftre all
@@ -145,7 +135,9 @@ re: fclean libftre all
 re_not_libft: fclean all
 
 .PHONY: bonus
-bonus: all
+bonus:
+	@make -C bonus all
+	@cp bonus/$(NAME)_bonus .
 
 ################################################################################
 #  libft  related rules                                                        #

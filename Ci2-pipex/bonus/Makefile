@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/30 14:27:50 by reciak            #+#    #+#              #
-#    Updated: 2025/11/30 14:43:03 by reciak           ###   ########.fr        #
+#    Updated: 2025/11/30 15:03:08 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,27 +62,27 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #   make update_INCS__SRCS__SRCS_BONUS
 #############################################
 INCS := \
-inc/pipex.h \
+inc/pipex_bonus.h \
 libft/inc/ft_printf.h \
 libft/inc/get_next_line.h \
 libft/inc/libft.h
 
 SRCS := \
-src/a_dir_ending/do_final_nonsense_tidy_up.c \
-src/a_dir_ending/do_final_nonsense_tidy_up/close_and_reset.c \
-src/a_dir_ending/do_final_nonsense_tidy_up/free_and_reset.c \
-src/a_dir_ending/do_final_nonsense_tidy_up/free_array_and_reset.c \
-src/a_dir_ending/exit_on.c \
-src/a_dir_ending/print_msg.c \
-src/exec_pipeline.c \
-src/exec_pipeline/close_fd_in_fd_out.c \
-src/exec_pipeline/exec__cmd/set_pathname_as_av0.c \
-src/exec_pipeline/exec__cmd/set_pathname_as_cur_dir_av0.c \
-src/exec_pipeline/exec__cmd/set_pathname_via_path.c \
-src/exec_pipeline/wait_without_creating_zombies.c \
-src/main.c \
-src/parse_argv.c \
-src/parse_path.c
+src/a_dir_ending/do_final_nonsense_tidy_up_bonus.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/close_and_reset_bonus.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/free_and_reset_bonus.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/free_array_and_reset_bonus.c \
+src/a_dir_ending/exit_on_bonus.c \
+src/a_dir_ending/print_msg_bonus.c \
+src/exec_pipeline_bonus.c \
+src/exec_pipeline/close_fd_in_fd_out_bonus.c \
+src/exec_pipeline/exec__cmd/set_pathname_as_av0_bonus.c \
+src/exec_pipeline/exec__cmd/set_pathname_as_cur_dir_av0_bonus.c \
+src/exec_pipeline/exec__cmd/set_pathname_via_path_bonus.c \
+src/exec_pipeline/wait_without_creating_zombies_bonus.c \
+src/main_bonus.c \
+src/parse_argv_bonus.c \
+src/parse_path_bonus.c
 #############################################
 
 
@@ -105,8 +105,6 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 .PHONY: clean
 clean: _print_banner
 	@echo 'CLEANING (clean)'
-	@echo '  Removing timestamp file (created for bonus part), if any.'
-	@$(RM_FR) $(TIMESTAMPFILE_BONUS)
 	@echo '  Removing object files, if any.'
 	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
@@ -117,16 +115,6 @@ clean: _print_banner
 		echo '     Removing the directory . will not even been tried. ...'; \
 	else \
 		$(RM_FR) $(OBJ_DIR); \
-	fi
-	@if [ ! -d $(OBJ_DIR_BONUS) ] && [ "$(OBJ_DIR)" = "$(OBJ_DIR_BONUS)" ]; \
-	then \
-		: ; \
-	elif [ $(OBJ_DIR_BONUS) = '.' ]; then \
-		echo '     Well if the object files would be in their own separte'; \
-		echo '     directory that directory shall be removed, but here:'; \
-		echo '     Removing the directory . will not even been tried. ...'; \
-	else \
-		$(RM_FR) $(OBJ_DIR_BONUS); \
 	fi
 
 .PHONY: fclean
@@ -206,7 +194,7 @@ info:
 
 BANNER  := $\
 ****************************************************************************\n$\
-*                                  PIPEX                                   *\n$\
+*                               PIPEX BONUS                                *\n$\
 ****************************************************************************\n$\
 
 INTRO := $\
