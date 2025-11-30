@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/30 00:19:11 by reciak           ###   ########.fr       */
+/*   Updated: 2025/11/30 14:17:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char**envp)
 	t_data	data;
 	int		termination_status_last_cmd;
 
-	if (argc < 1 + 4)
+	if (argc != 1 + 4)
 		handle__argc_error_separately();
 	pre__init_data(&data, argc);
 	parse_argv(argc, argv, &data);
