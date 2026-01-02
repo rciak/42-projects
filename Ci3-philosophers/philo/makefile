@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 11:20:39 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 12:50:38 by reciak           ###   ########.fr        #
+#    Updated: 2026/01/02 18:33:11 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,6 @@
 #   For both updating and displaying the result on screen run
 #     make update_INCS__SRCS__SRCS_BONUS
 include Makefile 
-ifndef LIBFT_DIR
-LIBFT_DIR := libft
-endif
 
 # Folder definitions
 INCLUDED_FROM_DIR    := .

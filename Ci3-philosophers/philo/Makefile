@@ -6,18 +6,13 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/24 11:09:55 by reciak           ###   ########.fr        #
+#    Updated: 2026/01/02 18:32:50 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME          := pipex
-LIBFT_NAME    := libft.a
-LIBFT_DIR     := libft
-LIBFT         := $(LIBFT_DIR)/$(LIBFT_NAME)
-INC_DIRS      := inc $(LIBFT_DIR)/inc
+NAME          := philo
 SRC_DIR       := src
 OBJ_DIR       := obj
-OBJ_DIR_BONUS := obj
 
 RM       := rm -f
 RM_FR    := rm -fr
@@ -127,46 +122,6 @@ re_not_libft: fclean all
 .PHONY: bonus
 bonus: all
 
-################################################################################
-#  libft  related rules                                                        #
-################################################################################
-
-.PHONY: libftall
-libftall: $(LIBFT)
-
-$(LIBFT):
-	@make -C  $(LIBFT_DIR) all
-	@$(MAKE) _print_banner
-
-.PHONY: libftbonus
-libftbonus:
-	@make -C $(LIBFT_DIR) bonus
-
-.PHONY: libftre
-libftre:
-	@make -C $(LIBFT_DIR) re
-	@$(MAKE) _print_banner
-
-.PHONY: libftclean
-libftclean:
-	@make -C $(LIBFT_DIR) clean
-
-.PHONY: libftfclean
-libftfclean:
-	@make -C $(LIBFT_DIR) fclean
-
-################################################################################
-#  helper rules  (not inteded to be used as parameters to make)                #
-################################################################################
-
-#Check if libft.a is provided at the expected location
-.PHONY: _libft_archive_provided
-_libft_archive_provided:
-	@echo "CHECKING for $(LIBFT_DIR)/$(LIBFT_NAME) ..."
-	@if [ ! -e $(LIBFT_DIR)/$(LIBFT_NAME) ]; \
-		then echo "--> Not found!"; exit 1;  \
-	fi;
-
 .PHONY: _entry_message_compile
 _entry_message_compile:
 	@echo 'COMPILING (if need) ...'
@@ -190,7 +145,7 @@ info:
 
 BANNER  := $\
 ****************************************************************************\n$\
-*                                  PIPEX                                   *\n$\
+*                               PHILOSOPHERS                               *\n$\
 ****************************************************************************\n$\
 
 INTRO := $\
@@ -198,7 +153,7 @@ INTRO := $\
 *        I N T R O D U C T I O N   T O   T H I S   M A K E F I L E         *\n$\
 ****************************************************************************\n$\
                                                                             \n$\
-I  This Makefile can be run with CONTROL VARIABLES for differnt purposes:   \n$\
+I  This Makefile can be run with CONTROL VARIABLES for different purposes:  \n$\
                                                                             \n$\
 ---------                                                                   \n$\
 Debugging        CAUTION, cf. section V                                     \n$\
@@ -250,13 +205,7 @@ info:                                                     (print this help) \n$\
 (3) Removes object files and their folder (unless OBJ := .);                \n$\
 --- also a potential timestamp file (in case of bonus) might be deleted.    \n$\
                                                                             \n$\
-II.2                                                                        \n$\
-libftall:   $$(LIBFT)                                                       \n$\
-$$(LIBFT):                                                                  \n$\
-libftbonus:                                                                 \n$\
-libftclean                                                                  \n$\
-libftfclean:                                                                \n$\
----------------------> Note that $$(LIBFT) calls  make -C  $$(LIBFT_DIR) all\n$\
+II.2 - NO LIBFT in this project                                             \n$\
                                                                             \n$\
 II.3                                                                        \n$\
 Though all GNUmake rule can be called from outside the remaining rules are  \n$\

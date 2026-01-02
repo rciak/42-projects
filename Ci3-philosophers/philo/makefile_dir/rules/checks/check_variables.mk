@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/03 15:47:14 by reciak            #+#    #+#              #
-#    Updated: 2025/10/11 12:45:24 by reciak           ###   ########.fr        #
+#    Updated: 2026/01/02 18:34:26 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ endif
 #
 
 ifndef LIBFT_DIR
-$(error LIBFT_DIR must be defined by the including makefile)
+$(warning LIBFT_DIR not defined by the including makefile)
 endif
 
 ifndef INC_DIRS
