@@ -6,11 +6,12 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2026/01/02 18:32:50 by reciak           ###   ########.fr        #
+#    Updated: 2026/01/03 20:16:14 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME          := philo
+INC_DIRS      := inc
 SRC_DIR       := src
 OBJ_DIR       := obj
 
@@ -18,7 +19,6 @@ RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -std=c99 -Wall -Wextra -Werror $(addprefix -I,$(INC_DIRS))
-LDFLAGS  = -L $(LIBFT_DIR) -lft
 ifeq ($(DEBUG_LAUB_SAN), 1)
   CFLAGS  += -g3 -fsanitize=address,undefined,leak
   LDFLAGS += -g3 -fsanitize=address,undefined,leak
@@ -67,14 +67,13 @@ include makefile_dir/def_sources.mk
 
 .PHONY: all
 all: _print_banner $(NAME)
-$(NAME): $(OBJS) $(LIBFT)
-	@make --quiet _libft_archive_provided
+$(NAME): $(OBJS)
 	@echo 'LINKING object files and libraries ...'
 	$(LINK_COMMAND)
 	@echo '  --> $(NAME)'
 
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | _entry_message_compile
 	@mkdir -p $(@D)
 	$(COMPILE_COMMAND)
 
@@ -85,19 +84,19 @@ clean: _print_banner
 	@$(RM_FR) $(TIMESTAMPFILE_BONUS)
 	@echo '  Removing object files, if any.'
 	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
-	@if [ ! -d $(OBJ_DIR) ]; then \
+	@if [ ! -d "$(OBJ_DIR)" ]; then \
 		: ; \
-	elif [ $(OBJ_DIR) = '.' ]; then \
+	elif [ "$(OBJ_DIR)" = '.' ]; then \
 		echo '     Well if the object files would be in their own separte'; \
 		echo '     directory that directory shall be removed, but here:'; \
 		echo '     Removing the directory . will not even been tried. ...'; \
 	else \
 		$(RM_FR) $(OBJ_DIR); \
 	fi
-	@if [ ! -d $(OBJ_DIR_BONUS) ] && [ "$(OBJ_DIR)" = "$(OBJ_DIR_BONUS)" ]; \
+	@if [ ! -d "$(OBJ_DIR_BONUS)" ] && [ "$(OBJ_DIR)" = "$(OBJ_DIR_BONUS)" ]; \
 	then \
 		: ; \
-	elif [ $(OBJ_DIR_BONUS) = '.' ]; then \
+	elif [ "$(OBJ_DIR_BONUS)" = '.' ]; then \
 		echo '     Well if the object files would be in their own separte'; \
 		echo '     directory that directory shall be removed, but here:'; \
 		echo '     Removing the directory . will not even been tried. ...'; \
@@ -108,16 +107,13 @@ clean: _print_banner
 .PHONY: fclean
 fclean: clean
 	@echo 'CLEANING (fclean)'
-	@echo '  REMOVING $(NAME), if any.' 
+	@echo '  REMOVING $(NAME), if any.'
 	@$(RM_FR) $(NAME)
 	@echo '  REMOVING $(NAME)_O3, if any.'
 	@$(RM_FR) $(NAME)_O3
 
 .PHONY: re
-re: fclean libftre all
-
-.PHONY: re_not_libft
-re_not_libft: fclean all
+re: fclean all
 
 .PHONY: bonus
 bonus: all
@@ -135,9 +131,9 @@ _print_banner:
 ################################################################################
 
 .PHONY: help info
-help: info 
+help: info
 info:
-	@printf "%b\n" '$(INTRO)' | less 
+	@printf "%b\n" '$(INTRO)' | less
 
 ################################################################################
 # Def. of larger Output                                                        #
@@ -172,7 +168,7 @@ GPROF           (Performance analysis with gprof:                 adds -pg) \n$\
 --------------                                                              \n$\
 OUTPUT CONTROL                                                              \n$\
 --------------                                                              \n$\
-VERBOSITY       (For more output - currently affects only libft, cf. below) \n$\
+VERBOSITY       (For more output)                                           \n$\
                                                                             \n$\
 HowTo-Example:   make VERBOSITY=1 re                                        \n$\
                                                                             \n$\
@@ -185,15 +181,12 @@ rules meant to be used only internally / as helpers for other rules (II.3). \n$\
 VERY USEFUL rules are also provided in the accompangying makefile (III).    \n$\
                                                                             \n$\
 II.1                                                                        \n$\
-all:           _print_banner $$(NAME)                                    (1)\n$\
-$$(NAME):       $$(OBJS) $$(LIBFT)                                          \n$\
-$$(OBJ_DIR)/%.o:$$(SRC_DIR)/%.c $$(INCS) | $$(LIBFT) _entry_message_compile $\
-(2) \n$\
+all:           _print_banner $$(NAME)                                   (1) \n$\
+$$(NAME):       $$(OBJS)                                                    \n$\
+$$(OBJ_DIR)/%.o:$$(SRC_DIR)/%.c $$(INCS) | _entry_message_compile       (2) \n$\
 clean:         _print_banner                                            (3) \n$\
 fclean:        clean                             (also removes the program) \n$\
-re:            fclean libftfclean all             (rebuilds - also libft.a) \n$\
-re_not_libft:  fclean all                        (rebuilds - libft.a stays) \n$\
-bonus:         all                                (currently alias for all) \n$\
+re:            fclean all                                        (rebuilds) \n$\
 help:          info                                       (print this help) \n$\
 info:                                                     (print this help) \n$\
                                                                             \n$\
@@ -238,10 +231,8 @@ rule qa (quality assurance - like tkolar)                                   \n$\
                                                                             \n$\
 V   R E M A R K   T O   U S A G E   O F  S A N I T I Z E R S                \n$\
                                                                             \n$\
-When using the sanitizer flags all libraries (in particular libft) need to  \n$\
+When using the sanitizer flags all libraries need to                        \n$\
 be compiled with these flags as well. Otherwise the linking should fail.    \n$\
-E.g. running     make  DEBUG_M_SAN=1  re; make clean; make all              \n$\
-demonstrates this effect.                                                   \n$\
                                                                             \n$\
 After debugging remember to turn things back to normal in both              \n$\
-libft and the current project by running once    make  re                   \n$\
+by running once    make  re                                                 \n$\
