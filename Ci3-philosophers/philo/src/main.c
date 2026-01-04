@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/03 19:42:34 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/04 11:36:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc < 1 + 3 || argc > 1 + 4)
+	if (argc < 1 + 4 || argc > 1 + 5)
 		return (herr(E_ARGC, ""));
 	return (herr(E_ARGC, NULL));
 	(void) argv;
