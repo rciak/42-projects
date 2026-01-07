@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2026/01/04 18:21:46 by reciak           ###   ########.fr        #
+#    Updated: 2026/01/07 23:57:47 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ RM_FR    := rm -fr
 CC       := cc
 CFLAGS    = -std=c99 -pthread -Wall -Wextra -Werror $(addprefix -I,$(INC_DIRS))
 LDFLAGS  := -pthread
+ifeq ($(DEBUG_PRINT), 1)
+  CFLAGS  += -D DEBUG_PRINT=1
+endif
 ifeq ($(DEBUG_LAUB_SAN), 1)
   CFLAGS  += -g3 -fsanitize=address,undefined,leak
   LDFLAGS += -g3 -fsanitize=address,undefined,leak
