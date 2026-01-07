@@ -158,7 +158,8 @@ I  This Makefile can be run with CONTROL VARIABLES for different purposes:  \n$\
 ---------                                                                   \n$\
 Debugging        CAUTION, cf. section V                                     \n$\
 ---------                                                                   \n$\
-DEBUG_VALGRIND  (For debugging:                                   adds -g3) \n$\
+DEBUG_PRINT     (Print debug messages:               adds -D DEBUG_PRINT=1) \n$\
+DEBUG_VALGRIND  (Better debugging:                                adds -g3) \n$\
 DEBUG_LAUB_SAN  (Leak, Address, Undef. Behaviour;            also adds -g3) \n$\
 DEBUG_M_SAN     (Memory;                                     also adds -g3) \n$\
 CC_LESS_STRICT  (Remove -Werror flag                                      ) \n$\
