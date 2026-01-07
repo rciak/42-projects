@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/04 11:36:34 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/07 23:55:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
  */
 
 
-
- 
 #include "philosophers.h"
+
+static bool	parse__args(int argc, char **argv, t_param *param, t_ecode *code);
+static bool	atoll___ok(int argc, t_ecode *err_code, t_ecode *code);
+static bool	values___ok(int argc, t_param *par, t_ecode *code);
 
 /**
  * @brief Entry point for philiosophers
@@ -28,12 +30,74 @@
  *          * > 0 if an error occured
  *          * 0 (E_NONE) if no error occured
  */
-
 int	main(int argc, char **argv)
 {
-	if (argc < 1 + 4 || argc > 1 + 5)
-		return (herr(E_ARGC, ""));
-	return (herr(E_ARGC, NULL));
-	(void) argv;
+	t_ecode	code;
+	t_all	all;
+
+	code = E_NONE;
+	if (!parse__args(argc, argv, &all.param, &code))
+		return (herr(code, "main: parse__args failed\n"));
+print_parsed_args(all.param);
 	return (0);
+}
+
+static bool	parse__args(int argc, char **argv, t_param *param, t_ecode *code)
+{
+	t_ecode	err_code[5];
+
+	if (argc < 1 + 4 || argc > 1 + 5)
+		return (*code = E_ARGC, false);
+	err_code[0] = E_ATOLL_NO_ERR;
+	err_code[1] = E_ATOLL_NO_ERR;
+	err_code[2] = E_ATOLL_NO_ERR;
+	err_code[3] = E_ATOLL_NO_ERR;
+	err_code[4] = E_ATOLL_NO_ERR;
+	param->num_philos = atoll_strict(argv[1], &err_code[0]);
+	param->tt_die = atoll_strict(argv[2], &err_code[1]);
+	param->tt_eat = atoll_strict(argv[3], &err_code[2]);
+	param->tt_sleep = atoll_strict(argv[4], &err_code[3]);
+	param->max_num_meals = -1;
+	if (argc == 1 + 5)
+		param->max_num_meals = atoll_strict(argv[5], &err_code[4]);
+	if (!atoll___ok(argc, err_code, code))
+		return (false);
+	if (!values___ok(argc, param, code))
+		return (false);
+	return (*code = E_NONE, true);
+}
+
+static bool	atoll___ok(int argc, t_ecode *err_code, t_ecode *code)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (err_code[i] != E_ATOLL_NO_ERR)
+			return (*code = err_code[i], false);
+		i++;
+	}
+	if (argc == 1 + 5 && err_code[4] != E_ATOLL_NO_ERR)
+		return (*code = err_code[4], false);
+	return (*code = E_NONE, true);
+}
+
+static bool	values___ok(int argc, t_param *par, t_ecode *code)
+{
+	if (par->num_philos < 1)
+		return (*code = E_NUM_PHILOS_NOT_POS, false);
+	if (par->tt_die < 1)
+		return (*code = E_TIME_TO_DIE_NOT_POS, false);
+	if (par->tt_eat < 1)
+		return (*code = E_TIME_TO_EAT_NOT_POS, false);
+	if (par->tt_sleep < 0)
+		return (*code = E_TIME_TO_SLEEP_NEG, false);
+	if (par->tt_eat > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS)
+		return (*code = E_DISRESPECT, false);
+	if (par->tt_sleep > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS)
+		return (*code = E_DISRESPECT, false);
+	if (argc == 1 + 5 && par->max_num_meals < 0)
+		return (*code = E_MAX_NUM_MEALS_NEG, false);
+	return (*code = E_NONE, true);
 }
