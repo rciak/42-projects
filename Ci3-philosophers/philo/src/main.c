@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/07 23:55:27 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/09 22:58:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,15 @@ static bool	values___ok(int argc, t_param *par, t_ecode *code)
 		return (*code = E_TIME_TO_EAT_NOT_POS, false);
 	if (par->tt_sleep < 0)
 		return (*code = E_TIME_TO_SLEEP_NEG, false);
-	if (par->tt_eat > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS)
-		return (*code = E_DISRESPECT, false);
-	if (par->tt_sleep > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS)
-		return (*code = E_DISRESPECT, false);
 	if (argc == 1 + 5 && par->max_num_meals < 0)
 		return (*code = E_MAX_NUM_MEALS_NEG, false);
+	if (par->num_philos > MAX_NUM_PHILOS
+		|| par->tt_die > MAX_TT_DIE
+		|| par->tt_eat > MAX_TT_EAT
+		|| par->tt_sleep > MAX_TT_SLEEP
+		|| (argc == 1 + 5 && par->max_num_meals > MAX_NUM_MEALS)
+		|| (par->tt_eat > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS)
+		|| (par->tt_sleep > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS))
+		return (*code = E_DISRESPECT, false);
 	return (*code = E_NONE, true);
 }
