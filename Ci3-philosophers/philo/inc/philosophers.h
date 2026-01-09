@@ -105,9 +105,33 @@ typedef struct s_param
 	long long	tt_sleep;
 	long long	max_num_meals;
 }	t_param;
+
+typedef struct s_philo
+{
+	long long	id;
+	long long	ended_meals;
+}	t_philo;	
+
+typedef struct s_fork
+{
+	bool	in_hand;
+}	t_fork;
+
+typedef struct s_perm
+{
+	bool		go;
+	bool		*pattern;
+	long long	shift;
+}	t_perm;
+
 typedef struct s_all
 {
-	t_param	param;
+	t_param			param;
+	t_philo			**philo;
+	pthread_mutex_t	**fork;
+	t_perm			*perm;
+	bool			all_alive;
+
 }	t_all;
 
 ////////////////////////////////////////////////

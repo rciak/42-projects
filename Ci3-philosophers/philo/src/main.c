@@ -38,9 +38,37 @@ int	main(int argc, char **argv)
 	code = E_NONE;
 	if (!parse__args(argc, argv, &all.param, &code))
 		return (herr(code, "main: parse__args failed\n"));
-print_parsed_args(all.param);
 	return (0);
 }
+//
+//  P L A N
+//
+// I    Alloc and Init
+//        a) forks
+//        b) PERMISSION pattern
+//
+// II  create philo threads, which do:
+//     wait for start signal, then
+//        take fork - if access granted,
+//        eat,
+//        sleep,
+//        think,
+//                                                     [think extra if maestro 
+//                                                      says so (due being ahead
+//                                                      of the other philos)   ]
+//        notify shared var `philo died` if philo dies
+//        repeat indefinitely or until max_num_meals reached (if specified)
+// III create maestro (and monitoring?!) thread, which does:
+//        START CLOCK and immediately after:
+//           Allow Philos that match PERMISSION PATTERN to take forks
+//        AFTERWARDS
+//           Update Permission pattern (*)
+//           When all forks have been returned
+//              Grant Philos that match PERMISSION PATTERN to take forks
+//     
+//  R E M A R K S:
+//  @ (*): modelled by add  +1  to shift var ( mod ... )
+
 
 static bool	parse__args(int argc, char **argv, t_param *param, t_ecode *code)
 {
