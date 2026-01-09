@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/07 23:59:01 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/09 23:11:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include "../src/debug/debug.h"
 //
 //
-
 # include <pthread.h>           // pthread_create, ...
 # include <limits.h>            // LLONG_MAX
 # include <stdlib.h>            // malloc, free
@@ -55,6 +54,15 @@
 //  3.  E N U M E R A T I O N S  //
 //                               //
 ///////////////////////////////////
+
+enum e_philosopers_constants
+{
+	MAX_NUM_PHILOS = 65535,
+	MAX_TT_DIE = ONE_HOUR_IN_MS,
+	MAX_TT_EAT = ONE_HOUR_IN_MS,
+	MAX_TT_SLEEP = ONE_HOUR_IN_MS,
+	MAX_NUM_MEALS = LLONG_MAX - 1,
+};
 
 /**
  * @warning The error codes `E_ATOLL_...` have been tweaked for philosophers.
