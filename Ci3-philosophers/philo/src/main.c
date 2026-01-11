@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/09 22:58:27 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/11 17:53:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,25 @@ int	main(int argc, char **argv)
 	return (0);
 }
 //
+//  Worüber ich mir noch klar werden muss:
+//
+//  ! Welche Ereignisse müssen erfasst werden, um korrekt zu printen?
+//
+//  ! Stop Simulation or at least Printing when a Philo died.
+//  ! How to print / announce the dead of a Philo within 10 ms?
+//
+//  Wie Freigabe geschmeidig hinbekommen?
+//
+//  Wie Zeit gut messen? 
+//    Philo wollen alle permanet die Uhrzeit abfragen...
+//
+//
 //  P L A N
 //
 // I    Alloc and Init
 //        a) forks
-//        b) PERMISSION pattern
+//        b1) PERMISSION pattern
+//        b2) NO_PHILO_HAS_PERMISSION pattern
 //
 // II  create philo threads, which do:
 //     wait for start signal, then
@@ -53,9 +67,9 @@ int	main(int argc, char **argv)
 //        eat,
 //        sleep,
 //        think,
-//                                                     [think extra if maestro 
+//                                                     [think extra if maestro
 //                                                      says so (due being ahead
-//                                                      of the other philos)   ]
+//                                                         of the other philos)]
 //        notify shared var `philo died` if philo dies
 //        repeat indefinitely or until max_num_meals reached (if specified)
 // III create maestro (and monitoring?!) thread, which does:
