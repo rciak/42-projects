@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/09 23:11:18 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/12 17:20:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@
 //  1.  I N C L U D E S  //
 //                       //
 ///////////////////////////
-//
-//														!!! REMOVE before submission !!!
-# include "../src/debug/debug.h"
-//
-//
+
 # include <pthread.h>           // pthread_create, ...
 # include <limits.h>            // LLONG_MAX
 # include <stdlib.h>            // malloc, free
@@ -48,6 +44,7 @@
 # define BLUE "\033[34m"
 # define CYAN "\033[36m"
 
+# define MAX_NUM_MEALS LLONG_MAX - 1
 
 ///////////////////////////////////
 //                               //
@@ -55,13 +52,12 @@
 //                               //
 ///////////////////////////////////
 
-enum e_philosopers_constants
+enum e_philosopers_int_constants
 {
 	MAX_NUM_PHILOS = 65535,
 	MAX_TT_DIE = ONE_HOUR_IN_MS,
 	MAX_TT_EAT = ONE_HOUR_IN_MS,
 	MAX_TT_SLEEP = ONE_HOUR_IN_MS,
-	MAX_NUM_MEALS = LLONG_MAX - 1,
 };
 
 /**
@@ -82,6 +78,8 @@ typedef enum e_error_code
 	E_ATOLL_NO_ERR,
 	E_ATOLL_BAD_STRING,
 	E_ATOLL_RANGE,
+	E_ALLOC,
+	E_MUTEX_INIT,
 	E_COUNT_THEM_ALL,
 }	t_ecode;
 
@@ -109,27 +107,29 @@ typedef struct s_param
 typedef struct s_philo
 {
 	long long	id;
+	long long	latest_meal_;
 	long long	ended_meals;
 }	t_philo;	
 
 typedef struct s_fork
 {
-	bool	in_hand;
+	pthread_mutex_t	mutex;
+	bool			in_hand;
 }	t_fork;
 
 typedef struct s_perm
 {
-	bool		go;
 	bool		*pattern;
 	long long	shift;
+	bool		go;
 }	t_perm;
 
 typedef struct s_all
 {
 	t_param			param;
-	t_philo			**philo;
-	pthread_mutex_t	**fork;
-	t_perm			*perm;
+	t_philo			*philo;
+	t_fork			*fork;
+	t_perm			perm;
 	bool			all_alive;
 
 }	t_all;
@@ -142,6 +142,7 @@ typedef struct s_all
 
 // *.c
 int			main(int argc, char **argv);
+bool		init_rest(t_all *all, t_ecode *code);
 
 // error_handling/*.c
 int			herr(t_ecode err_code, const char *debug_info);
@@ -155,6 +156,13 @@ size_t		ft_strlen(const char *s);
 long long	atoll_strict(const char *nptr, t_ecode *err_code);
 
 
-void	print_parsed_args(t_param params);
+///////////////////////////
+//                       //
+//  X.  D E B U G I N G  //
+//                       //
+///////////////////////////
+void	print_parsed_args(t_param param);
+void	print_init_rest(t_all all);
+
 
 #endif

@@ -6,13 +6,12 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 23:22:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/07 23:52:29 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/12 17:12:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 #include <stdio.h>
-#include "debug.h"
 
 void	print_parsed_args(t_param param)
 {
