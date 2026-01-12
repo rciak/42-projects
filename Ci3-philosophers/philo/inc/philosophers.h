@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/12 17:20:16 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/12 17:59:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct s_param
 typedef struct s_philo
 {
 	long long	id;
-	long long	latest_meal_;
+	long long	latest_meal;
 	long long	ended_meals;
 }	t_philo;	
 
