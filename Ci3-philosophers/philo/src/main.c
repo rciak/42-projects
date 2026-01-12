@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/12 17:17:47 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/12 17:49:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	main(int argc, char **argv)
 		return (herr(code, "main: parse__args failed\n"));
 	if (!alloc__mem(&all, &code))
 		return (herr(code, "main: alloc__mem failed\n"));
-//	if (!create__philo_threads(&all, &code))
-//		return (herr(code, "main: create__philo_threads failed\n"));
+	if (!create__philo_threads(&all, &code))
+		return (herr(code, "main: create__philo_threads failed\n"));
 	if (!init_rest(&all, &code))
 		return (herr(code, "main: init_rest failed\n"));
 print_init_rest(all);
@@ -63,11 +63,6 @@ print_init_rest(all);
 //
 //
 //  P L A N
-//
-// I    Alloc and Init
-//        a) forks
-//        b1) PERMISSION pattern
-//        b2) NO_PHILO_HAS_PERMISSION pattern
 //
 // II  create philo threads, which do:
 //     wait for start signal, then

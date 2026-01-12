@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/12 17:59:56 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/12 18:08:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_param
 
 typedef struct s_philo
 {
+	pthread_t	thread;
 	long long	id;
 	long long	latest_meal;
 	long long	ended_meals;
@@ -143,6 +144,8 @@ typedef struct s_all
 // *.c
 int			main(int argc, char **argv);
 bool		init_rest(t_all *all, t_ecode *code);
+bool	create__philo_threads(t_all *all, t_ecode *code);
+
 
 // error_handling/*.c
 int			herr(t_ecode err_code, const char *debug_info);
