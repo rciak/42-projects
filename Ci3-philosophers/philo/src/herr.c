@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:54:03 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/09 20:30:04 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/12 17:04:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	herr(t_ecode code, const char *debug_info)
 	{E_ATOLL_NO_ERR, "I would like to be printed but no pointer leads to me\n"},
 	{E_ATOLL_BAD_STRING, "Atoll: I need integer numbers to do my job!\n"},
 	{E_ATOLL_RANGE, "Atoll: Sorry the number would be out of range ...\n"},
+	{E_ALLOC, "Memory allocation failed\n"},
+	{E_MUTEX_INIT, "Mutex initialization failed\n"},
 	};
 
 	if (code < 0 || code >= E_COUNT_THEM_ALL)

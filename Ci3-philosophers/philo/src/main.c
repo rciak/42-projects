@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/11 17:53:30 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/12 17:17:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
  * @brief Stores the definition of main()
  */
 
-
 #include "philosophers.h"
 
 static bool	parse__args(int argc, char **argv, t_param *param, t_ecode *code);
 static bool	atoll___ok(int argc, t_ecode *err_code, t_ecode *code);
 static bool	values___ok(int argc, t_param *par, t_ecode *code);
+static bool	alloc__mem(t_all *all, t_ecode *code);
 
 /**
  * @brief Entry point for philiosophers
@@ -38,8 +38,16 @@ int	main(int argc, char **argv)
 	code = E_NONE;
 	if (!parse__args(argc, argv, &all.param, &code))
 		return (herr(code, "main: parse__args failed\n"));
+	if (!alloc__mem(&all, &code))
+		return (herr(code, "main: alloc__mem failed\n"));
+//	if (!create__philo_threads(&all, &code))
+//		return (herr(code, "main: create__philo_threads failed\n"));
+	if (!init_rest(&all, &code))
+		return (herr(code, "main: init_rest failed\n"));
+print_init_rest(all);
 	return (0);
 }
+
 //
 //  Worüber ich mir noch klar werden muss:
 //
@@ -146,4 +154,33 @@ static bool	values___ok(int argc, t_param *par, t_ecode *code)
 		|| (par->tt_sleep > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS))
 		return (*code = E_DISRESPECT, false);
 	return (*code = E_NONE, true);
+}
+
+static bool alloc__mem(t_all *all, t_ecode *code)
+{
+	long long	n;
+
+	n = all->param.num_philos;
+	all->philo = malloc(n * sizeof(t_philo));
+	if (all->philo == NULL)
+	{
+		*code = E_ALLOC;
+		return (false);
+	}
+	all->fork = malloc(n * sizeof(t_fork));
+	if (all->fork == NULL)
+	{
+		free(all->philo);
+		*code = E_ALLOC;
+		return (false);
+	}
+	all->perm.pattern = malloc(n * sizeof(bool));
+	if (all->perm.pattern == NULL)
+	{
+		free(all->philo);
+		free(all->fork);
+		*code = E_ALLOC;
+		return (false);
+	}
+	return (true);
 }
