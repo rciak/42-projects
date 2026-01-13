@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/12 19:07:43 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/13 12:12:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,20 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 	i = 0;
 	while (i < all->param.num_philos)
 	{
-
-		// all->philo[i].id = i + 1;
+		if (pthread_create(&all->philo[i].thread, NULL, &philo_fun, all) != 0)
+		{
+			*code = E_THREAD_CREATE;
+			return (false);
+		}
+		if (pthread_detach(&all->philo[i].thread) != 0)
+		{
+			*code = E_THREAD_DETACH;
+			return (false);
+		}
+		all->philo[i].id = i + 1;
 		// all->philo[i].latest_meal = ;
-		// all->philo[i].ended_meals = ;
-		pthread_create(&all->philo[i].thread, NULL, &philo_fun, (void *)all);
-		i++;
+		all->philo[i].ended_meals = 0;
+		i++;		
 	}
 	return (true);
 }
