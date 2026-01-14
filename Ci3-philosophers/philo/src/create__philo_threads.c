@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/13 12:12:01 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/14 19:09:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 
 /**
  * @brief Creates the philosopher threads and inits the philo array
- * @param[in] 
- * @param[out]
- * @param[in,out]
- * @return 
- *          * 
- *          * 
+ * @note Each thread is detached immediately after creation
+ * @note Each philosopher's ID is set to its index + 1
+ * @note latest_meal is intentionally left **uninitialized** here
+ * @param[out] code A pointer for storing error codes
+ * @param[in,out] all A pointer to the all-encompassing struct
+ * @return
+ *          * true if all threads were created successfully
+ *          * false if an error occurred (code is set accordingly)
  */
 bool	create__philo_threads(t_all *all, t_ecode *code)
 {
@@ -33,20 +35,24 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 	i = 0;
 	while (i < all->param.num_philos)
 	{
-		if (pthread_create(&all->philo[i].thread, NULL, &philo_fun, all) != 0)
+		all->philo[i].id = i + 1;
+		// all->philo[i].latest_meal = ; INTENTIONALLY LEFT UNINITIALIZED    !!!!
+		all->philo[i].ended_meals = 0;
+
+printf("Creating philosopher thread %lli...\n", all->philo[i].id);
+		if (pthread_create(&all->philo[i].thread, NULL,
+				&philo_fun, (void *)(all->philo + i)) != 0)
 		{
 			*code = E_THREAD_CREATE;
 			return (false);
 		}
-		if (pthread_detach(&all->philo[i].thread) != 0)
+		if (pthread_detach(all->philo[i].thread) != 0)
 		{
 			*code = E_THREAD_DETACH;
 			return (false);
 		}
-		all->philo[i].id = i + 1;
-		// all->philo[i].latest_meal = ;
-		all->philo[i].ended_meals = 0;
-		i++;		
+		i++;
 	}
 	return (true);
 }
+
