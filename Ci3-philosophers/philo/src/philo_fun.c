@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/14 19:11:17 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/14 19:25:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ void	*philo_fun(void *arg)
 
 	philo = (t_philo *)arg;
 	id = philo->id;
-	printf("         Philosopher thread %lli started!\n", philo->id);
-return (NULL);
+	return (NULL);
 }
