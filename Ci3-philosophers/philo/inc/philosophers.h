@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/13 12:09:30 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/14 19:17:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 //                       //
 ///////////////////////////
 
+# define _DEFAULT_SOURCE
 # include <pthread.h>           // pthread_create, ...
 # include <limits.h>            // LLONG_MAX
 # include <stdlib.h>            // malloc, free
 # include <unistd.h>            // STDERR_FILENO, ...
 # include <stdbool.h>           // true, false, ...
+# include <stdio.h>             // printf
 
 /////////////////////////
 //                     //
@@ -146,8 +148,8 @@ typedef struct s_all
 // *.c
 int			main(int argc, char **argv);
 bool		init_rest(t_all *all, t_ecode *code);
-bool	create__philo_threads(t_all *all, t_ecode *code);
-
+bool		create__philo_threads(t_all *all, t_ecode *code);
+void		*philo_fun(void *arg);
 
 // error_handling/*.c
 int			herr(t_ecode err_code, const char *debug_info);

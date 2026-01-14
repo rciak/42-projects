@@ -1,9 +1,11 @@
 SRCS := \
+src/create__philo_threads.c \
 src/debug/print_init_rest.c \
 src/debug/print_parsed_args.c \
 src/herr.c \
 src/init_rest.c \
 src/main.c \
+src/philo_fun.c \
 src/tools_libft/atoll_strict.c \
 src/tools_libft/ft_strchr.c \
 src/tools_libft/ft_strlen.c \
