@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:04:38 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/15 19:44:54 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/15 20:00:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,5 @@ void	wait_for(long long time_span)
 	if (time_span < 0)
 		write(STDERR_FILENO, warning, ft_strlen(warning));
 	usleep (time_span * FACTOR_USLEEP_WAIT_FOR);
-	if (gettimeofday_musec() >= end)
-		write(STDERR_FILENO, RED"overshoot\n"RESET, ft_strlen(RED"overshoot\n"RESET));
 	while (gettimeofday_musec() < end);
 }
