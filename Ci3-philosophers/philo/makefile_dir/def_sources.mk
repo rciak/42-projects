@@ -11,6 +11,8 @@ src/tools_libft/ft_strchr.c \
 src/tools_libft/ft_strlen.c \
 src/tools_libft/is_in.c \
 src/tools_libft/putstr_fd.c \
-src/tools_libft/skip.c
+src/tools_libft/skip.c \
+src/tools_time/gettimeofday_musec.c \
+src/tools_time/wait_for.c
 
 SRCS_BONUS := \

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/14 19:17:31 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/15 19:33:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define _DEFAULT_SOURCE
 # include <pthread.h>           // pthread_create, ...
+# include <sys/time.h>          // gettimeofday
 # include <limits.h>            // LLONG_MAX
 # include <stdlib.h>            // malloc, free
 # include <unistd.h>            // STDERR_FILENO, ...
@@ -34,11 +35,12 @@
 /////////////////////////
 
 // Call make with DEBUG_PRINT=1 to see debug messages
-#ifndef DEBUG_PRINT
-# define DEBUG_PRINT 0
-#endif
+# ifndef DEBUG_PRINT
+#  define DEBUG_PRINT 0
+# endif
 
 # define ONE_HOUR_IN_MS 3600000
+# define ONE_SECOND_IN_US 1000000
 # define RESET "\033[0m"
 # define RED "\033[31m"
 # define GREEN "\033[32m"
@@ -47,6 +49,7 @@
 # define CYAN "\033[36m"
 
 # define MAX_NUM_MEALS LLONG_MAX - 1
+# define FACTOR_USLEEP_WAIT_FOR 0.9
 
 ///////////////////////////////////
 //                               //
@@ -110,7 +113,7 @@ typedef struct s_param
 
 typedef struct s_philo
 {
-	pthread_t	thread;
+	pthread_t	thread;                                                // can this be removoved?!
 	long long	id;
 	long long	latest_meal;
 	long long	ended_meals;
@@ -150,11 +153,12 @@ int			main(int argc, char **argv);
 bool		init_rest(t_all *all, t_ecode *code);
 bool		create__philo_threads(t_all *all, t_ecode *code);
 void		*philo_fun(void *arg);
+void		wait_for(long long time);
 
 // error_handling/*.c
 int			herr(t_ecode err_code, const char *debug_info);
 
-//tools/*.c
+//tools_libft/*.c
 size_t		skip(char **pstr, const char *chars_to_skip);
 ssize_t		putstr_fd(const char *str, int fd);
 bool		is_in(char c, const char *str);
@@ -162,6 +166,9 @@ char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *s);
 long long	atoll_strict(const char *nptr, t_ecode *err_code);
 
+//tools_time/*.c
+void		wait_for(long long time_span);
+long long	gettimeofday_musec(void);
 
 ///////////////////////////
 //                       //

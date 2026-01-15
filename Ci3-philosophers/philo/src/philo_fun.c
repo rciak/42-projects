@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/14 19:25:25 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/15 16:05:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,14 @@ void	*philo_fun(void *arg)
 
 	philo = (t_philo *)arg;
 	id = philo->id;
+wait_for(300 * id);
+printf("Philo %lld \t wants %lld \n", id, 4000 * id );
+long long start = gettimeofday_musec();
+wait_for(4000 * id);
+long long end = gettimeofday_musec();
+printf("                                  Philo %lld : %lld \n", id, end - start);
+
 	return (NULL);
 }
+
+
