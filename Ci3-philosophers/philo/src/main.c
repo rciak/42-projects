@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/14 19:21:34 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/15 19:30:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 		return (herr(code, "main: create__philo_threads failed\n"));
 	if (!init_rest(&all, &code))
 		return (herr(code, "main: init_rest failed\n"));
-usleep (1000);      // For now a dummy to keep main thread alive for some time ...
+usleep (1000000);      // For now a dummy to keep main thread alive for some time ...
 	return (0);
 }
 
