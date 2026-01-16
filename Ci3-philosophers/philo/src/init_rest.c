@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:43:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 12:06:14 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 16:24:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ bool	init_rest(t_all *all, t_ecode *code)
 	if (!init__forks(all, code))
 		return (false);
 	init__perm(all);
-	all->all_alive = true;
+	all->dead = NO_DEAD;
 	pthread_mutex_init(&all->lock_philos_till_start, NULL);
+	pthread_mutex_init(&all->lock_dead, NULL);
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 16:34:57 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/12 17:43:02 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 16:13:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void print_init_rest(t_all all)
 	printf("\n");
 	print_perm(all);
 
-	printf("\nall_alive: \n");
-	if (all.all_alive == true)
-		printf("  ✅ true\n");
+	printf("\ndead: \n");
+	if (all.dead == NO_DEAD)
+		printf("  ✅ no dead philo yet\n");
 	else
-		printf("  ❌ false\n");
+		printf("  ❌ dead philo: %lli\n", all.dead);
 
 }
 

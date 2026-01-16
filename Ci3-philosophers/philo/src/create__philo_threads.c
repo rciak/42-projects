@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 15:54:24 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 17:18:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 		all->philo[i].id = i + 1;
 		all->philo[i].perm = &all->perm;
 		all->philo[i].lock_philos_till_start = &all->lock_philos_till_start;
+		all->philo[i].dead = &all->dead;
+		all->philo[i].lock_dead = &all->lock_dead;
 		// all->philo[i].latest_meal = ; INTENTIONALLY LEFT UNINITIALIZED    !!!!
 		all->philo[i].ended_meals = 0;
 		if (pthread_create(&all->philo[i].thread, NULL,

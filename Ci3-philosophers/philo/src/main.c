@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 15:19:52 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 18:18:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ int	main(int argc, char **argv)
 	if (!create__philo_threads(&all, &code))
 		return (herr_free(code, "main: create__philo_threads failed\n", &all));
 	all.perm.go = true;
-	usleep (1000000);      														// For now a dummy to keep main thread alive for some time ...
-	pthread_mutex_destroy(&all.perm.mutex);
-	pthread_mutex_destroy(&all.lock_philos_till_start);
+	usleep (4000000);      													// For now a dummy to keep main thread alive for some time ...
+	//sauberer: threads nicht detachen, sondern joinen und main (thread) erst
+	//dann (sicher!) beenden, weil im Stack von Main variablen liegen,
+	//welche die anderen Threads benutzen.
 	herr_free(E_NONE, "main: regular end", &all);
 	return (E_NONE);
 }
@@ -89,7 +90,6 @@ int	main(int argc, char **argv)
 //     
 //  R E M A R K S:
 //  @ (*): modelled by add  +1  to shift var ( mod ... )
-
 
 static bool	parse__args(int argc, char **argv, t_param *param, t_ecode *code)
 {
