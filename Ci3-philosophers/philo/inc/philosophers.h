@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/15 19:33:28 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 12:40:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@
 
 # define MAX_NUM_MEALS LLONG_MAX - 1
 # define FACTOR_USLEEP_WAIT_FOR 0.9
+
+// The unit for the following is usec (microseconds)
+# define MAX_TIME_BIRTH_PHILO 1000
+
 
 ///////////////////////////////////
 //                               //
@@ -113,10 +117,12 @@ typedef struct s_param
 
 typedef struct s_philo
 {
-	pthread_t	thread;                                                // can this be removoved?!
-	long long	id;
-	long long	latest_meal;
-	long long	ended_meals;
+	pthread_t		thread;                                                // can this be removoved?!
+	long long		id;
+	t_perm			*perm;
+	pthread_mutex_t	*lock_philos_till_start;
+	long long		latest_meal;
+	long long		ended_meals;
 }	t_philo;	
 
 typedef struct s_fork
@@ -127,9 +133,10 @@ typedef struct s_fork
 
 typedef struct s_perm
 {
-	bool		*pattern;
-	long long	shift;
-	bool		go;
+	pthread_mutex_t mutex;
+	bool			*pattern;
+	long long		shift;
+	bool			go;
 }	t_perm;
 
 typedef struct s_all
@@ -139,7 +146,7 @@ typedef struct s_all
 	t_fork			*fork;
 	t_perm			perm;
 	bool			all_alive;
-
+	pthread_mutex_t	lock_philos_till_start;
 }	t_all;
 
 ////////////////////////////////////////////////
