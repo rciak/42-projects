@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 12:40:26 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 14:12:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,6 @@ typedef struct s_param
 	long long	max_num_meals;
 }	t_param;
 
-typedef struct s_philo
-{
-	pthread_t		thread;                                                // can this be removoved?!
-	long long		id;
-	t_perm			*perm;
-	pthread_mutex_t	*lock_philos_till_start;
-	long long		latest_meal;
-	long long		ended_meals;
-}	t_philo;	
-
 typedef struct s_fork
 {
 	pthread_mutex_t	mutex;
@@ -138,6 +128,16 @@ typedef struct s_perm
 	long long		shift;
 	bool			go;
 }	t_perm;
+
+typedef struct s_philo
+{
+	pthread_t		thread;                                                // can this be removoved?!
+	long long		id;
+	t_perm			*perm;
+	pthread_mutex_t	*lock_philos_till_start;
+	long long		latest_meal;
+	long long		ended_meals;
+}	t_philo;	
 
 typedef struct s_all
 {
