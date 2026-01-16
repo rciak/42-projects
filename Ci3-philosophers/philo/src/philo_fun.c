@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/15 20:03:01 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 12:33:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ void	*philo_fun(void *arg)
 
 	philo = (t_philo *)arg;
 	id = philo->id;
-wait_for(300 * id);
+	pthread_mutex_lock(philo->lock_philos_till_start);
+	pthread_mutex_unlock(philo->lock_philos_till_start);
+																			long long timestamp = gettimeofday_musec();
+																			usleep (10* id);
+																			printf("Philo %lld ready at %lld us\n", philo->id, timestamp);
+
 	return (NULL);
 }
 

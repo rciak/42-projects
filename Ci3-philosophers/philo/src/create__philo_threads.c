@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/14 19:23:57 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 12:41:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,39 @@
 bool	create__philo_threads(t_all *all, t_ecode *code)
 {
 	long long	i;
-
+	bool		reval;
+																			long long prev_timestamp = gettimeofday_musec();
+																			long long timestamp = gettimeofday_musec();
+																			pthread_mutex_lock(&all->lock_philos_till_start);
+	reval = true;
 	i = 0;
 	while (i < all->param.num_philos)
 	{
 		all->philo[i].id = i + 1;
+		all->philo[i].perm = &all->perm;
+		all->philo[i].lock_philos_till_start = &all->lock_philos_till_start;
 		// all->philo[i].latest_meal = ; INTENTIONALLY LEFT UNINITIALIZED    !!!!
 		all->philo[i].ended_meals = 0;
 		if (pthread_create(&all->philo[i].thread, NULL,
 				&philo_fun, (void *)(all->philo + i)) != 0)
 		{
 			*code = E_THREAD_CREATE;
-			return (false);
+			reval = false;
+			break;
 		}
 		if (pthread_detach(all->philo[i].thread) != 0)
 		{
 			*code = E_THREAD_DETACH;
-			return (false);
+			reval = false;
+			break;
 		}
+																			prev_timestamp = timestamp;
+																			timestamp = gettimeofday_musec();
+																			printf("Philo %lld created at %lld us \t | %lld\n", all->philo[i].id, timestamp, timestamp - prev_timestamp);
 		i++;
 	}
-	return (true);
+	usleep(MAX_TIME_BIRTH_PHILO * all->param.num_philos);					//Dummy: Better were let philos set variable that they are ready
+	pthread_mutex_unlock(&all->lock_philos_till_start);
+	return (reval);
 }
 

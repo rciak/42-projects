@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:43:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/12 17:24:10 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 12:06:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ bool	init_rest(t_all *all, t_ecode *code)
 		return (false);
 	init__perm(all);
 	all->all_alive = true;
+	pthread_mutex_init(&all->lock_philos_till_start, NULL);
 	return (true);
 }
 
@@ -61,6 +62,7 @@ static void	init__perm(t_all *all)
 	long long	i;
 
 	n = all->param.num_philos;
+	pthread_mutex_init(&all->perm.mutex, NULL);
 	all->perm.pattern[n - 1] = false;
 	all->perm.pattern[0] = true;
 	i = 0;
