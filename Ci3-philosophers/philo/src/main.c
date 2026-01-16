@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 15:10:40 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 15:19:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	main(int argc, char **argv)
 		return (herr(code, "main: parse__args failed\n"));
 	if (!alloc__mem(&all, &code))
 		return (herr(code, "main: alloc__mem failed\n"));
-	if (!init_rest(&all, &code))                                            
+	if (!init_rest(&all, &code))
 		return (herr_free(code, "main: init_rest failed\n", &all));
 	if (!create__philo_threads(&all, &code))
-		return (herr_free(code, "main: create__philo_threads failed\n", &all));	
+		return (herr_free(code, "main: create__philo_threads failed\n", &all));
 	all.perm.go = true;
 	usleep (1000000);      														// For now a dummy to keep main thread alive for some time ...
 	pthread_mutex_destroy(&all.perm.mutex);
