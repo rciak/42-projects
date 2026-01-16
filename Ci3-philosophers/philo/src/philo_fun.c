@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 12:33:11 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 18:29:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,17 @@ void	*philo_fun(void *arg)
 																			long long timestamp = gettimeofday_musec();
 																			usleep (10* id);
 																			printf("Philo %lld ready at %lld us\n", philo->id, timestamp);
-
+	pthread_mutex_lock(philo->lock_dead);
+	if ((id == 142 || id == 143 || id == 144) && *philo->dead == NO_DEAD)
+	{
+																			printf(RED"philo %lld died at %lld us"RESET"\n", philo->id, timestamp);
+		*philo->dead = id;
+	}
+	else if (*philo->dead == NO_DEAD)
+	{	
+																			printf(GREEN"philo %lld at %lld us\n"RESET, philo->id, timestamp);
+	}
+	pthread_mutex_unlock(philo->lock_dead);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 15:13:02 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 16:31:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 
 enum e_philosopers_int_constants
 {
+	NO_DEAD = -1,
 	MAX_NUM_PHILOS = 65535,
 	MAX_TT_DIE = ONE_HOUR_IN_MS,
 	MAX_TT_EAT = ONE_HOUR_IN_MS,
@@ -135,6 +136,8 @@ typedef struct s_philo
 	long long		id;
 	t_perm			*perm;
 	pthread_mutex_t	*lock_philos_till_start;
+	pthread_mutex_t	*lock_dead;
+	long long		*dead;
 	long long		latest_meal;
 	long long		ended_meals;
 }	t_philo;	
@@ -145,7 +148,8 @@ typedef struct s_all
 	t_philo			*philo;
 	t_fork			*fork;
 	t_perm			perm;
-	bool			all_alive;
+	long long		dead;
+	pthread_mutex_t	lock_dead;
 	pthread_mutex_t	lock_philos_till_start;
 }	t_all;
 
