@@ -3,6 +3,7 @@ src/create__philo_threads.c \
 src/debug/print_init_rest.c \
 src/debug/print_parsed_args.c \
 src/herr.c \
+src/herr_free.c \
 src/init_rest.c \
 src/main.c \
 src/philo_fun.c \

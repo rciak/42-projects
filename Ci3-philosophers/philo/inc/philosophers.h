@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 14:12:01 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 15:13:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,8 @@ void		*philo_fun(void *arg);
 void		wait_for(long long time);
 
 // error_handling/*.c
-int			herr(t_ecode err_code, const char *debug_info);
+int			herr(t_ecode code, const char *debug_info);
+int			herr_free(t_ecode code, const char *debug_info, t_all *all);
 
 //tools_libft/*.c
 size_t		skip(char **pstr, const char *chars_to_skip);

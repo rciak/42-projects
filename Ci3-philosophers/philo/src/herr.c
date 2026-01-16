@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:54:03 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/12 17:04:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 15:11:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 int	herr(t_ecode code, const char *debug_info)
 {
 	static t_err	err[] = {
-	{E_NONE, "No error\n"},
+	{E_NONE, ""},
 	{E_ARGC, "Invalid number of arguments\n"},
 	{E_MAX_NUM_MEALS_NEG, "Number of meals must be at least 0 (or omitted)\n"},
 	{E_NUM_PHILOS_NOT_POS, "Number of philosophers must be at least 1\n"},

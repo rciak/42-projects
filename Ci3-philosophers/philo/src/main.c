@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 12:09:23 by reciak           ###   ########.fr       */
+/*   Updated: 2026/01/16 15:10:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ int	main(int argc, char **argv)
 	if (!alloc__mem(&all, &code))
 		return (herr(code, "main: alloc__mem failed\n"));
 	if (!init_rest(&all, &code))                                            
-		return (herr(code, "main: init_rest failed\n"));
+		return (herr_free(code, "main: init_rest failed\n", &all));
 	if (!create__philo_threads(&all, &code))
-		return (herr(code, "main: create__philo_threads failed\n"));
+		return (herr_free(code, "main: create__philo_threads failed\n", &all));	
 	all.perm.go = true;
 	usleep (1000000);      														// For now a dummy to keep main thread alive for some time ...
 	pthread_mutex_destroy(&all.perm.mutex);
 	pthread_mutex_destroy(&all.lock_philos_till_start);
-	return (0);
+	herr_free(E_NONE, "main: regular end", &all);
+	return (E_NONE);
 }
 
 //
@@ -68,7 +69,7 @@ int	main(int argc, char **argv)
 //  P L A N
 //
 // II  create philo threads, which do:
-//     wait for start signal, then
+//     [X] wait for start signal, then
 //        take fork - if access granted,
 //        eat,
 //        sleep,
@@ -160,23 +161,16 @@ static bool alloc__mem(t_all *all, t_ecode *code)
 
 	n = all->param.num_philos;
 	all->philo = malloc(n * sizeof(t_philo));
-	if (all->philo == NULL)
-	{
-		*code = E_ALLOC;
-		return (false);
-	}
 	all->fork = malloc(n * sizeof(t_fork));
-	if (all->fork == NULL)
-	{
-		free(all->philo);
-		*code = E_ALLOC;
-		return (false);
-	}
 	all->perm.pattern = malloc(n * sizeof(bool));
-	if (all->perm.pattern == NULL)
+	if (all->philo == NULL || all->fork == NULL || all->perm.pattern == NULL)
 	{
 		free(all->philo);
 		free(all->fork);
+		free(all->perm.pattern);
+		all->philo = NULL;
+		all->fork = NULL;
+		all->perm.pattern = NULL;
 		*code = E_ALLOC;
 		return (false);
 	}
