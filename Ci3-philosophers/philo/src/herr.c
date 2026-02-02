@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:54:03 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 15:11:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/02 12:28:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
  * @brief Prints an error message and returns an error code - the received one
  * @param[in] code, an error code defined in philosophers.h
  * @param[in] debug_info, a debug message (might be NULL or "")
+ *                        --> activate by compliling with flag DEBUG_PRINT=1
+ *                            i.e. run  `make DEBUG_PRINT=1 [...]`
  * @return \p code
  */
 int	herr(t_ecode code, const char *debug_info)
@@ -39,6 +41,8 @@ int	herr(t_ecode code, const char *debug_info)
 	{E_ATOLL_RANGE, "Atoll: Sorry the number would be out of range ...\n"},
 	{E_ALLOC, "Memory allocation failed\n"},
 	{E_MUTEX_INIT, "Mutex initialization failed\n"},
+	{E_THREAD_CREATE, "pthread_create failed\n"},
+	{E_THREAD_JOIN, "pthread_join failed\n"},
 	};
 
 	if (code < 0 || code >= E_COUNT_THEM_ALL)

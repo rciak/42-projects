@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/02 10:53:26 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/02 12:19:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "philosophers.h"
 
 static bool	alloc__mem(t_all *all, t_ecode *code);
+static bool join__philo_threads(t_all *all, t_ecode *code);
 
 /**
  * @brief Entry point for philiosophers
@@ -42,10 +43,8 @@ int	main(int argc, char **argv)
 	if (!create__philo_threads(&all, &code))
 		return (herr_free(code, "main: create__philo_threads failed\n", &all));
 	all.perm.go = true;
-	usleep (4000000);      													// For now a dummy to keep main thread alive for some time ...
-	//sauberer: threads nicht detachen, sondern joinen und main (thread) erst
-	//dann (sicher!) beenden, weil im Stack von Main variablen liegen,
-	//welche die anderen Threads benutzen.
+	if (!join__philo_threads(&all, &code))
+		return (herr_free(code, "main: join__philo_threads failed\n", &all));
 	herr_free(E_NONE, "main: regular end", &all);
 	return (E_NONE);
 }
@@ -72,7 +71,37 @@ static bool alloc__mem(t_all *all, t_ecode *code)
 	return (true);
 }
 
-
+/**
+ * @brief Joins all philiosophers threads
+ * @note This functions will join the philosopher threads in the order of their
+ *       creation and not their order of termination.
+ *       For a short time zombie threads might therefor be around
+ *       till all philo threads have ended.
+ * @note This should not be a problem though:
+ *       The zombie threads should be quite short lived since all philo threads
+ *       should end almost simultaneously.
+ *       Even without this no problem should occur since
+ *       after the initial creation of threads no more threads are created,
+ *       so that a lack of available threads can occur only at the start
+ *       of the program.
+ * @note If the project would allow more functions from @c pthread.h then
+ *       on could avoid getting many zombie threads fully by a technique
+ *       that Kerrisk demonstrated in Section 30.2.4 of this book
+ *       "The Linux Programming Interface".
+ */
+static bool join__philo_threads(t_all *all, t_ecode *code)
+{
+	long long	i;
+	
+	i = 0;
+	while (i < all->param.num_philos)
+	{
+		if (pthread_join(all->philo[i].thread, NULL) != 0)
+			return (*code = E_THREAD_JOIN, false);
+		i++;
+	}
+	return (true);
+}
 //
 //  Worüber ich mir noch klar werden muss:
 //

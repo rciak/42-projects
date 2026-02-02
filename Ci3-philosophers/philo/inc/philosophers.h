@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/02 10:57:14 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/02 11:42:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef enum e_error_code
 	E_ALLOC,
 	E_MUTEX_INIT,
 	E_THREAD_CREATE,
-	E_THREAD_DETACH,
+	E_THREAD_JOIN,
 	E_COUNT_THEM_ALL,
 }	t_ecode;
 
