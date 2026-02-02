@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 16:31:40 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/02 10:57:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct s_all
 
 // *.c
 int			main(int argc, char **argv);
+bool		parse_args(int argc, char **argv, t_param *param, t_ecode *code);
 bool		init_rest(t_all *all, t_ecode *code);
 bool		create__philo_threads(t_all *all, t_ecode *code);
 void		*philo_fun(void *arg);
