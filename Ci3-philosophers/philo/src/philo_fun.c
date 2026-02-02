@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 18:29:32 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/02 12:42:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*philo_fun(void *arg)
 	}
 	else if (*philo->dead == NO_DEAD)
 	{	
-																			printf(GREEN"philo %lld at %lld us\n"RESET, philo->id, timestamp);
+																			printf(GREEN"philo %lld at %lld us"RESET"\n", philo->id, timestamp);
 	}
 	pthread_mutex_unlock(philo->lock_dead);
 	return (NULL);
