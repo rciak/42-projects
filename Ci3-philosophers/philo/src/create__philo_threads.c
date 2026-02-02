@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 17:18:04 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/02 12:22:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,6 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 				&philo_fun, (void *)(all->philo + i)) != 0)
 		{
 			*code = E_THREAD_CREATE;
-			reval = false;
-			break;
-		}
-		if (pthread_detach(all->philo[i].thread) != 0)
-		{
-			*code = E_THREAD_DETACH;
 			reval = false;
 			break;
 		}
