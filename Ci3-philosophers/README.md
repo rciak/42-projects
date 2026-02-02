@@ -12,7 +12,10 @@
 
 ## AI usage
 
-In the Scope of this project, AI was used to clarify some of the upcoming technical questions and for documentation purposes.
+In the Scope of this project, AI was used to clarify some of the upcoming
+technical questions and for documentation purposes. Regarding writing code,
+AI was intentionally used in limited forms, like intelligent autocompletion.
+
 In particular, AI was used as assistant for the following tasks:
 
 * Creating references in this README.md file.
