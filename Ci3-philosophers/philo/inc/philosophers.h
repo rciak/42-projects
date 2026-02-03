@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/02 11:42:14 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/03 08:06:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ enum e_philosopers_int_constants
  * @warning The error codes `E_ATOLL_...` have been tweaked for philosophers.
  *          This tweaks should never be used in other projects, cf.
  *          the warning  in libft.h  (which refers to atof_strict).
+ * @note The special entry `E_COUNT_THEM_ALL` is not an error code, but
+ *       is used to count the number of error codes; therefore it must stay
+ *       as the last entry!
  */
 typedef enum e_error_code
 {
