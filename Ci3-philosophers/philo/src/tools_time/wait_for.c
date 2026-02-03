@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:04:38 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/15 20:00:52 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/03 17:09:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "philosophers.h"
 
 /**
- * @brief Tries to let elapse the requested time in milliseconds
+ * @brief Tries to let elapse the requested time in microseconds
  * @note Should hopefully be way more precise than usleep
  *       (which is used only to reduce load on the CPU)
  * @param[in] time_span The time to elapse in microseconds
