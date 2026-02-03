@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2026/01/07 23:57:47 by reciak           ###   ########.fr        #
+#    Updated: 2026/02/03 12:37:38 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,10 @@ endif
 ifeq ($(DEBUG_M_SAN), 1)
   CFLAGS  += -g3 -fsanitize=memory -fsanitize-memory-track-origins=2
   LDFLAGS += -g3 -fsanitize=memory -fsanitize-memory-track-origins=2
+endif
+ifeq ($(DEBUG_THREAD_SAN), 1)
+  CFLAGS  += -g3 -fsanitize=thread
+  LDFLAGS += -g3 -fsanitize=thread
 endif
 ifeq ($(DEBUG_VALGRIND), 1)
   CFLAGS  += -g3
@@ -158,11 +162,12 @@ I  This Makefile can be run with CONTROL VARIABLES for different purposes:  \n$\
 ---------                                                                   \n$\
 Debugging        CAUTION, cf. section V                                     \n$\
 ---------                                                                   \n$\
-DEBUG_PRINT     (Print debug messages:               adds -D DEBUG_PRINT=1) \n$\
-DEBUG_VALGRIND  (Better debugging:                                adds -g3) \n$\
-DEBUG_LAUB_SAN  (Leak, Address, Undef. Behaviour;            also adds -g3) \n$\
-DEBUG_M_SAN     (Memory;                                     also adds -g3) \n$\
-CC_LESS_STRICT  (Remove -Werror flag                                      ) \n$\
+DEBUG_PRINT      (Print debug messages:              adds -D DEBUG_PRINT=1) \n$\
+DEBUG_VALGRIND   (Better debugging:                               adds -g3) \n$\
+DEBUG_LAUB_SAN   (Leak, Address, Undef. Behaviour;           also adds -g3) \n$\
+DEBUG_M_SAN      (Memory;                                    also adds -g3) \n$\
+DEBUG_THREAD_SAN (Thread;                                    also adds -g3) \n$\
+CC_LESS_STRICT   (Remove -Werror flag                                     ) \n$\
                                                                             \n$\
 ------------                                                                \n$\
 Optimazation                                                                \n$\
