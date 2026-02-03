@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:54:03 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/02 12:28:33 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/03 11:39:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,50 @@
  * @brief Stores the definition of herr()
  */
 
- #include "philosophers.h"
+#include "philosophers.h"
+
+static void			copy__error_definitions(t_err *err);
+static t_err		get___definition(int code);
+static bool			check__validity(t_err *err);
 
 /**
  * @brief Prints an error message and returns an error code - the received one
  * @param[in] code, an error code defined in philosophers.h
  * @param[in] debug_info, a debug message (might be NULL or "")
  *                        --> activate by compliling with flag DEBUG_PRINT=1
- *                            i.e. run  `make DEBUG_PRINT=1 [...]`
+ *                            i.e. run  `make DEBUG_PRINT=1 [...]`	
  * @return \p code
  */
 int	herr(t_ecode code, const char *debug_info)
 {
-	static t_err	err[] = {
+	static t_err err[E_COUNT_THEM_ALL];
+
+	copy__error_definitions(err);
+	if (code < 0 || code >= E_COUNT_THEM_ALL)
+		putstr_fd("herr: Invalid error code (internal issue)\n", STDERR_FILENO);
+	if (!check__validity(err))
+		putstr_fd("herr: internal problem with error list\n", STDERR_FILENO);
+	putstr_fd(err[code].msg, STDERR_FILENO);
+	if (debug_info != NULL && debug_info[0] != '\0' && DEBUG_PRINT == 1)
+		putstr_fd(debug_info, STDERR_FILENO);
+	return (code);
+}
+
+static	void	copy__error_definitions(t_err *err)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < E_COUNT_THEM_ALL)
+	{
+		err[i] = get___definition(i);
+		i++;
+	}
+}
+
+static t_err get___definition(int code)
+{
+	static const t_err	err[E_COUNT_THEM_ALL] = {
 	{E_NONE, ""},
 	{E_ARGC, "Invalid number of arguments\n"},
 	{E_MAX_NUM_MEALS_NEG, "Number of meals must be at least 0 (or omitted)\n"},
@@ -45,12 +76,19 @@ int	herr(t_ecode code, const char *debug_info)
 	{E_THREAD_JOIN, "pthread_join failed\n"},
 	};
 
-	if (code < 0 || code >= E_COUNT_THEM_ALL)
-		putstr_fd("herr: Invalid error code (internal issue)\n", STDERR_FILENO);
-	if (code != err[code].code)
-		putstr_fd("herr: internal problem with error list\n", STDERR_FILENO);
-	putstr_fd(err[code].msg, STDERR_FILENO);
-	if (debug_info != NULL && debug_info[0] != '\0' && DEBUG_PRINT == 1)
-		putstr_fd(debug_info, STDERR_FILENO);
-	return (code);
+	return (err[code]);
+}
+
+static bool	check__validity(t_err *err)
+{
+	size_t i;
+
+	i = 0;
+	while (i < E_COUNT_THEM_ALL)
+	{
+		if (err[i].code != i)
+			return (false);
+		i++;
+	}
+	return (true);
 }
