@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 12:27:46 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 15:01:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 #include "philosophers.h"
 
-static void	set__philo_vars_except_thread_val(long long i, t_all *all);
+static void	set__philo_vars_except_thread_val_and_t_0(long long i, t_all *all);
 static bool	create__single_philo_thread(long long i, t_all *all);
+static void	set__philo_var_t_0(t_all *all);
 
 /**
  * @brief Creates the philosopher threads and inits the philo array
@@ -41,7 +42,7 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 	i = 0;
 	while (i < all->param.num_philos)
 	{
-		set__philo_vars_except_thread_val(i, all);
+		set__philo_vars_except_thread_val_and_t_0(i, all);
 		if (!create__single_philo_thread(i, all))
 		{
 			*code = E_THREAD_CREATE;
@@ -50,11 +51,12 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 		}
 		i++;
 	}
+	set__philo_var_t_0(all);
 	pthread_mutex_unlock(&all->lock_philos_till_start);
 	return (reval);
 }
 
-static void	set__philo_vars_except_thread_val(long long i, t_all *all)
+static void	set__philo_vars_except_thread_val_and_t_0(long long i, t_all *all)
 {
 	all->philo[i].id = i + 1;
 	all->philo[i].perm = &all->perm;
@@ -80,4 +82,18 @@ static bool	create__single_philo_thread(long long i, t_all *all)
 			(void *)(all->philo + i)))
 		return (false);
 	return (true);
+}
+
+static void	set__philo_var_t_0(t_all *all)
+{
+	long long	simulation_start;
+	long long	i;
+
+	simulation_start = gettimeofday_musec();
+	i = 0;
+	while (i < all->param.num_philos)
+	{
+		all->philo[i].t_0 = simulation_start;
+		i++;
+	}
 }
