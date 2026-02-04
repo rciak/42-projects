@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 11:59:59 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 12:24:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "philosophers.h"
 
 static void	set__philo_vars_except_thread_val(long long i, t_all *all);
+static bool	create__single_philo_thread(long long i, t_all *all);
 
 /**
  * @brief Creates the philosopher threads and inits the philo array
@@ -32,17 +33,16 @@ static void	set__philo_vars_except_thread_val(long long i, t_all *all);
  */
 bool	create__philo_threads(t_all *all, t_ecode *code)
 {
-	long long	i;
 	bool		reval;
+	long long	i;
 
-	pthread_mutex_lock(&all->lock_philos_till_start);
 	reval = true;
+	pthread_mutex_lock(&all->lock_philos_till_start);
 	i = 0;
 	while (i < all->param.num_philos)
 	{
 		set__philo_vars_except_thread_val(i, all);
-		if (pthread_create(&all->philo[i].thread, NULL,
-				&philo_fun, (void *)(all->philo + i)) != 0)
+		if (!create__single_philo_thread(i, all))
 		{
 			*code = E_THREAD_CREATE;
 			reval = false;
@@ -66,4 +66,18 @@ static void	set__philo_vars_except_thread_val(long long i, t_all *all)
 	all->philo[i].tt_eat = all->param.tt_eat;
 	all->philo[i].tt_sleep = all->param.tt_sleep;
 	all->philo[i].meals_at_least = all->param.meals_at_least;
+}
+
+static bool	create__single_philo_thread(long long i, t_all *all)
+{
+	void		*(*start_function)(void *);
+
+	// if (all->param.num_philos == 1)
+	// 	start_function = &philo_alone_at_table;
+	// else
+		start_function = &philo_fun;
+	if (0 != pthread_create(&all->philo[i].thread, NULL, start_function,
+			(void *)(all->philo + i)))
+		return (false);
+	return (true);
 }
