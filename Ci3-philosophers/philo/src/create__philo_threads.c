@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 12:24:12 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 12:27:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ static bool	create__single_philo_thread(long long i, t_all *all)
 {
 	void		*(*start_function)(void *);
 
-	// if (all->param.num_philos == 1)
-	// 	start_function = &philo_alone_at_table;
-	// else
+	if (all->param.num_philos == 1)
+		start_function = &philo_alone_at_table;
+	else
 		start_function = &philo_fun;
 	if (0 != pthread_create(&all->philo[i].thread, NULL, start_function,
 			(void *)(all->philo + i)))
