@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/03 08:06:32 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 10:36:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct s_param
 	long long	tt_die;
 	long long	tt_eat;
 	long long	tt_sleep;
-	long long	max_num_meals;
+	long long	meals_at_least;
 }	t_param;
 
 typedef struct s_fork

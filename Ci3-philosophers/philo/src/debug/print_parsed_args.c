@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 23:22:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/12 17:12:02 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 10:36:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	print_parsed_args(t_param param)
 	printf("  Time to die (ms):       %lld\n", param.tt_die);
 	printf("  Time to eat (ms):       %lld\n", param.tt_eat);
 	printf("  Time to sleep (ms):     %lld\n", param.tt_sleep);
-	if (param.max_num_meals == -1)
+	if (param.meals_at_least == -1)
 		printf("  Max number of meals:    unlimited\n");
 	else
-		printf("  Max number of meals:    %lld\n", param.max_num_meals);
+		printf("  Max number of meals:    %lld\n", param.meals_at_least);
 }

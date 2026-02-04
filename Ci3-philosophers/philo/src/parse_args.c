@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/02 10:57:30 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 10:36:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ bool	parse_args(int argc, char **argv, t_param *param, t_ecode *code)
 	param->tt_die = atoll_strict(argv[2], &err_code[1]);
 	param->tt_eat = atoll_strict(argv[3], &err_code[2]);
 	param->tt_sleep = atoll_strict(argv[4], &err_code[3]);
-	param->max_num_meals = -1;
+	param->meals_at_least = -1;
 	if (argc == 1 + 5)
-		param->max_num_meals = atoll_strict(argv[5], &err_code[4]);
+		param->meals_at_least = atoll_strict(argv[5], &err_code[4]);
 	if (!atoll__ok(argc, err_code, code))
 		return (false);
 	if (!values__ok(argc, param, code))
@@ -82,13 +82,13 @@ static bool	values__ok(int argc, t_param *par, t_ecode *code)
 		return (*code = E_TIME_TO_EAT_NOT_POS, false);
 	if (par->tt_sleep < 0)
 		return (*code = E_TIME_TO_SLEEP_NEG, false);
-	if (argc == 1 + 5 && par->max_num_meals < 0)
+	if (argc == 1 + 5 && par->meals_at_least < 0)
 		return (*code = E_MAX_NUM_MEALS_NEG, false);
 	if (par->num_philos > MAX_NUM_PHILOS
 		|| par->tt_die > MAX_TT_DIE
 		|| par->tt_eat > MAX_TT_EAT
 		|| par->tt_sleep > MAX_TT_SLEEP
-		|| (argc == 1 + 5 && par->max_num_meals > MAX_NUM_MEALS)
+		|| (argc == 1 + 5 && par->meals_at_least > MAX_NUM_MEALS)
 		|| (par->tt_eat > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS)
 		|| (par->tt_sleep > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS))
 		return (*code = E_DISRESPECT, false);
