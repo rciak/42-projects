@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 11:07:32 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 11:59:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 		}
 		i++;
 	}
-	usleep(MAX_TIME_BIRTH_PHILO * all->param.num_philos);					//Dummy: Better were let philos set variable that they are ready
 	pthread_mutex_unlock(&all->lock_philos_till_start);
 	return (reval);
 }
