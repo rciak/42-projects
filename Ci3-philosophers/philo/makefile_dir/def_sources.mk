@@ -7,6 +7,7 @@ src/herr_free.c \
 src/init_rest.c \
 src/main.c \
 src/parse_args.c \
+src/philo_alone_at_table.c \
 src/philo_fun.c \
 src/tools_libft/atoll_strict.c \
 src/tools_libft/ft_strchr.c \

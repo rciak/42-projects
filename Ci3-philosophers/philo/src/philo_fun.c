@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 11:44:41 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 12:38:00 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 #include "philosophers.h"
 
 /**
- * @brief The start function executed by each philosopher thread
+ * @brief The usual start function executed by each philosopher thread
+ * @note This start function is used for n >= 2 philosophers.
+ *       For n == 1 philosophers see philo_alone_at_table()
  * @param[in, out] arg A pointer to a philo struct
- * @return Allways `NULL` (all philo threads are anyway detached ...)
+ * @return Allways `NULL`
  */
 void	*philo_fun(void *arg)
 {
