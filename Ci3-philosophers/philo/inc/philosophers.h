@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 10:36:34 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 11:01:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,11 @@ typedef struct s_philo
 	pthread_mutex_t	*lock_philos_till_start;
 	pthread_mutex_t	*lock_dead;
 	long long		*dead;
-	long long		latest_meal;
 	long long		ended_meals;
+	long long		tt_die;
+	long long		tt_eat;
+	long long		tt_sleep;
+	long long		meals_at_least;
 }	t_philo;	
 
 typedef struct s_all

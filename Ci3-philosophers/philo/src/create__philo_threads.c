@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/02 12:22:03 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/04 11:07:32 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  */
 
 #include "philosophers.h"
+
+static void	set__philo_vars_except_thread_val(long long i, t_all *all);
 
 /**
  * @brief Creates the philosopher threads and inits the philo array
@@ -38,13 +40,7 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 	i = 0;
 	while (i < all->param.num_philos)
 	{
-		all->philo[i].id = i + 1;
-		all->philo[i].perm = &all->perm;
-		all->philo[i].lock_philos_till_start = &all->lock_philos_till_start;
-		all->philo[i].dead = &all->dead;
-		all->philo[i].lock_dead = &all->lock_dead;
-		// all->philo[i].latest_meal = ; INTENTIONALLY LEFT UNINITIALIZED    !!!!
-		all->philo[i].ended_meals = 0;
+		set__philo_vars_except_thread_val(i, all);
 		if (pthread_create(&all->philo[i].thread, NULL,
 				&philo_fun, (void *)(all->philo + i)) != 0)
 		{
@@ -59,3 +55,16 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 	return (reval);
 }
 
+static void	set__philo_vars_except_thread_val(long long i, t_all *all)
+{
+	all->philo[i].id = i + 1;
+	all->philo[i].perm = &all->perm;
+	all->philo[i].lock_philos_till_start = &all->lock_philos_till_start;
+	all->philo[i].dead = &all->dead;
+	all->philo[i].lock_dead = &all->lock_dead;
+	all->philo[i].ended_meals = 0;
+	all->philo[i].tt_die = all->param.tt_die;
+	all->philo[i].tt_eat = all->param.tt_eat;
+	all->philo[i].tt_sleep = all->param.tt_sleep;
+	all->philo[i].meals_at_least = all->param.meals_at_least;
+}
