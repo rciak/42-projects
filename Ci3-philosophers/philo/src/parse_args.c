@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 10:36:26 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/05 08:57:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	parse_args(int argc, char **argv, t_param *param, t_ecode *code)
 	param->tt_die = atoll_strict(argv[2], &err_code[1]);
 	param->tt_eat = atoll_strict(argv[3], &err_code[2]);
 	param->tt_sleep = atoll_strict(argv[4], &err_code[3]);
-	param->meals_at_least = -1;
+	param->meals_at_least = OMITTED_PARAM;
 	if (argc == 1 + 5)
 		param->meals_at_least = atoll_strict(argv[5], &err_code[4]);
 	if (!atoll__ok(argc, err_code, code))

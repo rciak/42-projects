@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 16:23:59 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/05 15:47:29 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int	herr_free(t_ecode code, const char *debug_info, t_all *all)
 	pthread_mutex_destroy(&all->perm.mutex);
 	pthread_mutex_destroy(&all->lock_philos_till_start);
 	pthread_mutex_destroy(&all->lock_dead);
+	pthread_mutex_destroy(&all->lock_still_love_pasta);
 	return (herr(code, debug_info));
 }
