@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 14:47:15 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/05 16:44:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@
 # define YELLOW "\033[33m"
 # define BLUE "\033[34m"
 # define CYAN "\033[36m"
-
-# define MAX_NUM_MEALS LLONG_MAX - 1
+# define MAX_NUM_MEALS LLONG_MAX - 2
+# define MAX_ENDED_MEALS LLONG_MAX - 1        //This is on purpose one bigger, cf. philo_fun!
 # define FACTOR_USLEEP_WAIT_FOR 0.9
 
 // The unit for the following is usec (microseconds)
@@ -63,7 +63,9 @@
 
 enum e_philosopers_int_constants
 {
+	OMITTED_PARAM = -1,
 	NO_DEAD = -1,
+	SOMEBODY_DEAD = 1,
 	MAX_NUM_PHILOS = 65535,
 	MAX_TT_DIE = ONE_HOUR_IN_MS,
 	MAX_TT_EAT = ONE_HOUR_IN_MS,
@@ -104,12 +106,6 @@ typedef enum e_error_code
 //                     //
 /////////////////////////
 
-typedef struct s_err
-{
-	t_ecode	code;
-	char	*msg;
-}	t_err;
-
 typedef struct s_param
 {
 	long long	num_philos;
@@ -141,7 +137,9 @@ typedef struct s_philo
 	pthread_mutex_t	*lock_philos_till_start;
 	pthread_mutex_t	*lock_dead;
 	long long		*dead;
-	long long		ended_meals;
+	pthread_mutex_t	*lock_still_love_pasta;
+	long long		*still_love_pasta;
+	long long		ended_meals;                // Beware when changing this data type: LLONG_MAX should be changed accordingly where used! 
 	long long		t_0;
 	long long		tt_die;
 	long long		tt_eat;
@@ -156,9 +154,23 @@ typedef struct s_all
 	t_fork			*fork;
 	t_perm			perm;
 	long long		dead;
+	long long		still_loving_pasta;
 	pthread_mutex_t	lock_dead;
+	pthread_mutex_t	lock_still_love_pasta;
 	pthread_mutex_t	lock_philos_till_start;
 }	t_all;
+
+typedef struct s_err
+{
+	t_ecode	code;
+	char	*msg;
+}	t_err;
+
+typedef struct s_interval
+{
+	long long	start;
+	long long	end;
+}	t_interval;
 
 ////////////////////////////////////////////////
 //                                            //
