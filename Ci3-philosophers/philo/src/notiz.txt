@@ -1,0 +1,34 @@
+
+# Maybe considerable in  hope_for_meal ?!
+
+	if (t_meal_start >= t_starved)
+	{
+		ensure_forks_on_table(philo);
+		announce_dead_if_first_case(philo);
+		return (NULL);
+	}
+	t_starved = t_meal_start + philo->tt_die;
+	if (philo->meals_at_least != OMITTED_PARAM && all_sick_of_pasta(philo))
+		return (NULL);
+	...
+	
+# Some old dummy code
+
+long long id = philo->id;
+long long timestamp = gettimeofday_musec();
+//																			usleep (10* id);
+//																			printf("Philo %lld ready at **** us\n", philo->id);
+//																			printf("Philo %lld ready at %lld us\n", philo->id, timestamp);
+//																			printf("Philo **** ready at %lld us\n", timestamp);
+	pthread_mutex_lock(philo->lock_dead);
+	if ((id == 142 || id == 143 || id == 144) && *philo->dead == NO_DEAD)
+	{
+																			printf(RED"philo %lld died at %lld us"RESET"\n", philo->id, timestamp);
+		*philo->dead = id;
+	}
+	else if (*philo->dead == NO_DEAD)
+	{	
+																			printf(GREEN"philo %lld at %lld us"RESET"\n", philo->id, timestamp);
+	}
+	pthread_mutex_unlock(philo->lock_dead);
+	return (NULL);
