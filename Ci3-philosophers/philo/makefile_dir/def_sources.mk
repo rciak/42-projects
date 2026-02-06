@@ -8,7 +8,10 @@ src/init_rest.c \
 src/main.c \
 src/parse_args.c \
 src/philo_alone_at_table.c \
+src/philo_fun/all_sick_of_pasta.c \
 src/philo_fun.c \
+src/philo_fun/hope_for_meal.c \
+src/philo_fun/zhared/is_simulation_ended.c \
 src/tools_libft/atoll_strict.c \
 src/tools_libft/ft_strchr.c \
 src/tools_libft/ft_strlen.c \

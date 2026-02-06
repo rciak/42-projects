@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/05 17:38:43 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/06 12:20:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ static void	set__philo_vars_except_thread_val_and_t_0(long long i, t_all *all)
 	all->philo[i].lock_dead = &all->lock_dead;
 	all->philo[i].still_love_pasta = &all->still_loving_pasta;
 	all->philo[i].lock_still_love_pasta = &all->lock_still_love_pasta;
+	all->philo[i].end_simul = &all->end_simul;
+	all->philo[i].lock_end_simul = &all->lock_end_simul;
 	all->philo[i].ended_meals = 0;
+	all->philo[i].num_philos = all->param.num_philos;
 	all->philo[i].tt_die = all->param.tt_die;
 	all->philo[i].tt_eat = all->param.tt_eat;
 	all->philo[i].tt_sleep = all->param.tt_sleep;
