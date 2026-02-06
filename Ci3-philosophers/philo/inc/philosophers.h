@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/05 16:44:20 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/06 12:47:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@
 # define FACTOR_USLEEP_WAIT_FOR 0.9
 
 // The unit for the following is usec (microseconds)
-# define MAX_TIME_BIRTH_PHILO 1000
-
+# define TIME_TILL_NEXT_FORK_CHECK 300
+///////////////////////////////////////////////////////////////////////# define MAX_TIME_BIRTH_PHILO 1000/
 
 ///////////////////////////////////
 //                               //
@@ -61,8 +61,14 @@
 //                               //
 ///////////////////////////////////
 
+enum e_log_events
+{
+	DIED,
+};
+
 enum e_philosopers_int_constants
 {
+	END_OF_SIMULATION = -1,
 	OMITTED_PARAM = -1,
 	NO_DEAD = -1,
 	SOMEBODY_DEAD = 1,
@@ -126,7 +132,7 @@ typedef struct s_perm
 	pthread_mutex_t mutex;
 	bool			*pattern;
 	long long		shift;
-	bool			go;
+	bool			go;                                      //In case that only main uses this var: Consider moving it elsewhere
 }	t_perm;
 
 typedef struct s_philo
@@ -139,8 +145,11 @@ typedef struct s_philo
 	long long		*dead;
 	pthread_mutex_t	*lock_still_love_pasta;
 	long long		*still_love_pasta;
-	long long		ended_meals;                // Beware when changing this data type: LLONG_MAX should be changed accordingly where used! 
+	pthread_mutex_t *lock_end_simul;
+	bool			*end_simul;
+	long long		ended_meals;                           // Beware when changing this data type: LLONG_MAX should be changed accordingly where used! 
 	long long		t_0;
+	long long		num_philos;
 	long long		tt_die;
 	long long		tt_eat;
 	long long		tt_sleep;
@@ -155,8 +164,10 @@ typedef struct s_all
 	t_perm			perm;
 	long long		dead;
 	long long		still_loving_pasta;
+	bool			end_simul;
 	pthread_mutex_t	lock_dead;
 	pthread_mutex_t	lock_still_love_pasta;
+	pthread_mutex_t	lock_end_simul;
 	pthread_mutex_t	lock_philos_till_start;
 }	t_all;
 
@@ -186,6 +197,12 @@ bool		create__philo_threads(t_all *all, t_ecode *code);
 void		*philo_alone_at_table(void *arg);
 void		*philo_fun(void *arg);
 void		wait_for(long long time);
+
+// philo_fun/*.c
+long long	hope_for_meal(t_philo *phi, long long t_starved);
+//          /zhared/*.c
+bool		is_simulation_ended(t_philo *phi);
+
 
 // error_handling/*.c
 int			herr(t_ecode code, const char *debug_info);

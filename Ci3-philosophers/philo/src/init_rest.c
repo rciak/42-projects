@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:43:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/05 15:12:55 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/06 11:59:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ bool	init_rest(t_all *all, t_ecode *code)
 	all->still_loving_pasta = all->param.num_philos;
 	if (all->param.meals_at_least == OMITTED_PARAM)
 		all->still_loving_pasta = OMITTED_PARAM;
+	all->end_simul = false;
 	pthread_mutex_init(&all->lock_still_love_pasta, NULL);
 	pthread_mutex_init(&all->lock_dead, NULL);
+	pthread_mutex_init(&all->lock_end_simul, NULL);
 	pthread_mutex_init(&all->lock_philos_till_start, NULL);
 	return (true);
 }
