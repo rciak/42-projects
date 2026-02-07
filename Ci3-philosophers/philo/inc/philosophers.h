@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/06 12:47:27 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/07 17:24:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 # define _DEFAULT_SOURCE
 # include <pthread.h>           // pthread_create, ...
 # include <sys/time.h>          // gettimeofday
-# include <limits.h>            // LLONG_MAX
+//# include <limits.h>                                                  // LLONG_MAX
+# include <stdint.h>            // uint64_t
 # include <stdlib.h>            // malloc, free
 # include <unistd.h>            // STDERR_FILENO, ...
 # include <stdbool.h>           // true, false, ...
@@ -38,18 +39,20 @@
 # ifndef DEBUG_PRINT
 #  define DEBUG_PRINT 0
 # endif
-
+// For transforming the time struct, returned by gettimeofday into microseconds
 # define ONE_HOUR_IN_MS 3600000
 # define ONE_SECOND_IN_US 1000000
+// Colors
 # define RESET "\033[0m"
 # define RED "\033[31m"
 # define GREEN "\033[32m"
 # define YELLOW "\033[33m"
 # define BLUE "\033[34m"
 # define CYAN "\033[36m"
+// Misc.
 # define MAX_NUM_MEALS LLONG_MAX - 2
-# define MAX_ENDED_MEALS LLONG_MAX - 1        //This is on purpose one bigger, cf. philo_fun!
-# define FACTOR_USLEEP_WAIT_FOR 0.9
+# define MAX_ENDED_MEALS LLONG_MAX - 1                                        //This is on purpose one bigger, cf. philo_fun!
+# define FACTOR_USLEEP_WAIT_FOR 0.9                                           //This should be kicked out / not needed anymore when my custum sleep functions gets improved and tuned
 
 // The unit for the following is usec (microseconds)
 # define TIME_TILL_NEXT_FORK_CHECK 300
@@ -61,17 +64,19 @@
 //                               //
 ///////////////////////////////////
 
-enum e_log_events
+enum e_events_to_log
 {
 	DIED,
+	TAKE_FIRST_FORK,
+	TAKE_SECOND_FORK_EAT,
+	SLEEP,
+	THINK,
 };
 
 enum e_philosopers_int_constants
 {
-	END_OF_SIMULATION = -1,
+	END_SIMULATION = -1,
 	OMITTED_PARAM = -1,
-	NO_DEAD = -1,
-	SOMEBODY_DEAD = 1,
 	MAX_NUM_PHILOS = 65535,
 	MAX_TT_DIE = ONE_HOUR_IN_MS,
 	MAX_TT_EAT = ONE_HOUR_IN_MS,
@@ -121,55 +126,60 @@ typedef struct s_param
 	long long	meals_at_least;
 }	t_param;
 
-typedef struct s_fork
+typedef struct s_time_to
+{
+	int64_t	die;
+	int64_t	eat;
+	int64_t	sleep;
+}	t_time_to;
+
+typedef struct s_meals
+{
+	int64_t	eaten;
+	int64_t	min;
+}	t_meals;
+
+typedef struct s_int_philo
+{
+	pthread_t	thread;
+	int64_t		id;
+	t_time_to	tt;
+	t_meals		meals;
+	int64_t		t_0;
+}	t_int_philo;
+
+//
+// to be shared amongst (all or some) threads
+//
+struct	s_squad_end;
+struct	s_maestro;
+
+typedef struct s_ext_philo
+{
+	struct s_maestro	*maestro;
+	struct s_squad_end	*squad_end;
+	pthread_mutex_t		*lock_philos_till_start;
+	pthread_mutex_t		*left_fork;
+	pthread_mutex_t		*right_fork;
+}	t_ext_philo;
+
+typedef struct s_maestro
 {
 	pthread_mutex_t	mutex;
-	bool			in_hand;
-}	t_fork;
-
-typedef struct s_perm
+	bool			*allows;
+}	t_maestro;
+typedef struct s_squad_end
 {
-	pthread_mutex_t mutex;
-	bool			*pattern;
-	long long		shift;
-	bool			go;                                      //In case that only main uses this var: Consider moving it elsewhere
-}	t_perm;
+	pthread_mutex_t	mutex;
+	bool			starved;
+	int64_t			num_pasta_lovers;
+}	t_squad_end;
 
-typedef struct s_philo
+typedef struct	philo
 {
-	pthread_t		thread;                                                // can this be removoved?!
-	long long		id;
-	t_perm			*perm;
-	pthread_mutex_t	*lock_philos_till_start;
-	pthread_mutex_t	*lock_dead;
-	long long		*dead;
-	pthread_mutex_t	*lock_still_love_pasta;
-	long long		*still_love_pasta;
-	pthread_mutex_t *lock_end_simul;
-	bool			*end_simul;
-	long long		ended_meals;                           // Beware when changing this data type: LLONG_MAX should be changed accordingly where used! 
-	long long		t_0;
-	long long		num_philos;
-	long long		tt_die;
-	long long		tt_eat;
-	long long		tt_sleep;
-	long long		meals_at_least;
-}	t_philo;	
-
-typedef struct s_all
-{
-	t_param			param;
-	t_philo			*philo;
-	t_fork			*fork;
-	t_perm			perm;
-	long long		dead;
-	long long		still_loving_pasta;
-	bool			end_simul;
-	pthread_mutex_t	lock_dead;
-	pthread_mutex_t	lock_still_love_pasta;
-	pthread_mutex_t	lock_end_simul;
-	pthread_mutex_t	lock_philos_till_start;
-}	t_all;
+	t_int_philo		in;
+	t_ext_philo		ex;
+}	t_philo;
 
 typedef struct s_err
 {
@@ -179,8 +189,8 @@ typedef struct s_err
 
 typedef struct s_interval
 {
-	long long	start;
-	long long	end;
+	int64_t	start;
+	int64_t	end;
 }	t_interval;
 
 ////////////////////////////////////////////////

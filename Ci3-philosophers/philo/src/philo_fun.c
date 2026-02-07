@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/06 12:27:08 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/06 17:28:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	*philo_fun(void *arg)
 	pthread_mutex_lock(phi->lock_philos_till_start);
 	pthread_mutex_unlock(phi->lock_philos_till_start);
 	t_meal_start = hope_for_meal(phi, t_starved);
-	if (t_meal_start >= t_starved || t_meal_start == END_OF_SIMULATION)
+	if (t_meal_start >= t_starved || t_meal_start == END_SIMULATION)
 		return (NULL);
 	t_starved = t_meal_start + phi->tt_die;
 /////////////////////////////	while(philos_do_what_philos_must_do(phi, &t_meal_start, &t_starved));
