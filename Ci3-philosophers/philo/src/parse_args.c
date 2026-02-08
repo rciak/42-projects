@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 11:35:15 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 12:42:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ bool	parse_args(int argc, char **argv, t_param *param, t_ecode *code)
 	err_code[2] = E_ATOLL_NO_ERR;
 	err_code[3] = E_ATOLL_NO_ERR;
 	err_code[4] = E_ATOLL_NO_ERR;
-	param->num_philos = atoll_strict(argv[1], &err_code[0]);
-	param->tt.die = atoll_strict(argv[2], &err_code[1]);
-	param->tt.eat = atoll_strict(argv[3], &err_code[2]);
-	param->tt.sleep = atoll_strict(argv[4], &err_code[3]);
+	param->num_philos = (int64_t) atoll_strict(argv[1], &err_code[0]);
+	param->tt.die = (int64_t) atoll_strict(argv[2], &err_code[1]);
+	param->tt.eat = (int64_t) atoll_strict(argv[3], &err_code[2]);
+	param->tt.sleep = (int64_t) atoll_strict(argv[4], &err_code[3]);
 	param->meals_at_least = OMITTED_PARAM;
 	if (argc == 1 + 5)
-		param->meals_at_least = atoll_strict(argv[5], &err_code[4]);
+		param->meals_at_least = (int64_t) atoll_strict(argv[5], &err_code[4]);
 	if (!atoll__ok(argc, err_code, code))
 		return (false);
 	if (!values__ok(argc, param, code))
