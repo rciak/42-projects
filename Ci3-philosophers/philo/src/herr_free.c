@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 15:59:18 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 18:50:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
  * @param[in] phi, the main struct
  * @return \p code
  */
-int	herr_free(t_ecode code, const char *debug_info, t_phi *phi)
+int	herr_free(t_ecode code, const char *debug_info, t_all *all)
 {
-	free(phi->share.maestro->allows);
-	free(phi->mutab->fork);
+	free(all->phi.share.maestro->allows);
+	free(all->mutab.fork);
 	// pthread_mutex_destroy(&phi->perm.mutex);
 	// pthread_mutex_destroy(&phi->lock_philos_till_start);
 	// pthread_mutex_destroy(&phi->lock_dead);

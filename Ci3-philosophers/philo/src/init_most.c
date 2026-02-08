@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_rest.c                                        :+:      :+:    :+:   */
+/*   init_most.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:43:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 11:22:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 16:33:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file init_rest.c
- * @brief Stores the definition of init_rest()
+ * @file init_most.c
+ * @brief Stores the definition of init_most()
  */
 
 #include "philosophers.h"
@@ -21,14 +21,14 @@ static bool	init__forks(t_phi *phi, t_ecode *code);
 static void	init__perm(t_phi *phi);
 
 /**
- * @brief Initialize all except all->philo (done during philo threads creation)
- * @param[out] all initialised
+ * @brief Init most vars but those inited later during thread creation function)
+ * @param[out] phi mostly initialised
  * @param[out] code error code
  * @return 
  *          * true, if no error occured
  *          * false, if an error occured
  */
-bool	init_rest(t_phi *phi, t_ecode *code)
+bool	init_most(t_phi *phi, t_ecode *code)
 {
 	if (!init__forks(phi, code))
 		return (false);
