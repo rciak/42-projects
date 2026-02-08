@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 11:55:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 13:39:29 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "philosophers.h"
 
-// static bool	alloc__mem(t_phi *phi, t_ecode *code);
+static bool alloc__mem(t_phi *phi, int64_t num_philos, t_ecode *code);
 // static bool join__philo_threads(t_phi *phi, t_ecode *code);
 
 /**
@@ -30,16 +30,19 @@
  */
 int	main(int argc, char **argv)
 {
-	t_param	param;
-//	t_phi	phi;
-	t_ecode	code;
+	t_ecode		code;
+	t_param		param;
+	t_phi		phi;
+	t_maestro	maestro;
+	t_mutex_tab	mutab;
 	
+	phi.share.maestro = &maestro;
+	phi.mutab = &mutab;
 	code = E_NONE;
 	if (!parse_args(argc, argv, &param, &code))
 		return (herr(code, "main: parse_args failed\n"));
-print_parsed_args(param);
-	// if (!alloc__mem(&phi, &code))
-	// 	return (herr(code, "main: alloc__mem failed\n"));
+	if (!alloc__mem(&phi, param.num_philos, &code))
+		return (herr(code, "main: alloc__mem failed\n"));
 	// if (!init_rest(&phi, &code))
 	// 	return (herr_free(code, "main: init_rest failed\n", &phi));
 	// if (!create__philo_threads(&phi, &code))
@@ -51,27 +54,21 @@ print_parsed_args(param);
 	return (E_NONE);
 }
 
-// static bool alloc__mem(t_phi *phi, t_ecode *code)
-// {
-// 	long long	n;
-
-// 	n = phi->param.num_philos;
-// 	phi->philo = malloc(n * sizeof(t_philo));
-// 	phi->fork = malloc(n * sizeof(t_fork));
-// 	phi->perm.pattern = malloc(n * sizeof(bool));
-// 	if (phi->philo == NULL || phi->fork == NULL || phi->perm.pattern == NULL)
-// 	{
-// 		free(phi->philo);
-// 		free(phi->fork);
-// 		free(phi->perm.pattern);
-// 		phi->philo = NULL;
-// 		phi->fork = NULL;
-// 		phi->perm.pattern = NULL;
-// 		*code = E_ALLOC;
-// 		return (false);
-// 	}
-// 	return (true);
-// }
+static bool alloc__mem(t_phi *phi, int64_t n, t_ecode *code)
+{
+	phi->share.maestro->allows = malloc(n * sizeof(bool));
+	phi->mutab->fork = malloc(n * sizeof(pthread_mutex_t));
+	if (phi->share.maestro->allows == NULL || phi->mutab->fork == NULL)
+	{
+		free(phi->share.maestro->allows);
+		free(phi->mutab->fork);
+		phi->share.maestro->allows = NULL;
+		phi->mutab->fork = NULL;
+		*code = E_ALLOC;
+		return (false);
+	}
+	return (true);
+}
 
 // /**
 //  * @brief Joins all philiosophers threads
