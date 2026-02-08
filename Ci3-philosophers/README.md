@@ -182,3 +182,10 @@ Test with `perf` or `valgrind --tool=callgrind` to confirm; real perf hinges on 
 
 * I would likt to start the simulation with all philosophers thinking.
   Is there any problem with that subjectwise?
+
+## Must do before submission
+
+## Nice to do if time left
+
+* if everything works with `uint64_t`:
+  Kick out the few remainders of `long long` and rewrite also the parsing tools from libft to uint64.
