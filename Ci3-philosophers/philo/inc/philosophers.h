@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 11:05:22 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 11:52:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define _DEFAULT_SOURCE
 # include <pthread.h>           // pthread_create, ...
 # include <sys/time.h>          // gettimeofday
-//# include <limits.h>                                                  // LLONG_MAX
+# include <limits.h>            // LLONG_MAX
 # include <stdint.h>            // uint64_t
 # include <stdlib.h>            // malloc, free
 # include <unistd.h>            // STDERR_FILENO, ...
@@ -135,6 +135,7 @@ typedef struct s_time_to
 	int64_t	think;
 	int64_t	eat;
 	int64_t	sleep;
+	int64_t	die;
 }	t_time_to;
 
 typedef struct s_param
@@ -214,24 +215,21 @@ typedef struct s_err
 
 // *.c
 int			main(int argc, char **argv);
-bool		parse_args(int argc, char **argv, t_param *param, t_ecode *code);
-bool		init_rest(t_all *all, t_ecode *code);
-bool		create__philo_threads(t_all *all, t_ecode *code);
-void		*philo_alone_at_table(void *arg);
-void		*philo_fun(void *arg);
-void		wait_for(long long time);
-
-// philo_fun/*.c
-long long	hope_for_meal(t_philo *phi, long long t_starved);
-//          /zhared/*.c
-bool		is_simulation_ended(t_philo *phi);
-
-
-// error_handling/*.c
 int			herr(t_ecode code, const char *debug_info);
-int			herr_free(t_ecode code, const char *debug_info, t_all *all);
+int			herr_free(t_ecode code, const char *debug_info, t_phi *phi);
+bool		parse_args(int argc, char **argv, t_param *param, t_ecode *code);
+// bool		init_rest(t_phi *phi, t_ecode *code);
+// bool		create__philo_threads(t_phi *phi, t_ecode *code);
+// void		*philo_alone_at_table(void *arg);
+// void		*philo_fun(void *arg);
+// void		wait_for(long long time);
 
-//tools_libft/*.c
+// // philo_fun/*.c
+// long long	hope_for_meal(t_philo *phi, long long t_starved);
+// //          /zhared/*.c
+// bool		is_simulation_ended(t_philo *phi);
+
+// //tools_libft/*.c
 size_t		skip(char **pstr, const char *chars_to_skip);
 ssize_t		putstr_fd(const char *str, int fd);
 bool		is_in(char c, const char *str);
@@ -239,9 +237,9 @@ char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *s);
 long long	atoll_strict(const char *nptr, t_ecode *err_code);
 
-//tools_time/*.c
-void		wait_for(long long time_span);
-long long	gettimeofday_musec(void);
+// //tools_time/*.c
+// void		wait_for(long long time_span);
+// long long	gettimeofday_musec(void);
 
 ///////////////////////////
 //                       //
@@ -249,7 +247,7 @@ long long	gettimeofday_musec(void);
 //                       //
 ///////////////////////////
 void	print_parsed_args(t_param param);
-void	print_init_rest(t_all all);
+void	print_init_rest(t_phi phi);
 
 
 #endif

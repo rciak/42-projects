@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/05 08:57:51 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 11:35:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ bool	parse_args(int argc, char **argv, t_param *param, t_ecode *code)
 	err_code[3] = E_ATOLL_NO_ERR;
 	err_code[4] = E_ATOLL_NO_ERR;
 	param->num_philos = atoll_strict(argv[1], &err_code[0]);
-	param->tt_die = atoll_strict(argv[2], &err_code[1]);
-	param->tt_eat = atoll_strict(argv[3], &err_code[2]);
-	param->tt_sleep = atoll_strict(argv[4], &err_code[3]);
+	param->tt.die = atoll_strict(argv[2], &err_code[1]);
+	param->tt.eat = atoll_strict(argv[3], &err_code[2]);
+	param->tt.sleep = atoll_strict(argv[4], &err_code[3]);
 	param->meals_at_least = OMITTED_PARAM;
 	if (argc == 1 + 5)
 		param->meals_at_least = atoll_strict(argv[5], &err_code[4]);
@@ -76,21 +76,21 @@ static bool	values__ok(int argc, t_param *par, t_ecode *code)
 {
 	if (par->num_philos < 1)
 		return (*code = E_NUM_PHILOS_NOT_POS, false);
-	if (par->tt_die < 1)
+	if (par->tt.die < 1)
 		return (*code = E_TIME_TO_DIE_NOT_POS, false);
-	if (par->tt_eat < 1)
+	if (par->tt.eat < 1)
 		return (*code = E_TIME_TO_EAT_NOT_POS, false);
-	if (par->tt_sleep < 0)
+	if (par->tt.sleep < 0)
 		return (*code = E_TIME_TO_SLEEP_NEG, false);
 	if (argc == 1 + 5 && par->meals_at_least < 0)
 		return (*code = E_MAX_NUM_MEALS_NEG, false);
 	if (par->num_philos > MAX_NUM_PHILOS
-		|| par->tt_die > MAX_TT_DIE
-		|| par->tt_eat > MAX_TT_EAT
-		|| par->tt_sleep > MAX_TT_SLEEP
+		|| par->tt.die > MAX_TT_DIE
+		|| par->tt.eat > MAX_TT_EAT
+		|| par->tt.sleep > MAX_TT_SLEEP
 		|| (argc == 1 + 5 && par->meals_at_least > MAX_NUM_MEALS)
-		|| (par->tt_eat > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS)
-		|| (par->tt_sleep > ONE_HOUR_IN_MS && par->tt_die > ONE_HOUR_IN_MS))
+		|| (par->tt.eat > ONE_HOUR_IN_MS && par->tt.die > ONE_HOUR_IN_MS)
+		|| (par->tt.sleep > ONE_HOUR_IN_MS && par->tt.die > ONE_HOUR_IN_MS))
 		return (*code = E_DISRESPECT, false);
 	return (*code = E_NONE, true);
 }
