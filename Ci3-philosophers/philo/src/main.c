@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 13:39:29 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 15:55:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	// phi.perm.go = true;
 	// if (!join__philo_threads(&phi, &code))
 	// 	return (herr_free(code, "main: join__philo_threads failed\n", &phi));
-	// herr_free(E_NONE, "main: regular end", &phi);
+	herr_free(E_NONE, "main: regular end\n", &phi);
 	return (E_NONE);
 }
 
