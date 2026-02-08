@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2026/02/03 12:37:38 by reciak           ###   ########.fr        #
+#    Updated: 2026/02/08 12:04:08 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,9 +122,6 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
-
-.PHONY: bonus
-bonus: all
 
 .PHONY: _entry_message_compile
 _entry_message_compile:
