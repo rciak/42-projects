@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 15:55:47 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 18:51:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "philosophers.h"
 
-static bool alloc__mem(t_phi *phi, int64_t num_philos, t_ecode *code);
+static bool alloc__mem(t_all *all, int64_t n, t_ecode *code);
 // static bool join__philo_threads(t_phi *phi, t_ecode *code);
 
 /**
@@ -31,39 +31,36 @@ static bool alloc__mem(t_phi *phi, int64_t num_philos, t_ecode *code);
 int	main(int argc, char **argv)
 {
 	t_ecode		code;
-	t_param		param;
-	t_phi		phi;
-	t_maestro	maestro;
-	t_mutex_tab	mutab;
+	t_all		all;
 	
-	phi.share.maestro = &maestro;
-	phi.mutab = &mutab;
+	all.phi.share.maestro = &all.maestro;
 	code = E_NONE;
-	if (!parse_args(argc, argv, &param, &code))
+	if (!parse_args(argc, argv, &all.param, &code))
 		return (herr(code, "main: parse_args failed\n"));
-	if (!alloc__mem(&phi, param.num_philos, &code))
+print_parsed_args(all.param);
+	if (!alloc__mem(&all, all.param.num_philos, &code))
 		return (herr(code, "main: alloc__mem failed\n"));
-	// if (!init_rest(&phi, &code))
-	// 	return (herr_free(code, "main: init_rest failed\n", &phi));
+	// if (!init_most(&, &code))
+	// 	return (herr_free(code, "main: init_most failed\n", &phi));
 	// if (!create__philo_threads(&phi, &code))
 	// 	return (herr_free(code, "main: create__philo_threads failed\n", &phi));
 	// phi.perm.go = true;
 	// if (!join__philo_threads(&phi, &code))
 	// 	return (herr_free(code, "main: join__philo_threads failed\n", &phi));
-	herr_free(E_NONE, "main: regular end\n", &phi);
+	herr_free(E_NONE, "main: regular end\n", &all);
 	return (E_NONE);
 }
 
-static bool alloc__mem(t_phi *phi, int64_t n, t_ecode *code)
+static bool alloc__mem(t_all *all, int64_t n, t_ecode *code)
 {
-	phi->share.maestro->allows = malloc(n * sizeof(bool));
-	phi->mutab->fork = malloc(n * sizeof(pthread_mutex_t));
-	if (phi->share.maestro->allows == NULL || phi->mutab->fork == NULL)
+	all->phi.share.maestro->allows = malloc(n * sizeof(bool));
+	all->mutab.fork = malloc(n * sizeof(pthread_mutex_t));
+	if (all->phi.share.maestro->allows == NULL || all->mutab.fork == NULL)
 	{
-		free(phi->share.maestro->allows);
-		free(phi->mutab->fork);
-		phi->share.maestro->allows = NULL;
-		phi->mutab->fork = NULL;
+		free(all->phi.share.maestro->allows);
+		free(all->mutab.fork);
+		all->phi.share.maestro->allows = NULL;
+		all->mutab.fork = NULL;
 		*code = E_ALLOC;
 		return (false);
 	}

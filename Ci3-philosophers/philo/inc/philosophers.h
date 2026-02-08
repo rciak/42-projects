@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 13:29:07 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 19:26:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,9 @@ typedef enum e_error_code
 //                     //
 /////////////////////////
 
+//
+//  TIME  -intervals, -points, -duration
+//
 typedef struct s_interval
 {
 	int64_t	start;
@@ -128,47 +131,60 @@ typedef struct s_time
 	t_interval	eat;
 	t_interval	sleep;
 	int64_t		starved;
+	int64_t		init;
 }	t_time;
 
 typedef struct s_time_to
 {
-	int64_t	think;
 	int64_t	eat;
 	int64_t	sleep;
 	int64_t	die;
 }	t_time_to;
 
-typedef struct s_param
-{
-	t_time_to tt;
-	int64_t	num_philos;
-	int64_t	meals_at_least;
-}	t_param;
-
+//
+//  MEALS  per philo: How many and (if specified) how often to eat at least
+//
 typedef struct s_meals
 {
 	int64_t	eaten;
 	int64_t	min;
 }	t_meals;
 
+//
+//  PARAMETERS  for initial storage of command line parameters
+//
+typedef struct s_param
+{
+	t_time_to	tt;
+	int64_t		num_philos;
+	int64_t		meals_at_least;
+}	t_param;
+
+//
+//  PHILO I  To be copied to every thread's own stack for performance reasons
+//
 typedef struct s_phi_priv
 {
-	pthread_t	thread;
 	int64_t		id;
+	t_meals		meals;
 	t_time		t;
 	t_time_to	tt;
-	t_meals		meals;
-	int64_t		t_0;
 }	t_phi_priv;
 
 //
-// to be shared amongst (all or some) threads
+//  MAESTRO  organizing which philo may take forks
 //
 typedef struct s_maestro
 {
 	pthread_mutex_t	*mutex;
 	bool			*allows;
 }	t_maestro;
+
+//
+//  SQUAD_END  info to detect end of simulation reasons
+//             a) One philo starved: starved == true
+//             b) all have eaten the (optionally) required number of meals
+//                and don't like eating spaghetti anymore: num_pasta_lovers <= 0
 typedef struct s_squad_end
 {
 	pthread_mutex_t	*mutex;
@@ -176,13 +192,16 @@ typedef struct s_squad_end
 	int64_t			num_pasta_lovers;
 }	t_squad_end;
 
+//
+//  Pointers to  SHARED VARIABLES  used in each philosophers thread
+//
 typedef struct s_phi_share
 {
-	struct s_maestro	*maestro;
-	struct s_squad_end	*squad_end;
-	pthread_mutex_t		*lock_philos_till_start;
-	pthread_mutex_t		*left_fork;
-	pthread_mutex_t		*right_fork;
+	t_maestro		*maestro;
+	t_squad_end		*squad_end;
+	pthread_mutex_t	*lock_philos_till_start;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 }	t_phi_share;
 
 typedef struct	s_mutex_tab
@@ -198,8 +217,17 @@ typedef struct	phi
 {
 	t_phi_priv	priv;
 	t_phi_share	share;
-	t_mutex_tab	*mutab;
 }	t_phi;
+
+typedef struct	all
+{
+	t_param		param;
+	t_phi		phi;
+	t_maestro	maestro;
+	t_squad_end	squad_end;
+	t_mutex_tab	mutab;
+	pthread_t	*thread;
+}	t_all;
 
 typedef struct s_err
 {
@@ -216,9 +244,9 @@ typedef struct s_err
 // *.c
 int			main(int argc, char **argv);
 int			herr(t_ecode code, const char *debug_info);
-int			herr_free(t_ecode code, const char *debug_info, t_phi *phi);
+int			herr_free(t_ecode code, const char *debug_info, t_all *all);
 bool		parse_args(int argc, char **argv, t_param *param, t_ecode *code);
-// bool		init_rest(t_phi *phi, t_ecode *code);
+bool		init_most(t_phi *phi, t_ecode *code);
 // bool		create__philo_threads(t_phi *phi, t_ecode *code);
 // void		*philo_alone_at_table(void *arg);
 // void		*philo_fun(void *arg);
