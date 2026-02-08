@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/03 11:38:14 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 11:24:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 #include "philosophers.h"
 
-static bool	alloc__mem(t_all *all, t_ecode *code);
-static bool join__philo_threads(t_all *all, t_ecode *code);
+static bool	alloc__mem(t_phi *phi, t_ecode *code);
+static bool join__philo_threads(t_phi *phi, t_ecode *code);
 
 /**
  * @brief Entry point for philiosophers
@@ -31,40 +31,40 @@ static bool join__philo_threads(t_all *all, t_ecode *code);
 int	main(int argc, char **argv)
 {
 	t_ecode	code;
-	t_all	all;
+	t_phi	phi;
 
 	code = E_NONE;
-	if (!parse_args(argc, argv, &all.param, &code))
+	if (!parse_args(argc, argv, &phi.param, &code))
 		return (herr(code, "main: parse_args failed\n"));
-	if (!alloc__mem(&all, &code))
+	if (!alloc__mem(&phi, &code))
 		return (herr(code, "main: alloc__mem failed\n"));
-	if (!init_rest(&all, &code))
-		return (herr_free(code, "main: init_rest failed\n", &all));
-	if (!create__philo_threads(&all, &code))
-		return (herr_free(code, "main: create__philo_threads failed\n", &all));
-	all.perm.go = true;
-	if (!join__philo_threads(&all, &code))
-		return (herr_free(code, "main: join__philo_threads failed\n", &all));
-	herr_free(E_NONE, "main: regular end", &all);
+	if (!init_rest(&phi, &code))
+		return (herr_free(code, "main: init_rest failed\n", &phi));
+	if (!create__philo_threads(&phi, &code))
+		return (herr_free(code, "main: create__philo_threads failed\n", &phi));
+	phi.perm.go = true;
+	if (!join__philo_threads(&phi, &code))
+		return (herr_free(code, "main: join__philo_threads failed\n", &phi));
+	herr_free(E_NONE, "main: regular end", &phi);
 	return (E_NONE);
 }
 
-static bool alloc__mem(t_all *all, t_ecode *code)
+static bool alloc__mem(t_phi *phi, t_ecode *code)
 {
 	long long	n;
 
-	n = all->param.num_philos;
-	all->philo = malloc(n * sizeof(t_philo));
-	all->fork = malloc(n * sizeof(t_fork));
-	all->perm.pattern = malloc(n * sizeof(bool));
-	if (all->philo == NULL || all->fork == NULL || all->perm.pattern == NULL)
+	n = phi->param.num_philos;
+	phi->philo = malloc(n * sizeof(t_philo));
+	phi->fork = malloc(n * sizeof(t_fork));
+	phi->perm.pattern = malloc(n * sizeof(bool));
+	if (phi->philo == NULL || phi->fork == NULL || phi->perm.pattern == NULL)
 	{
-		free(all->philo);
-		free(all->fork);
-		free(all->perm.pattern);
-		all->philo = NULL;
-		all->fork = NULL;
-		all->perm.pattern = NULL;
+		free(phi->philo);
+		free(phi->fork);
+		free(phi->perm.pattern);
+		phi->philo = NULL;
+		phi->fork = NULL;
+		phi->perm.pattern = NULL;
 		*code = E_ALLOC;
 		return (false);
 	}
@@ -89,14 +89,14 @@ static bool alloc__mem(t_all *all, t_ecode *code)
  *       that Kerrisk demonstrated in Section 30.2.4 of this book
  *       "The Linux Programming Interface".
  */
-static bool join__philo_threads(t_all *all, t_ecode *code)
+static bool join__philo_threads(t_phi *phi, t_ecode *code)
 {
 	long long	i;
 	
 	i = 0;
-	while (i < all->param.num_philos)
+	while (i < phi->param.num_philos)
 	{
-		if (pthread_join(all->philo[i].thread, NULL) != 0)
+		if (pthread_join(phi->philo[i].thread, NULL) != 0)
 			return (*code = E_THREAD_JOIN, false);
 		i++;
 	}

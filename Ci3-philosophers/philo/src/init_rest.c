@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:43:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/06 11:59:36 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 11:22:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 #include "philosophers.h"
 
-static bool	init__forks(t_all *all, t_ecode *code);
-static void	init__perm(t_all *all);
+static bool	init__forks(t_phi *phi, t_ecode *code);
+static void	init__perm(t_phi *phi);
 
 /**
  * @brief Initialize all except all->philo (done during philo threads creation)
@@ -28,59 +28,59 @@ static void	init__perm(t_all *all);
  *          * true, if no error occured
  *          * false, if an error occured
  */
-bool	init_rest(t_all *all, t_ecode *code)
+bool	init_rest(t_phi *phi, t_ecode *code)
 {
-	if (!init__forks(all, code))
+	if (!init__forks(phi, code))
 		return (false);
-	init__perm(all);
-	all->dead = NO_DEAD;
-	all->still_loving_pasta = all->param.num_philos;
-	if (all->param.meals_at_least == OMITTED_PARAM)
-		all->still_loving_pasta = OMITTED_PARAM;
-	all->end_simul = false;
-	pthread_mutex_init(&all->lock_still_love_pasta, NULL);
-	pthread_mutex_init(&all->lock_dead, NULL);
-	pthread_mutex_init(&all->lock_end_simul, NULL);
-	pthread_mutex_init(&all->lock_philos_till_start, NULL);
+	init__perm(phi);
+	phi->dead = NO_DEAD;
+	phi->still_loving_pasta = phi->param.num_philos;
+	if (phi->param.meals_at_least == OMITTED_PARAM)
+		phi->still_loving_pasta = OMITTED_PARAM;
+	phi->end_simul = false;
+	pthread_mutex_init(&phi->lock_still_love_pasta, NULL);
+	pthread_mutex_init(&phi->lock_dead, NULL);
+	pthread_mutex_init(&phi->lock_end_simul, NULL);
+	pthread_mutex_init(&phi->lock_philos_till_start, NULL);
 	return (true);
 }
 
-static bool	init__forks(t_all *all, t_ecode *code)
+static bool	init__forks(t_phi *phi, t_ecode *code)
 {
 	long long	i;
 
 	i = 0;
-	while (i < all->param.num_philos)
+	while (i < phi->param.num_philos)
 	{
-		if (pthread_mutex_init(&all->fork[i].mutex, NULL) != 0)
+		if (pthread_mutex_init(&phi->fork[i].mutex, NULL) != 0)
 		{
 			*code = E_MUTEX_INIT;
 			return (false);
 		}
-		all->fork[i].in_hand = false;
+		phi->fork[i].in_hand = false;
 		i++;
 	}
 	return (true);
 }
 
-static void	init__perm(t_all *all)
+static void	init__perm(t_phi *phi)
 {
 	long long	n;
 	long long	i;
 
-	n = all->param.num_philos;
-	pthread_mutex_init(&all->perm.mutex, NULL);
-	all->perm.pattern[n - 1] = false;
-	all->perm.pattern[0] = true;
+	n = phi->param.num_philos;
+	pthread_mutex_init(&phi->perm.mutex, NULL);
+	phi->perm.pattern[n - 1] = false;
+	phi->perm.pattern[0] = true;
 	i = 0;
 	while (i < n - 1)
 	{
 		if (i % 2 == 0)
-			all->perm.pattern[i] = true;
+			phi->perm.pattern[i] = true;
 		else
-			all->perm.pattern[i] = false;
+			phi->perm.pattern[i] = false;
 		i++;
 	}
-	all->perm.shift = 0;
-	all->perm.go = false;
+	phi->perm.shift = 0;
+	phi->perm.go = false;
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 10:55:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 11:05:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,12 +193,12 @@ typedef struct	s_mutex_tab
 	pthread_mutex_t	*fork;
 }	t_mutex_tab;
 
-typedef struct	philo
+typedef struct	phi
 {
 	t_phi_priv	priv;
 	t_phi_share	shared;
 	t_mutex_tab	*mutab;
-}	t_philo;
+}	t_phi;
 
 typedef struct s_err
 {
