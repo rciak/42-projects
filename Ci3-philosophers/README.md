@@ -185,6 +185,8 @@ Test with `perf` or `valgrind --tool=callgrind` to confirm; real perf hinges on 
 
 ## Must do before submission
 
+* Test if low memory cause inproper error handling
+
 ## Nice to do if time left
 
 * if everything works with `uint64_t`:
