@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/07 17:24:42 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 10:55:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # ifndef DEBUG_PRINT
 #  define DEBUG_PRINT 0
 # endif
-// For transforming the time struct, returned by gettimeofday into microseconds
 # define ONE_HOUR_IN_MS 3600000
 # define ONE_SECOND_IN_US 1000000
 // Colors
@@ -117,21 +116,33 @@ typedef enum e_error_code
 //                     //
 /////////////////////////
 
-typedef struct s_param
+typedef struct s_interval
 {
-	long long	num_philos;
-	long long	tt_die;
-	long long	tt_eat;
-	long long	tt_sleep;
-	long long	meals_at_least;
-}	t_param;
+	int64_t	start;
+	int64_t	end;
+}	t_interval;
+
+typedef struct s_time
+{
+	t_interval	think;
+	t_interval	eat;
+	t_interval	sleep;
+	int64_t		starved;
+}	t_time;
 
 typedef struct s_time_to
 {
-	int64_t	die;
+	int64_t	think;
 	int64_t	eat;
 	int64_t	sleep;
 }	t_time_to;
+
+typedef struct s_param
+{
+	t_time_to tt;
+	int64_t	num_philos;
+	int64_t	meals_at_least;
+}	t_param;
 
 typedef struct s_meals
 {
@@ -139,46 +150,54 @@ typedef struct s_meals
 	int64_t	min;
 }	t_meals;
 
-typedef struct s_int_philo
+typedef struct s_phi_priv
 {
 	pthread_t	thread;
 	int64_t		id;
+	t_time		t;
 	t_time_to	tt;
 	t_meals		meals;
 	int64_t		t_0;
-}	t_int_philo;
+}	t_phi_priv;
 
 //
 // to be shared amongst (all or some) threads
 //
-struct	s_squad_end;
-struct	s_maestro;
+typedef struct s_maestro
+{
+	pthread_mutex_t	*mutex;
+	bool			*allows;
+}	t_maestro;
+typedef struct s_squad_end
+{
+	pthread_mutex_t	*mutex;
+	bool			starved;
+	int64_t			num_pasta_lovers;
+}	t_squad_end;
 
-typedef struct s_ext_philo
+typedef struct s_phi_share
 {
 	struct s_maestro	*maestro;
 	struct s_squad_end	*squad_end;
 	pthread_mutex_t		*lock_philos_till_start;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
-}	t_ext_philo;
+}	t_phi_share;
 
-typedef struct s_maestro
+typedef struct	s_mutex_tab
 {
-	pthread_mutex_t	mutex;
-	bool			*allows;
-}	t_maestro;
-typedef struct s_squad_end
-{
-	pthread_mutex_t	mutex;
-	bool			starved;
-	int64_t			num_pasta_lovers;
-}	t_squad_end;
+	pthread_mutex_t	maestro;
+	pthread_mutex_t	squad_end;
+	pthread_mutex_t	lock_philos_till_start;
+	pthread_mutex_t	lock_log;
+	pthread_mutex_t	*fork;
+}	t_mutex_tab;
 
 typedef struct	philo
 {
-	t_int_philo		in;
-	t_ext_philo		ex;
+	t_phi_priv	priv;
+	t_phi_share	shared;
+	t_mutex_tab	*mutab;
 }	t_philo;
 
 typedef struct s_err
@@ -186,12 +205,6 @@ typedef struct s_err
 	t_ecode	code;
 	char	*msg;
 }	t_err;
-
-typedef struct s_interval
-{
-	int64_t	start;
-	int64_t	end;
-}	t_interval;
 
 ////////////////////////////////////////////////
 //                                            //
