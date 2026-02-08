@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/06 12:20:13 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 11:26:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #include "philosophers.h"
 
-static void	set__philo_vars_except_thread_val_and_t_0(long long i, t_all *all);
-static bool	create__single_philo_thread(long long i, t_all *all);
-static void	set__philo_var_t_0(t_all *all);
+static void	set__philo_vars_except_thread_val_and_t_0(long long i, t_phi *phi);
+static bool	create__single_philo_thread(long long i, t_phi *phi);
+static void	set__philo_var_t_0(t_phi *phi);
 
 /**
  * @brief Creates the philosopher threads and inits the philo array
@@ -27,23 +27,23 @@ static void	set__philo_var_t_0(t_all *all);
  * @note Each philosopher's ID is set to its index + 1
  * @note latest_meal is intentionally left **uninitialized** here
  * @param[out] code A pointer for storing error codes
- * @param[in,out] all A pointer to the all-encompassing struct
+ * @param[in,out] phi A pointer to the all-encompassing struct
  * @return
  *          * true if all threads were created successfully
  *          * false if an error occurred (code is set accordingly)
  */
-bool	create__philo_threads(t_all *all, t_ecode *code)
+bool	create__philo_threads(t_phi *phi, t_ecode *code)
 {
 	bool		reval;
 	long long	i;
 
 	reval = true;
-	pthread_mutex_lock(&all->lock_philos_till_start);
+	pthread_mutex_lock(&phi->lock_philos_till_start);
 	i = 0;
-	while (i < all->param.num_philos)
+	while (i < phi->param.num_philos)
 	{
-		set__philo_vars_except_thread_val_and_t_0(i, all);
-		if (!create__single_philo_thread(i, all))
+		set__philo_vars_except_thread_val_and_t_0(i, phi);
+		if (!create__single_philo_thread(i, phi))
 		{
 			*code = E_THREAD_CREATE;
 			reval = false;
@@ -51,54 +51,54 @@ bool	create__philo_threads(t_all *all, t_ecode *code)
 		}
 		i++;
 	}
-	set__philo_var_t_0(all);
-	pthread_mutex_unlock(&all->lock_philos_till_start);
+	set__philo_var_t_0(phi);
+	pthread_mutex_unlock(&phi->lock_philos_till_start);
 	return (reval);
 }
 
-static void	set__philo_vars_except_thread_val_and_t_0(long long i, t_all *all)
+static void	set__philo_vars_except_thread_val_and_t_0(long long i, t_phi *phi)
 {
-	all->philo[i].id = i + 1;
-	all->philo[i].perm = &all->perm;
-	all->philo[i].lock_philos_till_start = &all->lock_philos_till_start;
-	all->philo[i].dead = &all->dead;
-	all->philo[i].lock_dead = &all->lock_dead;
-	all->philo[i].still_love_pasta = &all->still_loving_pasta;
-	all->philo[i].lock_still_love_pasta = &all->lock_still_love_pasta;
-	all->philo[i].end_simul = &all->end_simul;
-	all->philo[i].lock_end_simul = &all->lock_end_simul;
-	all->philo[i].ended_meals = 0;
-	all->philo[i].num_philos = all->param.num_philos;
-	all->philo[i].tt_die = all->param.tt_die;
-	all->philo[i].tt_eat = all->param.tt_eat;
-	all->philo[i].tt_sleep = all->param.tt_sleep;
-	all->philo[i].meals_at_least = all->param.meals_at_least;
+	phi->philo[i].id = i + 1;
+	phi->philo[i].perm = &phi->perm;
+	phi->philo[i].lock_philos_till_start = &phi->lock_philos_till_start;
+	phi->philo[i].dead = &phi->dead;
+	phi->philo[i].lock_dead = &phi->lock_dead;
+	phi->philo[i].still_love_pasta = &phi->still_loving_pasta;
+	phi->philo[i].lock_still_love_pasta = &phi->lock_still_love_pasta;
+	phi->philo[i].end_simul = &phi->end_simul;
+	phi->philo[i].lock_end_simul = &phi->lock_end_simul;
+	phi->philo[i].ended_meals = 0;
+	phi->philo[i].num_philos = phi->param.num_philos;
+	phi->philo[i].tt_die = phi->param.tt_die;
+	phi->philo[i].tt_eat = phi->param.tt_eat;
+	phi->philo[i].tt_sleep = phi->param.tt_sleep;
+	phi->philo[i].meals_at_least = phi->param.meals_at_least;
 }
 
-static bool	create__single_philo_thread(long long i, t_all *all)
+static bool	create__single_philo_thread(long long i, t_phi *phi)
 {
 	void		*(*start_function)(void *);
 
-	if (all->param.num_philos == 1)
+	if (phi->param.num_philos == 1)
 		start_function = &philo_alone_at_table;
 	else
 		start_function = &philo_fun;
-	if (0 != pthread_create(&all->philo[i].thread, NULL, start_function,
-			(void *)(all->philo + i)))
+	if (0 != pthread_create(&phi->philo[i].thread, NULL, start_function,
+			(void *)(phi->philo + i)))
 		return (false);
 	return (true);
 }
 
-static void	set__philo_var_t_0(t_all *all)
+static void	set__philo_var_t_0(t_phi *phi)
 {
 	long long	simulation_start;
 	long long	i;
 
 	simulation_start = gettimeofday_musec();
 	i = 0;
-	while (i < all->param.num_philos)
+	while (i < phi->param.num_philos)
 	{
-		all->philo[i].t_0 = simulation_start;
+		phi->philo[i].t_0 = simulation_start;
 		i++;
 	}
 }

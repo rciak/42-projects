@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/06 11:50:21 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 11:18:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
  * @param[in] debug_info, a debug message (might be NULL or "")
  * @return \p code
  */
-int	herr_free(t_ecode code, const char *debug_info, t_all *all)
+int	herr_free(t_ecode code, const char *debug_info, t_phi *phi)
 {
-	free(all->philo);
-	free(all->fork);
-	free(all->perm.pattern);
-	pthread_mutex_destroy(&all->perm.mutex);
-	pthread_mutex_destroy(&all->lock_philos_till_start);
-	pthread_mutex_destroy(&all->lock_dead);
-	pthread_mutex_destroy(&all->lock_end_simul);
-	pthread_mutex_destroy(&all->lock_still_love_pasta);
+	free(phi->philo);
+	free(phi->fork);
+	free(phi->perm.pattern);
+	pthread_mutex_destroy(&phi->perm.mutex);
+	pthread_mutex_destroy(&phi->lock_philos_till_start);
+	pthread_mutex_destroy(&phi->lock_dead);
+	pthread_mutex_destroy(&phi->lock_end_simul);
+	pthread_mutex_destroy(&phi->lock_still_love_pasta);
 	return (herr(code, debug_info));
 }

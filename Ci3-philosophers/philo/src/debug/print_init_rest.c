@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 16:34:57 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/16 16:13:22 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 11:25:39 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 #include <stdio.h>
 #include "debug.h"
 
-static void	print_forks(t_all all);
-static void	print_perm(t_all all);
+static void	print_forks(t_phi phi);
+static void	print_perm(t_phi phi);
 
-void print_init_rest(t_all all)
+void print_init_rest(t_phi phi)
 {
 	printf("\n");
-	print_forks(all);
+	print_forks(phi);
 	printf("\n");
-	print_perm(all);
+	print_perm(phi);
 
 	printf("\ndead: \n");
-	if (all.dead == NO_DEAD)
+	if (phi.dead == NO_DEAD)
 		printf("  ✅ no dead philo yet\n");
 	else
-		printf("  ❌ dead philo: %lli\n", all.dead);
+		printf("  ❌ dead philo: %lli\n", phi.dead);
 
 }
 
-static void	print_forks(t_all all)
+static void	print_forks(t_phi phi)
 {
 	long long	i;
 
 	printf("fork ~> permission to take:\n");
 	i = 0;
-	while (i < all.param.num_philos)
+	while (i < phi.param.num_philos)
 	{
 		printf("%4lld: ", i);
-		if (all.fork[i].in_hand == true)
+		if (phi.fork[i].in_hand == true)
 			printf("H - In hand\n");
 		else
 			printf("T - On table\n");
@@ -49,23 +49,23 @@ static void	print_forks(t_all all)
 	}
 }
 
-static void	print_perm(t_all all)
+static void	print_perm(t_phi phi)
 {
 	long long	i;
 
 	printf("perm:\n");
 	i = 0;
-	while (i < all.param.num_philos)
+	while (i < phi.param.num_philos)
 	{
 		printf("%4lld: ", i);
-		if (all.perm.pattern[i] == true)
+		if (phi.perm.pattern[i] == true)
 			printf("   ✅\n");
 		else
 			printf("   ❌\n");
 		i++;
 	}
-	printf("  shift: %lld\n", all.perm.shift);
-	if (all.perm.go == true)
+	printf("  shift: %lld\n", phi.perm.shift);
+	if (phi.perm.go == true)
 		printf("  go:    true\n");
 	else
 		printf("  go:    false\n");
