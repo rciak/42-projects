@@ -175,3 +175,10 @@ Each core rapidly cycles through ~50 threads via context switches, but local sta
 Copying to 201 stacks is still cheap upfront (~few μs total), but oversubscription itself kills scalability—throughput drops vs. 4 threads.  
 For huge \(n\) (e.g., >100KB/thread), per-thread heap allocation beats stack to avoid overflows, but principle holds: private copy > shared lock.  
 Test with `perf` or `valgrind --tool=callgrind` to confirm; real perf hinges on your workload's read frequency.
+
+# TEMPORARY APPENDIX
+
+## Questions to discuss
+
+* I would likt to start the simulation with all philosophers thinking.
+  Is there any problem with that subjectwise?
