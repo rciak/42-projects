@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 11:52:56 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/08 13:29:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ typedef struct	s_mutex_tab
 typedef struct	phi
 {
 	t_phi_priv	priv;
-	t_phi_share	shared;
+	t_phi_share	share;
 	t_mutex_tab	*mutab;
 }	t_phi;
 
