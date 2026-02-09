@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 19:26:51 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 09:29:49 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,17 +161,6 @@ typedef struct s_param
 }	t_param;
 
 //
-//  PHILO I  To be copied to every thread's own stack for performance reasons
-//
-typedef struct s_phi_priv
-{
-	int64_t		id;
-	t_meals		meals;
-	t_time		t;
-	t_time_to	tt;
-}	t_phi_priv;
-
-//
 //  MAESTRO  organizing which philo may take forks
 //
 typedef struct s_maestro
@@ -182,9 +171,10 @@ typedef struct s_maestro
 
 //
 //  SQUAD_END  info to detect end of simulation reasons
-//             a) One philo starved: starved == true
-//             b) all have eaten the (optionally) required number of meals
-//                and don't like eating spaghetti anymore: num_pasta_lovers <= 0
+//
+//      a) One philo starved: starved == true
+//      b) all have eaten the (optionally) required number of meals
+//         and don't like eating spaghetti anymore: num_pasta_lovers <= 0
 typedef struct s_squad_end
 {
 	pthread_mutex_t	*mutex;
@@ -193,19 +183,11 @@ typedef struct s_squad_end
 }	t_squad_end;
 
 //
-//  Pointers to  SHARED VARIABLES  used in each philosophers thread
+//  MUTEX_TAB  stores all mutexes, in particular all forks
 //
-typedef struct s_phi_share
-{
-	t_maestro		*maestro;
-	t_squad_end		*squad_end;
-	pthread_mutex_t	*lock_philos_till_start;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-}	t_phi_share;
-
 typedef struct	s_mutex_tab
 {
+	pthread_mutex_t safe_cp;
 	pthread_mutex_t	maestro;
 	pthread_mutex_t	squad_end;
 	pthread_mutex_t	lock_philos_till_start;
@@ -213,22 +195,54 @@ typedef struct	s_mutex_tab
 	pthread_mutex_t	*fork;
 }	t_mutex_tab;
 
-typedef struct	phi
+//
+//  SAVE_CP  For save copying from the main thread to other threads
+//
+//      Allows the start function (of form `start(t_all *all)`) of a thread
+//      to synchronize with the thread creating function of the main thread
+//      allowing safe copying from the all struct object in main.
+typedef struct	s_save_cp
 {
-	t_phi_priv	priv;
-	t_phi_share	share;
-}	t_phi;
+	pthread_mutex_t	*mutex;
+	bool			just_created_thread_has_copied;
+}	t_safe_cp;
 
+//
+//  CORE STRUCT I:  For main thread
+//
 typedef struct	all
-{
+{	
+	t_safe_cp	safe_cp;
 	t_param		param;
-	t_phi		phi;
 	t_maestro	maestro;
 	t_squad_end	squad_end;
 	t_mutex_tab	mutab;
 	pthread_t	*thread;
 }	t_all;
 
+//
+//  CORE STRUCT II:  For philo threads 
+// 
+//      Except for `t`imepoints the entries shall be copied over at the start of
+//      a philo thread via the t_all *all pointer given to its start function.
+//
+typedef struct	s_philo
+{
+	t_time			t;
+	t_time_to		tt;
+	int64_t			id;
+	t_meals			meals;
+	t_maestro		*maestro;
+	t_squad_end		*squad_end;
+	pthread_mutex_t	*lock_philos_till_start;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+
+}	t_philo;
+
+//
+//  ERROR HANDLING:  Error code  and  error message
+//
 typedef struct s_err
 {
 	t_ecode	code;
@@ -246,7 +260,7 @@ int			main(int argc, char **argv);
 int			herr(t_ecode code, const char *debug_info);
 int			herr_free(t_ecode code, const char *debug_info, t_all *all);
 bool		parse_args(int argc, char **argv, t_param *param, t_ecode *code);
-bool		init_most(t_phi *phi, t_ecode *code);
+// bool		init_most(t_phi *phi, t_ecode *code);
 // bool		create__philo_threads(t_phi *phi, t_ecode *code);
 // void		*philo_alone_at_table(void *arg);
 // void		*philo_fun(void *arg);
@@ -275,7 +289,7 @@ long long	atoll_strict(const char *nptr, t_ecode *err_code);
 //                       //
 ///////////////////////////
 void	print_parsed_args(t_param param);
-void	print_init_rest(t_phi phi);
+//void	print_init_rest(t_all all);
 
 
 #endif
