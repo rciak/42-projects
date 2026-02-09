@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 16:58:52 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 17:27:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,18 @@ typedef struct s_squad_end
 }	t_squad_end;
 
 //
+//  SAVE_CP  For save copying from the main thread to other threads
+//
+//      Allows the start function (of form `start(t_all *all)`) of a thread
+//      to synchronize with the thread creating function of the main thread
+//      allowing save copying from the all struct object in main.
+typedef struct	s_save_cp
+{
+	pthread_mutex_t	*mutex;
+	bool			just_created_thread_has_copied;
+}	t_save_cp;
+
+//
 //  MUTEX_TAB  stores all mutexes, in particular all forks
 //
 typedef struct	s_mutex_tab
@@ -206,27 +218,15 @@ typedef struct	s_mutex_tab
 }	t_mutex_tab;
 
 //
-//  SAVE_CP  For save copying from the main thread to other threads
-//
-//      Allows the start function (of form `start(t_all *all)`) of a thread
-//      to synchronize with the thread creating function of the main thread
-//      allowing save copying from the all struct object in main.
-typedef struct	s_save_cp
-{
-	pthread_mutex_t	*mutex;
-	bool			just_created_thread_has_copied;
-}	t_save_cp;
-
-//
 //  CORE STRUCT I:  For main thread
 //
 typedef struct	all
 {	
-	t_save_cp	save_cp;
 	t_param		param;
 	t_fork_perm	perm;
 	t_maestro	maestro;
 	t_squad_end	squad_end;
+	t_save_cp	save_cp;
 	t_mutex_tab	mutab;
 	pthread_t	*thread;
 }	t_all;
@@ -248,7 +248,6 @@ typedef struct	s_philo
 	pthread_mutex_t	*lock_philos_till_start;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-
 }	t_philo;
 
 //
