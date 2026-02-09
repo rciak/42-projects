@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 09:35:18 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 12:30:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #include "philosophers.h"
 
+static void	destroy__mutexes(t_all *all);
+
 /**
  * @brief herr() plus additional freeing of heap allocated mem
  * @param[in] code, an error code defined in philosophers.h
@@ -26,15 +28,27 @@
  */
 int	herr_free(t_ecode code, const char *debug_info, t_all *all)
 {
+	if (code != E_MUTEX_INIT)
+		destroy__mutexes(all);
 	free(all->maestro.allows);
 	free(all->mutab.fork);
-
-
-	
-	// pthread_mutex_destroy(&all->mutab.perm);
-	// pthread_mutex_destroy(&all->mutab.lock_philos_till_start);
-	// pthread_mutex_destroy(&all->mutab.lock_dead);
-	// pthread_mutex_destroy(&all->mutab.lock_end_simul);
-	// pthread_mutex_destroy(&all->mutab.lock_still_love_pasta);
+	free(all->thread);
 	return (herr(code, debug_info));
+}
+
+static void	destroy__mutexes(t_all *all)
+{
+	int64_t	i;
+
+	pthread_mutex_destroy(&all->mutab.safe_cp);
+	pthread_mutex_destroy(&all->mutab.maestro);
+	pthread_mutex_destroy(&all->mutab.squad_end);
+	pthread_mutex_destroy(&all->mutab.lock_philos_till_start);
+	pthread_mutex_destroy(&all->mutab.lock_log);
+	i = 0;
+	while (i < all->param.num_philos)
+	{
+		pthread_mutex_destroy(all->mutab.fork + i);
+		i++;
+	}
 }
