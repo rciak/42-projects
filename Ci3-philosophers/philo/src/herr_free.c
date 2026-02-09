@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 12:30:03 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 14:59:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	herr_free(t_ecode code, const char *debug_info, t_all *all)
 {
 	if (code != E_MUTEX_INIT)
 		destroy__mutexes(all);
+	free(all->perm.pattern);
 	free(all->maestro.allows);
 	free(all->mutab.fork);
 	free(all->thread);
