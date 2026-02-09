@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/08 18:51:35 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 09:25:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(int argc, char **argv)
 	t_ecode		code;
 	t_all		all;
 	
-	all.phi.share.maestro = &all.maestro;
 	code = E_NONE;
 	if (!parse_args(argc, argv, &all.param, &code))
 		return (herr(code, "main: parse_args failed\n"));
@@ -53,13 +52,13 @@ print_parsed_args(all.param);
 
 static bool alloc__mem(t_all *all, int64_t n, t_ecode *code)
 {
-	all->phi.share.maestro->allows = malloc(n * sizeof(bool));
+	all->maestro.allows = malloc(n * sizeof(bool));
 	all->mutab.fork = malloc(n * sizeof(pthread_mutex_t));
-	if (all->phi.share.maestro->allows == NULL || all->mutab.fork == NULL)
+	if (all->maestro.allows == NULL || all->mutab.fork == NULL)
 	{
-		free(all->phi.share.maestro->allows);
+		free(all->maestro.allows);
 		free(all->mutab.fork);
-		all->phi.share.maestro->allows = NULL;
+		all->maestro.allows = NULL;
 		all->mutab.fork = NULL;
 		*code = E_ALLOC;
 		return (false);
