@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 09:25:36 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 12:30:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 #include "philosophers.h"
 
-static bool alloc__mem(t_all *all, int64_t n, t_ecode *code);
+static bool	alloc__mem(t_all *all, int64_t n, t_ecode *code);
+static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code);
+static bool	init___forks(pthread_mutex_t *fork, int64_t n, t_ecode *code);
 // static bool join__philo_threads(t_phi *phi, t_ecode *code);
 
 /**
@@ -36,9 +38,10 @@ int	main(int argc, char **argv)
 	code = E_NONE;
 	if (!parse_args(argc, argv, &all.param, &code))
 		return (herr(code, "main: parse_args failed\n"));
-print_parsed_args(all.param);
 	if (!alloc__mem(&all, all.param.num_philos, &code))
 		return (herr(code, "main: alloc__mem failed\n"));
+	if (!init__mutexes(&all.mutab, all.param.num_philos, &code))
+		return (herr_free(code, "main: init_mutexes failed\n", &all));
 	// if (!init_most(&, &code))
 	// 	return (herr_free(code, "main: init_most failed\n", &phi));
 	// if (!create__philo_threads(&phi, &code))
@@ -50,16 +53,62 @@ print_parsed_args(all.param);
 	return (E_NONE);
 }
 
+static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code)
+{
+	int				i;
+	int				entries_before_fork;
+	pthread_mutex_t	*mutex[5];
+	
+	entries_before_fork = 5;
+	mutex[0] = &mutab->safe_cp;
+	mutex[1] = &mutab->maestro;
+	mutex[2] = &mutab->squad_end;
+	mutex[3] = &mutab->lock_philos_till_start;
+	mutex[4] = &mutab->lock_log;
+	
+	i = 0;
+	while (i < entries_before_fork && pthread_mutex_init(mutex[i], NULL) == 0)
+		i++;
+	if (i < entries_before_fork)
+	{
+		while (i-- > 0)
+			pthread_mutex_destroy(mutex[i]);
+		return (*code = E_MUTEX_INIT, false);
+	}
+	if (!init___forks(&mutab->fork[0], n, code))
+		return (false);
+	return (true);
+}
+
+static bool	init___forks(pthread_mutex_t *fork, int64_t n, t_ecode *code)
+{
+	int64_t	i;
+
+	i = 0;
+	while (i < n && pthread_mutex_init(fork + i, NULL) == 0)
+		i++;
+	if (i < n)
+	{
+		while (i-- > 0)
+			pthread_mutex_destroy(fork + i);
+		return (*code = E_MUTEX_INIT, false);
+	}
+	return (true);
+}
+
 static bool alloc__mem(t_all *all, int64_t n, t_ecode *code)
 {
 	all->maestro.allows = malloc(n * sizeof(bool));
 	all->mutab.fork = malloc(n * sizeof(pthread_mutex_t));
+	all->thread = malloc(n * sizeof(pthread_t));
 	if (all->maestro.allows == NULL || all->mutab.fork == NULL)
 	{
 		free(all->maestro.allows);
 		free(all->mutab.fork);
+		free(all->thread);
 		all->maestro.allows = NULL;
 		all->mutab.fork = NULL;
+		all->thread = NULL;
 		*code = E_ALLOC;
 		return (false);
 	}
