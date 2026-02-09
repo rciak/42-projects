@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 12:30:40 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 17:09:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 		return (herr(code, "main: alloc__mem failed\n"));
 	if (!init__mutexes(&all.mutab, all.param.num_philos, &code))
 		return (herr_free(code, "main: init_mutexes failed\n", &all));
-	// if (!init_most(&, &code))
+	// if (!init_most(&all, &code))
 	// 	return (herr_free(code, "main: init_most failed\n", &phi));
 	// if (!create__philo_threads(&phi, &code))
 	// 	return (herr_free(code, "main: create__philo_threads failed\n", &phi));
@@ -51,6 +51,31 @@ int	main(int argc, char **argv)
 	// 	return (herr_free(code, "main: join__philo_threads failed\n", &phi));
 	herr_free(E_NONE, "main: regular end\n", &all);
 	return (E_NONE);
+}
+
+static bool alloc__mem(t_all *all, int64_t n, t_ecode *code)
+{
+	all->perm.pattern = malloc(n * sizeof(bool));
+	all->maestro.allows = malloc(n * sizeof(bool));
+	all->mutab.fork = malloc(n * sizeof(pthread_mutex_t));
+	all->thread = malloc(n * sizeof(pthread_t));
+	if (all->perm.pattern == NULL 
+		|| all->maestro.allows == NULL
+		|| all->mutab.fork == NULL
+		|| all->thread == NULL)
+	{
+		free(all->perm.pattern);
+		free(all->maestro.allows);
+		free(all->mutab.fork);
+		free(all->thread);
+		all->perm.pattern = NULL;
+		all->maestro.allows = NULL;
+		all->mutab.fork = NULL;
+		all->thread = NULL;
+		*code = E_ALLOC;
+		return (false);
+	}
+	return (true);
 }
 
 static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code)
@@ -92,25 +117,6 @@ static bool	init___forks(pthread_mutex_t *fork, int64_t n, t_ecode *code)
 		while (i-- > 0)
 			pthread_mutex_destroy(fork + i);
 		return (*code = E_MUTEX_INIT, false);
-	}
-	return (true);
-}
-
-static bool alloc__mem(t_all *all, int64_t n, t_ecode *code)
-{
-	all->maestro.allows = malloc(n * sizeof(bool));
-	all->mutab.fork = malloc(n * sizeof(pthread_mutex_t));
-	all->thread = malloc(n * sizeof(pthread_t));
-	if (all->maestro.allows == NULL || all->mutab.fork == NULL)
-	{
-		free(all->maestro.allows);
-		free(all->mutab.fork);
-		free(all->thread);
-		all->maestro.allows = NULL;
-		all->mutab.fork = NULL;
-		all->thread = NULL;
-		*code = E_ALLOC;
-		return (false);
 	}
 	return (true);
 }
