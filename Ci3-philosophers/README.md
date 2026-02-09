@@ -12,10 +12,17 @@
 
 ## AI usage
 
-In the Scope of this project, AI was used to clarify some of the upcoming
-technical questions and for documentation purposes. Regarding writing code,
-AI was intentionally used in limited forms, like intelligent autocompletion or
-occasionally during refactoring steps.
+### Summary
+
+In the Scope of this project, AI was used to *clarify* some of the upcoming
+**technical questions** and for **documentation purposes**.
+Regarding *writing code*, AI was intentionally used in *limited forms* (ensuring
+a better learning),
+like intelligent **autocompletion** or occasionally
+during **refactoring** steps.
+Also AI proved helpful in **preventing bugs** before they came to the code base.
+
+### Some examples
 
 In particular, AI was used as assistant for the following tasks:
 
