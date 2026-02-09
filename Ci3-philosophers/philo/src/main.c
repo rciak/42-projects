@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 17:09:19 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 18:04:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ int	main(int argc, char **argv)
 		return (herr(code, "main: alloc__mem failed\n"));
 	if (!init__mutexes(&all.mutab, all.param.num_philos, &code))
 		return (herr_free(code, "main: init_mutexes failed\n", &all));
-	// if (!init_most(&all, &code))
-	// 	return (herr_free(code, "main: init_most failed\n", &phi));
+	init_most(&all);
 	// if (!create__philo_threads(&phi, &code))
-	// 	return (herr_free(code, "main: create__philo_threads failed\n", &phi));
+	// 	return (herr_free(code, "main: create__philo_threads failed\n", &all));
 	// phi.perm.go = true;
 	// if (!join__philo_threads(&phi, &code))
-	// 	return (herr_free(code, "main: join__philo_threads failed\n", &phi));
+	// 	return (herr_free(code, "main: join__philo_threads failed\n", &all));
 	herr_free(E_NONE, "main: regular end\n", &all);
 	return (E_NONE);
 }

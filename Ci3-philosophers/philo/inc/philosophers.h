@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 17:27:23 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 18:06:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ typedef struct	all
 	t_fork_perm	perm;
 	t_maestro	maestro;
 	t_squad_end	squad_end;
-	t_save_cp	save_cp;
+	t_save_cp	safe_cp;
 	t_mutex_tab	mutab;
 	pthread_t	*thread;
 }	t_all;
@@ -270,7 +270,7 @@ int			main(int argc, char **argv);
 int			herr(t_ecode code, const char *debug_info);
 int			herr_free(t_ecode code, const char *debug_info, t_all *all);
 bool		parse_args(int argc, char **argv, t_param *param, t_ecode *code);
-// bool		init_most(t_phi *phi, t_ecode *code);
+void		init_most(t_all *all);
 // bool		create__philo_threads(t_phi *phi, t_ecode *code);
 // void		*philo_alone_at_table(void *arg);
 // void		*philo_fun(void *arg);

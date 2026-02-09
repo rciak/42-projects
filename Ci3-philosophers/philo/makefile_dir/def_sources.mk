@@ -2,6 +2,7 @@ SRCS := \
 src/debug/print_parsed_args.c \
 src/herr.c \
 src/herr_free.c \
+src/init_most.c \
 src/main.c \
 src/parse_args.c \
 src/tools_libft/atoll_strict.c \
