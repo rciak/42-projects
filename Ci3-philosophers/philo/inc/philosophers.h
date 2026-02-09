@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 12:52:08 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 14:48:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,14 +161,13 @@ typedef struct s_param
 }	t_param;
 
 //
-//  FORK_DISTRIBUTION  describing which philos may next take forks
+//  FORK_PERM  describing which philos may next take forks
 //
-typedef struct	s_fork_dist
+typedef struct	s_fork_perm
 {
 	bool		*pattern;
 	size_t		shift;
-}	t_fork_dist;
-
+}	t_fork_perm;
 
 //
 //  MAESTRO  organizing which philo may take forks
@@ -225,7 +224,7 @@ typedef struct	all
 {	
 	t_safe_cp	safe_cp;
 	t_param		param;
-	t_fork_dist	fork_dist;
+	t_fork_perm	fork_perm;
 	t_maestro	maestro;
 	t_squad_end	squad_end;
 	t_mutex_tab	mutab;
