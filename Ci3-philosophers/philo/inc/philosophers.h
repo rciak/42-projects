@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 14:48:14 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/09 16:58:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,21 +210,21 @@ typedef struct	s_mutex_tab
 //
 //      Allows the start function (of form `start(t_all *all)`) of a thread
 //      to synchronize with the thread creating function of the main thread
-//      allowing safe copying from the all struct object in main.
+//      allowing save copying from the all struct object in main.
 typedef struct	s_save_cp
 {
 	pthread_mutex_t	*mutex;
 	bool			just_created_thread_has_copied;
-}	t_safe_cp;
+}	t_save_cp;
 
 //
 //  CORE STRUCT I:  For main thread
 //
 typedef struct	all
 {	
-	t_safe_cp	safe_cp;
+	t_save_cp	save_cp;
 	t_param		param;
-	t_fork_perm	fork_perm;
+	t_fork_perm	perm;
 	t_maestro	maestro;
 	t_squad_end	squad_end;
 	t_mutex_tab	mutab;
