@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 18:04:57 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/11 12:14:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static bool	alloc__mem(t_all *all, int64_t n, t_ecode *code);
 static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code);
 static bool	init___forks(pthread_mutex_t *fork, int64_t n, t_ecode *code);
-// static bool join__philo_threads(t_phi *phi, t_ecode *code);
+static bool join__threads(t_all *phi, t_ecode *code);
 
 /**
  * @brief Entry point for philiosophers
@@ -43,11 +43,11 @@ int	main(int argc, char **argv)
 	if (!init__mutexes(&all.mutab, all.param.num_philos, &code))
 		return (herr_free(code, "main: init_mutexes failed\n", &all));
 	init_most(&all);
-	// if (!create__philo_threads(&phi, &code))
-	// 	return (herr_free(code, "main: create__philo_threads failed\n", &all));
-	// phi.perm.go = true;
-	// if (!join__philo_threads(&phi, &code))
-	// 	return (herr_free(code, "main: join__philo_threads failed\n", &all));
+	if (!create_threads(&all, &code))
+		return (herr_free(code, "main: create__philo_threads failed\n", &all));
+	all.maestro.go = true;
+	if (!join__threads(&all, &code))
+		return (herr_free(code, "main: Wtf: join__threads failed?!\n", &all));
 	herr_free(E_NONE, "main: regular end\n", &all);
 	return (E_NONE);
 }
@@ -57,20 +57,20 @@ static bool alloc__mem(t_all *all, int64_t n, t_ecode *code)
 	all->perm.pattern = malloc(n * sizeof(bool));
 	all->maestro.allows = malloc(n * sizeof(bool));
 	all->mutab.fork = malloc(n * sizeof(pthread_mutex_t));
-	all->thread = malloc(n * sizeof(pthread_t));
+	all->thread_span.thread = malloc(n * sizeof(pthread_t));
 	if (all->perm.pattern == NULL 
 		|| all->maestro.allows == NULL
 		|| all->mutab.fork == NULL
-		|| all->thread == NULL)
+		|| all->thread_span.thread == NULL)
 	{
 		free(all->perm.pattern);
 		free(all->maestro.allows);
 		free(all->mutab.fork);
-		free(all->thread);
+		free(all->thread_span.thread);
 		all->perm.pattern = NULL;
 		all->maestro.allows = NULL;
 		all->mutab.fork = NULL;
-		all->thread = NULL;
+		all->thread_span.thread = NULL;
 		*code = E_ALLOC;
 		return (false);
 	}
@@ -81,14 +81,15 @@ static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code)
 {
 	int				i;
 	int				entries_before_fork;
-	pthread_mutex_t	*mutex[5];
+	pthread_mutex_t	*mutex[6];
 	
-	entries_before_fork = 5;
+	entries_before_fork = 6;
 	mutex[0] = &mutab->safe_cp;
-	mutex[1] = &mutab->maestro;
-	mutex[2] = &mutab->squad_end;
-	mutex[3] = &mutab->lock_philos_till_start;
-	mutex[4] = &mutab->lock_log;
+	mutex[1] = &mutab->thread_span;
+	mutex[2] = &mutab->maestro;
+	mutex[3] = &mutab->squad_end;
+	mutex[4] = &mutab->lock_philos_till_start;
+	mutex[5] = &mutab->lock_log;
 	
 	i = 0;
 	while (i < entries_before_fork && pthread_mutex_init(mutex[i], NULL) == 0)
@@ -120,46 +121,41 @@ static bool	init___forks(pthread_mutex_t *fork, int64_t n, t_ecode *code)
 	return (true);
 }
 
-// /**
-//  * @brief Joins all philiosophers threads
-//  * @note This functions will join the philosopher threads in the order of their
-//  *       creation and not their order of termination.
-//  *       For a short time zombie threads might therefor be around
-//  *       till all philo threads have ended.
-//  * @note This should not be a problem though:
-//  *       The zombie threads should be quite short lived since all philo threads
-//  *       should end almost simultaneously.
-//  *       Even without this no problem should occur since
-//  *       after the initial creation of threads no more threads are created,
-//  *       so that a lack of available threads can occur only at the start
-//  *       of the program.
-//  * @note If the project would allow more functions from @c pthread.h then
-//  *       on could avoid getting many zombie threads fully by a technique
-//  *       that Kerrisk demonstrated in Section 30.2.4 of this book
-//  *       "The Linux Programming Interface".
-//  */
-// static bool join__philo_threads(t_phi *phi, t_ecode *code)
-// {
-// 	long long	i;
+/**
+ * @brief Joins all philiosophers threads
+ * @note This functions will join the philosopher threads in the order of their
+ *       creation and not their order of termination.
+ *       For a short time zombie threads might therefor be around
+ *       till all philo threads have ended.
+ * @note This should not be a problem though:
+ *       The zombie threads should be quite short lived since all philo threads
+ *       should end almost simultaneously.
+ *       Even without this no problem should occur since
+ *       after the initial creation of threads no more threads are created,
+ *       so that a lack of available threads can occur only at the start
+ *       of the program.
+ * @note If the project would allow more functions from @c pthread.h then
+ *       on could avoid getting many zombie threads fully by a technique
+ *       that Kerrisk demonstrated in Section 30.2.4 of this book
+ *       "The Linux Programming Interface".
+ */
+static bool join__threads(t_all *all, t_ecode *code)
+{
+	int64_t	i;
 	
-// 	i = 0;
-// 	while (i < phi->param.num_philos)
-// 	{
-// 		if (pthread_join(phi->philo[i].thread, NULL) != 0)
-// 			return (*code = E_THREAD_JOIN, false);
-// 		i++;
-// 	}
-// 	return (true);
-// }
+	if (pthread_join(all->thread_span.maestro_thread, NULL) != 0)
+		return (*code = E_THREAD_JOIN, false);
+	i = 0;
+	while (i < all->param.num_philos)
+	{
+		if (pthread_join(all->thread_span.thread[i], NULL) != 0)
+			return (*code = E_THREAD_JOIN, false);
+		i++;
+	}
+	return (true);
+}
 // //
 // //  Worüber ich mir noch klar werden muss:
-// //
-// //  ! Welche Ereignisse müssen erfasst werden, um korrekt zu printen?
-// //
-// //  ! Stop Simulation or at least Printing when a Philo died.
-// //  ! How to print / announce the dead of a Philo within 10 ms?
-// //
-// //  Wie Freigabe geschmeidig hinbekommen?
 // //
 // //  Wie Zeit gut messen? 
 // //    Philo wollen alle permanet die Uhrzeit abfragen...

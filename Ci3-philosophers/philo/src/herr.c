@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:54:03 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/03 11:39:19 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/11 12:05:19 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static t_err get___definition(int code)
 	{E_ALLOC, "Memory allocation failed\n"},
 	{E_MUTEX_INIT, "Mutex initialization failed\n"},
 	{E_THREAD_CREATE, "pthread_create failed\n"},
-	{E_THREAD_JOIN, "pthread_join failed\n"},
+	{E_THREAD_JOIN, "pthread_join failed? -> Not risking destroying mutexes\n"},
 	};
 
 	return (err[code]);

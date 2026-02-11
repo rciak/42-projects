@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 14:59:38 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/11 12:00:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static void	destroy__mutexes(t_all *all);
  */
 int	herr_free(t_ecode code, const char *debug_info, t_all *all)
 {
-	if (code != E_MUTEX_INIT)
+	if (code != E_MUTEX_INIT && code != E_THREAD_JOIN)
 		destroy__mutexes(all);
 	free(all->perm.pattern);
 	free(all->maestro.allows);
 	free(all->mutab.fork);
-	free(all->thread);
+	free(all->thread_span.thread);
 	return (herr(code, debug_info));
 }
 
@@ -42,6 +42,7 @@ static void	destroy__mutexes(t_all *all)
 	int64_t	i;
 
 	pthread_mutex_destroy(&all->mutab.safe_cp);
+	pthread_mutex_destroy(&all->mutab.thread_span);
 	pthread_mutex_destroy(&all->mutab.maestro);
 	pthread_mutex_destroy(&all->mutab.squad_end);
 	pthread_mutex_destroy(&all->mutab.lock_philos_till_start);

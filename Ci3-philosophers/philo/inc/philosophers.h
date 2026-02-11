@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/09 18:06:05 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/11 11:41:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <pthread.h>           // pthread_create, ...
 # include <sys/time.h>          // gettimeofday
 # include <limits.h>            // LLONG_MAX
-# include <stdint.h>            // uint64_t
+# include <stdint.h>            // int64_t
 # include <stdlib.h>            // malloc, free
 # include <unistd.h>            // STDERR_FILENO, ...
 # include <stdbool.h>           // true, false, ...
@@ -202,7 +202,21 @@ typedef struct	s_save_cp
 {
 	pthread_mutex_t	*mutex;
 	bool			just_created_thread_has_copied;
+	int64_t			idx;
 }	t_save_cp;
+
+//
+//  THREAD_SPAN
+//
+typedef struct	s_thread_span
+{
+	pthread_mutex_t	*mutex;
+	pthread_t		maestro_thread;
+	pthread_t		*thread;             //philo threads
+	bool			creating_failed;
+	int64_t			id_cur_philo;
+	int64_t			t_simulation_start;
+}	t_thread_span;
 
 //
 //  MUTEX_TAB  stores all mutexes, in particular all forks
@@ -210,6 +224,7 @@ typedef struct	s_save_cp
 typedef struct	s_mutex_tab
 {
 	pthread_mutex_t safe_cp;
+	pthread_mutex_t	thread_span;
 	pthread_mutex_t	maestro;
 	pthread_mutex_t	squad_end;
 	pthread_mutex_t	lock_philos_till_start;
@@ -220,15 +235,15 @@ typedef struct	s_mutex_tab
 //
 //  CORE STRUCT I:  For main thread
 //
-typedef struct	all
-{	
-	t_param		param;
-	t_fork_perm	perm;
-	t_maestro	maestro;
-	t_squad_end	squad_end;
-	t_save_cp	safe_cp;
-	t_mutex_tab	mutab;
-	pthread_t	*thread;
+typedef struct	s_all
+{
+	t_param			param;
+	t_fork_perm		perm;
+	t_maestro		maestro;
+	t_squad_end		squad_end;
+	t_save_cp		safe_cp;
+	t_mutex_tab		mutab;
+	t_thread_span	thread_span;
 }	t_all;
 
 //
@@ -271,9 +286,10 @@ int			herr(t_ecode code, const char *debug_info);
 int			herr_free(t_ecode code, const char *debug_info, t_all *all);
 bool		parse_args(int argc, char **argv, t_param *param, t_ecode *code);
 void		init_most(t_all *all);
-// bool		create__philo_threads(t_phi *phi, t_ecode *code);
-// void		*philo_alone_at_table(void *arg);
-// void		*philo_fun(void *arg);
+bool		create_threads(t_all *all, t_ecode *code);
+void		*philo_alone_at_table(void *arg);
+void		*philo_fun(void *arg);
+void		*maestro_fun(void *arg);
 // void		wait_for(long long time);
 
 // // philo_fun/*.c
@@ -281,7 +297,7 @@ void		init_most(t_all *all);
 // //          /zhared/*.c
 // bool		is_simulation_ended(t_philo *phi);
 
-// //tools_libft/*.c
+//tools_libft/*.c
 size_t		skip(char **pstr, const char *chars_to_skip);
 ssize_t		putstr_fd(const char *str, int fd);
 bool		is_in(char c, const char *str);
@@ -289,9 +305,16 @@ char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *s);
 long long	atoll_strict(const char *nptr, t_ecode *err_code);
 
-// //tools_time/*.c
-// void		wait_for(long long time_span);
-// long long	gettimeofday_musec(void);
+//tools_time/*.c
+void		wait_for(int64_t time_span);
+int64_t		gettimeofday_musec(void);
+
+//tools_threads/*.c
+void	set_bool(bool *var, bool value, pthread_mutex_t *mutex);
+bool	get_bool(bool *var, pthread_mutex_t *mutex);
+void	set_int64(int64_t *var, int64_t value, pthread_mutex_t *mutex);
+int64_t	get_int64(int64_t *var, pthread_mutex_t *mutex);
+
 
 ///////////////////////////
 //                       //
