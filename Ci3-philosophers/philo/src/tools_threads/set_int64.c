@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 11:05:07 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/11 11:14:11 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/11 11:19:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "philosophers.h"
 
 /**
- * @brief Mutex protected stetting of a int64_t variable (shared among threads)
+ * @brief Mutex protected stetting of an int64_t variable (shared among threads)
  */
 void	set_int64(int64_t *var, int64_t value, pthread_mutex_t *mutex)
 {
