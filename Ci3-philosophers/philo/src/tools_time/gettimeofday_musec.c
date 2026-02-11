@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:43:28 by reciak            #+#    #+#             */
-/*   Updated: 2026/01/15 20:06:17 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/10 18:46:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
  * @brief Get a timestamp from gettimeofday and converts it into microseconds
  * @return Time in microseconds that has passed since the Epoch.
  */
-long long	gettimeofday_musec(void)
+int64_t	gettimeofday_musec(void)
 {
-	long long		musec;
+	int64_t			musec;
 	struct timeval	pair;
 
 	(void) gettimeofday(&pair, NULL);
