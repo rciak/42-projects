@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 22:04:38 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/03 17:09:17 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/10 18:46:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
  *       (which is used only to reduce load on the CPU)
  * @param[in] time_span The time to elapse in microseconds
  */
-void	wait_for(long long time_span)
+void	wait_for(int64_t time_span)
 {
-	long long	start;
-	long long	end;
+	int64_t		start;
+	int64_t		end;
 	char		*warning;
 
 	start = gettimeofday_musec();
