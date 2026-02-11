@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:30:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/04 12:39:20 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/11 11:44:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@
 */
 void		*philo_alone_at_table(void *arg)
 {
-	(void) arg;
-	printf("philo_alone_at_table: Right now this is a dummy\n");
+	t_all *all;
+
+	all = (t_all *) arg;
+	pthread_mutex_lock(&all->mutab.lock_log);
+	printf("Dummy: In philo_alone_at_table: Dummy\n");
+	pthread_mutex_unlock(&all->mutab.lock_log);
 	return (NULL);
 }
