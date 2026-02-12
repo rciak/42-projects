@@ -18,7 +18,7 @@
 #include "philosophers.h"
 
 static bool	create__maestro_thread(t_all *all);
-static bool	create__philo_threads(t_all *all, bool *reval, t_ecode *code);
+static bool	create__philo_threads(t_all *all, t_ecode *code);
 static bool	create___single_philo_thread(int64_t i, t_all *all);
 static void	clear__threads(int64_t i, t_all *all);
 
@@ -42,13 +42,13 @@ bool	create_threads(t_all *all, t_ecode *code)
 		return (false);
 	set_bool(&all->thread_span.creating_failed, false,
 		all->thread_span.mutex);
-	reval =	create__philo_threads(all, &reval, code);
+	reval =	create__philo_threads(all, code);
 	all->thread_span.t_simulation_start = gettimeofday_musec();
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
 	return (reval);
 }
 
-static bool	create__philo_threads(t_all *all, bool *reval, t_ecode *code)
+static bool	create__philo_threads(t_all *all, t_ecode *code)
 {
 	int64_t	i;
 	
@@ -62,8 +62,7 @@ static bool	create__philo_threads(t_all *all, bool *reval, t_ecode *code)
 				all->thread_span.mutex);
 			clear__threads(i, all);
 			*code = E_THREAD_CREATE;
-			*reval = false;
-			break;
+			return (false);
 		}
 		i++;
 	}
