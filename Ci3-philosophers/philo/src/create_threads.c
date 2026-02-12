@@ -56,7 +56,10 @@ static bool	create__philo_threads(t_all *all, t_ecode *code)
 	while (i < all->param.num_philos)
 	{
 		set_int64(&all->thread_span.id_cur_philo, i,
-			all->thread_span.mutex);    // still not intended behaviour: It might theoretically happend that the main thread gets immidiately the lock again...
+			all->thread_span.mutex);
+			// DEMO: still not intended behaviour: 
+			// It might theoretically happen that the main thread gets 
+			// immidiately the lock again...
 		if (!create___single_philo_thread(i, all))
 		{
 			set_bool(&all->thread_span.creating_failed, true,
