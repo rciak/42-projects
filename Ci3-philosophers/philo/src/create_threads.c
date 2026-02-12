@@ -18,7 +18,8 @@
 #include "philosophers.h"
 
 static bool	create__maestro_thread(t_all *all);
-static bool	create__single_philo_thread(int64_t i, t_all *all);
+static bool	create__philo_threads(t_all *all, bool *reval, t_ecode *code);
+static bool	create___single_philo_thread(int64_t i, t_all *all);
 static void	clear__threads(int64_t i, t_all *all);
 
 /**
@@ -35,30 +36,38 @@ static void	clear__threads(int64_t i, t_all *all);
 bool	create_threads(t_all *all, t_ecode *code)
 {
 	bool	reval;
-	int64_t	i;
-
-	reval = true;
+	
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
 	if (!create__maestro_thread(all))
 		return (false);
-	set_bool(&all->thread_span.creating_failed, false, all->thread_span.mutex);
+	set_bool(&all->thread_span.creating_failed, false,
+		all->thread_span.mutex);
+	reval =	create__philo_threads(all, &reval, code);
+	all->thread_span.t_simulation_start = gettimeofday_musec();
+	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
+	return (reval);
+}
+
+static bool	create__philo_threads(t_all *all, bool *reval, t_ecode *code)
+{
+	int64_t	i;
+	
 	i = 0;
 	while (i < all->param.num_philos)
 	{
 		set_int64(&all->thread_span.id_cur_philo, i, all->thread_span.mutex);    // still not intended behaviour: It might theoretically happend that the main thread gets immidiately the lock again...
-		if (!create__single_philo_thread(i, all))
+		if (!create___single_philo_thread(i, all))
 		{
-			set_bool(&all->thread_span.creating_failed, true, all->thread_span.mutex);
+			set_bool(&all->thread_span.creating_failed, true,
+				all->thread_span.mutex);
 			clear__threads(i, all);
 			*code = E_THREAD_CREATE;
-			reval = false;
+			*reval = false;
 			break;
 		}
 		i++;
 	}
-	all->thread_span.t_simulation_start = gettimeofday_musec();
-	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
-	return (reval);
+	return (true);
 }
 
 static bool	create__maestro_thread(t_all *all)
@@ -69,7 +78,7 @@ static bool	create__maestro_thread(t_all *all)
 	return (true);
 }
 
-static bool	create__single_philo_thread(int64_t i, t_all *all)
+static bool	create___single_philo_thread(int64_t i, t_all *all)
 {
 	void		*(*start_function)(void *);
 
