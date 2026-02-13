@@ -20,6 +20,7 @@ src/tools_time/wait_for.c \
 src/tools_threads/get_bool.c \
 src/tools_threads/get_int64.c \
 src/tools_threads/set_bool.c \
-src/tools_threads/set_int64.c
+src/tools_threads/set_int64.c \
+src/tools_threads/wait_till_cond.c
 
 SRCS_BONUS := \

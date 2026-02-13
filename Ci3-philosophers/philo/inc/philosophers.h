@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/11 11:41:10 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/13 11:05:39 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ enum e_philosopers_int_constants
 	MAX_TT_DIE = ONE_HOUR_IN_MS,
 	MAX_TT_EAT = ONE_HOUR_IN_MS,
 	MAX_TT_SLEEP = ONE_HOUR_IN_MS,
+};
+
+enum e_reset_boolean_condition_var
+{
+	KEEP_STATE,
+	RESET_STATE,
 };
 
 /**
@@ -215,6 +221,7 @@ typedef struct	s_thread_span
 	pthread_t		*thread;             //philo threads
 	bool			creating_failed;
 	int64_t			id_cur_philo;
+	bool			copied_id_cur_philo;
 	int64_t			t_simulation_start;
 }	t_thread_span;
 
@@ -314,8 +321,7 @@ void	set_bool(bool *var, bool value, pthread_mutex_t *mutex);
 bool	get_bool(bool *var, pthread_mutex_t *mutex);
 void	set_int64(int64_t *var, int64_t value, pthread_mutex_t *mutex);
 int64_t	get_int64(int64_t *var, pthread_mutex_t *mutex);
-
-
+void	wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx, int act);
 ///////////////////////////
 //                       //
 //  X.  D E B U G I N G  //
