@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/13 11:05:39 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/13 12:50:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@
 //                               //
 ///////////////////////////////////
 
+/**
+ * @note The entry `COUNT_EVENT_TYPES` is not an event but special:
+ *       is used to count the number of acutal events.
+ *       Therefore it must stay as the last entry!
+ */
 enum e_events_to_log
 {
 	DIED,
@@ -70,6 +75,7 @@ enum e_events_to_log
 	TAKE_SECOND_FORK_EAT,
 	SLEEP,
 	THINK,
+	COUNT_EVENT_KINDS,
 };
 
 enum e_philosopers_int_constants
@@ -272,6 +278,12 @@ typedef struct	s_philo
 	pthread_mutex_t	*right_fork;
 }	t_philo;
 
+typedef struct	s_event
+{
+	pthread_mutex_t			*mutex;
+	enum e_events_to_log	kind;
+}	t_event;
+
 //
 //  ERROR HANDLING:  Error code  and  error message
 //
@@ -299,7 +311,8 @@ void		*philo_fun(void *arg);
 void		*maestro_fun(void *arg);
 // void		wait_for(long long time);
 
-// // philo_fun/*.c
+// philo_fun/*.c
+void log_event(t_event event, int64_t id, int64_t t_starved, t_squad_end s_end);
 // long long	hope_for_meal(t_philo *phi, long long t_starved);
 // //          /zhared/*.c
 // bool		is_simulation_ended(t_philo *phi);

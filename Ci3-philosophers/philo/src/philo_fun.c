@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/13 09:47:59 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/13 12:52:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,22 @@
 void	*philo_fun(void *arg)
 {
 	t_all			*all;
-	// long long		t_starved;
+	t_time			t;
 	// long long		t_meal_start;
 	int64_t			id;
+	pthread_mutex_t *mutex;
+	t_event			event[COUNT_EVENT_KINDS];
 
 	all = (t_all *) arg;
+	mutex = &all->mutab.lock_log;
+	event[DIED] = (t_event){mutex, DIED};
+	event[TAKE_FIRST_FORK] = (t_event){mutex, TAKE_FIRST_FORK};
+	event[TAKE_SECOND_FORK_EAT] = (t_event){mutex, TAKE_SECOND_FORK_EAT};
+	event[SLEEP] = (t_event){mutex, SLEEP};
+	event[THINK] = (t_event){mutex, THINK};
+	
+
+	//Copy id from main thread and inform waiting main thread, allowing to continue
 	set_int64(&id, all->thread_span.id_cur_philo,
 		all->thread_span.mutex);
 	set_bool(&all->thread_span.copied_id_cur_philo, true,
@@ -42,6 +53,29 @@ void	*philo_fun(void *arg)
 	pthread_mutex_lock(&all->mutab.lock_log);
 	printf("Dummy: In philo_fun: %lu\n", id);
 	pthread_mutex_unlock(&all->mutab.lock_log);
+usleep(100000 - id * 100);
+	t.starved = 0;
+	if (id % 4 == 0)
+	{
+		log_event(event[TAKE_FIRST_FORK], id, t.starved, all->squad_end);
+		log_event(event[TAKE_SECOND_FORK_EAT], id, t.starved, all->squad_end);
+		usleep(1000000);
+	}
+	if (id % 4 == 1)
+	{
+		log_event(event[SLEEP], id, t.starved, all->squad_end);
+		usleep(1000000);
+	}
+	if (id % 4 == 2)
+	{
+		log_event(event[TAKE_FIRST_FORK], id, t.starved, all->squad_end);
+		log_event(event[TAKE_SECOND_FORK_EAT], id, t.starved, all->squad_end);
+		usleep(1000000);
+	}
+
+
+	if (id == 198)
+		log_event(event[DIED], id, t.starved, all->squad_end);
 	
 	// t_starved = all->t_0 + all->tt_die;
 	// if (all->meals_at_least == 0)
