@@ -173,15 +173,6 @@ typedef struct s_param
 }	t_param;
 
 //
-//  FORK_PERM  describing which philos may next take forks
-//
-typedef struct	s_fork_perm
-{
-	bool		*pattern;
-	size_t		shift;
-}	t_fork_perm;
-
-//
 //  MAESTRO  organizing which philo may take forks
 //
 typedef struct s_maestro
@@ -205,17 +196,16 @@ typedef struct s_squad_end
 }	t_squad_end;
 
 //
-//  SAVE_CP  For save copying from the main thread to other threads
+//  SAFE_CP  Safe copying of initial data from the main thread to other threads
 //
 //      Allows the start function (of form `start(t_all *all)`) of a thread
 //      to synchronize with the thread creating function of the main thread
-//      allowing save copying from the all struct object in main.
-typedef struct	s_save_cp
+//      allowing safe copying from the all struct object in main to local vars.
+typedef struct	s_safe_cp
 {
 	pthread_mutex_t	*mutex;
 	bool			just_created_thread_has_copied;
-	int64_t			idx;
-}	t_save_cp;
+}	t_safe_cp;
 
 //
 //  THREAD_SPAN
@@ -251,10 +241,9 @@ typedef struct	s_mutex_tab
 typedef struct	s_all
 {
 	t_param			param;
-	t_fork_perm		perm;
 	t_maestro		maestro;
 	t_squad_end		squad_end;
-	t_save_cp		safe_cp;
+	t_safe_cp		safe_cp;
 	t_mutex_tab		mutab;
 	t_thread_span	thread_span;
 }	t_all;

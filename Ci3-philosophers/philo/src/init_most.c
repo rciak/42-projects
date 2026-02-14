@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:43:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/11 12:26:38 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/13 17:23:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "philosophers.h"
 
-static void	init__perm(t_all *all);
 static void	init__maestro(t_all *all);
 
 /**
@@ -30,7 +29,6 @@ static void	init__maestro(t_all *all);
  */
 void	init_most(t_all *all)
 {
-	init__perm(all);
 	init__maestro(all);
 	all->squad_end.mutex = &all->mutab.squad_end;
 	all->squad_end.starved = false;
@@ -42,28 +40,6 @@ void	init_most(t_all *all)
 	all->safe_cp.just_created_thread_has_copied = false;
 }
 
-
-static void	init__perm(t_all *all)
-{
-	int64_t	n;
-	int64_t	i;
-
-	n = all->param.num_philos;
-	
-	all->perm.pattern[n - 1] = false;
-	all->perm.pattern[0] = true;
-	i = 0;
-	while (i < n - 1)
-	{
-		if (i % 2 == 0)
-			all->perm.pattern[i] = true;
-		else
-			all->perm.pattern[i] = false;
-		i++;
-	}
-	all->perm.shift = 0;
-}
-
 static void	init__maestro(t_all *all)
 {
 	int64_t	i;
@@ -72,7 +48,7 @@ static void	init__maestro(t_all *all)
 	i = 0;
 	while (i < all->param.num_philos)
 	{
-		all->maestro.allows[i] = all->perm.pattern[i];
+		all->maestro.allows[i] = false;
 		i++;
 	}
 	all->maestro.go = false;
