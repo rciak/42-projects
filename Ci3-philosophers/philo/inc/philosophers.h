@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/13 12:50:52 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/14 23:03:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ enum e_events_to_log
 	TAKE_SECOND_FORK_EAT,
 	SLEEP,
 	THINK,
+DEBUG,
 	COUNT_EVENT_KINDS,
 };
 
@@ -301,7 +302,7 @@ void		*maestro_fun(void *arg);
 // void		wait_for(long long time);
 
 // philo_fun/*.c
-void log_event(t_event event, int64_t id, int64_t t_starved, t_squad_end s_end);
+void log_event(t_event event, int64_t id, int64_t t_starved, t_squad_end *s_end);
 // long long	hope_for_meal(t_philo *phi, long long t_starved);
 // //          /zhared/*.c
 // bool		is_simulation_ended(t_philo *phi);
