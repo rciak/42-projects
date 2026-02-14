@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/14 23:04:41 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/14 23:20:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void log_event(t_event event, int64_t id, int64_t t_starved, t_squad_end *s_end)
 	timestamp = gettimeofday_musec();
 	if (s_end->starved == true || s_end->num_pasta_lovers <= 0)
 		should_print = false;
+	// XXX NEED when other stuff is fully implemented
+	//if (timestamp >= t_starved)
+	//	event.kind = DIED;
 	if (event.kind == DIED)
 		s_end->starved = true;
 	pthread_mutex_unlock(s_end->mutex);
