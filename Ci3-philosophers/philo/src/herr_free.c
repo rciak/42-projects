@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 12:51:08 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 15:49:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	destroy__mutexes(t_all *all)
 {
 	int64_t	i;
 
-	pthread_mutex_destroy(&all->mutab.safe_init_cp);
 	pthread_mutex_destroy(&all->mutab.thread_span);
 	pthread_mutex_destroy(&all->mutab.maestro);
 	pthread_mutex_destroy(&all->mutab.squad_end);

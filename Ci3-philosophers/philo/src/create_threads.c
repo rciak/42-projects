@@ -47,6 +47,16 @@ bool	create_threads(t_all *all, t_ecode *code)
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
 	return (reval);
 }
+static bool	create__maestro_thread(t_all *all, t_ecode *code)				//Refactor: Position
+{
+	if (0 != pthread_create(&all->thread_span.maestro_thread, NULL,	maestro_fun,
+			(void *) all))
+	{
+		*code = E_THREAD_CREATE;
+		return (false);
+	}
+	return (true);
+}
 
 static bool	create__philo_threads(t_all *all, t_ecode *code)
 {
@@ -57,7 +67,7 @@ static bool	create__philo_threads(t_all *all, t_ecode *code)
 	{
 		set_int64(&all->thread_span.id_cur_philo, i,
 			all->thread_span.mutex);
-		set_bool(&all->thread_span.copied_id_cur_philo, false,
+		set_bool(&all->thread_span.new_thread_copied_vars, false,
 			all->thread_span.mutex);
 		if (!create___single_philo_thread(i, all))
 		{
@@ -67,20 +77,9 @@ static bool	create__philo_threads(t_all *all, t_ecode *code)
 			*code = E_THREAD_CREATE;
 			return (false);
 		}
-		wait_till_cond(&all->thread_span.copied_id_cur_philo, true,
+		wait_till_cond(&all->thread_span.new_thread_copied_vars, true,
 			all->thread_span.mutex, RESET_STATE);
 		i++;
-	}
-	return (true);
-}
-
-static bool	create__maestro_thread(t_all *all, t_ecode *code)				//Refactor: Position
-{
-	if (0 != pthread_create(&all->thread_span.maestro_thread, NULL,	maestro_fun,
-			(void *) all))
-	{
-		*code = E_THREAD_CREATE;
-		return (false);
 	}
 	return (true);
 }

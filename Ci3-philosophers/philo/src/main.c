@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 12:51:28 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 15:51:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,14 @@ static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code)
 {
 	int				i;
 	int				entries_before_fork;
-	pthread_mutex_t	*mutex[6];
+	pthread_mutex_t	*mutex[5];
 	
-	entries_before_fork = 6;
-	mutex[0] = &mutab->safe_init_cp;
-	mutex[1] = &mutab->thread_span;
-	mutex[2] = &mutab->maestro;
-	mutex[3] = &mutab->squad_end;
-	mutex[4] = &mutab->lock_philos_till_start;
-	mutex[5] = &mutab->lock_log;
+	entries_before_fork = 5;
+	mutex[0] = &mutab->thread_span;
+	mutex[1] = &mutab->maestro;
+	mutex[2] = &mutab->squad_end;
+	mutex[3] = &mutab->lock_philos_till_start;
+	mutex[4] = &mutab->lock_log;
 	
 	i = 0;
 	while (i < entries_before_fork && pthread_mutex_init(mutex[i], NULL) == 0)

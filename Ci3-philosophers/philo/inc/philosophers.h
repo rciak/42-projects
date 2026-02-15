@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 13:50:30 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 15:57:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,18 +197,6 @@ typedef struct s_squad_end
 }	t_squad_end;
 
 //
-//  SAFE_CP  Safe copying of initial data from the main thread to other threads
-//
-//      Allows the start function (of form `start(t_all *all)`) of a thread
-//      to synchronize with the thread creating function of the main thread
-//      allowing safe copying from the all struct object in main to local vars.
-typedef struct	s_safe_init_cp
-{
-	pthread_mutex_t	*mutex;
-	bool			just_created_thread_has_copied;
-}	t_safe_init_cp;
-
-//
 //  THREAD_SPAN
 //
 typedef struct	s_thread_span
@@ -217,8 +205,8 @@ typedef struct	s_thread_span
 	pthread_t		maestro_thread;
 	pthread_t		*thread;             //philo threads
 	bool			creating_failed;
+	bool			new_thread_copied_vars;
 	int64_t			id_cur_philo;
-	bool			copied_id_cur_philo;
 	int64_t			t_simulation_start;
 }	t_thread_span;
 
@@ -227,7 +215,6 @@ typedef struct	s_thread_span
 //
 typedef struct	s_mutex_tab
 {
-	pthread_mutex_t safe_init_cp;
 	pthread_mutex_t	thread_span;
 	pthread_mutex_t	maestro;
 	pthread_mutex_t	squad_end;
@@ -241,7 +228,6 @@ typedef struct	s_mutex_tab
 //
 typedef struct	s_all
 {
-	t_safe_init_cp	safe_init_cp;
 	t_param			param;
 	t_maestro		maestro;
 	t_squad_end		squad_end;

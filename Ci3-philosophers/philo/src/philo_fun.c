@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 14:04:43 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 16:11:56 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,22 @@
 void	*philo_fun(void *arg)
 {
 	t_all			*all;
-	t_philo			philo;
-	t_time			t;
-	// long long		t_meal_start;
+	t_philo			phi;
+	t_time			*t;
 	int64_t			id;
-	pthread_mutex_t *mutex;
+
 	t_event			event[COUNT_EVENT_KINDS];
 
 	all = (t_all *) arg;
-
+	t = &phi.t;
 	//Copy id from main thread and inform waiting main thread, allowing to continue
 	set_int64(&id, all->thread_span.id_cur_philo,
 		all->thread_span.mutex);
-	set_bool(&all->thread_span.copied_id_cur_philo, true,
-		all->thread_span.mutex);
+	// copy__vars(all, &id, &phi)
+	set_bool(&all->thread_span.new_thread_copied_vars, true,
+		all->thread_span.mutex);                                  //CAUTION: NEED EXTENSION LATER
 
+	pthread_mutex_t *mutex;
 	mutex = &all->mutab.lock_log;
 	event[DIED] = (t_event){mutex, DIED};
 	event[TAKE_FIRST_FORK] = (t_event){mutex, TAKE_FIRST_FORK};
@@ -56,7 +57,7 @@ event[DEBUG] = (t_event){mutex, DEBUG};
 	pthread_mutex_lock(&all->mutab.lock_log);
 	printf("\t\t\t\t\tDummy: philo_fun: %lu\n", id + 1);
 	pthread_mutex_unlock(&all->mutab.lock_log);
-t.starved = 0;
+t->starved = 0;
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
 	if (all->thread_span.creating_failed)
 		return (NULL);
@@ -66,30 +67,30 @@ t.starved = 0;
 	// 	return (NULL);
 
 
-	log_event(event[DEBUG], id, t.starved, &all->squad_end);
+	log_event(event[DEBUG], id, t->starved, &all->squad_end);
 
 //usleep(100000 - id * 100);
 	if (id % 4 == 0)
 	{
-		log_event(event[TAKE_FIRST_FORK], id, t.starved, &all->squad_end);
-		log_event(event[TAKE_SECOND_FORK_EAT], id, t.starved, &all->squad_end);
+		log_event(event[TAKE_FIRST_FORK], id, t->starved, &all->squad_end);
+		log_event(event[TAKE_SECOND_FORK_EAT], id, t->starved, &all->squad_end);
 		//usleep(1000000);
 	}
 	if (id % 4 == 1)
 	{
-		log_event(event[SLEEP], id, t.starved, &all->squad_end);
+		log_event(event[SLEEP], id, t->starved, &all->squad_end);
 		//usleep(1000000);
 	}
 	if (id % 4 == 2)
 	{
-		log_event(event[TAKE_FIRST_FORK], id, t.starved, &all->squad_end);
-		log_event(event[TAKE_SECOND_FORK_EAT], id, t.starved, &all->squad_end);
+		log_event(event[TAKE_FIRST_FORK], id, t->starved, &all->squad_end);
+		log_event(event[TAKE_SECOND_FORK_EAT], id, t->starved, &all->squad_end);
 		//usleep(1000000);
 	}
 
 
 	if (id == 198)
-		log_event(event[DIED], id, t.starved, &all->squad_end);
+		log_event(event[DIED], id, t->starved, &all->squad_end);
 	
 	// t_starved = all->t_0 + all->tt_die;
 	// if (all->meals_at_least == 0)
@@ -117,7 +118,7 @@ static bool	philos_do_what_philos_must_do(
 	eat.start = *t_meal_start;
 	eat.end = wait_till(eat.start + phi->tt_eat, phi, *t_starved);
 	ensure__forks_on_table(phi);
-	if (eat.end >= *t_starved || *t_meal_start == END_OF_SIMULATION)
+	if (eat->end >= *t_starved || *t_meal_start == END_OF_SIMULATION)
 		return (false);
 	sleep.start = init_sleep(phi, *t_starved);
 	sleep.end = wait_till(sleep.start + phi->tt_sleep, phi, *t_starved);
