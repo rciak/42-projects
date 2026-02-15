@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 22:58:48 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 00:10:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "philosophers.h"
 
-static void	set__values(int64_t *id, t_philo *phi, t_all *all);
+static void	set__values(int64_t *id, t_philo *phi, t_all *all);      //style: Rename to  set__most_values
 static void set__events(t_event *event, t_all *all);
 //////////////////////////////////////////static bool	philos_do_what_philos_must_do(long *t_meal_start, long long *t_starved);
 
@@ -43,41 +43,42 @@ void	*philo_fun(void *arg)
 	set__events(event, all);
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
 		all->thread_span.mutex);
-
-t->starved = 0;
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
-	
 	if (get_bool(&all->thread_span.creating_failed,
 		all->thread_span.mutex) == true)
 		return (NULL);
+	
+	//t->eat.start = hope_for_meal(phi, t);
+	// CHECK for end of sim
 
-//
-// Temporary Code to test if maestro_fun gets ended on dead or enough pasta!
-//
-	if (id == 0)
-	{
- 		set_int64(&all->squad_end.num_pasta_lovers, 0, all->squad_end.mutex);
-log_event(event[DEBUG_SIM_ENOUGH_PASTA], id, t->starved, &all->squad_end);  // Nothing should show up
-pthread_mutex_lock(&all->mutab.lock_log); printf(YELLOW"No more pasta please!"RESET"\n"); pthread_mutex_unlock(&all->mutab.lock_log);
-	}
-	if (id == 1)
-		log_event(event[DIED], id, t->starved, &all->squad_end);
 
-	return (NULL);
-}
 	// t_starved = all->t_0 + all->tt_die;
-	// if (all->meals_at_least == 0)
-	// 	return (NULL);
 	// pthread_mutex_lock(&all->mutab.lock_philos_till_start);
-	// if (all->thread_span.creating_of_threads_failed)
-	// 	return (NULL);
 	// pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
+
 	// t_meal_start = hope_for_meal(all, t_starved);
 	// if (t_meal_start >= t_starved || t_meal_start == END_SIMULATION)
 	// 	return (NULL);
 	// t_starved = t_meal_start + all->tt_die;
 /////////////////////////////	while(philos_do_what_philos_must_do(all, &t_meal_start, &t_starved));
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Temporary Code to test if maestro_fun gets ended on dead or enough pasta!
+//
+	if (id == 0)
+	{
+		set_int64(&all->squad_end.num_pasta_lovers, 0, all->squad_end.mutex);
+	log_event(event[DEBUG_SIM_ENOUGH_PASTA], id, t->starved, &all->squad_end);  // Nothing should show up
+	pthread_mutex_lock(&all->mutab.lock_log); printf(YELLOW"No more pasta please!"RESET"\n"); pthread_mutex_unlock(&all->mutab.lock_log);
+	}
+	if (id == 1)
+		log_event(event[DIED], id, t->starved, &all->squad_end);
+////////////////////////////////////////////////////////////////////////////////
+	
+	return (NULL);
+}
 
 
 
@@ -118,6 +119,8 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 
 	pthread_mutex_lock(all->thread_span.mutex);
 	*id = all->thread_span.id_cur_philo;
+	phi->t.init = all->thread_span.t_simulation_start;
+	phi->t.starved = phi->t.init + all->param.tt.die;
 	phi->tt = all->param.tt;
 	phi->meals.eaten = 0;
 	phi->meals.min = all->param.meals_at_least;
