@@ -34,7 +34,7 @@ void log_event(t_event event, int64_t id, int64_t t_starved, t_squad_end *s_end)
 	pthread_mutex_lock(event.mutex);
 	pthread_mutex_lock(s_end->mutex);
 	timestamp = gettimeofday_musec();
-	if (s_end->starved == true || s_end->num_pasta_lovers <= 0)
+	if (s_end->starved == true || s_end->num_pasta_lovers == 0)
 		should_print = false;
 	// XXX NEED when other stuff is fully implemented
 	//if (timestamp >= t_starved)
