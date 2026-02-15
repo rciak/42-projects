@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 16:46:43 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 21:39:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 
 // The unit for the following is usec (microseconds)
 # define TIME_TILL_NEXT_FORK_CHECK 300
+# define MAESTRO_WAIT 70
 ///////////////////////////////////////////////////////////////////////# define MAX_TIME_BIRTH_PHILO 1000/
 
 ///////////////////////////////////
@@ -76,6 +77,7 @@ enum e_events_to_log
 	SLEEP,
 	THINK,
 DEBUG,
+DEBUG_SIM_ENOUGH_PASTA,
 	COUNT_EVENT_KINDS,
 };
 

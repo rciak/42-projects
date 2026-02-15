@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 15:51:54 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 19:21:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int argc, char **argv)
 	init_most(&all);
 	if (!create_threads(&all, &code))
 		return (herr_free(code, "main: create__philo_threads failed\n", &all));
-	all.maestro.go = true;
 	if (!join__threads(&all, &code))
 		return (herr_free(code, "main: Wtf: join__threads failed?!\n", &all));
 	herr_free(E_NONE, "main: regular end\n", &all);

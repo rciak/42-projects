@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 15:48:10 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 20:56:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
  */
 
 #include "philosophers.h"
+
+static bool	it__s_time_to_say_goodbye(t_squad_end *squad_end, t_all *all);
+static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all);
+static bool	all___forks_on_table(t_maestro *mae, int64_t num_philos);
 
 /**
  * @brief The start function executed by the maestro thread
@@ -27,22 +31,90 @@
 void *maestro_fun(void *arg)
 {
 	t_all			*all;
-	t_squad_end		*squad_end;
 	t_thread_span	*thread_span;
-	uint64_t		n;
+	t_maestro		*maestro;
+	int64_t			n;
+	int64_t			shift;
 
 	all = (t_all *) arg;
-	squad_end = &all->squad_end;
 	thread_span = &all->thread_span;
+	maestro = &all->maestro;
 	n = get_int64(&all->param.num_philos, thread_span->mutex);
+	shift = 0;
 
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
-																			pthread_mutex_lock(&all->mutab.lock_log); printf("Dummy: Arrived in maestro_fun\n"); pthread_mutex_unlock(&all->mutab.lock_log);
 	if (get_bool(&all->thread_span.creating_failed,
-		all->thread_span.mutex) == false)
+		all->thread_span.mutex) == true)
+	{
 		return (NULL);
-	
+	}
+	while (!it__s_time_to_say_goodbye(&all->squad_end, 	all))
+	{
+		con__duct(maestro, n, &shift, all);
+		usleep(MAESTRO_WAIT);
+	}
 	return (NULL);
-	
+}
+
+static bool	it__s_time_to_say_goodbye(t_squad_end *squad_end, t_all *all)
+{
+	bool	starved;
+	int64_t	n_pasta_lovers;
+
+	starved = get_bool(&squad_end->starved, squad_end->mutex);
+	n_pasta_lovers = get_int64(&squad_end->num_pasta_lovers, squad_end->mutex);
+	if (starved == true || n_pasta_lovers <= 0)
+	{
+		return (true);
+	}
+	return (false);
+}
+
+
+static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all)
+{
+	int64_t	i;
+	int64_t	i_rotated;
+
+	if (!all___forks_on_table(mae, n))
+		return ;
+	*shift = (*shift + 1) % n;
+	pthread_mutex_lock(mae->mutex);
+
+	mae->allows[(n - 1 + *shift) % n] = false;
+	mae->allows[(0 + *shift) % n] = true;
+	i = 0;
+	while (i < n - 1)
+	{
+		i_rotated = (i + *shift) % n;
+		if ((i_rotated) % 2 == 0)
+			mae->allows[i_rotated] = true;
+		else
+			mae->allows[i_rotated] = false;
+		i++;
+	}
+	mae->go = true;
+	pthread_mutex_unlock(mae->mutex);
+}
+
+static bool	all___forks_on_table(t_maestro *mae, int64_t num_philos)
+{
+	bool	reval;
+	int64_t	i;
+
+	reval = true;
+	i = 0;
+	pthread_mutex_lock(mae->mutex);
+	while(i < num_philos)
+	{
+		if (mae->allows[i] == true)
+		{
+			reval = false;
+			break; 
+		}
+		i++;
+	}
+	pthread_mutex_unlock(mae->mutex);
+	return (reval);
 }

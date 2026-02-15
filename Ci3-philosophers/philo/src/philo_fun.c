@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 18:42:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 21:56:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,18 @@ void	*philo_fun(void *arg)
 	event[SLEEP] = (t_event){mutex, SLEEP};
 	event[THINK] = (t_event){mutex, THINK};
 event[DEBUG] = (t_event){mutex, DEBUG};
-		
-	pthread_mutex_lock(&all->mutab.lock_log);
-	printf("\t\t\t\t\tDummy: philo_fun: %lu\n", id + 1);
-	pthread_mutex_unlock(&all->mutab.lock_log);
+event[DEBUG_SIM_ENOUGH_PASTA] = (t_event){mutex, DEBUG_SIM_ENOUGH_PASTA};
+
+pthread_mutex_lock(&all->mutab.lock_log); printf("\t\t\t\t\tBefore Sim: philo_fun: %lu\n", id + 1); pthread_mutex_unlock(&all->mutab.lock_log);
 t->starved = 0;
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
-	if (all->thread_span.creating_failed)
-		return (NULL);
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
-	// if (get_bool(&all->thread_span.creating_failed,
-	// 	all->thread_span.mutex) == false)
-	// 	return (NULL);
-
-
-	log_event(event[DEBUG], id, t->starved, &all->squad_end);
+//	log_event(event[DEBUG], id, t->starved, &all->squad_end);
+//pthread_mutex_lock(&all->mutab.lock_log); printf("\t\t\t\t\tSim go: philo_fun: %lu\n", id + 1); pthread_mutex_unlock(&all->mutab.lock_log);
+	
+	if (get_bool(&all->thread_span.creating_failed,
+		all->thread_span.mutex) == true)
+		return (NULL);
 
 //usleep(100000 - id * 100);
 	if (id % 4 == 0)
@@ -87,10 +84,24 @@ t->starved = 0;
 		//usleep(1000000);
 	}
 
+usleep(10000);
 
-	if (id == 7)
+//
+// Temporary Code to test if maestro_fun gets ended on dead or enough pasta!
+//
+	if (id == 0)
+	{
+ 		set_int64(&all->squad_end.num_pasta_lovers, 0, all->squad_end.mutex);
+log_event(event[DEBUG_SIM_ENOUGH_PASTA], id, t->starved, &all->squad_end);  // Nothing should show up
+pthread_mutex_lock(&all->mutab.lock_log); printf(YELLOW"No more pasta please!"RESET"\n"); pthread_mutex_unlock(&all->mutab.lock_log);
+	}
+	if (id == 1)
 		log_event(event[DIED], id, t->starved, &all->squad_end);
-	
+
+		
+
+
+		
 	// t_starved = all->t_0 + all->tt_die;
 	// if (all->meals_at_least == 0)
 	// 	return (NULL);

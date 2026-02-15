@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/14 23:20:31 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 21:38:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,6 @@ static void	set__message(int kind, char **msg, char **msg_2)
 		*msg = "%u %li is thinking\n";
 if (kind == DEBUG)
 	*msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %u %li\n";
+if (kind == DEBUG_SIM_ENOUGH_PASTA)
+	*msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %u %li\n";
 }
