@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 20:56:16 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 22:11:24 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ void *maestro_fun(void *arg)
 	return (NULL);
 }
 
-static bool	it__s_time_to_say_goodbye(t_squad_end *squad_end, t_all *all)
+static bool	it__s_time_to_say_goodbye(t_squad_end *squad_end, t_all *all)   //refactor after programm works: remove unused last args
 {
 	bool	starved;
 	int64_t	n_pasta_lovers;
 
+																			(void) all;
 	starved = get_bool(&squad_end->starved, squad_end->mutex);
 	n_pasta_lovers = get_int64(&squad_end->num_pasta_lovers, squad_end->mutex);
 	if (starved == true || n_pasta_lovers <= 0)
@@ -72,11 +73,12 @@ static bool	it__s_time_to_say_goodbye(t_squad_end *squad_end, t_all *all)
 }
 
 
-static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all)
+static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all) //refactor after programm works: remove unused last args
 {
 	int64_t	i;
 	int64_t	i_rotated;
 
+																			(void) all;
 	if (!all___forks_on_table(mae, n))
 		return ;
 	*shift = (*shift + 1) % n;
