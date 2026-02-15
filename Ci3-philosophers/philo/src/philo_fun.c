@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 22:47:13 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 22:58:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,38 +44,13 @@ void	*philo_fun(void *arg)
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
 		all->thread_span.mutex);
 
-
-pthread_mutex_lock(&all->mutab.lock_log); printf("\t\t\t\t\tBefore Sim: philo_fun: %lu\n", id + 1); pthread_mutex_unlock(&all->mutab.lock_log);
 t->starved = 0;
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
-//	log_event(event[DEBUG], id, t->starved, &all->squad_end);
-//pthread_mutex_lock(&all->mutab.lock_log); printf("\t\t\t\t\tSim go: philo_fun: %lu\n", id + 1); pthread_mutex_unlock(&all->mutab.lock_log);
 	
 	if (get_bool(&all->thread_span.creating_failed,
 		all->thread_span.mutex) == true)
 		return (NULL);
-
-//usleep(100000 - id * 100);
-	if (id % 4 == 0)
-	{
-		log_event(event[TAKE_FIRST_FORK], id, t->starved, &all->squad_end);
-		log_event(event[TAKE_SECOND_FORK_EAT], id, t->starved, &all->squad_end);
-		//usleep(1000000);
-	}
-	if (id % 4 == 1)
-	{
-		log_event(event[SLEEP], id, t->starved, &all->squad_end);
-		//usleep(1000000);
-	}
-	if (id % 4 == 2)
-	{
-		log_event(event[TAKE_FIRST_FORK], id, t->starved, &all->squad_end);
-		log_event(event[TAKE_SECOND_FORK_EAT], id, t->starved, &all->squad_end);
-		//usleep(1000000);
-	}
-
-usleep(10000);
 
 //
 // Temporary Code to test if maestro_fun gets ended on dead or enough pasta!
@@ -89,10 +64,8 @@ pthread_mutex_lock(&all->mutab.lock_log); printf(YELLOW"No more pasta please!"RE
 	if (id == 1)
 		log_event(event[DIED], id, t->starved, &all->squad_end);
 
-		
-
-
-		
+	return (NULL);
+}
 	// t_starved = all->t_0 + all->tt_die;
 	// if (all->meals_at_least == 0)
 	// 	return (NULL);
@@ -105,8 +78,9 @@ pthread_mutex_lock(&all->mutab.lock_log); printf(YELLOW"No more pasta please!"RE
 	// 	return (NULL);
 	// t_starved = t_meal_start + all->tt_die;
 /////////////////////////////	while(philos_do_what_philos_must_do(all, &t_meal_start, &t_starved));
-	return (NULL);
-}
+
+
+
 
 /*
 static bool	philos_do_what_philos_must_do(
