@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 22:23:02 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 22:47:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "philosophers.h"
 
 static void	set__values(int64_t *id, t_philo *phi, t_all *all);
+static void set__events(t_event *event, t_all *all);
 //////////////////////////////////////////static bool	philos_do_what_philos_must_do(long *t_meal_start, long long *t_starved);
 
 /**
@@ -36,22 +37,13 @@ void	*philo_fun(void *arg)
 	t_event			event[COUNT_EVENT_KINDS];
 
 	all = (t_all *) arg;
-	set__values(&id, &phi, all);
-	t = &phi.t;
-
-	//Copy id from main thread and inform waiting main thread, allowing to continue
+	set__values(&id, &phi, all);                                 // function name bad: phi.t does not get initialised there;
+													             //   if it works with norm: outsource to own stack var t ?
+	t = &phi.t;                                                  // refactor: mv t.init elsewhere?!
+	set__events(event, all);
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
-		all->thread_span.mutex);                                  //CAUTION: NEED EXTENSION LATER
+		all->thread_span.mutex);
 
-	pthread_mutex_t *mutex;
-	mutex = &all->mutab.lock_log;
-	event[DIED] = (t_event){mutex, DIED};
-	event[TAKE_FIRST_FORK] = (t_event){mutex, TAKE_FIRST_FORK};
-	event[TAKE_SECOND_FORK_EAT] = (t_event){mutex, TAKE_SECOND_FORK_EAT};
-	event[SLEEP] = (t_event){mutex, SLEEP};
-	event[THINK] = (t_event){mutex, THINK};
-event[DEBUG] = (t_event){mutex, DEBUG};
-event[DEBUG_SIM_ENOUGH_PASTA] = (t_event){mutex, DEBUG_SIM_ENOUGH_PASTA};
 
 pthread_mutex_lock(&all->mutab.lock_log); printf("\t\t\t\t\tBefore Sim: philo_fun: %lu\n", id + 1); pthread_mutex_unlock(&all->mutab.lock_log);
 t->starved = 0;
@@ -147,6 +139,9 @@ static bool	philos_do_what_philos_must_do(
 
 static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 {
+	// Not yet set VARS: 
+	//  t;
+
 	pthread_mutex_lock(all->thread_span.mutex);
 	*id = all->thread_span.id_cur_philo;
 	phi->tt = all->param.tt;
@@ -167,5 +162,17 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 	pthread_mutex_unlock(all->thread_span.mutex);
 }
 
-// Not yet set VARS: 
-//  t;
+static void set__events(t_event *event, t_all *all)
+{
+	pthread_mutex_t *mutex;
+
+	mutex = &all->mutab.lock_log;
+	event[DIED] = (t_event){mutex, DIED};
+	event[TAKE_FIRST_FORK] = (t_event){mutex, TAKE_FIRST_FORK};
+	event[TAKE_SECOND_FORK_EAT] = (t_event){mutex, TAKE_SECOND_FORK_EAT};
+	event[SLEEP] = (t_event){mutex, SLEEP};
+	event[THINK] = (t_event){mutex, THINK};
+event[DEBUG] = (t_event){mutex, DEBUG};
+event[DEBUG_SIM_ENOUGH_PASTA] = (t_event){mutex, DEBUG_SIM_ENOUGH_PASTA};
+}
+
