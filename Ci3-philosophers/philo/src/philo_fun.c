@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 21:56:18 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 22:23:02 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 
 #include "philosophers.h"
 
-static void	init__vars(int64_t *id, t_philo *phi, t_all *all);
-//////////////////////////////////////////static bool	philos_do_what_philos_must_do(
-//	t_philo *phi, long long *t_meal_start, long long *t_starved);
+static void	set__values(int64_t *id, t_philo *phi, t_all *all);
+//////////////////////////////////////////static bool	philos_do_what_philos_must_do(long *t_meal_start, long long *t_starved);
 
 /**
  * @brief The usual start function executed by each philosopher thread
@@ -31,15 +30,15 @@ static void	init__vars(int64_t *id, t_philo *phi, t_all *all);
 void	*philo_fun(void *arg)
 {
 	t_all			*all;
+	int64_t			id;
 	t_philo			phi;
 	t_time			*t;
-	int64_t			id;
-
 	t_event			event[COUNT_EVENT_KINDS];
 
 	all = (t_all *) arg;
+	set__values(&id, &phi, all);
 	t = &phi.t;
-	init__vars(&id, &phi, all);
+
 	//Copy id from main thread and inform waiting main thread, allowing to continue
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
 		all->thread_span.mutex);                                  //CAUTION: NEED EXTENSION LATER
@@ -146,10 +145,8 @@ static bool	philos_do_what_philos_must_do(
 
 
 
-static void	init__vars(int64_t *id, t_philo *phi, t_all *all)
+static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 {
-	int64_t	n;
-
 	pthread_mutex_lock(all->thread_span.mutex);
 	*id = all->thread_span.id_cur_philo;
 	phi->tt = all->param.tt;
@@ -157,10 +154,9 @@ static void	init__vars(int64_t *id, t_philo *phi, t_all *all)
 	phi->meals.min = all->param.meals_at_least;
 	phi->maestro = &all->maestro;
 	phi->squad_end = &all->squad_end;
-	n = all->param.num_philos;
 	if (*id == 0)
 	{
-		phi->left_fork = &all->mutab.fork[n - 1];
+		phi->left_fork = &all->mutab.fork[all->param.num_philos - 1];
 		phi->right_fork = &all->mutab.fork[0];
 	}
 	else
@@ -168,10 +164,8 @@ static void	init__vars(int64_t *id, t_philo *phi, t_all *all)
 		phi->left_fork = &all->mutab.fork[*id - 1];
 		phi->right_fork = &all->mutab.fork[*id];
 	}
-
 	pthread_mutex_unlock(all->thread_span.mutex);
 }
 
-// UNSET VARS: 
+// Not yet set VARS: 
 //  t;
-
