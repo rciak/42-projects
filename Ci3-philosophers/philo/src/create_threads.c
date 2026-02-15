@@ -74,7 +74,7 @@ static bool	create__philo_threads(t_all *all, t_ecode *code)
 	return (true);
 }
 
-static bool	create__maestro_thread(t_all *all, t_ecode *code)
+static bool	create__maestro_thread(t_all *all, t_ecode *code)				//Refactor: Position
 {
 	if (0 != pthread_create(&all->thread_span.maestro_thread, NULL,	maestro_fun,
 			(void *) all))

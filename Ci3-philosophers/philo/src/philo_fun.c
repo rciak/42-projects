@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/14 23:05:15 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 14:04:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 void	*philo_fun(void *arg)
 {
 	t_all			*all;
+	t_philo			philo;
 	t_time			t;
 	// long long		t_meal_start;
 	int64_t			id;
@@ -37,20 +38,21 @@ void	*philo_fun(void *arg)
 	t_event			event[COUNT_EVENT_KINDS];
 
 	all = (t_all *) arg;
-	mutex = &all->mutab.lock_log;
-	event[DIED] = (t_event){mutex, DIED};
-	event[TAKE_FIRST_FORK] = (t_event){mutex, TAKE_FIRST_FORK};
-	event[TAKE_SECOND_FORK_EAT] = (t_event){mutex, TAKE_SECOND_FORK_EAT};
-	event[SLEEP] = (t_event){mutex, SLEEP};
-event[DEBUG] = (t_event){mutex, DEBUG};
-	event[THINK] = (t_event){mutex, THINK};
-	
 
 	//Copy id from main thread and inform waiting main thread, allowing to continue
 	set_int64(&id, all->thread_span.id_cur_philo,
 		all->thread_span.mutex);
 	set_bool(&all->thread_span.copied_id_cur_philo, true,
 		all->thread_span.mutex);
+
+	mutex = &all->mutab.lock_log;
+	event[DIED] = (t_event){mutex, DIED};
+	event[TAKE_FIRST_FORK] = (t_event){mutex, TAKE_FIRST_FORK};
+	event[TAKE_SECOND_FORK_EAT] = (t_event){mutex, TAKE_SECOND_FORK_EAT};
+	event[SLEEP] = (t_event){mutex, SLEEP};
+	event[THINK] = (t_event){mutex, THINK};
+event[DEBUG] = (t_event){mutex, DEBUG};
+		
 	pthread_mutex_lock(&all->mutab.lock_log);
 	printf("\t\t\t\t\tDummy: philo_fun: %lu\n", id + 1);
 	pthread_mutex_unlock(&all->mutab.lock_log);
@@ -59,6 +61,10 @@ t.starved = 0;
 	if (all->thread_span.creating_failed)
 		return (NULL);
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
+	// if (get_bool(&all->thread_span.creating_failed,
+	// 	all->thread_span.mutex) == false)
+	// 	return (NULL);
+
 
 	log_event(event[DEBUG], id, t.starved, &all->squad_end);
 

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 12:50:57 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 13:50:30 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,10 +241,10 @@ typedef struct	s_mutex_tab
 //
 typedef struct	s_all
 {
+	t_safe_init_cp	safe_init_cp;
 	t_param			param;
 	t_maestro		maestro;
 	t_squad_end		squad_end;
-	t_safe_init_cp	safe_init_cp;
 	t_mutex_tab		mutab;
 	t_thread_span	thread_span;
 }	t_all;
