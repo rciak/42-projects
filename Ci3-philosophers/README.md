@@ -20,7 +20,8 @@ Regarding *writing code*, AI was intentionally used in *limited forms* (ensuring
 a better learning),
 like intelligent **autocompletion** or occasionally
 during **refactoring** steps.
-Also AI proved helpful in **preventing bugs** before they came to the code base.
+Also AI proved helpful in **preventing bugs** before they came to the code base
+or occasionally in locating a bug.
 
 ### Some examples
 
