@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 16:11:56 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 18:42:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "philosophers.h"
 
+static void	init__vars(int64_t *id, t_philo *phi, t_all *all);
 //////////////////////////////////////////static bool	philos_do_what_philos_must_do(
 //	t_philo *phi, long long *t_meal_start, long long *t_starved);
 
@@ -38,10 +39,8 @@ void	*philo_fun(void *arg)
 
 	all = (t_all *) arg;
 	t = &phi.t;
+	init__vars(&id, &phi, all);
 	//Copy id from main thread and inform waiting main thread, allowing to continue
-	set_int64(&id, all->thread_span.id_cur_philo,
-		all->thread_span.mutex);
-	// copy__vars(all, &id, &phi)
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
 		all->thread_span.mutex);                                  //CAUTION: NEED EXTENSION LATER
 
@@ -89,7 +88,7 @@ t->starved = 0;
 	}
 
 
-	if (id == 198)
+	if (id == 7)
 		log_event(event[DIED], id, t->starved, &all->squad_end);
 	
 	// t_starved = all->t_0 + all->tt_die;
@@ -133,4 +132,35 @@ static bool	philos_do_what_philos_must_do(
 	return (true);
 }
 *////////////////////////////
+
+
+
+static void	init__vars(int64_t *id, t_philo *phi, t_all *all)
+{
+	int64_t	n;
+
+	pthread_mutex_lock(all->thread_span.mutex);
+	*id = all->thread_span.id_cur_philo;
+	phi->tt = all->param.tt;
+	phi->meals.eaten = 0;
+	phi->meals.min = all->param.meals_at_least;
+	phi->maestro = &all->maestro;
+	phi->squad_end = &all->squad_end;
+	n = all->param.num_philos;
+	if (*id == 0)
+	{
+		phi->left_fork = &all->mutab.fork[n - 1];
+		phi->right_fork = &all->mutab.fork[0];
+	}
+	else
+	{
+		phi->left_fork = &all->mutab.fork[*id - 1];
+		phi->right_fork = &all->mutab.fork[*id];
+	}
+
+	pthread_mutex_unlock(all->thread_span.mutex);
+}
+
+// UNSET VARS: 
+//  t;
 

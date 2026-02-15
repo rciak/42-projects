@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 15:57:22 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 16:46:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,13 +243,12 @@ typedef struct	s_all
 //
 typedef struct	s_philo
 {
+	int64_t			id;
 	t_time			t;
 	t_time_to		tt;
-	int64_t			id;
 	t_meals			meals;
 	t_maestro		*maestro;
 	t_squad_end		*squad_end;
-	pthread_mutex_t	*lock_philos_till_start;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 }	t_philo;
