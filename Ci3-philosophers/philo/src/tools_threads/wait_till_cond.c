@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 09:55:30 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/13 11:06:33 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 00:53:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  */
 void	wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx, int act)
 {
-	useconds_t	duration;
+	int64_t		duration;
 	bool		local_state;
 
 	duration = 200;

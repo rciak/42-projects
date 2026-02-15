@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 00:34:00 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 00:51:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void log_event(int event, t_philo *phi)
 {
 	char		*msg;
 	char		*msg_2;
-	useconds_t	timestamp;
+	int64_t		timestamp;
 	bool		should_print;
 	t_squad_end *s_end;
 	
