@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/13 14:15:29 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 12:51:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code)
 	pthread_mutex_t	*mutex[6];
 	
 	entries_before_fork = 6;
-	mutex[0] = &mutab->safe_cp;
+	mutex[0] = &mutab->safe_init_cp;
 	mutex[1] = &mutab->thread_span;
 	mutex[2] = &mutab->maestro;
 	mutex[3] = &mutab->squad_end;

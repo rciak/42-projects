@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/14 23:03:52 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 12:50:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,11 +202,11 @@ typedef struct s_squad_end
 //      Allows the start function (of form `start(t_all *all)`) of a thread
 //      to synchronize with the thread creating function of the main thread
 //      allowing safe copying from the all struct object in main to local vars.
-typedef struct	s_safe_cp
+typedef struct	s_safe_init_cp
 {
 	pthread_mutex_t	*mutex;
 	bool			just_created_thread_has_copied;
-}	t_safe_cp;
+}	t_safe_init_cp;
 
 //
 //  THREAD_SPAN
@@ -227,7 +227,7 @@ typedef struct	s_thread_span
 //
 typedef struct	s_mutex_tab
 {
-	pthread_mutex_t safe_cp;
+	pthread_mutex_t safe_init_cp;
 	pthread_mutex_t	thread_span;
 	pthread_mutex_t	maestro;
 	pthread_mutex_t	squad_end;
@@ -244,7 +244,7 @@ typedef struct	s_all
 	t_param			param;
 	t_maestro		maestro;
 	t_squad_end		squad_end;
-	t_safe_cp		safe_cp;
+	t_safe_init_cp	safe_init_cp;
 	t_mutex_tab		mutab;
 	t_thread_span	thread_span;
 }	t_all;
