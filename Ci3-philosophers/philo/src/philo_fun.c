@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 00:10:35 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 00:35:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "philosophers.h"
 
 static void	set__values(int64_t *id, t_philo *phi, t_all *all);      //style: Rename to  set__most_values
-static void set__events(t_event *event, t_all *all);
 //////////////////////////////////////////static bool	philos_do_what_philos_must_do(long *t_meal_start, long long *t_starved);
 
 /**
@@ -34,13 +33,11 @@ void	*philo_fun(void *arg)
 	int64_t			id;
 	t_philo			phi;
 	t_time			*t;
-	t_event			event[COUNT_EVENT_KINDS];
 
 	all = (t_all *) arg;
 	set__values(&id, &phi, all);                                 // function name bad: phi.t does not get initialised there;
 													             //   if it works with norm: outsource to own stack var t ?
 	t = &phi.t;                                                  // refactor: mv t.init elsewhere?!
-	set__events(event, all);
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
 		all->thread_span.mutex);
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
@@ -70,11 +67,11 @@ void	*philo_fun(void *arg)
 	if (id == 0)
 	{
 		set_int64(&all->squad_end.num_pasta_lovers, 0, all->squad_end.mutex);
-	log_event(event[DEBUG_SIM_ENOUGH_PASTA], id, t->starved, &all->squad_end);  // Nothing should show up
+	log_event(DEBUG_SIM_ENOUGH_PASTA, &phi);  // Nothing should show up
 	pthread_mutex_lock(&all->mutab.lock_log); printf(YELLOW"No more pasta please!"RESET"\n"); pthread_mutex_unlock(&all->mutab.lock_log);
 	}
 	if (id == 1)
-		log_event(event[DIED], id, t->starved, &all->squad_end);
+		log_event(DIED, &phi);
 ////////////////////////////////////////////////////////////////////////////////
 	
 	return (NULL);
@@ -126,6 +123,7 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 	phi->meals.min = all->param.meals_at_least;
 	phi->maestro = &all->maestro;
 	phi->squad_end = &all->squad_end;
+	phi->lock_log = &all->mutab.lock_log;
 	if (*id == 0)
 	{
 		phi->left_fork = &all->mutab.fork[all->param.num_philos - 1];
@@ -138,18 +136,3 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 	}
 	pthread_mutex_unlock(all->thread_span.mutex);
 }
-
-static void set__events(t_event *event, t_all *all)
-{
-	pthread_mutex_t *mutex;
-
-	mutex = &all->mutab.lock_log;
-	event[DIED] = (t_event){mutex, DIED};
-	event[TAKE_FIRST_FORK] = (t_event){mutex, TAKE_FIRST_FORK};
-	event[TAKE_SECOND_FORK_EAT] = (t_event){mutex, TAKE_SECOND_FORK_EAT};
-	event[SLEEP] = (t_event){mutex, SLEEP};
-	event[THINK] = (t_event){mutex, THINK};
-event[DEBUG] = (t_event){mutex, DEBUG};
-event[DEBUG_SIM_ENOUGH_PASTA] = (t_event){mutex, DEBUG_SIM_ENOUGH_PASTA};
-}
-

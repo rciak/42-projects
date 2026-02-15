@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 21:39:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 00:30:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,15 +251,10 @@ typedef struct	s_philo
 	t_meals			meals;
 	t_maestro		*maestro;
 	t_squad_end		*squad_end;
+	pthread_mutex_t	*lock_log;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 }	t_philo;
-
-typedef struct	s_event
-{
-	pthread_mutex_t			*mutex;
-	enum e_events_to_log	kind;
-}	t_event;
 
 //
 //  ERROR HANDLING:  Error code  and  error message
@@ -289,7 +284,7 @@ void		*maestro_fun(void *arg);
 // void		wait_for(long long time);
 
 // philo_fun/*.c
-void log_event(t_event event, int64_t id, int64_t t_starved, t_squad_end *s_end);
+void 		log_event(int event, t_philo *phi);
 // long long	hope_for_meal(t_philo *phi, long long t_starved);
 // //          /zhared/*.c
 // bool		is_simulation_ended(t_philo *phi);
