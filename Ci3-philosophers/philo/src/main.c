@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 19:21:07 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/15 23:09:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int argc, char **argv)
 	code = E_NONE;
 	if (!parse_args(argc, argv, &all.param, &code))
 		return (herr(code, "main: parse_args failed\n"));
+	if (all.param.meals_at_least == 0)
+		return (E_NONE);
 	if (!alloc__mem(&all, all.param.num_philos, &code))
 		return (herr(code, "main: alloc__mem failed\n"));
 	if (!init__mutexes(&all.mutab, all.param.num_philos, &code))
