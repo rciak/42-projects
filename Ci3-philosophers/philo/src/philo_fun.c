@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 00:35:06 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 03:42:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	*philo_fun(void *arg)
 		all->thread_span.mutex) == true)
 		return (NULL);
 	
-	//t->eat.start = hope_for_meal(phi, t);
+	if (hope_for_meal(&phi, t) == false)
+		return (NULL);
 	// CHECK for end of sim
 
 
@@ -113,7 +114,6 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 {
 	// Not yet set VARS: 
 	//  t;
-
 	pthread_mutex_lock(all->thread_span.mutex);
 	*id = all->thread_span.id_cur_philo;
 	phi->t.init = all->thread_span.t_simulation_start;
@@ -134,5 +134,7 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 		phi->left_fork = &all->mutab.fork[*id - 1];
 		phi->right_fork = &all->mutab.fork[*id];
 	}
+	phi->left_hand = NULL;
+	phi->right_hand = NULL;
 	pthread_mutex_unlock(all->thread_span.mutex);
 }

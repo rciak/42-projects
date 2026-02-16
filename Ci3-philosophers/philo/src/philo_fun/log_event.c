@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 00:59:23 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 03:56:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "philosophers.h"
 
-static void	set__message(int kind, char **msg, char **msg_2);
+static void	set__message(int kind, char **msg, char **msg_2, char **msg_3);
 
 /**
  * @brief Take timestamp and log the handed over event
@@ -26,12 +26,13 @@ int64_t log_event(int event, t_philo *phi)
 {
 	char		*msg;
 	char		*msg_2;
+	char		*msg_3;
 	int64_t		timestamp;
 	bool		should_print;
 	t_squad_end *s_end;
 	
 	s_end = phi->squad_end;
-	set__message(event, &msg, &msg_2);
+	set__message(event, &msg, &msg_2, &msg_3);
 	should_print = true;
 	pthread_mutex_lock(phi->lock_log);
 	pthread_mutex_lock(s_end->mutex);
@@ -48,22 +49,24 @@ int64_t log_event(int event, t_philo *phi)
 		printf(msg, timestamp, phi->id + 1);
 		if (msg_2 != NULL)
 			printf(msg_2, timestamp, phi->id + 1);
+		if (msg_3 != NULL)
+			printf(msg_3, timestamp, phi->id + 1);
 	}
 	pthread_mutex_unlock(phi->lock_log);
 	return (timestamp);
 }
 
-static void	set__message(int event, char **msg, char **msg_2)
+static void	set__message(int event, char **msg, char **msg_2, char **msg_3)
 {
 	*msg_2 = NULL;
+	*msg_3 = NULL;
 	if (event == DIED)
 		*msg = "%u %li "RED"died"RESET"\n";
-	if (event == TAKE_FIRST_FORK)
-		*msg = "%u %li has taken a fork\n";
-	if (event == TAKE_SECOND_FORK_EAT)
+	if (event == TAKE_FORKS_EAT)
 	{
 		*msg = "%u %li has taken a fork\n";
-		*msg_2 = "%u %li is eating\n";
+		*msg_2 = "%u %li has taken a fork\n";
+		*msg_3 = "%u %li is eating\n";
 	}
 	if (event == SLEEP)
 		*msg = "%u %li is sleeping\n";

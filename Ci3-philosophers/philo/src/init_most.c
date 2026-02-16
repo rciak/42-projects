@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:43:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 15:56:49 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 03:33:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ static void	init__maestro(t_all *all)
 		all->maestro.allows[i] = false;
 		i++;
 	}
-	all->maestro.go = false;
+	//all->maestro.go = false;                                                //Try first without
 }

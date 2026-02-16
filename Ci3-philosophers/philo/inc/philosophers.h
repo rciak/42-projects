@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 00:59:52 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 03:50:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@
 enum e_events_to_log
 {
 	DIED,
-	TAKE_FIRST_FORK,
-	TAKE_SECOND_FORK_EAT,
+	TAKE_FORKS_EAT,
 	SLEEP,
 	THINK,
 DEBUG,
@@ -182,7 +181,7 @@ typedef struct s_maestro
 {
 	pthread_mutex_t	*mutex;
 	bool			*allows;
-	bool			go;
+	// bool			go;
 }	t_maestro;
 
 //
@@ -254,6 +253,8 @@ typedef struct	s_philo
 	pthread_mutex_t	*lock_log;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*left_hand;
+	pthread_mutex_t	*right_hand;
 }	t_philo;
 
 //
@@ -285,7 +286,7 @@ void		*maestro_fun(void *arg);
 
 // philo_fun/*.c
 int64_t		log_event(int event, t_philo *phi);
-// long long	hope_for_meal(t_philo *phi, long long t_starved);
+bool		hope_for_meal(t_philo *phi, t_time *t);
 // //          /zhared/*.c
 // bool		is_simulation_ended(t_philo *phi);
 
@@ -297,9 +298,8 @@ char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *s);
 long long	atoll_strict(const char *nptr, t_ecode *err_code);
 
-//tools_time/*.c
-void		wait_for(int64_t time_span);
-int64_t		gettimeofday_musec(void);
+//tools_misc/*.c
+bool	it_s_time_to_say_goodbye(t_squad_end *squad_end);
 
 //tools_threads/*.c
 void	set_bool(bool *var, bool value, pthread_mutex_t *mutex);
@@ -307,6 +307,12 @@ bool	get_bool(bool *var, pthread_mutex_t *mutex);
 void	set_int64(int64_t *var, int64_t value, pthread_mutex_t *mutex);
 int64_t	get_int64(int64_t *var, pthread_mutex_t *mutex);
 void	wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx, int act);
+
+//tools_time/*.c
+void		wait_for(int64_t time_span);
+int64_t		gettimeofday_musec(void);
+
+
 ///////////////////////////
 //                       //
 //  X.  D E B U G I N G  //

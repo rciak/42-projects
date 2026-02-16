@@ -9,6 +9,7 @@ src/main.c \
 src/parse_args.c \
 src/philo_alone_at_table.c \
 src/philo_fun.c \
+src/philo_fun/hope_for_meal.c \
 src/philo_fun/log_event.c \
 src/tools_libft/atoll_strict.c \
 src/tools_libft/ft_strchr.c \
@@ -18,6 +19,7 @@ src/tools_libft/putstr_fd.c \
 src/tools_libft/skip.c \
 src/tools_time/gettimeofday_musec.c \
 src/tools_time/wait_for.c \
+src/tools_misc/it_s_time_to_say_goodbye.c \
 src/tools_threads/get_bool.c \
 src/tools_threads/get_int64.c \
 src/tools_threads/set_bool.c \

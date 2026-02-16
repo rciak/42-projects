@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 22:11:24 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 03:32:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "philosophers.h"
 
-static bool	it__s_time_to_say_goodbye(t_squad_end *squad_end, t_all *all);
 static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all);
 static bool	all___forks_on_table(t_maestro *mae, int64_t num_philos);
 
@@ -49,29 +48,13 @@ void *maestro_fun(void *arg)
 	{
 		return (NULL);
 	}
-	while (!it__s_time_to_say_goodbye(&all->squad_end, 	all))
+	while (!it_s_time_to_say_goodbye(&all->squad_end))
 	{
 		con__duct(maestro, n, &shift, all);
 		usleep(MAESTRO_WAIT);
 	}
 	return (NULL);
 }
-
-static bool	it__s_time_to_say_goodbye(t_squad_end *squad_end, t_all *all)   //refactor after programm works: remove unused last args
-{
-	bool	starved;
-	int64_t	n_pasta_lovers;
-
-																			(void) all;
-	starved = get_bool(&squad_end->starved, squad_end->mutex);
-	n_pasta_lovers = get_int64(&squad_end->num_pasta_lovers, squad_end->mutex);
-	if (starved == true || n_pasta_lovers <= 0)
-	{
-		return (true);
-	}
-	return (false);
-}
-
 
 static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all) //refactor after programm works: remove unused last args
 {
@@ -96,7 +79,7 @@ static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all) //r
 			mae->allows[i_rotated] = false;
 		i++;
 	}
-	mae->go = true;
+//	mae->go = true;  // NEED Sync / turn back from the other side also
 	pthread_mutex_unlock(mae->mutex);
 }
 
