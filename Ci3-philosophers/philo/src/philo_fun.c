@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 18:37:12 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 23:03:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,10 @@ static void	run__philo_cycle(t_philo *phi)
 	{
 		log_event(THINK, phi);
 		usleep(TIME_TILL_NEXT_FORK_CHECK);
-		// while(!may___take_forks(perm, phi)
-		// 		&& i___m_alive(phi) && !time_to_say_goodbye(squad_end))
-		// 	usleep(TIME_TILL_NEXT_FORK_CHECK);
+		while(!may___take_forks(perm, phi)
+				&& i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+			usleep(TIME_TILL_NEXT_FORK_CHECK);
+		log_event(TAKE_FORKS_EAT, phi);
 		// if (!take__forks_and_eat(phi, t))
 		// 	return ;
 		// if (!provide__sleep(phi, t))
@@ -109,6 +110,8 @@ static void	run__philo_cycle(t_philo *phi)
 		// treat_event(SLEEP, phi);
 		// treat_event(THINK, phi);
 	}
+	if (i___m_alive(phi) == false)
+		log_event(DIED, phi);
 }
 
 static bool may___take_forks(bool *perm, t_philo *phi)
@@ -123,6 +126,5 @@ static bool i___m_alive(t_philo *phi)
 	timestamp = gettimeofday_musec();
 	if (timestamp < phi->t.starved)
 		return (true);
-	set_bool(&phi->squad_end->starved, true, phi->squad_end->mutex);
 	return (false);
 }

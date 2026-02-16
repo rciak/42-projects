@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 22:06:28 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 23:25:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@
 enum e_events_to_log
 {
 	DIED,
-	TAKE_FORKS_EAT,
+	TAKE_FIRST_FORK,
+	TAKE_SECOND_FORK,
+	EAT,
 	SLEEP,
 	THINK,
 DEBUG,
