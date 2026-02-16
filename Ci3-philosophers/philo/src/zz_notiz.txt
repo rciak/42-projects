@@ -12,6 +12,99 @@
 		return (NULL);
 	...
 	
+
+# Code snippets put here on 16.02.2026
+
+## Recent,  used during development
+
+// ////////////////////////////////////////////////////////////////////////////////
+// // Temporary Code to test if maestro_fun gets ended on dead or enough pasta!
+// //
+// 	if (id == 0)
+// 	{
+// 		set_int64(&all->squad_end.num_pasta_lovers, 0, all->squad_end.mutex);
+// 	log_event(DEBUG_SIM_ENOUGH_PASTA, &phi);  // Nothing should show up
+// 	pthread_mutex_lock(&all->mutab.lock_log); printf(YELLOW"No more pasta please!"RESET"\n"); pthread_mutex_unlock(&all->mutab.lock_log);
+// 	}
+// 	if (id == 1)
+// 		log_event(DIED, &phi);
+// ////////////////////////////////////////////////////////////////////////////////
+
+
+## Older stuff from first coding try; 
+
+maybe interesting to have here as a second approach, if the current approach fails.
+
+/*
+	static bool	philos_do_what_philos_must_do(
+		t_philo *phi, long long *t_meal_start, long long *t_starved)
+	{
+		t_interval	eat;
+		t_interval	sleep;
+		t_interval	think;
+
+		eat.start = *t_meal_start;
+		eat.end = wait_till(eat.start + phi->tt_eat, phi, *t_starved);
+		ensure__forks_on_table(phi);
+		if (eat->end >= *t_starved || *t_meal_start == END_OF_SIMULATION)
+			return (false);
+		sleep.start = init_sleep(phi, *t_starved);
+		sleep.end = wait_till(sleep.start + phi->tt_sleep, phi, *t_starved);
+		if (sleep.end >= *t_starved || sleep.end == END_OF_SIMULATION)
+			return (false);
+		think.start = init_thinking(phi, *t_starved);
+		think.end = hope_for_meal(phi, *t_starved);
+		if (think.end >= *t_starved || think.end == END_OF_SIMULATION)
+			return (false);
+		*t_meal_start = think.end;
+		*t_starved = *t_meal_start + phi->tt_die;
+		return (true);
+	}
+	*////////////////////////////
+
+
+
+## quite ols stuff
+
+	// t_starved = all->t_0 + all->tt_die;
+	// pthread_mutex_lock(&all->mutab.lock_philos_till_start);
+	// pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
+
+	// t_meal_start = hope_for_meal(all, t_starved);
+	// if (t_meal_start >= t_starved || t_meal_start == END_SIMULATION)
+	// 	return (NULL);
+	// t_starved = t_meal_start + all->tt_die;
+/////////////////////////////	while(philos_do_what_philos_must_do(all, &t_meal_start, &t_starved));
+
+
+/*
+static bool	philos_do_what_philos_must_do(
+	t_philo *phi, long long *t_meal_start, long long *t_starved)
+{
+	t_interval	eat;
+	t_interval	sleep;
+	t_interval	think;
+
+	eat.start = *t_meal_start;
+	eat.end = wait_till(eat.start + phi->tt_eat, phi, *t_starved);
+	ensure__forks_on_table(phi);
+	if (eat->end >= *t_starved || *t_meal_start == END_OF_SIMULATION)
+		return (false);
+	sleep.start = init_sleep(phi, *t_starved);
+	sleep.end = wait_till(sleep.start + phi->tt_sleep, phi, *t_starved);
+	if (sleep.end >= *t_starved || sleep.end == END_OF_SIMULATION)
+		return (false);
+	think.start = init_thinking(phi, *t_starved);
+	think.end = hope_for_meal(phi, *t_starved);
+	if (think.end >= *t_starved || think.end == END_OF_SIMULATION)
+		return (false);
+	*t_meal_start = think.end;
+	*t_starved = *t_meal_start + phi->tt_die;
+	return (true);
+}
+*////////////////////////////
+
+
 # Some old dummy code
 
 long long id = philo->id;
