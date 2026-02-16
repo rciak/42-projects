@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 18:08:34 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 18:37:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 #include "philosophers.h"
 
 static void	set__values(int64_t *id, t_philo *phi, t_all *all);      //style: Rename to  set__most_values
-//////////////////////////////////////////static bool	philos_do_what_philos_must_do(long *t_meal_start, long long *t_starved);
+static void	run__philo_cycle(t_philo *phi);
+static bool may___take_forks(bool *perm, t_philo *phi);
+static bool i___m_alive(t_philo *phi);
 
 /**
  * @brief The usual start function executed by each philosopher thread
@@ -32,12 +34,9 @@ void	*philo_fun(void *arg)
 	t_all			*all;
 	int64_t			id;
 	t_philo			phi;
-	t_time			*t;
 
 	all = (t_all *) arg;
-	set__values(&id, &phi, all);                                 // function name bad: phi.t does not get initialised there;
-													             //   if it works with norm: outsource to own stack var t ?
-	t = &phi.t;                                                  // refactor: mv t.init elsewhere?!
+	set__values(&id, &phi, all);                                                 // function name bad: phi.t does not get initialised there; if it works with norm: outsource to own stack var t ?
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
 		all->thread_span.mutex);
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
@@ -47,70 +46,9 @@ void	*philo_fun(void *arg)
 	if (get_bool(&all->thread_span.creating_failed,
 		all->thread_span.mutex) == true)
 		return (NULL);
-	
-	if (hope_for_meal(&phi, t) == false)
-		return (NULL);
-	// CHECK for end of sim
-
-
-	// t_starved = all->t_0 + all->tt_die;
-	// pthread_mutex_lock(&all->mutab.lock_philos_till_start);
-	// pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
-
-	// t_meal_start = hope_for_meal(all, t_starved);
-	// if (t_meal_start >= t_starved || t_meal_start == END_SIMULATION)
-	// 	return (NULL);
-	// t_starved = t_meal_start + all->tt_die;
-/////////////////////////////	while(philos_do_what_philos_must_do(all, &t_meal_start, &t_starved));
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Temporary Code to test if maestro_fun gets ended on dead or enough pasta!
-//
-	if (id == 0)
-	{
-		set_int64(&all->squad_end.num_pasta_lovers, 0, all->squad_end.mutex);
-	log_event(DEBUG_SIM_ENOUGH_PASTA, &phi);  // Nothing should show up
-	pthread_mutex_lock(&all->mutab.lock_log); printf(YELLOW"No more pasta please!"RESET"\n"); pthread_mutex_unlock(&all->mutab.lock_log);
-	}
-	if (id == 1)
-		log_event(DIED, &phi);
-////////////////////////////////////////////////////////////////////////////////
-	
+	run__philo_cycle(&phi);
 	return (NULL);
 }
-
-
-
-
-/*
-static bool	philos_do_what_philos_must_do(
-	t_philo *phi, long long *t_meal_start, long long *t_starved)
-{
-	t_interval	eat;
-	t_interval	sleep;
-	t_interval	think;
-
-	eat.start = *t_meal_start;
-	eat.end = wait_till(eat.start + phi->tt_eat, phi, *t_starved);
-	ensure__forks_on_table(phi);
-	if (eat->end >= *t_starved || *t_meal_start == END_OF_SIMULATION)
-		return (false);
-	sleep.start = init_sleep(phi, *t_starved);
-	sleep.end = wait_till(sleep.start + phi->tt_sleep, phi, *t_starved);
-	if (sleep.end >= *t_starved || sleep.end == END_OF_SIMULATION)
-		return (false);
-	think.start = init_thinking(phi, *t_starved);
-	think.end = hope_for_meal(phi, *t_starved);
-	if (think.end >= *t_starved || think.end == END_OF_SIMULATION)
-		return (false);
-	*t_meal_start = think.end;
-	*t_starved = *t_meal_start + phi->tt_die;
-	return (true);
-}
-*////////////////////////////
-
-
 
 static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 {
@@ -140,4 +78,51 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 	phi->left_hand = NULL;
 	phi->right_hand = NULL;
 	pthread_mutex_unlock(all->thread_span.mutex);
+}
+
+static void	run__philo_cycle(t_philo *phi)
+{
+	t_squad_end	*squad_end;
+	bool		*perm;
+	t_time		*t;
+	t_time_to	*tt;
+
+	squad_end = phi->squad_end;
+	perm = &phi->maestro->allows[phi->id];
+	t = &phi->t;
+	tt = &phi->tt;
+	t->starved = t->init + tt->die;
+	while (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+	{
+		log_event(THINK, phi);
+		usleep(TIME_TILL_NEXT_FORK_CHECK);
+		// while(!may___take_forks(perm, phi)
+		// 		&& i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+		// 	usleep(TIME_TILL_NEXT_FORK_CHECK);
+		// if (!take__forks_and_eat(phi, t))
+		// 	return ;
+		// if (!provide__sleep(phi, t))
+		// 	return ;
+		// if (!think(phi, t))
+
+		// treat_event(TAKE_FORKS_EAT, phi);
+		// treat_event(SLEEP, phi);
+		// treat_event(THINK, phi);
+	}
+}
+
+static bool may___take_forks(bool *perm, t_philo *phi)
+{
+	return (get_bool(perm, phi->maestro->mutex));
+}
+
+static bool i___m_alive(t_philo *phi)
+{
+	int64_t	timestamp;
+
+	timestamp = gettimeofday_musec();
+	if (timestamp < phi->t.starved)
+		return (true);
+	set_bool(&phi->squad_end->starved, true, phi->squad_end->mutex);
+	return (false);
 }
