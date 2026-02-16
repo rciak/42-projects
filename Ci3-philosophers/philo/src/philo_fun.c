@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 03:42:43 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 18:08:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	*philo_fun(void *arg)
 		all->thread_span.mutex);
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
+	set_int64(&phi.t.init, all->thread_span.t_simulation_start,
+		all->thread_span.mutex);
 	if (get_bool(&all->thread_span.creating_failed,
 		all->thread_span.mutex) == true)
 		return (NULL);
@@ -115,7 +117,8 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 	// Not yet set VARS: 
 	//  t;
 	pthread_mutex_lock(all->thread_span.mutex);
-	*id = all->thread_span.id_cur_philo;
+	*id = all->thread_span.id_cur_philo;                                          //refactor leftover id away; phi->id is sufficient
+	phi->id = all->thread_span.id_cur_philo;
 	phi->t.init = all->thread_span.t_simulation_start;
 	phi->t.starved = phi->t.init + all->param.tt.die;
 	phi->tt = all->param.tt;
