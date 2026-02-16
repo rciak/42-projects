@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 00:51:07 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 00:59:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	set__message(int kind, char **msg, char **msg_2);
 /**
  * @brief Take timestamp and log the handed over event
  */
-void log_event(int event, t_philo *phi)
+int64_t log_event(int event, t_philo *phi)
 {
 	char		*msg;
 	char		*msg_2;
@@ -50,6 +50,7 @@ void log_event(int event, t_philo *phi)
 			printf(msg_2, timestamp, phi->id + 1);
 	}
 	pthread_mutex_unlock(phi->lock_log);
+	return (timestamp);
 }
 
 static void	set__message(int event, char **msg, char **msg_2)
