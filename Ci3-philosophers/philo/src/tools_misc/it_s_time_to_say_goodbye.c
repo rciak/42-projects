@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 01:19:11 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 14:29:04 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 14:35:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 
 #include "philosophers.h"
 
-/**
- * @brief Tells if a condition for termination of the simulation has been set
- */
+/** @brief Checks if a termination condition (for the simulation) was reached */
 bool	it_s_time_to_say_goodbye(t_squad_end *squad_end)
 {
 	bool	starved;
