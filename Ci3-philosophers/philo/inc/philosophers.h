@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 03:50:17 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 14:59:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,7 +299,7 @@ size_t		ft_strlen(const char *s);
 long long	atoll_strict(const char *nptr, t_ecode *err_code);
 
 //tools_misc/*.c
-bool	it_s_time_to_say_goodbye(t_squad_end *squad_end);
+bool	time_to_say_goodbye(t_squad_end *squad_end);
 
 //tools_threads/*.c
 void	set_bool(bool *var, bool value, pthread_mutex_t *mutex);

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 03:32:15 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 14:57:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void *maestro_fun(void *arg)
 	{
 		return (NULL);
 	}
-	while (!it_s_time_to_say_goodbye(&all->squad_end))
+	while (!time_to_say_goodbye(&all->squad_end))
 	{
 		con__duct(maestro, n, &shift, all);
 		usleep(MAESTRO_WAIT);
