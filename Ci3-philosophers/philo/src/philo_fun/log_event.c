@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 03:56:43 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 22:12:27 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ static void	set__message(int event, char **msg, char **msg_2, char **msg_3)
 	*msg_2 = NULL;
 	*msg_3 = NULL;
 	if (event == DIED)
-		*msg = "%u %li "RED"died"RESET"\n";
+		*msg = "%li %li "RED"died"RESET"\n";
 	if (event == TAKE_FORKS_EAT)
 	{
-		*msg = "%u %li has taken a fork\n";
-		*msg_2 = "%u %li has taken a fork\n";
-		*msg_3 = "%u %li is eating\n";
+		*msg = "%li %li has taken a fork\n";
+		*msg_2 = "%li %li has taken a fork\n";
+		*msg_3 = "%li %li is eating\n";
 	}
 	if (event == SLEEP)
-		*msg = "%u %li is sleeping\n";
+		*msg = "%li %li is sleeping\n";
 	if (event == THINK)
-		*msg = "%u %li is thinking\n";
+		*msg = "%li %li is thinking\n";
 if (event == DEBUG)
-	*msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %u %li\n";
+	*msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %li %li\n";
 if (event == DEBUG_SIM_ENOUGH_PASTA)
-	*msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %u %li\n";
+	*msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %li %li\n";
 }
