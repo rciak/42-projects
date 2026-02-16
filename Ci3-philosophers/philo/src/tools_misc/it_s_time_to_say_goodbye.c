@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 01:19:11 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 01:26:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 14:29:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	it_s_time_to_say_goodbye(t_squad_end *squad_end)
 
 	starved = get_bool(&squad_end->starved, squad_end->mutex);
 	n_pasta_lovers = get_int64(&squad_end->num_pasta_lovers, squad_end->mutex);
-	if (starved == true || n_pasta_lovers <= 0)
+	if (starved == true || n_pasta_lovers == 0)
 	{
 		return (true);
 	}
