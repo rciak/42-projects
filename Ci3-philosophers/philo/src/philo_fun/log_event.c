@@ -46,11 +46,11 @@ int64_t log_event(int event, t_philo *phi)
 	pthread_mutex_unlock(s_end->mutex);
 	if (should_print == true)
 	{
-		printf(msg, timestamp, phi->id + 1);
+		printf(msg, timestamp / ONE_MS_IN_US, phi->id + 1);
 		if (msg_2 != NULL)
-			printf(msg_2, timestamp, phi->id + 1);
+			printf(msg_2, timestamp / ONE_MS_IN_US, phi->id + 1);
 		if (msg_3 != NULL)
-			printf(msg_3, timestamp, phi->id + 1);
+			printf(msg_3, timestamp / ONE_MS_IN_US, phi->id + 1);
 	}
 	pthread_mutex_unlock(phi->lock_log);
 	return (timestamp);

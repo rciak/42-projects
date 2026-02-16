@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 14:59:58 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/16 22:06:28 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # endif
 # define ONE_HOUR_IN_MS 3600000
 # define ONE_SECOND_IN_US 1000000
+# define ONE_MS_IN_US 1000
 // Colors
 # define RESET "\033[0m"
 # define RED "\033[31m"
