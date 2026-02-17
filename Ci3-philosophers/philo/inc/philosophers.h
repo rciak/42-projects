@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 23:25:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/17 12:55:14 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@
 # endif
 # define ONE_HOUR_IN_MS 3600000
 # define ONE_SECOND_IN_US 1000000
-# define ONE_MS_IN_US 1000
+
+# define ONE_MS_IN_US 1
+																		// FINAL: # define ONE_MS_IN_US 1000
 // Colors
 # define RESET "\033[0m"
 # define RED "\033[31m"
@@ -78,6 +80,7 @@ enum e_events_to_log
 	EAT,
 	SLEEP,
 	THINK,
+	ALL_HAVE_EATEN_ENOUGH,                                                          //shitty name...
 DEBUG,
 DEBUG_SIM_ENOUGH_PASTA,
 	COUNT_EVENT_KINDS,
@@ -313,6 +316,7 @@ void	wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx, int act);
 
 //tools_time/*.c
 void		wait_for(int64_t time_span);
+int64_t		wait_till(int64_t t_stop);
 int64_t		gettimeofday_musec(void);
 
 

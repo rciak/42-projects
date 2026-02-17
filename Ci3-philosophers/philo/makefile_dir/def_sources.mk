@@ -18,6 +18,7 @@ src/tools_libft/putstr_fd.c \
 src/tools_libft/skip.c \
 src/tools_time/gettimeofday_musec.c \
 src/tools_time/wait_for.c \
+src/tools_time/wait_till.c \
 src/tools_misc/time_to_say_goodbye.c \
 src/tools_threads/get_bool.c \
 src/tools_threads/get_int64.c \

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/17 00:10:42 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/17 13:57:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 
 #include "philosophers.h"
 
-static void	print__message(int event, int64_t timestamp, int64_t id);
-static void	set___message(int kind, char **msg, char **msg_2, char **msg_3);
+static void		print__message(int event, int64_t timestamp, int64_t id);
+static void		set___message(int kind, char **msg, char **msg_2, char **msg_3);
+static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi);
 
 /**
  * @brief Take timestamp and log the handed over event
+ *        (which turns into DEAD event if too late to prevent starvation)
  */
-int64_t 	log_event(int event, t_philo *phi)
+int64_t	log_event(int event, t_philo *phi)
 {
 	t_squad_end *s_end;
 	int64_t		timestamp;
@@ -98,4 +100,23 @@ if (event == DEBUG)
 	*msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %li %li\n";
 if (event == DEBUG_SIM_ENOUGH_PASTA)
 	*msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %li %li\n";
+}
+
+static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi)
+{
+	int64_t	timestamp;
+	int64_t	waiting_time;
+
+	if (event == EAT)
+		waiting_time = phi->tt.eat;
+	else if (event == SLEEP)
+		waiting_time = phi->tt.sleep;
+	else
+		waiting_time = 0;
+	timestamp = gettimeofday_musec();
+	if (timestamp + waiting_time >= t_starved)
+		timestamp = wait_till(t_starved);
+	else
+		timestamp = wait_till(timestamp + waiting_time);
+	return (timestamp);
 }
