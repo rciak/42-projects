@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/17 13:57:18 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/17 14:45:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "philosophers.h"
 
 static void		print__message(int event, int64_t timestamp, int64_t id);
-static void		set___message(int kind, char **msg, char **msg_2, char **msg_3);
 static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi);
 
 /**
@@ -40,25 +39,21 @@ int64_t	log_event(int event, t_philo *phi)
 	
 	if (s_end->starved == false && s_end->num_pasta_lovers > 0)
 		print__message(event, timestamp, phi->id);
-
 	if (event == EAT)
 		phi->t.starved += phi->tt.die;
-	timestamp = elapse__time(event, phi->t.starved);
-	
-	
 
-
-	// wait
-	if (event == DIED)
-		s_end->starved = true;
-	if (event == EAT && phi->meals.min != OMITTED_PARAM)
+	timestamp = elapse__time(event, phi->t.starved, phi);
+	if (event == EAT && phi->meals.min != OMITTED_PARAM
+			&& phi->meals.eaten < phi->meals.min && timestamp < phi->t.starved)
 	{
-		//
+		phi->meals.eaten++;
+		if (phi->meals.eaten == phi->meals.min)
+		{
+			s_end->num_pasta_lovers--;
+			if (s_end->num_pasta_lovers == 0)
+				print__message(ALL_HAVE_EATEN_ENOUGH, timestamp, phi->id);
+		}
 	}
-
-
-	if (timestamp >= phi->t.starved)
-		event = DIED;
 	if (event == DIED)
 		s_end->starved = true;
 	pthread_mutex_unlock(s_end->mutex);
@@ -69,37 +64,24 @@ int64_t	log_event(int event, t_philo *phi)
 static void	print__message(int event, int64_t timestamp, int64_t id)
 {
 	char		*msg;
-	char		*msg_2;
-	char		*msg_3;
 
-	set___message(event, &msg, &msg_2, &msg_3);
-	printf(msg, timestamp / ONE_MS_IN_US, id + 1);
-	if (msg_2 != NULL)
-		printf(msg_2, timestamp / ONE_MS_IN_US, id + 1);
-	if (msg_3 != NULL)
-		printf(msg_3, timestamp / ONE_MS_IN_US, id + 1);
-}
-
-static void	set___message(int event, char **msg, char **msg_2, char **msg_3)
-{
-	*msg_2 = NULL;
-	*msg_3 = NULL;
+	if (event == ALL_HAVE_EATEN_ENOUGH)
+		msg = "%li %li has (as last one) finished the specified minimal required number of meals\n";
 	if (event == DIED)
-		*msg = "%li %li "RED"died"RESET"\n";
-	if (event == TAKE_FORKS_EAT)
-	{
-		*msg = "%li %li has taken a fork\n";
-		*msg_2 = "%li %li has taken a fork\n";
-		*msg_3 = "%li %li is eating\n";
-	}
+		msg = "%li %li "RED"died"RESET"\n";
+	if (event == TAKE_FIRST_FORK || event == TAKE_SECOND_FORK)
+		msg = "%li %li has taken a fork\n";
+	if (event == EAT)
+		msg = "%li %li is eating\n";
 	if (event == SLEEP)
-		*msg = "%li %li is sleeping\n";
+		msg = "%li %li is sleeping\n";
 	if (event == THINK)
-		*msg = "%li %li is thinking\n";
-if (event == DEBUG)															    //REMOVE in FINAL
-	*msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %li %li\n";
-if (event == DEBUG_SIM_ENOUGH_PASTA)
-	*msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %li %li\n";
+		msg = "%li %li is thinking\n";
+	if (event == DEBUG)															    //REMOVE in FINAL
+		msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %li %li\n";
+	if (event == DEBUG_SIM_ENOUGH_PASTA)
+		msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %li %li\n";
+	printf(msg, timestamp / ONE_MS_IN_US, id + 1);
 }
 
 static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi)
