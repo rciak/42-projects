@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 14:57:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/17 10:12:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all) //r
 	pthread_mutex_unlock(mae->mutex);
 }
 
-static bool	all___forks_on_table(t_maestro *mae, int64_t num_philos)
+static bool	all___forks_on_table(t_maestro *mae, int64_t num_philos)             // Is O(n) OPTIMIZATION to O(1) : Calculate new var `eff_available_forks \in \{n, n-1\}` (depending on the number n of philos / forks is even or odd) and use additional shared countervariable num_to_be_cleaned_forks - getting ++2 when a philo returns his two forks (now disgusting to use before cleaning ;-) )
 {
 	bool	reval;
 	int64_t	i;

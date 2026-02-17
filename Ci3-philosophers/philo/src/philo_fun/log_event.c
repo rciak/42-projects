@@ -63,7 +63,7 @@ int64_t	log_event(int event, t_philo *phi)
 		s_end->starved = true;
 	pthread_mutex_unlock(s_end->mutex);
 	pthread_mutex_unlock(phi->lock_log);
-	return (timestamp);
+	return (timestamp);                                                          //if no return value is needed: refactor to void function
 }
 
 static void	print__message(int event, int64_t timestamp, int64_t id)
@@ -96,7 +96,7 @@ static void	set___message(int event, char **msg, char **msg_2, char **msg_3)
 		*msg = "%li %li is sleeping\n";
 	if (event == THINK)
 		*msg = "%li %li is thinking\n";
-if (event == DEBUG)
+if (event == DEBUG)															    //REMOVE in FINAL
 	*msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %li %li\n";
 if (event == DEBUG_SIM_ENOUGH_PASTA)
 	*msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %li %li\n";
