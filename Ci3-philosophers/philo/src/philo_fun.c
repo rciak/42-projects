@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 23:03:36 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/17 13:54:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,20 +95,24 @@ static void	run__philo_cycle(t_philo *phi)
 	while (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
 	{
 		log_event(THINK, phi);
-		usleep(TIME_TILL_NEXT_FORK_CHECK);
-		while(!may___take_forks(perm, phi)
-				&& i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+		while(i___m_alive(phi) && !time_to_say_goodbye(squad_end)
+				&& !may___take_forks(perm, phi))
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
-		log_event(TAKE_FORKS_EAT, phi);
-		// if (!take__forks_and_eat(phi, t))
-		// 	return ;
-		// if (!provide__sleep(phi, t))
-		// 	return ;
-		// if (!think(phi, t))
 
-		// treat_event(TAKE_FORKS_EAT, phi);
-		// treat_event(SLEEP, phi);
-		// treat_event(THINK, phi);
+		// dine() :
+		// bool take_fork;
+		// shall_take_forks = (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+		// if (shall_take_forks)
+		//		Take 1. fork
+		//		Take 2. fork
+		log_event(EAT, phi);
+		// if (shall_take_forks)
+		//Release fork 2
+		//Release fork 1
+		
+		set_bool(&phi->maestro->allows[phi->id], false, phi->maestro->mutex);
+		
+		log_event(SLEEP, phi);
 	}
 	if (i___m_alive(phi) == false)
 		log_event(DIED, phi);
