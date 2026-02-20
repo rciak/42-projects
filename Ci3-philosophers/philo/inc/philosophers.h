@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/17 12:55:14 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/20 12:05:45 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,6 +326,7 @@ int64_t		gettimeofday_musec(void);
 //                       //
 ///////////////////////////
 void	print_parsed_args(t_param param);
+void	print_allows(bool *allows, int64_t n);
 //void	print_init_rest(t_all all);
 
 
