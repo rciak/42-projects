@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/17 14:45:44 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/20 15:24:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int64_t	log_event(int event, t_philo *phi)
 		print__message(event, timestamp, phi->id);
 	if (event == EAT)
 		phi->t.starved += phi->tt.die;
-
 	timestamp = elapse__time(event, phi->t.starved, phi);
 	if (event == EAT && phi->meals.min != OMITTED_PARAM
 			&& phi->meals.eaten < phi->meals.min && timestamp < phi->t.starved)
@@ -51,7 +50,7 @@ int64_t	log_event(int event, t_philo *phi)
 		{
 			s_end->num_pasta_lovers--;
 			if (s_end->num_pasta_lovers == 0)
-				print__message(ALL_HAVE_EATEN_ENOUGH, timestamp, phi->id);
+				printf("Cook: Let's call it a day!\n");
 		}
 	}
 	if (event == DIED)
@@ -65,14 +64,12 @@ static void	print__message(int event, int64_t timestamp, int64_t id)
 {
 	char		*msg;
 
-	if (event == ALL_HAVE_EATEN_ENOUGH)
-		msg = "%li %li has (as last one) finished the specified minimal required number of meals\n";
 	if (event == DIED)
 		msg = "%li %li "RED"died"RESET"\n";
 	if (event == TAKE_FIRST_FORK || event == TAKE_SECOND_FORK)
 		msg = "%li %li has taken a fork\n";
 	if (event == EAT)
-		msg = "%li %li is eating\n";
+		msg = "%li %li is "YELLOW"eating"RESET"\n";
 	if (event == SLEEP)
 		msg = "%li %li is sleeping\n";
 	if (event == THINK)
@@ -97,7 +94,8 @@ static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi)
 		waiting_time = 0;
 	timestamp = gettimeofday_musec();
 	if (timestamp + waiting_time >= t_starved)
-		timestamp = wait_till(t_starved);
+		timestamp = wait_till(t_starved);                                       //Speedup simulation when everything works in principle: Check if simulation was ended by other threads... --> Extend wait till....
+
 	else
 		timestamp = wait_till(timestamp + waiting_time);
 	return (timestamp);
