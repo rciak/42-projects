@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 22:05:06 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/20 15:38:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ static bool	values__ok(int argc, t_param *par, t_ecode *code)
 		|| par->tt.eat > MAX_TT_EAT
 		|| par->tt.sleep > MAX_TT_SLEEP
 		|| (argc == 1 + 5 && par->meals_at_least > MAX_NUM_MEALS)
-		|| (par->tt.eat > ONE_HOUR_IN_MS && par->tt.die > ONE_HOUR_IN_MS)
-		|| (par->tt.sleep > ONE_HOUR_IN_MS && par->tt.die > ONE_HOUR_IN_MS))
+		|| (par->tt.eat > ONE_HOUR_IN_US && par->tt.die > ONE_HOUR_IN_US)
+		|| (par->tt.sleep > ONE_HOUR_IN_US && par->tt.die > ONE_HOUR_IN_US))
 		return (*code = E_DISRESPECT, false);
 	return (*code = E_NONE, true);
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/20 12:05:45 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/20 15:51:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@
 # ifndef DEBUG_PRINT
 #  define DEBUG_PRINT 0
 # endif
-# define ONE_HOUR_IN_MS 3600000
-# define ONE_SECOND_IN_US 1000000
+# define ONE_HOUR_IN_US 3600000000LL
+# define ONE_SECOND_IN_US 1000000LL
+# define ONE_MS_IN_US 1000LL
+# define MAX_TT_DIE ONE_HOUR_IN_US
+# define MAX_TT_EAT ONE_HOUR_IN_US
+# define MAX_TT_SLEEP ONE_HOUR_IN_US
 
-# define ONE_MS_IN_US 1
-																		// FINAL: # define ONE_MS_IN_US 1000
 // Colors
 # define RESET "\033[0m"
 # define RED "\033[31m"
@@ -91,9 +93,6 @@ enum e_philosopers_int_constants
 	END_SIMULATION = -1,
 	OMITTED_PARAM = -1,
 	MAX_NUM_PHILOS = 65535,
-	MAX_TT_DIE = ONE_HOUR_IN_MS,
-	MAX_TT_EAT = ONE_HOUR_IN_MS,
-	MAX_TT_SLEEP = ONE_HOUR_IN_MS,
 };
 
 enum e_reset_boolean_condition_var
