@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/17 10:12:42 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/20 12:15:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all) //r
 	while (i < n - 1)
 	{
 		i_rotated = (i + *shift) % n;
-		if ((i_rotated) % 2 == 0)
+		if (i % 2 == 0)
 			mae->allows[i_rotated] = true;
 		else
 			mae->allows[i_rotated] = false;
