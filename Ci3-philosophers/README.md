@@ -186,10 +186,13 @@ Test with `perf` or `valgrind --tool=callgrind` to confirm; real perf hinges on 
 
 # TEMPORARY APPENDIX
 
-## Questions to discuss
+## Known issues:
 
-* I would likt to start the simulation with all philosophers thinking.
-  Is there any problem with that subjectwise?
+* d5249c5:
+  * Tends to die after some time: `./philo 2 100 50 40 100`
+  * Not working/no output at all: `./philo 2 100 50 40`
+
+## Questions to discuss
 
 ## Must do before submission
 
