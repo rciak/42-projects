@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/21 20:18:53 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/21 20:55:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi);
  * @brief Take timestamp and log the handed over event
  *        (which turns into DEAD event if too late to prevent starvation)
  */
-int64_t	log_event(int event, t_philo *phi)
+void	log_event(int event, t_philo *phi)
 {
 	t_squad_end *s_end;
 	int64_t		timestamp;
@@ -33,21 +33,16 @@ int64_t	log_event(int event, t_philo *phi)
 	pthread_mutex_lock(phi->lock_log);
 	pthread_mutex_lock(s_end->mutex);                                           //refactor: Move that lock closer to where it is needed!?!
 	timestamp = gettimeofday_musec();
-
 	if (timestamp >= phi->t.starved)
 		event = DIED;
-	
 	if (s_end->starved == false && s_end->num_pasta_lovers > 0)
 		print__message(event, timestamp, phi->id);
 	if (event == DIED)
 		s_end->starved = true;
-
-
 	pthread_mutex_unlock(s_end->mutex);
 	pthread_mutex_unlock(phi->lock_log);
 	if (event == EAT)
 		phi->t.starved += phi->tt.die;
-
 	(void) elapse__time(event, phi->t.starved, phi);                          //refactor: return type to void
 	pthread_mutex_lock(s_end->mutex);
 	if (event == EAT && phi->meals.min != OMITTED_PARAM
@@ -63,7 +58,6 @@ int64_t	log_event(int event, t_philo *phi)
 		}
 	}
 	pthread_mutex_unlock(s_end->mutex);
-	return (timestamp);                                                          //if no return value is needed: refactor to void function
 }
 
 static void	print__message(int event, int64_t timestamp, int64_t id)

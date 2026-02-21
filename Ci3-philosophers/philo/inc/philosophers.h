@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/21 15:24:25 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/21 20:55:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,7 +291,7 @@ void		*maestro_fun(void *arg);
 // void		wait_for(long long time);
 
 // philo_fun/*.c
-int64_t		log_event(int event, t_philo *phi);
+void		log_event(int event, t_philo *phi);
 bool		hope_for_meal(t_philo *phi, t_time *t);
 // //          /zhared/*.c
 // bool		is_simulation_ended(t_philo *phi);
