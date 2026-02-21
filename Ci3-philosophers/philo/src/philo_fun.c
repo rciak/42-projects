@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/20 15:20:59 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/21 20:46:21 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,22 @@ static void	run__philo_cycle(t_philo *phi)
 		while(i___m_alive(phi) && !time_to_say_goodbye(squad_end)
 				&& !may___take_forks(perm, phi))
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
+
 		log_event(TAKE_FIRST_FORK, phi);
+		pthread_mutex_lock(phi->left_fork);
 		log_event(TAKE_SECOND_FORK, phi);
-		// dine() :
-		// bool take_fork;
-		// shall_take_forks = (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+		pthread_mutex_lock(phi->right_fork);
+
+		//bool shall_take_forks;
+		// take_forks = i___m_alive(phi) && !time_to_say_goodbye(squad_end);
 		// if (shall_take_forks)
 		//		Take 1. fork
 		//		Take 2. fork
+
 		log_event(EAT, phi);
+		pthread_mutex_unlock(phi->right_fork);
+		pthread_mutex_unlock(phi->left_fork);
+
 		// if (shall_take_forks)
 		//Release fork 2
 		//Release fork 1
