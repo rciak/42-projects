@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/20 15:51:36 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/21 15:24:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 # define FACTOR_USLEEP_WAIT_FOR 0.9                                           //This should be kicked out / not needed anymore when my custum sleep functions gets improved and tuned
 
 // The unit for the following is usec (microseconds)
+# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 700
 # define TIME_TILL_NEXT_FORK_CHECK 300
 # define MAESTRO_WAIT 70
 ///////////////////////////////////////////////////////////////////////# define MAX_TIME_BIRTH_PHILO 1000/
@@ -315,7 +316,7 @@ void	wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx, int act);
 
 //tools_time/*.c
 void		wait_for(int64_t time_span);
-int64_t		wait_till(int64_t t_stop);
+int64_t		wait_till(int64_t t_stop, t_squad_end *s_end);
 int64_t		gettimeofday_musec(void);
 
 

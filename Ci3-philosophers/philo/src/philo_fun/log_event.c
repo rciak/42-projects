@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/20 15:24:35 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/21 15:24:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,8 @@ static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi)
 		waiting_time = 0;
 	timestamp = gettimeofday_musec();
 	if (timestamp + waiting_time >= t_starved)
-		timestamp = wait_till(t_starved);                                       //Speedup simulation when everything works in principle: Check if simulation was ended by other threads... --> Extend wait till....
-
+		timestamp = wait_till(t_starved, phi->squad_end);                                       //Speedup simulation when everything works in principle: Check if simulation was ended by other threads... --> Extend wait till....
 	else
-		timestamp = wait_till(timestamp + waiting_time);
+		timestamp = wait_till(timestamp + waiting_time, phi->squad_end);
 	return (timestamp);
 }
