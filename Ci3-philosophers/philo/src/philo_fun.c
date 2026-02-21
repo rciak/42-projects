@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/17 13:54:31 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/20 15:20:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ static void	run__philo_cycle(t_philo *phi)
 		while(i___m_alive(phi) && !time_to_say_goodbye(squad_end)
 				&& !may___take_forks(perm, phi))
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
-
+		log_event(TAKE_FIRST_FORK, phi);
+		log_event(TAKE_SECOND_FORK, phi);
 		// dine() :
 		// bool take_fork;
 		// shall_take_forks = (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
@@ -109,7 +110,6 @@ static void	run__philo_cycle(t_philo *phi)
 		// if (shall_take_forks)
 		//Release fork 2
 		//Release fork 1
-		
 		set_bool(&phi->maestro->allows[phi->id], false, phi->maestro->mutex);
 		
 		log_event(SLEEP, phi);
