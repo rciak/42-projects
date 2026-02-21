@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/21 15:24:01 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/21 20:18:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,30 @@ int64_t	log_event(int event, t_philo *phi)
 	
 	if (s_end->starved == false && s_end->num_pasta_lovers > 0)
 		print__message(event, timestamp, phi->id);
+	if (event == DIED)
+		s_end->starved = true;
+
+
+	pthread_mutex_unlock(s_end->mutex);
+	pthread_mutex_unlock(phi->lock_log);
 	if (event == EAT)
 		phi->t.starved += phi->tt.die;
-	timestamp = elapse__time(event, phi->t.starved, phi);
+
+	(void) elapse__time(event, phi->t.starved, phi);                          //refactor: return type to void
+	pthread_mutex_lock(s_end->mutex);
 	if (event == EAT && phi->meals.min != OMITTED_PARAM
 			&& phi->meals.eaten < phi->meals.min && timestamp < phi->t.starved)
 	{
+		timestamp = gettimeofday_musec();        // Remove when below test print "Cook:..." is removed
 		phi->meals.eaten++;
 		if (phi->meals.eaten == phi->meals.min)
 		{
 			s_end->num_pasta_lovers--;
-			if (s_end->num_pasta_lovers == 0)
-				printf("Cook: Let's call it a day!\n");
+			if (s_end->num_pasta_lovers == 0)    // This printing is unsecure: JUST FOR TESTING --> MUST BE REMOVED when everything is working
+				printf("%li, Cook: Let's call it a day!\n", timestamp);
 		}
 	}
-	if (event == DIED)
-		s_end->starved = true;
 	pthread_mutex_unlock(s_end->mutex);
-	pthread_mutex_unlock(phi->lock_log);
 	return (timestamp);                                                          //if no return value is needed: refactor to void function
 }
 
