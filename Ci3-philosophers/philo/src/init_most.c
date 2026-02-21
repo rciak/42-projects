@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 12:43:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/16 03:33:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/21 22:09:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	init_most(t_all *all)
 	all->squad_end.mutex = &all->mutab.squad_end;
 	all->squad_end.starved = false;
 	all->squad_end.num_pasta_lovers = all->param.num_philos;
-	if (all->param.meals_at_least == OMITTED_PARAM)
-		all->squad_end.num_pasta_lovers = OMITTED_PARAM;
 	all->thread_span.mutex = &all->mutab.thread_span;
 	all->thread_span.new_thread_copied_vars = false;
 }
