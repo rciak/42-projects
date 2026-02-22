@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 20:00:03 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 20:23:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@
 # define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 700
 # define TIME_TILL_NEXT_FORK_CHECK 300
 # define MAESTRO_WAIT 70
-///////////////////////////////////////////////////////////////////////# define MAX_TIME_BIRTH_PHILO 1000/
 
 ///////////////////////////////////
 //                               //
@@ -135,6 +134,15 @@ typedef enum e_error_code
 /////////////////////////
 
 //
+//  ERROR HANDLING:  Error code  and  error message
+//
+typedef struct s_err
+{
+	t_ecode	code;
+	char	*msg;
+}	t_err;
+
+//
 //  time:  points
 //
 typedef struct s_time
@@ -187,7 +195,7 @@ typedef struct s_maestro
 //
 //      a) One philo starved: starved == true
 //      b) all have eaten the (optionally) required number of meals
-//         and don't like eating spaghetti anymore: num_pasta_lovers <= 0
+//         and don't like eating spaghetti anymore: num_pasta_lovers == 0
 typedef struct s_squad_end
 {
 	pthread_mutex_t	*mutex;
@@ -236,9 +244,6 @@ typedef struct	s_all
 
 //
 //  CORE STRUCT II:  For philo threads 
-// 
-//      Except for `t`imepoints the entries shall be copied over at the start of
-//      a philo thread via the t_all *all pointer given to its start function.
 //
 typedef struct	s_philo
 {
@@ -252,15 +257,6 @@ typedef struct	s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 }	t_philo;
-
-//
-//  ERROR HANDLING:  Error code  and  error message
-//
-typedef struct s_err
-{
-	t_ecode	code;
-	char	*msg;
-}	t_err;
 
 ////////////////////////////////////////////////
 //                                            //
@@ -314,7 +310,5 @@ int64_t		gettimeofday_musec(void);
 ///////////////////////////
 void	print_parsed_args(t_param param);
 void	print_allows(bool *allows, int64_t n);
-//void	print_init_rest(t_all all);
-
 
 #endif
