@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 15:46:33 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 20:09:04 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,34 +150,3 @@ static bool join__threads(t_all *all, t_ecode *code)
 	}
 	return (true);
 }
-// //
-// //  Worüber ich mir noch klar werden muss:
-// //
-// //  Wie Zeit gut messen? 
-// //    Philo wollen alle permanet die Uhrzeit abfragen...
-// //
-// //
-// //  P L A N
-// //
-// // II  create philo threads, which do:
-// //     [X] wait for start signal, then
-// //        take fork - if access granted,
-// //        eat,
-// //        sleep,
-// //        think,
-// //                                                     [think extra if maestro
-// //                                                      says so (due being ahead
-// //                                                         of the other philos)]
-// //        notify shared var `philo died` if philo dies
-// //        repeat indefinitely or until max_num_meals reached (if specified)
-// // III create maestro (and monitoring?!) thread, which does:
-// //        START CLOCK and immediately after:
-// //           Allow Philos that match PERMISSION PATTERN to take forks
-// //        AFTERWARDS
-// //           Update Permission pattern (*)
-// //           When all forks have been returned
-// //              Grant Philos that match PERMISSION PATTERN to take forks
-// //     
-// //  R E M A R K S:
-// //  @ (*): modelled by add  +1  to shift var ( mod ... )
-
