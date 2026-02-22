@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2026/02/08 12:04:08 by reciak           ###   ########.fr        #
+#    Updated: 2026/02/22 16:41:46 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ_DIR       := obj
 RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
-CFLAGS    = -std=c99 -pthread -Wall -Wextra -Werror $(addprefix -I,$(INC_DIRS))
+CFLAGS    = -pthread -Wall -Wextra -Werror $(addprefix -I,$(INC_DIRS))
 LDFLAGS  := -pthread
 ifeq ($(DEBUG_PRINT), 1)
   CFLAGS  += -D DEBUG_PRINT=1
