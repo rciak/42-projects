@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 15:41:07 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 19:53:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 static void		print__message(int event, int64_t timestamp, int64_t id);
 static void		elapse__time(int event, int64_t t_starved, t_philo *phi);
+static void		reduce__passion_for_pasta(t_philo *phi);
 
 /**
  * @brief Take timestamp and log the handed over event
@@ -26,7 +27,7 @@ static void		elapse__time(int event, int64_t t_starved, t_philo *phi);
  */
 void	log_event(int event, t_philo *phi)
 {
-	t_squad_end *s_end;
+	t_squad_end	*s_end;
 	int64_t		timestamp;
 
 	s_end = phi->squad_end;
@@ -46,17 +47,8 @@ void	log_event(int event, t_philo *phi)
 	elapse__time(event, phi->t.starved, phi);
 	pthread_mutex_lock(s_end->mutex);
 	if (event == EAT && phi->meals.min != OMITTED_PARAM
-			&& phi->meals.eaten < phi->meals.min && timestamp < phi->t.starved)
-	{
-		timestamp = gettimeofday_musec();        // Remove when below test print "Cook:..." is removed
-		phi->meals.eaten++;
-		if (phi->meals.eaten == phi->meals.min)
-		{
-			s_end->num_pasta_lovers--;
-			if (s_end->num_pasta_lovers == 0)    // This printing is unsecure: JUST FOR TESTING --> MUST BE REMOVED when everything is working
-				printf("%li, Cook: Let's call it a day!\n", timestamp);
-		}
-	}
+		&& phi->meals.eaten < phi->meals.min && timestamp < phi->t.starved)
+		reduce__passion_for_pasta(phi);
 	pthread_mutex_unlock(s_end->mutex);
 }
 
@@ -74,7 +66,7 @@ static void	print__message(int event, int64_t timestamp, int64_t id)
 		msg = "%li %li is sleeping\n";
 	if (event == THINK)
 		msg = "%li %li is thinking\n";
-	if (event == DEBUG)															    //REMOVE in FINAL
+	if (event == DEBUG)															//REMOVE in FINAL
 		msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %li %li\n";
 	if (event == DEBUG_SIM_ENOUGH_PASTA)
 		msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %li %li\n";
@@ -97,4 +89,20 @@ static void	elapse__time(int event, int64_t t_starved, t_philo *phi)
 		(void) wait_till(t_starved, phi->squad_end);							// If no use of return value during Optimization appeared: Refactor signature of wait_till to void!
 	else
 		(void) wait_till(timestamp + waiting_time, phi->squad_end);	
+}
+
+static void	reduce__passion_for_pasta(t_philo *phi)
+{
+	int64_t		timestamp;
+	t_squad_end *s_end;
+
+	s_end = phi->squad_end;
+	timestamp = gettimeofday_musec();        // Remove when below test print "Cook:..." is removed
+	phi->meals.eaten++;
+	if (phi->meals.eaten == phi->meals.min)
+	{
+		s_end->num_pasta_lovers--;
+		if (s_end->num_pasta_lovers == 0)    // This printing is unsecure: JUST FOR TESTING --> MUST BE REMOVED when everything is working
+			printf("%li, Cook: Let's call it a day!\n", timestamp);
+	}
 }
