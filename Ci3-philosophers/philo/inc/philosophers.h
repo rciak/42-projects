@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 01:50:59 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 01:59:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ typedef struct	s_mutex_tab
 	pthread_mutex_t	maestro;
 	pthread_mutex_t	squad_end;
 	pthread_mutex_t	lock_philos_till_start;
-	pthread_mutex_t	lock_log;
+	pthread_mutex_t	lock_log;                                                    // Just before optimization: Can this mutex be kicked out?!
 	pthread_mutex_t	*fork;
 }	t_mutex_tab;
 
