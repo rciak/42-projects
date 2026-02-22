@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/21 20:55:36 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 01:40:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,8 +259,6 @@ typedef struct	s_philo
 	pthread_mutex_t	*lock_log;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_hand;
-	pthread_mutex_t	*right_hand;
 }	t_philo;
 
 //

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/21 22:37:44 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 01:39:53 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ static void	set__values(int64_t *id, t_philo *phi, t_all *all)
 		phi->left_fork = &all->mutab.fork[*id - 1];
 		phi->right_fork = &all->mutab.fork[*id];
 	}
-	phi->left_hand = NULL;
-	phi->right_hand = NULL;
 	pthread_mutex_unlock(all->thread_span.mutex);
 }
 
