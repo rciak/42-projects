@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 01:39:53 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 16:20:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 static void	set__values(int64_t *id, t_philo *phi, t_all *all);      //style: Rename to  set__most_values
 static void	run__philo_cycle(t_philo *phi);
-static bool may___take_forks(bool *perm, t_philo *phi);
-static bool i___m_alive(t_philo *phi);
+static bool	i___m_alive(t_philo *phi);
 
 /**
  * @brief The usual start function executed by each philosopher thread
@@ -94,7 +93,7 @@ static void	run__philo_cycle(t_philo *phi)
 	{
 		log_event(THINK, phi);
 		while(i___m_alive(phi) && !time_to_say_goodbye(squad_end)
-				&& !may___take_forks(perm, phi))
+				&& get_bool(perm, phi->maestro->mutex) == false)
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
 
 if (phi->id % 2 == 0)
@@ -118,29 +117,12 @@ else
 	pthread_mutex_unlock(phi->left_fork);
 }
 
-		//bool shall_take_forks;
-		// take_forks = i___m_alive(phi) && !time_to_say_goodbye(squad_end);
-		// if (shall_take_forks)
-		//		Take 1. fork
-		//		Take 2. fork
-
-		
-
-
-		// if (shall_take_forks)
-		//Release fork 2
-		//Release fork 1
-		set_bool(&phi->maestro->allows[phi->id], false, phi->maestro->mutex);
+		set_bool(perm, false, phi->maestro->mutex);
 		
 		log_event(SLEEP, phi);
 	}
 	if (i___m_alive(phi) == false)
 		log_event(DIED, phi);
-}
-
-static bool may___take_forks(bool *perm, t_philo *phi)
-{
-	return (get_bool(perm, phi->maestro->mutex));
 }
 
 static bool i___m_alive(t_philo *phi)
