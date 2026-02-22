@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 01:40:03 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 01:50:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,17 +139,8 @@ typedef enum e_error_code
 //
 //  TIME  -intervals, -points, -duration
 //
-typedef struct s_interval
-{
-	int64_t	start;
-	int64_t	end;
-}	t_interval;
-
 typedef struct s_time
 {
-	t_interval	think;
-	t_interval	eat;
-	t_interval	sleep;
 	int64_t		starved;
 	int64_t		init;
 }	t_time;
