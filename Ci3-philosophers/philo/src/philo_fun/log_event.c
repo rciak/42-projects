@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/21 20:55:58 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 15:41:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "philosophers.h"
 
 static void		print__message(int event, int64_t timestamp, int64_t id);
-static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi);
+static void		elapse__time(int event, int64_t t_starved, t_philo *phi);
 
 /**
  * @brief Take timestamp and log the handed over event
@@ -43,7 +43,7 @@ void	log_event(int event, t_philo *phi)
 	pthread_mutex_unlock(phi->lock_log);
 	if (event == EAT)
 		phi->t.starved += phi->tt.die;
-	(void) elapse__time(event, phi->t.starved, phi);                          //refactor: return type to void
+	elapse__time(event, phi->t.starved, phi);
 	pthread_mutex_lock(s_end->mutex);
 	if (event == EAT && phi->meals.min != OMITTED_PARAM
 			&& phi->meals.eaten < phi->meals.min && timestamp < phi->t.starved)
@@ -81,7 +81,7 @@ static void	print__message(int event, int64_t timestamp, int64_t id)
 	printf(msg, timestamp / ONE_MS_IN_US, id + 1);
 }
 
-static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi)
+static void	elapse__time(int event, int64_t t_starved, t_philo *phi)
 {
 	int64_t	timestamp;
 	int64_t	waiting_time;
@@ -94,8 +94,7 @@ static int64_t	elapse__time(int event, int64_t t_starved, t_philo *phi)
 		waiting_time = 0;
 	timestamp = gettimeofday_musec();
 	if (timestamp + waiting_time >= t_starved)
-		timestamp = wait_till(t_starved, phi->squad_end);                                       //Speedup simulation when everything works in principle: Check if simulation was ended by other threads... --> Extend wait till....
+		(void) wait_till(t_starved, phi->squad_end);							// If no use of return value during Optimization appeared: Refactor signature of wait_till to void!
 	else
-		timestamp = wait_till(timestamp + waiting_time, phi->squad_end);
-	return (timestamp);
+		(void) wait_till(timestamp + waiting_time, phi->squad_end);	
 }
