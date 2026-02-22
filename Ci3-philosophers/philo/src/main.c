@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 23:09:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 15:46:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ static bool alloc__mem(t_all *all, int64_t n, t_ecode *code)
 {
 	all->maestro.allows = malloc(n * sizeof(bool));
 	all->mutab.fork = malloc(n * sizeof(pthread_mutex_t));
-	all->thread_span.thread = malloc(n * sizeof(pthread_t));
+	all->thread_span.philo_thread = malloc(n * sizeof(pthread_t));
 	if (all->maestro.allows == NULL
 		|| all->mutab.fork == NULL
-		|| all->thread_span.thread == NULL)
+		|| all->thread_span.philo_thread == NULL)
 	{
 		free(all->maestro.allows);
 		free(all->mutab.fork);
-		free(all->thread_span.thread);
+		free(all->thread_span.philo_thread);
 		all->maestro.allows = NULL;
 		all->mutab.fork = NULL;
-		all->thread_span.thread = NULL;
+		all->thread_span.philo_thread = NULL;
 		*code = E_ALLOC;
 		return (false);
 	}
@@ -144,7 +144,7 @@ static bool join__threads(t_all *all, t_ecode *code)
 	i = 0;
 	while (i < all->param.num_philos)
 	{
-		if (pthread_join(all->thread_span.thread[i], NULL) != 0)
+		if (pthread_join(all->thread_span.philo_thread[i], NULL) != 0)
 			return (*code = E_THREAD_JOIN, false);
 		i++;
 	}

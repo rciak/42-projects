@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 01:59:07 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 15:53:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ typedef struct	s_thread_span
 {
 	pthread_mutex_t	*mutex;
 	pthread_t		maestro_thread;
-	pthread_t		*thread;             //philo threads
+	pthread_t		*philo_thread;
 	bool			creating_failed;
 	bool			new_thread_copied_vars;
 	int64_t			id_cur_philo;

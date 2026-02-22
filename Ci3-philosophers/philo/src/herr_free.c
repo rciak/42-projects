@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/15 15:49:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 15:46:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	herr_free(t_ecode code, const char *debug_info, t_all *all)
 		destroy__mutexes(all);
 	free(all->maestro.allows);
 	free(all->mutab.fork);
-	free(all->thread_span.thread);
+	free(all->thread_span.philo_thread);
 	return (herr(code, debug_info));
 }
 

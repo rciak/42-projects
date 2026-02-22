@@ -47,7 +47,7 @@ bool	create_threads(t_all *all, t_ecode *code)
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
 	return (reval);
 }
-static bool	create__maestro_thread(t_all *all, t_ecode *code)				//Refactor: Position
+static bool	create__maestro_thread(t_all *all, t_ecode *code)
 {
 	if (0 != pthread_create(&all->thread_span.maestro_thread, NULL,	maestro_fun,
 			(void *) all))
@@ -92,7 +92,7 @@ static bool	create___single_philo_thread(int64_t i, t_all *all)
 		start_function = &philo_alone_at_table;
 	else
 		start_function = &philo_fun;
-	if (0 != pthread_create(&all->thread_span.thread[i], NULL, start_function,
+	if (0 != pthread_create(&all->thread_span.philo_thread[i], NULL, start_function,
 			(void *)all))
 		return (false);
 	return (true);
@@ -102,5 +102,5 @@ static void	clear__threads(int64_t i, t_all *all)
 {
 	pthread_join(all->thread_span.maestro_thread, NULL);
 	while (i-- > 0)
-		pthread_join(all->thread_span.thread[i], NULL);
+		pthread_join(all->thread_span.philo_thread[i], NULL);
 }
