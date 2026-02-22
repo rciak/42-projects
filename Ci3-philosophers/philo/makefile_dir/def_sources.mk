@@ -10,8 +10,8 @@ src/main.c \
 src/parse_args.c \
 src/philo_alone_at_table.c \
 src/philo_fun.c \
-src/philo/log_event.c \
 src/philo/set_values.c \
+src/philo/treat_event.c \
 src/tools_libft/atoll_strict.c \
 src/tools_libft/ft_strchr.c \
 src/tools_libft/ft_strlen.c \

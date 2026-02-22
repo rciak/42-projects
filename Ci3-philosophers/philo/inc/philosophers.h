@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 18:51:34 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 20:00:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,7 +280,7 @@ void		*philo_fun(void *arg);
 void		*maestro_fun(void *arg);
 
 // philo/*.c
-void		log_event(int event, t_philo *phi);
+void		treat_event(int event, t_philo *phi);
 void		set_values(t_philo *phi, t_all *all);
 
 //tools_libft/*.c

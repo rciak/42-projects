@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 19:53:46 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 20:00:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		reduce__passion_for_pasta(t_philo *phi);
  * @brief Take timestamp and log the handed over event
  *        (which turns into DEAD event if too late to prevent starvation)
  */
-void	log_event(int event, t_philo *phi)
+void	treat_event(int event, t_philo *phi)
 {
 	t_squad_end	*s_end;
 	int64_t		timestamp;

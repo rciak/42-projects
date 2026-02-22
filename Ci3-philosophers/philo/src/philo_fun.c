@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 18:53:01 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 20:00:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ static void	run__philo_cycle(t_philo *phi)
 	t->starved = t->init + tt->die;
 	while (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
 	{
-		log_event(THINK, phi);
+		treat_event(THINK, phi);
 		while(i___m_alive(phi) && !time_to_say_goodbye(squad_end)
 				&& get_bool(perm, phi->maestro->mutex) == false)
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
 		dine___with_forks(phi);
 		set_bool(perm, false, phi->maestro->mutex);
-		log_event(SLEEP, phi);
+		treat_event(SLEEP, phi);
 	}
 	if (i___m_alive(phi) == false)
-		log_event(DIED, phi);
+		treat_event(DIED, phi);
 }
 
 static void	dine___with_forks(t_philo *phi)
@@ -79,20 +79,20 @@ static void	dine___with_forks(t_philo *phi)
 	if (phi->id % 2 == 0)
 	{
 		pthread_mutex_lock(phi->right_fork);
-		log_event(TAKE_FIRST_FORK, phi);
+		treat_event(TAKE_FIRST_FORK, phi);
 		pthread_mutex_lock(phi->left_fork);
-		log_event(TAKE_SECOND_FORK, phi);
-		log_event(EAT, phi);
+		treat_event(TAKE_SECOND_FORK, phi);
+		treat_event(EAT, phi);
 		pthread_mutex_unlock(phi->left_fork);
 		pthread_mutex_unlock(phi->right_fork);
 	}
 	else
 	{
 		pthread_mutex_lock(phi->left_fork);
-		log_event(TAKE_FIRST_FORK, phi);
+		treat_event(TAKE_FIRST_FORK, phi);
 		pthread_mutex_lock(phi->right_fork);
-		log_event(TAKE_SECOND_FORK, phi);
-		log_event(EAT, phi);
+		treat_event(TAKE_SECOND_FORK, phi);
+		treat_event(EAT, phi);
 		pthread_mutex_unlock(phi->right_fork);
 		pthread_mutex_unlock(phi->left_fork);
 	}
