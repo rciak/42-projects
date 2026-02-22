@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 16:20:33 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 16:36:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 #include "philosophers.h"
 
-static void	set__values(int64_t *id, t_philo *phi, t_all *all);      //style: Rename to  set__most_values
+static void	set__values(int64_t *id, t_philo *phi, t_all *all);                 //style: Rename to  set__most_values, cf. below
 static void	run__philo_cycle(t_philo *phi);
+static void	dine___with_forks(t_philo *phi);
 static bool	i___m_alive(t_philo *phi);
 
 /**
@@ -95,34 +96,36 @@ static void	run__philo_cycle(t_philo *phi)
 		while(i___m_alive(phi) && !time_to_say_goodbye(squad_end)
 				&& get_bool(perm, phi->maestro->mutex) == false)
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
-
-if (phi->id % 2 == 0)
-{
-	pthread_mutex_lock(phi->right_fork);
-	log_event(TAKE_FIRST_FORK, phi);
-	pthread_mutex_lock(phi->left_fork);
-	log_event(TAKE_SECOND_FORK, phi);
-	log_event(EAT, phi);
-	pthread_mutex_unlock(phi->left_fork);
-	pthread_mutex_unlock(phi->right_fork);
-}
-else
-{
-	pthread_mutex_lock(phi->left_fork);
-	log_event(TAKE_FIRST_FORK, phi);
-	pthread_mutex_lock(phi->right_fork);
-	log_event(TAKE_SECOND_FORK, phi);
-	log_event(EAT, phi);
-	pthread_mutex_unlock(phi->right_fork);
-	pthread_mutex_unlock(phi->left_fork);
-}
-
+		dine___with_forks(phi);
 		set_bool(perm, false, phi->maestro->mutex);
-		
 		log_event(SLEEP, phi);
 	}
 	if (i___m_alive(phi) == false)
 		log_event(DIED, phi);
+}
+
+static void	dine___with_forks(t_philo *phi)
+{
+	if (phi->id % 2 == 0)
+	{
+		pthread_mutex_lock(phi->right_fork);
+		log_event(TAKE_FIRST_FORK, phi);
+		pthread_mutex_lock(phi->left_fork);
+		log_event(TAKE_SECOND_FORK, phi);
+		log_event(EAT, phi);
+		pthread_mutex_unlock(phi->left_fork);
+		pthread_mutex_unlock(phi->right_fork);
+	}
+	else
+	{
+		pthread_mutex_lock(phi->left_fork);
+		log_event(TAKE_FIRST_FORK, phi);
+		pthread_mutex_lock(phi->right_fork);
+		log_event(TAKE_SECOND_FORK, phi);
+		log_event(EAT, phi);
+		pthread_mutex_unlock(phi->right_fork);
+		pthread_mutex_unlock(phi->left_fork);
+	}
 }
 
 static bool i___m_alive(t_philo *phi)
