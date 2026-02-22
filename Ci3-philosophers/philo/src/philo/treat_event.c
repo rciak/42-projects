@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   log_event.c                                        :+:      :+:    :+:   */
+/*   treat_event.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 20:00:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 23:12:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	treat_event(int event, t_philo *phi)
 	pthread_mutex_unlock(s_end->mutex);
 	pthread_mutex_unlock(phi->lock_log);
 	if (event == EAT)
-		phi->t.starved += phi->tt.die;
+		phi->t.starved = timestamp + phi->tt.die;
 	elapse__time(event, phi->t.starved, phi);
 	pthread_mutex_lock(s_end->mutex);
 	if (event == EAT && phi->meals.min != OMITTED_PARAM
