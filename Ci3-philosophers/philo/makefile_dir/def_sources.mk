@@ -9,7 +9,6 @@ src/maestro_fun.c \
 src/main.c \
 src/parse_args.c \
 src/philo_alone_at_table.c \
-src/philo_fun/all_sick_of_pasta.c \
 src/philo_fun.c \
 src/philo_fun/log_event.c \
 src/tools_libft/atoll_strict.c \
