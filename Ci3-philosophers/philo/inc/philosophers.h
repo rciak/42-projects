@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 15:53:34 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 16:06:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ enum e_events_to_log
 	EAT,
 	SLEEP,
 	THINK,
-	ALL_HAVE_EATEN_ENOUGH,                                                          //shitty name...
 DEBUG,
 DEBUG_SIM_ENOUGH_PASTA,
 	COUNT_EVENT_KINDS,
@@ -91,7 +90,6 @@ DEBUG_SIM_ENOUGH_PASTA,
 
 enum e_philosopers_int_constants
 {
-	END_SIMULATION = -1,
 	OMITTED_PARAM = -1,
 	MAX_NUM_PHILOS = 65535,
 };
@@ -137,7 +135,7 @@ typedef enum e_error_code
 /////////////////////////
 
 //
-//  TIME  -intervals, -points, -duration
+//  time:  points
 //
 typedef struct s_time
 {
@@ -145,6 +143,9 @@ typedef struct s_time
 	int64_t		init;
 }	t_time;
 
+//
+//  time:  duration
+//
 typedef struct s_time_to
 {
 	int64_t	eat;
