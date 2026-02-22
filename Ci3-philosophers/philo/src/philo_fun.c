@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 16:46:47 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 18:53:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include "philosophers.h"
 
-static void	set__values(t_philo *phi, t_all *all);                              //style: Rename to  set__most_values, cf. below
 static void	run__philo_cycle(t_philo *phi);
 static void	dine___with_forks(t_philo *phi);
 static bool	i___m_alive(t_philo *phi);
@@ -35,7 +34,7 @@ void	*philo_fun(void *arg)
 	t_philo			phi;
 
 	all = (t_all *) arg;
-	set__values(&phi, all);                                                     // function name bad: phi.t does not get initialised there; if it works with norm: outsource to own stack var t ?
+	set_values(&phi, all);
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
 		all->thread_span.mutex);
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
@@ -47,31 +46,6 @@ void	*philo_fun(void *arg)
 		return (NULL);
 	run__philo_cycle(&phi);
 	return (NULL);
-}
-
-static void	set__values(t_philo *phi, t_all *all)
-{
-	pthread_mutex_lock(all->thread_span.mutex);
-	phi->id = all->thread_span.id_cur_philo;
-	phi->t.init = all->thread_span.t_simulation_start;
-	phi->t.starved = phi->t.init + all->param.tt.die;
-	phi->tt = all->param.tt;
-	phi->meals.eaten = 0;
-	phi->meals.min = all->param.meals_at_least;
-	phi->maestro = &all->maestro;
-	phi->squad_end = &all->squad_end;
-	phi->lock_log = &all->mutab.lock_log;
-	if (phi->id == 0)
-	{
-		phi->left_fork = &all->mutab.fork[all->param.num_philos - 1];
-		phi->right_fork = &all->mutab.fork[0];
-	}
-	else
-	{
-		phi->left_fork = &all->mutab.fork[phi->id - 1];
-		phi->right_fork = &all->mutab.fork[phi->id];
-	}
-	pthread_mutex_unlock(all->thread_span.mutex);
 }
 
 static void	run__philo_cycle(t_philo *phi)

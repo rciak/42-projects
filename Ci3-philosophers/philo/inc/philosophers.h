@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 16:06:22 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 18:51:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,13 +278,10 @@ bool		create_threads(t_all *all, t_ecode *code);
 void		*philo_alone_at_table(void *arg);
 void		*philo_fun(void *arg);
 void		*maestro_fun(void *arg);
-// void		wait_for(long long time);
 
-// philo_fun/*.c
+// philo/*.c
 void		log_event(int event, t_philo *phi);
-bool		hope_for_meal(t_philo *phi, t_time *t);
-// //          /zhared/*.c
-// bool		is_simulation_ended(t_philo *phi);
+void		set_values(t_philo *phi, t_all *all);
 
 //tools_libft/*.c
 size_t		skip(char **pstr, const char *chars_to_skip);
@@ -295,14 +292,14 @@ size_t		ft_strlen(const char *s);
 long long	atoll_strict(const char *nptr, t_ecode *err_code);
 
 //tools_misc/*.c
-bool	time_to_say_goodbye(t_squad_end *squad_end);
+bool		time_to_say_goodbye(t_squad_end *squad_end);
 
 //tools_threads/*.c
-void	set_bool(bool *var, bool value, pthread_mutex_t *mutex);
-bool	get_bool(bool *var, pthread_mutex_t *mutex);
-void	set_int64(int64_t *var, int64_t value, pthread_mutex_t *mutex);
-int64_t	get_int64(int64_t *var, pthread_mutex_t *mutex);
-void	wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx, int act);
+void		set_bool(bool *var, bool value, pthread_mutex_t *mutex);
+bool		get_bool(bool *var, pthread_mutex_t *mutex);
+void		set_int64(int64_t *var, int64_t value, pthread_mutex_t *mutex);
+int64_t		get_int64(int64_t *var, pthread_mutex_t *mutex);
+void		wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx, int act);
 
 //tools_time/*.c
 void		wait_for(int64_t time_span);
