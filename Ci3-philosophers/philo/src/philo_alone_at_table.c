@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:30:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/11 11:44:20 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/22 19:27:03 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #include "philosophers.h"
 
+static void	run__single_philo_tragedy(t_philo *phi);
+
 /**
 * @brief The start function for the edge case of only one philosopher thread.
 * @note For n >= 2 philosophers the start function is philo_fun()
@@ -25,11 +27,37 @@
 */
 void		*philo_alone_at_table(void *arg)
 {
-	t_all *all;
-
+	t_all			*all;
+	t_philo			phi;
 	all = (t_all *) arg;
-	pthread_mutex_lock(&all->mutab.lock_log);
-	printf("Dummy: In philo_alone_at_table: Dummy\n");
-	pthread_mutex_unlock(&all->mutab.lock_log);
+	set_values(&phi, all);
+	set_bool(&all->thread_span.new_thread_copied_vars, true,
+		all->thread_span.mutex);
+	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
+	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
+	set_int64(&phi.t.init, all->thread_span.t_simulation_start,
+		all->thread_span.mutex);
+	if (get_bool(&all->thread_span.creating_failed,
+		all->thread_span.mutex) == true)
+		return (NULL);
+	run__single_philo_tragedy(&phi);
 	return (NULL);
+}
+
+static void	run__single_philo_tragedy(t_philo *phi)
+{
+	t_squad_end	*squad_end;
+	bool		*perm;
+	t_time		*t;
+	t_time_to	*tt;
+
+	squad_end = phi->squad_end;
+	perm = &phi->maestro->allows[phi->id];
+	t = &phi->t;
+	tt = &phi->tt;
+	t->starved = t->init + tt->die;
+	log_event(THINK, phi);
+	log_event(TAKE_FIRST_FORK, phi);
+	wait_till(phi->t.starved, phi->squad_end);
+	log_event(DIED, phi);
 }
