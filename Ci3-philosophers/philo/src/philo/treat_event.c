@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/23 00:04:06 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/23 20:10:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	treat_event(int event, t_philo *phi)
 		phi->t.starved = timestamp + phi->tt.die;
 	elapse__time(event, phi->t.starved, phi);
 	pthread_mutex_lock(s_end->mutex);
+	timestamp = gettimeofday_musec();
 	if (event == EAT && phi->meals.min != OMITTED_PARAM
 		&& phi->meals.eaten < phi->meals.min && timestamp < phi->t.starved)
 		reduce__passion_for_pasta(phi);
