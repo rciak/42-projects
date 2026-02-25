@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 20:23:38 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/25 11:30:17 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,37 @@
 # define FACTOR_USLEEP_WAIT_FOR 0.9                                           //This should be kicked out / not needed anymore when my custum sleep functions gets improved and tuned
 
 // The unit for the following is usec (microseconds)
-# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 700
-# define TIME_TILL_NEXT_FORK_CHECK 300
-# define MAESTRO_WAIT 70
+//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 700
+//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 500
+//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 300
+
+//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 400
+# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 300
+
+
+// # define TIME_TILL_NEXT_FORK_CHECK 300
+// # define TIME_TILL_NEXT_FORK_CHECK 350
+//# define TIME_TILL_NEXT_FORK_CHECK 700
+
+// # define TIME_TILL_NEXT_FORK_CHECK 735
+// # define MAESTRO_WAIT 70
+
+// # define TIME_TILL_NEXT_FORK_CHECK 350
+// # define MAESTRO_WAIT 100
+
+// # define TIME_TILL_NEXT_FORK_CHECK 250
+// # define MAESTRO_WAIT 100
+
+// # define TIME_TILL_NEXT_FORK_CHECK 150
+// # define MAESTRO_WAIT 100
+
+// So far best:
+# define TIME_TILL_NEXT_FORK_CHECK 125
+# define MAESTRO_WAIT 100
+
+
+
+
 
 ///////////////////////////////////
 //                               //
