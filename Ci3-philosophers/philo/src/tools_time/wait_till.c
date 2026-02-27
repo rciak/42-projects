@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:35:29 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/21 15:45:59 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/27 12:26:52 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,25 @@
 int64_t	wait_till(int64_t t_stop, t_squad_end *s_end)
 {
 	int64_t	timestamp;
-	
-	while (1)
+	int64_t	waiting_time;
+
+	while (true)
 	{
 		timestamp = gettimeofday_musec();
-		if (t_stop < timestamp
+		waiting_time = t_stop - timestamp;
+		if (waiting_time <= 0
 			|| get_bool(&s_end->starved, s_end->mutex) == true
 			|| get_int64(&s_end->num_pasta_lovers, s_end->mutex) == 0)
 			return (gettimeofday_musec());
-		if (t_stop - timestamp < TIME_TILL_NEXT_END_OF_SIMUL_CHECK)
-			wait_for(t_stop - timestamp);
-		else
-			wait_for(TIME_TILL_NEXT_END_OF_SIMUL_CHECK);
+		if (waiting_time < THRESHOLD_SWITCH_TO_BUSY_WAIT)
+			break;
+		usleep(waiting_time * USLEEP_FACTOR_WAIT_TILL);
 	}
+	if (waiting_time <= 0)
+		return (timestamp);
+	while (waiting_time > 0 
+		&& get_bool(&s_end->starved, s_end->mutex) == false
+		&& get_int64(&s_end->num_pasta_lovers, s_end->mutex) > 0)
+		waiting_time = t_stop - gettimeofday_musec();
+	return (gettimeofday_musec());
 }

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/25 11:30:17 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/27 12:15:23 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,17 @@
 # define MAESTRO_WAIT 100
 
 
+// //~ 0.803 - 0.804
+// # define THRESHOLD_SWITCH_TO_BUSY_WAIT 100
+// # define USLEEP_FACTOR_WAIT_TILL 0.5
+
+// //~ 0.803 - 0.804
+// # define THRESHOLD_SWITCH_TO_BUSY_WAIT 100
+// # define USLEEP_FACTOR_WAIT_TILL 0.4
+
+//~ 0.80 - 0.80
+# define THRESHOLD_SWITCH_TO_BUSY_WAIT 100
+# define USLEEP_FACTOR_WAIT_TILL 0.8
 
 
 
