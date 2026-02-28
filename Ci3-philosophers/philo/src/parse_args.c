@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/28 16:26:16 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:46:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "philosophers.h"
 
 static bool	atoll__ok(int argc, t_ecode *err_code, t_ecode *code);
+static bool signs__ok(int argc, t_param *par, t_ecode *code);
 static bool	mult__would_overflow(t_param *param, int64_t factor, t_ecode *code);
-static bool	values__ok(int argc, t_param *par, t_ecode *code);
+static bool	sadistic__values(int argc, t_param *par, t_ecode *code);
 
 /**
  * @brief Parses command-line arguments for the philosophers program.
@@ -50,13 +51,13 @@ bool	parse_args(int argc, char **argv, t_param *param, t_ecode *code)
 	param->meals_at_least = OMITTED_PARAM;
 	if (argc == 1 + 5)
 		param->meals_at_least = (int64_t) atoll_strict(argv[5], &err_code[4]);
-	if (!atoll__ok(argc, err_code, code)
+	if (!atoll__ok(argc, err_code, code) || !signs__ok(argc, param, code)
 		|| mult__would_overflow(param, ONE_MS_IN_US, code))
 		return (false);
 	param->tt.die *= ONE_MS_IN_US;
 	param->tt.eat *= ONE_MS_IN_US;
 	param->tt.sleep *= ONE_MS_IN_US;
-	if (!values__ok(argc, param, code))
+	if (sadistic__values(argc, param, code))
 		return (false);
 	return (*code = E_NONE, true);
 }
@@ -77,6 +78,21 @@ static bool	atoll__ok(int argc, t_ecode *err_code, t_ecode *code)
 	return (*code = E_NONE, true);
 }
 
+static bool signs__ok(int argc, t_param *par, t_ecode *code)
+{
+	if (par->num_philos < 1)
+		return (*code = E_NUM_PHILOS_NOT_POS, false);
+	if (par->tt.die < 1)
+		return (*code = E_TIME_TO_DIE_NOT_POS, false);
+	if (par->tt.eat < 1)
+		return (*code = E_TIME_TO_EAT_NOT_POS, false);
+	if (par->tt.sleep < 0)
+		return (*code = E_TIME_TO_SLEEP_NEG, false);
+	if (argc == 1 + 5 && par->meals_at_least < 0)
+		return (*code = E_MAX_NUM_MEALS_NEG, false);
+	return (true);
+}
+
 static bool	mult__would_overflow(t_param *param, int64_t factor, t_ecode *code)
 {
 	if (param->tt.die < LLONG_MIN / factor
@@ -90,19 +106,8 @@ static bool	mult__would_overflow(t_param *param, int64_t factor, t_ecode *code)
 	return (false);
 }
 
-
-static bool	values__ok(int argc, t_param *par, t_ecode *code)
+static bool	sadistic__values(int argc, t_param *par, t_ecode *code)
 {
-	if (par->num_philos < 1)
-		return (*code = E_NUM_PHILOS_NOT_POS, false);
-	if (par->tt.die < 1)
-		return (*code = E_TIME_TO_DIE_NOT_POS, false);
-	if (par->tt.eat < 1)
-		return (*code = E_TIME_TO_EAT_NOT_POS, false);
-	if (par->tt.sleep < 0)
-		return (*code = E_TIME_TO_SLEEP_NEG, false);
-	if (argc == 1 + 5 && par->meals_at_least < 0)
-		return (*code = E_MAX_NUM_MEALS_NEG, false);
 	if (par->num_philos > MAX_NUM_PHILOS
 		|| par->tt.die > MAX_TT_DIE
 		|| par->tt.eat > MAX_TT_EAT
@@ -110,6 +115,6 @@ static bool	values__ok(int argc, t_param *par, t_ecode *code)
 		|| (argc == 1 + 5 && par->meals_at_least > MAX_NUM_MEALS)
 		|| (par->tt.eat > ONE_HOUR_IN_US && par->tt.die > ONE_HOUR_IN_US)
 		|| (par->tt.sleep > ONE_HOUR_IN_US && par->tt.die > ONE_HOUR_IN_US))
-		return (*code = E_DISRESPECT, false);
-	return (*code = E_NONE, true);
+		return (*code = E_DISRESPECT, true);
+	return (*code = E_NONE, false);
 }
