@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:54:03 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/11 12:05:19 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:19:22 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ static t_err get___definition(int code)
 	{E_TIME_TO_DIE_NOT_POS, "Time to die must be at least 1 (ms)\n"},
 	{E_TIME_TO_EAT_NOT_POS, "Time to eat must be at least 1 (ms)\n"},
 	{E_TIME_TO_SLEEP_NEG, "Time to sleep must be at least 0 (ms)\n"},
-	{E_DISRESPECT, "Sorry - philosophers do not support sadistic values\n"},
 	{E_ATOLL_NO_ERR, "I would like to be printed but no pointer leads to me\n"},
 	{E_ATOLL_BAD_STRING, "Atoll: I need integer numbers to do my job!\n"},
 	{E_ATOLL_RANGE, "Atoll: Sorry the number would be out of range ...\n"},
+	{E_DISRESPECT, "Sorry - philosophers do not support sadistic values\n"},
+	{E_OVERFLOW_AHEAD, "Canceling risky multiplication (undefined behaviour);\n"
+		               "Please enter only reasonable values closer to 0	\n"},
 	{E_ALLOC, "Memory allocation failed\n"},
 	{E_MUTEX_INIT, "Mutex initialization failed\n"},
 	{E_THREAD_CREATE, "pthread_create failed\n"},

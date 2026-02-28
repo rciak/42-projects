@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/27 12:15:23 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:05:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,10 +155,11 @@ typedef enum e_error_code
 	E_TIME_TO_DIE_NOT_POS,
 	E_TIME_TO_EAT_NOT_POS,
 	E_TIME_TO_SLEEP_NEG,
-	E_DISRESPECT,
 	E_ATOLL_NO_ERR,
 	E_ATOLL_BAD_STRING,
 	E_ATOLL_RANGE,
+	E_DISRESPECT,
+	E_OVERFLOW_AHEAD,
 	E_ALLOC,
 	E_MUTEX_INIT,
 	E_THREAD_CREATE,

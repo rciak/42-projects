@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/28 16:46:35 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:12:07 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ static bool	mult__would_overflow(t_param *param, int64_t factor, t_ecode *code)
 	if (param->tt.die < LLONG_MIN / factor
 		|| param->tt.eat < LLONG_MIN / factor
 		|| param->tt.sleep < LLONG_MIN /factor)
-		return (*code = E_DISRESPECT, true);
+		return (*code = E_OVERFLOW_AHEAD, true);
 	if (param->tt.die > LLONG_MAX / factor
 		|| param->tt.eat > LLONG_MAX / factor
 		|| param->tt.sleep > LLONG_MAX /factor)
-		return (*code = E_DISRESPECT, true);
+		return (*code = E_OVERFLOW_AHEAD, true);
 	return (false);
 }
 
