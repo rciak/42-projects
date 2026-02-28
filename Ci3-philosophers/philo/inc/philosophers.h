@@ -56,15 +56,17 @@
 // Misc.
 # define MAX_NUM_MEALS LLONG_MAX - 2
 # define MAX_ENDED_MEALS LLONG_MAX - 1                                        //This is on purpose one bigger, cf. philo_fun!
+
 # define FACTOR_USLEEP_WAIT_FOR 0.9                                           //This should be kicked out / not needed anymore when my custum sleep functions gets improved and tuned
 
 // The unit for the following is usec (microseconds)
+
 //# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 700
 //# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 500
 //# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 300
 
 //# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 400
-# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 300
+//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 300
 
 
 // # define TIME_TILL_NEXT_FORK_CHECK 300
@@ -97,8 +99,24 @@
 // # define USLEEP_FACTOR_WAIT_TILL 0.4
 
 //~ 0.80 - 0.80
-# define THRESHOLD_SWITCH_TO_BUSY_WAIT 100
-# define USLEEP_FACTOR_WAIT_TILL 0.8
+// # define THRESHOLD_SWITCH_TO_BUSY_WAIT 100
+// # define USLEEP_FACTOR_WAIT_TILL 0.8
+
+//Threshold and other values for custom sleep function
+// BUSY WAIT
+# define TH_BUSY_WAIT 200
+// SINGLE SLEEP
+# define TH_SINGLE_WAIT 1000
+// SEVERAL SINGLE SLEEPS
+
+
+
+
+// # define TH_SINGLE_WAIT 200
+// # define SLACK_SINGLE_WAIT 50
+// # define TINY_SLEEP_TIME 50
+// # define TH_BUSY_WAIT 100
+//# define USLEEP_FACTOR_WAIT_TILL 0.8
 
 
 

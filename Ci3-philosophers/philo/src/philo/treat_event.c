@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/23 20:10:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/27 23:22:25 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	treat_event(int event, t_philo *phi)
 		print__message(event, timestamp - phi->t.init, phi->id);
 	if (event == DIED)
 		s_end->starved = true;
+
+
+	// if (event == THINK && get_bool(&phi->maestro->allows[phi->id], phi->maestro->mutex) == true)
+	// 	event = EAT;
+
+	
 	pthread_mutex_unlock(s_end->mutex);
 	pthread_mutex_unlock(phi->lock_log);
 	if (event == EAT)

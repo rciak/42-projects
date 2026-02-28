@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:35:29 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/27 12:26:52 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/27 22:36:18 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 #include "philosophers.h"
 
+static void	not__so_busy_wait(int64_t t_stop, t_squad_end *s_end);
+static void	busy__wait(int64_t t_stop, t_squad_end *s_end);
+
 /**
  * @brief Wait till the specified time (in microseconds since the epoch) is over
  *        or till a simulation ending event had happened.
@@ -24,26 +27,33 @@
  */
 int64_t	wait_till(int64_t t_stop, t_squad_end *s_end)
 {
+	not__so_busy_wait(t_stop, s_end);
+	if (gettimeofday_musec() < t_stop)
+		busy__wait(t_stop, s_end);
+	return (gettimeofday_musec());
+}
+
+static void	not__so_busy_wait(int64_t t_stop, t_squad_end *s_end)
+{
 	int64_t	timestamp;
 	int64_t	waiting_time;
 
-	while (true)
+	while (!time_to_say_goodbye(s_end))
 	{
 		timestamp = gettimeofday_musec();
 		waiting_time = t_stop - timestamp;
-		if (waiting_time <= 0
-			|| get_bool(&s_end->starved, s_end->mutex) == true
-			|| get_int64(&s_end->num_pasta_lovers, s_end->mutex) == 0)
-			return (gettimeofday_musec());
-		if (waiting_time < THRESHOLD_SWITCH_TO_BUSY_WAIT)
-			break;
-		usleep(waiting_time * USLEEP_FACTOR_WAIT_TILL);
+		if (waiting_time <= TH_BUSY_WAIT)
+			return;
+		else if (TH_BUSY_WAIT < waiting_time && waiting_time <= TH_SINGLE_WAIT)
+			usleep(waiting_time - TH_BUSY_WAIT / 2);
+		else if (TH_SINGLE_WAIT < waiting_time && waiting_time <= 2 * TH_SINGLE_WAIT)
+			usleep(TH_SINGLE_WAIT - TH_SINGLE_WAIT);
+		else if (2 * TH_SINGLE_WAIT < waiting_time)
+			usleep(TH_SINGLE_WAIT);
 	}
-	if (waiting_time <= 0)
-		return (timestamp);
-	while (waiting_time > 0 
-		&& get_bool(&s_end->starved, s_end->mutex) == false
-		&& get_int64(&s_end->num_pasta_lovers, s_end->mutex) > 0)
-		waiting_time = t_stop - gettimeofday_musec();
-	return (gettimeofday_musec());
+}
+
+static void busy__wait(int64_t t_stop, t_squad_end *s_end)
+{
+	while (gettimeofday_musec() < t_stop && !time_to_say_goodbye(s_end));
 }
