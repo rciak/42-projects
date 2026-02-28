@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/20 15:38:25 by reciak           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:26:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "philosophers.h"
 
 static bool	atoll__ok(int argc, t_ecode *err_code, t_ecode *code);
+static bool	mult__would_overflow(t_param *param, int64_t factor, t_ecode *code);
 static bool	values__ok(int argc, t_param *par, t_ecode *code);
 
 /**
@@ -42,15 +43,19 @@ bool	parse_args(int argc, char **argv, t_param *param, t_ecode *code)
 	err_code[2] = E_ATOLL_NO_ERR;
 	err_code[3] = E_ATOLL_NO_ERR;
 	err_code[4] = E_ATOLL_NO_ERR;
-	param->num_philos = atoll_strict(argv[1], &err_code[0]);
-	param->tt.die = atoll_strict(argv[2], &err_code[1]) * ONE_MS_IN_US;
-	param->tt.eat = atoll_strict(argv[3], &err_code[2]) * ONE_MS_IN_US;
-	param->tt.sleep = atoll_strict(argv[4], &err_code[3]) * ONE_MS_IN_US;
+	param->num_philos = (int64_t) atoll_strict(argv[1], &err_code[0]);
+	param->tt.die = (int64_t) atoll_strict(argv[2], &err_code[1]);
+	param->tt.eat = (int64_t) atoll_strict(argv[3], &err_code[2]);
+	param->tt.sleep = (int64_t) atoll_strict(argv[4], &err_code[3]);
 	param->meals_at_least = OMITTED_PARAM;
 	if (argc == 1 + 5)
 		param->meals_at_least = (int64_t) atoll_strict(argv[5], &err_code[4]);
-	if (!atoll__ok(argc, err_code, code))
+	if (!atoll__ok(argc, err_code, code)
+		|| mult__would_overflow(param, ONE_MS_IN_US, code))
 		return (false);
+	param->tt.die *= ONE_MS_IN_US;
+	param->tt.eat *= ONE_MS_IN_US;
+	param->tt.sleep *= ONE_MS_IN_US;
 	if (!values__ok(argc, param, code))
 		return (false);
 	return (*code = E_NONE, true);
@@ -71,6 +76,20 @@ static bool	atoll__ok(int argc, t_ecode *err_code, t_ecode *code)
 		return (*code = err_code[4], false);
 	return (*code = E_NONE, true);
 }
+
+static bool	mult__would_overflow(t_param *param, int64_t factor, t_ecode *code)
+{
+	if (param->tt.die < LLONG_MIN / factor
+		|| param->tt.eat < LLONG_MIN / factor
+		|| param->tt.sleep < LLONG_MIN /factor)
+		return (*code = E_DISRESPECT, true);
+	if (param->tt.die > LLONG_MAX / factor
+		|| param->tt.eat > LLONG_MAX / factor
+		|| param->tt.sleep > LLONG_MAX /factor)
+		return (*code = E_DISRESPECT, true);
+	return (false);
+}
+
 
 static bool	values__ok(int argc, t_param *par, t_ecode *code)
 {
