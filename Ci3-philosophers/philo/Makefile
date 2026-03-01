@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2026/02/22 16:41:46 by reciak           ###   ########.fr        #
+#    Updated: 2026/03/01 20:10:51 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,35 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 # update via makefile rule (small "m" !)
 #   make update_INCS__SRCS__SRCS_BONUS
 #############################################
-include makefile_dir/def_headers.mk
-include makefile_dir/def_sources.mk
+INCS := \
+inc/philosophers.h
+
+SRCS := \
+src/create_threads.c \
+src/herr.c \
+src/herr_free.c \
+src/init_most.c \
+src/maestro_fun.c \
+src/main.c \
+src/parse_args.c \
+src/philo_alone_at_table.c \
+src/philo_fun.c \
+src/philo/set_values.c \
+src/philo/treat_event.c \
+src/tools_libft/atoll_strict.c \
+src/tools_libft/ft_strchr.c \
+src/tools_libft/ft_strlen.c \
+src/tools_libft/is_in.c \
+src/tools_libft/putstr_fd.c \
+src/tools_libft/skip.c \
+src/tools_threads/get_bool.c \
+src/tools_threads/get_int64.c \
+src/tools_threads/set_bool.c \
+src/tools_threads/set_int64.c \
+src/tools_threads/time_to_say_goodbye.c \
+src/tools_threads/wait_till_cond.c \
+src/tools_time/gettimeofday_musec.c \
+src/tools_time/wait_till.c
 #############################################
 
 
