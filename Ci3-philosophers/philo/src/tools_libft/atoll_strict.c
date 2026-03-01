@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:52:28 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/28 15:11:30 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 16:37:38 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ long long	atoll_strict(const char *nptr, t_ecode *err_code)
 		return (*err_code = E_ATOLL_BAD_STRING, 0);
 	while (is_in(*nptr, "0123456789"))
 	{
-		if ((10 * n) / 10 != n || (10 * n) > LLONG_MAX - (*nptr - '0')           //Note: Undefined Behaviour: 10*n (the compiler -assuming no undefined behaviour is in the code might even simplify 10 *n / 10 to n - making the overflow check useless.. better check for n > LLONG_MAX / 10 and n < LLONG_MIN / 10...)
+		if ((10 * n) / 10 != n || (10 * n) > LLONG_MAX - (*nptr - '0')
 			|| (10 * n) < LLONG_MIN + (*nptr - '0'))
 			return (*err_code = E_ATOLL_RANGE, 0);
 		n = 10 * n + (sign) * (*nptr - '0');
