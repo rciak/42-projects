@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 12:30:29 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:35:08 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	treat_event(int event, t_philo *phi)
 	int64_t		timestamp;
 
 	s_end = phi->squad_end;
-	pthread_mutex_lock(phi->lock_log);                                          // XXX Can this lock be removed?
 	pthread_mutex_lock(s_end->mutex);                                           //refactor: Move that lock closer to where it is needed!?!
 	timestamp = gettimeofday_musec();
 	if (timestamp >= phi->t.starved)
@@ -47,7 +46,6 @@ void	treat_event(int event, t_philo *phi)
 
 	
 	pthread_mutex_unlock(s_end->mutex);
-	pthread_mutex_unlock(phi->lock_log);
 	if (event == EAT)
 		phi->t.starved = timestamp + phi->tt.die;
 	elapse__time(event, phi->t.starved, phi);

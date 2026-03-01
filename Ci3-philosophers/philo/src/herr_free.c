@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 14:51:47 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 15:46:33 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:54:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void	destroy__mutexes(t_all *all)
 	pthread_mutex_destroy(&all->mutab.maestro);
 	pthread_mutex_destroy(&all->mutab.squad_end);
 	pthread_mutex_destroy(&all->mutab.lock_philos_till_start);
-	pthread_mutex_destroy(&all->mutab.lock_log);
 	i = 0;
 	while (i < all->param.num_philos)
 	{

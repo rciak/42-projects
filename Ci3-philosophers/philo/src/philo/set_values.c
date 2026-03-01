@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 18:54:34 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/22 18:56:26 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:55:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	set_values(t_philo *phi, t_all *all)
 	phi->meals.min = all->param.meals_at_least;
 	phi->maestro = &all->maestro;
 	phi->squad_end = &all->squad_end;
-	phi->lock_log = &all->mutab.lock_log;
 	if (phi->id == 0)
 	{
 		phi->left_fork = &all->mutab.fork[all->param.num_philos - 1];
