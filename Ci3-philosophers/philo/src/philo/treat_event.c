@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 16:10:51 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:20:34 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void	reduce__passion_for_pasta(t_philo *phi)
 	{
 		s_end->num_pasta_lovers--;
 		if (s_end->num_pasta_lovers == 0 && s_end->starved == false)
-			printf("%lli                 🕛👈 Cook: Let's call it a day!\n",
+			printf("%lli                     🕛👈 Cook: Let's call it a day!\n",
 				(timestamp - phi->t.init) / ONE_MS_IN_US);
 	}
 }
