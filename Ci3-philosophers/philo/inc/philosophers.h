@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 16:27:42 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:54:20 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ enum e_events_to_log
 	EAT,
 	SLEEP,
 	THINK,
-DEBUG,
-DEBUG_SIM_ENOUGH_PASTA,                                                                   //Kicke them out in the next commit
 	COUNT_EVENT_KINDS,
 };
 

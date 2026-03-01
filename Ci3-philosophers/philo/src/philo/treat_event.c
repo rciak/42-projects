@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 19:40:55 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:54:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,6 @@ static void	print__message(int event, int64_t timestamp, int64_t id)
 		msg = "%lli %lli is sleeping\n";
 	if (event == THINK)
 		msg = "%lli %lli is thinking\n";
-	if (event == DEBUG)															//REMOVE in FINAL
-		msg = "\t\t\t\t\t"RED"DEBUG:"RESET"  %lli %lli\n";
-	if (event == DEBUG_SIM_ENOUGH_PASTA)
-		msg = "\t\t\t\t\t"RED"DEBUG: SIM ENOUGH_PASTA"RESET"  %lli %lli\n";
 	printf(msg, timestamp / ONE_MS_IN_US, id + 1);
 }
 
