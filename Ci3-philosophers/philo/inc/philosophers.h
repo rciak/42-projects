@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 19:54:20 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 20:33:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,8 @@
 # define MAESTRO_WAIT 100
 
 //Threshold and other values for custom sleep function
-// BUSY WAIT
-# define TH_BUSY_WAIT 200                                       //Kick out at the end of submit preps.
-// SINGLE SLEEP
+# define TH_BUSY_WAIT 200
 # define TH_SINGLE_WAIT 1000
-// SEVERAL SINGLE SLEEPS
 
 ///////////////////////////////////
 //                               //
@@ -312,13 +309,5 @@ void		wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx,
 void		wait_for(int64_t time_span);
 void		wait_till(int64_t t_stop, t_squad_end *s_end);
 int64_t		gettimeofday_musec(void);
-
-///////////////////////////
-//                       //
-//  X.  D E B U G I N G  //
-//                       //
-///////////////////////////
-void		print_parsed_args(t_param param);///////////////////////////////// Kick out quite at the end of submit preps
-void		print_allows(bool *allows, int64_t n);
 
 #endif
