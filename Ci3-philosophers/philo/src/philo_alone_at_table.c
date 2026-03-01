@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:30:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 13:38:41 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 16:55:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ static void	run__single_philo_tragedy(t_philo *phi);
 * @param[in, out] arg A pointer to a philo struct
 * @return Allways `NULL`
 */
-void		*philo_alone_at_table(void *arg)
+void	*philo_alone_at_table(void *arg)
 {
 	t_all			*all;
 	t_philo			phi;
+
 	all = (t_all *) arg;
 	set_values(&phi, all);
 	set_bool(&all->thread_span.new_thread_copied_vars, true,
@@ -38,7 +39,7 @@ void		*philo_alone_at_table(void *arg)
 	set_int64(&phi.t.init, all->thread_span.t_simulation_start,
 		all->thread_span.mutex);
 	if (get_bool(&all->thread_span.creating_failed,
-		all->thread_span.mutex) == true)
+			all->thread_span.mutex) == true)
 		return (NULL);
 	run__single_philo_tragedy(&phi);
 	return (NULL);
