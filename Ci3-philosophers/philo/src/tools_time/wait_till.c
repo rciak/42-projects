@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:35:29 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 01:02:03 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 12:48:43 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static void	not__so_busy_wait(int64_t t_stop, t_squad_end *s_end)
 		if (waiting_time <= TH_BUSY_WAIT)
 			return;
 		else if (TH_BUSY_WAIT < waiting_time && waiting_time <= TH_SINGLE_WAIT)
-			usleep(waiting_time - TH_BUSY_WAIT / 2);
-		else if (TH_SINGLE_WAIT < waiting_time && waiting_time <= 2 * TH_SINGLE_WAIT)
-			usleep(TH_SINGLE_WAIT - TH_SINGLE_WAIT);
-		else if (2 * TH_SINGLE_WAIT < waiting_time)
+			usleep(waiting_time - TH_BUSY_WAIT);
+		else if (TH_SINGLE_WAIT < waiting_time && waiting_time <= 2 * TH_SINGLE_WAIT - TH_BUSY_WAIT)
+			usleep(TH_SINGLE_WAIT - TH_BUSY_WAIT);
+		else if (2 * TH_SINGLE_WAIT - TH_BUSY_WAIT < waiting_time)
 			usleep(TH_SINGLE_WAIT);
 	}
 }
