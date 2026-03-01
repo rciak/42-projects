@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 14:54:34 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 15:44:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@
 # ifndef DEBUG_PRINT
 #  define DEBUG_PRINT 0
 # endif
-# define ONE_HOUR_IN_US 3600000000LL
-# define ONE_SECOND_IN_US 1000000LL
-# define ONE_MS_IN_US 1000LL
-# define MAX_TT_DIE ONE_HOUR_IN_US
-# define MAX_TT_EAT ONE_HOUR_IN_US
-# define MAX_TT_SLEEP ONE_HOUR_IN_US
 
 // Colors
 # define RESET "\033[0m"
@@ -53,72 +47,35 @@
 # define YELLOW "\033[33m"
 # define BLUE "\033[34m"
 # define CYAN "\033[36m"
-// Misc.
-# define MAX_NUM_MEALS LLONG_MAX - 2
-# define MAX_ENDED_MEALS LLONG_MAX - 1                                        //This is on purpose one bigger, cf. philo_fun!
 
-# define USLEEP_BEFORE_STARTING_SHOOT_SIMULATION 100000UI
+//Time Factors
+# define ONE_HOUR_IN_US 3600000000LL
+# define ONE_SECOND_IN_US 1000000LL
+# define ONE_MS_IN_US 1000LL
 
-// The unit for the following is usec (microseconds)
+// Parsing Control
+# define MAX_TT_DIE ONE_HOUR_IN_US
+# define MAX_TT_EAT ONE_HOUR_IN_US
+# define MAX_TT_SLEEP ONE_HOUR_IN_US
+// NOTE:
+//   a) Originally  LLONG_MAX - 2  and LLONG_MAX -1 let norminette shout ...
+//      --> replaced by number obtained via
+//           echo | gcc -dM -E - | grep LONG_LONG
+//   b) MAX_ENDED_MEALS is on purpose 1 above MAX_NUM_MEALS, cf. philo_fun!
+# define MAX_NUM_MEALS 0x7ffffffffffffffeLL
+# define MAX_ENDED_MEALS 0x7ffffffffffffffdLL
 
-//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 700
-//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 500
-//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 300
-
-//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 400
-//# define TIME_TILL_NEXT_END_OF_SIMUL_CHECK 300
-
-
-// # define TIME_TILL_NEXT_FORK_CHECK 300
-// # define TIME_TILL_NEXT_FORK_CHECK 350
-//# define TIME_TILL_NEXT_FORK_CHECK 700
-
-// # define TIME_TILL_NEXT_FORK_CHECK 735
-// # define MAESTRO_WAIT 70
-
-// # define TIME_TILL_NEXT_FORK_CHECK 350
-// # define MAESTRO_WAIT 100
-
-// # define TIME_TILL_NEXT_FORK_CHECK 250
-// # define MAESTRO_WAIT 100
-
-// # define TIME_TILL_NEXT_FORK_CHECK 150
-// # define MAESTRO_WAIT 100
-
-// So far best:
+// Simulation: Constants that could be / were tweaked for optimization tries
+# define USLEEP_BEFORE_STARTING_SHOOT_SIMULATION 100000U
 # define TIME_TILL_NEXT_FORK_CHECK 125
 # define MAESTRO_WAIT 100
 
-
-// //~ 0.803 - 0.804
-// # define THRESHOLD_SWITCH_TO_BUSY_WAIT 100
-// # define USLEEP_FACTOR_WAIT_TILL 0.5
-
-// //~ 0.803 - 0.804
-// # define THRESHOLD_SWITCH_TO_BUSY_WAIT 100
-// # define USLEEP_FACTOR_WAIT_TILL 0.4
-
-//~ 0.80 - 0.80
-// # define THRESHOLD_SWITCH_TO_BUSY_WAIT 100
-// # define USLEEP_FACTOR_WAIT_TILL 0.8
-
 //Threshold and other values for custom sleep function
 // BUSY WAIT
-# define TH_BUSY_WAIT 200
+# define TH_BUSY_WAIT 200                                       //Kick out at the end of submit preps.
 // SINGLE SLEEP
 # define TH_SINGLE_WAIT 1000
 // SEVERAL SINGLE SLEEPS
-
-
-
-
-// # define TH_SINGLE_WAIT 200
-// # define SLACK_SINGLE_WAIT 50
-// # define TINY_SLEEP_TIME 50
-// # define TH_BUSY_WAIT 100
-//# define USLEEP_FACTOR_WAIT_TILL 0.8
-
-
 
 ///////////////////////////////////
 //                               //
@@ -140,7 +97,7 @@ enum e_events_to_log
 	SLEEP,
 	THINK,
 DEBUG,
-DEBUG_SIM_ENOUGH_PASTA,
+DEBUG_SIM_ENOUGH_PASTA,                                                                   //Kicke them out in the next commit
 	COUNT_EVENT_KINDS,
 };
 
@@ -264,7 +221,7 @@ typedef struct s_squad_end
 //
 //  THREAD_SPAN
 //
-typedef struct	s_thread_span
+typedef struct s_thread_span
 {
 	pthread_mutex_t	*mutex;
 	pthread_t		maestro_thread;
@@ -278,7 +235,7 @@ typedef struct	s_thread_span
 //
 //  MUTEX_TAB  stores all mutexes, in particular all forks
 //
-typedef struct	s_mutex_tab
+typedef struct s_mutex_tab
 {
 	pthread_mutex_t	thread_span;
 	pthread_mutex_t	maestro;
@@ -290,7 +247,7 @@ typedef struct	s_mutex_tab
 //
 //  CORE STRUCT I:  For main thread
 //
-typedef struct	s_all
+typedef struct s_all
 {
 	t_param			param;
 	t_maestro		maestro;
@@ -302,7 +259,7 @@ typedef struct	s_all
 //
 //  CORE STRUCT II:  For philo threads 
 //
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int64_t			id;
 	t_time			t;
@@ -351,20 +308,20 @@ void		set_bool(bool *var, bool value, pthread_mutex_t *mutex);
 bool		get_bool(bool *var, pthread_mutex_t *mutex);
 void		set_int64(int64_t *var, int64_t value, pthread_mutex_t *mutex);
 int64_t		get_int64(int64_t *var, pthread_mutex_t *mutex);
-void		wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx, int act);
+void		wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx,
+				int act);
 
 //tools_time/*.c
 void		wait_for(int64_t time_span);
 int64_t		wait_till(int64_t t_stop, t_squad_end *s_end);
 int64_t		gettimeofday_musec(void);
 
-
 ///////////////////////////
 //                       //
 //  X.  D E B U G I N G  //
 //                       //
 ///////////////////////////
-void	print_parsed_args(t_param param);
-void	print_allows(bool *allows, int64_t n);
+void		print_parsed_args(t_param param);///////////////////////////////// Kick out quite at the end of submit preps
+void		print_allows(bool *allows, int64_t n);
 
 #endif
