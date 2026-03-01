@@ -313,12 +313,4 @@ void		wait_for(int64_t time_span);
 void		wait_till(int64_t t_stop, t_squad_end *s_end);
 int64_t		now(void);
 
-///////////////////////////
-//                       //
-//  X.  D E B U G I N G  //
-//                       //
-///////////////////////////
-void		print_parsed_args(t_param param);///////////////////////////////// Kick out quite at the end of submit preps
-void		print_allows(bool *allows, int64_t n);
-
 #endif
