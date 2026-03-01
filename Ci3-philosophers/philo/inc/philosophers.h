@@ -96,8 +96,6 @@ enum e_events_to_log
 	EAT,
 	SLEEP,
 	THINK,
-DEBUG,
-DEBUG_SIM_ENOUGH_PASTA,                                                                   //Kicke them out in the next commit
 	COUNT_EVENT_KINDS,
 };
 
