@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 10:47:04 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/28 17:12:07 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 16:25:46 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "philosophers.h"
 
 static bool	atoll__ok(int argc, t_ecode *err_code, t_ecode *code);
-static bool signs__ok(int argc, t_param *par, t_ecode *code);
+static bool	signs__ok(int argc, t_param *par, t_ecode *code);
 static bool	mult__would_overflow(t_param *param, int64_t factor, t_ecode *code);
 static bool	sadistic__values(int argc, t_param *par, t_ecode *code);
 
@@ -78,7 +78,7 @@ static bool	atoll__ok(int argc, t_ecode *err_code, t_ecode *code)
 	return (*code = E_NONE, true);
 }
 
-static bool signs__ok(int argc, t_param *par, t_ecode *code)
+static bool	signs__ok(int argc, t_param *par, t_ecode *code)
 {
 	if (par->num_philos < 1)
 		return (*code = E_NUM_PHILOS_NOT_POS, false);
@@ -97,11 +97,11 @@ static bool	mult__would_overflow(t_param *param, int64_t factor, t_ecode *code)
 {
 	if (param->tt.die < LLONG_MIN / factor
 		|| param->tt.eat < LLONG_MIN / factor
-		|| param->tt.sleep < LLONG_MIN /factor)
+		|| param->tt.sleep < LLONG_MIN / factor)
 		return (*code = E_OVERFLOW_AHEAD, true);
 	if (param->tt.die > LLONG_MAX / factor
 		|| param->tt.eat > LLONG_MAX / factor
-		|| param->tt.sleep > LLONG_MAX /factor)
+		|| param->tt.sleep > LLONG_MAX / factor)
 		return (*code = E_OVERFLOW_AHEAD, true);
 	return (false);
 }
