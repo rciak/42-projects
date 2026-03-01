@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:54:03 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/28 17:19:22 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 15:50:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@
 
 #include "philosophers.h"
 
-static void			copy__error_definitions(t_err *err);
-static t_err		get___definition(int code);
-static bool			check__validity(t_err *err);
+static void		copy__error_definitions(t_err *err);
+static t_err	get___definition(int code);
+static bool		check__validity(t_err *err);
 
 /**
  * @brief Prints an error message and returns an error code - the received one
  * @param[in] code, an error code defined in philosophers.h
  * @param[in] debug_info, a debug message (might be NULL or "")
  *                        --> activate by compliling with flag DEBUG_PRINT=1
- *                            i.e. run  `make DEBUG_PRINT=1 [...]`	
+ *                            i.e. run  `make DEBUG_PRINT=1 [...]`
  * @return \p code
  */
 int	herr(t_ecode code, const char *debug_info)
 {
-	static t_err err[E_COUNT_THEM_ALL];
+	static t_err	err[E_COUNT_THEM_ALL];
 
 	copy__error_definitions(err);
 	if (code < 0 || code >= E_COUNT_THEM_ALL)
@@ -44,7 +44,7 @@ int	herr(t_ecode code, const char *debug_info)
 	return (code);
 }
 
-static	void	copy__error_definitions(t_err *err)
+static void	copy__error_definitions(t_err *err)
 {
 	size_t	i;
 
@@ -56,7 +56,7 @@ static	void	copy__error_definitions(t_err *err)
 	}
 }
 
-static t_err get___definition(int code)
+static t_err	get___definition(int code)
 {
 	static const t_err	err[E_COUNT_THEM_ALL] = {
 	{E_NONE, ""},
@@ -71,7 +71,7 @@ static t_err get___definition(int code)
 	{E_ATOLL_RANGE, "Atoll: Sorry the number would be out of range ...\n"},
 	{E_DISRESPECT, "Sorry - philosophers do not support sadistic values\n"},
 	{E_OVERFLOW_AHEAD, "Canceling risky multiplication (undefined behaviour);\n"
-		               "Please enter only reasonable values closer to 0	\n"},
+		"Please enter only reasonable values closer to 0	\n"},
 	{E_ALLOC, "Memory allocation failed\n"},
 	{E_MUTEX_INIT, "Mutex initialization failed\n"},
 	{E_THREAD_CREATE, "pthread_create failed\n"},
@@ -83,7 +83,7 @@ static t_err get___definition(int code)
 
 static bool	check__validity(t_err *err)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < E_COUNT_THEM_ALL)
