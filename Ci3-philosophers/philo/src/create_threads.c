@@ -36,21 +36,22 @@ static void	clear__threads(int64_t i, t_all *all);
 bool	create_threads(t_all *all, t_ecode *code)
 {
 	bool	reval;
-	
+
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
 	if (!create__maestro_thread(all, code))
 		return (false);
 	set_bool(&all->thread_span.creating_failed, false,
 		all->thread_span.mutex);
-	reval =	create__philo_threads(all, code);
+	reval = create__philo_threads(all, code);
 	all->thread_span.t_simulation_start = gettimeofday_musec();
 	usleep(USLEEP_BEFORE_STARTING_SHOOT_SIMULATION);
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
 	return (reval);
 }
+
 static bool	create__maestro_thread(t_all *all, t_ecode *code)
 {
-	if (0 != pthread_create(&all->thread_span.maestro_thread, NULL,	maestro_fun,
+	if (0 != pthread_create(&all->thread_span.maestro_thread, NULL, maestro_fun,
 			(void *) all))
 	{
 		*code = E_THREAD_CREATE;
@@ -62,7 +63,7 @@ static bool	create__maestro_thread(t_all *all, t_ecode *code)
 static bool	create__philo_threads(t_all *all, t_ecode *code)
 {
 	int64_t	i;
-	
+
 	i = 0;
 	while (i < all->param.num_philos)
 	{
@@ -93,8 +94,8 @@ static bool	create___single_philo_thread(int64_t i, t_all *all)
 		start_function = &philo_alone_at_table;
 	else
 		start_function = &philo_fun;
-	if (0 != pthread_create(&all->thread_span.philo_thread[i], NULL, start_function,
-			(void *)all))
+	if (0 != pthread_create(&all->thread_span.philo_thread[i], NULL,
+			start_function, (void *)all))
 		return (false);
 	return (true);
 }
