@@ -2,6 +2,8 @@
 
 # Description
 
+
+
 # Instructions
 
 # Resources
@@ -183,22 +185,3 @@ Each core rapidly cycles through ~50 threads via context switches, but local sta
 Copying to 201 stacks is still cheap upfront (~few μs total), but oversubscription itself kills scalability—throughput drops vs. 4 threads.  
 For huge \(n\) (e.g., >100KB/thread), per-thread heap allocation beats stack to avoid overflows, but principle holds: private copy > shared lock.  
 Test with `perf` or `valgrind --tool=callgrind` to confirm; real perf hinges on your workload's read frequency.
-
-# TEMPORARY APPENDIX
-
-## Known issues:
-
-* d5249c5:
-  * Tends to die after some time: `./philo 2 100 50 40 100`
-  * Not working/no output at all: `./philo 2 100 50 40`
-
-## Questions to discuss
-
-## Must do before submission
-
-* Test if low memory cause inproper error handling
-
-## Nice to do if time left
-
-* if everything works with `uint64_t`:
-  Kick out the few remainders of `long long` and rewrite also the parsing tools from libft to uint64.
