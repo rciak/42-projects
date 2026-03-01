@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/28 20:38:59 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 17:09:09 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*philo_fun(void *arg)
 	set_int64(&phi.t.init, all->thread_span.t_simulation_start,
 		all->thread_span.mutex);
 	if (get_bool(&all->thread_span.creating_failed,
-		all->thread_span.mutex) == true)
+			all->thread_span.mutex) == true)
 		return (NULL);
 	run__philo_cycle(&phi);
 	return (NULL);
@@ -63,14 +63,9 @@ static void	run__philo_cycle(t_philo *phi)
 	while (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
 	{
 		treat_event(THINK, phi);
-		while(i___m_alive(phi) && !time_to_say_goodbye(squad_end)
-				&& get_bool(perm, phi->maestro->mutex) == false)
+		while (i___m_alive(phi) && !time_to_say_goodbye(squad_end)
+			&& get_bool(perm, phi->maestro->mutex) == false)
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
-
-//		while(get_bool(perm, phi->maestro->mutex) == false
-//			&& i___m_alive(phi) && !time_to_say_goodbye(squad_end))
-//			usleep(TIME_TILL_NEXT_FORK_CHECK);
-
 		dine___with_forks(phi);
 		set_bool(perm, false, phi->maestro->mutex);
 		treat_event(SLEEP, phi);
@@ -103,7 +98,7 @@ static void	dine___with_forks(t_philo *phi)
 	}
 }
 
-static bool i___m_alive(t_philo *phi)
+static bool	i___m_alive(t_philo *phi)
 {
 	int64_t	timestamp;
 
