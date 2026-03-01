@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/28 20:50:33 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:28:57 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@
 // Misc.
 # define MAX_NUM_MEALS LLONG_MAX - 2
 # define MAX_ENDED_MEALS LLONG_MAX - 1                                        //This is on purpose one bigger, cf. philo_fun!
+
+# define USLEEP_BEFORE_STARTING_SHOOT_SIMULATION 100000UI
 
 // The unit for the following is usec (microseconds)
 

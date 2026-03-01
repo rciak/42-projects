@@ -44,9 +44,7 @@ bool	create_threads(t_all *all, t_ecode *code)
 		all->thread_span.mutex);
 	reval =	create__philo_threads(all, code);
 	all->thread_span.t_simulation_start = gettimeofday_musec();
-
-// XXX usleep ?!
-
+	usleep(USLEEP_BEFORE_STARTING_SHOOT_SIMULATION);
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
 	return (reval);
 }
