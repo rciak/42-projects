@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/20 12:15:18 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 17:01:35 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "philosophers.h"
 
-static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all);
+static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift);
 static bool	all___forks_on_table(t_maestro *mae, int64_t num_philos);
 
 /**
@@ -27,7 +27,7 @@ static bool	all___forks_on_table(t_maestro *mae, int64_t num_philos);
  * @return Allways `NULL`
  */
 
-void *maestro_fun(void *arg)
+void	*maestro_fun(void *arg)
 {
 	t_all			*all;
 	t_thread_span	*thread_span;
@@ -50,18 +50,17 @@ void *maestro_fun(void *arg)
 	}
 	while (!time_to_say_goodbye(&all->squad_end))
 	{
-		con__duct(maestro, n, &shift, all);
+		con__duct(maestro, n, &shift);
 		usleep(MAESTRO_WAIT);
 	}
 	return (NULL);
 }
 
-static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift, t_all *all) //refactor after programm works: remove unused last args
+static void	con__duct(t_maestro *mae, int64_t n, int64_t *shift)
 {
 	int64_t	i;
 	int64_t	i_rotated;
 
-																			(void) all;
 	if (!all___forks_on_table(mae, n))
 		return ;
 	*shift = (*shift + 1) % n;
