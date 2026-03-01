@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:35:29 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 14:43:27 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 15:59:12 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ static void	busy__wait(int64_t t_stop, t_squad_end *s_end);
  *        or till a simulation ending event had happened.
  * @warning The caller must have no lock on the mutex of `s_end` !
  */
-int64_t	wait_till(int64_t t_stop, t_squad_end *s_end)
+void	wait_till(int64_t t_stop, t_squad_end *s_end)
 {
 	not__so_busy_wait(t_stop, s_end);
 	if (gettimeofday_musec() < t_stop)
 		busy__wait(t_stop, s_end);
-	return (gettimeofday_musec());
 }
 
 static void	not__so_busy_wait(int64_t t_stop, t_squad_end *s_end)

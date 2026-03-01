@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 14:35:08 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 15:58:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ static void	elapse__time(int event, int64_t t_starved, t_philo *phi)
 		waiting_time = 0;
 	timestamp = gettimeofday_musec();
 	if (timestamp + waiting_time >= t_starved)
-		(void) wait_till(t_starved, phi->squad_end);							// If no use of return value during Optimization appeared: Refactor signature of wait_till to void!
+		wait_till(t_starved, phi->squad_end);							// If no use of return value during Optimization appeared: Refactor signature of wait_till to void!
 	else
-		(void) wait_till(timestamp + waiting_time, phi->squad_end);	
+		wait_till(timestamp + waiting_time, phi->squad_end);	
 }
 
 static void	reduce__passion_for_pasta(t_philo *phi)
