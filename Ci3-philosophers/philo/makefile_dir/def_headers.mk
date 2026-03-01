@@ -1,2 +1,0 @@
-INCS := \
-inc/philosophers.h
