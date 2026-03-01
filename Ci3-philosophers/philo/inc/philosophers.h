@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 16:00:38 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 16:27:42 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,6 @@ typedef struct s_maestro
 {
 	pthread_mutex_t	*mutex;
 	bool			*allows;
-	// bool			go;
 }	t_maestro;
 
 //
