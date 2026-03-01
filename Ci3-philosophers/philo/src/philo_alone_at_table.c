@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:30:01 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/28 21:25:35 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 13:38:41 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,9 @@ void		*philo_alone_at_table(void *arg)
 
 static void	run__single_philo_tragedy(t_philo *phi)
 {
-	t_squad_end	*squad_end;
 	t_time		*t;
 	t_time_to	*tt;
 
-	squad_end = phi->squad_end;
 	t = &phi->t;
 	tt = &phi->tt;
 	t->starved = t->init + tt->die;
