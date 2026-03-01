@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 17:02:15 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 14:58:00 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 16:51:48 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static bool	alloc__mem(t_all *all, int64_t n, t_ecode *code);
 static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code);
 static bool	init___forks(pthread_mutex_t *fork, int64_t n, t_ecode *code);
-static bool join__threads(t_all *phi, t_ecode *code);
+static bool	join__threads(t_all *phi, t_ecode *code);
 
 /**
  * @brief Entry point for philiosophers
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 {
 	t_ecode		code;
 	t_all		all;
-	
+
 	code = E_NONE;
 	if (!parse_args(argc, argv, &all.param, &code))
 		return (herr(code, "main: parse_args failed\n"));
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	return (E_NONE);
 }
 
-static bool alloc__mem(t_all *all, int64_t n, t_ecode *code)
+static bool	alloc__mem(t_all *all, int64_t n, t_ecode *code)
 {
 	all->maestro.allows = malloc(n * sizeof(bool));
 	all->mutab.fork = malloc(n * sizeof(pthread_mutex_t));
@@ -79,13 +79,12 @@ static bool	init__mutexes(t_mutex_tab *mutab, int64_t n, t_ecode *code)
 	int				i;
 	int				entries_before_fork;
 	pthread_mutex_t	*mutex[4];
-	
+
 	entries_before_fork = 4;
 	mutex[0] = &mutab->thread_span;
 	mutex[1] = &mutab->maestro;
 	mutex[2] = &mutab->squad_end;
 	mutex[3] = &mutab->lock_philos_till_start;
-	
 	i = 0;
 	while (i < entries_before_fork && pthread_mutex_init(mutex[i], NULL) == 0)
 		i++;
@@ -134,10 +133,10 @@ static bool	init___forks(pthread_mutex_t *fork, int64_t n, t_ecode *code)
  *       that Kerrisk demonstrated in Section 30.2.4 of this book
  *       "The Linux Programming Interface".
  */
-static bool join__threads(t_all *all, t_ecode *code)
+static bool	join__threads(t_all *all, t_ecode *code)
 {
 	int64_t	i;
-	
+
 	if (pthread_join(all->thread_span.maestro_thread, NULL) != 0)
 		return (*code = E_THREAD_JOIN, false);
 	i = 0;
