@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 11:19:22 by reciak            #+#    #+#             */
-/*   Updated: 2026/02/11 11:23:28 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 16:33:11 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /**
  * @brief Mutex protected getting of a bool variable (shared among threads)
  */
-bool get_bool(bool *var, pthread_mutex_t *mutex)
+bool	get_bool(bool *var, pthread_mutex_t *mutex)
 {
 	bool	copy;
 
