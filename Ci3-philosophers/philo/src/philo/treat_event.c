@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 15:58:10 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/01 16:10:51 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #include "philosophers.h"
 
-static void		print__message(int event, int64_t timestamp, int64_t id);
-static void		elapse__time(int event, int64_t t_starved, t_philo *phi);
-static void		reduce__passion_for_pasta(t_philo *phi);
+static void	print__message(int event, int64_t timestamp, int64_t id);
+static void	elapse__time(int event, int64_t t_starved, t_philo *phi);
+static void	reduce__passion_for_pasta(t_philo *phi);
 
 /**
  * @brief Take timestamp and log the handed over event
@@ -31,7 +31,7 @@ void	treat_event(int event, t_philo *phi)
 	int64_t		timestamp;
 
 	s_end = phi->squad_end;
-	pthread_mutex_lock(s_end->mutex);                                           //refactor: Move that lock closer to where it is needed!?!
+	pthread_mutex_lock(s_end->mutex);
 	timestamp = gettimeofday_musec();
 	if (timestamp >= phi->t.starved)
 		event = DIED;
@@ -39,12 +39,6 @@ void	treat_event(int event, t_philo *phi)
 		print__message(event, timestamp - phi->t.init, phi->id);
 	if (event == DIED)
 		s_end->starved = true;
-
-
-	// if (event == THINK && get_bool(&phi->maestro->allows[phi->id], phi->maestro->mutex) == true)
-	// 	event = EAT;
-
-	
 	pthread_mutex_unlock(s_end->mutex);
 	if (event == EAT)
 		phi->t.starved = timestamp + phi->tt.die;
@@ -59,14 +53,14 @@ void	treat_event(int event, t_philo *phi)
 
 static void	print__message(int event, int64_t timestamp, int64_t id)
 {
-	char		*msg;
+	char	*msg;
 
 	if (event == DIED)
-		msg = "%li %li "RED"died"RESET"\n";
+		msg = "%li %li " RED "died" RESET "\n";
 	if (event == TAKE_FIRST_FORK || event == TAKE_SECOND_FORK)
 		msg = "%li %li has taken a fork\n";
 	if (event == EAT)
-		msg = "%li %li is "YELLOW"eating"RESET"\n";
+		msg = "%li %li is " YELLOW "eating" RESET "\n";
 	if (event == SLEEP)
 		msg = "%li %li is sleeping\n";
 	if (event == THINK)
@@ -91,24 +85,24 @@ static void	elapse__time(int event, int64_t t_starved, t_philo *phi)
 		waiting_time = 0;
 	timestamp = gettimeofday_musec();
 	if (timestamp + waiting_time >= t_starved)
-		wait_till(t_starved, phi->squad_end);							// If no use of return value during Optimization appeared: Refactor signature of wait_till to void!
+		wait_till(t_starved, phi->squad_end);
 	else
-		wait_till(timestamp + waiting_time, phi->squad_end);	
+		wait_till(timestamp + waiting_time, phi->squad_end);
 }
 
 static void	reduce__passion_for_pasta(t_philo *phi)
 {
 	int64_t		timestamp;
-	t_squad_end *s_end;
+	t_squad_end	*s_end;
 
 	s_end = phi->squad_end;
-	timestamp = gettimeofday_musec();        // Remove when below test print "Cook:..." is removed
+	timestamp = gettimeofday_musec();
 	phi->meals.eaten++;
 	if (phi->meals.eaten == phi->meals.min)
 	{
 		s_end->num_pasta_lovers--;
-		if (s_end->num_pasta_lovers == 0 && s_end->starved == false)    // This printing is unsecure: JUST FOR TESTING --> MUST BE REMOVED when everything is working
-			printf("%lli                 <--  Let's call it a day! 🕛👈 Cook\n",
+		if (s_end->num_pasta_lovers == 0 && s_end->starved == false)
+			printf("%lli                 🕛👈 Cook: Let's call it a day!\n",
 				(timestamp - phi->t.init) / ONE_MS_IN_US);
 	}
 }
