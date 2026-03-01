@@ -2,15 +2,71 @@
 
 # Description
 
+This is an Introductory project to (Posix) **Threads**. Learning goals include
 
+* Understanding the *differences between processs and threads*,
+* Learning what a **datarace** is and how to avoid it using e.g. **mutexes**,
+* How to *savely access memory* that is **shared** between threads,
+* Get familiar with tools like `helgrind` and `drd`
+
+More concrete the project consists of designing and implementing a solution
+to the classical [Dining philosophers problem](https://en.wikipedia.org/w/index.php?title=Dining_philosophers_problem&oldid=1340179373).
 
 # Instructions
+
+After cloning the source code from the 42 server *Vogsphere* (or a version on
+github) 
+
+* change into the directory `philo`,
+* built the executable `philo` by running `make`.
+
+The executable expects 4 mandatory parameters and one optional fifth one,
+according to the following call description
+
+```bash
+./philo  <number_of_philosophers>>  <time_to_die>  <time_to_eat>  <time_to_sleep> [number_of_times_each_philosopher_must_eat]
+```
+
+where the first parameter
+
+* `number_of_philosophers` defines the **number of philosophers**.
+
+The second, third and forth parameter define **time periods**
+(measured in milliseconds), namely
+
+* `time_to_die`: A time  after which a philosopher must start its next
+    meal to avoid starvation (counting from the start of the previous meal,
+    resp. the start of the simulation)
+* `time_to_eat`: The duration of a meal.
+* `time_to_eat time_to_sleep`: After finishing a meal philosophers sleeps
+  for this specified amount of time (if the simulation does not end before).
+
+With out the last optional parameter the simulation runs until one philosopher
+has starved. An additional ending cause can be activated by specifiying
+that optional parameter
+
+* `number_of_times_each_philosopher_must_eat`: The number of meals that
+  every philosopher needs to have finished in order to end the simulation
+  (without starvation).
+
+## Sample calls
+
+* `./philo   1 3141 1000 2000`
+* `./philo   2 6000 4000 2001`
+* `./philo   3 3001 1000 100   1`
+* `./philo   4  401  200 200  30`
+* `./philo 200  406  200 200`
 
 # Resources
 
 ## References
 
-* Kerrisk, Michael. [*The Linux Programming Interface: A Linux and UNIX System Programming Handbook*](https://man7.org/tlpi/index.html). San Francisco: No Starch Press, 2010.
+* Kerrisk, Michael.[*The Linux Programming Interface: A Linux and UNIX System Programming Handbook*](https://man7.org/tlpi/index.html). San Francisco: No Starch Press, 2010.
+* Sutter, Herb. [*Atomic Weapons 1 of 2*](https://www.youtube.com/watch?v=A8eCGOqgvH4). Videorecording, 2013.
+* Hall, “Beej Jorgensen”. [*Beej's Guide to C Programming, Section 40 Atomics*](https://beej.us/guide/bgc/html/split/chapter-atomics.html). Version 0.10.3, 2026.
+* Wikipedia. [*Dining philosophers problem*](https://en.wikipedia.org/w/index.php?title=Dining_philosophers_problem&oldid=1340179373), last visited on 01.03.2026.
+
+
 
 ## AI usage
 
