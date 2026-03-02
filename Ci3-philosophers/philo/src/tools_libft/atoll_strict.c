@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:52:28 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 16:37:38 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 23:37:33 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ long long	atoll_strict(const char *nptr, t_ecode *err_code)
 		return (*err_code = E_ATOLL_BAD_STRING, 0);
 	while (is_in(*nptr, "0123456789"))
 	{
-		if ((10 * n) / 10 != n || (10 * n) > LLONG_MAX - (*nptr - '0')
+		if ((10 * n) / 10 != n || (10 * n) > LLONG_MAX - (*nptr - '0')         // After return to campus: Fix undefined behaviour: This kind of overflow check is only allowed for unsigned...;  -----> Fix also in libft! and check also ft_is_overflow... and ft_atoi
 			|| (10 * n) < LLONG_MIN + (*nptr - '0'))
 			return (*err_code = E_ATOLL_RANGE, 0);
 		n = 10 * n + (sign) * (*nptr - '0');
