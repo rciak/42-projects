@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/02 18:38:13 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 22:00:05 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 static void	run__philo_cycle(t_philo *phi);
 static void	dine___with_forks(t_philo *phi);
-static bool	i___m_alive(t_philo *phi);
 
 /**
  * @brief The usual start function executed by each philosopher thread
@@ -60,18 +59,18 @@ static void	run__philo_cycle(t_philo *phi)
 	t = &phi->t;
 	tt = &phi->tt;
 	t->starved = t->init + tt->die;
-	while (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+	while (gettimeofday_musec() < t->starved && !time_to_say_goodbye(squad_end))
 	{
 		treat_event(THINK, phi);
-		while (i___m_alive(phi) && !time_to_say_goodbye(squad_end)
+		while (gettimeofday_musec() < t->starved && !time_to_say_goodbye(squad_end)
 			&& get_bool(perm, phi->maestro->mutex) == false)
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
-		if (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+		if (gettimeofday_musec() < t->starved && !time_to_say_goodbye(squad_end))
 			dine___with_forks(phi);
 		set_bool(perm, false, phi->maestro->mutex);
 		treat_event(SLEEP, phi);
 	}
-	if (i___m_alive(phi) == false)
+	if (gettimeofday_musec() >= t->starved)
 		treat_event(DIED, phi);
 }
 
@@ -99,12 +98,3 @@ static void	dine___with_forks(t_philo *phi)
 	}
 }
 
-static bool	i___m_alive(t_philo *phi)
-{
-	int64_t	timestamp;
-
-	timestamp = gettimeofday_musec();
-	if (timestamp < phi->t.starved)
-		return (true);
-	return (false);
-}
