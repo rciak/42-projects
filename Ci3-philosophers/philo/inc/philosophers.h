@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 16:27:42 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 19:44:47 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ DEBUG_SIM_ENOUGH_PASTA,                                                         
 enum e_philosopers_int_constants
 {
 	OMITTED_PARAM = -1,
-	MAX_NUM_PHILOS = 65535,
+	MAX_NUM_PHILOS = 400,
 };
 
 enum e_reset_boolean_condition_var
