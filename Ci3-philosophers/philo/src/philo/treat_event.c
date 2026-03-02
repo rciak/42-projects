@@ -33,7 +33,6 @@ void	treat_event(int event, t_philo *phi)
 	s_end = phi->squad_end;
 	pthread_mutex_lock(s_end->mutex);
 	timestamp = gettimeofday_musec();
-printf ("%li treat event: %li ->%i \n", (timestamp - phi->t.init)/1000, phi->id + 1, event);
 	if (timestamp >= phi->t.starved)
 		event = DIED;
 	if (s_end->starved == false && s_end->num_pasta_lovers > 0)
@@ -85,18 +84,10 @@ static void	elapse__time(int event, int64_t t_starved, t_philo *phi)
 	else
 		waiting_time = 0;
 	timestamp = gettimeofday_musec();
-																		printf("  %li \t = %li + %li\n", (timestamp + waiting_time - phi->t.init)/1000, (timestamp - phi->t.init)/1000, waiting_time/1000);
-																		printf("  %li\n", (t_starved - phi->t.init)/1000);
 	if (timestamp + waiting_time >= t_starved)
-{
-																		printf(CYAN"                            wait_till (%li)"RESET"\n", (phi->t.starved - phi->t.init)/1000);
 		wait_till(t_starved, phi->squad_end);
-}
 	else
-{
-																		printf(GREEN"                            wait_till (%li + %li)"RESET"\n", (timestamp - phi->t.init)/1000, waiting_time/1000);
 		wait_till(timestamp + waiting_time, phi->squad_end);
-}
 }
 
 static void	reduce__passion_for_pasta(t_philo *phi)
