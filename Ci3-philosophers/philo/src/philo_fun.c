@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/02 22:36:58 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 22:49:10 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,25 @@ void	*philo_fun(void *arg)
 
 static void	run__philo_cycle(t_philo *phi)
 {
-	t_squad_end	*squad_end;
-	bool		*perm;
-	t_time		*t;
+	t_squad_end		*squad_end;
+	bool			*perm;
+	pthread_mutex_t	*mutex;
+	t_time			*t;
 	
 	squad_end = phi->squad_end;
 	perm = &phi->maestro->allows[phi->id];
+	mutex = phi->maestro->mutex;
 	t = &phi->t;
 	t->starved = t->init + phi->tt.die;
 	while (now() < t->starved && !time_to_say_goodbye(squad_end))
 	{
 		treat_event(THINK, phi);
-		while (get_bool(perm, phi->maestro->mutex) == false
+		while (get_bool(perm, mutex) == false
 			&& now() < t->starved && !time_to_say_goodbye(squad_end))
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
 		if (now() < t->starved && !time_to_say_goodbye(squad_end))
 			dine___with_forks(phi);
-		set_bool(perm, false, phi->maestro->mutex);
+		set_bool(perm, false, mutex);
 		treat_event(SLEEP, phi);
 	}
 	if (now() >= t->starved)
