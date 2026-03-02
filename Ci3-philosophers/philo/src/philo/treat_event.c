@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:56:00 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/02 18:28:01 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 22:13:39 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	treat_event(int event, t_philo *phi)
 
 	s_end = phi->squad_end;
 	pthread_mutex_lock(s_end->mutex);
-	timestamp = gettimeofday_musec();
+	timestamp = now();
 	if (timestamp >= phi->t.starved)
 		event = DIED;
 	if (s_end->starved == false && s_end->num_pasta_lovers > 0)
@@ -44,7 +44,7 @@ void	treat_event(int event, t_philo *phi)
 		phi->t.starved = timestamp + phi->tt.die;
 	elapse__time(event, phi->t.starved, phi);
 	pthread_mutex_lock(s_end->mutex);
-	timestamp = gettimeofday_musec();
+	timestamp = now();
 	if (event == EAT && phi->meals.min != OMITTED_PARAM
 		&& phi->meals.eaten < phi->meals.min && timestamp < phi->t.starved)
 		reduce__passion_for_pasta(phi);
@@ -83,7 +83,7 @@ static void	elapse__time(int event, int64_t t_starved, t_philo *phi)
 		waiting_time = phi->tt.sleep;
 	else
 		waiting_time = 0;
-	timestamp = gettimeofday_musec();
+	timestamp = now();
 	if (timestamp + waiting_time >= t_starved)
 		wait_till(t_starved, phi->squad_end);
 	else
@@ -96,7 +96,7 @@ static void	reduce__passion_for_pasta(t_philo *phi)
 	t_squad_end	*s_end;
 
 	s_end = phi->squad_end;
-	timestamp = gettimeofday_musec();
+	timestamp = now();
 	phi->meals.eaten++;
 	if (phi->meals.eaten == phi->meals.min)
 	{

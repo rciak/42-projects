@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/02 19:44:47 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 22:13:31 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,7 +313,7 @@ void		wait_till_cond(bool *state, bool wanted, pthread_mutex_t *mtx,
 //tools_time/*.c
 void		wait_for(int64_t time_span);
 void		wait_till(int64_t t_stop, t_squad_end *s_end);
-int64_t		gettimeofday_musec(void);
+int64_t		now(void);
 
 ///////////////////////////
 //                       //

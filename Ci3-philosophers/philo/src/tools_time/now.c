@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gettimeofday_musec.c                               :+:      :+:    :+:   */
+/*   now.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 /**
- * @file gettimeofday_musec.c
- * @brief Stores the definition of gettimeofday_musec()
+ * @file now.c
+ * @brief Stores the definition of now()
  */
 
 #include "philosophers.h"
@@ -21,7 +21,7 @@
  * @brief Get a timestamp from gettimeofday and converts it into microseconds
  * @return Time in microseconds that has passed since the Epoch.
  */
-int64_t	gettimeofday_musec(void)
+int64_t	now(void)
 {
 	int64_t			musec;
 	struct timeval	pair;

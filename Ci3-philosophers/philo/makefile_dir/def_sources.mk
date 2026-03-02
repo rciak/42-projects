@@ -24,7 +24,7 @@ src/tools_threads/set_bool.c \
 src/tools_threads/set_int64.c \
 src/tools_threads/time_to_say_goodbye.c \
 src/tools_threads/wait_till_cond.c \
-src/tools_time/gettimeofday_musec.c \
+src/tools_time/now.c \
 src/tools_time/wait_till.c
 
 SRCS_BONUS := \

@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/02 22:00:05 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 22:13:36 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,18 @@ static void	run__philo_cycle(t_philo *phi)
 	t = &phi->t;
 	tt = &phi->tt;
 	t->starved = t->init + tt->die;
-	while (gettimeofday_musec() < t->starved && !time_to_say_goodbye(squad_end))
+	while (now() < t->starved && !time_to_say_goodbye(squad_end))
 	{
 		treat_event(THINK, phi);
-		while (gettimeofday_musec() < t->starved && !time_to_say_goodbye(squad_end)
+		while (now() < t->starved && !time_to_say_goodbye(squad_end)
 			&& get_bool(perm, phi->maestro->mutex) == false)
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
-		if (gettimeofday_musec() < t->starved && !time_to_say_goodbye(squad_end))
+		if (now() < t->starved && !time_to_say_goodbye(squad_end))
 			dine___with_forks(phi);
 		set_bool(perm, false, phi->maestro->mutex);
 		treat_event(SLEEP, phi);
 	}
-	if (gettimeofday_musec() >= t->starved)
+	if (now() >= t->starved)
 		treat_event(DIED, phi);
 }
 
