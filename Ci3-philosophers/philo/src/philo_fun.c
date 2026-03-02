@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/02 22:33:17 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 22:36:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@ static void	run__philo_cycle(t_philo *phi)
 	t_squad_end	*squad_end;
 	bool		*perm;
 	t_time		*t;
-	t_time_to	*tt;
-
+	
 	squad_end = phi->squad_end;
 	perm = &phi->maestro->allows[phi->id];
 	t = &phi->t;
-	tt = &phi->tt;
-	t->starved = t->init + tt->die;
+	t->starved = t->init + phi->tt.die;
 	while (now() < t->starved && !time_to_say_goodbye(squad_end))
 	{
 		treat_event(THINK, phi);
