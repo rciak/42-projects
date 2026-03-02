@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/01 17:09:09 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/02 18:38:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ static void	run__philo_cycle(t_philo *phi)
 		while (i___m_alive(phi) && !time_to_say_goodbye(squad_end)
 			&& get_bool(perm, phi->maestro->mutex) == false)
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
-		dine___with_forks(phi);
+		if (i___m_alive(phi) && !time_to_say_goodbye(squad_end))
+			dine___with_forks(phi);
 		set_bool(perm, false, phi->maestro->mutex);
 		treat_event(SLEEP, phi);
 	}
