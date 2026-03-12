@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/10/12 20:53:39 by reciak           ###   ########.fr        #
+#    Updated: 2025/11/30 15:36:48 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ_DIR_BONUS := obj
 RM       := rm -f
 RM_FR    := rm -fr
 CC       := cc
-CFLAGS    = -Wall -Wextra -Werror $(addprefix -I,$(INC_DIRS))
+CFLAGS    = -std=c99 -Wall -Wextra -Werror $(addprefix -I,$(INC_DIRS))
 LDFLAGS  = -L $(LIBFT_DIR) -lft
 ifeq ($(DEBUG_LAUB_SAN), 1)
   CFLAGS  += -g3 -fsanitize=address,undefined,leak
@@ -52,16 +52,39 @@ else
   COMPILE_COMMAND = @$(CC) $(CFLAGS) -c $< -o $@
   LINK_COMMAND =  @$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 endif
-
+ifeq ($(CC_LESS_STRICT), 1)
+  CFLAGS := $(filter-out -Werror,$(CFLAGS))
+endif
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
 # update via makefile rule (small "m" !)
 #   make update_INCS__SRCS__SRCS_BONUS
 #############################################
-include makefile_dir/def_headers.mk
-include makefile_dir/def_sources.mk
+INCS := \
+inc/pipex.h \
+libft/inc/ft_printf.h \
+libft/inc/get_next_line.h \
+libft/inc/libft.h
+
+SRCS := \
+src/a_dir_ending/do_final_nonsense_tidy_up.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/close_and_reset.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/free_and_reset.c \
+src/a_dir_ending/do_final_nonsense_tidy_up/free_array_and_reset.c \
+src/a_dir_ending/exit_on.c \
+src/a_dir_ending/print_msg.c \
+src/exec_pipeline.c \
+src/exec_pipeline/close_fd_in_fd_out.c \
+src/exec_pipeline/exec__cmd/set_pathname_as_av0.c \
+src/exec_pipeline/exec__cmd/set_pathname_as_cur_dir_av0.c \
+src/exec_pipeline/exec__cmd/set_pathname_via_path.c \
+src/exec_pipeline/wait_without_creating_zombies.c \
+src/main.c \
+src/parse_argv.c \
+src/parse_path.c
 #############################################
+
 
 ################################################################################
 #  CORE rules                                                                  #
@@ -75,7 +98,6 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(LINK_COMMAND)
 	@echo '  --> $(NAME)'
 
-
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 	@mkdir -p $(@D)
 	$(COMPILE_COMMAND)
@@ -83,8 +105,6 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 .PHONY: clean
 clean: _print_banner
 	@echo 'CLEANING (clean)'
-	@echo '  Removing timestamp file (created for bonus part), if any.'
-	@$(RM_FR) $(TIMESTAMPFILE_BONUS)
 	@echo '  Removing object files, if any.'
 	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
@@ -96,28 +116,28 @@ clean: _print_banner
 	else \
 		$(RM_FR) $(OBJ_DIR); \
 	fi
-	@if [ ! -d $(OBJ_DIR_BONUS) ] && [ "$(OBJ_DIR)" = "$(OBJ_DIR_BONUS)" ]; \
-	then \
-		: ; \
-	elif [ $(OBJ_DIR_BONUS) = '.' ]; then \
-		echo '     Well if the object files would be in their own separte'; \
-		echo '     directory that directory shall be removed, but here:'; \
-		echo '     Removing the directory . will not even been tried. ...'; \
-	else \
-		$(RM_FR) $(OBJ_DIR_BONUS); \
-	fi
 
 .PHONY: fclean
 fclean: clean
 	@echo 'CLEANING (fclean)'
-	@echo '  REMOVING $(NAME), if any.' 
+	@echo '  REMOVING $(NAME), if any.'
 	@$(RM_FR) $(NAME)
+	@echo '  REMOVING $(NAME)_O3, if any.'
+	@$(RM_FR) $(NAME)_O3
+	@echo '  REMOVING $(NAME)_bonus, if any.'
+	@$(RM_FR) $(NAME)_bonus
+	@make -C bonus fclean
 
 .PHONY: re
 re: fclean libftre all
 
+.PHONY: re_not_libft
+re_not_libft: fclean all
+
 .PHONY: bonus
-bonus: all
+bonus:
+	@make -C bonus all
+	@cp bonus/$(NAME)_bonus .
 
 ################################################################################
 #  libft  related rules                                                        #
@@ -198,6 +218,7 @@ Debugging        CAUTION, cf. section V                                     \n$\
 DEBUG_VALGRIND  (For debugging:                                   adds -g3) \n$\
 DEBUG_LAUB_SAN  (Leak, Address, Undef. Behaviour;            also adds -g3) \n$\
 DEBUG_M_SAN     (Memory;                                     also adds -g3) \n$\
+CC_LESS_STRICT  (Remove -Werror flag                                      ) \n$\
                                                                             \n$\
 ------------                                                                \n$\
 Optimazation                                                                \n$\
@@ -228,6 +249,7 @@ $$(OBJ_DIR)/%.o:$$(SRC_DIR)/%.c $$(INCS) | $$(LIBFT) _entry_message_compile $\
 clean:         _print_banner                                            (3) \n$\
 fclean:        clean                             (also removes the program) \n$\
 re:            fclean libftfclean all             (rebuilds - also libft.a) \n$\
+re_not_libft:  fclean all                        (rebuilds - libft.a stays) \n$\
 bonus:         all                                (currently alias for all) \n$\
 help:          info                                       (print this help) \n$\
 info:                                                     (print this help) \n$\

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/03 11:07:32 by reciak            #+#    #+#             */
-/*   Updated: 2025/10/11 11:07:26 by reciak           ###   ########.fr       */
+/*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
+/*   Updated: 2025/11/30 14:17:50 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
  */
 
 #include "pipex.h"
-#include <stdio.h>                                           // Forbidden function...
 
-static	bool	verbose__add(unsigned int a, unsigned int b, t_err *err);
-static	void	handle__error(t_err err);
-static	void	print__numbers_and_their_max(int a, int b);
+static void	handle__argc_error_separately(void);
+static void	pre__init_data(t_data *data, int argc);
+static void	handle___cmd_alloc_error_separately(void);
 
 /**
  * @brief The entry point and dirigent for the pipex programm ...
@@ -36,64 +35,54 @@ static	void	print__numbers_and_their_max(int a, int b);
  */
 int	main(int argc, char **argv, char**envp)
 {
-	t_err	err;
+	t_data	data;
+	int		termination_status_last_cmd;
 
-	(void) argc;
-	(void) argv;
-	(void) envp;
-	err = error(ERR_NONE);
-	hello();
-	print__numbers_and_their_max(1, -3);
-	if (verbose__add(1, UINT_MAX - 1, &err) == false)
-		return (handle__error(err), err.code);
-	if (verbose__add(1, UINT_MAX, &err) == false)
-		return (handle__error(err), err.code);
-	bye();
-	return (err.code);
+	if (argc != 1 + 4)
+		handle__argc_error_separately();
+	pre__init_data(&data, argc);
+	parse_argv(argc, argv, &data);
+	parse_path(envp, &data);
+	termination_status_last_cmd
+		= exec_pipeline(&data, envp);
+	do_final_nonsense_tidy_up(&data);
+	return (termination_status_last_cmd);
 }
 
-static	bool	verbose__add(unsigned int a, unsigned int b, t_err *err)
+static void	handle__argc_error_separately(void)
 {
-	unsigned int	sum;
-	bool			re_val;
-
-	printf("------------------------ verbose__add -------------------------\n");
-	sum = add_with_overflow_indicator(a, b, err);
-	if (err->code == ERR_NONE)
-		re_val = true;
-	else
-		re_val = false;
-	printf("a:         %u\n", a);
-	printf("b:         %u\n", b);
-	printf("sum:       %u\n", sum);
-	if (re_val == true)
-		printf("re_val:    true\n");
-	else
-		printf("re_val:    false\n");
-	fprintf(stderr, "err->code: %d\n", err->code);
-	fprintf(stderr, "err->msg:  %s\n", err->msg);
-	printf("The error checking and handling is left to main where lives err\n");
-	printf("\n");
-	return (re_val);
+	out_str_fd("Wrong number of arguments\n", STDERR_FILENO);
+	exit(EX_USAGE);
 }
 
-static	void	handle__error(t_err err)
+static void	pre__init_data(t_data *data, int argc)
 {
-	printf("------------------------ handle__error ------------------------\n");
-	fprintf(stderr, "Error!\n");
-	fprintf(stderr, "   Code:      %d\n", err.code);
-	fprintf(stderr, "   Message:   %s\n", err.msg);
-	fprintf(stderr, "Error handling,\n");
-	fprintf(stderr, "   freeing,\n");
-	fprintf(stderr, "   closing filedescriptors,\n");
-	fprintf(stderr, "   ...\n");
+	int	i;
+
+	data->i_cmd_err = UNUSED;
+	data->num_cmds = argc - 3;
+	data->cmd = malloc(data->num_cmds * sizeof (*data->cmd));
+	if (data->cmd == NULL)
+		handle___cmd_alloc_error_separately();
+	i = 0;
+	while (i < data->num_cmds)
+	{
+		data->cmd[i].ac = 0;
+		data->cmd[i].av = NULL;
+		data->cmd[i].pathname = NULL;
+		data->cmd[i].pathname_first_match = NULL;
+		data->cmd[i].infile = NULL;
+		data->cmd[i].outfile = NULL;
+		data->cmd[i].fd_in = UNUSED;
+		data->cmd[i].fd_out = UNUSED;
+		data->cmd[i].pid = UNUSED;
+		i++;
+	}
+	data->path = NULL;
 }
 
-static	void	print__numbers_and_their_max(int a, int b)
+static void	handle___cmd_alloc_error_separately(void)
 {
-	printf("------------------------ print__numbers_and_their_max ---------\n");
-	printf("a:             %d\n", a);
-	printf("b:             %d\n", b);
-	printf("The bigger is: %d\n", buggy_max(a, b));
-	printf("\n");
+	out_str_fd("Memory allocation of data->cmd failed\n", STDERR_FILENO);
+	exit(EX_OSERR);
 }
