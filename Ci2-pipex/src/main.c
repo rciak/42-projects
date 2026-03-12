@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 	int		termination_status_last_cmd;
 
-	if (argc != 1 + 4)
+	if (argc < 1 + 4)
 		handle__argc_error_separately();
 	pre__init_data(&data, argc);
 	parse_argv(argc, argv, &data);

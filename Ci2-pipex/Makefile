@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/11/30 15:36:48 by reciak           ###   ########.fr        #
+#    Updated: 2026/03/12 21:59:09 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ LIBFT         := $(LIBFT_DIR)/$(LIBFT_NAME)
 INC_DIRS      := inc $(LIBFT_DIR)/inc
 SRC_DIR       := src
 OBJ_DIR       := obj
-OBJ_DIR_BONUS := obj
 
 RM       := rm -f
 RM_FR    := rm -fr
@@ -106,7 +105,7 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 clean: _print_banner
 	@echo 'CLEANING (clean)'
 	@echo '  Removing object files, if any.'
-	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
+	@$(RM_FR) $(OBJS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
 		: ; \
 	elif [ $(OBJ_DIR) = '.' ]; then \
@@ -124,20 +123,12 @@ fclean: clean
 	@$(RM_FR) $(NAME)
 	@echo '  REMOVING $(NAME)_O3, if any.'
 	@$(RM_FR) $(NAME)_O3
-	@echo '  REMOVING $(NAME)_bonus, if any.'
-	@$(RM_FR) $(NAME)_bonus
-	@make -C bonus fclean
 
 .PHONY: re
 re: fclean libftre all
 
 .PHONY: re_not_libft
 re_not_libft: fclean all
-
-.PHONY: bonus
-bonus:
-	@make -C bonus all
-	@cp bonus/$(NAME)_bonus .
 
 ################################################################################
 #  libft  related rules                                                        #
@@ -250,7 +241,6 @@ clean:         _print_banner                                            (3) \n$\
 fclean:        clean                             (also removes the program) \n$\
 re:            fclean libftfclean all             (rebuilds - also libft.a) \n$\
 re_not_libft:  fclean all                        (rebuilds - libft.a stays) \n$\
-bonus:         all                                (currently alias for all) \n$\
 help:          info                                       (print this help) \n$\
 info:                                                     (print this help) \n$\
                                                                             \n$\
@@ -260,7 +250,6 @@ info:                                                     (print this help) \n$\
 ---     make re   for building libft.a freshly or run make in libft folder) \n$\
 (2) for creating object files from the source files                         \n$\
 (3) Removes object files and their folder (unless OBJ := .);                \n$\
---- also a potential timestamp file (in case of bonus) might be deleted.    \n$\
                                                                             \n$\
 II.2                                                                        \n$\
 libftall:   $$(LIBFT)                                                       \n$\
