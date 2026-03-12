@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:03:04 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/27 10:48:19 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/12 22:50:55 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,6 @@
          "The Wait Status Value", p. 545).
  */
 int	wait_without_creating_zombies(pid_t pid_last_cmd)
-{
-	pid_t	pid;
-	int		wstatus;
-	int		status_last_cmd;
-
-	pid = 1;
-	while (pid > 0)
-	{
-		pid = wait(&wstatus);
-		if (pid == pid_last_cmd && WIFEXITED(wstatus))
-			status_last_cmd = WEXITSTATUS(wstatus);
-		else if (pid == pid_last_cmd && WIFSIGNALED(wstatus))
-			status_last_cmd = 128 + WTERMSIG(wstatus);
-	}
-	return (status_last_cmd);
-}
-
-int	wait__without_creating_zombies(pid_t pid_last_cmd)
 {
 	pid_t	pid;
 	int		wstatus;
