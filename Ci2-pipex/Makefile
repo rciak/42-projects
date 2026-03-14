@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2026/03/14 17:37:05 by reciak           ###   ########.fr        #
+#    Updated: 2026/03/14 17:47:13 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,9 @@ ifeq ($(OPTI_ON), 1)
 endif
 ### If  DEBUG_PRINT=1  then compile with a flag for more printing
 ifeq ($(DEBUG_PRINT), 1)
-  CFLAGS += -DDEBUG_PRINT=$(DEBUG_PRINT)
+  CFLAGS += -DDEBUG_PRINT=true
 else
+  CFLAGS += -DDEBUG_PRINT=false
   DEBUG_PRINT = -
 endif
 

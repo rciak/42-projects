@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:53:28 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/29 17:05:46 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/14 17:59:26 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static char	*interpretation__str2(t_exit_info info, t_data *data)
 static bool	compose__msg(char **msg, const char *origin, char *s1, char *s2)
 {
 	if (!add___to_str(msg, "Exiting  ")
-		|| !add___to_str(msg, (char *) origin)
+		|| !(DEBUG_PRINT == false || add___to_str(msg, (char *) origin))
 		|| !add___to_str(msg, "\n  ---->  ")
 		|| !add___to_str(msg, s1)
 		|| !add___to_str(msg, " ")
