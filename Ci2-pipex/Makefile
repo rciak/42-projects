@@ -48,6 +48,13 @@ ifeq ($(OPTI_ON), 1)
   CFLAGS += -O3
   NAME := $(NAME)_O3
 endif
+### If  DEBUG_PRINT=1  then compile with a flag for more printing
+ifeq ($(DEBUG_PRINT), 1)
+  CFLAGS += -DDEBUG_PRINT=$(DEBUG_PRINT)
+else
+  DEBUG_PRINT = -
+endif
+
 ### If  VERBOSITY=1  then some more stuff will be printed to stdout
 ifeq ($(VERBOSITY), 1)
   COMPILE_COMMAND = $(CC) $(CFLAGS) -c $< -o $@
@@ -55,10 +62,26 @@ ifeq ($(VERBOSITY), 1)
 else
   COMPILE_COMMAND = @$(CC) $(CFLAGS) -c $< -o $@
   LINK_COMMAND =  @$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+  VERBOSITY = -
 endif
 ifeq ($(CC_LESS_STRICT), 1)
   CFLAGS := $(filter-out -Werror,$(CFLAGS))
+else
+  CC_LESS_STRICT = -
 endif
+
+### Print values of some flags:
+ifndef NO_FLAG_PRINT
+  $(info ┌──────────────────────────┐)
+  $(info │ FLAG                 SET │)
+  $(info │ ────                 ─── │)
+  $(info │ DEBUG_PRINT:          $(DEBUG_PRINT)  │)
+  $(info │ VERBOSITY:            $(VERBOSITY)  │)
+  $(info │ CC_LESS_STRICT:       $(CC_LESS_STRICT)  │)
+  $(info └──────────────────────────┘)
+  export NO_FLAG_PRINT := 1
+endif
+
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
