@@ -6,9 +6,14 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2026/03/12 21:59:09 by reciak           ###   ########.fr        #
+#    Updated: 2026/03/14 17:37:05 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+BOLD=$(shell tput bold)
+RED=$(shell tput setaf 1)
+GREEN=$(shell tput setaf 2)
+RESET=$(shell tput sgr0)
 
 NAME          := pipex
 LIBFT_NAME    := libft.a
@@ -95,7 +100,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	@make --quiet _libft_archive_provided
 	@echo 'LINKING object files and libraries ...'
 	$(LINK_COMMAND)
-	@echo '  --> $(NAME)'
+	@echo '$(BOLD)$(GREEN)  --> $(NAME)$(RESET)'
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 	@mkdir -p $(@D)
