@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/15 20:58:58 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/15 21:13:15 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,25 @@
 # define MAX_TT_DIE ONE_HOUR_IN_US
 # define MAX_TT_EAT ONE_HOUR_IN_US
 # define MAX_TT_SLEEP ONE_HOUR_IN_US
-// NOTE:
-//   a) Originally  LLONG_MAX - 2  and LLONG_MAX -1 let norminette shout ...
-//      --> replaced by number obtained via
-//           echo | gcc -dM -E - | grep LONG_LONG
-//   b) MAX_ENDED_MEALS is on purpose 1 above MAX_NUM_MEALS, cf. philo_fun!
 # define MAX_NUM_MEALS 0x7ffffffffffffffeLL
 # define MAX_ENDED_MEALS 0x7ffffffffffffffdLL
+//   Note to the last two defines:
+//     a) Originally  LLONG_MAX - 2  and LLONG_MAX -1 let norminette shout ...
+//        --> replaced by number obtained via
+//             echo | gcc -dM -E - | grep LONG_LONG
+//     b) MAX_ENDED_MEALS is on purpose 1 above MAX_NUM_MEALS, cf. philo_fun!
 
 // Simulation: Constants that could be / were tweaked for optimization tries
 # define USLEEP_BEFORE_STARTING_SHOOT_SIMULATION 100000U
 # define TIME_TILL_NEXT_FORK_CHECK 125
 # define MAESTRO_WAIT 100
-// NOTE: Thresholds spliting (waiting) time into three intervals, cf. wait_till,
-//
-//   BUSY_WAIT      |    SINGLE SLEEP     |    SEVERAL SINGLE SLEEPS
-//               TH_B_W                TH_S_W
-//
-// where  TH_B_W  and  TH_S_W  are abbreviations for the PP-constants:
 # define TH_BUSY_WAIT 200
 # define TH_SINGLE_WAIT 1000
-
+//   Note: TH_BUSY_WAIT and TH_SINGLE_WAIT  are thresholds spliting (waiting)
+//         time into three intervals, cf. wait_till and the following diagram
+//
+//     BUSY_WAIT      |    SINGLE SLEEP     |    SEVERAL SINGLE SLEEPS
+//                 TH_B_W                TH_S_W
 
 ///////////////////////////////////
 //                               //
