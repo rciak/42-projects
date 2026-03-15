@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/02 22:13:31 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/15 20:58:58 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,15 @@
 # define USLEEP_BEFORE_STARTING_SHOOT_SIMULATION 100000U
 # define TIME_TILL_NEXT_FORK_CHECK 125
 # define MAESTRO_WAIT 100
-
-//Threshold and other values for custom sleep function
-// BUSY WAIT
-# define TH_BUSY_WAIT 200                                       //Kick out at the end of submit preps.
-// SINGLE SLEEP
+// NOTE: Thresholds spliting (waiting) time into three intervals, cf. wait_till,
+//
+//   BUSY_WAIT      |    SINGLE SLEEP     |    SEVERAL SINGLE SLEEPS
+//               TH_B_W                TH_S_W
+//
+// where  TH_B_W  and  TH_S_W  are abbreviations for the PP-constants:
+# define TH_BUSY_WAIT 200
 # define TH_SINGLE_WAIT 1000
-// SEVERAL SINGLE SLEEPS
+
 
 ///////////////////////////////////
 //                               //
