@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 16:48:14 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/15 21:13:15 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/15 21:16:40 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@
 //     b) MAX_ENDED_MEALS is on purpose 1 above MAX_NUM_MEALS, cf. philo_fun!
 
 // Simulation: Constants that could be / were tweaked for optimization tries
-# define USLEEP_BEFORE_STARTING_SHOOT_SIMULATION 100000U
+# define USLEEP_BEFORE_SIMULATION_STARTING_SHOOT 100000U
 # define TIME_TILL_NEXT_FORK_CHECK 125
 # define MAESTRO_WAIT 100
 # define TH_BUSY_WAIT 200
