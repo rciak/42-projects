@@ -6,9 +6,14 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/11/30 15:36:48 by reciak           ###   ########.fr        #
+#    Updated: 2026/03/14 17:47:13 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+BOLD=$(shell tput bold)
+RED=$(shell tput setaf 1)
+GREEN=$(shell tput setaf 2)
+RESET=$(shell tput sgr0)
 
 NAME          := pipex
 LIBFT_NAME    := libft.a
@@ -17,7 +22,6 @@ LIBFT         := $(LIBFT_DIR)/$(LIBFT_NAME)
 INC_DIRS      := inc $(LIBFT_DIR)/inc
 SRC_DIR       := src
 OBJ_DIR       := obj
-OBJ_DIR_BONUS := obj
 
 RM       := rm -f
 RM_FR    := rm -fr
@@ -44,6 +48,14 @@ ifeq ($(OPTI_ON), 1)
   CFLAGS += -O3
   NAME := $(NAME)_O3
 endif
+### If  DEBUG_PRINT=1  then compile with a flag for more printing
+ifeq ($(DEBUG_PRINT), 1)
+  CFLAGS += -DDEBUG_PRINT=true
+else
+  CFLAGS += -DDEBUG_PRINT=false
+  DEBUG_PRINT = -
+endif
+
 ### If  VERBOSITY=1  then some more stuff will be printed to stdout
 ifeq ($(VERBOSITY), 1)
   COMPILE_COMMAND = $(CC) $(CFLAGS) -c $< -o $@
@@ -51,10 +63,26 @@ ifeq ($(VERBOSITY), 1)
 else
   COMPILE_COMMAND = @$(CC) $(CFLAGS) -c $< -o $@
   LINK_COMMAND =  @$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+  VERBOSITY = -
 endif
 ifeq ($(CC_LESS_STRICT), 1)
   CFLAGS := $(filter-out -Werror,$(CFLAGS))
+else
+  CC_LESS_STRICT = -
 endif
+
+### Print values of some flags:
+ifndef NO_FLAG_PRINT
+  $(info ┌──────────────────────────┐)
+  $(info │ FLAG                 SET │)
+  $(info │ ────                 ─── │)
+  $(info │ DEBUG_PRINT:          $(DEBUG_PRINT)  │)
+  $(info │ VERBOSITY:            $(VERBOSITY)  │)
+  $(info │ CC_LESS_STRICT:       $(CC_LESS_STRICT)  │)
+  $(info └──────────────────────────┘)
+  export NO_FLAG_PRINT := 1
+endif
+
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
@@ -96,7 +124,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	@make --quiet _libft_archive_provided
 	@echo 'LINKING object files and libraries ...'
 	$(LINK_COMMAND)
-	@echo '  --> $(NAME)'
+	@echo '$(BOLD)$(GREEN)  --> $(NAME)$(RESET)'
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 	@mkdir -p $(@D)
@@ -106,7 +134,7 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS) | $(LIBFT) _entry_message_compile
 clean: _print_banner
 	@echo 'CLEANING (clean)'
 	@echo '  Removing object files, if any.'
-	@$(RM_FR) $(OBJS) $(OBJS_BONUS)
+	@$(RM_FR) $(OBJS)
 	@if [ ! -d $(OBJ_DIR) ]; then \
 		: ; \
 	elif [ $(OBJ_DIR) = '.' ]; then \
@@ -124,20 +152,12 @@ fclean: clean
 	@$(RM_FR) $(NAME)
 	@echo '  REMOVING $(NAME)_O3, if any.'
 	@$(RM_FR) $(NAME)_O3
-	@echo '  REMOVING $(NAME)_bonus, if any.'
-	@$(RM_FR) $(NAME)_bonus
-	@make -C bonus fclean
 
 .PHONY: re
 re: fclean libftre all
 
 .PHONY: re_not_libft
 re_not_libft: fclean all
-
-.PHONY: bonus
-bonus:
-	@make -C bonus all
-	@cp bonus/$(NAME)_bonus .
 
 ################################################################################
 #  libft  related rules                                                        #
@@ -250,7 +270,6 @@ clean:         _print_banner                                            (3) \n$\
 fclean:        clean                             (also removes the program) \n$\
 re:            fclean libftfclean all             (rebuilds - also libft.a) \n$\
 re_not_libft:  fclean all                        (rebuilds - libft.a stays) \n$\
-bonus:         all                                (currently alias for all) \n$\
 help:          info                                       (print this help) \n$\
 info:                                                     (print this help) \n$\
                                                                             \n$\
@@ -260,7 +279,6 @@ info:                                                     (print this help) \n$\
 ---     make re   for building libft.a freshly or run make in libft folder) \n$\
 (2) for creating object files from the source files                         \n$\
 (3) Removes object files and their folder (unless OBJ := .);                \n$\
---- also a potential timestamp file (in case of bonus) might be deleted.    \n$\
                                                                             \n$\
 II.2                                                                        \n$\
 libftall:   $$(LIBFT)                                                       \n$\

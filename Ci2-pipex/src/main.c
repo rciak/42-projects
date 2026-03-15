@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:21:39 by reciak            #+#    #+#             */
-/*   Updated: 2025/11/30 14:17:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/03/12 20:47:59 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static void	handle___cmd_alloc_error_separately(void);
  * @param[in] envp Well similar but for the environment variables.
  * @return a return code indicating success or an error.
  */
-int	main(int argc, char **argv, char**envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	int		termination_status_last_cmd;
 
-	if (argc != 1 + 4)
+	if (argc < 1 + 4)
 		handle__argc_error_separately();
 	pre__init_data(&data, argc);
 	parse_argv(argc, argv, &data);
