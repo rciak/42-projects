@@ -17,6 +17,7 @@
 
 #include "libft.h"
 
+static bool	next__step_would_overflow(long long n, long long sign, char c);
 static bool	only__whitespace(const char *nptr, t_libft_err *err_code);
 
 /**
@@ -51,8 +52,7 @@ long long	atoll_strict(const char *nptr, t_libft_err *err_code)
 		return (*err_code = E_ATOLL_BAD_STRING, 0);
 	while (is_in(*nptr, "0123456789"))
 	{
-		if ((10 * n) / 10 != n || (10 * n) > LLONG_MAX - (*nptr - '0')
-			|| (10 * n) < LLONG_MIN + (*nptr - '0'))
+		if (next__step_would_overflow(n, sign, *nptr))
 			return (*err_code = E_ATOLL_RANGE, 0);
 		n = 10 * n + (sign) * (*nptr - '0');
 		nptr++;
@@ -60,6 +60,21 @@ long long	atoll_strict(const char *nptr, t_libft_err *err_code)
 	if (!only__whitespace(nptr, err_code))
 		return (0);
 	return (*err_code = E_ATOLL_NO_ERR, n);
+}
+
+static bool	next__step_would_overflow(long long n, long long sign, char c)
+{
+	if (n == 0)
+		return (false);
+	if (n > 0 && n > LLONG_MAX / 10)
+		return (true);
+	if (n > 0 && 10 * n > LLONG_MAX - (sign) * (c - '0'))
+		return (true);
+	if (n < 0 && n < LLONG_MIN / 10)
+		return (true);
+	if (n < 0 && 10 * n < LLONG_MIN - (sign) * (c - '0'))
+		return (true);
+	return (false);
 }
 
 static bool	only__whitespace(const char *nptr, t_libft_err *err_code)
