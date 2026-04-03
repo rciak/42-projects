@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/03/02 23:35:21 by reciak           ###   ########.fr       */
+/*   Updated: 2026/04/03 17:29:54 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ static void	run__philo_cycle(t_philo *phi)
 	t->starved = t->init + phi->tt.die;
 	while (now() < t->starved && !time_to_say_goodbye(squad_end))
 	{
-		//if (get_bool(perm, mutex) == false)                                               //Check after return to campus: Works better or worse with this if condition ? Ask peers if they would regard a eat|sleep|eat NO_THINK|sleep|eat... as feasible / conform to the subject
-			treat_event(THINK, phi);
+		treat_event(THINK, phi);
 		while (get_bool(perm, mutex) == false
 			&& now() < t->starved && !time_to_say_goodbye(squad_end))
 			usleep(TIME_TILL_NEXT_FORK_CHECK);
