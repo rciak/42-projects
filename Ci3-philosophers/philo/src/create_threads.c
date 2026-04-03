@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 17:51:08 by reciak            #+#    #+#             */
-/*   Updated: 2026/04/03 19:42:06 by reciak           ###   ########.fr       */
+/*   Updated: 2026/04/03 23:06:24 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,17 @@ static void	clear__threads(int64_t i, t_all *all);
  */
 bool	create_threads(t_all *all, t_ecode *code)
 {
-	bool	reval;
-
 	pthread_mutex_lock(&all->mutab.lock_philos_till_start);
 	if (!create__maestro_thread(all, code))
 		return (false);
 	set_bool(&all->thread_span.creating_failed, false,
 		all->thread_span.mutex);
-	reval = create__philo_threads(all, code);
+	if (!create__philo_threads(all, code))
+		return (false);
 	usleep(USLEEP_BEFORE_SIMULATION_STARTING_SHOOT);
 	all->thread_span.t_simulation_start = now();
 	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
-	return (reval);
+	return (true);
 }
 
 static bool	create__maestro_thread(t_all *all, t_ecode *code)
@@ -54,6 +53,7 @@ static bool	create__maestro_thread(t_all *all, t_ecode *code)
 	if (0 != pthread_create(&all->thread_span.maestro_thread, NULL, maestro_fun,
 			(void *) all))
 	{
+		pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
 		*code = E_THREAD_CREATE;
 		return (false);
 	}
@@ -102,6 +102,7 @@ static bool	create___single_philo_thread(int64_t i, t_all *all)
 
 static void	clear__threads(int64_t i, t_all *all)
 {
+	pthread_mutex_unlock(&all->mutab.lock_philos_till_start);
 	pthread_join(all->thread_span.maestro_thread, NULL);
 	while (i-- > 0)
 		pthread_join(all->thread_span.philo_thread[i], NULL);
