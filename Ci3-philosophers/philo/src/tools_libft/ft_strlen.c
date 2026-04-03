@@ -41,13 +41,3 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-	printf("abc:%zu",strlen("abc"));
-	printf(":%zu",strlen(""));
-	printf("Newline should trigger writting. Please comment this line out.\n");
-	printf("NULL:%zu",strlen(NULL));
-}
-*/
