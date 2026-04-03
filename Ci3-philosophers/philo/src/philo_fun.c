@@ -6,7 +6,7 @@
 /*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:26:40 by reciak            #+#    #+#             */
-/*   Updated: 2026/04/03 17:35:50 by reciak           ###   ########.fr       */
+/*   Updated: 2026/04/03 19:11:44 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	run__philo_cycle(t_philo *phi)
 	bool			*perm;
 	pthread_mutex_t	*mutex;
 	t_time			*t;
-	
+
 	squad_end = phi->squad_end;
 	perm = &phi->maestro->allows[phi->id];
 	mutex = phi->maestro->mutex;
@@ -97,4 +97,3 @@ static void	dine___with_forks(t_philo *phi)
 		pthread_mutex_unlock(phi->left_fork);
 	}
 }
-
