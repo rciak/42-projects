@@ -6,7 +6,7 @@
 #    By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/01 20:46:12 by reciak            #+#    #+#              #
-#    Updated: 2025/06/17 20:02:08 by reciak           ###   ########.fr        #
+#    Updated: 2026/09/14 07:44:48 by reciak           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ endif
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 #############################################
 INCS := \
-libft/libft.h \
+libft/inc/libft.h \
 inc/ft_printf.h
 
 SRCS := \
