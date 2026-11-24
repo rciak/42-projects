@@ -62,3 +62,6 @@ Available rules are:
 
 ## Usage of AI
 
+AI was used to get an idea about new notions like e.g.
+
+- default gateway
