@@ -32,6 +32,27 @@ Available rules are:
 
 # Resources
 
+## Important notions in networking
+
+- TCP/IP addressing
+- subnet masks
+- default gateways
+- routers and switches
+- OSI layers
+
+### TCP/IP addressing
+
+
+
+### subnet masks
+
+- CIDR mask
+
+### default gateways
+
+### routers and switches
+
+### OSI layers
 
 ## Acknowledgements
 
