@@ -79,11 +79,22 @@ Mária Kamilla Huszár,Kateryna Huk, Lukas Wittwer and Maria Arapovic.
 
 ## References
 
-Some useful texts and videos include
+Some useful videos include the following ones by Thuggonaut and Network Chuck
 
-- [Network Chuck: You Suck at Subnetting](https://youtube.com/playlist?list=PLIhvC56v63IKrRHh3gvZZBAGvsvOhwrRF&si=0ORxK-Ww8yYSrYGn)
+- [NetPractice: An Intro to IP Addresses and Subnets](https://www.youtube.com/watch?v=HQUw0CfQWAM)
 
-- [List of reserved IP addresses](https://en.wikipedia.org/wiki/List_of_reserved_IP_addresses)
+- [You Suck at Subnetting](https://youtube.com/playlist?list=PLIhvC56v63IKrRHh3gvZZBAGvsvOhwrRF&si=0ORxK-Ww8yYSrYGn)
+
+Further I would like to mention an English and two German wiki pages
+
+- [List of reserved IP addresses](https://en.wikipedia.org/w/index.php?title=List_of_network_protocols_(OSI_model)&oldid=1381424795)
+
+- [OSI-Modell](https://de.wikipedia.org/wiki/OSI-Modell](https://de.wikipedia.org/w/index.php?title=Internetprotokollfamilie&oldid=259582030))
+
+- [Internetprotokollfamilie und TCP/IP-Referenzmodell](https://de.wikipedia.org/w/index.php?title=Internetprotokollfamilie&oldid=259582030)
+
+The latter contains a nice table that visualizes which ISO layers are grouped
+into one TCP/IP layer.
 
 ## Usage of AI
 
