@@ -3,8 +3,8 @@ _This project has been created as part of the 42 curriculum by reciak._
 # Description
 
 The project __NetPractice__ provides a posibility to discover the
-very basics of networking in order to be able to solve 10 educational puzzles
-of increasing difficulty.
+very basics of networking in order to be able to solve 10 educational
+network puzzles of increasing difficulty.	
 Each puzzle presents a malfunctioning network that might contain different
 devices that are connected locally to each other and potentially also to
 the Internet. The task is to reconfigure the network to fix it,
@@ -18,13 +18,13 @@ application accessed by an webinterface.
 
 ## Installation and starting of the NetPractice Application
 
-*students* (or persons having access to the 42 intra) can install it as
+_students_ (or persons having access to the 42 intra) can install it as
 follows:
 
-1. **Log in** to the 42 intra and navigate to the NetPractice project page,
-2. **Download the bundle** of files provided there
+1. __Log in__ to the 42 intra and navigate to the NetPractice project page,
+2. __Download the bundle__ of files provided there
    (as of 26.11.2026 this is named `net_practice.1.10.tgz`),
-3. **Unpack that bundle**.
+3. __Unpack that bundle__.
 4. Open the extracted folder, navigate to `run.sh` and run it from a terminal.
 
 Then the default browser should open the starting interface of
@@ -58,7 +58,8 @@ Note that each run of level will challenge you with new (random) IP addresses!
 
 ## Important notions in networking
 
-The following concepts needs to be studied and understood to pass the project
+The following concepts needs to be studied and understood to do the
+puzzles and pass the project
 confidently:
 
 - TCP/IP addressing
@@ -67,31 +68,14 @@ confidently:
 - routers and switches
 
 Also worthwhile is to get an idea what
-- OSI layers
-exist.
-
-### TCP/IP addressing
-
-
-
-### subnet masks
-
-- CIDR mask
-
-### default gateways
-
-### routers and switches
-
-### OSI layers
-
-## Some usefull links
-
-
+__OSI layers__ are and how they are grouped to __TCP/IP Layers__.
 
 ## Acknowledgements
 
 I would like to acknowledge all students of 42 Vienna helping in understanding
-basic concepts of networks and offering tipps to solve the levels in the speed required in the evaluations. In particular I would like to thank Mária Kamilla Huszár,Kateryna Huk, Lukas Wittwer and Maria Arapovic.
+basic concepts of networks and offering tipps to solve the levels in the speed
+required in the evaluations. In particular I would like to thank
+Mária Kamilla Huszár,Kateryna Huk, Lukas Wittwer and Maria Arapovic.
 
 ## References
 
@@ -101,10 +85,7 @@ Some useful texts and videos include
 
 - [List of reserved IP addresses](https://en.wikipedia.org/wiki/List_of_reserved_IP_addresses)
 
-
-
 ## Usage of AI
 
-AI was partially used to get an idea about new notions like e.g.
-
-- default gateway
+AI was partially used to get an idea about new notions like
+ e.g. default gateway.
