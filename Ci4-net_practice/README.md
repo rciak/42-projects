@@ -88,13 +88,18 @@ exist.
 
 
 
-
 ## Acknowledgements
 
 I would like to acknowledge all students of 42 Vienna helping in understanding
 basic concepts of networks and offering tipps to solve the levels in the speed required in the evaluations. In particular I would like to thank Mária Kamilla Huszár,Kateryna Huk, Lukas Wittwer and Maria Arapovic.
 
 ## References
+
+Some useful texts and videos include
+
+- [Network Chuck: You Suck at Subnetting](https://youtube.com/playlist?list=PLIhvC56v63IKrRHh3gvZZBAGvsvOhwrRF&si=0ORxK-Ww8yYSrYGn)
+
+- [List of reserved IP addresses](https://en.wikipedia.org/wiki/List_of_reserved_IP_addresses)
 
 
 
